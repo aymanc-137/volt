@@ -124,6 +124,68 @@
         },
         {
             "type": "static",
+            "id": "static-line-colors",
+            "format": "line"
+        },
+        {
+            "type": "static",
+            "format": "title",
+            "id": "static-colors-title",
+            "value": "خيارات الألوان",
+            "variant": "h6"
+        },
+        {
+            "type": "string",
+            "icon": "sicon-palette",
+            "label": "اللون الثانوي",
+            "description": null,
+            "id": "color_scandary",
+            "format": "color",
+            "required": false,
+            "value": "#FF3B3B"
+        },
+        {
+            "type": "string",
+            "icon": "sicon-palette",
+            "label": "لون خلفية الصفحة (وضع فاتح)",
+            "description": null,
+            "id": "color_light_page_background",
+            "format": "color",
+            "required": false,
+            "value": "#FFFFFF"
+        },
+        {
+            "type": "string",
+            "icon": "sicon-palette",
+            "label": "لون خلفية الصناديق (وضع فاتح)",
+            "description": null,
+            "id": "color_light_box_background",
+            "format": "color",
+            "required": false,
+            "value": "#FFFFFF"
+        },
+        {
+            "type": "string",
+            "icon": "sicon-palette",
+            "label": "لون خلفية الصفحة (وضع داكن)",
+            "description": null,
+            "id": "color_dark_page_background",
+            "format": "color",
+            "required": false,
+            "value": "#000000"
+        },
+        {
+            "type": "string",
+            "icon": "sicon-palette",
+            "label": "لون خلفية الصناديق (وضع داكن)",
+            "description": null,
+            "id": "color_dark_box_background",
+            "format": "color",
+            "required": false,
+            "value": "#000000"
+        },
+        {
+            "type": "static",
             "format": "title",
             "id": "static-label4",
             "value": "خيارات أسفل الصفحة",
