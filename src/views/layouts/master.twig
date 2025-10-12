@@ -87,16 +87,16 @@
             --color-primary-light: {{ theme.color.lighter(0.15) }};
             --color-primary-reverse: {{ theme.color.reverse_text }};
             --color-scandary: {{ theme.settings.get('color_scandary', '#FF3B3B') }};
-            --color-light-page-background: {{ theme.settings.get('color_light_page_background', '#FFFFFF') }};
+            --color-light-page-background: {{ theme.settings.get('color_light_page_background', '#F9F7F6') }};
             --color-light-box-background: {{ theme.settings.get('color_light_box_background', '#FFFFFF') }};
-            --color-dark-page-background: {{ theme.settings.get('color_dark_page_background', '#000000') }};
-            --color-dark-box-background: {{ theme.settings.get('color_dark_box_background', '#000000') }};
+            --color-dark-page-background: {{ theme.settings.get('color_dark_page_background', '#262626') }};
+            --color-dark-box-background: {{ theme.settings.get('color_dark_box_background', '#333333') }};
         }
     </style>
     {# tracking services, custom css feature. #}
     {% hook 'head:end' %}
 </head>
-<body id="app" class="overflow-x-hidden {% hook 'body:classes' %}
+<body id="app" class="  overflow-x-hidden {% hook 'body:classes' %}
   {{ theme.settings.get('footer_is_dark') ? ' footer-is-dark' : ' footer-is-light' }}
   {{ theme.settings.get('topnav_is_dark') ? ' topnav-is-dark' : '' }}
   {{ theme.settings.get('sticky_add_to_cart') ? ' is-sticky-product-bar' : '' }}
