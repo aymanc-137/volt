@@ -8,7 +8,7 @@
 {% set important_links = theme.settings.get('important_links') %}
 <header class="store-header">
   {# Top Nav #}
-  <div class="top-navbar bg-[#00183B]">
+  <div style="display: none;" class="top-navbar   bg-[#00183B]">
     <div class="container flex justify-between">
       <div class="flex-1 flex items-center gap-2">
           {# Footer Menu #}
@@ -46,9 +46,9 @@
   </div>
 
   {# Main Nav #}
-  <div id="mainnav" class="main-nav-container  shadow-default bg-light-background dark:bg-dark-background">
+  <div id="mainnav" class="main-nav-container  !font-thin shadow-default bg-light-background dark:bg-dark-background">
       <div class="inner bg-inherit">
-          <div class="container">
+          <div class=" mx-10">
               <div class="flex items-stretch justify-between relative">
                   <div class="flex items-center">
                       <a class="lg:hidden mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4" href="#mobile-menu" aria-label="Open-menu">
@@ -62,8 +62,10 @@
                             <h2 class="sr-only">{{ store.name }}</h2>
                           {% endif %}
                       </a>
-                      <custom-main-menu   ></custom-main-menu>
                   </div>
+
+                  <custom-main-menu></custom-main-menu>
+
                   <div class="flex items-center justify-end">
                       {% if user.type=='user' %}
                         <salla-user-menu avatar-only show-header></salla-user-menu>
@@ -91,6 +93,7 @@
           </div>
       </div>
   </div>
+  <span class="navbar-underline"></span>
 </header>
 {% if store.scope %}
     <salla-scopes selection="{{ store.scope.display_as == 'popup' ? 'mandatory' : 'optional' }}"></salla-scopes>

@@ -984,6 +984,10 @@ select {
     margin-left: 0.375rem;
     margin-right: 0.375rem;
 }
+.mx-10 {
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+}
 .mx-2 {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
@@ -1924,6 +1928,9 @@ select {
 .text-xs {
     font-size: 0.75rem;
     line-height: 1rem;
+}
+.\!font-thin {
+    font-weight: 100 !important;
 }
 .font-bold {
     font-weight: 700;
@@ -17575,7 +17582,7 @@ input[type=radio].sr-only:checked ~ div.s-wallet-table-tbody-tr a {
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("https://cdn.lamsaweb.com/cdnVolt/fonts/alshohadaa.ttf") format("truetype");
+  src: url("https://cdn.lamsaweb.com/cdnVolt/fonts/alshohadaa_extra_thin.ttf") format("truetype");
 }
 .font-alshohadaa {
   font-family: "Alshohadaa", sans-serif;
@@ -19466,6 +19473,15 @@ input[type=radio].sr-only:checked ~ div#nav-cart span {
 .header-search .s-search-results {
     z-index: 10;
 }
+.navbar-underline {
+  width: 100% !important;
+}
+.navbar-underline {
+  display: block;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #414042, var(--color-scandary), #414042, transparent);
+  background: linear-gradient(to right, transparent, var(--color-primary), var(--color-scandary), var(--color-primary), transparent);
+}
 .store-footer {
     position: relative;
     margin-top: 2rem;
@@ -19614,13 +19630,16 @@ input[type=radio].sr-only:checked ~ div#nav-cart span {
         align-items: center;
         justify-content: space-between;
         padding: 0.75rem;
+        font-family: Alshohadaa, sans-serif;
         font-size: 0.875rem;
         line-height: 1.25rem;
+        font-weight: 100;
         transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
         transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
         transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 300ms;
+  font-family: "Alshohadaa", sans-serif;
     }
   .main-menu li > a:hover {
         color: #414042;
@@ -19632,9 +19651,42 @@ input[type=radio].sr-only:checked ~ div#nav-cart span {
     }
   .main-menu li.root-level > a {
         padding-top: 0px;
-        padding-bottom: 2rem;
-        font-weight: 700;
+        padding-bottom: 1rem;
     }
+  .main-menu li.root-level > a span {
+        padding-bottom: 1rem;
+  position: relative;
+  background: transparent;
+  border-radius: 0.375rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+.main-menu li.root-level > a span::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #414042, var(--color-scandary));
+  background: linear-gradient(90deg, var(--color-primary), var(--color-scandary));
+  transition: width 0.3s ease;
+}
+.main-menu li.root-level > a span:hover {
+  color: #414042;
+  color: var(--color-primary);
+}
+.main-menu li.root-level > a span:hover::after {
+  width: 75%;
+}
+.main-menu li.root-level > a span.active {
+  color: hsl(var(--primary));
+}
+.main-menu li.root-level > a span.active::after {
+  width: 100%;
+  background: linear-gradient(90deg, #414042, var(--color-scandary));
+  background: linear-gradient(90deg, var(--color-primary), var(--color-scandary));
+}
   .main-menu > .has-children:hover > a {
     color: #414042;
     color: var(--color-primary);
@@ -19851,6 +19903,42 @@ input[type=radio].sr-only:checked ~ div.main-menu .sub-menu {
     border-color: #c9c9c9;
     border-color: var(--infinte-color);
   }
+}
+.nav-menu-item {
+  position: relative;
+  background: transparent;
+  border-radius: 0.375rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-menu-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #414042, var(--color-scandary));
+  background: linear-gradient(90deg, var(--color-primary), var(--color-scandary));
+  transition: width 0.3s ease;
+}
+.nav-menu-item:hover {
+  color: #414042;
+  color: var(--color-primary);
+}
+.nav-menu-item:hover::after {
+  width: 75%;
+}
+.nav-menu-item.active {
+  color: hsl(var(--primary));
+}
+.nav-menu-item.active::after {
+  width: 100%;
+  background: linear-gradient(90deg, #414042, var(--color-scandary));
+  background: linear-gradient(90deg, var(--color-primary), var(--color-scandary));
+}
+.s-user-menu-trigger {
+    background-color: transparent;
 }
 .dropdown__trigger {
     height: 2.5rem;

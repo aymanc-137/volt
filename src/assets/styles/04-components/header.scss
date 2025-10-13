@@ -194,3 +194,21 @@ salla-user-menu{
     @apply z-10;
   }
 }
+
+
+
+
+
+.navbar-underline {
+  display: block;
+  height: 2px;
+  width: 100% !important;
+   
+  background: linear-gradient(to right, 
+    transparent, 
+    var(--color-primary), 
+    var(--color-scandary),
+    var(--color-primary),
+    transparent
+  );
+ }
