@@ -1159,7 +1159,7 @@
                             "icon": "sicon-link",
                             "source": "custom",
                             "searchable": true,
-                            "required": false,
+                            "required": true,
                             "description": "",
                             "sources": [
                                 {
