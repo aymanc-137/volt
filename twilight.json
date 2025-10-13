@@ -1195,7 +1195,7 @@
                             "format": "dropdown-list",
                             "label": "محاذاة المحتوى",
                             "icon": "sicon-text-align-center",
-                            "value": "center",
+                            "value": [],
                             "options": [
                                 {
                                     "label": "يسار / بداية",
