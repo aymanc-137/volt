@@ -16,9 +16,7 @@ input[type="file"] {
 }
 
 body{
-  //background-color: var(--color-dark-page-background);
- // @apply bg-[var(--color-dark-page-background)];
- //  @apply bg-['var(--color_dark_page_background)'];
+ 
   [type='text'], [type='email'], [type='url'], [type='password'], [type='number'], [type='date'], [type='datetime-local'], [type='month'], [type='search'], [type='tel'], [type='time'], [type='week'], [multiple], textarea, select{
     @apply focus:ring-0;
   }
