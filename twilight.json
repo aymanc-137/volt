@@ -1228,6 +1228,13 @@
                     ]
                 }
             ]
+        },
+        {
+            "key": "28ef40ce-29e2-4a76-b01a-4cfee5c1eb8a",
+            "title": "تجربة مكون",
+            "icon": "sicon-store",
+            "path": "home.test",
+            "fields": []
         }
     ],
     "support_url": null,
