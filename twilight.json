@@ -1101,9 +1101,7 @@
                     "required": true,
                     "minLength": 1,
                     "maxLength": 8,
-                    "value": [
-         
-                    ],
+                    "value": [],
                     "fields": [
                         {
                             "id": "slides.image",
@@ -1160,7 +1158,7 @@
                             "source": "custom",
                             "searchable": true,
                             "required": false,
-                            "description": "",
+                            "description": null,
                             "sources": [
                                 {
                                     "label": "منتج",
@@ -1187,33 +1185,45 @@
                                     "key": "custom",
                                     "value": "custom"
                                 }
-                            ]
+                            ],
+                            "value": []
                         },
                         {
                             "id": "slides.content_alignment",
                             "type": "items",
                             "format": "dropdown-list",
-                            "label": "محاذاة المحتوى",
-                            "icon": "sicon-text-align-center",
-                            "source": "Manual",
-                            "value": [],
+                            "label": "محاذاة  المحتوى",
+                            "description": null,
+                            "labelHTML": null,
+                            "icon": "sicon-keyboard_arrow_down",
+                            "selected": [
+                                {
+                                    "label": "يسار / بداية",
+                                    "value": "start",
+                                    "key": "eaeb28f3-4411-4212-8c51-f2f8de583d4c"
+                                }
+                            ],
                             "options": [
                                 {
                                     "label": "يسار / بداية",
                                     "value": "start",
-                                    "key": "start"
+                                    "key": "eaeb28f3-4411-4212-8c51-f2f8de583d4c"
                                 },
                                 {
                                     "label": "وسط",
                                     "value": "center",
-                                    "key": "center"
+                                    "key": "bbbea07a-801c-4427-b31e-9bc864dcb9db"
                                 },
                                 {
                                     "label": "يمين / نهاية",
                                     "value": "end",
-                                    "key": "end"
+                                    "key": "108ff1cb-e115-42f0-9f57-54a49721ac1a"
                                 }
-                            ]
+                            ],
+                            "source": "Manual",
+                            "multichoice": false,
+                            "searchable": true,
+                            "required": false
                         }
                     ]
                 }
