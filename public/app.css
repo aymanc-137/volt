@@ -325,8 +325,8 @@ html,
   -moz-tab-size: 4; /* 3 */
   -o-tab-size: 4;
      tab-size: 4; /* 3 */
-  font-family: "DINNextLTArabic", -apple-system, BlinkMacSystemFont;
-  font-family: var(--font-main), -apple-system, BlinkMacSystemFont; /* 4 */
+  font-family: Alshohadaa, "DINNextLTArabic", -apple-system, BlinkMacSystemFont;
+  font-family: Alshohadaa, var(--font-main), -apple-system, BlinkMacSystemFont; /* 4 */
   font-feature-settings: normal; /* 5 */
   font-variation-settings: normal; /* 6 */
   -webkit-tap-highlight-color: transparent; /* 7 */
@@ -1666,10 +1666,10 @@ select {
     background-color: inherit;
 }
 .bg-light-backgroud {
-    background-color: var(--color-dark-page-background);
+    background-color: var(--color-light-page-background);
 }
 .bg-light-foreground {
-    background-color: var(--color-dark-box-background);
+    background-color: var(--color-light-box-background);
 }
 .bg-primary {
     background-color: #414042;
@@ -1980,6 +1980,11 @@ select {
     --tw-text-opacity: 1;
     color: rgba(251, 191, 36, 1);
     color: rgba(251, 191, 36, var(--tw-text-opacity, 1));
+}
+.text-black {
+    --tw-text-opacity: 1;
+    color: rgba(0, 0, 0, 1);
+    color: rgba(0, 0, 0, var(--tw-text-opacity, 1));
 }
 .text-blue-500 {
     --tw-text-opacity: 1;
@@ -5190,8 +5195,8 @@ input[type=radio].sr-only:checked ~ div.s-conditional-offer-checkpoint-label {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: "DINNextLTArabic";
-    font-family: var(--font-main);
+    font-family: Alshohadaa, "DINNextLTArabic";
+    font-family: Alshohadaa, var(--font-main);
     font-weight: 700;
 }
 .s-count-down-item::after {
@@ -5324,8 +5329,8 @@ input[type=radio].sr-only:checked ~ div.s-conditional-offer-checkpoint-label {
     --tw-translate-y: -50%;
     transform: translate(-50%, -50%) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-    font-family: "DINNextLTArabic";
-    font-family: var(--font-main);
+    font-family: Alshohadaa, "DINNextLTArabic";
+    font-family: Alshohadaa, var(--font-main);
     --tw-text-opacity: 1;
     color: rgba(234, 84, 85, 1);
     color: rgba(234, 84, 85, var(--tw-text-opacity, 1));
@@ -17568,6 +17573,16 @@ input[type=radio].sr-only:checked ~ div.s-wallet-table-tbody-tr a {
 .s-wallet-table-tbody-tr a:where([dir="rtl"], [dir="rtl"] *) {
     right: 0px;
 }
+@font-face {
+  font-family: "Alshohadaa";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://cdn.lamsaweb.com/cdnVolt/fonts/alshohadaa.ttf") format("truetype");
+}
+.font-alshohadaa {
+  font-family: "Alshohadaa", sans-serif;
+}
 :root {
   --infinte-color: #c9c9c9;
   --main-text-color: #231f1e;
@@ -19562,6 +19577,16 @@ input[type=radio].sr-only:checked ~ div#nav-cart span {
     --tw-text-opacity: 1;
     color: rgba(55, 65, 81, 1);
     color: rgba(55, 65, 81, var(--tw-text-opacity, 1));
+}
+.main-menu {
+    --tw-text-opacity: 1;
+    color: rgba(0, 0, 0, 1);
+    color: rgba(0, 0, 0, var(--tw-text-opacity, 1));
+}
+.dark *.main-menu {
+    --tw-text-opacity: 1;
+    color: rgba(255, 255, 255, 1);
+    color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
 }
 .main-menu > li > a[href*=offer] {
     --tw-text-opacity: 1;
@@ -23280,6 +23305,11 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 }
 .dark *.dark\:bg-dark-foreground {
     background-color: var(--color-dark-box-background);
+}
+.dark *.dark\:text-white {
+    --tw-text-opacity: 1;
+    color: rgba(255, 255, 255, 1);
+    color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
 }
 @media (min-width: 640px) {
     .sm\:col-span-2 {

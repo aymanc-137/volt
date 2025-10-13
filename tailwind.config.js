@@ -17,13 +17,20 @@ module.exports = {
         },
         fontFamily: {
             sans: [
+                'Alshohadaa',
                 'var(--font-main)',
                 '-apple-system',
                 'BlinkMacSystemFont',
             ],
-            primary: "var(--font-main)"
+            primary: [
+                'Alshohadaa',
+                'var(--font-main)',
+            ]
         },
         extend    : {
+            fontFamily: {
+                alshohadaa: ['Alshohadaa', 'sans-serif'],
+            },
             transitionTimingFunction: {
               'elastic': 'cubic-bezier(0.55, 0, 0.1, 1)',
             },
@@ -36,8 +43,8 @@ module.exports = {
                 'danger'       : '#AE0A0A',
                 'dark-backgroud' :'var(--color-dark-page-background)',
                 'dark-foreground' :'var(--color-dark-box-background)',
-                'light-backgroud' :'var(--color-dark-page-background)',
-                'light-foreground' :'var(--color-dark-box-background)',
+                'light-backgroud' :'var(--color-light-page-background)',
+                'light-foreground' :'var(--color-light-box-background)',
                 'scandary':'var(--color-scandary)'
             },
             spacing: {
