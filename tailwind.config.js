@@ -23,8 +23,9 @@ module.exports = {
                 'BlinkMacSystemFont',
             ],
             primary: [
-                'Alshohadaa',
                 'var(--font-main)',
+                'Alshohadaa'
+
             ]
         },
         extend    : {
