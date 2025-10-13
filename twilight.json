@@ -1102,33 +1102,7 @@
                     "minLength": 1,
                     "maxLength": 8,
                     "value": [
-                        {
-                            "slides.image": "https://cdn.salla.sa/mQgZlG/jWoYK2VpSH35VuNJM1Q6IJ2PRFoJD13UPO1kID8G.jpg",
-                            "slides.image_alt": "عرض صيفي جديد",
-                            "slides.title": "استعد للصيف بعروض خاصة",
-                            "slides.description": "اختر من تشكيلتنا الأنيقة واستفد من خصومات تصل إلى 30٪ على منتجات مختارة.",
-                            "slides.button_label": "تسوق الآن",
-                            "slides.button_url": "",
-                            "slides.content_alignment": "start"
-                        },
-                        {
-                            "slides.image": "https://cdn.salla.sa/mQgZlG/zJ5K60liW1I5p5fe2EFSfhaNS9haP7XrZfV2K3Nv.jpg",
-                            "slides.image_alt": "منتجات مميزة",
-                            "slides.title": "منتجات جديدة وصلت للتو",
-                            "slides.description": "تعرّف على الإصدارات الجديدة لأجهزة المنزل الذكي وكن أول من يجربها.",
-                            "slides.button_label": "اكتشف المزيد",
-                            "slides.button_url": "",
-                            "slides.content_alignment": "center"
-                        },
-                        {
-                            "slides.image": "https://cdn.salla.sa/mQgZlG/t6oHChLejE4rYnH6q9GphnJ1gP2g1ZN2TuJ0yXov.jpg",
-                            "slides.image_alt": "شحن مجاني",
-                            "slides.title": "شحن مجاني للطلبات فوق 299 ر.س",
-                            "slides.description": "استمتع بالشحن المجاني مع كل طلبية تتجاوز 299 ر.س حتى نهاية الشهر.",
-                            "slides.button_label": "تفاصيل العرض",
-                            "slides.button_url": "",
-                            "slides.content_alignment": "end"
-                        }
+         
                     ],
                     "fields": [
                         {
