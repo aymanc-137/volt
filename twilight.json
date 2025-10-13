@@ -1195,6 +1195,7 @@
                             "format": "dropdown-list",
                             "label": "محاذاة المحتوى",
                             "icon": "sicon-text-align-center",
+                            "source": "Manual",
                             "value": [],
                             "options": [
                                 {
