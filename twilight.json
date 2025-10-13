@@ -1085,6 +1085,13 @@
                     "maxLength": 30
                 }
             ]
+        },
+        {
+            "key": "2b8bd090-f933-4ade-a4fd-89288e9fc0ab",
+            "title": "صور متحركة - فولت",
+            "icon": "sicon-store",
+            "path": "home.enhanced-image-carousel",
+            "fields": []
         }
     ],
     "support_url": null,
