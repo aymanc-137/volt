@@ -1665,6 +1665,12 @@ select {
 .bg-inherit {
     background-color: inherit;
 }
+.bg-light-backgroud {
+    background-color: var(--color-dark-page-background);
+}
+.bg-light-foreground {
+    background-color: var(--color-dark-page-foreground);
+}
 .bg-primary {
     background-color: #414042;
     background-color: var(--color-primary);
@@ -23271,6 +23277,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 }
 .dark *.dark\:bg-dark-backgroud {
     background-color: var(--color-dark-page-background);
+}
+.dark *.dark\:bg-dark-foreground {
+    background-color: var(--color-dark-page-foreground);
 }
 @media (min-width: 640px) {
     .sm\:col-span-2 {

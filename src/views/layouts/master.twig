@@ -93,6 +93,88 @@
             --color-dark-box-background: {{ theme.settings.get('color_dark_box_background', '#333333') }};
         }
     </style>
+    <script>
+        (function () {
+            var STORAGE_KEY = 'theme-mode';
+            var root = document.documentElement;
+
+            function persistMode(mode) {
+                try {
+                    localStorage.setItem(STORAGE_KEY, mode);
+                } catch (error) {
+                    // Silently fail when storage is unavailable.
+                }
+            }
+
+            function dispatchThemeChange(mode) {
+                try {
+                    window.dispatchEvent(new CustomEvent('theme:change', { detail: { mode: mode } }));
+                } catch (error) {
+                    // Ignore environments that block custom events.
+                }
+            }
+
+            function toggleRootClass(isDark) {
+                if (isDark) {
+                    root.classList.add('dark');
+                    return true;
+                }
+
+                root.classList.remove('dark');
+                return false;
+            }
+
+            function applyMode(mode, shouldPersist) {
+                var isDark = toggleRootClass(mode === 'dark');
+                if (shouldPersist) {
+                    persistMode(isDark ? 'dark' : 'light');
+                }
+                dispatchThemeChange(isDark ? 'dark' : 'light');
+                return isDark;
+            }
+
+            function readStoredMode() {
+                try {
+                    return localStorage.getItem(STORAGE_KEY);
+                } catch (error) {
+                    return null;
+                }
+            }
+
+            applyMode(readStoredMode() || 'light', false);
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var toggle = document.getElementById('theme-toggle');
+
+                if (!toggle) {
+                    return;
+                }
+
+                var lightIcon = toggle.querySelector('[data-theme-icon="light"]');
+                var darkIcon = toggle.querySelector('[data-theme-icon="dark"]');
+
+                var updateToggleState = function (isDark) {
+                    toggle.setAttribute('aria-pressed', String(isDark));
+                    if (lightIcon) {
+                        lightIcon.classList.toggle('hidden', isDark);
+                        lightIcon.style.display = isDark ? 'none' : '';
+                    }
+                    if (darkIcon) {
+                        darkIcon.classList.toggle('hidden', !isDark);
+                        darkIcon.style.display = isDark ? '' : 'none';
+                    }
+                };
+
+                updateToggleState(root.classList.contains('dark'));
+
+                toggle.addEventListener('click', function () {
+                    var nextMode = root.classList.contains('dark') ? 'light' : 'dark';
+                    var isDark = applyMode(nextMode, true);
+                    updateToggleState(isDark);
+                });
+            });
+        })();
+    </script>
     {# tracking services, custom css feature. #}
     {% hook 'head:end' %}
 </head>

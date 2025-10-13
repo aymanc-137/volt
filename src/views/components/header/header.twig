@@ -8,7 +8,7 @@
 {% set important_links = theme.settings.get('important_links') %}
 <header class="store-header">
   {# Top Nav #}
-  <div class="top-navbar">
+  <div class="top-navbar dark:bg-dark-backgroud bg-light-backgroud">
     <div class="container flex justify-between">
       <div class="flex-1 flex items-center gap-2">
           {# Footer Menu #}
@@ -46,7 +46,7 @@
   </div>
 
   {# Main Nav #}
-  <div id="mainnav" class="main-nav-container shadow-default bg-white">
+  <div id="mainnav" class="main-nav-container shadow-default bg-light-foreground dark:bg-dark-foreground">
       <div class="inner bg-inherit">
           <div class="container">
               <div class="flex items-stretch justify-between relative">
@@ -75,6 +75,17 @@
                       <salla-cart-summary class="ml-4 rtl:ml-[unset] rtl:mr-4">
                         <i slot="icon" class="header-btn__icon icon sicon-shopping-bag"></i>
                       </salla-cart-summary>
+                      <button
+                        id="theme-toggle"
+                        class="header-btn ml-4 rtl:ml-[unset] rtl:mr-4"
+                        type="button"
+                        aria-pressed="false"
+                        aria-label="Toggle color mode"
+                      >
+                        <i class="header-btn__icon icon sicon-sun" data-theme-icon="light" aria-hidden="true"></i>
+                        <i class="header-btn__icon icon sicon-moon hidden" data-theme-icon="dark" aria-hidden="true" style="display:none"></i>
+                        <span class="sr-only">Toggle color mode</span>
+                      </button>
                   </div>
               </div>
           </div>
