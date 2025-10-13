@@ -325,8 +325,8 @@ html,
   -moz-tab-size: 4; /* 3 */
   -o-tab-size: 4;
      tab-size: 4; /* 3 */
-  font-family: Alshohadaa, "DINNextLTArabic", -apple-system, BlinkMacSystemFont;
-  font-family: Alshohadaa, var(--font-main), -apple-system, BlinkMacSystemFont; /* 4 */
+  font-family: "DINNextLTArabic", -apple-system, BlinkMacSystemFont;
+  font-family: var(--font-main), -apple-system, BlinkMacSystemFont; /* 4 */
   font-feature-settings: normal; /* 5 */
   font-variation-settings: normal; /* 6 */
   -webkit-tap-highlight-color: transparent; /* 7 */
@@ -1632,6 +1632,11 @@ select {
     border-color: #414042;
     border-color: var(--color-primary);
 }
+.bg-\[\#00183B\] {
+    --tw-bg-opacity: 1;
+    background-color: rgba(0, 24, 59, 1);
+    background-color: rgba(0, 24, 59, var(--tw-bg-opacity, 1));
+}
 .bg-black {
     --tw-bg-opacity: 1;
     background-color: rgba(0, 0, 0, 1);
@@ -1665,11 +1670,8 @@ select {
 .bg-inherit {
     background-color: inherit;
 }
-.bg-light-backgroud {
+.bg-light-background {
     background-color: var(--color-light-page-background);
-}
-.bg-light-foreground {
-    background-color: var(--color-light-box-background);
 }
 .bg-primary {
     background-color: #414042;
@@ -5190,8 +5192,8 @@ input[type=radio].sr-only:checked ~ div.s-conditional-offer-checkpoint-label {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: "DINNextLTArabic", Alshohadaa;
-    font-family: var(--font-main), Alshohadaa;
+    font-family: "DINNextLTArabic";
+    font-family: var(--font-main);
     font-weight: 700;
 }
 .s-count-down-item::after {
@@ -5324,8 +5326,8 @@ input[type=radio].sr-only:checked ~ div.s-conditional-offer-checkpoint-label {
     --tw-translate-y: -50%;
     transform: translate(-50%, -50%) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-    font-family: "DINNextLTArabic", Alshohadaa;
-    font-family: var(--font-main), Alshohadaa;
+    font-family: "DINNextLTArabic";
+    font-family: var(--font-main);
     --tw-text-opacity: 1;
     color: rgba(234, 84, 85, 1);
     color: rgba(234, 84, 85, var(--tw-text-opacity, 1));
@@ -23295,11 +23297,8 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     transform: translate(-0.25rem, var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
-.dark *.dark\:bg-dark-backgroud {
+.dark *.dark\:bg-dark-background {
     background-color: var(--color-dark-page-background);
-}
-.dark *.dark\:bg-dark-foreground {
-    background-color: var(--color-dark-box-background);
 }
 @media (min-width: 640px) {
     .sm\:col-span-2 {

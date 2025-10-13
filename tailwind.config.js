@@ -17,14 +17,12 @@ module.exports = {
         },
         fontFamily: {
             sans: [
-                'Alshohadaa',
                 'var(--font-main)',
                 '-apple-system',
                 'BlinkMacSystemFont',
             ],
             primary: [
                 'var(--font-main)',
-                'Alshohadaa'
 
             ]
         },
@@ -42,9 +40,9 @@ module.exports = {
                 'dark'         : '#1D1F1F',
                 'darker'       : '#0E0F0F',
                 'danger'       : '#AE0A0A',
-                'dark-backgroud' :'var(--color-dark-page-background)',
+                'dark-background' :'var(--color-dark-page-background)',
                 'dark-foreground' :'var(--color-dark-box-background)',
-                'light-backgroud' :'var(--color-light-page-background)',
+                'light-background' :'var(--color-light-page-background)',
                 'light-foreground' :'var(--color-light-box-background)',
                 'scandary':'var(--color-scandary)'
             },
