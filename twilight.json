@@ -1234,7 +1234,23 @@
             "title": "تجربة مكون",
             "icon": "sicon-store",
             "path": "home.test",
-            "fields": []
+            "fields": [
+                {
+                    "id": "string",
+                    "type": "string",
+                    "format": "text",
+                    "label": "String",
+                    "description": null,
+                    "labelHTML": null,
+                    "placeholder": "Placeholder text ..",
+                    "icon": "sicon-format-text-alt",
+                    "value": null,
+                    "multilanguage": false,
+                    "required": false,
+                    "minLength": 6,
+                    "maxLength": 30
+                }
+            ]
         }
     ],
     "support_url": null,
