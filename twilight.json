@@ -1091,7 +1091,158 @@
             "title": "صور متحركة - فولت",
             "icon": "sicon-store",
             "path": "home.enhanced-image-carousel",
-            "fields": []
+            "fields": [
+                {
+                    "id": "slides",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "شرائح السلايدر",
+                    "item_label": "شريحة",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 8,
+                    "value": [
+                        {
+                            "slides.image": "https://cdn.salla.sa/mQgZlG/jWoYK2VpSH35VuNJM1Q6IJ2PRFoJD13UPO1kID8G.jpg",
+                            "slides.image_alt": "عرض صيفي جديد",
+                            "slides.title": "استعد للصيف بعروض خاصة",
+                            "slides.description": "اختر من تشكيلتنا الأنيقة واستفد من خصومات تصل إلى 30٪ على منتجات مختارة.",
+                            "slides.button_label": "تسوق الآن",
+                            "slides.button_url": "",
+                            "slides.content_alignment": "start"
+                        },
+                        {
+                            "slides.image": "https://cdn.salla.sa/mQgZlG/zJ5K60liW1I5p5fe2EFSfhaNS9haP7XrZfV2K3Nv.jpg",
+                            "slides.image_alt": "منتجات مميزة",
+                            "slides.title": "منتجات جديدة وصلت للتو",
+                            "slides.description": "تعرّف على الإصدارات الجديدة لأجهزة المنزل الذكي وكن أول من يجربها.",
+                            "slides.button_label": "اكتشف المزيد",
+                            "slides.button_url": "",
+                            "slides.content_alignment": "center"
+                        },
+                        {
+                            "slides.image": "https://cdn.salla.sa/mQgZlG/t6oHChLejE4rYnH6q9GphnJ1gP2g1ZN2TuJ0yXov.jpg",
+                            "slides.image_alt": "شحن مجاني",
+                            "slides.title": "شحن مجاني للطلبات فوق 299 ر.س",
+                            "slides.description": "استمتع بالشحن المجاني مع كل طلبية تتجاوز 299 ر.س حتى نهاية الشهر.",
+                            "slides.button_label": "تفاصيل العرض",
+                            "slides.button_url": "",
+                            "slides.content_alignment": "end"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "id": "slides.image",
+                            "type": "string",
+                            "format": "image",
+                            "label": "صورة الشريحة",
+                            "icon": "sicon-image",
+                            "required": true,
+                            "description": "* المقاس المقترح للصورة 1440×600 بكسل",
+                            "settings": {
+                                "height": 600,
+                                "width": 1440
+                            }
+                        },
+                        {
+                            "id": "slides.image_alt",
+                            "type": "string",
+                            "format": "text",
+                            "label": "نص بديل للصورة",
+                            "icon": "sicon-format-text-alt",
+                            "placeholder": "نص بديل مختصر"
+                        },
+                        {
+                            "id": "slides.title",
+                            "type": "string",
+                            "format": "text",
+                            "label": "العنوان الرئيسي",
+                            "icon": "sicon-format-header",
+                            "placeholder": "اكتب عنواناً جذاباً"
+                        },
+                        {
+                            "id": "slides.description",
+                            "type": "string",
+                            "format": "textarea",
+                            "label": "الوصف",
+                            "icon": "sicon-format-text-alt",
+                            "placeholder": "اكتب وصفاً مختصراً"
+                        },
+                        {
+                            "id": "slides.button_label",
+                            "type": "string",
+                            "format": "text",
+                            "label": "نص الزر",
+                            "icon": "sicon-format-text",
+                            "placeholder": "مثال: تسوق الآن",
+                            "required": false
+                        },
+                        {
+                            "id": "slides.button_url",
+                            "type": "items",
+                            "format": "variable-list",
+                            "label": "رابط الزر",
+                            "icon": "sicon-link",
+                            "source": "custom",
+                            "searchable": true,
+                            "required": false,
+                            "description": "",
+                            "sources": [
+                                {
+                                    "label": "منتج",
+                                    "key": "products",
+                                    "value": "products"
+                                },
+                                {
+                                    "label": "تصنيف",
+                                    "key": "categories",
+                                    "value": "categories"
+                                },
+                                {
+                                    "label": "ماركة تجارية",
+                                    "key": "brands",
+                                    "value": "brands"
+                                },
+                                {
+                                    "label": "صفحة تعريفية",
+                                    "key": "pages",
+                                    "value": "pages"
+                                },
+                                {
+                                    "label": "رابط خارجي",
+                                    "key": "custom",
+                                    "value": "custom"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "slides.content_alignment",
+                            "type": "items",
+                            "format": "dropdown-list",
+                            "label": "محاذاة المحتوى",
+                            "icon": "sicon-text-align-center",
+                            "value": "center",
+                            "options": [
+                                {
+                                    "label": "يسار / بداية",
+                                    "value": "start",
+                                    "key": "start"
+                                },
+                                {
+                                    "label": "وسط",
+                                    "value": "center",
+                                    "key": "center"
+                                },
+                                {
+                                    "label": "يمين / نهاية",
+                                    "value": "end",
+                                    "key": "end"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "support_url": null,

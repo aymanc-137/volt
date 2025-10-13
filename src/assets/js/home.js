@@ -6,6 +6,7 @@ window.fslightbox = Lightbox;
 class Home extends BasePage {
     onReady() {
         this.initFeaturedTabs();
+        this.initEnhancedCarousel();
     }
 
     /**
@@ -24,6 +25,129 @@ class Home extends BasePage {
             })
         });
         document.querySelectorAll('.s-block-tabs').forEach(block => block.classList.add('tabs-initialized'));
+    }
+
+    initEnhancedCarousel() {
+        const carousels = document.querySelectorAll('[data-enhanced-carousel]');
+        if (!carousels.length) {
+            return;
+        }
+
+        const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        carousels.forEach(component => {
+            const track = component.querySelector('[data-carousel-track]');
+            if (!track) {
+                return;
+            }
+
+            const slides = Array.from(track.children);
+            const slideCount = slides.length;
+            if (slideCount <= 1) {
+                component.querySelectorAll('[data-carousel-prev], [data-carousel-next], [data-carousel-dots]').forEach(control => {
+                    if (control) {
+                        control.classList.add('hidden');
+                    }
+                });
+                return;
+            }
+
+            if (reduceMotion) {
+                track.style.transitionDuration = '0ms';
+            }
+
+            let current = 0;
+            let isTransitioning = false;
+            let fallbackTimeout;
+            const prevBtn = component.querySelector('[data-carousel-prev]');
+            const nextBtn = component.querySelector('[data-carousel-next]');
+            const dots = Array.from(component.querySelectorAll('[data-carousel-dot]'));
+
+            const updateDots = () => {
+                dots.forEach((dot, index) => {
+                    const isActive = index === current;
+                    dot.classList.toggle('bg-white', isActive);
+                    dot.classList.toggle('bg-white/40', !isActive);
+                    dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+                });
+            };
+
+            const updateSlides = () => {
+                slides.forEach((slide, index) => {
+                    slide.setAttribute('aria-hidden', index === current ? 'false' : 'true');
+                });
+            };
+
+            const applyTransform = () => {
+                track.style.transform = `translate3d(-${current * 100}%, 0, 0)`;
+            };
+
+            const goTo = targetIndex => {
+                const normalized = ((targetIndex % slideCount) + slideCount) % slideCount;
+                if (normalized === current || isTransitioning) {
+                    return;
+                }
+                isTransitioning = true;
+                current = normalized;
+                applyTransform();
+                updateDots();
+                updateSlides();
+                window.clearTimeout(fallbackTimeout);
+                fallbackTimeout = window.setTimeout(() => {
+                    isTransitioning = false;
+                }, reduceMotion ? 0 : 600);
+            };
+
+            applyTransform();
+            updateDots();
+            updateSlides();
+
+            track.addEventListener('transitionend', () => {
+                window.clearTimeout(fallbackTimeout);
+                isTransitioning = false;
+            });
+
+            prevBtn?.addEventListener('click', () => {
+                goTo(current - 1);
+            });
+
+            nextBtn?.addEventListener('click', () => {
+                goTo(current + 1);
+            });
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    goTo(index);
+                });
+            });
+
+            let touchStartX = null;
+
+            component.addEventListener('touchstart', event => {
+                const touch = event.touches[0];
+                touchStartX = touch ? touch.clientX : null;
+            }, { passive: true });
+
+            component.addEventListener('touchend', event => {
+                if (touchStartX === null) {
+                    return;
+                }
+                const touch = event.changedTouches[0];
+                if (!touch) {
+                    touchStartX = null;
+                    return;
+                }
+                const deltaX = touch.clientX - touchStartX;
+                if (Math.abs(deltaX) > 60) {
+                    if (deltaX > 0) {
+                        goTo(current - 1);
+                    } else {
+                        goTo(current + 1);
+                    }
+                }
+                touchStartX = null;
+            }, { passive: true });
+        });
     }
 }
 
