@@ -1669,7 +1669,7 @@ select {
     background-color: var(--color-dark-page-background);
 }
 .bg-light-foreground {
-    background-color: var(--color-dark-page-foreground);
+    background-color: var(--color-dark-box-background);
 }
 .bg-primary {
     background-color: #414042;
@@ -23279,7 +23279,7 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     background-color: var(--color-dark-page-background);
 }
 .dark *.dark\:bg-dark-foreground {
-    background-color: var(--color-dark-page-foreground);
+    background-color: var(--color-dark-box-background);
 }
 @media (min-width: 640px) {
     .sm\:col-span-2 {
