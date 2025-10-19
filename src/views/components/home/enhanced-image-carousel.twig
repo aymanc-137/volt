@@ -64,12 +64,12 @@
                             flex h-full w-full px-6 py-10 sm:px-12 md:px-16 lg:px-20">
                                 <div class="flex my-auto w-full max-w-2xl flex-col gap-4 dark:text-white text-black {{alignment_class[alignment[0]] ?? 'items-center text-center'}}">
                                     {% if slide.title_part1 or slide.title_gradient or slide.title_part3 %}
-                                        <h3 class="font-alshohadaa text-3xl font-semibold sm:text-4xl lg:text-6xl">
+                                        <h3 class="font-alshohadaa text-3xl leading-20 font-semibold sm:text-4xl lg:text-6xl">
                                             {% if slide.title_part1 %}
                                                 <span>{{ slide.title_part1 }}</span>
                                             {% endif %}
                                             {% if slide.title_gradient %}
-                                                <span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ slide.title_gradient }}</span>
+                                                <span class="bg-gradient-to-r text-3xl font-semibold sm:text-4xl lg:text-7xl from-primary to-scandary bg-clip-text text-transparent">{{ slide.title_gradient }}</span>
                                             {% endif %}
                                             {% if slide.title_part3 %}
                                                 <span>{{ slide.title_part3 }}</span>
