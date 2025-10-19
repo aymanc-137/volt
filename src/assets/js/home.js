@@ -42,6 +42,8 @@ class Home extends BasePage {
             }
 
             const animationType = component.dataset.animationType || 'slide';
+            const autoplay = component.dataset.autoplay === 'true';
+            const autoplayDelay = parseInt(component.dataset.autoplayDelay) || 5000;
             const slides = Array.from(track.querySelectorAll('[data-carousel-slide]'));
             const slideCount = slides.length;
             if (slideCount <= 1) {
@@ -60,6 +62,7 @@ class Home extends BasePage {
             let current = 0;
             let isTransitioning = false;
             let fallbackTimeout;
+            let autoplayInterval;
             const prevBtn = component.querySelector('[data-carousel-prev]');
             const nextBtn = component.querySelector('[data-carousel-next]');
             const dots = Array.from(component.querySelectorAll('[data-carousel-dot]'));
@@ -111,22 +114,60 @@ class Home extends BasePage {
             updateDots();
             updateSlides();
 
+            // Auto-play functionality
+            const startAutoplay = () => {
+                if (!autoplay || slideCount <= 1) return;
+
+                stopAutoplay();
+                autoplayInterval = window.setInterval(() => {
+                    goTo(current + 1);
+                }, autoplayDelay);
+            };
+
+            const stopAutoplay = () => {
+                if (autoplayInterval) {
+                    window.clearInterval(autoplayInterval);
+                    autoplayInterval = null;
+                }
+            };
+
+            // Pause autoplay on hover
+            if (autoplay) {
+                component.addEventListener('mouseenter', stopAutoplay);
+                component.addEventListener('mouseleave', startAutoplay);
+
+                // Start autoplay initially
+                startAutoplay();
+            }
+
             track.addEventListener('transitionend', () => {
                 window.clearTimeout(fallbackTimeout);
                 isTransitioning = false;
             });
 
             prevBtn?.addEventListener('click', () => {
+                stopAutoplay();
                 goTo(current - 1);
+                if (autoplay) {
+                    startAutoplay();
+                }
             });
 
             nextBtn?.addEventListener('click', () => {
+                stopAutoplay();
                 goTo(current + 1);
+                if (autoplay) {
+                    startAutoplay();
+                }
             });
 
             dots.forEach((dot, index) => {
                 dot.addEventListener('click', () => {
+                    stopAutoplay();
                     goTo(index);
+                    if (autoplay) {
+                        startAutoplay();
+                    }
                 });
             });
 
@@ -148,10 +189,14 @@ class Home extends BasePage {
                 }
                 const deltaX = touch.clientX - touchStartX;
                 if (Math.abs(deltaX) > 60) {
+                    stopAutoplay();
                     if (deltaX > 0) {
                         goTo(current - 1);
                     } else {
                         goTo(current + 1);
+                    }
+                    if (autoplay) {
+                        startAutoplay();
                     }
                 }
                 touchStartX = null;

@@ -1123,6 +1123,35 @@
                     "required": false
                 },
                 {
+                    "id": "autoplay",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "تشغيل تلقائي",
+                    "description": "تفعيل الانتقال التلقائي بين الشرائح",
+                    "icon": "sicon-toggle-off",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "autoplay_delay",
+                    "type": "number",
+                    "format": "integer",
+                    "label": "مدة التأخير (بالثواني)",
+                    "description": "المدة الزمنية بين كل شريحة والأخرى",
+                    "icon": "sicon-clock",
+                    "value": 5,
+                    "required": false,
+                    "minimum": 2,
+                    "maximum": 15,
+                    "conditions": [
+                        {
+                            "id": "autoplay",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
                     "id": "slides",
                     "type": "collection",
                     "format": "collection",

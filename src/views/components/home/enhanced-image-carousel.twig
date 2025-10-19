@@ -15,8 +15,8 @@
 
 {% set slides = component.slides  %}
 {% set animation_type = component.animation_type[0].value ?? 'slide' %}
-
-<h1>{{ animation_type | json_encode }}</h1>
+{% set autoplay = component.autoplay ?? false %}
+{% set autoplay_delay = component.autoplay_delay ?? 5 %}
 
 {% set block_id = 'enhanced-image-carousel-' ~ position %}
 
@@ -26,6 +26,8 @@
         data-enhanced-carousel
         data-carousel-id="{{ block_id }}"
         data-animation-type="{{ animation_type }}"
+        data-autoplay="{{ autoplay ? 'true' : 'false' }}"
+        data-autoplay-delay="{{ autoplay_delay * 1000 }}"
     >
         <div class="relative overflow-hidden h-full  bg-white dark:bg-dark-box-background">
             <div class="{% if animation_type == 'fade' %}relative{% else %}flex transition-transform{% endif %} h-full duration-500 ease-in-out will-change-transform" data-carousel-track>
