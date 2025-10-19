@@ -1366,7 +1366,7 @@ select {
 }
 @keyframes fadeInUp {
     0% {
-        transform: translateY(30px);
+        transform: translateY(60px);
         opacity: 0;
     }
     100% {
@@ -1375,11 +1375,11 @@ select {
     }
 }
 .animate-fade-in-up {
-    animation: fadeInUp 0.6s ease-out forwards;
+    animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 @keyframes slideInLeft {
     0% {
-        transform: translateX(-100px);
+        transform: translateX(-200px);
         opacity: 0;
     }
     100% {
@@ -1388,7 +1388,7 @@ select {
     }
 }
 .animate-slide-in-left {
-    animation: slideInLeft 0.8s ease-out forwards;
+    animation: slideInLeft 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 .cursor-pointer {
     cursor: pointer;

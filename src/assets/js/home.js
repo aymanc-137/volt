@@ -81,6 +81,7 @@ class Home extends BasePage {
                 textElements.forEach((element, index) => {
                     // Reset animation
                     element.style.animation = 'none';
+                    element.style.opacity = '0';
                     element.classList.remove('animate-slide-in-left', 'animate-fade-in-up');
 
                     // Force reflow
@@ -88,12 +89,13 @@ class Home extends BasePage {
 
                     // Apply animation with delay
                     setTimeout(() => {
+                        element.style.opacity = '1';
                         if (index === 0) {
                             element.classList.add('animate-slide-in-left');
                         } else {
                             element.classList.add('animate-fade-in-up');
                         }
-                    }, index * 150);
+                    }, index * 250);
                 });
             };
 
@@ -133,19 +135,60 @@ class Home extends BasePage {
                     return;
                 }
                 isTransitioning = true;
+                pauseAllVideos();
                 current = normalized;
                 applyTransform();
                 updateDots();
                 updateSlides();
+                playCurrentVideo();
                 window.clearTimeout(fallbackTimeout);
                 fallbackTimeout = window.setTimeout(() => {
                     isTransitioning = false;
                 }, reduceMotion ? 0 : 600);
             };
 
+            // Lazy load videos
+            const lazyLoadVideo = (video) => {
+                if (!video || video.dataset.loaded === 'true') return;
+
+                const source = video.querySelector('source[data-src]');
+                if (source) {
+                    source.src = source.dataset.src;
+                    video.load();
+                    video.play().catch(() => {
+                        // Auto-play failed, video will be paused
+                    });
+                    video.dataset.loaded = 'true';
+                }
+            };
+
+            const pauseAllVideos = () => {
+                component.querySelectorAll('video').forEach(video => {
+                    if (!video.paused) {
+                        video.pause();
+                    }
+                });
+            };
+
+            const playCurrentVideo = () => {
+                const currentSlide = slides[current];
+                if (!currentSlide) return;
+
+                const video = currentSlide.querySelector('video[data-lazy-video]');
+                if (video) {
+                    lazyLoadVideo(video);
+                }
+            };
+
             applyTransform();
             updateDots();
             updateSlides();
+
+            // Animate the initial slide text and load video if present
+            if (slides[0]) {
+                animateText(slides[0]);
+                playCurrentVideo();
+            }
 
             // Auto-play functionality
             const startAutoplay = () => {

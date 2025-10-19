@@ -48,13 +48,31 @@
               
                     {# [alignment] ?? 'items-center text-center' #}
                     <article class="{% if animation_type == 'fade' %}absolute inset-0 opacity-0 transition-opacity duration-500{% else %}relative w-full shrink-0{% endif %} h-full" data-carousel-slide>
-                        <img
-                            class="h-full w-full object-cover "
-                            src="{{ slide.image }}"
-                            alt="{{ (slide.image_alt ?: slide.title ?: 'carousel-slide-' ~ loop.index)|e('html_attr') }}"
-                            loading="lazy"
-                            decoding="async"
-                        >
+                        {% set media_type = slide.media_type ?? 'image' %}
+
+                        {% if media_type == 'video' and slide.video_url %}
+                            <video
+                                class="h-full w-full object-cover"
+                                data-lazy-video="{{ slide.video_url }}"
+                                {% if slide.video_poster %}poster="{{ slide.video_poster }}"{% endif %}
+                                loop
+                                muted
+                                playsinline
+                                preload="none"
+                                aria-label="{{ (slide.image_alt ?: 'carousel-video-' ~ loop.index)|e('html_attr') }}"
+                            >
+                                <source data-src="{{ slide.video_url }}" type="video/mp4">
+                                متصفحك لا يدعم تشغيل الفيديو
+                            </video>
+                        {% else %}
+                            <img
+                                class="h-full w-full object-cover"
+                                src="{{ slide.image }}"
+                                alt="{{ (slide.image_alt ?: slide.title ?: 'carousel-slide-' ~ loop.index)|e('html_attr') }}"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        {% endif %}
                         {# <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div> #}
                         <div class="absolute inset-0">
                             <div dir="rtl" class="

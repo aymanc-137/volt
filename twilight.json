@@ -1163,25 +1163,95 @@
                     "value": [],
                     "fields": [
                         {
+                            "id": "slides.media_type",
+                            "type": "items",
+                            "format": "dropdown-list",
+                            "label": "نوع الخلفية",
+                            "icon": "sicon-media",
+                            "selected": [
+                                {
+                                    "label": "صورة",
+                                    "value": "image",
+                                    "key": "media-image"
+                                }
+                            ],
+                            "options": [
+                                {
+                                    "label": "صورة",
+                                    "value": "image",
+                                    "key": "media-image"
+                                },
+                                {
+                                    "label": "فيديو",
+                                    "value": "video",
+                                    "key": "media-video"
+                                }
+                            ],
+                            "source": "Manual",
+                            "multichoice": false,
+                            "required": false
+                        },
+                        {
                             "id": "slides.image",
                             "type": "string",
                             "format": "image",
                             "label": "صورة الشريحة",
                             "icon": "sicon-image",
-                            "required": true,
+                            "required": false,
                             "description": "* المقاس المقترح للصورة 1440×600 بكسل",
                             "settings": {
                                 "height": 600,
                                 "width": 1440
-                            }
+                            },
+                            "conditions": [
+                                {
+                                    "id": "slides.media_type",
+                                    "operation": "=",
+                                    "value": "image"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "slides.video_url",
+                            "type": "string",
+                            "format": "text",
+                            "label": "رابط الفيديو",
+                            "icon": "sicon-video-player",
+                            "placeholder": "https://example.com/video.mp4",
+                            "description": "رابط مباشر لملف الفيديو (MP4, WebM)",
+                            "required": false,
+                            "conditions": [
+                                {
+                                    "id": "slides.media_type",
+                                    "operation": "=",
+                                    "value": "video"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "slides.video_poster",
+                            "type": "string",
+                            "format": "image",
+                            "label": "صورة مصغرة للفيديو",
+                            "icon": "sicon-image",
+                            "description": "صورة تظهر قبل تحميل الفيديو",
+                            "required": false,
+                            "conditions": [
+                                {
+                                    "id": "slides.media_type",
+                                    "operation": "=",
+                                    "value": "video"
+                                }
+                            ]
                         },
                         {
                             "id": "slides.image_alt",
                             "type": "string",
                             "format": "text",
-                            "label": "نص بديل للصورة",
+                            "label": "نص بديل",
                             "icon": "sicon-format-text-alt",
-                            "placeholder": "نص بديل مختصر"
+                            "placeholder": "نص بديل مختصر",
+                            "description": "نص بديل للصورة أو الفيديو"
                         },
                         {
                             "id": "slides.title_part1",
