@@ -134,10 +134,25 @@ module.exports = {
                     '0%': { transform: 'translateY(0%)', opacity: '1' },
                     '100%': { transform: 'translateY(100%)', opacity: '0' },
                 },
+                slideInLeft: {
+                    '0%': { transform: 'translateX(-100px)', opacity: '0' },
+                    '100%': { transform: 'translateX(0)', opacity: '1' },
+                },
+                slideInRight: {
+                    '0%': { transform: 'translateX(100px)', opacity: '0' },
+                    '100%': { transform: 'translateX(0)', opacity: '1' },
+                },
+                fadeInUp: {
+                    '0%': { transform: 'translateY(30px)', opacity: '0' },
+                    '100%': { transform: 'translateY(0)', opacity: '1' },
+                },
             },
             animation: {
                 slideUpFromBottom: 'slideUpFromBottom .6s linear',
                 slideDownFromBottom: 'slideDownFromBottom .6s linear',
+                'slide-in-left': 'slideInLeft 0.8s ease-out forwards',
+                'slide-in-right': 'slideInRight 0.8s ease-out forwards',
+                'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
             },
         },
     },

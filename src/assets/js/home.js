@@ -76,6 +76,27 @@ class Home extends BasePage {
                 });
             };
 
+            const animateText = (slide) => {
+                const textElements = slide.querySelectorAll('[data-carousel-text]');
+                textElements.forEach((element, index) => {
+                    // Reset animation
+                    element.style.animation = 'none';
+                    element.classList.remove('animate-slide-in-left', 'animate-fade-in-up');
+
+                    // Force reflow
+                    void element.offsetWidth;
+
+                    // Apply animation with delay
+                    setTimeout(() => {
+                        if (index === 0) {
+                            element.classList.add('animate-slide-in-left');
+                        } else {
+                            element.classList.add('animate-fade-in-up');
+                        }
+                    }, index * 150);
+                });
+            };
+
             const updateSlides = () => {
                 slides.forEach((slide, index) => {
                     const isActive = index === current;
@@ -84,6 +105,18 @@ class Home extends BasePage {
                     if (animationType === 'fade') {
                         slide.style.opacity = isActive ? '1' : '0';
                         slide.style.zIndex = isActive ? '1' : '0';
+                    }
+
+                    // Animate text for active slide
+                    if (isActive) {
+                        animateText(slide);
+                    } else {
+                        // Reset text opacity for inactive slides
+                        const textElements = slide.querySelectorAll('[data-carousel-text]');
+                        textElements.forEach(el => {
+                            el.classList.remove('animate-slide-in-left', 'animate-fade-in-up');
+                            el.style.opacity = '0';
+                        });
                     }
                 });
             };

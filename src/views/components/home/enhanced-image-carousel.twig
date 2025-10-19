@@ -64,7 +64,7 @@
                             flex h-full w-full px-6 py-10 sm:px-12 md:px-16 lg:px-20">
                                 <div class="flex my-auto w-full max-w-2xl flex-col gap-4 dark:text-white text-black {{alignment_class[alignment[0]] ?? 'items-center text-center'}}">
                                     {% if slide.title_part1 or slide.title_gradient or slide.title_part3 %}
-                                        <h3 class="font-alshohadaa text-3xl leading-20 font-semibold sm:text-4xl lg:text-6xl">
+                                        <h3 class="font-alshohadaa text-3xl leading-20 font-semibold sm:text-4xl lg:text-6xl opacity-0" data-carousel-text="title">
                                             {% if slide.title_part1 %}
                                                 <span>{{ slide.title_part1 }}</span>
                                             {% endif %}
@@ -77,10 +77,10 @@
                                         </h3>
                                     {% endif %}
                                     {% if slide.description %}
-                                        <p class="text-base sm:text-lg lg:text-xl dark:text-white/80 text-black/80">{{ slide.description }}</p>
+                                        <p class="text-base sm:text-lg lg:text-xl dark:text-white/80 text-black/80 opacity-0" data-carousel-text="description">{{ slide.description }}</p>
                                     {% endif %}
                                     {% if slide.button_label and slide.button_url %}
-                                        <div class="pt-4">
+                                        <div class="pt-4 opacity-0" data-carousel-text="button">
                                             <a
                                                 class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold uppercase tracking-wide text-primary-reverse transition hover:bg-primary-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-dark focus-visible:ring-offset-2"
                                                 href="{{ slide.button_url }}"
