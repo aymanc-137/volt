@@ -944,6 +944,12 @@ select {
 .top-full {
     top: 100%;
 }
+.left-4 {
+    left: 1rem;
+}
+.right-4 {
+    right: 1rem;
+}
 .-z-1 {
     z-index: -1;
 }

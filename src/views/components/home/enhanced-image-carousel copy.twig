@@ -13,9 +13,10 @@
 | position                        | int      | Sorting number start from zero                                                |
 #}
 
-{% set slides = component.slides  %}
+{% set slides = component.slides ?? [] %}
+<h1>{{ component | json_encode }}</h1>
  
- 
+
 {% set block_id = 'enhanced-image-carousel-' ~ position %}
 
 <section class="s-block container" id="{{ block_id }}">
@@ -25,18 +26,14 @@
         data-carousel-id="{{ block_id }}"
     >
         <div class="relative overflow-hidden rounded-3xl bg-white dark:bg-dark-box-background">
-            <div class="flex transition-transform duration-500 ease-in-out will-change-transform" data-carousel-track dir="ltr">
+            <div class="flex transition-transform duration-500 ease-in-out will-change-transform" data-carousel-track>
                 {% for slide in slides %}
-                {% set alignment = slide.content_alignment ?? 'center' %}
-                    
+                    {% set alignment = slide.content_alignment ?? 'center' %}
                     {% set alignment_class = {
                         'start': 'items-start text-left rtl:text-right',
                         'center': 'items-center text-center',
                         'end': 'items-end text-right rtl:text-left'
-                    } %} 
-
-              
-                    {# [alignment] ?? 'items-center text-center' #}
+                    }[alignment] ?? 'items-center text-center' %}
                     <article class="relative w-full shrink-0">
                         <img
                             class="h-[420px] w-full object-cover sm:h-[520px]"
@@ -48,7 +45,7 @@
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                         <div class="absolute inset-0">
                             <div class="flex h-full w-full px-6 py-10 sm:px-12 md:px-16 lg:px-20">
-                                <div class="flex w-full max-w-2xl flex-col gap-4 text-white {{alignment_class[alignment[0]] ?? 'items-center text-center'}}">
+                                <div class="flex w-full max-w-2xl flex-col gap-4 text-white {{ alignment_class }}">
                                     {% if slide.title %}
                                         <h3 class="text-2xl font-semibold sm:text-3xl lg:text-4xl">{{ slide.title }}</h3>
                                     {% endif %}
@@ -76,21 +73,23 @@
         {% if slides|length > 1 %}
             <button
                 type="button"
-                class="group absolute top-1/2 left-4 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-primary shadow-lg transition hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:flex"
+                class="group absolute top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-primary shadow-lg transition hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ltr:left-4 rtl:right-4 md:flex"
                 data-carousel-prev
-                aria-label="{{ 'common.elements.previous'|trans }}"
+                aria-label="السابق"
             >
-                <span class="sr-only">{{ 'common.elements.previous'|trans }}</span>
-                <i class="sicon-chevron-left text-xl transition group-hover:-translate-x-1"></i>
+                <span class="sr-only">السابق</span>
+                <i class="sicon-chevron-left text-xl transition group-hover:-translate-x-1 rtl:hidden"></i>
+                <i class="sicon-chevron-right hidden text-xl transition rtl:inline-block rtl:group-hover:translate-x-1"></i>
             </button>
             <button
                 type="button"
-                class="group absolute top-1/2 right-4 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-primary shadow-lg transition hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:flex"
+                class="group absolute top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-primary shadow-lg transition hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ltr:right-4 rtl:left-4 md:flex"
                 data-carousel-next
-                aria-label="{{ 'common.elements.next'|trans }}"
+                aria-label="التالي"
             >
-                <span class="sr-only">{{ 'common.elements.next'|trans }}</span>
-                <i class="sicon-chevron-right text-xl transition group-hover:translate-x-1"></i>
+                <span class="sr-only">التالي</span>
+                <i class="sicon-chevron-right text-xl transition group-hover:translate-x-1 ltr:inline-block rtl:hidden"></i>
+                <i class="sicon-chevron-left hidden text-xl transition rtl:inline-block rtl:group-hover:-translate-x-1"></i>
             </button>
 
             <div class="mt-6 flex items-center justify-center gap-2" data-carousel-dots>
@@ -103,7 +102,6 @@
                     ></button>
                 {% endfor %}
             </div>
-            
         {% endif %}
     </div>
 </section>

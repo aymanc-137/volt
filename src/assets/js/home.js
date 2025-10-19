@@ -34,6 +34,7 @@ class Home extends BasePage {
         }
 
         const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const isRTL = document.documentElement.dir === 'rtl' || document.body.dir === 'rtl';
 
         carousels.forEach(component => {
             const track = component.querySelector('[data-carousel-track]');
@@ -108,11 +109,11 @@ class Home extends BasePage {
             });
 
             prevBtn?.addEventListener('click', () => {
-                goTo(current - 1);
+                goTo(isRTL ? current + 1 : current - 1);
             });
 
             nextBtn?.addEventListener('click', () => {
-                goTo(current + 1);
+                goTo(isRTL ? current - 1 : current + 1);
             });
 
             dots.forEach((dot, index) => {
@@ -140,9 +141,9 @@ class Home extends BasePage {
                 const deltaX = touch.clientX - touchStartX;
                 if (Math.abs(deltaX) > 60) {
                     if (deltaX > 0) {
-                        goTo(current - 1);
+                        goTo(isRTL ? current + 1 : current - 1);
                     } else {
-                        goTo(current + 1);
+                        goTo(isRTL ? current - 1 : current + 1);
                     }
                 }
                 touchStartX = null;
