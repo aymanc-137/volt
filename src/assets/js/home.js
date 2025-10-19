@@ -34,7 +34,6 @@ class Home extends BasePage {
         }
 
         const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const isRTL = document.documentElement.dir === 'rtl' || document.body.dir === 'rtl';
 
         carousels.forEach(component => {
             const track = component.querySelector('[data-carousel-track]');
@@ -42,7 +41,8 @@ class Home extends BasePage {
                 return;
             }
 
-            const slides = Array.from(track.children);
+            const animationType = component.dataset.animationType || 'slide';
+            const slides = Array.from(track.querySelectorAll('[data-carousel-slide]'));
             const slideCount = slides.length;
             if (slideCount <= 1) {
                 component.querySelectorAll('[data-carousel-prev], [data-carousel-next], [data-carousel-dots]').forEach(control => {
@@ -75,12 +75,20 @@ class Home extends BasePage {
 
             const updateSlides = () => {
                 slides.forEach((slide, index) => {
-                    slide.setAttribute('aria-hidden', index === current ? 'false' : 'true');
+                    const isActive = index === current;
+                    slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+
+                    if (animationType === 'fade') {
+                        slide.style.opacity = isActive ? '1' : '0';
+                        slide.style.zIndex = isActive ? '1' : '0';
+                    }
                 });
             };
 
             const applyTransform = () => {
-                track.style.transform = `translate3d(-${current * 100}%, 0, 0)`;
+                if (animationType === 'slide') {
+                    track.style.transform = `translate3d(-${current * 100}%, 0, 0)`;
+                }
             };
 
             const goTo = targetIndex => {
@@ -109,11 +117,11 @@ class Home extends BasePage {
             });
 
             prevBtn?.addEventListener('click', () => {
-                goTo(isRTL ? current + 1 : current - 1);
+                goTo(current - 1);
             });
 
             nextBtn?.addEventListener('click', () => {
-                goTo(isRTL ? current - 1 : current + 1);
+                goTo(current + 1);
             });
 
             dots.forEach((dot, index) => {
@@ -141,9 +149,9 @@ class Home extends BasePage {
                 const deltaX = touch.clientX - touchStartX;
                 if (Math.abs(deltaX) > 60) {
                     if (deltaX > 0) {
-                        goTo(isRTL ? current + 1 : current - 1);
+                        goTo(current - 1);
                     } else {
-                        goTo(isRTL ? current - 1 : current + 1);
+                        goTo(current + 1);
                     }
                 }
                 touchStartX = null;

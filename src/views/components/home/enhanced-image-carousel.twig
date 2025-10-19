@@ -14,18 +14,19 @@
 #}
 
 {% set slides = component.slides  %}
- 
- 
+{% set animation_type = component.animation_type[0].value ?? 'slide' %}
+
 {% set block_id = 'enhanced-image-carousel-' ~ position %}
 
-<section class="s-block container" id="{{ block_id }}">
+<section dir="ltr"  class="h-[80vh] w-full" id="{{ block_id }}">
     <div
-        class="enhanced-carousel relative"
+        class="enhanced-carousel h-full  relative group/carousel"
         data-enhanced-carousel
         data-carousel-id="{{ block_id }}"
+        data-animation-type="{{ animation_type }}"
     >
-        <div class="relative overflow-hidden rounded-3xl bg-white dark:bg-dark-box-background">
-            <div class="flex transition-transform duration-500 ease-in-out will-change-transform" data-carousel-track dir="ltr">
+        <div class="relative overflow-hidden h-full  bg-white dark:bg-dark-box-background">
+            <div class="{% if animation_type == 'fade' %}relative{% else %}flex transition-transform{% endif %} h-full duration-500 ease-in-out will-change-transform" data-carousel-track>
                 {% for slide in slides %}
                 {% set alignment = slide.content_alignment ?? 'center' %}
                     
@@ -37,9 +38,9 @@
 
               
                     {# [alignment] ?? 'items-center text-center' #}
-                    <article class="relative w-full shrink-0">
+                    <article class="{% if animation_type == 'fade' %}absolute inset-0 opacity-0 transition-opacity duration-500{% else %}relative w-full shrink-0{% endif %} h-full" data-carousel-slide>
                         <img
-                            class="h-[420px] w-full object-cover sm:h-[520px]"
+                            class="h-full w-full object-cover "
                             src="{{ slide.image }}"
                             alt="{{ (slide.image_alt ?: slide.title ?: 'carousel-slide-' ~ loop.index)|e('html_attr') }}"
                             loading="lazy"
@@ -47,8 +48,8 @@
                         >
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                         <div class="absolute inset-0">
-                            <div class="flex h-full w-full px-6 py-10 sm:px-12 md:px-16 lg:px-20">
-                                <div class="flex w-full max-w-2xl flex-col gap-4 text-white {{alignment_class[alignment[0]] ?? 'items-center text-center'}}">
+                            <div dir="rtl" class="flex h-full w-full px-6 py-10 sm:px-12 md:px-16 lg:px-20">
+                                <div class="flex my-auto w-full max-w-2xl flex-col gap-4 text-white {{alignment_class[alignment[0]] ?? 'items-center text-center'}}">
                                     {% if slide.title %}
                                         <h3 class="text-2xl font-semibold sm:text-3xl lg:text-4xl">{{ slide.title }}</h3>
                                     {% endif %}
@@ -76,24 +77,24 @@
         {% if slides|length > 1 %}
             <button
                 type="button"
-                class="group absolute top-1/2 left-4 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-primary shadow-lg transition hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:flex"
+                class="group absolute top-1/2 left-4 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-primary shadow-lg transition-all opacity-0 group-hover/carousel:opacity-100 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:flex"
                 data-carousel-prev
-                aria-label="{{ 'common.elements.previous'|trans }}"
+                aria-label="السابق"
             >
-                <span class="sr-only">{{ 'common.elements.previous'|trans }}</span>
+                <span class="sr-only">السابق</span>
                 <i class="sicon-chevron-left text-xl transition group-hover:-translate-x-1"></i>
             </button>
             <button
                 type="button"
-                class="group absolute top-1/2 right-4 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-primary shadow-lg transition hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:flex"
+                class="group absolute top-1/2 right-4 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-primary shadow-lg transition-all opacity-0 group-hover/carousel:opacity-100 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:flex"
                 data-carousel-next
-                aria-label="{{ 'common.elements.next'|trans }}"
+                aria-label="التالي"
             >
-                <span class="sr-only">{{ 'common.elements.next'|trans }}</span>
+                <span class="sr-only">التالي</span>
                 <i class="sicon-chevron-right text-xl transition group-hover:translate-x-1"></i>
             </button>
 
-            <div class="mt-6 flex items-center justify-center gap-2" data-carousel-dots>
+            <div   class="mt-6 flex items-center justify-center gap-2" data-carousel-dots>
                 {% for slide in slides %}
                     <button
                         type="button"
