@@ -74,9 +74,7 @@
                             <i class="header-btn__icon sicon-user-circle"></i>
                           </button>
                       {% endif %}
-                      <salla-cart-summary class="ml-4 rtl:ml-[unset] rtl:mr-4">
-                        <i slot="icon" class="header-btn__icon icon sicon-shopping-bag"></i>
-                      </salla-cart-summary>
+                
                       <button
                         id="theme-toggle"
                         class="header-btn ml-4 rtl:ml-[unset] rtl:mr-4"
@@ -88,6 +86,10 @@
                         <i class="header-btn__icon icon sicon-moon hidden" data-theme-icon="dark" aria-hidden="true" style="display:none"></i>
                         <span class="sr-only">Toggle color mode</span>
                       </button>
+
+                      <salla-cart-summary class="ml-4 rtl:ml-[unset] rtl:mr-4 dark:text-white text-black">
+                        <i slot="icon" class="header-btn__icon icon sicon-shopping-bag dark:text-white text-black"></i>
+                      </salla-cart-summary>
                   </div>
               </div>
           </div>

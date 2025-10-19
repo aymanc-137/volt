@@ -1184,12 +1184,34 @@
                             "placeholder": "نص بديل مختصر"
                         },
                         {
-                            "id": "slides.title",
+                            "id": "slides.title_part1",
                             "type": "string",
                             "format": "text",
-                            "label": "العنوان الرئيسي",
-                            "icon": "sicon-format-header",
-                            "placeholder": "اكتب عنواناً جذاباً"
+                            "label": "العنوان - الجزء الأول",
+                            "icon": "sicon-format-text-alt",
+                            "placeholder": "النص قبل الكلمة الملونة",
+                            "description": "الجزء الأول من العنوان (اختياري)",
+                            "required": false
+                        },
+                        {
+                            "id": "slides.title_gradient",
+                            "type": "string",
+                            "format": "text",
+                            "label": "العنوان - الجزء الملون (متدرج)",
+                            "icon": "sicon-magic-wand",
+                            "placeholder": "الكلمة أو العبارة الملونة",
+                            "description": "سيتم تطبيق تدرج لوني من اللون الأساسي إلى اللون الثانوي",
+                            "required": false
+                        },
+                        {
+                            "id": "slides.title_part3",
+                            "type": "string",
+                            "format": "text",
+                            "label": "العنوان - الجزء الأخير",
+                            "icon": "sicon-format-text-alt",
+                            "placeholder": "النص بعد الكلمة الملونة",
+                            "description": "الجزء الأخير من العنوان (اختياري)",
+                            "required": false
                         },
                         {
                             "id": "slides.description",

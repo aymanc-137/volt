@@ -5,11 +5,16 @@
 | component.slides                | object[] | list of slides                                                                |
 | component.slides[].image        | string   | URL of slide image                                                            |
 | component.slides[].image_alt    | ?string  | Accessible alternative text                                                   |
-| component.slides[].title        | ?string  | Slide headline                                                                |
+| component.slides[].title_part1  | ?string  | First part of title (before gradient)                                        |
+| component.slides[].title_gradient | ?string | Middle part with gradient (primary to secondary color)                       |
+| component.slides[].title_part3  | ?string  | Last part of title (after gradient)                                          |
 | component.slides[].description  | ?string  | Slide description                                                             |
 | component.slides[].button_label | ?string  | CTA button label                                                              |
 | component.slides[].button_url   | ?string  | CTA button link                                                               |
 | component.slides[].content_alignment | ?string  | Content alignment (start, center, end)                                        |
+| component.animation_type        | ?string  | Animation type: slide or fade                                                |
+| component.autoplay              | ?boolean | Enable auto-play                                                              |
+| component.autoplay_delay        | ?int     | Auto-play delay in seconds                                                    |
 | position                        | int      | Sorting number start from zero                                                |
 #}
 
@@ -50,15 +55,29 @@
                             loading="lazy"
                             decoding="async"
                         >
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                        {# <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div> #}
                         <div class="absolute inset-0">
-                            <div dir="rtl" class="flex h-full w-full px-6 py-10 sm:px-12 md:px-16 lg:px-20">
-                                <div class="flex my-auto w-full max-w-2xl flex-col gap-4 text-white {{alignment_class[alignment[0]] ?? 'items-center text-center'}}">
-                                    {% if slide.title %}
-                                        <h3 class="text-2xl font-semibold sm:text-3xl lg:text-4xl">{{ slide.title }}</h3>
+                            <div dir="rtl" class="
+                            bg-gradient-to-l dark:from-black 
+                            from-white
+                            to-transparent
+                            flex h-full w-full px-6 py-10 sm:px-12 md:px-16 lg:px-20">
+                                <div class="flex my-auto w-full max-w-2xl flex-col gap-4 dark:text-white text-black {{alignment_class[alignment[0]] ?? 'items-center text-center'}}">
+                                    {% if slide.title_part1 or slide.title_gradient or slide.title_part3 %}
+                                        <h3 class="font-alshohadaa text-3xl font-semibold sm:text-4xl lg:text-6xl">
+                                            {% if slide.title_part1 %}
+                                                <span>{{ slide.title_part1 }}</span>
+                                            {% endif %}
+                                            {% if slide.title_gradient %}
+                                                <span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ slide.title_gradient }}</span>
+                                            {% endif %}
+                                            {% if slide.title_part3 %}
+                                                <span>{{ slide.title_part3 }}</span>
+                                            {% endif %}
+                                        </h3>
                                     {% endif %}
                                     {% if slide.description %}
-                                        <p class="text-base sm:text-lg lg:text-xl text-white/80">{{ slide.description }}</p>
+                                        <p class="text-base sm:text-lg lg:text-xl dark:text-white/80 text-black/80">{{ slide.description }}</p>
                                     {% endif %}
                                     {% if slide.button_label and slide.button_url %}
                                         <div class="pt-4">
