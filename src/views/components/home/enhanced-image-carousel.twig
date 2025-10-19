@@ -14,7 +14,7 @@
 #}
 
 {% set slides = component.slides  %}
-{% set animation_type = component.animation_type[0].value ?? 'slide' %}
+{% set animation_type = component.animation_type  %}
 {% set autoplay = component.autoplay ?? false %}
 {% set autoplay_delay = component.autoplay_delay ?? 5 %}
 
