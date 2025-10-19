@@ -1191,8 +1191,8 @@ select {
 .h-\[34px\] {
     height: 34px;
 }
-.h-\[420px\] {
-    height: 420px;
+.h-\[80vh\] {
+    height: 80vh;
 }
 .h-auto {
     height: auto;
@@ -1208,12 +1208,6 @@ select {
 }
 .h-px {
     height: 1px;
-}
-.h-\[60vh\] {
-    height: 60vh;
-}
-.h-\[80vh\] {
-    height: 80vh;
 }
 .max-h-0 {
     max-height: 0px;
@@ -23545,9 +23539,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .sm\:grid {
         display: grid;
     }
-    .sm\:h-\[520px\] {
-        height: 520px;
-    }
     .sm\:h-auto {
         height: auto;
     }
@@ -23974,9 +23965,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 .ltr\:left-0:where([dir="ltr"], [dir="ltr"] *) {
     left: 0px;
 }
-.ltr\:left-4:where([dir="ltr"], [dir="ltr"] *) {
-    left: 1rem;
-}
 .ltr\:right-0:where([dir="ltr"], [dir="ltr"] *) {
     right: 0px;
 }
@@ -24021,9 +24009,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 }
 .ltr\:mr-auto:where([dir="ltr"], [dir="ltr"] *) {
     margin-right: auto;
-}
-.ltr\:inline-block:where([dir="ltr"], [dir="ltr"] *) {
-    display: inline-block;
 }
 .ltr\:rounded-l-none:where([dir="ltr"], [dir="ltr"] *) {
     border-top-left-radius: 0px;
@@ -24125,9 +24110,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 .rtl\:right-0:where([dir="rtl"], [dir="rtl"] *) {
     right: 0px;
 }
-.rtl\:right-4:where([dir="rtl"], [dir="rtl"] *) {
-    right: 1rem;
-}
 .rtl\:ml-0:where([dir="rtl"], [dir="rtl"] *) {
     margin-left: 0px;
 }
@@ -24167,12 +24149,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 }
 .rtl\:mr-4:where([dir="rtl"], [dir="rtl"] *) {
     margin-right: 1rem;
-}
-.rtl\:inline-block:where([dir="rtl"], [dir="rtl"] *) {
-    display: inline-block;
-}
-.rtl\:hidden:where([dir="rtl"], [dir="rtl"] *) {
-    display: none;
 }
 .rtl\:-scale-x-100:where([dir="rtl"], [dir="rtl"] *) {
     --tw-scale-x: -1;
@@ -24228,16 +24204,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 }
 .rtl\:even\:border-r:nth-child(even):where([dir="rtl"], [dir="rtl"] *) {
     border-right-width: 1px;
-}
-.group:hover .rtl\:group-hover\:-translate-x-1:where([dir="rtl"], [dir="rtl"] *) {
-    --tw-translate-x: -0.25rem;
-    transform: translate(-0.25rem, var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.group:hover .rtl\:group-hover\:translate-x-1:where([dir="rtl"], [dir="rtl"] *) {
-    --tw-translate-x: 0.25rem;
-    transform: translate(0.25rem, var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 @media (min-width: 640px) {
     .sm\:rtl\:text-right:where([dir="rtl"], [dir="rtl"] *) {

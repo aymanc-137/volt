@@ -1093,6 +1093,36 @@
             "path": "home.enhanced-image-carousel",
             "fields": [
                 {
+                    "id": "animation_type",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "نوع الحركة",
+                    "description": "اختر نوع الانتقال بين الشرائح",
+                    "icon": "sicon-animation",
+                    "selected": [
+                        {
+                            "label": "انزلاق (Slide)",
+                            "value": "slide",
+                            "key": "anim-slide"
+                        }
+                    ],
+                    "options": [
+                        {
+                            "label": "انزلاق (Slide)",
+                            "value": "slide",
+                            "key": "anim-slide"
+                        },
+                        {
+                            "label": "تلاشي (Fade)",
+                            "value": "fade",
+                            "key": "anim-fade"
+                        }
+                    ],
+                    "source": "Manual",
+                    "multichoice": false,
+                    "required": false
+                },
+                {
                     "id": "slides",
                     "type": "collection",
                     "format": "collection",
@@ -1226,36 +1256,6 @@
                             "required": false
                         }
                     ]
-                },
-                {
-                    "id": "animation_type",
-                    "type": "items",
-                    "format": "dropdown-list",
-                    "label": "نوع الحركة",
-                    "description": "اختر نوع الانتقال بين الشرائح",
-                    "icon": "sicon-animation",
-                    "selected": [
-                        {
-                            "label": "انزلاق (Slide)",
-                            "value": "slide",
-                            "key": "anim-slide"
-                        }
-                    ],
-                    "options": [
-                        {
-                            "label": "انزلاق (Slide)",
-                            "value": "slide",
-                            "key": "anim-slide"
-                        },
-                        {
-                            "label": "تلاشي (Fade)",
-                            "value": "fade",
-                            "key": "anim-fade"
-                        }
-                    ],
-                    "source": "Manual",
-                    "multichoice": false,
-                    "required": false
                 }
             ]
         },

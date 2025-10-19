@@ -16,6 +16,8 @@
 {% set slides = component.slides  %}
 {% set animation_type = component.animation_type[0].value ?? 'slide' %}
 
+<h1>{{ animation_type | json_encode }}</h1>
+
 {% set block_id = 'enhanced-image-carousel-' ~ position %}
 
 <section dir="ltr"  class="h-[80vh] w-full" id="{{ block_id }}">
