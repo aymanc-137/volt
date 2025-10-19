@@ -1258,29 +1258,6 @@
                     ]
                 }
             ]
-        },
-        {
-            "key": "28ef40ce-29e2-4a76-b01a-4cfee5c1eb8a",
-            "title": "تجربة مكون",
-            "icon": "sicon-store",
-            "path": "home.test",
-            "fields": [
-                {
-                    "id": "string",
-                    "type": "string",
-                    "format": "text",
-                    "label": "String",
-                    "description": null,
-                    "labelHTML": null,
-                    "placeholder": "Placeholder text ..",
-                    "icon": "sicon-format-text-alt",
-                    "value": null,
-                    "multilanguage": false,
-                    "required": false,
-                    "minLength": 6,
-                    "maxLength": 30
-                }
-            ]
         }
     ],
     "support_url": null,
