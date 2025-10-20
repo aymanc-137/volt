@@ -1389,6 +1389,13 @@
                     ]
                 }
             ]
+        },
+        {
+            "key": "5fa0c3d7-dc97-400d-be82-adeadcd1e52e",
+            "title": "مربع البحث - فولت",
+            "icon": "sicon-store",
+            "path": "home.search-bar",
+            "fields": []
         }
     ],
     "support_url": null,
