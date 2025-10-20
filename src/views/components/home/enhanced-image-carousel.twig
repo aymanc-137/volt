@@ -24,8 +24,7 @@
 {% set autoplay_delay = component.autoplay_delay ?? 5 %}
 
 {% set block_id = 'enhanced-image-carousel-' ~ position %}
-
-<section dir="ltr"  class="h-[80vh] w-full" id="{{ block_id }}">
+ <section dir="ltr"  class="h-[80vh] w-full" id="{{ block_id }}">
     <div
         class="enhanced-carousel h-full  relative group/carousel"
         data-enhanced-carousel
@@ -48,7 +47,7 @@
               
                     {# [alignment] ?? 'items-center text-center' #}
                     <article class="{% if animation_type == 'fade' %}absolute inset-0 opacity-0 transition-opacity duration-500{% else %}relative w-full shrink-0{% endif %} h-full" data-carousel-slide>
-                        {% set media_type = slide.media_type ?? 'image' %}
+                        {% set media_type = slide.media_type[0] ?? 'image' %}
 
                         {% if media_type == 'video' and slide.video_url %}
                             <video
