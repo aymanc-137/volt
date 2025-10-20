@@ -416,3 +416,9 @@ salla-modal {
 .rounded-custom {
   border-radius: 0rem;
 }
+
+.hover-glow{
+  &:hover{
+    box-shadow: var(--shadow-glow);
+  }
+}

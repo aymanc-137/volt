@@ -97,11 +97,11 @@
                                         <p class="text-base sm:text-lg lg:text-xl dark:text-white/80 text-black/80 opacity-0" data-carousel-text="description">{{ slide.description }}</p>
                                     {% endif %}
                                     {% if slide.button_label and slide.button_url %}
-                                        <div class="pt-4  hover:scale-110 bg-slate-500" >
+                                        <div class="pt-4 opacity-0 hover-glow" data-carousel-text="button">
                                             <a href="{{ slide.button_url }}">
-                                                <div class="inline-flex items-center gap-2 justify-center bg-slate-400   px-8 py-4   font-semibold uppercase tracking-wide transition-all duration-300 hover:scale-110  cursor-pointer">
+                                                <div class="inline-flex items-center gap-2 justify-center  btn btn--primary px-8 py-4   font-semibold uppercase tracking-wide transition-all duration-300 hover:scale-110  cursor-pointer">
                                                     {{ slide.button_label }}
-                                                    <i class="sicon-arrow-left rtl:rotate-180"></i>
+                                                    <i class="sicon-arrow-right rtl:rotate-180"></i>
                                                 </div>
                                             </a>
                                         </div>
@@ -112,39 +112,39 @@
                     </article>
                 {% endfor %}
             </div>
+            {% if slides|length > 1 %}
+                {# Navigation Buttons #}
+                <button
+                    type="button"
+                    class="group absolute top-1/2 left-4 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-primary shadow-lg transition-all opacity-0 group-hover/carousel:opacity-100 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:flex"
+                    data-carousel-prev
+                    aria-label="السابق"
+                >
+                    <span class="sr-only">السابق</span>
+                    <i class="sicon-chevron-left text-xl transition group-hover:-translate-x-1"></i>
+                </button>
+                <button
+                    type="button"
+                    class="group absolute top-1/2 right-4 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-primary shadow-lg transition-all opacity-0 group-hover/carousel:opacity-100 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:flex"
+                    data-carousel-next
+                    aria-label="التالي"
+                >
+                    <span class="sr-only">التالي</span>
+                    <i class="sicon-chevron-right text-xl transition group-hover:translate-x-1"></i>
+                </button>
+
+                {# Indicator Dots - Positioned at bottom center #}
+                <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center justify-center gap-2 z-10" data-carousel-dots>
+                    {% for slide in slides %}
+                        <button
+                            type="button"
+                            class="h-2.5 w-2.5 rounded-full bg-white/40 transition hover:bg-white/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                            data-carousel-dot="{{ loop.index0 }}"
+                            aria-label="انتقال إلى الشريحة {{ loop.index }}"
+                        ></button>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
-
-        {% if slides|length > 1 %}
-            <button
-                type="button"
-                class="group absolute top-1/2 left-4 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-primary shadow-lg transition-all opacity-0 group-hover/carousel:opacity-100 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:flex"
-                data-carousel-prev
-                aria-label="السابق"
-            >
-                <span class="sr-only">السابق</span>
-                <i class="sicon-chevron-left text-xl transition group-hover:-translate-x-1"></i>
-            </button>
-            <button
-                type="button"
-                class="group absolute top-1/2 right-4 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-primary shadow-lg transition-all opacity-0 group-hover/carousel:opacity-100 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:flex"
-                data-carousel-next
-                aria-label="التالي"
-            >
-                <span class="sr-only">التالي</span>
-                <i class="sicon-chevron-right text-xl transition group-hover:translate-x-1"></i>
-            </button>
-
-            <div   class="mt-6 flex items-center justify-center gap-2" data-carousel-dots>
-                {% for slide in slides %}
-                    <button
-                        type="button"
-                        class="h-2.5 w-2.5 rounded-full bg-white/40 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                        data-carousel-dot="{{ loop.index0 }}"
-                        aria-label="انتقال إلى الشريحة {{ loop.index }}"
-                    ></button>
-                {% endfor %}
-            </div>
-            
-        {% endif %}
     </div>
 </section>
