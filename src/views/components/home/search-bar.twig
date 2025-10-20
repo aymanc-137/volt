@@ -1,0 +1,389 @@
+{#
+    Search Bar Component with VIN and Manual Search Tabs
+    - VIN tab: Search using VIN number (functional)
+    - Manual tab: Search using car maker/year/model (placeholder for future)
+#}
+
+<div class="container mx-auto px-4 -mt-20 relative z-20">
+    <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-lg shadow-[0_0_40px_rgba(59,130,246,0.2)]">
+
+        {# Header with title #}
+        <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+            <h2 class="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                {{ trans('common.elements.search_parts') }}
+            </h2>
+        </div>
+
+        {# Tabs Container #}
+        <div class="p-6">
+            {# Tab Navigation #}
+            <div class="grid grid-cols-2 gap-2 mb-6 bg-gray-100 dark:bg-gray-900 p-1 rounded-lg">
+                <button
+                    type="button"
+                    class="search-tab-trigger px-4 py-2 rounded-md font-semibold transition-all duration-200 active"
+                    data-tab="vin"
+                    onclick="switchSearchTab('vin')"
+                >
+                    {{ trans('common.elements.search_by_vin') }}
+                </button>
+                <button
+                    type="button"
+                    class="search-tab-trigger px-4 py-2 rounded-md font-semibold transition-all duration-200"
+                    data-tab="manual"
+                    onclick="switchSearchTab('manual')"
+                >
+                    {{ trans('common.elements.search_by_details') }}
+                </button>
+            </div>
+
+            {# VIN Search Tab Content #}
+            <div id="tab-vin" class="search-tab-content active">
+                <div class="space-y-4">
+                    <div class="space-y-2">
+                        <label for="vin-input" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            {{ trans('common.elements.vin_number') }}
+                        </label>
+                        <div class="flex gap-2">
+                            <input
+                                type="text"
+                                id="vin-input"
+                                maxlength="17"
+                                placeholder="{{ trans('common.elements.enter_vin') }}"
+                                class="flex-1 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-md font-mono text-lg tracking-wider uppercase bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                oninput="handleVinInput(this)"
+                            />
+                            <button
+                                type="button"
+                                id="vin-search-btn"
+                                onclick="searchByVin()"
+                                disabled
+                                class="px-6 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold rounded-md flex items-center gap-2 transition-all duration-200"
+                            >
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                                {{ trans('common.elements.search') }}
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">
+                            {{ trans('common.elements.vin_help') }}
+                        </p>
+                    </div>
+
+                    {# Loading Spinner #}
+                    <div id="vin-loading" class="hidden text-center py-8">
+                        <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                        <p class="mt-4 text-gray-600 dark:text-gray-400">{{ trans('common.elements.searching') }}...</p>
+                    </div>
+
+                    {# VIN Results Display #}
+                    <div id="vin-results" class="hidden mt-6">
+                        <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+                            <h3 class="text-lg font-bold mb-4 text-gray-900 dark:text-gray-100">
+                                {{ trans('common.elements.vehicle_info') }}
+                            </h3>
+                            <div id="vin-results-content" class="space-y-3">
+                                {# Results will be inserted here via JavaScript #}
+                            </div>
+                        </div>
+                    </div>
+
+                    {# Error Display #}
+                    <div id="vin-error" class="hidden mt-6">
+                        <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+                            <p class="text-red-600 dark:text-red-400 font-medium" id="vin-error-message"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {# Manual Search Tab Content (Placeholder) #}
+            <div id="tab-manual" class="search-tab-content hidden">
+                <div class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        {# Car Maker #}
+                        <div class="space-y-2">
+                            <label for="car-maker" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                {{ trans('common.elements.car_maker') }}
+                            </label>
+                            <select
+                                id="car-maker"
+                                disabled
+                                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                <option value="">{{ trans('common.elements.select_maker') }}</option>
+                            </select>
+                        </div>
+
+                        {# Year #}
+                        <div class="space-y-2">
+                            <label for="car-year" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                {{ trans('common.elements.year') }}
+                            </label>
+                            <select
+                                id="car-year"
+                                disabled
+                                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                <option value="">{{ trans('common.elements.select_year') }}</option>
+                            </select>
+                        </div>
+
+                        {# Model #}
+                        <div class="space-y-2">
+                            <label for="car-model" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                {{ trans('common.elements.model') }}
+                            </label>
+                            <select
+                                id="car-model"
+                                disabled
+                                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                <option value="">{{ trans('common.elements.select_model') }}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end pt-2">
+                        <button
+                            type="button"
+                            disabled
+                            class="px-8 py-3 bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold rounded-md flex items-center gap-2"
+                        >
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                            {{ trans('common.elements.search_parts') }}
+                        </button>
+                    </div>
+
+                    <div class="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+                        <p class="text-sm text-blue-700 dark:text-blue-300">
+                            {{ trans('common.elements.coming_soon') }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Tab styling */
+    .search-tab-trigger {
+        background: transparent;
+        color: #6b7280;
+    }
+
+    .search-tab-trigger.active {
+        background: white;
+        color: #1f2937;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .dark .search-tab-trigger.active {
+        background: #1f2937;
+        color: #f3f4f6;
+    }
+
+    .search-tab-content {
+        display: none;
+    }
+
+    .search-tab-content.active {
+        display: block;
+        animation: fadeIn 0.3s ease-in;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* VIN input styling */
+    #vin-input {
+        text-transform: uppercase;
+    }
+
+    /* Results grid */
+    .vin-result-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .dark .vin-result-item {
+        border-bottom-color: #374151;
+    }
+
+    .vin-result-item:last-child {
+        border-bottom: none;
+    }
+
+    .vin-result-label {
+        font-weight: 600;
+        color: #6b7280;
+    }
+
+    .dark .vin-result-label {
+        color: #9ca3af;
+    }
+
+    .vin-result-value {
+        font-weight: 500;
+        color: #1f2937;
+    }
+
+    .dark .vin-result-value {
+        color: #f3f4f6;
+    }
+</style>
+
+<script>
+    // Tab switching functionality
+    function switchSearchTab(tabName) {
+        // Update tab triggers
+        const triggers = document.querySelectorAll('.search-tab-trigger');
+        triggers.forEach(trigger => {
+            if (trigger.dataset.tab === tabName) {
+                trigger.classList.add('active');
+            } else {
+                trigger.classList.remove('active');
+            }
+        });
+
+        // Update tab content
+        const contents = document.querySelectorAll('.search-tab-content');
+        contents.forEach(content => {
+            if (content.id === `tab-${tabName}`) {
+                content.classList.add('active');
+                content.classList.remove('hidden');
+            } else {
+                content.classList.remove('active');
+                content.classList.add('hidden');
+            }
+        });
+
+        // Clear any results/errors when switching tabs
+        if (tabName === 'vin') {
+            hideVinResults();
+        }
+    }
+
+    // VIN input handler
+    function handleVinInput(input) {
+        const value = input.value.toUpperCase();
+        input.value = value;
+
+        const searchBtn = document.getElementById('vin-search-btn');
+        if (value.length === 17) {
+            searchBtn.disabled = false;
+        } else {
+            searchBtn.disabled = true;
+        }
+
+        // Hide results when input changes
+        hideVinResults();
+    }
+
+    // Hide all VIN result/error sections
+    function hideVinResults() {
+        document.getElementById('vin-results').classList.add('hidden');
+        document.getElementById('vin-error').classList.add('hidden');
+        document.getElementById('vin-loading').classList.add('hidden');
+    }
+
+    // VIN search function
+    async function searchByVin() {
+        const vinInput = document.getElementById('vin-input');
+        const vin = vinInput.value.trim();
+
+        if (vin.length !== 17) {
+            showVinError('{{ trans("common.elements.vin_invalid") }}');
+            return;
+        }
+
+        // Show loading state
+        hideVinResults();
+        document.getElementById('vin-loading').classList.remove('hidden');
+        document.getElementById('vin-search-btn').disabled = true;
+
+        try {
+            const response = await fetch(`https://vin.lamsaweb.com/api/vin/${vin}`);
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            // Hide loading
+            document.getElementById('vin-loading').classList.add('hidden');
+
+            // Display results
+            displayVinResults(data);
+
+        } catch (error) {
+            console.error('VIN search error:', error);
+            document.getElementById('vin-loading').classList.add('hidden');
+            showVinError('{{ trans("common.elements.vin_error") }}' + ': ' + error.message);
+        } finally {
+            document.getElementById('vin-search-btn').disabled = false;
+        }
+    }
+
+    // Display VIN search results
+    function displayVinResults(data) {
+        const resultsContainer = document.getElementById('vin-results-content');
+        const resultsSection = document.getElementById('vin-results');
+
+        // Clear previous results
+        resultsContainer.innerHTML = '';
+
+        // Create result items for all properties in the response
+        const resultHtml = Object.entries(data).map(([key, value]) => {
+            // Format the key to be more readable
+            const formattedKey = key
+                .replace(/_/g, ' ')
+                .replace(/\b\w/g, l => l.toUpperCase());
+
+            return `
+                <div class="vin-result-item">
+                    <span class="vin-result-label">${formattedKey}:</span>
+                    <span class="vin-result-value">${value !== null && value !== '' ? value : 'N/A'}</span>
+                </div>
+            `;
+        }).join('');
+
+        resultsContainer.innerHTML = resultHtml;
+        resultsSection.classList.remove('hidden');
+    }
+
+    // Show VIN error message
+    function showVinError(message) {
+        const errorSection = document.getElementById('vin-error');
+        const errorMessage = document.getElementById('vin-error-message');
+
+        errorMessage.textContent = message;
+        errorSection.classList.remove('hidden');
+    }
+
+    // Allow Enter key to trigger search
+    document.addEventListener('DOMContentLoaded', function() {
+        const vinInput = document.getElementById('vin-input');
+        if (vinInput) {
+            vinInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && this.value.length === 17) {
+                    searchByVin();
+                }
+            });
+        }
+    });
+</script>

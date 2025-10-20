@@ -22,6 +22,26 @@
   },
   "common": {
     "bank_offer_sub_title_multiple": "Pay for your purchases via one of the following bank cards and get the specified discount",
-    "bank_offer_sub_title_single": "Pay for your purchases via :bank_name bank card and get discount"
+    "bank_offer_sub_title_single": "Pay for your purchases via :bank_name bank card and get discount",
+    "elements": {
+      "search_parts": "Search for Auto Parts",
+      "search_by_vin": "Search by VIN",
+      "search_by_details": "Search by Car Details",
+      "vin_number": "VIN Number",
+      "enter_vin": "Enter 17-character VIN number",
+      "search": "Search",
+      "vin_help": "VIN is a 17-character unique vehicle identifier",
+      "searching": "Searching",
+      "vehicle_info": "Vehicle Information",
+      "car_maker": "Car Maker",
+      "select_maker": "Select manufacturer",
+      "year": "Year",
+      "select_year": "Select year",
+      "model": "Model",
+      "select_model": "Select model",
+      "coming_soon": "This feature is coming soon",
+      "vin_invalid": "Please enter a valid 17-character VIN number",
+      "vin_error": "Error searching VIN"
+    }
   }
 }
