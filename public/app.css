@@ -1750,6 +1750,16 @@ select {
 .bg-white\/80 {
     background-color: rgba(255, 255, 255, 0.8);
 }
+.bg-slate-400 {
+    --tw-bg-opacity: 1;
+    background-color: rgba(148, 163, 184, 1);
+    background-color: rgba(148, 163, 184, var(--tw-bg-opacity, 1));
+}
+.bg-slate-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgba(100, 116, 139, 1);
+    background-color: rgba(100, 116, 139, var(--tw-bg-opacity, 1));
+}
 .bg-gradient-to-l {
     background-image: linear-gradient(to left, var(--tw-gradient-stops));
 }
@@ -18974,14 +18984,15 @@ input[type=radio].sr-only:checked ~ div.btn--close {
     color: var(--color-primary-reverse);
   background: linear-gradient(135deg, #414042 0%, var(--color-scandary) 100%);
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-scandary) 100%);
-  transition: opacity 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
 }
 .btn--primary:hover {
   opacity: 0.9;
-  transform: translateY(-1px);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 .btn--primary:active {
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 .btn--outline-primary {
     border-width: 1px;
@@ -23521,6 +23532,12 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 .target\:btn:target:hover {
     opacity: 0.8;
 }
+.hover\:scale-110:hover {
+    --tw-scale-x: 1.1;
+    --tw-scale-y: 1.1;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(1.1) scaleY(1.1);
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
 .hover\:bg-white:hover {
     --tw-bg-opacity: 1;
     background-color: rgba(255, 255, 255, 1);
@@ -24252,6 +24269,11 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 }
 .rtl\:mr-4:where([dir="rtl"], [dir="rtl"] *) {
     margin-right: 1rem;
+}
+.rtl\:rotate-180:where([dir="rtl"], [dir="rtl"] *) {
+    --tw-rotate: 180deg;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(180deg) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .rtl\:-scale-x-100:where([dir="rtl"], [dir="rtl"] *) {
     --tw-scale-x: -1;

@@ -97,10 +97,14 @@
                                         <p class="text-base sm:text-lg lg:text-xl dark:text-white/80 text-black/80 opacity-0" data-carousel-text="description">{{ slide.description }}</p>
                                     {% endif %}
                                     {% if slide.button_label and slide.button_url %}
-                                    <salla-button data-carousel-text="button" class="btn btn--primary opacity-0" shape="icon" fill="outline" color="light">
-                                        {{ slide.button_label }}
-                                        <i class="sicon-arrow-right"></i>
-                                    </salla-button>
+                                        <div class="pt-4  hover:scale-110 bg-slate-500" >
+                                            <a href="{{ slide.button_url }}">
+                                                <div class="inline-flex items-center gap-2 justify-center bg-slate-400   px-8 py-4   font-semibold uppercase tracking-wide transition-all duration-300 hover:scale-110  cursor-pointer">
+                                                    {{ slide.button_label }}
+                                                    <i class="sicon-arrow-left rtl:rotate-180"></i>
+                                                </div>
+                                            </a>
+                                        </div>
                                     {% endif %}
                                 </div>
                             </div>
