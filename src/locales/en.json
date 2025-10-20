@@ -41,7 +41,8 @@
       "select_model": "Select model",
       "coming_soon": "This feature is coming soon",
       "vin_invalid": "Please enter a valid 17-character VIN number",
-      "vin_error": "Error searching VIN"
+      "vin_error": "Error searching VIN",
+      "cors_issue": "Using proxy to bypass CORS restrictions"
     }
   }
 }
