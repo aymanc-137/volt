@@ -80,16 +80,18 @@ class Home extends BasePage {
                 const textElements = slide.querySelectorAll('[data-carousel-text]');
                 textElements.forEach((element, index) => {
                     // Reset animation
-                    element.style.animation = 'none';
-                    element.style.opacity = '0';
                     element.classList.remove('animate-slide-in-left', 'animate-fade-in-up');
+                    element.style.opacity = '0';
+                    element.style.transform = '';
 
-                    // Force reflow
+                    // Force reflow to ensure the reset takes effect
                     void element.offsetWidth;
 
-                    // Apply animation with delay
+                    // Apply animation with staggered delay
                     setTimeout(() => {
-                        element.style.opacity = '1';
+                        // Remove inline opacity to let animation control it
+                        element.style.opacity = '';
+
                         if (index === 0) {
                             element.classList.add('animate-slide-in-left');
                         } else {
