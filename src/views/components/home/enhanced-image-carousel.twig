@@ -97,9 +97,9 @@
                                         <p class="text-base sm:text-lg lg:text-xl dark:text-white/80 text-black/80 opacity-0" data-carousel-text="description">{{ slide.description }}</p>
                                     {% endif %}
                                     {% if slide.button_label and slide.button_url %}
-                                        <div class="pt-4 opacity-0 hover-glow" data-carousel-text="button">
-                                            <a href="{{ slide.button_url }}">
-                                                <div class="inline-flex items-center gap-2 justify-center  btn btn--primary px-8 py-4   font-semibold uppercase tracking-wide transition-all duration-300 hover:scale-110  cursor-pointer">
+                                        <div class="pt-4 opacity-0 " data-carousel-text="button">
+                                            <a class="hover-glow transition-all duration-300" href="{{ slide.button_url }}" >
+                                                <div class="inline-flex   items-center gap-2 justify-center  btn btn--primary px-8 py-4   font-semibold uppercase tracking-wide  hover:scale-110  cursor-pointer">
                                                     {{ slide.button_label }}
                                                     <i class="sicon-arrow-right rtl:rotate-180"></i>
                                                 </div>
