@@ -134,7 +134,18 @@ salla-button {
   }
 
   &--primary {
-    @apply text-primary-reverse border border-primary bg-primary;
+    @apply text-primary-reverse border-0;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-scandary) 100%);
+    transition: opacity 0.3s ease, transform 0.2s ease;
+
+    &:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
   }
 
   &--outline-primary {

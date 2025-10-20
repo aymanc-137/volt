@@ -85,7 +85,7 @@
             --color-primary: {{ theme.color.primary }};
             --color-primary-dark: {{ theme.color.darker(0.15) }};
             --color-primary-light: {{ theme.color.lighter(0.15) }};
-            --color-primary-reverse: {{ theme.color.reverse_text }};
+            --color-primary-reverse: {{ theme.settings.get('color_primary_reverse', theme.color.reverse_text) }};
             --color-scandary: {{ theme.settings.get('color_scandary', '#FF3B3B') }};
             --color-light-page-background: {{ theme.settings.get('color_light_page_background', '#F9F7F6') }};
             --color-light-box-background: {{ theme.settings.get('color_light_box_background', '#FFFFFF') }};

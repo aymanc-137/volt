@@ -79,7 +79,7 @@
                             from-white
                             to-transparent
                             flex h-full w-full px-6 py-10 sm:px-12 md:px-16 lg:px-20">
-                                <div class="flex my-auto w-full max-w-2xl flex-col gap-4 dark:text-white text-black {{alignment_class[alignment[0]] ?? 'items-center text-center'}}">
+                                <div class="flex my-auto w-full max-w-2xl flex-col gap-4 dark:text-gray-200 text-gray-800 {{alignment_class[alignment[0]] ?? 'items-center text-center'}}">
                                     {% if slide.title_part1 or slide.title_gradient or slide.title_part3 %}
                                         <h3 class="font-alshohadaa text-3xl leading-20 font-semibold sm:text-4xl lg:text-6xl opacity-0" data-carousel-text="title">
                                             {% if slide.title_part1 %}
@@ -97,14 +97,10 @@
                                         <p class="text-base sm:text-lg lg:text-xl dark:text-white/80 text-black/80 opacity-0" data-carousel-text="description">{{ slide.description }}</p>
                                     {% endif %}
                                     {% if slide.button_label and slide.button_url %}
-                                        <div class="pt-4 opacity-0" data-carousel-text="button">
-                                            <a
-                                                class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold uppercase tracking-wide text-primary-reverse transition hover:bg-primary-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-dark focus-visible:ring-offset-2"
-                                                href="{{ slide.button_url }}"
-                                            >
-                                                {{ slide.button_label }}
-                                            </a>
-                                        </div>
+                                    <salla-button data-carousel-text="button" class="btn btn--primary opacity-0" shape="icon" fill="outline" color="light">
+                                        {{ slide.button_label }}
+                                        <i class="sicon-arrow-right"></i>
+                                    </salla-button>
                                     {% endif %}
                                 </div>
                             </div>

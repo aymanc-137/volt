@@ -147,6 +147,16 @@
         {
             "type": "string",
             "icon": "sicon-palette",
+            "label": "لون النص على الخلفية الأساسية",
+            "description": "لون النص الذي يظهر على اللون الأساسي (مثل نص الأزرار)",
+            "id": "color_primary_reverse",
+            "format": "color",
+            "required": false,
+            "value": "#FFFFFF"
+        },
+        {
+            "type": "string",
+            "icon": "sicon-palette",
             "label": "لون خلفية الصفحة (وضع فاتح)",
             "description": null,
             "id": "color_light_page_background",
