@@ -1396,6 +1396,13 @@
             "icon": "sicon-store",
             "path": "home.search-bar",
             "fields": []
+        },
+        {
+            "key": "9d83a6e2-8933-4d1c-ab63-5a711805249c",
+            "title": "قائمة عناصر - فولت",
+            "icon": "sicon-store",
+            "path": "home.category-list",
+            "fields": []
         }
     ],
     "support_url": null,
