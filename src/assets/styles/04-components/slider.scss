@@ -189,3 +189,15 @@ model-viewer[style*="width"]:before{
     @apply min-h-[380px] max-h-[480px] md:max-h-[680px];
   }
 }
+
+
+
+
+
+
+
+.big-image-category{
+  .swiper-wrapper{
+    @apply justify-center items-center;
+  }
+}

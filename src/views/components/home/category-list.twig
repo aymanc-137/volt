@@ -15,7 +15,7 @@
 
 
 
-<section class="s-block my-10 s-block--categories   ">
+<section class="s-block my-10 s-block--categories     ">
     <!-- Decorative Top Heading -->
     {% if component.title %}
   <div class="mx-auto flex flex-col space-y-6 justify-center items-center my-12 w-5/6">
@@ -41,9 +41,10 @@
 <salla-slider  
 type="carousel"
 controls-outer
-autoplay
+ autoplay
 show-controls="true" 
 id="main-links-{{ position }}">
+
 <div slot="items">
       {% for item in component.links %}
           <div class="swiper-slide  slide-one-one  ">
@@ -64,15 +65,11 @@ id="main-links-{{ position }}">
                    class="text-white text-center text-lg md:text-2xl font-bold place-self-center">{{item.text}}</h3>
           </a>
 
-            {# <a href="{{ cat.url }}" class="flex flex-col min-h-96 w-full bg-cover bg-center items-center justify-center overflow-hidden relative">
-                
-                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-110" style="background-image: url({{ cat.image ? cat.image : 'images/placeholder.png' | asset }})"></div>
-       
-         </a> #}
           </div>
           </div>
       {% endfor %}
 </div>
+
 </salla-slider>
 </div>
 
