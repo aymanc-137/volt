@@ -1272,9 +1272,6 @@ select {
 .min-h-7 {
     min-height: 1.75rem;
 }
-.min-h-96 {
-    min-height: 24rem;
-}
 .min-h-\[300px\] {
     min-height: 300px;
 }
