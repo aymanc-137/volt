@@ -1441,6 +1441,18 @@
                     "maxLength": 300
                 },
                 {
+                    "id": "enable_gradient_title",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "تفعيل لون متدرج للعنوان",
+                    "description": "عند التفعيل، سيظهر العنوان بتدرج لوني من اللون الأساسي إلى اللون الثانوي",
+                    "labelHTML": null,
+                    "icon": "sicon-format-fill",
+                    "value": false,
+                    "selected": false,
+                    "required": false
+                },
+                {
                     "id": "links",
                     "type": "collection",
                     "format": "collection",
