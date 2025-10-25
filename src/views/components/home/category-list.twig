@@ -1,0 +1,139 @@
+{#
+| Variable                           | Type     | Description                                                                  |
+|------------------------------------|----------|------------------------------------------------------------------------------|
+| component                          | object   | Contains merchant settings for fields from twilight.json `component` section |
+| component.merge_with_top_component | bool     |                                                                              |
+| component.title                    | ?string  |                                                                              |
+| component.links                    | object[] | list of links                                                                |
+| component.links[].icon             | string   |                                                                              |
+| component.links[].title            | string   |                                                                              |
+| component.links[].url              | string   |                                                                              |
+| position                           | int      | Sorting number start from zero                                               |
+#}
+
+
+
+
+
+<section class="s-block my-10 s-block--categories   ">
+    <!-- Decorative Top Heading -->
+    {% if component.title %}
+  <div class="mx-auto flex flex-col space-y-6 justify-center items-center my-12 w-5/6">
+      
+      <!-- Decorative Top Heading -->
+      <div class="relative inline-block ">
+          <span class="hide-title-box absolute -top-2 -right-3 w-8 h-8 border-t-[3.5px] border-r-[3.5px] border-secondary"></span>
+          <h2 class="text-xl md:text-3xl font-bold px-5 py-1 text-slate-800">{{component.title}}</h2>
+          <span class="hide-title-box absolute -bottom-2 -left-3 w-8 h-8 border-b-[3.5px] border-l-[3.5px] border-secondary"></span>
+      </div>
+
+      <!-- Main Heading -->
+      {# <h1 class="text-3xl lg:text-4xl font-extrabold mb-8">{{component.description}}</h1> #}
+
+      <!-- List of Specialties (Placeholder text) -->
+    <div class="text-center mx-auto text-base lg:text-lg text-slate-600">
+        {{component.sub_title}}
+      </div>
+  </div>
+{% endif %}
+
+<div class="container  big-image-category justify-center items-center ">
+<salla-slider  
+type="carousel"
+controls-outer
+autoplay
+show-controls="true" 
+id="main-links-{{ position }}">
+<div slot="items">
+      {% for item in component.links %}
+          <div class="swiper-slide  slide-one-one  ">
+
+          <div
+          class="w-32 h-32 md:w-72 md:h-64 rounded-xl shadow-xl overflow-hidden">
+
+          <a href="{{item.url}}" 
+                    class="w-full h-full flex items-center justify-center bg-cover bg-center hover:shadow-xl hover:scale-105 transition-all duration-300"
+                    {% if item.switch %}
+                  style="background-image: url('{{item.image}}') ;"
+                    {% else %}
+                  style="background-image: linear-gradient(to bottom right, {{item.color}}2E , {{item.color_2}}D9 ),url('{{item.image}}') ;"
+                    {% endif %}
+                     >
+                  <h3
+                  style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);"
+                   class="text-white text-center text-lg md:text-2xl font-bold place-self-center">{{item.text}}</h3>
+          </a>
+
+            {# <a href="{{ cat.url }}" class="flex flex-col min-h-96 w-full bg-cover bg-center items-center justify-center overflow-hidden relative">
+                
+                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-110" style="background-image: url({{ cat.image ? cat.image : 'images/placeholder.png' | asset }})"></div>
+       
+         </a> #}
+          </div>
+          </div>
+      {% endfor %}
+</div>
+</salla-slider>
+</div>
+
+</section> 
+
+
+{# <div class=" bg-gradient-to-l from-[#90B99F] to-[#546C5D]  flex flex-col items-center justify-center"> #}
+
+
+{# <section class="s-block s-block--categories mx-auto animate-on-scroll border border-blue-500 ">
+<div class="container border border-red-500 ">
+<salla-slider  
+type="carousel"
+controls-outer
+show-controls="false" 
+class="border border-green-500"
+id="main-links-{{ position }}">
+<div slot="items">
+
+      {% for item in component.links %}
+
+          <div class="swiper-slide border border-yellow-500 slide--one-sixth">
+              <a href="{{item.url}}" 
+                    style="background-image: linear-gradient(to bottom right, {{item.color}}2E , {{item.color_2}}D9 ),url('{{item.image}}') ;"
+                    class=" flex items-center justify-center w-72 h-64 rounded-xl shadow-xl bg-cover bg-center hover:shadow-xl hover:scale-105 transition-all duration-300" >
+                  <h3 class="text-white text-2xl font-bold place-self-center">{{item.text}}</h3>
+              </a>
+          </div>
+
+      {% endfor %}
+
+</div>
+</salla-slider>
+</div>
+</section>  #}
+
+
+
+{# 
+<section class="s-block s-block--categories animate-on-scroll">
+
+<div class="container big-image-category justify-center items-center ">
+<salla-slider  
+type="carousel"
+controls-outer
+show-controls="false" 
+id="main-links-{{ position }}">
+<div slot="items">
+      {% for cat in component.links %}
+       <div class="swiper-slide slide--one-sixth ">
+         
+              <a href="{{item.url}}" 
+                    style="background-image: linear-gradient(to bottom right, {{item.color}}2E , {{item.color_2}}D9 ),url('{{item.image}}') ;"
+                    class="flex items-center justify-center w-72 h-64 rounded-xl shadow-xl bg-cover bg-center hover:shadow-xl hover:scale-105 transition-all duration-300" >
+                  <h3 class="text-white text-2xl font-bold place-self-center">{{item.text}}</h3>
+              </a>
+
+          </div>
+      {% endfor %}
+</div>
+</salla-slider>
+</div>
+</section>  #}
+

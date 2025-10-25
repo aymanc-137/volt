@@ -1402,8 +1402,168 @@
             "title": "قائمة عناصر - فولت",
             "icon": "sicon-store",
             "path": "home.category-list",
-            "fields": []
-        }
+            "image": "https://cdn.lamsaweb.com/cdnEinaya/category-list.png",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "static-desc",
+                    "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden' ><h6 style='margin-bottom:10px' >معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnEinaya/category-list.png'></div>"
+                },                
+                {
+                    "id": "title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان",
+                    "description": null,
+                    "labelHTML": null,
+                    "placeholder": "Placeholder text ..",
+                    "icon": "sicon-format-text-alt",
+                    "value": "أقسامنا الطبية... رعاية متخصصة تحت سقف واحد",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 3,
+                    "maxLength": 300
+                },
+                {
+                    "id": "sub_title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان الجانبي",
+                    "description": null,
+                    "labelHTML": null,
+                    "placeholder": "Placeholder text ..",
+                    "icon": "sicon-format-text-alt",
+                    "value": "نقدم خدمات شاملة تغطي مختلف التخصصات الطبية لتلبية احتياجاتكم الصحية بكل دقة وعناية",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 3,
+                    "maxLength": 300
+                },
+                {
+                    "id": "links",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "روابط عناصر",
+                    "description": null,
+                    "labelHTML": null,
+                    "item_label": null,
+                    "icon": "sicon-list-add",
+                    "fields": [
+                        {
+                            "id": "links.image",
+                            "type": "string",
+                            "format": "image",
+                            "label": "صورة الخلفية",
+                            "description": "* المقاس المناسب للصورة هو 250 × 280 بكسل .",
+                            "labelHTML": null,
+                            "placeholder": "e.g. https://hostname.com/image.png",
+                            "icon": "sicon-image",
+                            "value": "https://cdn.lamsaweb.com/cdnEinaya/linkimage.png",
+                            "required": false
+                        },
+                        {
+                            "id": "links.url",
+                            "label": "رابط الإعلان",
+                            "description": null,
+                            "labelHTML": null,
+                            "icon": "sicon-link",
+                            "required": true,
+                            "value": [],
+                            "format": "variable-list",
+                            "searchable": true,
+                            "type": "items",
+                            "source": "custom",
+                            "sources": [
+                                {
+                                    "label": "منتج",
+                                    "key": "products",
+                                    "value": "products"
+                                },
+                                {
+                                    "label": "تصنيف",
+                                    "key": "categories",
+                                    "value": "categories"
+                                },
+                                {
+                                    "label": "ماركة تجارية",
+                                    "key": "brands",
+                                    "value": "brands"
+                                },
+                                {
+                                    "label": "التخفيضات",
+                                    "key": "offers_link",
+                                    "value": "offers_link"
+                                },
+                                {
+                                    "label": "الماركات التجارية",
+                                    "key": "brands_link",
+                                    "value": "brands_link"
+                                },
+                                {
+                                    "label": "رابط خارجي",
+                                    "key": "custom",
+                                    "value": "custom"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "links.text",
+                            "type": "string",
+                            "format": "text",
+                            "label": "النص",
+                            "description": null,
+                            "labelHTML": null,
+                            "placeholder": "Placeholder text ..",
+                            "icon": "sicon-format-text-alt",
+                            "value": "قسم الجراحة و المناظير",
+                            "multilanguage": true,
+                            "required": false,
+                            "minLength": 3,
+                            "maxLength": 100
+                        },
+                        {
+                            "id": "links.color",
+                            "type": "string",
+                            "format": "color",
+                            "inputType": "color",
+                            "label": "أللون الاول",
+                            "description": null,
+                            "labelHTML": null,
+                            "icon": "sicon-format-fill",
+                            "value": "#004956",
+                            "required": false
+                        },
+                        {
+                            "id": "links.color_2",
+                            "type": "string",
+                            "format": "color",
+                            "inputType": "color",
+                            "label": "اللون الثاني",
+                            "description": null,
+                            "labelHTML": null,
+                            "icon": "sicon-format-fill",
+                            "value": "#70cbdb",
+                            "required": false
+                        },
+                        {
+                            "id": "links.switch",
+                            "type": "boolean",
+                            "format": "switch",
+                            "label": "بدون لون",
+                            "description": null,
+                            "labelHTML": null,
+                            "icon": "sicon-toggle-off",
+                            "value": true,
+                            "selected": false,
+                            "required": false
+                        }
+                    ],
+                    "value": [],
+                    "minLength": 1,
+                    "maxLength": 15
+                }
+            ]        }
     ],
     "support_url": null,
     "description": {
