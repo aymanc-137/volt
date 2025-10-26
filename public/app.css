@@ -1185,6 +1185,9 @@ select {
 .h-24 {
     height: 6rem;
 }
+.h-32 {
+    height: 8rem;
+}
 .h-4 {
     height: 1rem;
 }
@@ -1501,6 +1504,9 @@ select {
 }
 .justify-around {
     justify-content: space-around;
+}
+.justify-evenly {
+    justify-content: space-evenly;
 }
 .gap-1 {
     gap: 0.25rem;
@@ -18470,6 +18476,15 @@ input[type=radio].sr-only:checked ~ div.s-app-install-banner-cancel-button {
 .hover-glow:hover {
   box-shadow: var(--shadow-glow);
 }
+.hover-glow-lg:hover {
+  box-shadow: var(--shadow-glow-lg);
+}
+.hover-glow-md:hover {
+  box-shadow: var(--shadow-glow-md);
+}
+.hover-glow-sm:hover {
+  box-shadow: var(--shadow-glow-sm);
+}
 .tooltip-content {
   position: absolute;
   transform: translate(82px, -120px);
@@ -23481,198 +23496,40 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
 .landing-page .s-product-card-wishlist-btn {
   display: hidden;
 }
-.categories-section {
-  padding: 4rem 1rem;
-  position: relative;
-  background-color: var(--color-background);
+.category-card {
+    border-width: 1px;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  border-radius: 0rem;
 }
-.categories-section .categories-container {
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
+.category-card:hover {
+  box-shadow: var(--shadow-glow);
 }
-.categories-section .categories-header {
-  text-align: center;
-  margin-bottom: 3rem;
-  animation: fadeInUp 0.6s ease-out;
+.category-card .category-name {
+    --tw-text-opacity: 1;
+    color: rgba(30, 41, 59, 1);
+    color: rgba(30, 41, 59, var(--tw-text-opacity, 1));
 }
-.categories-section .categories-header .categories-title {
-  font-size: 2.25rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
+.category-card .category-name:is(.dark *) {
+    --tw-text-opacity: 1;
+    color: rgba(255, 255, 255, 1);
+    color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
 }
-@media (min-width: 768px) {
-  .categories-section .categories-header .categories-title {
-    font-size: 3rem;
-  }
+.category-card:hover {
+    --tw-scale-x: 1.05;
+    --tw-scale-y: 1.05;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(1.05) scaleY(1.05);
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    border-color: #414042;
+    border-color: var(--color-primary);
 }
-.categories-section .categories-header .categories-title .title-accent {
+.category-card:hover .category-name:hover {
   background: linear-gradient(to right, #414042, var(--color-scandary));
   background: linear-gradient(to right, var(--color-primary), var(--color-scandary));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-.categories-section .categories-header .categories-subtitle {
-  font-size: 1.125rem;
-  max-width: 42rem;
-  margin-left: auto;
-  margin-right: auto;
-  opacity: 0.7;
-}
-.categories-section .categories-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 1rem;
-  gap: 1rem;
-}
-@media (min-width: 768px) {
-  .categories-section .categories-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-@media (min-width: 1024px) {
-  .categories-section .categories-grid {
-    grid-template-columns: repeat(6, 1fr);
-  }
-}
-.categories-section .category-card {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid #e5e7eb;
-  border: 1px solid var(--color-border, #e5e7eb);
-  border-radius: 0.5rem;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  animation: fadeInUp 0.6s ease-out;
-  animation-fill-mode: both;
-}
-.categories-section .category-card:hover {
-  transform: scale(1.05);
-  border-color: #414042;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 30px rgba(var(--color-primary-rgb), 0.3);
-}
-.categories-section .category-card .category-inner {
-  aspect-ratio: 1/1;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-.categories-section .category-card .category-gradient-overlay {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.categories-section .category-card .category-gradient-overlay.gradient-red-orange {
-  background: linear-gradient(to bottom right, #dc2626, #f97316);
-}
-.categories-section .category-card .category-gradient-overlay.gradient-orange-yellow {
-  background: linear-gradient(to bottom right, #ea580c, #eab308);
-}
-.categories-section .category-card .category-gradient-overlay.gradient-yellow-amber {
-  background: linear-gradient(to bottom right, #ca8a04, #f59e0b);
-}
-.categories-section .category-card .category-gradient-overlay.gradient-cyan-blue {
-  background: linear-gradient(to bottom right, #0891b2, #3b82f6);
-}
-.categories-section .category-card .category-gradient-overlay.gradient-purple-pink {
-  background: linear-gradient(to bottom right, #9333ea, #ec4899);
-}
-.categories-section .category-card .category-gradient-overlay.gradient-pink-rose {
-  background: linear-gradient(to bottom right, #db2777, #f43f5e);
-}
-.categories-section .category-card:hover .category-gradient-overlay {
-  opacity: 0.2;
-}
-.categories-section .category-card .category-icon-wrapper {
-  position: relative;
-  z-index: 10;
-  margin-bottom: 1rem;
-}
-.categories-section .category-card .category-icon-wrapper .category-icon-bg {
-  width: 4rem;
-  height: 4rem;
-  border-radius: 9999px;
-  background: linear-gradient(to bottom right, rgba(var(--color-primary-rgb), 0.2), rgba(var(--color-scandary-rgb), 0.2));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s ease;
-}
-.categories-section .category-card .category-icon-wrapper .category-icon-bg .category-icon {
-  width: 2rem;
-  height: 2rem;
-  color: #414042;
-  color: var(--color-primary);
-  transition: color 0.3s ease;
-}
-.categories-section .category-card:hover .category-icon-bg {
-  transform: scale(1.1);
-}
-.categories-section .category-card:hover .category-icon-bg .category-icon {
-  color: var(--color-scandary);
-}
-.categories-section .category-card .category-name {
-  text-align: center;
-  font-weight: bold;
-  font-size: 0.875rem;
-  position: relative;
-  z-index: 10;
-  transition: all 0.3s ease;
-}
-@media (min-width: 768px) {
-  .categories-section .category-card .category-name {
-    font-size: 1rem;
-  }
-}
-.categories-section .category-card:hover .category-name {
-  background: linear-gradient(to right, #414042, var(--color-scandary));
-  background: linear-gradient(to right, var(--color-primary), var(--color-scandary));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.categories-section .category-card .category-corner-top {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 2rem;
-  height: 2rem;
-  border-top: 2px solid rgba(var(--color-primary-rgb), 0.3);
-  border-right: 2px solid rgba(var(--color-primary-rgb), 0.3);
-  transition: border-color 0.3s ease;
-}
-.categories-section .category-card .category-corner-bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 2rem;
-  height: 2rem;
-  border-bottom: 2px solid rgba(var(--color-primary-rgb), 0.3);
-  border-left: 2px solid rgba(var(--color-primary-rgb), 0.3);
-  transition: border-color 0.3s ease;
-}
-.categories-section .category-card:hover .category-corner-top, .categories-section .category-card:hover .category-corner-bottom {
-  border-color: #414042;
-  border-color: var(--color-primary);
-}
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 body.mm-ocd-opened,
 body.modal-is-open,
@@ -24275,6 +24132,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .md\:h-24 {
         height: 6rem;
+    }
+    .md\:h-64 {
+        height: 16rem;
     }
     .md\:h-\[400px\] {
         height: 400px;

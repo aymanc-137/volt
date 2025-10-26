@@ -422,3 +422,21 @@ salla-modal {
     box-shadow: var(--shadow-glow);
   }
 }
+
+.hover-glow-lg{
+  &:hover{
+    box-shadow: var(--shadow-glow-lg);
+  }
+}
+
+.hover-glow-md{
+  &:hover{
+    box-shadow: var(--shadow-glow-md);
+  }
+}
+
+.hover-glow-sm{
+  &:hover{
+    box-shadow: var(--shadow-glow-sm);
+  }
+}
