@@ -1,6 +1,9 @@
 
 .category-card{
-  @apply border-2 rounded-md border  transition-all duration-300 hover-glow rounded-custom ;
+  @apply border-2 
+  
+  rounded-md dark:border-gray-800 border-gray-200 transition-all duration-300 hover-glow-sm rounded-custom ;
+  background-color:  var(--color-dark-page-backgroun);
   .category-name {
     @apply text-slate-800 dark:text-white;
   }
@@ -10,12 +13,12 @@
          // opacity: 0.2;
          .category-name {
  
-          &:hover {
+       
           background: linear-gradient(to right, var(--color-primary), var(--color-scandary));
           -webkit-background-clip: text;
           background-clip: text;
           -webkit-text-fill-color: transparent;
-        }
+        
       }
   }
 }

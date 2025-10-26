@@ -23497,14 +23497,25 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
   display: hidden;
 }
 .category-card {
-    border-width: 1px;
+    border-width: 2px;
+    --tw-border-opacity: 1;
+    border-color: rgba(229, 231, 235, 1);
+    border-color: rgba(229, 231, 235, var(--tw-border-opacity, 1));
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
   border-radius: 0rem;
 }
 .category-card:hover {
-  box-shadow: var(--shadow-glow);
+  box-shadow: var(--shadow-glow-sm);
+}
+.dark *.category-card {
+    --tw-border-opacity: 1;
+    border-color: rgba(31, 41, 55, 1);
+    border-color: rgba(31, 41, 55, var(--tw-border-opacity, 1));
+}
+.category-card {
+  background-color: var(--color-dark-page-backgroun);
 }
 .category-card .category-name {
     --tw-text-opacity: 1;
@@ -23524,7 +23535,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     border-color: #414042;
     border-color: var(--color-primary);
 }
-.category-card:hover .category-name:hover {
+.category-card:hover .category-name {
   background: linear-gradient(to right, #414042, var(--color-scandary));
   background: linear-gradient(to right, var(--color-primary), var(--color-scandary));
   -webkit-background-clip: text;
