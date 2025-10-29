@@ -3,7 +3,7 @@
         "ar": "فولت",
         "en": "Volt"
     },
-    "repository": "https://github.com/musta20/volt",
+    "repository": "https://github.com/aymanc-137/volt",
     "author_email": "saif.muh2020@gmail.com",
     "features": [
         "mega-menu",
@@ -1409,7 +1409,7 @@
                     "format": "description",
                     "id": "static-desc",
                     "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden' ><h6 style='margin-bottom:10px' >معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnEinaya/category-list.png'></div>"
-                },                
+                },
                 {
                     "id": "title",
                     "type": "string",
@@ -1575,9 +1575,10 @@
                     "minLength": 1,
                     "maxLength": 15
                 }
-            ]        }
+            ]
+        }
     ],
-    "support_url": null,
+    "support_url": "",
     "description": {
         "ar": "",
         "en": ""
