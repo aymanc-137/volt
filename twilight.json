@@ -1473,7 +1473,14 @@
                     "icon": "sicon-magic-wand",
                     "value": false,
                     "selected": false,
-                    "required": false
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
                 },
                 {
                     "id": "gradient_word",
@@ -1492,6 +1499,11 @@
                             "id": "enable_gradient_word",
                             "operation": "=",
                             "value": true
+                        },
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
                         }
                     ]
                 },
