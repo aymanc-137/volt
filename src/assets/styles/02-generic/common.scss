@@ -414,7 +414,10 @@ salla-modal {
 
 
 .rounded-custom {
-  border-radius: 0rem;
+  border-radius: var(--border-radius);
+
+  //border-radius: 0rem;
+ // border-radius: 10px;
 }
 
 .hover-glow{

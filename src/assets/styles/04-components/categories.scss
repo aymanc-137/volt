@@ -1,8 +1,8 @@
 
 .category-card{
-  @apply border-2 
-  
-  rounded-md dark:border-gray-800 border-gray-200 transition-all duration-300 hover-glow-sm rounded-custom ;
+  @apply border-2
+
+   dark:border-gray-800 border-gray-200 transition-all duration-300 rounded-custom hover-glow-sm;
   background-color:  var(--color-dark-page-backgroun);
   .category-name {
     @apply text-slate-800 dark:text-white;
@@ -12,13 +12,11 @@
           //transition: opacity 0.3s ease;
          // opacity: 0.2;
          .category-name {
- 
-       
           background: linear-gradient(to right, var(--color-primary), var(--color-scandary));
           -webkit-background-clip: text;
           background-clip: text;
           -webkit-text-fill-color: transparent;
-        
+
       }
   }
 }

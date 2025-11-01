@@ -286,6 +286,17 @@
             "required": false,
             "value": false,
             "selected": false
+        },
+        {
+            "type": "string",
+            "icon": "sicon-pencil-ruler",
+            "label": "نصف قطر الحدود",
+            "description": "التحكم في درجة استدارة الحدود (border-radius) بالبكسل",
+            "id": "border_radius",
+            "format": "text",
+            "required": false,
+            "value": "0.375rem",
+            "placeholder": "مثال: 0.375rem أو 8px"
         }
     ],
     "components": [

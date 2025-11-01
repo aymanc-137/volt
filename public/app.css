@@ -13808,7 +13808,7 @@ input[type=radio].sr-only:checked ~ div.s-quick-order-expandable .s-form-group >
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
-  border-radius: 0rem;
+  border-radius: var(--border-radius);
 }
 .s-rating-modal-thanks-btn:hover {
     --tw-scale-x: 1.05;
@@ -18480,7 +18480,7 @@ input[type=radio].sr-only:checked ~ div.s-app-install-banner-cancel-button {
     color: var(--color-primary-dark);
 }
 .rounded-custom {
-  border-radius: 0rem;
+  border-radius: var(--border-radius);
 }
 .hover-glow:hover {
   box-shadow: var(--shadow-glow);
@@ -18897,7 +18897,7 @@ salla-button.copied i:before {
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
-  border-radius: 0rem;
+  border-radius: var(--border-radius);
 }
 .btn:hover {
     --tw-scale-x: 1.05;
@@ -21359,7 +21359,7 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
-  border-radius: 0rem;
+  border-radius: var(--border-radius);
 }
 .s-block--slider-with-bg .s-slider-block__display-all:hover {
     --tw-scale-x: 1.05;
@@ -23513,7 +23513,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
-  border-radius: 0rem;
+  border-radius: var(--border-radius);
 }
 .category-card:hover {
   box-shadow: var(--shadow-glow-sm);
@@ -24156,14 +24156,11 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .md\:h-24 {
         height: 6rem;
     }
-    .md\:h-64 {
-        height: 16rem;
+    .md\:h-56 {
+        height: 14rem;
     }
     .md\:h-\[400px\] {
         height: 400px;
-    }
-    .md\:h-56 {
-        height: 14rem;
     }
     .md\:\!w-2\/4 {
         width: 50% !important;
@@ -24180,6 +24177,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .md\:w-5\/6 {
         width: 83.333333%;
     }
+    .md\:w-56 {
+        width: 14rem;
+    }
     .md\:w-7\/12 {
         width: 58.333333%;
     }
@@ -24191,9 +24191,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .md\:w-auto {
         width: auto;
-    }
-    .md\:w-56 {
-        width: 14rem;
     }
     .md\:grid-cols-2 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
