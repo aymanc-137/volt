@@ -28,7 +28,7 @@
       {% if component.enable_gradient_title %}
         <h1 class="text-4xl font-alshohadaa mb-5 bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{component.title}}</h1>
       {% elseif component.enable_gradient_word and component.gradient_word %}
-        <h1 id="category-title-{{ position }}" class="text-4xl font-alshohadaa mb-5 dark:text-white text-slate-800">{{component.title}}</h1>
+        <h1 id="category-list-title-{{ position }}" class="text-4xl font-alshohadaa mb-5 dark:text-white text-slate-800">{{component.title}}</h1>
       {% else %}
         <h1 class="text-4xl font-alshohadaa mb-5 dark:text-white text-slate-800">{{component.title}}</h1>
       {% endif %}
@@ -43,7 +43,7 @@
   {% if component.enable_gradient_word and component.gradient_word %}
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        const titleEl = document.getElementById('category-title-{{ position }}');
+        const titleEl = document.getElementById('category-list-title-{{ position }}');
         if (titleEl) {
           const word = '{{ component.gradient_word }}';
           const regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
