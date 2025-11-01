@@ -164,7 +164,7 @@ isElementLoaded(selector){
     let isListenerAttached = false;
   
     function toggleFavoriteIcon(id, isAdded = true) {
-      document.querySelectorAll('.s-product-card-wishlist-btn[data-id="' + id + '"]').forEach(btn => {
+      document.querySelectorAll('.s-product-card-volt-wishlist-btn[data-id="' + id + '"]').forEach(btn => {
         app.toggleElementClassIf(btn, 's-product-card-wishlist-added', 'not-added', () => isAdded);
         app.toggleElementClassIf(btn, 'pulse-anime', 'un-favorited', () => isAdded);
       });
