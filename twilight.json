@@ -1545,30 +1545,6 @@
                             "icon": "sicon-format-fill",
                             "value": "#004956",
                             "required": false
-                        },
-                        {
-                            "id": "links.color_2",
-                            "type": "string",
-                            "format": "color",
-                            "inputType": "color",
-                            "label": "اللون الثاني",
-                            "description": null,
-                            "labelHTML": null,
-                            "icon": "sicon-format-fill",
-                            "value": "#70cbdb",
-                            "required": false
-                        },
-                        {
-                            "id": "links.switch",
-                            "type": "boolean",
-                            "format": "switch",
-                            "label": "بدون لون",
-                            "description": null,
-                            "labelHTML": null,
-                            "icon": "sicon-toggle-off",
-                            "value": true,
-                            "selected": false,
-                            "required": false
                         }
                     ],
                     "value": [],
