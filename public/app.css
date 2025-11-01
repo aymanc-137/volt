@@ -1900,6 +1900,12 @@ select {
 .bg-white\/95 {
     background-color: rgba(255, 255, 255, 0.95);
 }
+.bg-\[var\(--color-dark-box-background\)\] {
+    background-color: var(--color-dark-box-background);
+}
+.bg-\[var\(--color-light-box-background\)\] {
+    background-color: var(--color-light-box-background);
+}
 .bg-gradient-to-l {
     background-image: linear-gradient(to left, var(--tw-gradient-stops));
 }
@@ -23962,6 +23968,12 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 }
 .dark *.dark\:bg-red-900\/20 {
     background-color: rgba(127, 29, 29, 0.2);
+}
+.dark *.dark\:bg-\[var\(--color-light-box-background\)\] {
+    background-color: var(--color-light-box-background);
+}
+.dark *.dark\:bg-\[var\(--color-dark-box-background\)\] {
+    background-color: var(--color-dark-box-background);
 }
 .dark *.dark\:from-black {
     --tw-gradient-from: #000 var(--tw-gradient-from-position);
