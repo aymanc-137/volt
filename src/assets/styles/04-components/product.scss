@@ -292,6 +292,15 @@
   @apply rtl:left-2.5 ltr:right-2.5 top-2.5;
 }
 
+.s-product-card-vertical:not(.s-product-card-minimal) .s-product-card-content-footer{
+  @apply flex items-center gap-2;
+}
+
+.s-product-card-vertical:not(.s-product-card-minimal) salla-button.s-product-card-wishlist-btn{
+  position: static;
+  inset: auto;
+}
+
 // image zooming
 .magnify-wrapper {
 	.img-magnifier-glass {

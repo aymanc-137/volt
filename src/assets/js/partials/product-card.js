@@ -185,6 +185,16 @@ class ProductCard extends HTMLElement {
     this.shadowOnHover?  this.classList.add('s-product-card-shadow') : '';
     this.product?.is_out_of_stock?  this.classList.add('s-product-card-out-of-stock') : '';
     this.isInWishlist = !salla.config.isGuest() && salla.storage.get('salla::wishlist', []).includes(Number(this.product.id));
+    const shouldUseWideAddButton = this.horizontal || this.fullImage;
+    const addButtonWidthAttr = shouldUseWideAddButton ? 'width="wide"' : '';
+    const addButtonClasses = ['volt'];
+    if (!shouldUseWideAddButton) {
+      addButtonClasses.push('flex-1');
+    }
+    const showFooterWishlist = !this.hideAddBtn && !this.minimal;
+    const showOverlayWishlist = !this.horizontal && !this.fullImage && !showFooterWishlist;
+    const wishlistBtnClasses = `s-product-card-wishlist-btn animated ${this.isInWishlist ? 's-product-card-wishlist-added pulse-anime' : 'not-added un-favorited'}`;
+    const wishlistBtnId = `card-wishlist-btn-${this.product.id}-${this.horizontal ? 'horizontal' : 'vertical'}`;
     this.innerHTML = `
         <div class="${!this.fullImage ? 's-product-card-image' : 's-product-card-image-full'} ">
           <a href="${this.product?.url}" aria-label="${this.escapeHTML(this.product?.image?.alt || this.product.name)}">
@@ -201,14 +211,14 @@ class ProductCard extends HTMLElement {
             ${!this.fullImage && !this.minimal ? this.getProductBadge() : ''}
           </a>
           ${this.fullImage ? `<a href="${this.product?.url}" aria-label=${this.product.name} class="s-product-card-overlay"></a>`:''}
-          ${!this.horizontal && !this.fullImage ?
+          ${showOverlayWishlist ?
             `<salla-button
               shape="icon"
               fill="outline"
               color="light"
               name="product-name-${this.product.id}"
               aria-label="Add or remove to wishlist"
-              class="s-product-card-wishlist-btn animated ${this.isInWishlist ? 's-product-card-wishlist-added pulse-anime' : 'not-added un-favorited'}"
+              class="${wishlistBtnClasses}"
               onclick="salla.wishlist.toggle(${this.product.id})"
               data-id="${this.product.id}">
               <i class="sicon-heart"></i>
@@ -274,7 +284,7 @@ class ProductCard extends HTMLElement {
 
           ${!this.hideAddBtn ?
             `<div class="s-product-card-content-footer gap-2">
-              <salla-add-product-button fill="volt" width="wide"
+              <salla-add-product-button  ${addButtonWidthAttr} class="${addButtonClasses.join(' ')}"
                 product-id="${this.product.id}"
                 product-status="${this.product.status}"
                 product-type="${this.product.type}">
@@ -284,14 +294,14 @@ class ProductCard extends HTMLElement {
                 <span>${this.product.add_to_cart_label ? this.product.add_to_cart_label : this.getAddButtonLabel() }</span>
               </salla-add-product-button>
 
-              ${this.horizontal || this.fullImage ?
+              ${showFooterWishlist ?
                 `<salla-button 
                   shape="icon" 
                   fill="outline" 
                   color="light" 
-                  id="card-wishlist-btn-${this.product.id}-horizontal"
+                  id="${wishlistBtnId}"
                   aria-label="Add or remove to wishlist"
-                  class="s-product-card-wishlist-btn animated ${this.isInWishlist ? 's-product-card-wishlist-added pulse-anime' : 'not-added un-favorited'}"
+                  class="${wishlistBtnClasses}"
                   onclick="salla.wishlist.toggle(${this.product.id})"
                   data-id="${this.product.id}">
                   <i class="sicon-heart"></i> 
@@ -301,6 +311,8 @@ class ProductCard extends HTMLElement {
             : ``}
         </div>
       `
+
+      this.addBtn = this.querySelector('salla-add-product-button');
 
       this.querySelectorAll('[name="donating_amount"]').forEach((element)=>{
         element.addEventListener('input', (e) => {

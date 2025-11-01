@@ -133,10 +133,6 @@ salla-button {
     @apply bg-red-400 text-white hover:opacity-80;
   }
 
-  &--volt {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-scandary) 100%);
-
-  }
 
   &--primary {
     // @apply text-primary-reverse border border-primary bg-primary;
@@ -233,4 +229,15 @@ salla-button {
       top: -2px;
     }
   }
+}
+
+
+.volt {
+ button {
+ @apply btn btn--primary hover-glow;
+ }
+
+
+ // background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-scandary) 100%);
+
 }
