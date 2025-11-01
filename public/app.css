@@ -1984,6 +1984,9 @@ select {
 .\!p-0 {
     padding: 0px !important;
 }
+.\!p-2 {
+    padding: 0.5rem !important;
+}
 .p-1 {
     padding: 0.25rem;
 }
@@ -22779,6 +22782,10 @@ salla-quantity-input[max="1"] .s-quantity-input-button {
     --tw-text-opacity: 1;
     color: rgba(255, 255, 255, 1);
     color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
+}
+.s-product-card-volt-wishlist-btn {
+  border: none !important;
+  background: none !important;
 }
 .brands-nav {
     display: flex;

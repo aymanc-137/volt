@@ -444,3 +444,16 @@ salla-quantity-input[max='1']{
 
   }
 }
+
+
+.s-product-card-volt-wishlist-btn{
+  border: none !important;
+  background: none !important;
+  //padding: 0 !important;
+ // margin: 0 !important;
+  .s-product-card-wishlist-added {
+    svg{
+      fill: url(#wishlist-gradient) !important;
+    }
+  }
+}
