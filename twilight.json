@@ -1422,34 +1422,19 @@
                     "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden' ><h6 style='margin-bottom:10px' >معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnEinaya/category-list.png'></div>"
                 },
                 {
-                    "id": "title_part1",
+                    "id": "title",
                     "type": "string",
                     "format": "text",
-                    "label": "العنوان - الجزء الأول",
+                    "label": "العنوان",
+                    "description": null,
+                    "labelHTML": null,
+                    "placeholder": "Placeholder text ..",
                     "icon": "sicon-format-text-alt",
-                    "placeholder": "النص قبل الكلمة الملونة",
-                    "description": "الجزء الأول من العنوان (اختياري)",
-                    "required": false
-                },
-                {
-                    "id": "title_gradient",
-                    "type": "string",
-                    "format": "text",
-                    "label": "العنوان - الجزء الملون (متدرج)",
-                    "icon": "sicon-magic-wand",
-                    "placeholder": "الكلمة أو العبارة الملونة",
-                    "description": "سيتم تطبيق تدرج لوني من اللون الأساسي إلى اللون الثانوي",
-                    "required": false
-                },
-                {
-                    "id": "title_part3",
-                    "type": "string",
-                    "format": "text",
-                    "label": "العنوان - الجزء الأخير",
-                    "icon": "sicon-format-text-alt",
-                    "placeholder": "النص بعد الكلمة الملونة",
-                    "description": "الجزء الأخير من العنوان (اختياري)",
-                    "required": false
+                    "value": "أقسامنا الطبية... رعاية متخصصة تحت سقف واحد",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 3,
+                    "maxLength": 300
                 },
                 {
                     "id": "sub_title",
@@ -1477,6 +1462,38 @@
                     "value": false,
                     "selected": false,
                     "required": false
+                },
+                {
+                    "id": "enable_gradient_word",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "تفعيل لون متدرج لكلمة معينة في العنوان",
+                    "description": "عند التفعيل، يمكنك اختيار كلمة معينة من العنوان لتطبيق تدرج لوني عليها",
+                    "labelHTML": null,
+                    "icon": "sicon-magic-wand",
+                    "value": false,
+                    "selected": false,
+                    "required": false
+                },
+                {
+                    "id": "gradient_word",
+                    "type": "string",
+                    "format": "text",
+                    "label": "الكلمة أو العبارة المراد تلوينها",
+                    "description": "أدخل الكلمة أو العبارة التي تريد تطبيق التدرج اللوني عليها",
+                    "icon": "sicon-format-text-alt",
+                    "placeholder": "مثال: متخصصة",
+                    "value": "",
+                    "required": false,
+                    "minLength": 1,
+                    "maxLength": 100,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_word",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
                 },
                 {
                     "id": "links",

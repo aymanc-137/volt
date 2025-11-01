@@ -6,6 +6,8 @@
 | component.title                    | ?string  | Main title text                                                              |
 | component.sub_title                | ?string  | Subtitle/description text                                                    |
 | component.enable_gradient_title    | bool     | Enable gradient color for title (primary to secondary color)                 |
+| component.enable_gradient_word     | bool     | Enable gradient color for specific word in title                             |
+| component.gradient_word            | ?string  | The word to apply gradient color to                                          |
 | component.links                    | object[] | list of links                                                                |
 | component.links[].icon             | string   |                                                                              |
 | component.links[].title            | string   |                                                                              |
@@ -25,6 +27,8 @@
     <div class="flex flex-col items-center">
       {% if component.enable_gradient_title %}
         <h1 class="text-4xl font-alshohadaa mb-5 bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{component.title}}</h1>
+      {% elseif component.enable_gradient_word and component.gradient_word %}
+        <h1 id="category-title-{{ position }}" class="text-4xl font-alshohadaa mb-5 dark:text-white text-slate-800">{{component.title}}</h1>
       {% else %}
         <h1 class="text-4xl font-alshohadaa mb-5 dark:text-white text-slate-800">{{component.title}}</h1>
       {% endif %}
@@ -35,7 +39,23 @@
         {{component.sub_title}}
       </div>
   </div>
- 
+
+  {% if component.enable_gradient_word and component.gradient_word %}
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const titleEl = document.getElementById('category-title-{{ position }}');
+        if (titleEl) {
+          const word = '{{ component.gradient_word }}';
+          const regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+          titleEl.innerHTML = titleEl.innerHTML.replace(
+            regex,
+            '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
+          );
+        }
+      });
+    </script>
+  {% endif %}
+
 {% endif %}
 
 <div class="w-[90]  big-image-category justify-center items-center ">
