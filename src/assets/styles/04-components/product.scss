@@ -447,11 +447,23 @@ salla-quantity-input[max='1']{
 
 
 .s-product-card-volt-wishlist-btn{
+
+  @apply hover:scale-110;
   border: none !important;
   background: none !important;
+
+  svg{
+     height: 2rem !important;
+    width: 2rem !important;
+  }
+
   //padding: 0 !important;
- // margin: 0 !important;
+  //margin: 0 !important;
   .s-product-card-wishlist-added {
+    &hover{
+     scale: 1.1;
+    }
+
     svg{
       fill: url(#wishlist-gradient) !important;
     }

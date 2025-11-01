@@ -22783,9 +22783,25 @@ salla-quantity-input[max="1"] .s-quantity-input-button {
     color: rgba(255, 255, 255, 1);
     color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
 }
+.s-product-card-volt-wishlist-btn:hover {
+    --tw-scale-x: 1.1;
+    --tw-scale-y: 1.1;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(1.1) scaleY(1.1);
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
 .s-product-card-volt-wishlist-btn {
   border: none !important;
   background: none !important;
+}
+.s-product-card-volt-wishlist-btn svg {
+  height: 2rem !important;
+  width: 2rem !important;
+}
+.s-product-card-volt-wishlist-btn .s-product-card-wishlist-addedhover {
+  scale: 1.1;
+}
+.s-product-card-volt-wishlist-btn .s-product-card-wishlist-added svg {
+  fill: url(#wishlist-gradient) !important;
 }
 .brands-nav {
     display: flex;

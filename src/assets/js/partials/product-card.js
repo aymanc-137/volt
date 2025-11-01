@@ -273,7 +273,7 @@ class ProductCard extends HTMLElement {
 
 
           ${!this.hideAddBtn ?
-            `<div class="s-product-card-content-footer  ">
+            `<div class="s-product-card-content-footer border-t border-primary pt-2 ">
               <salla-add-product-button    width="wide" class="volt"
                 product-id="${this.product.id}"
                 product-status="${this.product.status}"
@@ -295,11 +295,11 @@ class ProductCard extends HTMLElement {
                   onclick="salla.wishlist.toggle(${this.product.id})"
                   data-id="${this.product.id}">
                   <svg xmlns="http://www.w3.org/2000/svg" width="412" height="341" viewBox="0 0 412 341" fill="none">
-<path d="M274.492 10L224.268 68.5936H176.36L127.189 10H53.5907L10 60.6898V164.493L176.36 331H224.795L402 164.493V60.6898L352.092 10H274.492Z" stroke="white" stroke-width="20"/>
+<path d="M274.492 10L224.268 68.5936H176.36L127.189 10H53.5907L10 60.6898V164.493L176.36 331H224.795L402 164.493V60.6898L352.092 10H274.492Z" stroke="white" stroke-width="10"/>
 <defs>
   <linearGradient id="wishlist-gradient" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%" stop-color="#ff4b1f" />
-    <stop offset="100%" stop-color="#1fddff" />
+    <stop offset="0%" stop-color="var(--color-primary)" />
+    <stop offset="100%" stop-color="var(--color-scandary)" />
   </linearGradient>
 </defs>
 </svg>
