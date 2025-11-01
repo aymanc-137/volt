@@ -1,9 +1,9 @@
 
 .category-card{
   @apply border-2
-
+  bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)]
    dark:border-gray-800 border-gray-200 transition-all duration-300 rounded-custom hover-glow-sm;
-  background-color:  var(--color-dark-page-backgroun);
+  // background-color:  var(--color-dark-page-backgroun);
   .category-name {
     @apply text-slate-800 dark:text-white;
   }

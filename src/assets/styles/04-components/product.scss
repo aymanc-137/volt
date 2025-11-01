@@ -1,7 +1,7 @@
   
 // Wishlist Product entry
 .product-entry {
-  @apply h-full transition-shadow duration-300 bg-white hover:shadow-default rounded-lg justify-between flex relative;
+  @apply h-full transition-shadow duration-300 bg-white hover:shadow-default justify-between flex relative;
 
   &--wishlist {
     @apply justify-between p-4 flex-col sm:flex-row;
@@ -274,7 +274,10 @@
 
 // Minimal card
 .s-product-card-minimal .s-product-card-image{
-  @apply rtl:rounded-r ltr:rounded-l;
+  //@apply rtl:rounded-r ltr:rounded-l;
+
+  //  @apply rtl:rounded-r-[var(--border-radius)] ltr:rounded-l-[var(--border-radius)];
+
 }
 
 .s-product-card-starting-price{
@@ -402,5 +405,33 @@ salla-quantity-input[max='1']{
 
   .s-quantity-input-button {
     @apply cursor-not-allowed
+  }
+}
+
+.product-card-volt{
+
+  @apply bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)] 
+  
+  rounded-custom
+  border-2
+  border-gray-200
+  dark:border-gray-800 hover-glow-sm;
+
+  .s-product-card-image{
+    border-top-left-radius: var(--border-radius) !important;
+    border-top-right-radius: var(--border-radius) !important;
+  }
+
+  .s-product-card-content{
+    @apply text-slate-800 dark:text-white;
+
+    .s-product-card-content-title {
+      a {
+        @apply text-slate-800 dark:text-white;
+      }
+
+
+    }
+
   }
 }

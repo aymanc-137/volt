@@ -173,6 +173,7 @@ class ProductCard extends HTMLElement {
 
   render(){
     this.classList.add('s-product-card-entry'); 
+    this.classList.add('product-card-volt'); 
     this.setAttribute('id', this.product.id);
     !this.horizontal && !this.fullImage && !this.minimal? this.classList.add('s-product-card-vertical') : '';
     this.horizontal && !this.fullImage && !this.minimal? this.classList.add('s-product-card-horizontal') : '';
@@ -185,7 +186,7 @@ class ProductCard extends HTMLElement {
     this.product?.is_out_of_stock?  this.classList.add('s-product-card-out-of-stock') : '';
     this.isInWishlist = !salla.config.isGuest() && salla.storage.get('salla::wishlist', []).includes(Number(this.product.id));
     this.innerHTML = `
-        <div class="${!this.fullImage ? 's-product-card-image' : 's-product-card-image-full'}">
+        <div class="${!this.fullImage ? 's-product-card-image' : 's-product-card-image-full'} ">
           <a href="${this.product?.url}" aria-label="${this.escapeHTML(this.product?.image?.alt || this.product.name)}">
            <img 
               class="s-product-card-image-${salla.url.is_placeholder(this.product?.image?.url)
