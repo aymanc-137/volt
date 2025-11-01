@@ -22574,18 +22574,6 @@ input[type=radio].sr-only:checked ~ div.model-viewer__poster {
 .s-product-card-minimal salla-button.s-product-card-wishlist-btn:where([dir="rtl"], [dir="rtl"] *) {
     left: 0.625rem;
 }
-.s-product-card-vertical:not(.s-product-card-minimal) .s-product-card-content-footer {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.s-product-card-vertical:not(.s-product-card-minimal) salla-button.s-product-card-wishlist-btn {
-  position: static;
-  top: auto;
-  right: auto;
-  bottom: auto;
-  left: auto;
-}
 .magnify-wrapper .img-magnifier-glass {
     display: none;
 }

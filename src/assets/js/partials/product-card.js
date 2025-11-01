@@ -201,7 +201,7 @@ class ProductCard extends HTMLElement {
             ${!this.fullImage && !this.minimal ? this.getProductBadge() : ''}
           </a>
           ${this.fullImage ? `<a href="${this.product?.url}" aria-label=${this.product.name} class="s-product-card-overlay"></a>`:''}
-          ${!this.horizontal && !this.fullImage ?
+          ${this.horizontal && !this.fullImage ?
             `<salla-button
               shape="icon"
               fill="outline"
@@ -284,8 +284,8 @@ class ProductCard extends HTMLElement {
                 <span>${this.product.add_to_cart_label ? this.product.add_to_cart_label : this.getAddButtonLabel() }</span>
               </salla-add-product-button>
 
-              ${this.horizontal || this.fullImage ?
-                `<salla-button 
+              
+                <salla-button 
                   shape="icon" 
                   fill="outline" 
                   color="light" 
@@ -295,8 +295,8 @@ class ProductCard extends HTMLElement {
                   onclick="salla.wishlist.toggle(${this.product.id})"
                   data-id="${this.product.id}">
                   <i class="sicon-heart"></i> 
-                </salla-button>`
-                : ``}
+                </salla-button>
+                
             </div>`
             : ``}
         </div>
