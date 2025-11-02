@@ -182,7 +182,7 @@
             "id": "color_dark_page_background",
             "format": "color",
             "required": false,
-            "value": "#000000"
+            "value": "#121212"
         },
         {
             "type": "string",

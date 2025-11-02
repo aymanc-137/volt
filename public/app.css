@@ -23639,6 +23639,15 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     border-color: #414042;
     border-color: var(--color-primary);
 }
+.category-card:hover img {
+    --tw-scale-x: 1.1;
+    --tw-scale-y: 1.1;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(1.1) scaleY(1.1);
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+}
 .category-card:hover .category-name {
   background: linear-gradient(to right, #414042, var(--color-scandary));
   background: linear-gradient(to right, var(--color-primary), var(--color-scandary));

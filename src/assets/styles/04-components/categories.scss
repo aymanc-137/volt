@@ -8,6 +8,9 @@
     @apply text-slate-800 dark:text-white;
   }
   &:hover{
+    img{
+      @apply scale-110 transition-all duration-300;
+    }
    @apply border-[var(--color-primary)] scale-105;
           //transition: opacity 0.3s ease;
          // opacity: 0.2;
