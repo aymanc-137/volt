@@ -1,78 +1,63 @@
 {#
-| Variable                       | Type     | Description                                                                  |
-|--------------------------------|----------|------------------------------------------------------------------------------|
-| component                      | object   | Contains merchant settings for fields from twilight.json `component` section |
-| component.title_pre            | ?string  | First part of the section title                                              |
-| component.title_highlight      | ?string  | Highlighted word rendered with primary color                                 |
-| component.title_suffix         | ?string  | Final part of the section title                                              |
-| component.description          | ?string  | Section description text                                                      |
-| component.image                | ?string  | Optional hero image URL                                                       |
-| component.image_alt            | ?string  | Accessible alternative text for the image                                    |
-| component.features             | object[] | List of features to showcase                                                 |
-| component.features[].icon      | ?string  | CSS class for the Salla icon                                                 |
-| component.features[].title     | ?string  | Feature title                                                                |
-| component.features[].description | ?string| Feature supporting text                                                      |
-| position                       | int      | Sorting number start from zero                                               |
+| Variable               | Type   | Description                                        |
+|-----------------------|--------|-----------------------------------------------------|
+| title_pre             | string | First part of the title                            |
+| title_highlight       | string | Highlighted word in the title (with gradient)      |
+| title_suffix          | string | Last part of the title                             |
+| description           | string | Brief description of the section                   |
+| image                 | string | Side image URL                                     |
+| image_alt             | string | Alternative text for the image                     |
+| features[]            | array  | Array of features with icon, title, and description|
+| features[].icon       | string | SallaIcons css class `sicon-*`                    |
+| features[].title      | string | Feature title                                      |
+| features[].description| string | Feature description                                |
+| position              | int    | Component position in the page                     |
 #}
-
-{% set title_pre = component.title_pre ?: null %}
-{% set title_highlight = component.title_highlight ?: null %}
-{% set title_suffix = component.title_suffix ?: null %}
-{% set description = component.description ?: null %}
-{% set image_url = component.image ?: null %}
-{% set image_alt = component.image_alt ?: (title_highlight ?: title_pre ?: 'why-us-section') %}
-{% set features = component.features ?? [] %}
 
 <section class="s-block s-block--why-us">
   <div class="container">
     <div class="why-us-grid">
-      {% if image_url %}
-        <div class="why-us-media">
-          <img
-            src="{{ image_url }}"
-            alt="{{ image_alt|e('html_attr') }}"
-            loading="lazy"
-            class="why-us-media__image"
-          >
-        </div>
-      {% endif %}
+      <!-- Media/Image Section -->
+      <div class="why-us-media">
+        <img
+          src="{{ component.image }}"
+          alt="{{ component.image_alt | default('Why us image') }}"
+          class="why-us-media__image lazy"
+          loading="lazy"
+        />
+      </div>
 
-      <div class="why-us-content daynmic-text-color">
-        {% if title_pre or title_highlight or title_suffix %}
-          <h2 class="why-us-title">
-            {% if title_pre %}
-              <span class="why-us-title__part">{{ title_pre }}</span>
-            {% endif %}
-            {% if title_highlight %}
-              <span class="why-us-title__highlight">{{ title_highlight }}</span>
-            {% endif %}
-            {% if title_suffix %}
-              <span class="why-us-title__part">{{ title_suffix }}</span>
-            {% endif %}
-          </h2>
+      <!-- Content Section -->
+      <div class="why-us-content">
+        <!-- Title -->
+        <h2 class="why-us-title">
+          {% if component.title_pre %}
+            <span class="why-us-title__part">{{ component.title_pre }}</span>
+          {% endif %}
+          {% if component.title_highlight %}
+            <span class="why-us-title__part why-us-title__highlight">{{ component.title_highlight }}</span>
+          {% endif %}
+          {% if component.title_suffix %}
+            <span class="why-us-title__part">{{ component.title_suffix }}</span>
+          {% endif %}
+        </h2>
+
+        <!-- Description -->
+        {% if component.description %}
+          <p class="why-us-description">{{ component.description }}</p>
         {% endif %}
 
-        {% if description %}
-          <p class="why-us-description">{{ description }}</p>
-        {% endif %}
-
-        {% if features %}
+        <!-- Features Grid -->
+        {% if component.features %}
           <div class="why-us-features">
-            {% for feature in features %}
-              {% set feature_title = feature.title ?? null %}
-              {% set feature_description = feature.description ?? null %}
-              {% set icon_class = feature.icon ?? 'sicon-verified' %}
+            {% for feature in component.features %}
               <div class="why-us-feature">
                 <div class="why-us-feature__icon">
-                  <i class="{{ icon_class|e('html_attr') }}" aria-hidden="true"></i>
+                  <i class="{{ feature.icon }}"></i>
                 </div>
-                <div class="why-us-feature__body">
-                  {% if feature_title %}
-                    <h3 class="why-us-feature__title">{{ feature_title }}</h3>
-                  {% endif %}
-                  {% if feature_description %}
-                    <p class="why-us-feature__description">{{ feature_description }}</p>
-                  {% endif %}
+                <div>
+                  <h3 class="why-us-feature__title">{{ feature.title }}</h3>
+                  <p class="why-us-feature__description">{{ feature.description }}</p>
                 </div>
               </div>
             {% endfor %}
