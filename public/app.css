@@ -19795,6 +19795,16 @@ input[type=radio].sr-only:checked ~ div.radio-images__badge {
   z-index: 29;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   transform: translate3d(0, -100%, 0);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: var(--color-light-page-background)40;
+}
+.main-nav-container.fixed-pinned .inner:is(.dark *) {
+    background-color: var(--color-dark-page-background)40;
+}
+.main-nav-container.fixed-pinned .inner {
+  border-bottom: 1px solid #414042;
+  border-bottom: 1px solid var(--color-primary);
 }
 @media (max-width: 1024px) {
   .main-nav-container.fixed-pinned .inner {

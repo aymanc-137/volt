@@ -112,6 +112,12 @@
         transform: none;
         top: -70px;
       }
+
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      @apply bg-[var(--color-light-page-background)40] dark:bg-[var(--color-dark-page-background)40];
+      border-bottom: 1px solid var(--color-primary);
+   
     }
 
     .navbar-brand {
