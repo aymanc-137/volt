@@ -5,7 +5,7 @@
    dark:border-gray-800 border-gray-200 transition-all duration-300 rounded-custom hover-glow-sm;
   // background-color:  var(--color-dark-page-backgroun);
   .category-name {
-    @apply text-slate-800 dark:text-white;
+    @apply daynmic-text-color;
   }
   &:hover{
     img{

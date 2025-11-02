@@ -2288,11 +2288,6 @@ select {
     color: rgba(251, 191, 36, 1);
     color: rgba(251, 191, 36, var(--tw-text-opacity, 1));
 }
-.text-black {
-    --tw-text-opacity: 1;
-    color: rgba(0, 0, 0, 1);
-    color: rgba(0, 0, 0, var(--tw-text-opacity, 1));
-}
 .text-black\/80 {
     color: rgba(0, 0, 0, 0.8);
 }
@@ -17950,7 +17945,7 @@ input[type=radio].sr-only:checked ~ div.s-wallet-table-tbody-tr a {
 }
 :root {
   --infinte-color: #c9c9c9;
-  --main-text-color: #231f1e;
+  --main-text-color: #2C3E50;
   --main-text-color-dark: #2b2d34;
   /* current */
   --color-primary: #5cd5c4;
@@ -17973,7 +17968,7 @@ body {
   font-size: 15px;
   font-weight: 400;
   line-height: 26px;
-  color: #231f1e;
+  color: #2C3E50;
   color: var(--main-text-color);
   position: relative;
 }
@@ -18496,6 +18491,15 @@ input[type=radio].sr-only:checked ~ div.s-app-install-banner-cancel-button {
 }
 .hover-glow-sm:hover {
   box-shadow: var(--shadow-glow-sm);
+}
+.daynmic-text-color {
+    color: #2C3E50;
+    color: var(--main-text-color);
+}
+.dark *.daynmic-text-color {
+    --tw-text-opacity: 1;
+    color: rgba(255, 255, 255, 1);
+    color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
 }
 .tooltip-content {
   position: absolute;
@@ -20066,9 +20070,8 @@ input[type=radio].sr-only:checked ~ div#nav-cart span {
     color: rgba(55, 65, 81, var(--tw-text-opacity, 1));
 }
 .main-menu {
-    --tw-text-opacity: 1;
-    color: rgba(0, 0, 0, 1);
-    color: rgba(0, 0, 0, var(--tw-text-opacity, 1));
+    color: #2C3E50;
+    color: var(--main-text-color);
 }
 .dark *.main-menu {
     --tw-text-opacity: 1;
@@ -22774,9 +22777,8 @@ salla-quantity-input[max="1"] .s-quantity-input-button {
   border-top-right-radius: var(--border-radius) !important;
 }
 .product-card-volt .s-product-card-content {
-    --tw-text-opacity: 1;
-    color: rgba(30, 41, 59, 1);
-    color: rgba(30, 41, 59, var(--tw-text-opacity, 1));
+    color: #2C3E50;
+    color: var(--main-text-color);
 }
 .product-card-volt .s-product-card-content:is(.dark *) {
     --tw-text-opacity: 1;
@@ -22784,9 +22786,8 @@ salla-quantity-input[max="1"] .s-quantity-input-button {
     color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
 }
 .product-card-volt .s-product-card-content .s-product-card-content-title a {
-    --tw-text-opacity: 1;
-    color: rgba(30, 41, 59, 1);
-    color: rgba(30, 41, 59, var(--tw-text-opacity, 1));
+    color: #2C3E50;
+    color: var(--main-text-color);
 }
 .product-card-volt .s-product-card-content .s-product-card-content-title a:is(.dark *) {
     --tw-text-opacity: 1;
@@ -23632,9 +23633,8 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     background-color: var(--color-dark-box-background);
 }
 .category-card .category-name {
-    --tw-text-opacity: 1;
-    color: rgba(30, 41, 59, 1);
-    color: rgba(30, 41, 59, var(--tw-text-opacity, 1));
+    color: #2C3E50;
+    color: var(--main-text-color);
 }
 .category-card .category-name:is(.dark *) {
     --tw-text-opacity: 1;

@@ -1,7 +1,7 @@
 
 // Main Menu
 .main-menu {
-  @apply dark:text-white text-black;
+  @apply daynmic-text-color;
 }
 .main-menu > li > a[href*="offer"]{
   @apply text-red-800

@@ -443,3 +443,7 @@ salla-modal {
     box-shadow: var(--shadow-glow-sm);
   }
 }
+
+.daynmic-text-color{
+  @apply   dark:text-white text-[var(--main-text-color)];
+}

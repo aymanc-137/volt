@@ -432,11 +432,11 @@ salla-quantity-input[max='1']{
   }
 
   .s-product-card-content{
-    @apply text-slate-800 dark:text-white;
+    @apply daynmic-text-color;
 
     .s-product-card-content-title {
       a {
-        @apply text-slate-800 dark:text-white;
+        @apply daynmic-text-color;
       }
 
 

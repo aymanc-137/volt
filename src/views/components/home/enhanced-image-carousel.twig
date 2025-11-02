@@ -79,7 +79,7 @@
                             from-white
                             to-transparent
                             flex h-full w-full px-6 py-10 sm:px-12 md:px-16 lg:px-20">
-                                <div class="flex my-auto w-full max-w-2xl flex-col gap-4 dark:text-gray-200 text-gray-800 {{alignment_class[alignment[0]] ?? 'items-center text-center'}}">
+                                <div class="flex my-auto w-full max-w-2xl flex-col gap-4 daynmic-text-color {{alignment_class[alignment[0]] ?? 'items-center text-center'}}">
                                     {% if slide.title_part1 or slide.title_gradient or slide.title_part3 %}
                                         <h3 class="font-alshohadaa text-3xl leading-20 font-semibold sm:text-4xl lg:text-6xl opacity-0" data-carousel-text="title">
                                             {% if slide.title_part1 %}
@@ -94,7 +94,7 @@
                                         </h3>
                                     {% endif %}
                                     {% if slide.description %}
-                                        <p class="text-base sm:text-lg lg:text-xl dark:text-white/80 text-black/80 opacity-0" data-carousel-text="description">{{ slide.description }}</p>
+                                        <p class="text-base sm:text-lg lg:text-xl daynmic-text-color opacity-0" data-carousel-text="description">{{ slide.description }}</p>
                                     {% endif %}
                                     {% if slide.button_label and slide.button_url %}
                                         <div class="pt-4 opacity-0 " data-carousel-text="button">
