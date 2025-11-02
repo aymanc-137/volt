@@ -1607,6 +1607,13 @@
                     "maxLength": 15
                 }
             ]
+        },
+        {
+            "key": "4d07d77b-1dde-4840-9826-581a82b4462f",
+            "title": "لماذا تختارنا",
+            "icon": "sicon-store",
+            "path": "home.why-us",
+            "fields": []
         }
     ],
     "support_url": "",
