@@ -1613,7 +1613,175 @@
             "title": "لماذا تختارنا",
             "icon": "sicon-store",
             "path": "home.why-us",
-            "fields": []
+            "image": "https://cdn.lamsaweb.com/cdnEinaya/why-us-preview.png",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "static-desc",
+                    "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnEinaya/why-us-preview.png' alt='why us preview'></div>"
+                },
+                {
+                    "id": "title_pre",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان - البداية",
+                    "description": null,
+                    "labelHTML": null,
+                    "placeholder": "مقدمة العنوان",
+                    "icon": "sicon-format-text-alt",
+                    "value": "لماذا",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 60
+                },
+                {
+                    "id": "title_highlight",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان - الكلمة المميزة",
+                    "description": null,
+                    "labelHTML": null,
+                    "placeholder": "الكلمة التي تظهر بلون مميز",
+                    "icon": "sicon-format-text-alt",
+                    "value": "تختارنا",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 60
+                },
+                {
+                    "id": "title_suffix",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان - النهاية",
+                    "description": null,
+                    "labelHTML": null,
+                    "placeholder": "خاتمة العنوان",
+                    "icon": "sicon-format-text-alt",
+                    "value": "",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 60
+                },
+                {
+                    "id": "description",
+                    "type": "string",
+                    "format": "textarea",
+                    "label": "وصف مختصر",
+                    "description": null,
+                    "labelHTML": null,
+                    "placeholder": "أدخل وصفاً موجزاً للقسم",
+                    "icon": "sicon-typography",
+                    "value": "نظام تأجير سيارات متكامل الأداء لمختلف الشركات والمتاجر الإلكترونية.",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 280
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-image",
+                    "label": "صورة جانبية",
+                    "description": "الصورة الرئيسية التي تظهر داخل القسم",
+                    "id": "image",
+                    "format": "image",
+                    "value": "https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=1600&auto=format&fit=crop",
+                    "required": false,
+                    "placeholder": null,
+                    "settings": {
+                        "height": 640,
+                        "width": 960,
+                        "ratio": "4:3"
+                    }
+                },
+                {
+                    "id": "image_alt",
+                    "type": "string",
+                    "format": "text",
+                    "label": "نص بديل للصورة",
+                    "description": null,
+                    "labelHTML": null,
+                    "placeholder": "أدخل نص بديل للصورة لتحسين الوصول",
+                    "icon": "sicon-a11y",
+                    "value": "سيارة حديثة",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 120
+                },
+                {
+                    "id": "features",
+                    "type": "collection",
+                    "format": "collection",
+                    "item_label": "ميزة",
+                    "minLength": 1,
+                    "maxLength": 6,
+                    "value": [
+                        {
+                            "features.icon": "sicon-support",
+                            "features.title": "دعم فني على مدار الساعة",
+                            "features.description": "فريق دعم متخصص متوفر دائماً لحل أي مشكلة تواجهكم بسرعة."
+                        },
+                        {
+                            "features.icon": "sicon-tag-percent",
+                            "features.title": "أفضل أسعار مضمونة",
+                            "features.description": "خيارات واسعة تناسب مختلف الميزانيات دون التنازل عن الجودة."
+                        },
+                        {
+                            "features.icon": "sicon-navigation",
+                            "features.title": "شبكة فروع واسعة",
+                            "features.description": "توصيل سريع أينما كنتم لتستمتعوا بتجربة خالية من التعطيل."
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "id": "features.icon",
+                            "type": "string",
+                            "format": "icon",
+                            "label": "أيقونة",
+                            "description": "اختر أيقونة تظهر داخل الدائرة.",
+                            "labelHTML": null,
+                            "placeholder": null,
+                            "icon": "sicon-format-text-alt",
+                            "value": "sicon-support",
+                            "required": false
+                        },
+                        {
+                            "id": "features.title",
+                            "type": "string",
+                            "format": "text",
+                            "label": "عنوان الميزة",
+                            "description": null,
+                            "labelHTML": null,
+                            "placeholder": "أدخل عنوان الميزة...",
+                            "icon": "sicon-format-text-alt",
+                            "multilanguage": true,
+                            "value": null,
+                            "required": false,
+                            "minLength": 0,
+                            "maxLength": 120
+                        },
+                        {
+                            "id": "features.description",
+                            "type": "string",
+                            "format": "textarea",
+                            "label": "وصف الميزة",
+                            "description": null,
+                            "labelHTML": null,
+                            "placeholder": "اشرح تفاصيل الميزة...",
+                            "icon": "sicon-typography",
+                            "multilanguage": true,
+                            "value": null,
+                            "required": false,
+                            "minLength": 0,
+                            "maxLength": 260
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "support_url": "",
