@@ -1,9 +1,8 @@
 {#
 | Variable               | Type   | Description                                        |
 |-----------------------|--------|-----------------------------------------------------|
-| title_pre             | string | First part of the title                            |
-| title_highlight       | string | Highlighted word in the title (with gradient)      |
-| title_suffix          | string | Last part of the title                             |
+| title                 | string | Full title text                                    |
+| colored_word          | string | Word from title to be colored with gradient        |
 | description           | string | Brief description of the section                   |
 | image                 | string | Side image URL                                     |
 | image_alt             | string | Alternative text for the image                     |
@@ -30,17 +29,9 @@
       <!-- Content Section -->
       <div class="why-us-content">
         <!-- Title -->
-        {% if component.title_pre or component.title_highlight or component.title_suffix %}
+        {% if component.title %}
           <h2 id="why-us-title-{{ position }}" class="why-us-title daynmic-text-color">
-            {% if component.title_pre %}
-              {{ component.title_pre }}
-            {% endif %}
-            {% if component.title_highlight %}
-              {{ component.title_highlight }}
-            {% endif %}
-            {% if component.title_suffix %}
-              {{ component.title_suffix }}
-            {% endif %}
+            {{ component.title }}
           </h2>
         {% endif %}
 
@@ -70,12 +61,12 @@
   </div>
 </section>
 
-{% if component.title_highlight %}
+{% if component.colored_word %}
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const titleEl = document.getElementById('why-us-title-{{ position }}');
       if (titleEl) {
-        const word = '{{ component.title_highlight }}';
+        const word = '{{ component.colored_word }}';
         const regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
         titleEl.innerHTML = titleEl.innerHTML.replace(
           regex,

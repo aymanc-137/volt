@@ -23745,19 +23745,6 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     color: rgba(255, 255, 255, 1);
     color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
 }
-.s-block--why-us .why-us-title__part:not(:last-child) {
-  margin-right: 0.35ch;
-}
-.s-block--why-us .why-us-title__highlight {
-    background-image: linear-gradient(to right, var(--tw-gradient-stops));
-    --tw-gradient-from: var(--color-primary) var(--tw-gradient-from-position);
-    --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-    --tw-gradient-to: var(--color-scandary) var(--tw-gradient-to-position);
-    -webkit-background-clip: text;
-            background-clip: text;
-    color: transparent;
-}
 .s-block--why-us .why-us-description {
     font-size: 1rem;
     line-height: 1.5rem;
