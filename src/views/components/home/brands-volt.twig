@@ -1,0 +1,76 @@
+{#
+| Variable                     | Type   | Description                                              |
+|------------------------------|--------|----------------------------------------------------------|
+| super_title                  | string | Upper caption displayed above the main title             |
+| title                        | string | Main heading text                                        |
+| highlighted_word             | string | Word within the title that receives the gradient effect  |
+| brands[]                     | array  | Collection of brand logos                                |
+| brands[].logo                | string | Logo image URL                                           |
+| brands[].alt                 | string | Alternative text for the logo                            |
+| brands[].name                | string | Optional label shown underneath the logo                 |
+| position                     | int    | Component position on the page                           |
+#}
+
+{% set super_title = component.super_title is defined ? component.super_title : 'أداء ممتاز' %}
+{% set title_text = component.title is defined ? component.title : 'ندعم جميع شركات السيارات' %}
+{% set highlight_word = component.highlighted_word is defined ? component.highlighted_word : 'السيارات' %}
+{% set safe_title = title_text|e %}
+
+{% if highlight_word %}
+  {% set highlight_markup = '<span class="brands-volt__highlight bg-gradient-to-r from-[#ff5e0e] via-[#ff8b24] to-[#a62d17] bg-clip-text text-transparent">' ~ highlight_word|e ~ '</span>' %}
+  {% set safe_title = safe_title|replace({ highlight_word|e : highlight_markup }) %}
+{% endif %}
+
+{% set brands = component.brands|default([]) %}
+
+<section class="s-block brands-volt">
+  <div class="container">
+    <div class="brands-volt__inner relative overflow-hidden rounded-3xl bg-[#1f1f1f] px-6 py-12 sm:px-10 lg:px-16 text-center text-white">
+      <span class="brands-volt__glow pointer-events-none absolute -top-32 right-1/2 h-64 w-64 translate-x-1/2 rounded-full bg-gradient-to-br from-[#ff5e0e]/40 via-transparent to-transparent blur-3xl"></span>
+
+      <div class="relative space-y-4">
+        {% if super_title %}
+          <span class="inline-block text-sm font-semibold tracking-wide text-[#ff8b24]">
+            {{ super_title }}
+          </span>
+        {% endif %}
+
+        <h2 class="text-2xl font-bold leading-snug daynmic-text-color sm:text-3xl">
+          {{ safe_title|raw }}
+        </h2>
+
+        <div class="mx-auto h-0.5 w-28 rounded-full bg-gradient-to-r from-[#ff5e0e] via-[#ff8b24] to-[#a62d17]"></div>
+      </div>
+
+      {% if brands %}
+        <div class="brands-volt__grid mt-10 grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-4">
+          {% for brand in brands %}
+            {% set brand_name = brand.name|default('') %}
+            {% set brand_alt = brand.alt|default(brand_name|default('Brand logo')) %}
+
+            <div class="brands-volt__item flex flex-col items-center gap-3 text-white/70">
+              {% if brand.logo %}
+                <div class="brands-volt__logo flex h-20 w-20 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/10 backdrop-blur">
+                  <img
+                    src="{{ brand.logo }}"
+                    alt="{{ brand_alt }}"
+                    class="max-h-12 w-auto object-contain"
+                    loading="lazy"
+                  />
+                </div>
+              {% endif %}
+
+              {% if brand_name %}
+                <span class="text-sm font-medium tracking-wide">{{ brand_name }}</span>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="mt-10 text-sm text-white/60">
+          لم يتم إضافة شعارات بعد. أضف الشعارات عبر إعدادات المكون.
+        </p>
+      {% endif %}
+    </div>
+  </div>
+</section>
