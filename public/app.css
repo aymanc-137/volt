@@ -962,6 +962,15 @@ select {
 .top-full {
     top: 100%;
 }
+.top-10 {
+    top: 2.5rem;
+}
+.top-16 {
+    top: 4rem;
+}
+.isolate {
+    isolation: isolate;
+}
 .-z-1 {
     z-index: -1;
 }
@@ -976,6 +985,9 @@ select {
 }
 .z-\[2\] {
     z-index: 2;
+}
+.-z-10 {
+    z-index: -10;
 }
 .col-span-2 {
     grid-column: span 2 / span 2;
@@ -1934,6 +1946,9 @@ select {
 .bg-white\/95 {
     background-color: rgba(255, 255, 255, 0.95);
 }
+.bg-light-foreground {
+    background-color: var(--color-light-box-background);
+}
 .bg-gradient-to-br {
     background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
 }
@@ -2460,6 +2475,10 @@ select {
 .text-white\/70 {
     color: rgba(255, 255, 255, 0.7);
 }
+.text-\[var\(--color-text\)\] {
+    color: #7c8082;
+    color: var(--color-text);
+}
 .underline {
     text-decoration-line: underline;
 }
@@ -2486,6 +2505,9 @@ select {
 }
 .opacity-80 {
     opacity: 0.8;
+}
+.opacity-70 {
+    opacity: 0.7;
 }
 .shadow {
     --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
@@ -2540,6 +2562,13 @@ select {
 }
 .ring-white\/10 {
     --tw-ring-color: rgba(255, 255, 255, 0.1);
+}
+.ring-gray-200 {
+    --tw-ring-opacity: 1;
+    --tw-ring-color: rgba(229, 231, 235, var(--tw-ring-opacity, 1));
+}
+.ring-\[rgba\(0\2c 0\2c 0\2c 0\.08\)\] {
+    --tw-ring-color: rgba(0,0,0,0.08);
 }
 .blur-3xl {
     --tw-blur: blur(64px);
@@ -24297,6 +24326,11 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     color: #414042;
     color: var(--color-primary);
 }
+.hover\:text-gray-900:hover {
+    --tw-text-opacity: 1;
+    color: rgba(17, 24, 39, 1);
+    color: rgba(17, 24, 39, var(--tw-text-opacity, 1));
+}
 .hover\:underline:hover {
     text-decoration-line: underline;
 }
@@ -24372,8 +24406,27 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     transform: translate(0.25rem, var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
+.group:hover .group-hover\:scale-105 {
+    --tw-scale-x: 1.05;
+    --tw-scale-y: 1.05;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(1.05) scaleY(1.05);
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
 .group\/carousel:hover .group-hover\/carousel\:opacity-100 {
     opacity: 1;
+}
+.group:hover .group-hover\:ring-2 {
+    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+    --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+    box-shadow: /*!*/ /*!*/ 0 0 0 0px #fff, /*!*/ /*!*/ 0 0 0 calc(2px + 2px) #2563eb, 0 0 rgba(0,0,0,0);
+    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 rgba(0,0,0,0));
+}
+.group:hover .group-hover\:ring-\[\#ff5e0e\] {
+    --tw-ring-opacity: 1;
+    --tw-ring-color: rgba(255, 94, 14, var(--tw-ring-opacity, 1));
+}
+.group:hover .group-hover\:ring-\[var\(--color-primary\)\] {
+    --tw-ring-color: var(--color-primary);
 }
 .dark *.dark\:border-blue-800 {
     --tw-border-opacity: 1;
@@ -24417,9 +24470,30 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 .dark *.dark\:bg-red-900\/20 {
     background-color: rgba(127, 29, 29, 0.2);
 }
+.dark *.dark\:bg-\[\#1f1f1f\] {
+    --tw-bg-opacity: 1;
+    background-color: rgba(31, 31, 31, 1);
+    background-color: rgba(31, 31, 31, var(--tw-bg-opacity, 1));
+}
+.dark *.dark\:bg-white\/5 {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+.dark *.dark\:bg-dark-foreground {
+    background-color: var(--color-dark-box-background);
+}
 .dark *.dark\:from-black {
     --tw-gradient-from: #000 var(--tw-gradient-from-position);
     --tw-gradient-to: rgba(0, 0, 0, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.dark *.dark\:from-\[\#ff5e0e\]\/30 {
+    --tw-gradient-from: rgba(255, 94, 14, 0.3) var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(255, 94, 14, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.dark *.dark\:from-primary {
+    --tw-gradient-from: var(--color-primary) var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 .dark *.dark\:text-blue-300 {
@@ -24431,6 +24505,45 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     --tw-text-opacity: 1;
     color: rgba(248, 113, 113, 1);
     color: rgba(248, 113, 113, var(--tw-text-opacity, 1));
+}
+.dark *.dark\:text-\[\#ff8b24\] {
+    --tw-text-opacity: 1;
+    color: rgba(255, 139, 36, 1);
+    color: rgba(255, 139, 36, var(--tw-text-opacity, 1));
+}
+.dark *.dark\:text-white {
+    --tw-text-opacity: 1;
+    color: rgba(255, 255, 255, 1);
+    color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
+}
+.dark *.dark\:text-white\/60 {
+    color: rgba(255, 255, 255, 0.6);
+}
+.dark *.dark\:text-white\/70 {
+    color: rgba(255, 255, 255, 0.7);
+}
+.dark *.dark\:shadow-none {
+    --tw-shadow: 0 0 rgba(0,0,0,0);
+    --tw-shadow-colored: 0 0 rgba(0,0,0,0);
+    box-shadow: 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0,0,0,0)), var(--tw-ring-shadow, 0 0 rgba(0,0,0,0)), var(--tw-shadow);
+}
+.dark *.dark\:ring-white\/10 {
+    --tw-ring-color: rgba(255, 255, 255, 0.1);
+}
+.dark .dark\:hover\:text-white:hover {
+    --tw-text-opacity: 1;
+    color: rgba(255, 255, 255, 1);
+    color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
+}
+.dark .dark\:hover\:text-scandary:hover {
+    color: var(--color-scandary);
+}
+.group:hover .dark\:group-hover\:ring-\[\#ff8b24\]\/80:is(.dark *) {
+    --tw-ring-color: rgba(255, 139, 36, 0.8);
+}
+.group:hover .dark\:group-hover\:ring-\[var\(--color-scandary\)\]:is(.dark *) {
+    --tw-ring-color: var(--color-scandary);
 }
 @media (min-width: 640px) {
     .sm\:col-span-2 {

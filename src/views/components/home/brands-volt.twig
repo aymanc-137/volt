@@ -19,12 +19,12 @@
 
 <section class="s-block brands-volt">
   <div class="container">
-    <div class="brands-volt__inner relative overflow-hidden rounded-3xl bg-[#1f1f1f] px-6 py-12 sm:px-10 lg:px-16 text-center text-white">
-      <span class="brands-volt__glow pointer-events-none absolute -top-32 right-1/2 h-64 w-64 translate-x-1/2 rounded-full bg-gradient-to-br from-[#ff5e0e]/40 via-transparent to-transparent blur-3xl"></span>
+    <div class="brands-volt__inner relative isolate overflow-hidden rounded-3xl bg-light-foreground px-6 py-12 text-center shadow-xl sm:px-10 lg:px-16 dark:bg-dark-foreground dark:shadow-none daynmic-text-color">
+      <span class="brands-volt__glow pointer-events-none absolute top-16 right-1/2 h-64 w-64 translate-x-1/2 rounded-full bg-gradient-to-br from-primary via-transparent to-transparent blur-3xl opacity-70 -z-10 dark:from-primary"></span>
 
       <div class="relative space-y-4">
         {% if super_title %}
-          <span class="inline-block text-sm font-semibold tracking-wide text-[#ff8b24]">
+          <span class="inline-block text-sm font-semibold tracking-wide text-primary">
             {{ super_title }}
           </span>
         {% endif %}
@@ -33,7 +33,7 @@
           {{ title_text }}
         </h2>
 
-        <div class="mx-auto h-0.5 w-28 rounded-full bg-gradient-to-r from-[#ff5e0e] via-[#ff8b24] to-[#a62d17]"></div>
+        <div class="mx-auto h-0.5 w-28 rounded-full bg-gradient-to-r from-primary to-scandary"></div>
       </div>
 
       {% if brands %}
@@ -42,9 +42,9 @@
             {% set brand_name = brand.name|default('') %}
             {% set brand_alt = brand.alt|default(brand_name|default('Brand logo')) %}
 
-            <div class="brands-volt__item flex flex-col items-center gap-3 text-white/70">
+            <div class="brands-volt__item group flex flex-col items-center gap-3 text-[var(--color-text)] transition duration-200 ease-out hover:text-primary dark:text-white/70 dark:hover:text-scandary">
               {% if brand.logo %}
-                <div class="brands-volt__logo flex h-20 w-20 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/10 backdrop-blur">
+                <div class="brands-volt__logo flex h-20 w-20 items-center justify-center rounded-full bg-light-background ring-1 ring-[rgba(0,0,0,0.08)] backdrop-blur-sm transition duration-200 ease-out group-hover:scale-105 group-hover:ring-2 group-hover:ring-[var(--color-primary)] dark:bg-white/5 dark:ring-white/10 dark:group-hover:ring-[var(--color-scandary)]">
                   <img
                     src="{{ brand.logo }}"
                     alt="{{ brand_alt }}"
@@ -61,7 +61,7 @@
           {% endfor %}
         </div>
       {% else %}
-        <p class="mt-10 text-sm text-white/60">
+        <p class="mt-10 text-sm text-[var(--color-text)] dark:text-white/60">
           لم يتم إضافة شعارات بعد. أضف الشعارات عبر إعدادات المكون.
         </p>
       {% endif %}
@@ -82,7 +82,7 @@
       const regex = new RegExp('(' + escapeRegex + ')', 'gi');
       titleEl.innerHTML = titleEl.textContent.replace(
         regex,
-        '<span class="brands-volt__highlight bg-gradient-to-r from-[#ff5e0e] via-[#ff8b24] to-[#a62d17] bg-clip-text text-transparent">$1</span>'
+        '<span class="brands-volt__highlight bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
       );
     });
   </script>
