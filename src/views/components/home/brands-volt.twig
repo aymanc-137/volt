@@ -14,12 +14,6 @@
 {% set super_title = component.super_title is defined ? component.super_title : 'أداء ممتاز' %}
 {% set title_text = component.title is defined ? component.title : 'ندعم جميع شركات السيارات' %}
 {% set highlight_word = component.highlighted_word is defined ? component.highlighted_word : 'السيارات' %}
-{% set safe_title = title_text|e %}
-
-{% if highlight_word %}
-  {% set highlight_markup = '<span class="brands-volt__highlight bg-gradient-to-r from-[#ff5e0e] via-[#ff8b24] to-[#a62d17] bg-clip-text text-transparent">' ~ highlight_word|e ~ '</span>' %}
-  {% set safe_title = safe_title|replace({ highlight_word|e : highlight_markup }) %}
-{% endif %}
 
 {% set brands = component.brands|default([]) %}
 
@@ -35,8 +29,8 @@
           </span>
         {% endif %}
 
-        <h2 class="text-2xl font-bold leading-snug daynmic-text-color sm:text-3xl">
-          {{ safe_title|raw }}
+        <h2 id="brands-volt-title-{{ position }}" class="text-2xl font-bold leading-snug daynmic-text-color sm:text-3xl">
+          {{ title_text }}
         </h2>
 
         <div class="mx-auto h-0.5 w-28 rounded-full bg-gradient-to-r from-[#ff5e0e] via-[#ff8b24] to-[#a62d17]"></div>
@@ -74,3 +68,22 @@
     </div>
   </div>
 </section>
+
+{% if highlight_word %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const titleEl = document.getElementById('brands-volt-title-{{ position }}');
+      if (!titleEl) return;
+
+      const word = '{{ highlight_word|e('js') }}';
+      if (!word) return;
+
+      const escapeRegex = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const regex = new RegExp('(' + escapeRegex + ')', 'gi');
+      titleEl.innerHTML = titleEl.textContent.replace(
+        regex,
+        '<span class="brands-volt__highlight bg-gradient-to-r from-[#ff5e0e] via-[#ff8b24] to-[#a62d17] bg-clip-text text-transparent">$1</span>'
+      );
+    });
+  </script>
+{% endif %}
