@@ -1613,14 +1613,7 @@
             "title": "لماذا تختارنا",
             "icon": "sicon-store",
             "path": "home.why-us",
-            "image": "https://cdn.lamsaweb.com/cdnEinaya/why-us-preview.png",
             "fields": [
-                {
-                    "type": "static",
-                    "format": "description",
-                    "id": "static-desc",
-                    "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnEinaya/why-us-preview.png' alt='why us preview'></div>"
-                },
                 {
                     "id": "title_pre",
                     "type": "string",
