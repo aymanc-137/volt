@@ -1766,7 +1766,135 @@
             "title": "الماركات التجارية - فولت",
             "icon": "sicon-store",
             "path": "home.brands-volt",
-            "fields": []
+            "fields": [
+                {
+                    "id": "super_title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "عنوان علوي",
+                    "description": "نص قصير يظهر أعلى العنوان الرئيسي.",
+                    "labelHTML": null,
+                    "placeholder": "مثال: أداء ممتاز",
+                    "icon": "sicon-format-text-alt",
+                    "value": "أداء ممتاز",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 80
+                },
+                {
+                    "id": "title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان الرئيسي",
+                    "description": null,
+                    "labelHTML": null,
+                    "placeholder": "أدخل العنوان الرئيسي للقسم",
+                    "icon": "sicon-format-text-alt",
+                    "value": "ندعم جميع شركات السيارات",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 200
+                },
+                {
+                    "id": "highlighted_word",
+                    "type": "string",
+                    "format": "text",
+                    "label": "كلمة مميزة",
+                    "description": "الكلمة التي سيتم إبرازها بتدرج لوني داخل العنوان.",
+                    "labelHTML": null,
+                    "placeholder": "مثال: السيارات",
+                    "icon": "sicon-magic-wand",
+                    "value": "السيارات",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 80
+                },
+                {
+                    "id": "brands",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "الشعارات",
+                    "description": "أضف شعارات الشركات التي ترغب بعرضها.",
+                    "item_label": "شعار",
+                    "icon": "sicon-image",
+                    "minLength": 1,
+                    "maxLength": 12,
+                    "value": [
+                        {
+                            "brands.logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Toyota_logo.png/512px-Toyota_logo.png",
+                            "brands.name": "TOYOTA",
+                            "brands.alt": "شعار شركة تويوتا"
+                        },
+                        {
+                            "brands.logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Tesla_logo.png/512px-Tesla_logo.png",
+                            "brands.name": "TESLA",
+                            "brands.alt": "شعار شركة تسلا"
+                        },
+                        {
+                            "brands.logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/512px-Mercedes-Logo.svg.png",
+                            "brands.name": "Mercedes-Benz",
+                            "brands.alt": "شعار شركة مرسيدس بنز"
+                        },
+                        {
+                            "brands.logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Ford_logo_flat.svg/512px-Ford_logo_flat.svg.png",
+                            "brands.name": "FORD",
+                            "brands.alt": "شعار شركة فورد"
+                        },
+                        {
+                            "brands.logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Volkswagen_logo_2019.svg/512px-Volkswagen_logo_2019.svg.png",
+                            "brands.name": "Volkswagen",
+                            "brands.alt": "شعار شركة فولكس فاجن"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "id": "brands.logo",
+                            "type": "string",
+                            "format": "image",
+                            "label": "صورة الشعار",
+                            "description": "يفضل استخدام صور بصيغة PNG بخلفية شفافة.",
+                            "labelHTML": null,
+                            "placeholder": "https://example.com/logo.png",
+                            "icon": "sicon-image",
+                            "value": null,
+                            "required": true
+                        },
+                        {
+                            "id": "brands.name",
+                            "type": "string",
+                            "format": "text",
+                            "label": "اسم الشركة",
+                            "description": "النص الذي يظهر أسفل الشعار.",
+                            "labelHTML": null,
+                            "placeholder": "مثال: TOYOTA",
+                            "icon": "sicon-format-text-alt",
+                            "multilanguage": true,
+                            "value": null,
+                            "required": false,
+                            "minLength": 0,
+                            "maxLength": 100
+                        },
+                        {
+                            "id": "brands.alt",
+                            "type": "string",
+                            "format": "text",
+                            "label": "نص بديل",
+                            "description": "يظهر لبرامج قراءة الشاشة ويساعد في تحسين محركات البحث.",
+                            "labelHTML": null,
+                            "placeholder": "مثال: شعار شركة تويوتا",
+                            "icon": "sicon-a11y",
+                            "multilanguage": true,
+                            "value": null,
+                            "required": false,
+                            "minLength": 0,
+                            "maxLength": 120
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "support_url": "",
