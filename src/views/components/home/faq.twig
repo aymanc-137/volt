@@ -11,10 +11,10 @@
 | position                     | int    | Component position on the page                           |
 #}
 
-{% set super_title = component.super_title is defined ? component.super_title : ''D#3&D) 'D4'&9)' %}
-{% set title_text = component.title is defined ? component.title : ''D#3&D) 'D#C+1 4JH9'' %}
-{% set description = component.description is defined ? component.description : 'F,J( 9DI #3&D*C 'D4'&9)' %}
-{% set highlight_word = component.highlighted_word is defined ? component.highlighted_word : '4JH9'' %}
+{% set super_title = component.super_title is defined ? component.super_title : 'الأسئلة الشائعة' %}
+{% set title_text = component.title is defined ? component.title : 'الأسئلة الأكثر شيوعا' %}
+{% set description = component.description is defined ? component.description : 'نجيب على أسئلتك الشائعة' %}
+{% set highlight_word = component.highlighted_word is defined ? component.highlighted_word : 'شيوعا' %}
 {% set faqs = component.faqs|default([]) %}
 
 <section class="s-block faq-component">
@@ -97,16 +97,16 @@
         <!-- Additional Info -->
         <div class="faq-component__footer mt-12 sm:mt-16 text-center">
           <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">
-            GD D/JC 'DE2J/ EF 'D#3&D)
+            هل لديك المزيد من الأسئلة؟
             <a href="#contact" class="text-primary hover:text-primary-dark dark:hover:text-primary-light transition-colors duration-200 font-medium">
-              '*5D (F'
+              اتصل بنا
             </a>
           </p>
         </div>
       {% else %}
         <div class="faq-component__empty-state py-12 text-center">
           <p class="text-base sm:text-lg text-gray-500 dark:text-gray-400">
-            DE J*E %6'A) #3&D) 4'&9) (9/. #6A 'D#3&D) 9(1 %9/'/'* 'DECHF.
+            لم يتم إضافة أسئلة شائعة بعد. أضف الأسئلة عبر إعدادات المكون.
           </p>
         </div>
       {% endif %}
