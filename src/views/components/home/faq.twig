@@ -1,0 +1,175 @@
+{#
+| Variable                     | Type   | Description                                              |
+|------------------------------|--------|----------------------------------------------------------|
+| super_title                  | string | Upper caption displayed above the main title             |
+| title                        | string | Main heading text                                        |
+| description                  | string | Optional subtitle/description below the title            |
+| highlighted_word             | string | Word within the title that receives the gradient effect  |
+| faqs[]                       | array  | Collection of FAQ items                                  |
+| faqs[].question              | string | FAQ question text                                        |
+| faqs[].answer                | string | FAQ answer text (supports HTML)                          |
+| position                     | int    | Component position on the page                           |
+#}
+
+{% set super_title = component.super_title is defined ? component.super_title : ''D#3&D) 'D4'&9)' %}
+{% set title_text = component.title is defined ? component.title : ''D#3&D) 'D#C+1 4JH9'' %}
+{% set description = component.description is defined ? component.description : 'F,J( 9DI #3&D*C 'D4'&9)' %}
+{% set highlight_word = component.highlighted_word is defined ? component.highlighted_word : '4JH9'' %}
+{% set faqs = component.faqs|default([]) %}
+
+<section class="s-block faq-component">
+  <div class="container">
+    <div class="faq-component__wrapper">
+      <!-- Header Section -->
+      <div class="faq-component__header">
+        {% if super_title %}
+          <span class="faq-component__super-title inline-block text-sm font-semibold tracking-wide text-primary">
+            {{ super_title }}
+          </span>
+        {% endif %}
+
+        <h2 id="faq-title-{{ position }}" class="faq-component__title text-2xl sm:text-3xl lg:text-4xl font-bold leading-snug mb-4">
+          {{ title_text }}
+        </h2>
+
+        {% if title_text %}
+          <div class="faq-component__divider mx-0 mb-6 h-0.5 w-28 rounded-full bg-gradient-to-r from-primary to-scandary"></div>
+        {% endif %}
+
+        {% if description %}
+          <p class="faq-component__description text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl">
+            {{ description }}
+          </p>
+        {% endif %}
+      </div>
+
+      <!-- FAQs Section -->
+      {% if faqs %}
+        <div class="faq-component__items mt-10 sm:mt-14 lg:mt-16 space-y-4">
+          {% for faq in faqs %}
+            {% set faq_id = 'faq-item-' ~ position ~ '-' ~ loop.index0 %}
+            <div class="faq-component__item group rounded-lg border border-gray-200 transition-all duration-300 ease-out
+                        bg-light-foreground dark:bg-dark-foreground dark:border-gray-700
+                        hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-black/20">
+
+              <!-- FAQ Question (Accordion Button) -->
+              <button
+                type="button"
+                id="{{ faq_id }}-trigger"
+                aria-expanded="false"
+                aria-controls="{{ faq_id }}-content"
+                class="faq-component__trigger w-full flex items-center justify-between px-5 sm:px-6 lg:px-8 py-4 sm:py-5 text-left
+                       transition-colors duration-200 ease-out
+                       hover:bg-gray-100 dark:hover:bg-gray-700/50
+                       focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+              >
+                <span class="faq-component__question text-base sm:text-lg font-semibold text-gray-900 dark:text-white
+                           pr-6 sm:pr-8 flex-1 transition-colors duration-200">
+                  {{ faq.question }}
+                </span>
+
+                <!-- Icon -->
+                <span class="faq-component__icon flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 text-primary transition-transform duration-300 ease-out transform group-[.is-active]:rotate-180"
+                      aria-hidden="true">
+                  <svg class="w-full h-full fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 10l5 5 5-5z"/>
+                  </svg>
+                </span>
+              </button>
+
+              <!-- FAQ Answer (Accordion Content) -->
+              <div
+                id="{{ faq_id }}-content"
+                aria-labelledby="{{ faq_id }}-trigger"
+                role="region"
+                class="faq-component__content hidden overflow-hidden transition-all duration-300 ease-out max-h-0 group-[.is-active]:max-h-[2000px]"
+              >
+                <div class="faq-component__answer px-5 sm:px-6 lg:px-8 py-4 sm:py-5 text-base sm:text-lg text-gray-700 dark:text-gray-300
+                           border-t border-gray-200 dark:border-gray-700
+                           leading-relaxed space-y-3">
+                  {{ faq.answer|raw }}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <!-- Additional Info -->
+        <div class="faq-component__footer mt-12 sm:mt-16 text-center">
+          <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+            GD D/JC 'DE2J/ EF 'D#3&D)
+            <a href="#contact" class="text-primary hover:text-primary-dark dark:hover:text-primary-light transition-colors duration-200 font-medium">
+              '*5D (F'
+            </a>
+          </p>
+        </div>
+      {% else %}
+        <div class="faq-component__empty-state py-12 text-center">
+          <p class="text-base sm:text-lg text-gray-500 dark:text-gray-400">
+            DE J*E %6'A) #3&D) 4'&9) (9/. #6A 'D#3&D) 9(1 %9/'/'* 'DECHF.
+          </p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% if highlight_word %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const titleEl = document.getElementById('faq-title-{{ position }}');
+      if (!titleEl) return;
+
+      const word = '{{ highlight_word|e('js') }}';
+      if (!word) return;
+
+      const escapeRegex = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const regex = new RegExp('(' + escapeRegex + ')', 'gi');
+      titleEl.innerHTML = titleEl.textContent.replace(
+        regex,
+        '<span class="faq-component__highlight bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
+      );
+    });
+  </script>
+{% endif %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // FAQ Accordion functionality
+    const faqTriggers = document.querySelectorAll('.faq-component__trigger');
+
+    faqTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', function (e) {
+        e.preventDefault();
+        const faqItem = this.closest('.faq-component__item');
+        const isActive = faqItem.classList.contains('is-active');
+
+        // Close all other items
+        document.querySelectorAll('.faq-component__item.is-active').forEach((item) => {
+          if (item !== faqItem) {
+            item.classList.remove('is-active');
+            const itemTrigger = item.querySelector('.faq-component__trigger');
+            itemTrigger.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        // Toggle current item
+        if (isActive) {
+          faqItem.classList.remove('is-active');
+          this.setAttribute('aria-expanded', 'false');
+        } else {
+          faqItem.classList.add('is-active');
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+
+      // Keyboard support (Enter and Space)
+      trigger.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.click();
+        }
+      });
+    });
+  });
+</script>

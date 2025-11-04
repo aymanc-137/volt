@@ -1,0 +1,436 @@
+// FAQ Component Styles
+// ITCSS: 04-Components
+// Features: Accordion, Dark Mode Support, Responsive Design
+
+.faq-component {
+  @apply py-12 sm:py-16 lg:py-20;
+  background-color: var(--color-grey);
+  @apply dark:bg-[var(--color-dark-page-background)];
+
+  &__wrapper {
+    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  // Header Section
+  &__header {
+    @apply mb-10 sm:mb-14 lg:mb-16 text-center;
+  }
+
+  &__super-title {
+    @apply text-primary dark:text-primary-light;
+    animation: fadeInDown 0.6s ease-out;
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  &__title {
+    @apply text-gray-900 dark:text-white transition-colors duration-300;
+    animation: fadeInUp 0.6s ease-out 0.1s both;
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    // Mobile responsiveness
+    @media (max-width: 640px) {
+      @apply leading-tight;
+    }
+  }
+
+  &__highlight {
+    // Gradient text for highlighted words
+    @apply bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent;
+  }
+
+  &__divider {
+    @apply mx-auto;
+    animation: slideInRight 0.6s ease-out 0.2s both;
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        width: 0;
+      }
+      to {
+        opacity: 1;
+        width: 7rem;
+      }
+    }
+  }
+
+  &__description {
+    @apply mt-4 transition-colors duration-300;
+    animation: fadeInUp 0.6s ease-out 0.3s both;
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    // Mobile responsiveness
+    @media (max-width: 640px) {
+      @apply text-sm;
+    }
+  }
+
+  // FAQ Items Section
+  &__items {
+    @apply space-y-3 sm:space-y-4;
+
+    // Stagger animation for items
+    .faq-component__item {
+      animation: fadeInUp 0.6s ease-out backwards;
+
+      @for $i from 1 through 20 {
+        &:nth-child(#{$i}) {
+          animation-delay: calc(0.4s + #{$i * 0.05s});
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+
+  // FAQ Item Container
+  &__item {
+    @apply relative overflow-hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    // Light mode styles
+    @apply border border-gray-200 bg-light-foreground;
+    @apply hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10;
+
+    // Dark mode styles
+    @apply dark:border-gray-700 dark:bg-dark-foreground;
+    @apply dark:hover:border-primary/50 dark:hover:shadow-lg dark:hover:shadow-primary/20;
+
+    // Active state
+    &.is-active {
+      @apply border-primary shadow-lg;
+      @apply dark:border-primary/60 dark:shadow-primary/20;
+
+      .faq-component__trigger {
+        @apply bg-primary/5 dark:bg-primary/10;
+      }
+
+      .faq-component__icon {
+        @apply text-primary dark:text-primary-light;
+      }
+    }
+
+    // Responsive adjustments
+    @media (max-width: 640px) {
+      @apply rounded-lg;
+    }
+
+    @media (min-width: 641px) {
+      @apply rounded-xl;
+    }
+  }
+
+  // Trigger (Button) Styles
+  &__trigger {
+    @apply cursor-pointer;
+    transition: all 0.3s ease-out;
+
+    &:hover {
+      @apply bg-gray-50 dark:bg-gray-800/50;
+    }
+
+    &:focus-visible {
+      @apply outline-none ring-2 ring-primary ring-opacity-50;
+    }
+
+    // Active state
+    .faq-component__item.is-active & {
+      @apply bg-primary/5 dark:bg-primary/10;
+    }
+
+    // Responsive spacing
+    @media (max-width: 640px) {
+      @apply px-4 py-3;
+    }
+
+    @media (min-width: 641px) and (max-width: 1024px) {
+      @apply px-5 py-4;
+    }
+
+    @media (min-width: 1025px) {
+      @apply px-6 py-5;
+    }
+  }
+
+  // Question Text
+  &__question {
+    @apply text-gray-900 dark:text-white;
+    transition: color 0.3s ease-out;
+
+    // Responsive font sizes
+    @media (max-width: 640px) {
+      @apply text-base font-semibold;
+    }
+
+    @media (min-width: 641px) {
+      @apply text-lg font-semibold;
+    }
+
+    // Line clamping for long questions
+    @apply line-clamp-2;
+
+    // Active state
+    .faq-component__item.is-active & {
+      @apply text-primary dark:text-primary-light;
+    }
+  }
+
+  // Icon Styles
+  &__icon {
+    @apply flex-shrink-0 text-primary dark:text-primary-light;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    // Responsive sizing
+    @media (max-width: 640px) {
+      @apply w-5 h-5;
+    }
+
+    @media (min-width: 641px) {
+      @apply w-6 h-6;
+    }
+
+    svg {
+      @apply w-full h-full fill-current transition-all duration-300;
+    }
+  }
+
+  // Content (Answer) Container
+  &__content {
+    @apply overflow-hidden transition-all duration-300 ease-out;
+    max-height: 0;
+
+    // Active state with smooth height transition
+    .faq-component__item.is-active & {
+      max-height: 2000px;
+    }
+  }
+
+  // Answer Text
+  &__answer {
+    @apply text-gray-700 dark:text-gray-300;
+    @apply border-t border-gray-200 dark:border-gray-700;
+    transition: all 0.3s ease-out;
+
+    // Responsive spacing
+    @media (max-width: 640px) {
+      @apply px-4 py-3 text-sm sm:text-base;
+    }
+
+    @media (min-width: 641px) and (max-width: 1024px) {
+      @apply px-5 py-4 text-base;
+    }
+
+    @media (min-width: 1025px) {
+      @apply px-6 py-5 text-lg;
+    }
+
+    // Text formatting
+    @apply leading-relaxed space-y-3;
+
+    // Support for inline HTML formatting
+    strong {
+      @apply font-semibold text-gray-900 dark:text-white;
+    }
+
+    em {
+      @apply italic text-primary dark:text-primary-light;
+    }
+
+    a {
+      @apply text-primary hover:text-primary-dark dark:hover:text-primary-light;
+      @apply underline transition-colors duration-200;
+    }
+
+    ul,
+    ol {
+      @apply ml-4 rtl:mr-4 rtl:ml-0;
+
+      li {
+        @apply mb-2;
+
+        &:last-child {
+          @apply mb-0;
+        }
+      }
+    }
+
+    ul li {
+      @apply list-disc;
+    }
+
+    ol li {
+      @apply list-decimal;
+    }
+
+    code {
+      @apply bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm font-mono;
+      @apply text-gray-900 dark:text-gray-100;
+    }
+
+    blockquote {
+      @apply border-l-4 border-primary dark:border-primary-light pl-4 rtl:pr-4 rtl:pl-0;
+      @apply italic text-gray-600 dark:text-gray-400;
+    }
+  }
+
+  // Footer Section
+  &__footer {
+    @apply mt-10 sm:mt-12 lg:mt-14;
+    animation: fadeInUp 0.6s ease-out 0.5s both;
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    p {
+      @apply text-gray-600 dark:text-gray-400;
+      @apply transition-colors duration-300;
+
+      @media (max-width: 640px) {
+        @apply text-sm;
+      }
+    }
+
+    a {
+      @apply text-primary hover:text-primary-dark dark:hover:text-primary-light;
+      @apply font-semibold transition-colors duration-200;
+      @apply cursor-pointer;
+
+      &:focus-visible {
+        @apply outline-none ring-2 ring-primary ring-offset-2;
+        @apply dark:ring-offset-dark-foreground;
+      }
+    }
+  }
+
+  // Empty State
+  &__empty-state {
+    @apply text-center;
+
+    p {
+      @apply text-gray-500 dark:text-gray-400;
+      @apply transition-colors duration-300;
+
+      @media (max-width: 640px) {
+        @apply text-sm;
+      }
+
+      @media (min-width: 641px) {
+        @apply text-base;
+      }
+    }
+  }
+}
+
+// Responsive breakpoints and adjustments
+@media (max-width: 768px) {
+  .faq-component {
+    @apply py-8 sm:py-12;
+
+    &__header {
+      @apply mb-8 sm:mb-10;
+    }
+
+    &__items {
+      @apply space-y-2 sm:space-y-3;
+    }
+
+    &__title {
+      @apply text-xl sm:text-2xl;
+    }
+
+    &__description {
+      @apply text-xs sm:text-sm;
+    }
+  }
+}
+
+// Accessibility: Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .faq-component {
+    * {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}
+
+// Dark mode specific adjustments
+.dark {
+  .faq-component {
+    // Ensure proper contrast in dark mode
+    &__title {
+      @apply text-white;
+    }
+
+    &__description {
+      @apply text-gray-300;
+    }
+
+    &__question {
+      @apply text-gray-100;
+
+      .faq-component__item.is-active & {
+        @apply text-primary-light;
+      }
+    }
+
+    &__answer {
+      @apply text-gray-300;
+
+      strong {
+        @apply text-gray-100;
+      }
+
+      a {
+        @apply text-primary-light;
+      }
+    }
+  }
+}

@@ -1944,9 +1944,127 @@
         {
             "key": "e2552a86-a41e-4b7e-8acd-4b30167ddb38",
             "title": "الأسئلة الأكثر شيوعا",
-            "icon": "sicon-store",
+            "icon": "sicon-help-circle",
             "path": "home.faq",
-            "fields": []
+            "image": "https://cdn.salla.sa/images/themes/volt/faq-component-preview.png",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "static-desc",
+                    "value": "<div style='background-color: #e8f4f8; color: #0a5a90; padding: 16px 20px; font-size: 14px; border-radius: 4px; margin: 0 0 30px;'><strong>مكون الأسئلة الشائعة</strong><br/>أضف أسئلتك الشائعة مع إجاباتها الكاملة لمساعدة عملائك على الإجابة على استفساراتهم بشكل سريع وفعال.</div>"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "عنوان فرعي",
+                    "multilanguage": true,
+                    "id": "super_title",
+                    "value": "الأسئلة الشائعة",
+                    "required": false,
+                    "format": "text",
+                    "description": "يتم عرضه فوق العنوان الرئيسي بلون مختلف",
+                    "placeholder": "أدخل العنوان الفرعي هنا...",
+                    "minLength": 0,
+                    "maxLength": 100
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان الرئيسي",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": "الأسئلة الأكثر شيوعا",
+                    "required": true,
+                    "format": "text",
+                    "description": "العنوان الرئيسي للمكون",
+                    "placeholder": "أدخل العنوان الرئيسي هنا...",
+                    "minLength": 1,
+                    "maxLength": 100
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "كلمة مميزة في العنوان",
+                    "multilanguage": false,
+                    "id": "highlighted_word",
+                    "value": "شيوعا",
+                    "required": false,
+                    "format": "text",
+                    "description": "كلمة من العنوان الرئيسي سيتم تمييزها بتأثير لوني متدرج",
+                    "placeholder": "مثال: شيوعا",
+                    "minLength": 0,
+                    "maxLength": 50
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-typography",
+                    "label": "الوصف",
+                    "multilanguage": true,
+                    "id": "description",
+                    "value": "نجيب على أسئلتك الشائعة",
+                    "required": false,
+                    "format": "textarea",
+                    "description": "وصف قصير يظهر تحت العنوان الرئيسي",
+                    "placeholder": "أدخل الوصف هنا...",
+                    "minLength": 0,
+                    "maxLength": 255
+                },
+                {
+                    "id": "faqs",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "الأسئلة والإجابات",
+                    "item_label": "سؤال",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 20,
+                    "value": [
+                        {
+                            "faqs.question": "ما هي طرق الدفع المتاحة؟",
+                            "faqs.answer": "نقبل جميع طرق الدفع الآمنة والموثوقة بما في ذلك بطاقات الائتمان والتحويل البنكي والمحافظ الرقمية."
+                        },
+                        {
+                            "faqs.question": "كم وقت التوصيل؟",
+                            "faqs.answer": "يتم التوصيل خلال 24 إلى 48 ساعة عمل حسب موقعك الجغرافي وسرعة معالجة الطلب."
+                        },
+                        {
+                            "faqs.question": "هل يمكنني استرجاع المنتج؟",
+                            "faqs.answer": "نعم، يمكنك استرجاع المنتج خلال 14 يوم من استلامه إذا كان في حالته الأصلية وغير مستخدم."
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "السؤال",
+                            "multilanguage": true,
+                            "id": "faqs.question",
+                            "value": null,
+                            "required": true,
+                            "format": "text",
+                            "description": "نص السؤال",
+                            "placeholder": "أدخل السؤال هنا...",
+                            "minLength": 1,
+                            "maxLength": 200
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-typography",
+                            "label": "الإجابة",
+                            "multilanguage": true,
+                            "id": "faqs.answer",
+                            "value": null,
+                            "required": true,
+                            "format": "textarea",
+                            "description": "إجابة السؤال - يمكنك استخدام نص عادي أو HTML",
+                            "placeholder": "أدخل الإجابة هنا...",
+                            "minLength": 1,
+                            "maxLength": 2000
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "support_url": "",
