@@ -2050,6 +2050,13 @@
                     ]
                 }
             ]
+        },
+        {
+            "key": "5b0f0805-0f41-444f-a50d-610796cbdb9f",
+            "title": "عرض مؤقت - فولت",
+            "icon": "sicon-store",
+            "path": "home.flash-offer",
+            "fields": []
         }
     ],
     "support_url": "",
