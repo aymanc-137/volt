@@ -276,7 +276,7 @@
     }
 
     a {
-      @apply text-primary hover:text-primary-dark dark:hover:text-primary-light;
+      @apply text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] dark:hover:text-[var(--color-primary-light)];
       @apply underline transition-colors duration-200;
     }
 
@@ -338,7 +338,7 @@
     }
 
     a {
-      @apply text-primary hover:text-primary-dark dark:hover:text-primary-light;
+      @apply text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] dark:hover:text-[var(--color-primary-light)];
       @apply font-semibold transition-colors duration-200;
       @apply cursor-pointer;
 
