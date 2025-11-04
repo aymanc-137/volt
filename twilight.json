@@ -1940,6 +1940,13 @@
                     ]
                 }
             ]
+        },
+        {
+            "key": "e2552a86-a41e-4b7e-8acd-4b30167ddb38",
+            "title": "الأسئلة الأكثر شيوعا",
+            "icon": "sicon-store",
+            "path": "home.faq",
+            "fields": []
         }
     ],
     "support_url": "",
