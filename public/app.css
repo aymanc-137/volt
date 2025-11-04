@@ -22286,18 +22286,13 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
 }
 .faq-component__content {
     overflow: hidden;
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
-    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
   max-height: 0;
   display: block;
+  transition: max-height 0.4s ease-out;
 }
 .faq-component__item.is-active .faq-component__content {
   max-height: 2000px;
-}
-.faq-component__item.is-active .faq-component__content * {
-  visibility: visible;
+  transition: max-height 0.5s ease-in-out;
 }
 .faq-component__answer {
     --tw-text-opacity: 1;

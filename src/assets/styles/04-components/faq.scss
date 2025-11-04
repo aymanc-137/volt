@@ -243,18 +243,15 @@
 
   // Content (Answer) Container
   &__content {
-    @apply overflow-hidden transition-all duration-300 ease-out;
+    @apply overflow-hidden;
     max-height: 0;
     display: block;
+    transition: max-height 0.4s ease-out;
 
     // Active state with smooth height transition
     .faq-component__item.is-active & {
       max-height: 2000px;
-    }
-
-    // Ensure content is visible when active
-    .faq-component__item.is-active & * {
-      visibility: visible;
+      transition: max-height 0.5s ease-in-out;
     }
   }
 
