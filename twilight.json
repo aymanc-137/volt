@@ -1944,15 +1944,14 @@
         {
             "key": "e2552a86-a41e-4b7e-8acd-4b30167ddb38",
             "title": "الأسئلة الأكثر شيوعا",
-            "icon": "sicon-help-circle",
+            "icon": "sicon-lang",
             "path": "home.faq",
-            "image": "https://cdn.salla.sa/images/themes/volt/faq-component-preview.png",
             "fields": [
                 {
                     "type": "static",
                     "format": "description",
                     "id": "static-desc",
-                    "value": "<div style='background-color: #e8f4f8; color: #0a5a90; padding: 16px 20px; font-size: 14px; border-radius: 4px; margin: 0 0 30px;'><strong>مكون الأسئلة الشائعة</strong><br/>أضف أسئلتك الشائعة مع إجاباتها الكاملة لمساعدة عملائك على الإجابة على استفساراتهم بشكل سريع وفعال.</div>"
+                    "value": "<div ><strong>مكون الأسئلة الشائعة</strong><br/>أضف أسئلتك الشائعة مع إجاباتها الكاملة لمساعدة عملائك على الإجابة على استفساراتهم بشكل سريع وفعال.</div>"
                 },
                 {
                     "type": "string",
