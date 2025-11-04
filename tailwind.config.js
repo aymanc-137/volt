@@ -44,6 +44,9 @@ module.exports = {
                 'dark-foreground' :'var(--color-dark-box-background)',
                 'light-background' :'var(--color-light-page-background)',
                 'light-foreground' :'var(--color-light-box-background)',
+                'primary':'var(--color-primary)',
+                'primary-light':'var(--color-primary-light)',
+                'primary-dark':'var(--color-primary-dark)',
                 'scandary':'var(--color-scandary)'
             },
             spacing: {

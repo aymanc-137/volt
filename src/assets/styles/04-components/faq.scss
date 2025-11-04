@@ -169,12 +169,12 @@
     }
 
     &:focus-visible {
-      @apply outline-none ring-2 ring-primary ring-opacity-50;
+      @apply outline-none ring-2 ring-[var(--color-primary)] ring-opacity-50;
     }
 
     // Active state
     .faq-component__item.is-active & {
-      @apply bg-primary dark:bg-primary;
+      @apply bg-primary dark:bg-[var(--color-primary)];
     }
 
     // Responsive spacing
