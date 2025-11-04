@@ -1891,6 +1891,22 @@
                             "required": false,
                             "minLength": 0,
                             "maxLength": 120
+                        },
+                        {
+                            "id": "brands.url",
+                            "type": "items",
+                            "format": "dropdown-list",
+                            "label": "الرابط",
+                            "description": null,
+                            "labelHTML": null,
+                            "icon": "sicon-keyboard_arrow_down",
+                            "selected": [],
+                            "options": [],
+                            "source": "Brands",
+                            "multichoice": false,
+                            "searchable": true,
+                            "required": true,
+                            "value": []
                         }
                     ]
                 }
