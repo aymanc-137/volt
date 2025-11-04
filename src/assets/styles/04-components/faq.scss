@@ -245,10 +245,16 @@
   &__content {
     @apply overflow-hidden transition-all duration-300 ease-out;
     max-height: 0;
+    display: block;
 
     // Active state with smooth height transition
     .faq-component__item.is-active & {
       max-height: 2000px;
+    }
+
+    // Ensure content is visible when active
+    .faq-component__item.is-active & * {
+      visibility: visible;
     }
   }
 
@@ -310,7 +316,7 @@
     }
 
     code {
-      @apply bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm font-mono;
+      @apply bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm  ;
       @apply text-gray-900 dark:text-gray-100;
     }
 
