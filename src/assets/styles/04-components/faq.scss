@@ -17,7 +17,7 @@
   }
 
   &__super-title {
-    @apply text-[var(--color-primary)] dark:text-[var(--color-primary-light)];
+    @apply text-primary dark:text-primary-light;
     animation: fadeInDown 0.6s ease-out;
 
     @keyframes fadeInDown {
@@ -129,23 +129,27 @@
 
     // Light mode styles
     @apply border border-gray-200 bg-light-foreground;
-    @apply hover:border-primary hover:shadow-lg hover:shadow-primary;
+    @apply hover:border-primary hover:shadow-md;
+    border-color: var(--color-primary-trans);
 
     // Dark mode styles
     @apply dark:border-gray-700 dark:bg-dark-foreground;
-    @apply dark:hover:border-primary dark:hover:shadow-lg dark:hover:shadow-primary;
+    @apply dark:hover:shadow-lg;
+    box-shadow: 0 4px 6px rgba(var(--color-primary), 0.1);
 
     // Active state
     &.is-active {
       @apply border-primary shadow-lg;
-      @apply dark:border-primary dark:shadow-primary;
+      border-color: var(--color-primary);
+      box-shadow: 0 10px 15px -3px rgba(var(--color-primary), 0.15);
 
       .faq-component__trigger {
-        @apply bg-primary dark:bg-primary;
+        background-color: rgba(var(--color-primary), 0.05);
+        @apply dark:bg-gray-800;
       }
 
       .faq-component__icon {
-        @apply text-[var(--color-primary)] dark:text-[var(--color-primary-light)];
+        @apply text-primary dark:text-primary-light;
       }
     }
 
@@ -169,12 +173,16 @@
     }
 
     &:focus-visible {
-      @apply outline-none ring-2 ring-[var(--color-primary)] ring-opacity-50;
+      @apply outline-none ring-2 ring-primary ring-opacity-50;
     }
 
     // Active state
     .faq-component__item.is-active & {
-      @apply bg-primary dark:bg-[var(--color-primary)];
+      background-color: rgba(var(--color-primary), 0.05);
+    }
+
+    .faq-component__item.is-active.dark & {
+      background-color: rgba(var(--color-primary), 0.1);
     }
 
     // Responsive spacing
@@ -210,13 +218,13 @@
 
     // Active state
     .faq-component__item.is-active & {
-      @apply text-[var(--color-primary)] dark:text-[var(--color-primary-light)];
+      @apply text-primary dark:text-primary-light;
     }
   }
 
   // Icon Styles
   &__icon {
-    @apply flex-shrink-0 text-primary dark:text-[var(--color-primary-light)];
+    @apply flex-shrink-0 text-primary dark:text-primary-light;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     // Responsive sizing
@@ -272,11 +280,11 @@
     }
 
     em {
-      @apply italic text-primary dark:text-[var(--color-primary-light)];
+      @apply italic text-primary dark:text-primary-light;
     }
 
     a {
-      @apply text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] dark:hover:text-[var(--color-primary-light)];
+      @apply text-primary hover:text-primary-dark dark:hover:text-primary-light;
       @apply underline transition-colors duration-200;
     }
 
@@ -302,7 +310,7 @@
     }
 
     code {
-      @apply bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm ;
+      @apply bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm font-mono;
       @apply text-gray-900 dark:text-gray-100;
     }
 
@@ -338,7 +346,7 @@
     }
 
     a {
-      @apply text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] dark:hover:text-[var(--color-primary-light)];
+      @apply text-primary hover:text-primary-dark dark:hover:text-primary-light;
       @apply font-semibold transition-colors duration-200;
       @apply cursor-pointer;
 
