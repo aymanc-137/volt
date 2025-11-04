@@ -17,7 +17,7 @@
   }
 
   &__super-title {
-    @apply text-primary dark:text-primary-light;
+    @apply text-[var(--color-primary)] dark:text-[var(--color-primary-light)];
     animation: fadeInDown 0.6s ease-out;
 
     @keyframes fadeInDown {
@@ -145,7 +145,7 @@
       }
 
       .faq-component__icon {
-        @apply text-primary dark:text-primary-light;
+        @apply text-[var(--color-primary)] dark:text-[var(--color-primary-light)];
       }
     }
 
@@ -210,13 +210,13 @@
 
     // Active state
     .faq-component__item.is-active & {
-      @apply text-primary dark:text-primary-light;
+      @apply text-[var(--color-primary)] dark:text-[var(--color-primary-light)];
     }
   }
 
   // Icon Styles
   &__icon {
-    @apply flex-shrink-0 text-primary dark:text-primary-light;
+    @apply flex-shrink-0 text-primary dark:text-[var(--color-primary-light)];
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     // Responsive sizing
@@ -272,7 +272,7 @@
     }
 
     em {
-      @apply italic text-primary dark:text-primary-light;
+      @apply italic text-primary dark:text-[var(--color-primary-light)];
     }
 
     a {
