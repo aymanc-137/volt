@@ -28,14 +28,14 @@
       {% if component.enable_gradient_title %}
         <h1 class="text-4xl font-alshohadaa mb-5 bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{component.title}}</h1>
       {% elseif component.enable_gradient_word and component.gradient_word %}
-        <h1 id="category-list-title-{{ position }}" class="text-4xl font-alshohadaa mb-5 daynmic-text-color">{{component.title}}</h1>
+        <h1 id="category-list-title-{{ position }}" class="text-4xl font-alshohadaa mb-5 dynamic-text-color">{{component.title}}</h1>
       {% else %}
-        <h1 class="text-4xl font-alshohadaa mb-5 daynmic-text-color">{{component.title}}</h1>
+        <h1 class="text-4xl font-alshohadaa mb-5 dynamic-text-color">{{component.title}}</h1>
       {% endif %}
       <span class="navbar-underline"></span>
     </div>
 
-    <div class="text-center mx-auto text-base lg:text-lg daynmic-text-color">
+    <div class="text-center mx-auto text-base lg:text-lg dynamic-text-color">
         {{component.sub_title}}
       </div>
   </div>

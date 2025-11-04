@@ -18574,11 +18574,11 @@ input[type=radio].sr-only:checked ~ div.s-app-install-banner-cancel-button {
 .hover-glow-sm:hover {
   box-shadow: var(--shadow-glow-sm);
 }
-.daynmic-text-color {
+.dynamic-text-color {
     color: #2C3E50;
     color: var(--main-text-color);
 }
-.dark *.daynmic-text-color {
+.dark *.dynamic-text-color {
     --tw-text-opacity: 1;
     color: rgba(255, 255, 255, 1);
     color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
@@ -25248,9 +25248,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 }
 .group:hover .group-hover\:ring-\[var\(--color-primary\)\] {
     --tw-ring-color: var(--color-primary);
-}
-.group.is-active .group-\[\.is-active\]\:max-h-\[2000px\] {
-    max-height: 2000px;
 }
 .group.is-active .group-\[\.is-active\]\:rotate-180 {
     --tw-rotate: 180deg;
