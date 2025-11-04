@@ -42,7 +42,7 @@
             {% set brand_name = brand.name|default('') %}
             {% set brand_alt = brand.alt|default(brand_name|default('Brand logo')) %}
             {% set brand_url = brand.url|default(null) %}
-            {% set item_classes = 'brands-volt__item group flex flex-col items-center gap-3 text-[var(--color-text)] transition duration-200 ease-out hover:text-primary dark:text-white/70 dark:hover:text-scandary' %}
+            {% set item_classes = 'brands-volt__item group   flex flex-col items-center gap-3 text-[var(--color-text)] transition duration-200 ease-out hover:text-primary dark:text-white/70 dark:hover:text-scandary' %}
             {% set item_content -%}
               {% if brand.logo %}
                 <div class="brands-volt__logo flex h-20 w-20 items-center justify-center rounded-full bg-light-background ring-1 ring-[rgba(0,0,0,0.08)] backdrop-blur-sm transition duration-200 ease-out group-hover:scale-105 group-hover:ring-2 group-hover:ring-[var(--color-primary)] dark:bg-white/5 dark:ring-white/10 dark:group-hover:ring-[var(--color-scandary)]">
