@@ -445,5 +445,18 @@ salla-modal {
 }
 
 .dynamic-text-color{
-  @apply   dark:text-white text-[var(--main-text-color)];
+  @apply   dark:text-gray-200 text-[var(--main-text-color)];
 }
+
+.dynamic-border-color{
+  border-color: color-mix(in srgb, var(--color-light-box-background) 90%, black);
+  &:is(.dark *){
+    border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
+  }
+
+ }
+
+
+// .dynamic-hover-color{
+//   @apply border-[var(--background-box-color)] dark:border-[var(--dark-background-box-color)];
+// }

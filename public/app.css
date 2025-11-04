@@ -18580,8 +18580,14 @@ input[type=radio].sr-only:checked ~ div.s-app-install-banner-cancel-button {
 }
 .dark *.dynamic-text-color {
     --tw-text-opacity: 1;
-    color: rgba(255, 255, 255, 1);
-    color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
+    color: rgba(229, 231, 235, 1);
+    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+}
+.dynamic-border-color {
+  border-color: color-mix(in srgb, var(--color-light-box-background) 90%, black);
+}
+.dark *.dynamic-border-color {
+  border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
 }
 .tooltip-content {
   position: absolute;
@@ -20157,8 +20163,8 @@ input[type=radio].sr-only:checked ~ div#nav-cart span {
 }
 .dark *.main-menu {
     --tw-text-opacity: 1;
-    color: rgba(255, 255, 255, 1);
-    color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
+    color: rgba(229, 231, 235, 1);
+    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
 }
 .main-menu > li > a[href*=offer] {
     --tw-text-opacity: 1;
@@ -23688,20 +23694,18 @@ salla-quantity-input[max="1"] .s-quantity-input-button {
 }
 .product-card-volt {
     border-width: 2px;
-    --tw-border-opacity: 1;
-    border-color: rgba(229, 231, 235, 1);
-    border-color: rgba(229, 231, 235, var(--tw-border-opacity, 1));
     background-color: var(--color-light-box-background);
   border-radius: var(--border-radius);
 }
 .product-card-volt:hover {
   box-shadow: var(--shadow-glow-sm);
 }
+.product-card-volt {
+  border-color: color-mix(in srgb, var(--color-light-box-background) 90%, black);
+}
 .dark *.product-card-volt {
-    --tw-border-opacity: 1;
-    border-color: rgba(31, 41, 55, 1);
-    border-color: rgba(31, 41, 55, var(--tw-border-opacity, 1));
-    background-color: var(--color-dark-box-background);
+  border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
+  background-color: var(--color-dark-box-background);
 }
 .product-card-volt .s-product-card-image {
   border-top-left-radius: var(--border-radius) !important;
@@ -23713,8 +23717,8 @@ salla-quantity-input[max="1"] .s-quantity-input-button {
 }
 .product-card-volt .s-product-card-content:is(.dark *) {
     --tw-text-opacity: 1;
-    color: rgba(255, 255, 255, 1);
-    color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
+    color: rgba(229, 231, 235, 1);
+    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
 }
 .product-card-volt .s-product-card-content .s-product-card-content-title a {
     color: #2C3E50;
@@ -23722,8 +23726,8 @@ salla-quantity-input[max="1"] .s-quantity-input-button {
 }
 .product-card-volt .s-product-card-content .s-product-card-content-title a:is(.dark *) {
     --tw-text-opacity: 1;
-    color: rgba(255, 255, 255, 1);
-    color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
+    color: rgba(229, 231, 235, 1);
+    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
 }
 .s-product-card-volt-wishlist-btn:hover {
     --tw-scale-x: 1.1;
@@ -24545,9 +24549,6 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
 }
 .category-card {
     border-width: 2px;
-    --tw-border-opacity: 1;
-    border-color: rgba(229, 231, 235, 1);
-    border-color: rgba(229, 231, 235, var(--tw-border-opacity, 1));
     background-color: var(--color-light-box-background);
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -24557,11 +24558,12 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
 .category-card:hover {
   box-shadow: var(--shadow-glow-sm);
 }
+.category-card {
+  border-color: color-mix(in srgb, var(--color-light-box-background) 90%, black);
+}
 .dark *.category-card {
-    --tw-border-opacity: 1;
-    border-color: rgba(31, 41, 55, 1);
-    border-color: rgba(31, 41, 55, var(--tw-border-opacity, 1));
-    background-color: var(--color-dark-box-background);
+  border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
+  background-color: var(--color-dark-box-background);
 }
 .category-card .category-name {
     color: #2C3E50;
@@ -24569,8 +24571,8 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
 }
 .category-card .category-name:is(.dark *) {
     --tw-text-opacity: 1;
-    color: rgba(255, 255, 255, 1);
-    color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
+    color: rgba(229, 231, 235, 1);
+    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
 }
 .category-card:hover {
     --tw-scale-x: 1.05;
@@ -24734,6 +24736,12 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
 .s-block--why-us .why-us-feature:hover {
   box-shadow: var(--shadow-glow-sm);
 }
+.s-block--why-us .why-us-feature {
+  border-color: color-mix(in srgb, var(--color-light-box-background) 90%, black);
+}
+.s-block--why-us .why-us-feature:is(.dark *) {
+  border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
+}
 @media (min-width: 768px) {
     .s-block--why-us .why-us-feature {
         padding: 1.5rem;
@@ -24742,12 +24750,11 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
 .s-block--why-us .why-us-feature {
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(10, 11, 14, 0.06);
+  border-color: color-mix(in srgb, var(--color-light-box-background) 90%, black);
 }
 .s-block--why-us .why-us-feature:is(.dark *) {
-    --tw-border-opacity: 1;
-    border-color: rgba(55, 65, 81, 1);
-    border-color: rgba(55, 65, 81, var(--tw-border-opacity, 1));
-    background-color: var(--color-dark-box-background);
+  border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
+  background-color: var(--color-dark-box-background);
 }
 .s-block--why-us .why-us-feature:hover {
     --tw-translate-y: -0.25rem;
@@ -25264,11 +25271,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     border-color: rgba(75, 85, 99, 1);
     border-color: rgba(75, 85, 99, var(--tw-border-opacity, 1));
 }
-.dark *.dark\:border-gray-700 {
-    --tw-border-opacity: 1;
-    border-color: rgba(55, 65, 81, 1);
-    border-color: rgba(55, 65, 81, var(--tw-border-opacity, 1));
-}
 .dark *.dark\:border-red-800 {
     --tw-border-opacity: 1;
     border-color: rgba(153, 27, 27, 1);
@@ -25317,25 +25319,10 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     color: rgba(147, 197, 253, 1);
     color: rgba(147, 197, 253, var(--tw-text-opacity, 1));
 }
-.dark *.dark\:text-gray-300 {
-    --tw-text-opacity: 1;
-    color: rgba(209, 213, 219, 1);
-    color: rgba(209, 213, 219, var(--tw-text-opacity, 1));
-}
-.dark *.dark\:text-gray-400 {
-    --tw-text-opacity: 1;
-    color: rgba(156, 163, 175, 1);
-    color: rgba(156, 163, 175, var(--tw-text-opacity, 1));
-}
 .dark *.dark\:text-red-400 {
     --tw-text-opacity: 1;
     color: rgba(248, 113, 113, 1);
     color: rgba(248, 113, 113, var(--tw-text-opacity, 1));
-}
-.dark *.dark\:text-white {
-    --tw-text-opacity: 1;
-    color: rgba(255, 255, 255, 1);
-    color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
 }
 .dark *.dark\:text-white\/60 {
     color: rgba(255, 255, 255, 0.6);

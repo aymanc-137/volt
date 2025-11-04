@@ -22,22 +22,18 @@
     <div class="faq-component__wrapper">
       <!-- Header Section -->
       <div class="faq-component__header">
-        {% if super_title %}
-          <span class="faq-component__super-title inline-block text-sm font-semibold tracking-wide text-primary">
-            {{ super_title }}
-          </span>
-        {% endif %}
+ 
+  <div class="flex flex-col items-center">
+          <h2 id="faq-title-{{ position }}" class="  font-alshohadaa faq-component__title text-2xl sm:text-3xl lg:text-4xl font-bold leading-snug mb-4">
+            {{ title_text }}
 
-        <h2 id="faq-title-{{ position }}" class="faq-component__title text-2xl sm:text-3xl lg:text-4xl font-bold leading-snug mb-4">
-          {{ title_text }}
-        </h2>
-
-        {% if title_text %}
-          <div class="faq-component__divider mx-0 mb-6 h-0.5 w-28 rounded-full bg-gradient-to-r from-primary to-scandary"></div>
-        {% endif %}
+          </h2>
+          <span class="navbar-underline"></span>
+  </div>
+ 
 
         {% if description %}
-          <p class="faq-component__description text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl">
+          <p class="faq-component__description text-base sm:text-lg dynamic-text-color max-w-2xl">
             {{ description }}
           </p>
         {% endif %}
@@ -48,8 +44,8 @@
         <div class="faq-component__items mt-10 sm:mt-14 lg:mt-16 space-y-4">
           {% for faq in faqs %}
             {% set faq_id = 'faq-item-' ~ position ~ '-' ~ loop.index0 %}
-            <div class="faq-component__item group rounded-lg border border-gray-200 transition-all duration-300 ease-out
-                        bg-light-foreground dark:bg-dark-foreground dark:border-gray-700
+            <div class="faq-component__item group rounded-lg border   transition-all duration-300 ease-out
+                        bg-light-foreground dark:bg-dark-foreground dynamic-border-color
                         hover:shadow-md dark:hover:shadow-lg dark:hover:shadow-black/20">
 
               <!-- FAQ Question (Accordion Button) -->
@@ -63,7 +59,7 @@
                        hover:bg-gray-100 dark:hover:bg-gray-700/50
                        focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
               >
-                <span class="faq-component__question text-base sm:text-lg font-semibold text-gray-900 dark:text-white
+                <span class="faq-component__question text-base sm:text-lg font-semibold dynamic-text-color
                            pr-6 sm:pr-8 flex-1 transition-colors duration-200">
                   {{ faq.question }}
                 </span>
@@ -84,8 +80,9 @@
                 role="region"
                 class="faq-component__content"
               >
-                <div class="faq-component__answer px-5 sm:px-6 lg:px-8 py-4 sm:py-5 text-base sm:text-lg text-gray-700 dark:text-gray-300
-                           border-t border-gray-200 dark:border-gray-700
+                <div class="faq-component__answer px-5 sm:px-6 lg:px-8 py-4 sm:py-5 text-base sm:text-lg
+                dynamic-text-color
+                           border-t dynamic-border-color
                            leading-relaxed space-y-3">
                   {{ faq.answer|raw }}
                 </div>
@@ -95,8 +92,8 @@
         </div>
 
         <!-- Additional Info -->
-        <div class="faq-component__footer mt-12 sm:mt-16 text-center">
-          <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+        <div class="hidden faq-component__footer mt-12 sm:mt-16 text-center">
+          <p class="text-sm sm:text-base dynamic-text-color">
             هل لديك المزيد من الأسئلة؟
             <a href="#contact" class="text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] dark:hover:text-[var(--color-primary-light)] transition-colors duration-200 font-medium">
               اتصل بنا
@@ -105,7 +102,7 @@
         </div>
       {% else %}
         <div class="faq-component__empty-state py-12 text-center">
-          <p class="text-base sm:text-lg text-gray-500 dark:text-gray-400">
+          <p class="text-base sm:text-lg dynamic-text-color">
             لم يتم إضافة أسئلة شائعة بعد. أضف الأسئلة عبر إعدادات المكون.
           </p>
         </div>

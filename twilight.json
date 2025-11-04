@@ -1957,20 +1957,6 @@
                 {
                     "type": "string",
                     "icon": "sicon-format-text-alt",
-                    "label": "عنوان فرعي",
-                    "multilanguage": true,
-                    "id": "super_title",
-                    "value": "الأسئلة الشائعة",
-                    "required": false,
-                    "format": "text",
-                    "description": "يتم عرضه فوق العنوان الرئيسي بلون مختلف",
-                    "placeholder": "أدخل العنوان الفرعي هنا...",
-                    "minLength": 0,
-                    "maxLength": 100
-                },
-                {
-                    "type": "string",
-                    "icon": "sicon-format-text-alt",
                     "label": "العنوان الرئيسي",
                     "multilanguage": true,
                     "id": "title",

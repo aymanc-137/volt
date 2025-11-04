@@ -423,8 +423,12 @@ salla-quantity-input[max='1']{
   
   rounded-custom
   border-2
-  border-gray-200
-  dark:border-gray-800 hover-glow-sm;
+  dynamic-border-color
+
+  // border-gray-200
+  // dark:border-gray-800 
+  
+  hover-glow-sm;
 
   .s-product-card-image{
     border-top-left-radius: var(--border-radius) !important;

@@ -64,10 +64,12 @@
   }
 
   .why-us-feature {
-    @apply flex items-start gap-4 rounded-custom p-4 md:p-6 shadow-sm transition-all duration-300 hover-glow-sm;
+    @apply flex items-start gap-4 rounded-custom p-4 md:p-6 shadow-sm transition-all duration-300 hover-glow-sm   dynamic-border-color
+    ;
     background: rgba(255, 255, 255, 0.92);
     border: 1px solid rgba(10, 11, 14, 0.06);
-    @apply dark:bg-[var(--color-dark-box-background)] dark:border-gray-700;
+     @apply dark:bg-[var(--color-dark-box-background)]
+      dynamic-border-color;
 
     &:hover {
       @apply -translate-y-1;
