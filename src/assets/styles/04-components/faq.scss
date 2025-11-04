@@ -138,10 +138,10 @@
     // Active state
     &.is-active {
       @apply border-primary shadow-lg;
-      @apply dark:border-primary/60 dark:shadow-primary/20;
+      @apply dark:border-primary dark:shadow-primary;
 
       .faq-component__trigger {
-        @apply bg-primary/5 dark:bg-primary/10;
+        @apply bg-primary dark:bg-primary;
       }
 
       .faq-component__icon {
@@ -165,7 +165,7 @@
     transition: all 0.3s ease-out;
 
     &:hover {
-      @apply bg-gray-50 dark:bg-gray-800/50;
+      @apply bg-gray-50 dark:bg-gray-800;
     }
 
     &:focus-visible {
@@ -174,7 +174,7 @@
 
     // Active state
     .faq-component__item.is-active & {
-      @apply bg-primary/5 dark:bg-primary/10;
+      @apply bg-primary dark:bg-primary;
     }
 
     // Responsive spacing
