@@ -41,8 +41,9 @@
           {% for brand in brands %}
             {% set brand_name = brand.name|default('') %}
             {% set brand_alt = brand.alt|default(brand_name|default('Brand logo')) %}
-
-            <div class="brands-volt__item group flex flex-col items-center gap-3 text-[var(--color-text)] transition duration-200 ease-out hover:text-primary dark:text-white/70 dark:hover:text-scandary">
+            {% set brand_url = brand.url|default(null) %}
+            {% set item_classes = 'brands-volt__item group flex flex-col items-center gap-3 text-[var(--color-text)] transition duration-200 ease-out hover:text-primary dark:text-white/70 dark:hover:text-scandary' %}
+            {% set item_content -%}
               {% if brand.logo %}
                 <div class="brands-volt__logo flex h-20 w-20 items-center justify-center rounded-full bg-light-background ring-1 ring-[rgba(0,0,0,0.08)] backdrop-blur-sm transition duration-200 ease-out group-hover:scale-105 group-hover:ring-2 group-hover:ring-[var(--color-primary)] dark:bg-white/5 dark:ring-white/10 dark:group-hover:ring-[var(--color-scandary)]">
                   <img
@@ -57,7 +58,17 @@
               {% if brand_name %}
                 <span class="text-sm font-medium tracking-wide">{{ brand_name }}</span>
               {% endif %}
-            </div>
+            {%- endset %}
+
+            {% if brand_url %}
+              <a href="{{ brand_url }}" class="{{ item_classes }}" target="_blank" rel="noopener">
+                {{ item_content|raw }}
+              </a>
+            {% else %}
+              <div class="{{ item_classes }}">
+                {{ item_content|raw }}
+              </div>
+            {% endif %}
           {% endfor %}
         </div>
       {% else %}
