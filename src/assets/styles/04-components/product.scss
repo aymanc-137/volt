@@ -419,16 +419,55 @@ salla-quantity-input[max='1']{
 
 .product-card-volt{
 
-  @apply bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)] 
-  
+  @apply bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)]
+
   rounded-custom
   border-2
   dynamic-border-color
+  relative
+  overflow-hidden
 
   // border-gray-200
-  // dark:border-gray-800 
-  
+  // dark:border-gray-800
+
   hover-glow-sm;
+
+  // Border grow animation elements
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    background: linear-gradient(to right, var(--color-primary), var(--color-scandary));
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  // Top border - grows from left to right
+  &::before {
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    transition: width 700ms ease-out;
+  }
+
+  // Right border - grows from top to bottom
+  &::after {
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 0;
+    background: linear-gradient(to bottom, var(--color-scandary), var(--color-primary));
+    transition: height 700ms ease-out 200ms;
+  }
+
+  &:hover::before {
+    width: 100%;
+  }
+
+  &:hover::after {
+    height: 100%;
+  }
 
   .s-product-card-image{
     border-top-left-radius: var(--border-radius) !important;
@@ -447,6 +486,55 @@ salla-quantity-input[max='1']{
     }
 
   }
+}
+
+// Bottom border - grows from right to left
+.product-card-volt__bottom-border {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(to left, var(--color-primary), var(--color-scandary));
+  transition: width 700ms ease-out 400ms;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.product-card-volt:hover .product-card-volt__bottom-border {
+  width: 100%;
+}
+
+// Left border - grows from bottom to top
+.product-card-volt__left-border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  height: 0;
+  background: linear-gradient(to top, var(--color-scandary), var(--color-primary));
+  transition: height 700ms ease-out 600ms;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.product-card-volt:hover .product-card-volt__left-border {
+  height: 100%;
+}
+
+// Corner glow effect
+.product-card-volt__glow {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  box-shadow: 0 0 20px rgba(var(--color-primary), 0.4);
+  transition: opacity 1000ms ease-out;
+  pointer-events: none;
+  border-radius: var(--border-radius);
+}
+
+.product-card-volt:hover .product-card-volt__glow {
+  opacity: 1;
 }
 
 

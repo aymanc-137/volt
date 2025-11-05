@@ -2054,9 +2054,262 @@
         {
             "key": "5b0f0805-0f41-444f-a50d-610796cbdb9f",
             "title": "عرض مؤقت - فولت",
-            "icon": "sicon-store",
+            "icon": "sicon-lightning",
             "path": "home.flash-offer",
-            "fields": []
+            "image": "https://cdn.salla.sa/images/themes/volt/flash-offer-preview.png",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "static-desc",
+                    "value": "<div style='background-color: #fef2f2; color: #7f1d1d; padding: 16px 20px; font-size: 14px; border-radius: 4px; margin: 0 0 30px;'><strong>مكون العرض المحدود الوقت</strong><br/>عرض احترافي يجذب الانتباه مع عداد زمني وتفاصيل المنتج وقائمة بالميزات.</div>"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "نص الشارة",
+                    "multilanguage": true,
+                    "id": "badge_text",
+                    "value": "عرض محدود الوقت",
+                    "required": false,
+                    "format": "text",
+                    "description": "النص المعروض في الشارة في أعلى المكون",
+                    "placeholder": "عرض حصري...",
+                    "minLength": 0,
+                    "maxLength": 50
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان الرئيسي",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": "عرض حصري",
+                    "required": true,
+                    "format": "text",
+                    "description": "العنوان الرئيسي للعرض",
+                    "placeholder": "أدخل العنوان...",
+                    "minLength": 1,
+                    "maxLength": 100
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "كلمة العنوان المميزة",
+                    "multilanguage": true,
+                    "id": "title_accent",
+                    "value": "محدود الوقت",
+                    "required": false,
+                    "format": "text",
+                    "description": "كلمة من العنوان سيتم تمييزها بألوان متدرجة",
+                    "placeholder": "محدود الوقت",
+                    "minLength": 0,
+                    "maxLength": 50
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-typography",
+                    "label": "الوصف",
+                    "multilanguage": true,
+                    "id": "description",
+                    "value": "احصل على أفضل العروض اليوم فقط",
+                    "required": false,
+                    "format": "textarea",
+                    "description": "وصف قصير تحت العنوان",
+                    "placeholder": "وصف العرض...",
+                    "minLength": 0,
+                    "maxLength": 255
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "عرض بعرض كامل",
+                    "description": "جعل المكون يأخذ عرض الشاشة كاملاً",
+                    "id": "full_width",
+                    "format": "switch",
+                    "required": false,
+                    "value": false,
+                    "selected": false
+                },
+                {
+                    "type": "collection",
+                    "id": "product",
+                    "format": "collection",
+                    "label": "المنتج",
+                    "item_label": "تفاصيل المنتج",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 1,
+                    "value": [
+                        {
+                            "product.name": "اسم المنتج",
+                            "product.price": "1999.99",
+                            "product.original_price": "2999.99",
+                            "product.quantity_sold": "847",
+                            "product.rating_stars": "4.8",
+                            "product.discount_ends": "2024-12-31T23:59:59",
+                            "product.url": "/products/product-slug",
+                            "product.image": ""
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "اسم المنتج",
+                            "multilanguage": true,
+                            "id": "product.name",
+                            "value": null,
+                            "required": true,
+                            "format": "text",
+                            "placeholder": "أدخل اسم المنتج...",
+                            "minLength": 1,
+                            "maxLength": 100
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-image",
+                            "label": "صورة المنتج",
+                            "id": "product.image",
+                            "value": null,
+                            "required": true,
+                            "format": "image",
+                            "description": "صورة المنتج الرئيسية"
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-tag",
+                            "label": "السعر الحالي",
+                            "id": "product.price",
+                            "value": null,
+                            "required": true,
+                            "format": "text",
+                            "description": "السعر الحالي/سعر العرض",
+                            "placeholder": "1999.99",
+                            "minLength": 1,
+                            "maxLength": 20
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-tag",
+                            "label": "السعر الأصلي",
+                            "id": "product.original_price",
+                            "value": null,
+                            "required": false,
+                            "format": "text",
+                            "description": "السعر قبل الخصم (اختياري)",
+                            "placeholder": "2999.99",
+                            "minLength": 0,
+                            "maxLength": 20
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-trending-up",
+                            "label": "عدد المباع",
+                            "id": "product.quantity_sold",
+                            "value": null,
+                            "required": false,
+                            "format": "text",
+                            "description": "عدد الوحدات المبيعة",
+                            "placeholder": "847",
+                            "minLength": 0,
+                            "maxLength": 10
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-star2",
+                            "label": "تقييم المنتج",
+                            "id": "product.rating_stars",
+                            "value": null,
+                            "required": false,
+                            "format": "text",
+                            "description": "التقييم من 5 نجوم",
+                            "placeholder": "4.8",
+                            "minLength": 0,
+                            "maxLength": 5
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-calendar-time",
+                            "label": "تاريخ انتهاء العرض",
+                            "id": "product.discount_ends",
+                            "value": null,
+                            "required": true,
+                            "format": "text",
+                            "description": "التاريخ والوقت بصيغة ISO (2024-12-31T23:59:59)",
+                            "placeholder": "2024-12-31T23:59:59",
+                            "minLength": 1,
+                            "maxLength": 50
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-link",
+                            "label": "رابط المنتج",
+                            "id": "product.url",
+                            "value": null,
+                            "required": true,
+                            "format": "text",
+                            "description": "رابط صفحة المنتج",
+                            "placeholder": "/products/product-slug",
+                            "minLength": 1,
+                            "maxLength": 500
+                        }
+                    ]
+                },
+                {
+                    "id": "features",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "ميزات المنتج",
+                    "item_label": "ميزة",
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 6,
+                    "value": [
+                        {
+                            "features.icon": "check",
+                            "features.text": "ميزة أولى متميزة"
+                        },
+                        {
+                            "features.icon": "check",
+                            "features.text": "ميزة ثانية رائعة"
+                        },
+                        {
+                            "features.icon": "check",
+                            "features.text": "ميزة ثالثة مميزة"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "type": "string",
+                            "icon": "sicon-star-fill",
+                            "label": "اسم الأيقونة",
+                            "id": "features.icon",
+                            "value": null,
+                            "required": true,
+                            "format": "text",
+                            "description": "اسم الأيقونة (بدون sicon-)",
+                            "placeholder": "check, star, heart, etc.",
+                            "minLength": 1,
+                            "maxLength": 50
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "نص الميزة",
+                            "multilanguage": true,
+                            "id": "features.text",
+                            "value": null,
+                            "required": true,
+                            "format": "text",
+                            "description": "وصف الميزة",
+                            "placeholder": "أدخل نص الميزة...",
+                            "minLength": 1,
+                            "maxLength": 100
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "support_url": "",

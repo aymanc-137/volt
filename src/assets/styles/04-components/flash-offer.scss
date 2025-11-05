@@ -1,0 +1,404 @@
+// Flash Offer Spotlight Component Styles
+// ITCSS: 04-Components
+// Inspired by ProductSpotlight.tsx design
+
+.flash-offer-spotlight {
+  @apply py-8 sm:py-12 lg:py-16;
+
+  &__wrapper {
+    @apply rounded-2xl shadow-xl;
+    background: linear-gradient(135deg, var(--color-light-foreground), var(--color-light-background));
+
+    @apply dark:bg-gradient-to-br;
+    background: linear-gradient(135deg, var(--color-dark-box-background), var(--color-dark-background));
+  }
+
+  // Background glow effects
+  &__bg-glow {
+    @apply absolute inset-0;
+
+    > div {
+      @apply absolute rounded-full blur-3xl;
+      animation: pulse 4s ease-in-out infinite;
+
+      &:nth-child(2) {
+        animation-delay: 1s;
+      }
+    }
+  }
+
+  // Image section styling
+  &__image-section {
+    @apply relative overflow-hidden bg-gradient-to-b;
+
+    // Responsive heights
+    @media (max-width: 768px) {
+      @apply min-h-[300px];
+    }
+
+    @media (min-width: 769px) {
+      @apply min-h-[600px];
+    }
+
+    img {
+      @apply w-full h-full object-cover transition-transform duration-1000;
+
+      .group:hover & {
+        @apply scale-110;
+        transform: scale(1.1) rotate(2deg);
+      }
+    }
+
+    // Gradient overlays
+    &::before,
+    &::after {
+      content: '';
+      @apply absolute inset-0 pointer-events-none;
+    }
+
+    &::before {
+      background: linear-gradient(180deg,
+        rgba(var(--color-dark-box-background), 0.8),
+        rgba(var(--color-dark-box-background), 0.4) 50%,
+        transparent);
+    }
+
+    &::after {
+      background: linear-gradient(90deg,
+        transparent,
+        rgba(var(--color-dark-box-background), 0.8));
+    }
+  }
+
+  // Stat cards styling
+  &__stat-card {
+    @apply relative animate-fade-in-up;
+    animation-duration: 0.6s;
+    animation-fill-mode: both;
+
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{($i - 1) * 0.1s};
+      }
+    }
+
+    // Glow background
+    &::before {
+      content: '';
+      @apply absolute inset-0 rounded-xl blur-lg;
+      background: linear-gradient(135deg,
+        rgba(var(--color-primary), 0.2),
+        rgba(var(--color-scandary), 0.2));
+    }
+
+    // Card container
+    .relative {
+      @apply flex flex-col gap-2 p-4 rounded-xl;
+      background: rgba(var(--color-dark-box-background), 0.8);
+      border: 1px solid rgba(var(--color-primary), 0.4);
+      backdrop-filter: blur(10px);
+
+      @apply dark:bg-dark-box-background;
+    }
+
+    // Content inside card
+    .flex {
+      @apply gap-2 items-center;
+    }
+
+    // Icon styling
+    i {
+      @apply text-lg;
+    }
+
+    // Text styling
+    span {
+      @apply font-bold text-lg;
+
+      &:first-of-type {
+        background: linear-gradient(135deg, var(--color-primary), var(--color-scandary));
+        @apply bg-clip-text text-transparent;
+      }
+    }
+
+    p {
+      @apply text-xs text-gray-400 mt-1;
+    }
+  }
+
+  // Content section styling
+  &__content-section {
+    @apply relative z-10 flex flex-col justify-center;
+
+    // Responsive padding
+    @media (max-width: 640px) {
+      @apply px-4 py-6;
+    }
+
+    @media (min-width: 641px) and (max-width: 1024px) {
+      @apply px-8 py-10;
+    }
+
+    @media (min-width: 1025px) {
+      @apply px-12 py-12;
+    }
+
+    @apply space-y-6;
+    background: linear-gradient(180deg,
+      rgba(var(--color-light-foreground), 1),
+      rgba(var(--color-light-background), 0.8));
+
+    @apply dark:bg-gradient-to-b;
+    background: linear-gradient(180deg,
+      rgba(var(--color-dark-box-background), 1),
+      rgba(var(--color-dark-background), 0.8));
+  }
+
+  // Badge styling with glow
+  .inline-flex {
+    @apply w-fit;
+
+    > div {
+      @apply relative;
+
+      // Glow background
+      &::before {
+        content: '';
+        @apply absolute inset-0 rounded-full blur-md opacity-75;
+        background: linear-gradient(90deg, var(--color-primary), var(--color-scandary), var(--color-primary));
+      }
+
+      // Badge content
+      > div {
+        @apply relative bg-gradient-to-r text-white px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wider;
+        background: linear-gradient(90deg, var(--color-primary), var(--color-scandary), var(--color-primary));
+        animation: pulse 2s ease-in-out infinite;
+
+        i {
+          @apply inline mr-2;
+        }
+      }
+    }
+  }
+
+  // Title styling
+  h2 {
+    @apply text-3xl md:text-5xl font-bold leading-tight transition-colors duration-300;
+
+    .block {
+      @apply mb-2;
+
+      &:first-child {
+        @apply text-gray-900 dark:text-white;
+      }
+
+      &:nth-child(2) {
+        background: linear-gradient(90deg, var(--color-primary), var(--color-scandary), var(--color-primary));
+        @apply bg-clip-text text-transparent;
+      }
+    }
+  }
+
+  // Description paragraph
+  p {
+    @apply text-gray-600 dark:text-gray-400 transition-colors duration-300;
+
+    &.text-base {
+      @media (min-width: 768px) {
+        @apply text-lg;
+      }
+    }
+  }
+
+  // Countdown timer section
+  &__countdown {
+    @apply relative pt-4;
+
+    > p {
+      @apply text-sm font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-4;
+    }
+
+    salla-count-down {
+      @apply block;
+    }
+  }
+
+  // Pricing section
+  .space-y-3 {
+    @apply pt-4;
+
+    // Current price
+    span {
+      @apply text-4xl md:text-5xl font-bold;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-scandary));
+      @apply bg-clip-text text-transparent;
+    }
+
+    // Discount badge
+    > div {
+      @apply inline-flex items-center gap-2 bg-scandary border border-scandary rounded-lg px-3 py-1;
+
+      span {
+        @apply text-scandary font-bold text-sm;
+        background: none;
+        @apply text-scandary;
+      }
+    }
+
+    // Original price
+    p {
+      @apply text-2xl text-gray-400 dark:text-gray-500 line-through;
+    }
+  }
+
+  // Features list
+  ul {
+    @apply space-y-3 pt-4;
+
+    li {
+      @apply flex items-center gap-3 text-gray-700 dark:text-gray-300;
+      animation: fadeInUp 0.6s ease-out forwards;
+
+      @for $i from 1 through 6 {
+        &:nth-child(#{$i}) {
+          animation-delay: #{($i - 1) * 0.1s};
+        }
+      }
+
+      // Icon container
+      span:first-child {
+        @apply flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full;
+        background: rgba(var(--color-primary), 0.2);
+        border: 1px solid var(--color-primary);
+
+        i {
+          @apply text-primary text-sm;
+        }
+      }
+
+      // Text content
+      span:last-child {
+        @apply text-sm md:text-base;
+      }
+    }
+  }
+
+  // CTA Button styling
+  a[href] {
+    @apply inline-flex items-center justify-center gap-3 w-full md:w-auto min-h-14 px-8 py-3;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-scandary));
+    @apply text-white font-bold text-lg rounded-xl transition-all duration-300 ease-out shadow-lg;
+
+    &:hover {
+      background: linear-gradient(90deg, var(--color-scandary), var(--color-primary));
+      @apply shadow-2xl;
+      box-shadow: 0 0 30px rgba(var(--color-primary), 0.5);
+
+      i {
+        &:first-of-type {
+          @apply scale-110;
+        }
+
+        &:last-of-type {
+          @apply rotate-12;
+        }
+      }
+    }
+
+    i {
+      @apply text-xl transition-transform duration-300;
+    }
+  }
+
+  // Corner borders (subtle accent)
+  .absolute {
+    &.top-0 {
+      &.left-0,
+      &.right-0 {
+        @apply w-12 h-12 border-t-2;
+        border-color: var(--color-primary-trans);
+
+        &.right-0 {
+          border-color: var(--color-scandary-trans);
+        }
+      }
+
+      &.left-0 {
+        @apply border-l-2;
+      }
+
+      &.right-0 {
+        @apply border-r-2;
+      }
+    }
+
+    &.bottom-0 {
+      &.left-0,
+      &.right-0 {
+        @apply w-12 h-12 border-b-2;
+        border-color: var(--color-scandary-trans);
+
+        &.right-0 {
+          border-color: var(--color-primary-trans);
+        }
+      }
+
+      &.left-0 {
+        @apply border-l-2;
+      }
+
+      &.right-0 {
+        @apply border-r-2;
+      }
+    }
+  }
+}
+
+// Animation keyframes
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Dark mode specific adjustments
+.dark {
+  .flash-offer-spotlight {
+    &__wrapper {
+      background: linear-gradient(135deg, var(--color-dark-box-background), var(--color-dark-background));
+      box-shadow: 0 0 40px rgba(var(--color-primary), 0.1);
+    }
+
+    h2 {
+      @apply dark:text-white;
+
+      p {
+        @apply dark:text-gray-300;
+      }
+    }
+
+    // Enhanced glow in dark mode
+    &__stat-card {
+      .relative {
+        background: rgba(var(--color-dark-box-background), 0.9);
+        border-color: rgba(var(--color-primary), 0.5);
+      }
+    }
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .flash-offer-spotlight {
+    * {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}

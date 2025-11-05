@@ -154,13 +154,13 @@
     }
 
     // Responsive adjustments
-    @media (max-width: 640px) {
-      @apply rounded-lg;
-    }
+    // @media (max-width: 640px) {
+    //   @apply rounded-lg;
+    // }
 
-    @media (min-width: 641px) {
-      @apply rounded-xl;
-    }
+    // @media (min-width: 641px) {
+    //   @apply rounded-xl;
+    // }
   }
 
   // Trigger (Button) Styles
@@ -313,7 +313,7 @@
     }
 
     code {
-      @apply bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm  ;
+      @apply bg-gray-100 dark:bg-gray-800 px-2 py-1   text-sm  ;
       @apply text-gray-900 dark:text-gray-100;
     }
 

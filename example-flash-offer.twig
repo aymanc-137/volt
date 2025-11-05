@@ -1,0 +1,53 @@
+<section 
+        class="{{ component.full_screen ? 'w-full' : ' w-[90%] md:w-[88%]  ' }}  rounded-2xl 
+        gradient-harir-over-view-{{position}} mx-auto md:min-h-[50rem] my-size-harir-offer-{{position}} md:p-10 p-2 bg-center bg-cover bg-no-repeat"  
+         >
+
+    <div class="md:h-[45rem] h-[60rem] gap-2 md:p-5 p-2 border-double-harir flex md:flex-row flex-col justify-items-center justify-evenly border-8 border-white rounded-2xl">
+
+        <div class=" border-4-harir border-double-harir border-[rgb(var(--color-primary-light))] place-self-center flex flex-col text-center bg-white backdrop-blur-sm bg-opacity-40 md:p-5 p-2 rounded-2xl ">
+            <div class="  w-full">  
+                <h1 class="lg:text-5xl md:text-3xl text-2xl font-extrabold py-5 text-[rgb(var(--color-primary))]  ">{{component.title}}</h1>
+
+            {% if component.is_category  %}
+            <h3>{{component.products[0].category.name}}</h3>
+
+
+            {% else %}
+            <h3>{{component.products[0].name}}</h3>
+            {% endif %}
+
+            <a href="{{component.products[0].url}}" class="text-5xl font-extrabold py-5 text-[var(--color-primary)]">
+            <img src="{{ component.products[0].image.url }}" alt="" class="max-w-[15rem] mx-auto rounded-2xl">
+            </a>
+    </div>
+
+    <div class="w-full flex flex-col justify-center">  
+                <div class="w-full mx-auto main-offer">
+                    <salla-count-down date="{{component.products[0].discount_ends}}"   end-of-day="{{true}}" boxed="{{true}}"
+                    labeled="{{true}}">
+                    </salla-count-down>
+                </div>
+
+                    {% if component.is_category  %}
+                    <salla-button href="{{component.products[0].category.url }}" color="primary" class="btn--rounded-full !text-white">
+                        {{component.url}}
+                    </salla-button>
+                    {% else %}
+
+                    <salla-button href="{{component.products[0].url }}" color="primary" class="btn--rounded-full !text-white">
+                        {{component.url}}
+                    </salla-button>
+                    {% endif %}
+                </div>
+
+    </div>
+
+        <img class="md:max-w-1/2 max-w-full " src="{{component.side_image}}" >
+    </div>
+
+
+ 
+</section> 
+
+

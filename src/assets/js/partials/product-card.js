@@ -186,6 +186,11 @@ class ProductCard extends HTMLElement {
     this.product?.is_out_of_stock?  this.classList.add('s-product-card-out-of-stock') : '';
     this.isInWishlist = !salla.config.isGuest() && salla.storage.get('salla::wishlist', []).includes(Number(this.product.id));
     this.innerHTML = `
+        <!-- Animated border and glow elements -->
+        <div class="product-card-volt__bottom-border"></div>
+        <div class="product-card-volt__left-border"></div>
+        <div class="product-card-volt__glow"></div>
+
         <div class="${!this.fullImage ? 's-product-card-image' : 's-product-card-image-full'} ">
           <a href="${this.product?.url}" aria-label="${this.escapeHTML(this.product?.image?.alt || this.product.name)}">
            <img 
