@@ -6,12 +6,9 @@
   @apply py-8 sm:py-12 lg:py-16;
 
   &__wrapper {
-    @apply rounded-2xl shadow-xl;
+    @apply rounded-2xl shadow-xl dark:bg-gradient-to-br;
     background: linear-gradient(135deg, var(--color-light-foreground), var(--color-light-background));
-
-    .dark & {
-      background: linear-gradient(135deg, var(--color-dark-box-background), var(--color-dark-background));
-    }
+    @apply dark:from-[var(--color-dark-box-background)] dark:to-[var(--color-dark-background)];
   }
 
   // Background glow effects
@@ -94,14 +91,10 @@
 
     // Card container (inner wrapper div with rounded styling)
     > div:nth-child(2) {
-      @apply flex flex-col gap-2 p-4 rounded-xl;
+      @apply flex flex-col gap-2 p-4 rounded-xl dark:bg-[rgba(var(--color-dark-box-background),0.9)];
       background: rgba(var(--color-dark-box-background), 0.8);
       border: 1px solid rgba(var(--color-primary), 0.4);
       backdrop-filter: blur(10px);
-
-      .dark & {
-        background: rgba(var(--color-dark-box-background), 0.9);
-      }
     }
 
     // Content inside card
@@ -146,16 +139,11 @@
       @apply px-12 py-12;
     }
 
-    @apply space-y-6;
+    @apply space-y-6 dark:bg-gradient-to-b;
     background: linear-gradient(180deg,
       rgba(var(--color-light-foreground), 1),
       rgba(var(--color-light-background), 0.8));
-
-    .dark & {
-      background: linear-gradient(180deg,
-        rgba(var(--color-dark-box-background), 1),
-        rgba(var(--color-dark-background), 0.8));
-    }
+    @apply dark:from-[var(--color-dark-box-background)] dark:to-[var(--color-dark-background)];
   }
 
   // Badge styling with glow
