@@ -92,8 +92,8 @@
         rgba(var(--color-scandary), 0.2));
     }
 
-    // Card container
-    .relative {
+    // Card container (inner wrapper div with rounded styling)
+    > div:nth-child(2) {
       @apply flex flex-col gap-2 p-4 rounded-xl;
       background: rgba(var(--color-dark-box-background), 0.8);
       border: 1px solid rgba(var(--color-primary), 0.4);
