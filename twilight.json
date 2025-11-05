@@ -2119,17 +2119,7 @@
                     "minLength": 0,
                     "maxLength": 255
                 },
-                {
-                    "type": "boolean",
-                    "icon": "sicon-toggle-off",
-                    "label": "عرض بعرض كامل",
-                    "description": "جعل المكون يأخذ عرض الشاشة كاملاً",
-                    "id": "full_width",
-                    "format": "switch",
-                    "required": false,
-                    "value": false,
-                    "selected": false
-                },
+      
                 {
                     "id": "product",
                     "type": "items",
@@ -2145,59 +2135,6 @@
                     "searchable": true,
                     "required": true,
                     "value": []
-                },
-                {
-                    "id": "features",
-                    "type": "collection",
-                    "format": "collection",
-                    "label": "ميزات المنتج",
-                    "item_label": "ميزة",
-                    "required": false,
-                    "minLength": 0,
-                    "maxLength": 6,
-                    "value": [
-                        {
-                            "features.icon": "check",
-                            "features.text": "ميزة أولى متميزة"
-                        },
-                        {
-                            "features.icon": "check",
-                            "features.text": "ميزة ثانية رائعة"
-                        },
-                        {
-                            "features.icon": "check",
-                            "features.text": "ميزة ثالثة مميزة"
-                        }
-                    ],
-                    "fields": [
-                        {
-                            "type": "string",
-                            "icon": "sicon-star-fill",
-                            "label": "اسم الأيقونة",
-                            "id": "features.icon",
-                            "value": null,
-                            "required": true,
-                            "format": "text",
-                            "description": "اسم الأيقونة (بدون sicon-)",
-                            "placeholder": "check, star, heart, etc.",
-                            "minLength": 1,
-                            "maxLength": 50
-                        },
-                        {
-                            "type": "string",
-                            "icon": "sicon-format-text-alt",
-                            "label": "نص الميزة",
-                            "multilanguage": true,
-                            "id": "features.text",
-                            "value": null,
-                            "required": true,
-                            "format": "text",
-                            "description": "وصف الميزة",
-                            "placeholder": "أدخل نص الميزة...",
-                            "minLength": 1,
-                            "maxLength": 100
-                        }
-                    ]
                 }
             ]
         }
