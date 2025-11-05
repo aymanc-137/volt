@@ -138,7 +138,7 @@
       // Glow background
       &::before {
         content: '';
-        @apply absolute inset-0 rounded-full blur-md opacity-75;
+        @apply absolute inset-0 rounded-full blur-sm opacity-75;
         background: linear-gradient(90deg, var(--color-primary), var(--color-scandary), var(--color-primary));
       }
 
@@ -198,62 +198,62 @@
   }
 
   // Pricing section
-  .space-y-3 {
-    @apply pt-4;
+  &__pricing {
+    @apply space-y-3 pt-4;
 
-    // Current price
-    span {
-      @apply text-4xl md:text-5xl font-bold;
-      background: linear-gradient(90deg, var(--color-primary), var(--color-scandary));
-      @apply bg-clip-text text-transparent;
-    }
+    &-current {
+      @apply flex items-center gap-4;
 
-    // Discount badge
-    > div {
-      @apply inline-flex items-center gap-2 bg-scandary border border-scandary rounded-lg px-3 py-1;
+      .flash-offer-spotlight__price {
+        @apply text-4xl md:text-5xl font-bold;
+        background: linear-gradient(90deg, var(--color-primary), var(--color-scandary));
+        @apply bg-clip-text text-transparent;
+      }
 
-      span {
-        @apply text-scandary font-bold text-sm;
-        background: none;
-        @apply text-scandary;
+      .flash-offer-spotlight__discount {
+        @apply inline-flex items-center gap-2 rounded-lg px-3 py-1 border;
+        background: rgba(var(--color-scandary), 0.2);
+        border-color: var(--color-scandary);
+
+        .flash-offer-spotlight__discount-text {
+          @apply font-bold text-sm;
+          color: var(--color-scandary);
+        }
       }
     }
 
-    // Original price
-    p {
+    &-original {
       @apply text-2xl text-gray-400 dark:text-gray-500 line-through;
     }
   }
 
   // Features list
-  ul {
+  &__features-list {
     @apply space-y-3 pt-4;
+  }
 
-    li {
-      @apply flex items-center gap-3 text-gray-700 dark:text-gray-300;
-      animation: fadeInUp 0.6s ease-out forwards;
+  &__feature-item {
+    @apply flex items-center gap-3 text-gray-700 dark:text-gray-300;
+    animation: fadeInUp 0.6s ease-out forwards;
 
-      @for $i from 1 through 6 {
-        &:nth-child(#{$i}) {
-          animation-delay: #{($i - 1) * 0.1s};
-        }
+    @for $i from 1 through 6 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{($i - 1) * 0.1s};
       }
+    }
 
-      // Icon container
-      span:first-child {
-        @apply flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full;
-        background: rgba(var(--color-primary), 0.2);
-        border: 1px solid var(--color-primary);
+    .flash-offer-spotlight__feature-icon {
+      @apply flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full;
+      background: rgba(var(--color-primary), 0.2);
+      border: 1px solid var(--color-primary);
 
-        i {
-          @apply text-primary text-sm;
-        }
+      i {
+        @apply text-primary text-sm;
       }
+    }
 
-      // Text content
-      span:last-child {
-        @apply text-sm md:text-base;
-      }
+    .flash-offer-spotlight__feature-text {
+      @apply text-sm md:text-base;
     }
   }
 
@@ -284,48 +284,6 @@
     }
   }
 
-  // Corner borders (subtle accent)
-  .absolute {
-    &.top-0 {
-      &.left-0,
-      &.right-0 {
-        @apply w-12 h-12 border-t-2;
-        border-color: var(--color-primary-trans);
-
-        &.right-0 {
-          border-color: var(--color-scandary-trans);
-        }
-      }
-
-      &.left-0 {
-        @apply border-l-2;
-      }
-
-      &.right-0 {
-        @apply border-r-2;
-      }
-    }
-
-    &.bottom-0 {
-      &.left-0,
-      &.right-0 {
-        @apply w-12 h-12 border-b-2;
-        border-color: var(--color-scandary-trans);
-
-        &.right-0 {
-          border-color: var(--color-primary-trans);
-        }
-      }
-
-      &.left-0 {
-        @apply border-l-2;
-      }
-
-      &.right-0 {
-        @apply border-r-2;
-      }
-    }
-  }
 }
 
 // Animation keyframes
