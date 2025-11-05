@@ -95,30 +95,12 @@
       background: rgba(var(--color-dark-box-background), 0.8);
       border: 1px solid rgba(var(--color-primary), 0.4);
       backdrop-filter: blur(10px);
-    }
 
-    // Content inside card
-    .flex {
-      @apply gap-2 items-center;
-    }
-
-    // Icon styling
-    i {
-      @apply text-lg;
-    }
-
-    // Text styling
-    span {
-      @apply font-bold text-lg;
-
-      &:first-of-type {
+      // Text styling for title
+      span:first-of-type {
         background: linear-gradient(135deg, var(--color-primary), var(--color-scandary));
         @apply bg-clip-text text-transparent;
       }
-    }
-
-    p {
-      @apply text-xs text-gray-400 mt-1;
     }
   }
 
@@ -147,7 +129,7 @@
   }
 
   // Badge styling with glow
-  .inline-flex {
+  &__badge {
     @apply w-fit;
 
     > div {
@@ -177,8 +159,8 @@
   h2 {
     @apply text-3xl md:text-5xl font-bold leading-tight transition-colors duration-300;
 
-    .block {
-      @apply mb-2;
+    > span {
+      @apply block mb-2;
 
       &:first-child {
         @apply text-gray-900 dark:text-white;
