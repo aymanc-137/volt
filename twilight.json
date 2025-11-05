@@ -2056,13 +2056,12 @@
             "title": "عرض مؤقت - فولت",
             "icon": "sicon-lightning",
             "path": "home.flash-offer",
-            "image": "https://cdn.salla.sa/images/themes/volt/flash-offer-preview.png",
             "fields": [
                 {
                     "type": "static",
                     "format": "description",
                     "id": "static-desc",
-                    "value": "<div style='background-color: #fef2f2; color: #7f1d1d; padding: 16px 20px; font-size: 14px; border-radius: 4px; margin: 0 0 30px;'><strong>مكون العرض المحدود الوقت</strong><br/>عرض احترافي يجذب الانتباه مع عداد زمني وتفاصيل المنتج وقائمة بالميزات.</div>"
+                    "value": "<div ><strong>مكون العرض المحدود الوقت</strong><br/>عرض احترافي يجذب الانتباه مع عداد زمني وتفاصيل المنتج وقائمة بالميزات.</div>"
                 },
                 {
                     "type": "string",
@@ -2132,129 +2131,20 @@
                     "selected": false
                 },
                 {
-                    "type": "collection",
                     "id": "product",
-                    "format": "collection",
+                    "type": "items",
+                    "format": "dropdown-list",
                     "label": "المنتج",
-                    "item_label": "تفاصيل المنتج",
+                    "description": null,
+                    "labelHTML": null,
+                    "icon": "sicon-keyboard_arrow_down",
+                    "selected": [],
+                    "options": [],
+                    "source": "Products",
+                    "multichoice": false,
+                    "searchable": true,
                     "required": true,
-                    "minLength": 1,
-                    "maxLength": 1,
-                    "value": [
-                        {
-                            "product.name": "اسم المنتج",
-                            "product.price": "1999.99",
-                            "product.original_price": "2999.99",
-                            "product.quantity_sold": "847",
-                            "product.rating_stars": "4.8",
-                            "product.discount_ends": "2024-12-31T23:59:59",
-                            "product.url": "/products/product-slug",
-                            "product.image": ""
-                        }
-                    ],
-                    "fields": [
-                        {
-                            "type": "string",
-                            "icon": "sicon-format-text-alt",
-                            "label": "اسم المنتج",
-                            "multilanguage": true,
-                            "id": "product.name",
-                            "value": null,
-                            "required": true,
-                            "format": "text",
-                            "placeholder": "أدخل اسم المنتج...",
-                            "minLength": 1,
-                            "maxLength": 100
-                        },
-                        {
-                            "type": "string",
-                            "icon": "sicon-image",
-                            "label": "صورة المنتج",
-                            "id": "product.image",
-                            "value": null,
-                            "required": true,
-                            "format": "image",
-                            "description": "صورة المنتج الرئيسية"
-                        },
-                        {
-                            "type": "string",
-                            "icon": "sicon-tag",
-                            "label": "السعر الحالي",
-                            "id": "product.price",
-                            "value": null,
-                            "required": true,
-                            "format": "text",
-                            "description": "السعر الحالي/سعر العرض",
-                            "placeholder": "1999.99",
-                            "minLength": 1,
-                            "maxLength": 20
-                        },
-                        {
-                            "type": "string",
-                            "icon": "sicon-tag",
-                            "label": "السعر الأصلي",
-                            "id": "product.original_price",
-                            "value": null,
-                            "required": false,
-                            "format": "text",
-                            "description": "السعر قبل الخصم (اختياري)",
-                            "placeholder": "2999.99",
-                            "minLength": 0,
-                            "maxLength": 20
-                        },
-                        {
-                            "type": "string",
-                            "icon": "sicon-trending-up",
-                            "label": "عدد المباع",
-                            "id": "product.quantity_sold",
-                            "value": null,
-                            "required": false,
-                            "format": "text",
-                            "description": "عدد الوحدات المبيعة",
-                            "placeholder": "847",
-                            "minLength": 0,
-                            "maxLength": 10
-                        },
-                        {
-                            "type": "string",
-                            "icon": "sicon-star2",
-                            "label": "تقييم المنتج",
-                            "id": "product.rating_stars",
-                            "value": null,
-                            "required": false,
-                            "format": "text",
-                            "description": "التقييم من 5 نجوم",
-                            "placeholder": "4.8",
-                            "minLength": 0,
-                            "maxLength": 5
-                        },
-                        {
-                            "type": "string",
-                            "icon": "sicon-calendar-time",
-                            "label": "تاريخ انتهاء العرض",
-                            "id": "product.discount_ends",
-                            "value": null,
-                            "required": true,
-                            "format": "text",
-                            "description": "التاريخ والوقت بصيغة ISO (2024-12-31T23:59:59)",
-                            "placeholder": "2024-12-31T23:59:59",
-                            "minLength": 1,
-                            "maxLength": 50
-                        },
-                        {
-                            "type": "string",
-                            "icon": "sicon-link",
-                            "label": "رابط المنتج",
-                            "id": "product.url",
-                            "value": null,
-                            "required": true,
-                            "format": "text",
-                            "description": "رابط صفحة المنتج",
-                            "placeholder": "/products/product-slug",
-                            "minLength": 1,
-                            "maxLength": 500
-                        }
-                    ]
+                    "value": []
                 },
                 {
                     "id": "features",
