@@ -368,16 +368,16 @@
     }
 
     h2 {
-      @apply dark:text-white;
+      @apply text-white;
 
       p {
-        @apply dark:text-gray-300;
+        @apply text-gray-300;
       }
     }
 
     // Enhanced glow in dark mode
     &__stat-card {
-      .relative {
+      > div:nth-child(2) {
         background: rgba(var(--color-dark-box-background), 0.9);
         border-color: rgba(var(--color-primary), 0.5);
       }
