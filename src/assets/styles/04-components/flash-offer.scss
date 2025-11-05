@@ -9,8 +9,9 @@
     @apply rounded-2xl shadow-xl;
     background: linear-gradient(135deg, var(--color-light-foreground), var(--color-light-background));
 
-    @apply dark:bg-gradient-to-br;
-    background: linear-gradient(135deg, var(--color-dark-box-background), var(--color-dark-background));
+    .dark & {
+      background: linear-gradient(135deg, var(--color-dark-box-background), var(--color-dark-background));
+    }
   }
 
   // Background glow effects
@@ -98,7 +99,9 @@
       border: 1px solid rgba(var(--color-primary), 0.4);
       backdrop-filter: blur(10px);
 
-      @apply dark:bg-dark-box-background;
+      .dark & {
+        background: rgba(var(--color-dark-box-background), 0.9);
+      }
     }
 
     // Content inside card
@@ -148,10 +151,11 @@
       rgba(var(--color-light-foreground), 1),
       rgba(var(--color-light-background), 0.8));
 
-    @apply dark:bg-gradient-to-b;
-    background: linear-gradient(180deg,
-      rgba(var(--color-dark-box-background), 1),
-      rgba(var(--color-dark-background), 0.8));
+    .dark & {
+      background: linear-gradient(180deg,
+        rgba(var(--color-dark-box-background), 1),
+        rgba(var(--color-dark-background), 0.8));
+    }
   }
 
   // Badge styling with glow
