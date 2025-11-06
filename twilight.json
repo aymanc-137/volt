@@ -2183,7 +2183,212 @@
             "title": "فيديو بنر - فولت",
             "icon": "sicon-store",
             "path": "home.VideoBanner",
-            "fields": []
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "video-banner-desc",
+                    "value": "<div><strong>مكون فيديو البنر</strong><br/>اعرض مقطع فيديو بخلفية كاملة مع أزرار دعوة لاتخاذ إجراء وإحصائيات مميزة.</div>"
+                },
+                {
+                    "id": "video_url",
+                    "type": "string",
+                    "format": "text",
+                    "label": "رابط الفيديو (MP4)",
+                    "description": "أدخل رابط ملف الفيديو بصيغة MP4 ليتم تشغيله في الخلفية.",
+                    "icon": "sicon-video",
+                    "placeholder": "https://domain.com/path/video.mp4",
+                    "required": true,
+                    "value": "/videos/banner-video.mp4"
+                },
+                {
+                    "id": "poster_image",
+                    "type": "string",
+                    "format": "image",
+                    "label": "الصورة الاحتياطية للفيديو",
+                    "description": "ستظهر هذه الصورة في حالة عدم تحميل الفيديو أو أثناء التحميل.",
+                    "icon": "sicon-image",
+                    "placeholder": "https://domain.com/path/poster.jpg",
+                    "required": false,
+                    "value": "/src/assets/hero-car.jpg"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "نص الشارة",
+                    "multilanguage": true,
+                    "id": "badge_text",
+                    "value": "عرض خاص",
+                    "required": false,
+                    "format": "text",
+                    "description": "النص القصير الذي يظهر أعلى العنوان داخل شارة متحركة",
+                    "placeholder": "مثال: عرض خاص اليوم"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-typography",
+                    "label": "العنوان الرئيسي",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": "اكتشف تجربة القيادة القصوى",
+                    "required": true,
+                    "format": "text",
+                    "description": "العنوان الرئيسي الظاهر بالخط الكبير"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-typography",
+                    "label": "العنوان الفرعي",
+                    "multilanguage": true,
+                    "id": "subtitle",
+                    "value": "أداء لا يُقارن",
+                    "required": false,
+                    "format": "text",
+                    "description": "نص ثانوي يظهر أسفل العنوان الرئيسي"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-typography",
+                    "label": "الوصف",
+                    "multilanguage": true,
+                    "id": "description",
+                    "value": "تقنيات متطورة وتصميم رياضي يمنحانك قوة إضافية على الطريق.",
+                    "required": false,
+                    "format": "textarea",
+                    "description": "فقرة توضيحية أسفل العناوين",
+                    "placeholder": "أدخل وصفًا مختصرًا عن الفيديو أو الحملة",
+                    "minLength": 0,
+                    "maxLength": 500
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-button",
+                    "label": "نص زر الدعوة الأساسي",
+                    "multilanguage": true,
+                    "id": "primary_cta_text",
+                    "value": "شاهد الفيديو",
+                    "required": false,
+                    "format": "text",
+                    "description": "النص الظاهر داخل زر الدعوة الأول"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-link",
+                    "label": "رابط زر الدعوة الأساسي",
+                    "id": "primary_cta_url",
+                    "value": "#",
+                    "required": false,
+                    "format": "url",
+                    "description": "الرابط الذي ينتقل إليه الزر الأساسي عند الضغط عليه",
+                    "placeholder": "https://domain.com/page"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-button",
+                    "label": "نص زر الدعوة الثانوي",
+                    "multilanguage": true,
+                    "id": "secondary_cta_text",
+                    "value": "تعرّف على المزيد",
+                    "required": false,
+                    "format": "text",
+                    "description": "النص الظاهر داخل زر الدعوة الثاني"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-link",
+                    "label": "رابط زر الدعوة الثانوي",
+                    "id": "secondary_cta_url",
+                    "value": "#",
+                    "required": false,
+                    "format": "url",
+                    "description": "الرابط الذي ينتقل إليه الزر الثانوي عند الضغط عليه",
+                    "placeholder": "https://domain.com/another-page"
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "تشغيل الفيديو بدون صوت عند التحميل",
+                    "description": "في حال التفعيل سيبدأ الفيديو في وضع صامت ويمكن للمستخدم إلغاء الكتم.",
+                    "id": "start_muted",
+                    "format": "switch",
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-accessibility",
+                    "label": "عنوان زر الكتم",
+                    "multilanguage": true,
+                    "id": "mute_label",
+                    "value": "كتم الصوت",
+                    "required": false,
+                    "format": "text",
+                    "description": "يستخدم كعنوان وصولي عندما يكون الفيديو يعمل بالصوت"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-accessibility",
+                    "label": "عنوان زر تشغيل الصوت",
+                    "multilanguage": true,
+                    "id": "unmute_label",
+                    "value": "تشغيل الصوت",
+                    "required": false,
+                    "format": "text",
+                    "description": "يستخدم كعنوان وصولي عندما يكون الفيديو في وضع الصامت"
+                },
+                {
+                    "id": "stats",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "الإحصائيات",
+                    "item_label": "إحصائية",
+                    "description": "أرقام تعريفية تظهر أسفل الأزرار (مثال: عدد العملاء، نسبة الرضا، ...)",
+                    "minLength": 1,
+                    "maxLength": 4,
+                    "required": false,
+                    "value": [
+                        {
+                            "stats.value": "500+",
+                            "stats.label": "طراز متاح"
+                        },
+                        {
+                            "stats.value": "50K+",
+                            "stats.label": "عملاء راضون"
+                        },
+                        {
+                            "stats.value": "99%",
+                            "stats.label": "رضا العملاء"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "type": "string",
+                            "icon": "sicon-numbers",
+                            "label": "القيمة",
+                            "multilanguage": false,
+                            "id": "stats.value",
+                            "value": null,
+                            "required": true,
+                            "format": "text",
+                            "description": "الرقم أو القيمة المميزة (مثال: 500+)",
+                            "placeholder": "500+"
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "الوصف المختصر",
+                            "multilanguage": true,
+                            "id": "stats.label",
+                            "value": null,
+                            "required": true,
+                            "format": "text",
+                            "description": "النص الوصفي أسفل القيمة (مثال: طراز متاح)",
+                            "placeholder": "طراز متاح"
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "support_url": "",
