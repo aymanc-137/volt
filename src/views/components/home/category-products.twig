@@ -6,36 +6,13 @@
                                         my-10  
 
                                         relative justify-center"
-
-                                        style="
-                                        {% if  component.show_color_background %} 
-                                        background-color: {{component.background_color | default('transparent')}};
-                                        {% endif %}
-
-                                        {% if  component.show_border and not component.show_wavy %}
-                                        border-color: var(--color-primary);
-                                        border-top-width: 1px;
-                                        border-bottom-width: 1px;
-                                        {% endif %}
-
-                                        "
+ 
 
 
 
 >
 
-  {% if component.show_wavy %}
-
-    
-    <!-- Top Wavy SVG -->
-    <div class="absolute top-0 left-0 w-full overflow-hidden">
-        <svg class="relative block w-full h-8" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 60" preserveAspectRatio="none">
-            <path d="M0,30 Q150,10 300,30 T600,30 Q750,50 900,30 T1200,30 L1200,0 L0,0 Z" fill="{{ theme.settings.get('main_background_color', '#f9fafb') }}"></path>
-            <path d="M0,30 Q150,10 300,30 T600,30 Q750,50 900,30 T1200,30" fill="none" stroke="var(--color-primary)" stroke-width="2"></path>
-        </svg>
-    </div>
-
-  {% endif %}
+  
 
 
     <div class="relative w-full my-32">
@@ -65,8 +42,8 @@
                  lg:w-[32rem] lg:h-[36rem]
                  md:w-[28rem] md:h-[32rem]
                  sm:w-[24rem] sm:h-[28rem]
-
-                 w-[30rem] h-[24rem]
+                 
+                 w-[20rem] h-[24rem]
                  
                  max-w-full
                  aspect-[7/8]
@@ -108,16 +85,14 @@
            
 
                                     {% if component.title_inside_image %}
-                                      <div class="w-[85%]  place-self-end my-5 bg-white/30 h-2/6 backdrop-blur-lg rounded-[2rem] justify-center flex">
+                                      <div class="w-[85%]  place-self-end my-5 bg-[var(--color-primary-30)] h-2/6 backdrop-blur-lg rounded-[2rem] justify-center flex">
                                             <div class="  flex flex-col items-center justify-center w-full" >
                                             <h5 class=" text-lg text-[var(--color-primary)]">{{ component.title }}</h5>
                                                 <h3 class=" xl:text-2xl text-xl text-[var(--color-tertiary)]" >{{ component.sub_title }} </h3>
                                         
                                                 <div class="hide-the-title  flex items-center w-1/2 my-2 justify-center   ">
-                                                        <div class="flex-grow h-[6px] bg-gradient-to-r from-[var(--color-secondary)] to-transparent"></div>
-                                                        <div class="w-5 h-5  mx-2 border-[4px] border-[var(--color-secondary)] bg-transparent transform rotate-45"></div>
-                                                        <div class="flex-grow h-[6px] bg-gradient-to-l from-[var(--color-secondary)] to-transparent"></div>
-                                                </div>
+          <span class="navbar-underline"></span>
+                                                                                 </div>
                                                 <p class="text-xl w-5/6 mt-5">{{ component.text }}</p>
                                             </div>
                                         </div>
@@ -146,15 +121,6 @@
         </div>
     </div>
 
-  {% if component.show_wavy %}
-
-    <!-- Bottom Wavy SVG -->
-    <div class="absolute bottom-0 left-0 w-full overflow-hidden">
-        <svg class="relative block w-full h-8" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 60" preserveAspectRatio="none">
-            <path d="M0,30 Q150,50 300,30 T600,30 Q750,10 900,30 T1200,30 L1200,60 L0,60 Z" fill="{{ theme.settings.get('main_background_color', '#f9fafb') }}"></path>
-            <path d="M0,30 Q150,50 300,30 T600,30 Q750,10 900,30 T1200,30" fill="none" stroke="var(--color-primary)" stroke-width="2"></path>
-        </svg>
-    </div>
-  {% endif %}
+ 
 
 </section>
