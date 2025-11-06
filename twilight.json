@@ -2389,6 +2389,13 @@
                     ]
                 }
             ]
+        },
+        {
+            "key": "1f4ec58d-6726-47ec-ae11-a7446be052a8",
+            "title": "منتجات قسم - فولت",
+            "icon": "sicon-store",
+            "path": "home.category-products",
+            "fields": []
         }
     ],
     "support_url": "",
