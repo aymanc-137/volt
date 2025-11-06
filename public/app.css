@@ -22693,7 +22693,7 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
     background-color: var(--color-light-page-background);
 }
 .dark *.flash-offer {
-    background-color: var(--color-dark-box-background);
+    background-color: var(--color-dark-light-background);
 }
 .flash-offer img {
     height: 100%;

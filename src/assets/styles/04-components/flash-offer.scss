@@ -1,7 +1,7 @@
 .flash-offer{
     @apply bg-[var(--color-light-page-background)] 
     w-5/6 mx-auto min-h-[20rem]
-    dark:bg-[var(--color-dark-box-background)];
+    dark:bg-[var(--color-dark-light-background)];
 
     img{
         @apply w-1/2 h-full object-cover;
