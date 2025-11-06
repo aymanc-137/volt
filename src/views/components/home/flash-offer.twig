@@ -1,22 +1,28 @@
 <section class="flash-offer">
-    <div class="flash-offer-container m-32 flex flex-col md:flex-row">
-    <img src="{{ component.image }}" alt="{{ component.title }}" class="w-1/2">
+     <div class="flash-offer-container m-32 min-h-[30rem] max-h-[30rem] flex flex-col md:flex-row">
+    <img src="{{ component.image }}" alt="{{ component.title }}"  >
 
         <div class="flash-offer-content w-1/2 border p-5 flex flex-col justify-evenly border-red-500">
-        <p class="flash-offer-badge">{{ component.title_accent }}</p>
-            <h2 class="flash-offer-title">{{ component.title }}</h2>
-            <p class="flash-offer-description">{{ component.badge_text }}</p>
-              <div class="w-full mx-auto main-offer">
-                    <salla-count-down date="{{component.products[0].discount_ends}}"   end-of-day="{{true}}" boxed="{{true}}"
+        <p class="flash-offer-badge">{{ component.badge_text }}</p>
+            <h2 class="flash-offer-title font-alshohadaa text-2xl dynamic-text-color">{{ component.title }}</h2>
+
+              <div class="w-full mx-auto  flash-offer-count-down">
+                    <salla-count-down
+                      date="{{component.product[0].discount_ends}}"  
+                     end-of-day="{{true}}" boxed="{{true}}"
                     labeled="{{true}}">
                     </salla-count-down>
                 </div>
+
+
+            <p class="flash-offer-description">{{ component.badge_text }}</p>
+
                 <p class="flash-offer-description">{{ component.description }}</p>
 
-                    <salla-button href="{{component.products[0].url }}" color="primary" class="btn--rounded-full !text-white">
+                    <salla-button href="{{component.product[0].url }}" color="primary" class="btn--rounded-full !text-white">
                         {{component.url}}
                     </salla-button>
 
         </div>
-    </div>
+        </div>
 </section>

@@ -2,4 +2,37 @@
     @apply bg-[var(--color-light-page-background)] 
     w-5/6 mx-auto min-h-[20rem]
     dark:bg-[var(--color-dark-box-background)];
-}
+
+    img{
+        @apply w-1/2 h-full object-cover;
+    }
+
+    .flash-offer-badge{
+        @apply text-sm text-primary px-4 py-2;
+    }
+
+    .flash-offer-count-down{
+
+        salla-count-down{
+            ul{
+                li{
+                     @apply dark:text-counter-bg-color  ;
+                    border: 1px solid var(--color-primary) !important;
+                    font-size: 1.5rem !important;
+                    line-height: 2rem !important;
+                    font-weight: 700 !important;
+
+
+                    
+                }
+
+            }
+        }
+        }
+
+    }
+
+    .dark\:text-counter-bg-color:is(.dark *) {
+        --tw-text-opacity: 1;
+        color: rgb(255 255 255 / var(--tw-text-opacity, 1)) /* #ffffff */;
+    }

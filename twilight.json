@@ -2093,20 +2093,6 @@
                 },
                 {
                     "type": "string",
-                    "icon": "sicon-format-text-alt",
-                    "label": "كلمة العنوان المميزة",
-                    "multilanguage": true,
-                    "id": "title_accent",
-                    "value": "محدود الوقت",
-                    "required": false,
-                    "format": "text",
-                    "description": "كلمة من العنوان سيتم تمييزها بألوان متدرجة",
-                    "placeholder": "محدود الوقت",
-                    "minLength": 0,
-                    "maxLength": 50
-                },
-                {
-                    "type": "string",
                     "icon": "sicon-typography",
                     "label": "الوصف",
                     "multilanguage": true,
