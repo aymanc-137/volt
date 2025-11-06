@@ -1,70 +1,54 @@
-.flash-offer {
-    @apply w-11/12 max-w-6xl mx-auto my-10;
+.flash-offer{
+    
+    @apply   w-5/6 mx-auto min-h-[20rem];
+.flash-offer-container{
+    @apply rounded-custom overflow-hidden
+   border-primary border m-32 min-h-[30rem] 
+    max-h-[30rem] flex flex-col md:flex-row
+    bg-[var(--color-light-box-background)]
+    dark:bg-[var(--color-dark-box-background)];
+    &.shadow-pulse{
+        box-shadow: 0 0 0 0 var(--color-primary-20);
+        animation: flash-offer-shadow-pulse 2.5s ease-in-out infinite;
+        will-change: box-shadow;
+    }
+    img{
+        @apply w-1/2  bg-contain;
+    }
 
-    .flash-offer-container {
-        @apply rounded-custom overflow-hidden border border-primary min-h-[24rem] md:min-h-[30rem]
-        flex flex-col md:flex-row gap-6 md:gap-0
-        bg-[var(--color-light-box-background)]
-        dark:bg-[var(--color-dark-box-background)];
+    .flash-offer-badge{
+        @apply text-sm text-primary px-4 py-2;
+    }
 
-        &.shadow-pulse {
-            box-shadow: 0 0 0 0 var(--color-primary-20);
-            animation: flash-offer-shadow-pulse 2.5s ease-in-out infinite;
-            will-change: box-shadow;
-        }
+    .flash-offer-count-down{
 
-        img {
-            @apply w-full md:w-1/2 h-56 md:h-auto object-cover object-center;
-        }
-
-        .flash-offer-content {
-            @apply w-full md:w-1/2 px-6 py-8 md:px-10 md:py-12 flex flex-col gap-4 justify-between
-            text-center md:text-left;
-        }
-
-        .flash-offer-badge {
-            @apply text-xs md:text-sm text-primary px-4 py-2 mx-auto md:mx-0;
-        }
-
-        .flash-offer-count-down {
-            @apply mt-4 mx-auto md:mx-0;
-
-            salla-count-down {
-                @apply w-full;
-
-                ul {
-                    @apply flex justify-center md:justify-start gap-2;
-
-                    li {
-                        @apply dark:text-counter-bg-color bg-[var(--color-primary-5)];
-                        border: 1px solid var(--color-primary) !important;
-                        font-size: 1.25rem !important;
-                        line-height: 1.75rem !important;
-                        font-weight: 700 !important;
-                        box-shadow: 2px 2px 8px 2px var(--color-primary-20);
-
-                        .s-count-down-item-label {
-                            @apply dynamic-text-color;
-                        }
+        salla-count-down{
+            ul{
+                li{
+                     @apply dark:text-counter-bg-color bg-[var(--color-primary-5)]  ;
+                    border: 1px solid var(--color-primary) !important;
+                    font-size: 1.5rem !important;
+                    line-height: 2rem !important;
+                    font-weight: 700 !important;
+                    box-shadow: 2px 2px 8px 2px var(--color-primary-20);
+                       
+                    .s-count-down-item-label{
+                        @apply dynamic-text-color;
                     }
+
+                    
                 }
+
             }
         }
-
-        .flash-offer-description {
-            @apply dynamic-text-color text-sm md:text-base leading-relaxed;
         }
-
-        salla-button {
-            @apply self-center md:self-start;
         }
     }
-}
 
-.dark\:text-counter-bg-color:is(.dark *) {
-    --tw-text-opacity: 1;
-    @apply bg-[var(--color-primary-5)] dynamic-text-color;
-}
+    .dark\:text-counter-bg-color:is(.dark *) {
+        --tw-text-opacity: 1;
+       @apply bg-[var(--color-primary-5)] dynamic-text-color;
+    }
 
 @keyframes flash-offer-shadow-pulse{
     0%,100%{
