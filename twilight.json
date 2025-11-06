@@ -2092,6 +2092,38 @@
                     "maxLength": 100
                 },
                 {
+                    "id": "enable_gradient_word",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "تفعيل تدرج لكلمة في العنوان",
+                    "description": "حدد كلمة من العنوان لتظهر بتدرج من اللون الأساسي إلى الثانوي",
+                    "labelHTML": null,
+                    "icon": "sicon-magic-wand",
+                    "value": false,
+                    "selected": false,
+                    "required": false
+                },
+                {
+                    "id": "gradient_word",
+                    "type": "string",
+                    "format": "text",
+                    "label": "الكلمة المراد تلوينها",
+                    "description": "أدخل الكلمة أو العبارة التي تريد تلوينها داخل العنوان",
+                    "icon": "sicon-format-text-alt",
+                    "placeholder": "مثال: حصري",
+                    "value": "",
+                    "required": false,
+                    "minLength": 1,
+                    "maxLength": 100,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_word",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
                     "type": "string",
                     "icon": "sicon-typography",
                     "label": "الوصف",

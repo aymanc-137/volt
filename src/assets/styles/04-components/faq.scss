@@ -129,7 +129,7 @@
     // Light mode styles
     @apply border border-gray-200 bg-light-foreground;
     @apply hover:border-primary hover:shadow-md;
-    border-color: var(--color-primary-trans);
+    border-color: var(--color-primary-20);
 
     // Dark mode styles
     @apply dark:border-gray-700 dark:bg-dark-foreground;

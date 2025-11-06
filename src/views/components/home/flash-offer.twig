@@ -1,11 +1,13 @@
 <section class="flash-offer">
-     <div class="flash-offer-container rounded-custom dynamic-border-color border m-32 min-h-[30rem] max-h-[30rem] flex flex-col md:flex-row">
+     <div class="flash-offer-container shadow-pulse">
     <img src="{{ component.image }}" alt="{{ component.title }}"  >
-
-        <div class="flash-offer-content w-1/2   p-5 flex flex-col justify-evenly 
+        {% set has_gradient_word = component.enable_gradient_word|default(false) and component.gradient_word is not empty %}
+        {% set flash_offer_title_id = has_gradient_word ? 'flash-offer-title-' ~ (position|default(0)) : null %}
+        <div class="flash-offer-content w-1/2
+        p-5 flex flex-col justify-evenly 
         ">
         <p class="flash-offer-badge">{{ component.badge_text }}</p>
-            <h2 class="flash-offer-title font-alshohadaa text-2xl dynamic-text-color">{{ component.title }}</h2>
+            <h2 class="flash-offer-title font-alshohadaa text-2xl dynamic-text-color"{% if has_gradient_word %} id="{{ flash_offer_title_id }}"{% endif %}>{{ component.title }}</h2>
 
               <div class="w-full mx-auto  flash-offer-count-down">
                     <salla-count-down
@@ -19,11 +21,29 @@
             <p class="flash-offer-description dynamic-text-color">{{ component.badge_text }}</p>
 
                 <p class="flash-offer-description dynamic-text-color">{{ component.description }}</p>
-
-                    <salla-button href="{{component.product[0].url }}" color="primary" class="btn--rounded-full !text-white">
+                    <salla-button class="volt" href="{{component.product[0].url }}" color="primary" class="btn--rounded-full !text-white">
                         {{component.url}}
                     </salla-button>
-
+ 
         </div>
         </div>
 </section>
+
+{% if has_gradient_word %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const titleEl = document.getElementById('{{ flash_offer_title_id }}');
+    if (titleEl && !titleEl.dataset.gradientApplied) {
+      const word = '{{ component.gradient_word|e('js') }}';
+      if (word.trim().length) {
+        const regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+        titleEl.innerHTML = titleEl.innerHTML.replace(
+          regex,
+          '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
+        );
+        titleEl.dataset.gradientApplied = 'true';
+      }
+    }
+  });
+</script>
+{% endif %}

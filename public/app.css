@@ -989,9 +989,6 @@ select {
 .m-0 {
     margin: 0px;
 }
-.m-32 {
-    margin: 8rem;
-}
 .m-8 {
     margin: 2rem;
 }
@@ -1275,9 +1272,6 @@ select {
 .max-h-\[300px\] {
     max-height: 300px;
 }
-.max-h-\[30rem\] {
-    max-height: 30rem;
-}
 .max-h-full {
     max-height: 100%;
 }
@@ -1286,9 +1280,6 @@ select {
 }
 .min-h-\[300px\] {
     min-height: 300px;
-}
-.min-h-\[30rem\] {
-    min-height: 30rem;
 }
 .min-h-\[34px\] {
     min-height: 34px;
@@ -22114,7 +22105,7 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
     box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0,0,0,0)), var(--tw-ring-shadow, 0 0 rgba(0,0,0,0)), var(--tw-shadow);
 }
 .faq-component__item {
-  border-color: var(--color-primary-trans);
+  border-color: var(--color-primary-20);
 }
 .dark *.faq-component__item {
     --tw-border-opacity: 1;
@@ -22690,18 +22681,38 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
     margin-right: auto;
     min-height: 20rem;
     width: 83.333333%;
-    background-color: var(--color-light-page-background);
 }
-.dark *.flash-offer {
-    background-color: var(--color-dark-light-background);
+.flash-offer .flash-offer-container {
+    margin: 8rem;
+    display: flex;
+    max-height: 30rem;
+    min-height: 30rem;
+    flex-direction: column;
+    overflow: hidden;
+    border-width: 1px;
+    border-color: #414042;
+    border-color: var(--color-primary);
+    background-color: var(--color-light-box-background);
+  border-radius: var(--border-radius);
 }
-.flash-offer img {
-    height: 100%;
+.flash-offer .flash-offer-container:is(.dark *) {
+    background-color: var(--color-dark-box-background);
+}
+@media (min-width: 768px) {
+    .flash-offer .flash-offer-container {
+        flex-direction: row;
+    }
+}
+.flash-offer .flash-offer-container.shadow-pulse {
+  box-shadow: 0 0 0 0 var(--color-primary-20);
+  animation: flash-offer-shadow-pulse 2.5s ease-in-out infinite;
+  will-change: box-shadow;
+}
+.flash-offer .flash-offer-container img {
     width: 50%;
-    -o-object-fit: cover;
-       object-fit: cover;
+    background-size: contain;
 }
-.flash-offer .flash-offer-badge {
+.flash-offer .flash-offer-container .flash-offer-badge {
     padding-left: 1rem;
     padding-right: 1rem;
     padding-top: 0.5rem;
@@ -22711,36 +22722,42 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
     color: #414042;
     color: var(--color-primary);
 }
-.flash-offer .flash-offer-count-down salla-count-down ul li:is(.dark *) {
+.flash-offer .flash-offer-container .flash-offer-count-down salla-count-down ul li {
+    background-color: var(--color-primary-5);
+}
+.flash-offer .flash-offer-container .flash-offer-count-down salla-count-down ul li:is(.dark *) {
   --tw-text-opacity: 1;
-  background-color: var(--background-dark-box);
+  background-color: var(--color-primary-5);
   color: #2C3E50;
   color: var(--main-text-color);
 }
-.flash-offer .flash-offer-count-down salla-count-down ul li:is(.dark *):is(.dark *) {
+.flash-offer .flash-offer-container .flash-offer-count-down salla-count-down ul li:is(.dark *):is(.dark *) {
     --tw-text-opacity: 1;
     color: rgba(229, 231, 235, 1);
     color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
 }
-.flash-offer .flash-offer-count-down salla-count-down ul li {
+.flash-offer .flash-offer-container .flash-offer-count-down salla-count-down ul li {
   border: 1px solid #414042 !important;
   border: 1px solid var(--color-primary) !important;
   font-size: 1.5rem !important;
   line-height: 2rem !important;
   font-weight: 700 !important;
 }
-.flash-offer .flash-offer-count-down salla-count-down ul li .s-count-down-item-label {
+.flash-offer .flash-offer-container .flash-offer-count-down salla-count-down ul li {
+  box-shadow: 2px 2px 8px 2px var(--color-primary-20);
+}
+.flash-offer .flash-offer-container .flash-offer-count-down salla-count-down ul li .s-count-down-item-label {
     color: #2C3E50;
     color: var(--main-text-color);
 }
-.flash-offer .flash-offer-count-down salla-count-down ul li .s-count-down-item-label:is(.dark *) {
+.flash-offer .flash-offer-container .flash-offer-count-down salla-count-down ul li .s-count-down-item-label:is(.dark *) {
     --tw-text-opacity: 1;
     color: rgba(229, 231, 235, 1);
     color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
 }
 .dark *.dark\:text-counter-bg-color {
   --tw-text-opacity: 1;
-  background-color: var(--background-dark-box);
+  background-color: var(--color-primary-5);
   color: #2C3E50;
   color: var(--main-text-color);
 }
@@ -22748,6 +22765,14 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
     --tw-text-opacity: 1;
     color: rgba(229, 231, 235, 1);
     color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+}
+@keyframes flash-offer-shadow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 var(--color-primary-20);
+  }
+  50% {
+    box-shadow: 0 0 24px 8px var(--color-primary-40);
+  }
 }
 salla-slider {
     display: block;
@@ -24899,10 +24924,10 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     --tw-translate-y: -0.25rem;
     transform: translate(var(--tw-translate-x), -0.25rem) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-  border-color: var(--color-primary-trans);
+  border-color: var(--color-primary-20);
 }
 .s-block--why-us .why-us-feature:hover:is(.dark *) {
-    border-color: var(--color-primary-trans);
+    border-color: var(--color-primary-20);
 }
 .s-block--why-us .why-us-feature__icon {
     display: flex;
@@ -24931,7 +24956,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
   color: var(--color-primary);
 }
 .s-block--why-us .why-us-feature__icon:is(.dark *) {
-    background-color: var(--color-primary-trans);
+    background-color: var(--color-primary-20);
     color: #414042;
     color: var(--color-primary);
 }
@@ -24943,7 +24968,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
   bottom: -2px;
   left: -2px;
   border-radius: 1.25rem;
-  background: radial-gradient(circle, var(--color-primary-trans), transparent);
+  background: radial-gradient(circle, var(--color-primary-20), transparent);
   pointer-events: none;
   z-index: -1;
   opacity: 0;
