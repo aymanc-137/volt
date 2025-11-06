@@ -22713,29 +22713,41 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
 }
 .flash-offer .flash-offer-count-down salla-count-down ul li:is(.dark *) {
   --tw-text-opacity: 1;
-  color: rgb(255, 255, 255, 1);
+  background-color: var(--background-dark-box);
+  color: #2C3E50;
+  color: var(--main-text-color);
 }
-@supports (color: rgb(0, 0, 0, 0)) and (top: var(--f)) {
-.flash-offer .flash-offer-count-down salla-count-down ul li:is(.dark *) {
-  color: rgb(255, 255, 255, var(--tw-text-opacity, 1));
-}
+.flash-offer .flash-offer-count-down salla-count-down ul li:is(.dark *):is(.dark *) {
+    --tw-text-opacity: 1;
+    color: rgba(229, 231, 235, 1);
+    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
 }
 .flash-offer .flash-offer-count-down salla-count-down ul li {
   border: 1px solid #414042 !important;
   border: 1px solid var(--color-primary) !important;
-  color: var(--color-scandary) !important;
   font-size: 1.5rem !important;
   line-height: 2rem !important;
   font-weight: 700 !important;
 }
+.flash-offer .flash-offer-count-down salla-count-down ul li .s-count-down-item-label {
+    color: #2C3E50;
+    color: var(--main-text-color);
+}
+.flash-offer .flash-offer-count-down salla-count-down ul li .s-count-down-item-label:is(.dark *) {
+    --tw-text-opacity: 1;
+    color: rgba(229, 231, 235, 1);
+    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+}
 .dark *.dark\:text-counter-bg-color {
   --tw-text-opacity: 1;
-  color: rgb(255, 255, 255, 1);
+  background-color: var(--background-dark-box);
+  color: #2C3E50;
+  color: var(--main-text-color);
 }
-@supports (color: rgb(0, 0, 0, 0)) and (top: var(--f)) {
-.dark *.dark\:text-counter-bg-color {
-  color: rgb(255, 255, 255, var(--tw-text-opacity, 1));
-}
+.dark .dark\:text-counter-bg-color:is(.dark *) {
+    --tw-text-opacity: 1;
+    color: rgba(229, 231, 235, 1);
+    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
 }
 salla-slider {
     display: block;

@@ -2106,6 +2106,18 @@
                     "maxLength": 255
                 },
                 {
+                    "type": "string",
+                    "icon": "sicon-typography",
+                    "label": "نص الزر",
+                    "multilanguage": true,
+                    "id": "url",
+                    "value":"تسوق الآن",
+                    "required": false,
+                    "format": "text",
+                    "description":"نص الزر المعروض في الزر"
+              
+                },
+                {
                     "id": "image",
                     "type": "string",
                     "format": "image",

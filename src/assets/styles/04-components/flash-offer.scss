@@ -21,7 +21,10 @@
                     font-size: 1.5rem !important;
                     line-height: 2rem !important;
                     font-weight: 700 !important;
-
+                        
+                    .s-count-down-item-label{
+                        @apply dynamic-text-color;
+                    }
 
                     
                 }
@@ -34,5 +37,5 @@
 
     .dark\:text-counter-bg-color:is(.dark *) {
         --tw-text-opacity: 1;
-        color: rgb(255 255 255 / var(--tw-text-opacity, 1)) /* #ffffff */;
+       @apply bg-[var(--background-dark-box)] dynamic-text-color;
     }
