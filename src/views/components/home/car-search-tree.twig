@@ -1,1 +1,337 @@
-<h1>{{ component | json_encode}}</h1>
+{% set tree_component_id = 'car-search-tree-' ~ (component.key|default(position|default(0))) %}
+{% set categories_payload = component.category|default([])|json_encode %}
+{% set heading = component.title|default('ابحث عن سيارتك') %}
+{% set description = component.description|default('اختر الماركة ثم الموديل والسنة (إن وُجدت) لإظهار المنتجات المتوافقة.') %}
+
+<section class="car-search-tree-block container" id="{{ tree_component_id }}"
+         data-categories='{{ categories_payload|e('html_attr') }}'>
+    <div class="car-search-tree">
+        <div class="car-search-tree__header">
+            <div>
+                <p class="car-search-tree__eyebrow">{{ component.badge|default('اكتشف ملاءمة القطع') }}</p>
+                <h2 class="car-search-tree__title">{{ heading }}</h2>
+                <p class="car-search-tree__subtitle">{{ description }}</p>
+            </div>
+            <div class="car-search-tree__selection">
+                <span class="car-search-tree__selection-label">اختيارك الحالي:</span>
+                <span class="car-search-tree__selection-value" data-selected-path>—</span>
+            </div>
+        </div>
+
+        <div class="car-search-tree__status" data-status aria-live="polite">
+            جاري تحميل ماركات السيارات...
+        </div>
+
+        <div class="car-search-tree__empty hidden" data-empty>
+            <div>
+                <strong>لا توجد بيانات للعرض.</strong>
+                <p>أضف تصنيفات السيارات من إعدادات المكوّن لبدء استخدام شجرة البحث.</p>
+            </div>
+        </div>
+
+        <div class="car-search-tree__rows">
+            <div class="car-search-tree__row-wrapper" data-wrapper="brands">
+                <div class="car-search-tree__row-heading">
+                    <h3>ماركات السيارات</h3>
+                    <p>اختر الماركة المناسبة لسيارتك.</p>
+                </div>
+                <div class="car-search-tree__row" data-row="brands"></div>
+            </div>
+
+            <div class="car-search-tree__row-wrapper hidden" data-wrapper="models">
+                <div class="car-search-tree__row-heading">
+                    <h3>الموديلات</h3>
+                    <p>اختر الموديل لعرض السنوات أو المنتجات.</p>
+                </div>
+                <div class="car-search-tree__row" data-row="models"></div>
+            </div>
+
+            <div class="car-search-tree__row-wrapper hidden" data-wrapper="years">
+                <div class="car-search-tree__row-heading">
+                    <h3>السنوات</h3>
+                    <p>اختر سنة الصنع لاستعراض المنتجات المتوافقة.</p>
+                </div>
+                <div class="car-search-tree__row" data-row="years"></div>
+            </div>
+        </div>
+
+        <div class="car-search-tree__products">
+            <div class="car-search-tree__products-header">
+                <h3>المنتجات المتوافقة</h3>
+                <p>سيتم تحميل المنتجات تلقائياً بعد إتمام الاختيار.</p>
+            </div>
+            <div class="car-search-tree__products-state hidden" data-products-loading>
+                <salla-loading size="32"></salla-loading>
+                <p>جاري تحميل المنتجات...</p>
+            </div>
+            <div class="car-search-tree__products-state" data-products-empty>
+                <p>لم يتم اختيار فئة بعد.</p>
+            </div>
+            <div class="car-search-tree__products-grid hidden" data-row="products"></div>
+        </div>
+    </div>
+</section>
+
+<script>
+    (function () {
+        const root = document.getElementById('{{ tree_component_id }}');
+        if (!root || root.dataset.initialized === 'true') return;
+        root.dataset.initialized = 'true';
+
+        const categories = safeParse(root.dataset.categories);
+        const rows = {
+            brands: root.querySelector('[data-row="brands"]'),
+            models: root.querySelector('[data-row="models"]'),
+            years: root.querySelector('[data-row="years"]'),
+            products: root.querySelector('[data-row="products"]'),
+        };
+        const wrappers = {
+            brands: root.querySelector('[data-wrapper="brands"]'),
+            models: root.querySelector('[data-wrapper="models"]'),
+            years: root.querySelector('[data-wrapper="years"]'),
+        };
+        const statusEl = root.querySelector('[data-status]');
+        const emptyEl = root.querySelector('[data-empty]');
+        const selectionEl = root.querySelector('[data-selected-path]');
+        const loadingEl = root.querySelector('[data-products-loading]');
+        const productsEmptyEl = root.querySelector('[data-products-empty]');
+
+        const state = {
+            brand: null,
+            model: null,
+            year: null,
+            lastCategoryId: null,
+        };
+
+        if (!Array.isArray(categories) || !categories.length) {
+            statusEl.textContent = 'أضف ماركات عبر لوحة التحكم لبدء استخدام شجرة البحث.';
+            emptyEl.classList.remove('hidden');
+            hideLoading();
+            return;
+        }
+
+        emptyEl.classList.add('hidden');
+        statusEl.textContent = 'اختر ماركة السيارة لعرض الموديلات.';
+        selectionEl.textContent = '—';
+        renderBrands();
+
+        function renderBrands() {
+            renderOptions(rows.brands, categories, 'brand');
+            wrappers.brands.classList.remove('hidden');
+        }
+
+        function renderOptions(container, items, level) {
+            if (!container) return;
+            if (!Array.isArray(items) || !items.length) {
+                container.innerHTML = '';
+                container.parentElement?.classList.add('hidden');
+                return;
+            }
+
+            container.parentElement?.classList.remove('hidden');
+            container.innerHTML = items.map((item) => createOptionTemplate(item, level)).join('');
+            container.querySelectorAll('.car-search-tree__option').forEach((button) => {
+                button.addEventListener('click', () => handleSelection(level, button.dataset.id));
+            });
+        }
+
+        function handleSelection(level, id) {
+            const numericId = Number(id);
+            if (!numericId) return;
+
+            if (level === 'brand') {
+                selectBrand(numericId);
+            } else if (level === 'model') {
+                selectModel(numericId);
+            } else if (level === 'year') {
+                selectYear(numericId);
+            }
+        }
+
+        function selectBrand(id) {
+            const brand = findById(categories, id);
+            if (!brand) return;
+            state.brand = brand;
+            state.model = null;
+            state.year = null;
+
+            setActive(rows.brands, id);
+            renderOptions(rows.models, normalizeChildren(brand.sub_categories), 'model');
+            clearRow(rows.years, wrappers.years);
+            updateSelectionPath();
+
+            if (hasChildren(brand)) {
+                statusEl.textContent = `اختر موديل من ${brand.name}.`;
+                showProductsHint('اختر الموديل لإظهار المنتجات.');
+            } else {
+                statusEl.textContent = `جاري عرض منتجات ${brand.name}.`;
+                fetchProducts(brand);
+            }
+        }
+
+        function selectModel(id) {
+            if (!state.brand) return;
+            const model = findById(normalizeChildren(state.brand.sub_categories), id);
+            if (!model) return;
+            state.model = model;
+            state.year = null;
+
+            setActive(rows.models, id);
+            renderOptions(rows.years, normalizeChildren(model.sub_categories), 'year');
+            updateSelectionPath();
+
+            if (hasChildren(model)) {
+                statusEl.textContent = `اختر سنة الصنع لسيارة ${model.name}.`;
+                showProductsHint('اختر السنة لاستعراض المنتجات.');
+            } else {
+                statusEl.textContent = `جارٍ جلب منتجات ${model.name}.`;
+                fetchProducts(model);
+            }
+        }
+
+        function selectYear(id) {
+            if (!state.model) return;
+            const year = findById(normalizeChildren(state.model.sub_categories), id);
+            if (!year) return;
+            state.year = year;
+            setActive(rows.years, id);
+            updateSelectionPath();
+            statusEl.textContent = `جارٍ جلب منتجات سنة ${year.name}.`;
+            fetchProducts(year);
+        }
+
+        function fetchProducts(category) {
+            if (!category?.id || typeof window.salla?.product?.fetch !== 'function') {
+                showProductsHint('تعذر الاتصال بواجهة المنتجات. تأكد من تحميل منصة سلة.');
+                return;
+            }
+
+            state.lastCategoryId = Number(category.id);
+            rows.products.classList.add('hidden');
+            rows.products.innerHTML = '';
+            productsEmptyEl.classList.add('hidden');
+            showLoading();
+
+            window.salla.product.fetch({
+                source: 'categories',
+                source_value: [state.lastCategoryId],
+            })
+                .then((response) => {
+                    if (state.lastCategoryId !== Number(category.id)) return;
+                    const products = extractProducts(response);
+                    if (!products.length) {
+                        showProductsHint('لا توجد منتجات متاحة لهذا الاختيار حالياً.');
+                        return;
+                    }
+                    renderProducts(products);
+                })
+                .catch(() => {
+                    showProductsHint('حدث خطأ أثناء تحميل المنتجات، حاول مجدداً لاحقاً.');
+                })
+                .finally(hideLoading);
+        }
+
+        function renderProducts(products) {
+            if (!Array.isArray(products)) return;
+            const fragment = document.createDocumentFragment();
+            products.forEach((product) => {
+                const card = document.createElement('custom-salla-product-card');
+                card.setAttribute('product', JSON.stringify(product));
+                card.setAttribute('shadow-on-hover', '');
+                fragment.appendChild(card);
+            });
+            rows.products.innerHTML = '';
+            rows.products.appendChild(fragment);
+            rows.products.classList.remove('hidden');
+            productsEmptyEl.classList.add('hidden');
+        }
+
+        function showProductsHint(message) {
+            productsEmptyEl.innerHTML = `<p>${escapeHtml(message)}</p>`;
+            productsEmptyEl.classList.remove('hidden');
+            rows.products.classList.add('hidden');
+        }
+
+        function showLoading() {
+            loadingEl.classList.remove('hidden');
+        }
+
+        function hideLoading() {
+            loadingEl.classList.add('hidden');
+        }
+
+        function updateSelectionPath() {
+            const parts = [state.brand?.name, state.model?.name, state.year?.name].filter(Boolean);
+            selectionEl.textContent = parts.length ? parts.join(' / ') : '—';
+        }
+
+        function clearRow(container, wrapper) {
+            if (container) container.innerHTML = '';
+            wrapper?.classList.add('hidden');
+        }
+
+        function setActive(container, id) {
+            if (!container) return;
+            container.querySelectorAll('.car-search-tree__option').forEach((button) => {
+                button.classList.toggle('is-active', Number(button.dataset.id) === Number(id));
+            });
+        }
+
+        function hasChildren(item) {
+            return Array.isArray(item?.sub_categories) && item.sub_categories.length > 0;
+        }
+
+        function findById(list, id) {
+            return list?.find((item) => Number(item.id) === Number(id));
+        }
+
+        function normalizeChildren(children) {
+            return Array.isArray(children) ? children : [];
+        }
+
+        function createOptionTemplate(item, level) {
+            const image = item?.image ? `<img src="${escapeAttribute(item.image)}" alt="${escapeAttribute(item.name || 'category')}" loading="lazy">` : `<span>${escapeHtml((item?.name || '?').charAt(0))}</span>`;
+            return `
+                <button type="button"
+                        class="car-search-tree__option"
+                        data-id="${item.id}"
+                        data-level="${level}">
+                    <span class="car-search-tree__option-thumb ${item?.image ? '' : 'car-search-tree__option-thumb--fallback'}">
+                        ${image}
+                    </span>
+                    <span class="car-search-tree__option-label">${escapeHtml(item?.name || '')}</span>
+                </button>
+            `;
+        }
+
+        function extractProducts(response) {
+            return response?.data?.products
+                || response?.data?.items
+                || response?.data
+                || response?.products
+                || [];
+        }
+
+        function safeParse(payload) {
+            try {
+                return JSON.parse(payload || '[]');
+            } catch (error) {
+                console.warn('car-search-tree::unable to parse categories payload', error);
+                return [];
+            }
+        }
+
+        function escapeHtml(value) {
+            return String(value || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function escapeAttribute(value) {
+            return escapeHtml(value).replace(/`/g, '&#096;');
+        }
+    }());
+</script>
