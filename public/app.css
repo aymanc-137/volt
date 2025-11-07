@@ -1816,9 +1816,6 @@ select {
 .rounded-3xl {
     border-radius: 1.5rem;
 }
-.rounded-\[2rem\] {
-    border-radius: 2rem;
-}
 .rounded-full {
     border-radius: 9999px;
 }
@@ -2043,8 +2040,8 @@ select {
     --tw-gradient-to: rgba(var(--color-primary), 0) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
-.from-\[var\(--color-primary-20\)\] {
-    --tw-gradient-from: var(--color-primary-20) var(--tw-gradient-from-position);
+.from-\[var\(--color-primary-30\)\] {
+    --tw-gradient-from: var(--color-primary-30) var(--tw-gradient-from-position);
     --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
@@ -2073,11 +2070,6 @@ select {
     --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
-.from-\[var\(--color-primary-30\)\] {
-    --tw-gradient-from: var(--color-primary-30) var(--tw-gradient-from-position);
-    --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
 .via-\[rgba\(var\(--color-primary\)\2c 0\.3\)\] {
     --tw-gradient-to: rgba(var(--color-primary), 0)  var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), rgba(var(--color-primary),0.3) var(--tw-gradient-via-position), var(--tw-gradient-to);
@@ -2090,14 +2082,6 @@ select {
     --tw-gradient-to: rgba(0, 0, 0, 0)  var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), transparent var(--tw-gradient-via-position), var(--tw-gradient-to);
 }
-.via-white\/5 {
-    --tw-gradient-to: rgba(255, 255, 255, 0)  var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-from), rgba(255, 255, 255, 0.05) var(--tw-gradient-via-position), var(--tw-gradient-to);
-}
-.via-white {
-    --tw-gradient-to: rgba(255, 255, 255, 0)  var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-from), #fff var(--tw-gradient-via-position), var(--tw-gradient-to);
-}
 .via-white\/30 {
     --tw-gradient-to: rgba(255, 255, 255, 0)  var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), rgba(255, 255, 255, 0.3) var(--tw-gradient-via-position), var(--tw-gradient-to);
@@ -2105,8 +2089,8 @@ select {
 .to-\[\#546C5D\] {
     --tw-gradient-to: #546C5D var(--tw-gradient-to-position);
 }
-.to-\[var\(--color-primary-20\)\] {
-    --tw-gradient-to: var(--color-primary-20) var(--tw-gradient-to-position);
+.to-\[var\(--color-primary-30\)\] {
+    --tw-gradient-to: var(--color-primary-30) var(--tw-gradient-to-position);
 }
 .to-purple-600 {
     --tw-gradient-to: #9333ea var(--tw-gradient-to-position);
@@ -2116,9 +2100,6 @@ select {
 }
 .to-transparent {
     --tw-gradient-to: transparent var(--tw-gradient-to-position);
-}
-.to-\[var\(--color-primary-30\)\] {
-    --tw-gradient-to: var(--color-primary-30) var(--tw-gradient-to-position);
 }
 .bg-contain {
     background-size: contain;
@@ -2669,13 +2650,6 @@ select {
 }
 .filter {
     filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-.backdrop-blur-md {
-    --tw-backdrop-blur: blur(12px);
-    -webkit-backdrop-filter: blur(12px) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-    -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-    backdrop-filter: blur(12px) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-    backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
 }
 .backdrop-blur-sm {
     --tw-backdrop-blur: blur(4px);
@@ -25983,6 +25957,10 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
         font-size: 1rem;
         line-height: 1.5rem;
     }
+    .md\:text-xl {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+    }
     .md\:first\:pt-24:first-child {
         padding-top: 6rem;
     }
@@ -26150,6 +26128,10 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .lg\:pt-8 {
         padding-top: 2rem;
+    }
+    .lg\:text-3xl {
+        font-size: 1.875rem;
+        line-height: 2.25rem;
     }
     .lg\:text-4xl {
         font-size: 2.25rem;
