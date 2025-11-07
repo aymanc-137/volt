@@ -2575,7 +2575,14 @@
                     "value": false,
                     "required": false
                 }
-            ]        
+            ]
+        },
+        {
+            "key": "716e33df-97f4-4808-97a8-c8784d339916",
+            "title": "قائمة بحث المركبات",
+            "icon": "sicon-store",
+            "path": "home.car-search-tree",
+            "fields": []
         }
     ],
     "support_url": "",
