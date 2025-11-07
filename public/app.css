@@ -25957,10 +25957,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
         font-size: 1rem;
         line-height: 1.5rem;
     }
-    .md\:text-xl {
-        font-size: 1.25rem;
-        line-height: 1.75rem;
-    }
     .md\:first\:pt-24:first-child {
         padding-top: 6rem;
     }
@@ -26128,10 +26124,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .lg\:pt-8 {
         padding-top: 2rem;
-    }
-    .lg\:text-3xl {
-        font-size: 1.875rem;
-        line-height: 2.25rem;
     }
     .lg\:text-4xl {
         font-size: 2.25rem;
