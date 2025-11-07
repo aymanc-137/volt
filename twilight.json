@@ -2582,7 +2582,24 @@
             "title": "قائمة بحث المركبات",
             "icon": "sicon-store",
             "path": "home.car-search-tree",
-            "fields": []
+            "fields": [
+                {
+                    "id": "category",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "category",
+                    "description": null,
+                    "labelHTML": null,
+                    "icon": "sicon-keyboard_arrow_down",
+                    "selected": [],
+                    "options": [],
+                    "source": "Categories",
+                    "multichoice": true,
+                    "searchable": true,
+                    "required": true,
+                    "value": []
+                }
+            ]
         }
     ],
     "support_url": "",
