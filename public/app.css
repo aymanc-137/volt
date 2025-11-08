@@ -25049,10 +25049,6 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     margin-bottom: calc(2.5rem * 0);
     margin-bottom: calc(2.5rem * var(--tw-space-y-reverse));
 }
-.car-search-tree__row-wrapper {
-    width: 100%;
-    justify-content: space-evenly;
-}
 .car-search-tree__row-wrapper > :not([hidden]) ~ :not([hidden]) {
     --tw-space-y-reverse: 0;
     margin-top: calc(1rem * (1 - 0));
@@ -25144,9 +25140,11 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
 }
 .car-search-tree__option-thumb {
     display: flex;
-    width: 8rem;
+    height: 5rem;
+    width: 5rem;
     align-items: center;
     justify-content: center;
+    border-radius: 9999px;
 }
 .car-search-tree__option-thumb img {
     height: 100%;

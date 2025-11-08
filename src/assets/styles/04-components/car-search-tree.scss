@@ -55,7 +55,7 @@
 }
 
 .car-search-tree__row-wrapper {
-    @apply space-y-4 justify-evenly w-full;
+    @apply space-y-4;
 }
 
 .car-search-tree__row-heading h3 {
@@ -91,7 +91,7 @@
 }
 
 .car-search-tree__option-thumb {
-    @apply w-32   flex items-center justify-center ;
+    @apply w-20 h-20 rounded-full     flex items-center justify-center ;
     img {
         @apply w-full h-full object-cover;
     }
