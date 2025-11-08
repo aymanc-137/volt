@@ -25058,6 +25058,9 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     margin-bottom: calc(1rem * 0);
     margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
+.car-search-tree__row-wrapper s-products-slider-card {
+  max-width: 320px;
+}
 .car-search-tree__row-heading h3 {
     font-size: 1.25rem;
     line-height: 1.75rem;

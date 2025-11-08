@@ -56,6 +56,10 @@
 
 .car-search-tree__row-wrapper {
     @apply space-y-4;
+
+    s-products-slider-card{
+        max-width: 320px;
+    }
 }
 
 .car-search-tree__row-heading h3 {
