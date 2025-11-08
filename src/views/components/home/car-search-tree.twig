@@ -49,19 +49,19 @@
         </div>
 
         <div class="car-search-tree__selects {{ component.use_dropdown_layout ? '' : 'hidden' }}" data-selects>
-            <div class="car-search-tree__select">
+            <div class="car-search-tree__select" data-select-wrapper="brand">
                 <label for="{{ brand_select_id }}">اختر الماركة</label>
                 <select id="{{ brand_select_id }}" data-select="brand">
                     <option value="" disabled selected>اختر الماركة</option>
                 </select>
             </div>
-            <div class="car-search-tree__select">
+            <div class="car-search-tree__select" data-select-wrapper="model">
                 <label for="{{ model_select_id }}">اختر الموديل</label>
                 <select id="{{ model_select_id }}" data-select="model" disabled>
                     <option value="" disabled selected>اختر الموديل</option>
                 </select>
             </div>
-            <div class="car-search-tree__select">
+            <div class="car-search-tree__select" data-select-wrapper="year">
                 <label for="{{ year_select_id }}">اختر السنة</label>
                 <select id="{{ year_select_id }}" data-select="year" disabled>
                     <option value="" disabled selected>اختر السنة</option>
@@ -122,6 +122,11 @@
             brand: root.querySelector('[data-select="brand"]'),
             model: root.querySelector('[data-select="model"]'),
             year: root.querySelector('[data-select="year"]'),
+        };
+        const selectWrappers = {
+            brand: root.querySelector('[data-select-wrapper="brand"]'),
+            model: root.querySelector('[data-select-wrapper="model"]'),
+            year: root.querySelector('[data-select-wrapper="year"]'),
         };
         const hideBrandLabels = root.dataset.hideBrandLabels === 'true';
         const displayMode = root.dataset.displayMode || 'tiles';
@@ -398,7 +403,9 @@
                 .map((item) => `<option value="${escapeAttribute(item.id)}">${escapeHtml(item?.name || '')}</option>`)
                 .join('');
             selectEl.innerHTML = `<option value="" disabled selected>${placeholder}</option>${optionsMarkup}`;
-            selectEl.disabled = !normalizedItems.length;
+            const shouldDisable = !normalizedItems.length;
+            selectEl.disabled = shouldDisable;
+            setSelectDisabledState(level, shouldDisable);
             selectEl.value = '';
             selectsWrapper?.classList.remove('hidden');
         }
@@ -408,7 +415,9 @@
             if (!selectEl) return;
             const placeholder = escapeHtml(getSelectPlaceholder(level));
             selectEl.innerHTML = `<option value="" disabled selected>${placeholder}</option>`;
-            selectEl.disabled = true;
+            const shouldDisable = level !== 'brand';
+            selectEl.disabled = shouldDisable;
+            setSelectDisabledState(level, shouldDisable);
             selectEl.value = '';
         }
 
@@ -428,6 +437,12 @@
                     handleSelection(level, value);
                 });
             });
+        }
+
+        function setSelectDisabledState(level, disabled) {
+            const wrapper = selectWrappers[level];
+            if (!wrapper) return;
+            wrapper.classList.toggle('car-search-tree__select--disabled', Boolean(disabled));
         }
 
         function collectCategoryIds(category) {
