@@ -55,7 +55,7 @@
 }
 
 .car-search-tree__row-wrapper {
-    @apply space-y-4;
+    @apply space-y-8;
 }
 
 .car-search-tree__row-heading h3 {
@@ -81,7 +81,7 @@
 
 .car-search-tree__option {
     @apply min-w-[7.5rem] max-w-[10rem] flex flex-col items-center text-center gap-3
-    border  rounded-custom px-4 py-5  
+       rounded-custom px-4 py-5  
      transition-all duration-200 hover:scale-110;
 }
 
