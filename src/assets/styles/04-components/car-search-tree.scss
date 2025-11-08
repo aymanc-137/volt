@@ -86,7 +86,7 @@
 }
 
 .car-search-tree__option.is-active {
-    @apply border-[var(--color-primary)];
+    @apply border-[var(--color-primary)] border;
  }
 
 .car-search-tree__option-thumb {
