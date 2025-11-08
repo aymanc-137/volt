@@ -89,6 +89,7 @@
         const selectionEl = root.querySelector('[data-selected-path]');
         const loadingEl = root.querySelector('[data-products-loading]');
         const productsEmptyEl = root.querySelector('[data-products-empty]');
+        const defaultProductsEmptyContent = productsEmptyEl?.innerHTML || '';
 
         const state = {
             brand: null,
@@ -146,6 +147,7 @@
             state.brand = brand;
             state.model = null;
             state.year = null;
+            resetProductsArea();
 
             setActive(rows.brands, id);
             renderOptions(rows.models, normalizeChildren(brand.sub_categories), 'model');
@@ -252,6 +254,14 @@
 
         function hideLoading() {
             loadingEl.classList.add('hidden');
+        }
+
+        function resetProductsArea() {
+            if (!productsEmptyEl || !rows.products) return;
+            rows.products.innerHTML = '';
+            rows.products.classList.add('hidden');
+            productsEmptyEl.classList.remove('hidden');
+            productsEmptyEl.innerHTML = defaultProductsEmptyContent;
         }
 
         function updateSelectionPath() {

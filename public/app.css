@@ -25122,8 +25122,6 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
 }
 .car-search-tree__option-thumb {
     display: flex;
-    height: 5rem;
-    width: 5rem;
     align-items: center;
     justify-content: center;
     border-radius: 9999px;
