@@ -2,11 +2,15 @@
 {% set categories_payload = component.category|default([])|json_encode %}
 {% set heading = component.title|default('ابحث عن سيارتك') %}
 {% set description = component.description|default('اختر الماركة ثم الموديل والسنة (إن وُجدت) لإظهار المنتجات المتوافقة.') %}
+{% set brand_select_id = tree_component_id ~ '-brand-select' %}
+{% set model_select_id = tree_component_id ~ '-model-select' %}
+{% set year_select_id = tree_component_id ~ '-year-select' %}
 
 <section class="car-search-tree-block container" id="{{ tree_component_id }}"
          data-categories='{{ categories_payload|e('html_attr') }}'
-         data-hide-brand-labels="{{ component.hide_brand_labels ? 'true' : 'false' }}">
-    <div class="car-search-tree">
+         data-hide-brand-labels="{{ component.hide_brand_labels ? 'true' : 'false' }}"
+         data-display-mode="{{ component.use_dropdown_layout ? 'dropdown' : 'tiles' }}">
+    <div class="car-search-tree {{ component.use_dropdown_layout ? 'car-search-tree--dropdown' : '' }}">
         <div class="car-search-tree__header">
             <div>
                 <p class="car-search-tree__eyebrow">{{ component.badge|default('اكتشف ملاءمة القطع') }}</p>
@@ -27,7 +31,7 @@
             </div>
         </div>
 
-        <div class="car-search-tree__rows">
+        <div class="car-search-tree__rows {{ component.use_dropdown_layout ? 'hidden' : '' }}">
             <div class="car-search-tree__row-wrapper" data-wrapper="brands">
 
                 <div class="car-search-tree__row" data-row="brands"></div>
@@ -41,6 +45,27 @@
             <div class="car-search-tree__row-wrapper hidden" data-wrapper="years">
         
                 <div class="car-search-tree__row" data-row="years"></div>
+            </div>
+        </div>
+
+        <div class="car-search-tree__selects {{ component.use_dropdown_layout ? '' : 'hidden' }}" data-selects>
+            <div class="car-search-tree__select">
+                <label for="{{ brand_select_id }}">اختر الماركة</label>
+                <select id="{{ brand_select_id }}" data-select="brand">
+                    <option value="" disabled selected>اختر الماركة</option>
+                </select>
+            </div>
+            <div class="car-search-tree__select">
+                <label for="{{ model_select_id }}">اختر الموديل</label>
+                <select id="{{ model_select_id }}" data-select="model" disabled>
+                    <option value="" disabled selected>اختر الموديل</option>
+                </select>
+            </div>
+            <div class="car-search-tree__select">
+                <label for="{{ year_select_id }}">اختر السنة</label>
+                <select id="{{ year_select_id }}" data-select="year" disabled>
+                    <option value="" disabled selected>اختر السنة</option>
+                </select>
             </div>
         </div>
 
@@ -91,7 +116,16 @@
         const loadingEl = root.querySelector('[data-products-loading]');
         const productsEmptyEl = root.querySelector('[data-products-empty]');
         const defaultProductsEmptyContent = productsEmptyEl?.innerHTML || '';
+        const rowsContainer = root.querySelector('.car-search-tree__rows');
+        const selectsWrapper = root.querySelector('[data-selects]');
+        const selects = {
+            brand: root.querySelector('[data-select="brand"]'),
+            model: root.querySelector('[data-select="model"]'),
+            year: root.querySelector('[data-select="year"]'),
+        };
         const hideBrandLabels = root.dataset.hideBrandLabels === 'true';
+        const displayMode = root.dataset.displayMode || 'tiles';
+        const isDropdownMode = displayMode === 'dropdown';
 
         const state = {
             brand: null,
@@ -99,6 +133,16 @@
             year: null,
             lastRequestSignature: null,
         };
+
+        if (isDropdownMode) {
+            rowsContainer?.classList.add('hidden');
+            selectsWrapper?.classList.remove('hidden');
+            attachSelectListeners();
+            clearSelect('model');
+            clearSelect('year');
+        } else {
+            selectsWrapper?.classList.add('hidden');
+        }
 
         if (!Array.isArray(categories) || !categories.length) {
              emptyEl.classList.remove('hidden');
@@ -112,10 +156,16 @@
 
         function renderBrands() {
             renderOptions(rows.brands, categories, 'brand');
-            wrappers.brands.classList.remove('hidden');
+            if (!isDropdownMode) {
+                wrappers.brands.classList.remove('hidden');
+            }
         }
 
         function renderOptions(container, items, level) {
+            if (isDropdownMode) {
+                renderSelectOptions(level, items);
+                return;
+            }
             if (!container) return;
             if (!Array.isArray(items) || !items.length) {
                 container.innerHTML = '';
@@ -153,7 +203,7 @@
 
             setActive(rows.brands, id);
             renderOptions(rows.models, normalizeChildren(brand.sub_categories), 'model');
-            clearRow(rows.years, wrappers.years);
+            clearRow(rows.years, wrappers.years, 'year');
             updateSelectionPath();
 
             if (hasChildren(brand)) {
@@ -271,12 +321,17 @@
             selectionEl.textContent = parts.length ? parts.join(' / ') : '—';
         }
 
-        function clearRow(container, wrapper) {
+        function clearRow(container, wrapper, level) {
+            if (isDropdownMode) {
+                clearSelect(level);
+                return;
+            }
             if (container) container.innerHTML = '';
             wrapper?.classList.add('hidden');
         }
 
         function setActive(container, id) {
+            if (isDropdownMode) return;
             if (!container) return;
             container.querySelectorAll('.car-search-tree__option').forEach((button) => {
                 button.classList.toggle('is-active', Number(button.dataset.id) === Number(id));
@@ -332,6 +387,47 @@
                     ${labelMarkup}
                 </button>
             `;
+        }
+
+        function renderSelectOptions(level, items) {
+            const selectEl = selects[level];
+            if (!selectEl) return;
+            const normalizedItems = Array.isArray(items) ? items : normalizeChildren(items);
+            const placeholder = escapeHtml(getSelectPlaceholder(level));
+            const optionsMarkup = normalizedItems
+                .map((item) => `<option value="${escapeAttribute(item.id)}">${escapeHtml(item?.name || '')}</option>`)
+                .join('');
+            selectEl.innerHTML = `<option value="" disabled selected>${placeholder}</option>${optionsMarkup}`;
+            selectEl.disabled = !normalizedItems.length;
+            selectEl.value = '';
+            selectsWrapper?.classList.remove('hidden');
+        }
+
+        function clearSelect(level) {
+            const selectEl = selects[level];
+            if (!selectEl) return;
+            const placeholder = escapeHtml(getSelectPlaceholder(level));
+            selectEl.innerHTML = `<option value="" disabled selected>${placeholder}</option>`;
+            selectEl.disabled = true;
+            selectEl.value = '';
+        }
+
+        function getSelectPlaceholder(level) {
+            if (level === 'brand') return 'اختر الماركة';
+            if (level === 'model') return 'اختر الموديل';
+            if (level === 'year') return 'اختر السنة';
+            return 'اختر الخيار';
+        }
+
+        function attachSelectListeners() {
+            Object.entries(selects).forEach(([level, selectEl]) => {
+                if (!selectEl) return;
+                selectEl.addEventListener('change', (event) => {
+                    const value = event.target.value;
+                    if (!value) return;
+                    handleSelection(level, value);
+                });
+            });
         }
 
         function collectCategoryIds(category) {

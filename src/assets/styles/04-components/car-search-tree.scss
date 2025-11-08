@@ -54,6 +54,26 @@
     @apply space-y-2;
 }
 
+.car-search-tree__selects {
+    @apply grid gap-4 md:grid-cols-3;
+}
+
+.car-search-tree__select {
+    @apply flex flex-col gap-2;
+    label {
+        @apply text-sm font-medium dynamic-text-color;
+    }
+    select {
+        @apply w-full rounded-2xl border dynamic-border-color bg-transparent px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)];
+        option {
+            @apply text-[color:var(--color-text,#111827)];
+        }
+        &:disabled {
+            @apply opacity-60 cursor-not-allowed;
+        }
+    }
+}
+
 .car-search-tree__row-wrapper {
     @apply space-y-4;
 
@@ -118,7 +138,7 @@
 }
 
 .car-search-tree__products {
-    @apply rounded-custom border dynamic-border-color dynamic-border-color p-6 space-y-6;
+    @apply rounded-custom border dynamic-border-color  p-6 space-y-6;
 }
 
 .car-search-tree__products-header h3 {

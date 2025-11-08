@@ -2608,6 +2608,16 @@
                     "icon": "sicon-visibility-off",
                     "value": false,
                     "required": false
+                },
+                {
+                    "id": "use_dropdown_layout",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "عرض القوائم المنسدلة للاختيار",
+                    "description": "استبدال شبكة البطاقات بقوائم منسدلة للماركة ثم الموديل ثم السنة.",
+                    "icon": "sicon-list",
+                    "value": false,
+                    "required": false
                 }
             ]
         }
