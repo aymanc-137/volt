@@ -79,11 +79,11 @@
     @apply rounded-full bg-[var(--color-primary-30)];
 }
 
-.car-search-tree__option {
-    @apply min-w-[7.5rem] max-w-[8rem] flex flex-col items-center text-center gap-3
-    border dynamic-border-color rounded-2xl px-4 py-5 bg-white/90 dark:bg-gray-900/60
-    shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg;
-}
+// .car-search-tree__option {
+//     @apply min-w-[7.5rem] max-w-[10rem] flex flex-col items-center text-center gap-3
+//     border dynamic-border-color rounded-2xl px-4 py-5 bg-white/90 dark:bg-gray-900/60
+//     shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg;
+// }
 
 .car-search-tree__option.is-active {
     @apply border-[var(--color-primary)] shadow-lg;
@@ -91,9 +91,9 @@
 }
 
 .car-search-tree__option-thumb {
-    @apply w-20 h-20 rounded-full     flex items-center justify-center ;
+    @apply w-20 h-20 rounded-full flex items-center justify-center ;
     img {
-        @apply w-full h-full object-cover;
+        @apply w-full h-full object-contain  ;
     }
 }
 
