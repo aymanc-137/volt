@@ -25051,12 +25051,12 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
 }
 .car-search-tree__row-wrapper > :not([hidden]) ~ :not([hidden]) {
     --tw-space-y-reverse: 0;
-    margin-top: calc(2rem * (1 - 0));
-    margin-top: calc(2rem * (1 - var(--tw-space-y-reverse)));
-    margin-top: calc(2rem * calc(1 - 0));
-    margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
-    margin-bottom: calc(2rem * 0);
-    margin-bottom: calc(2rem * var(--tw-space-y-reverse));
+    margin-top: calc(1rem * (1 - 0));
+    margin-top: calc(1rem * (1 - var(--tw-space-y-reverse)));
+    margin-top: calc(1rem * calc(1 - 0));
+    margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(1rem * 0);
+    margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 .car-search-tree__row-heading h3 {
     font-size: 1.25rem;
@@ -25080,18 +25080,8 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     display: flex;
     justify-content: space-around;
     gap: 1rem;
-}
-.car-search-tree__row > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-y-reverse: 0;
-    margin-top: calc(1rem * (1 - 0));
-    margin-top: calc(1rem * (1 - var(--tw-space-y-reverse)));
-    margin-top: calc(1rem * calc(1 - 0));
-    margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
-    margin-bottom: calc(1rem * 0);
-    margin-bottom: calc(1rem * var(--tw-space-y-reverse));
-}
-.car-search-tree__row {
     overflow-x: auto;
+    padding-bottom: 0.5rem;
   scroll-snap-type: x proximity;
 }
 .car-search-tree__row::-webkit-scrollbar {
@@ -25125,10 +25115,8 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .car-search-tree__option.is-active {
-    border-width: 1px;
     border-color: #414042;
     border-color: var(--color-primary);
-  box-shadow: 0 12px 25px -15px var(--color-primary-10);
 }
 .car-search-tree__option-thumb {
     display: flex;

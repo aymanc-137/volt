@@ -55,7 +55,7 @@
 }
 
 .car-search-tree__row-wrapper {
-    @apply space-y-8;
+    @apply space-y-4;
 }
 
 .car-search-tree__row-heading h3 {
@@ -67,7 +67,7 @@
 }
 
 .car-search-tree__row {
-    @apply flex gap-4 overflow-x-auto justify-around space-y-4;
+    @apply flex gap-4 overflow-x-auto justify-around pb-2;
     scroll-snap-type: x proximity;
 }
 
@@ -86,9 +86,8 @@
 }
 
 .car-search-tree__option.is-active {
-    @apply border-[var(--color-primary)] border;
-    box-shadow: 0 12px 25px -15px var(--color-primary-10);
-}
+    @apply border-[var(--color-primary)];
+ }
 
 .car-search-tree__option-thumb {
     @apply w-20 h-20 rounded-full flex items-center justify-center ;
