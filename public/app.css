@@ -25058,8 +25058,31 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     margin-bottom: calc(1rem * 0);
     margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
-.car-search-tree__row-wrapper s-products-slider-card {
-  max-width: 120px !important;
+.car-search-tree__row-wrapper {
+    margin-bottom: 2rem;
+    display: grid;
+}
+@media (min-width: 768px) {
+  .landing-page .center-products .vertical-products .car-search-tree__row-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+}
+@media (max-width: 767px) {
+  .landing-page .center-products .vertical-products .car-search-tree__row-wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .landing-page .center-products .vertical-products .car-search-tree__row-wrapper .s-product-card-vertical {
+    min-width: 286px;
+    max-width: 286px;
+  }
+}
+@media ((min-width: 768px) and (max-width: 1023px)) {
+  .landing-page .center-products .vertical-products .car-search-tree__row-wrapper .s-product-card-vertical {
+    min-width: 220px;
+  }
 }
 .car-search-tree__row-heading h3 {
     font-size: 1.25rem;

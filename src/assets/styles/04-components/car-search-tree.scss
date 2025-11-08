@@ -55,11 +55,9 @@
 }
 
 .car-search-tree__row-wrapper {
-    @apply space-y-4;
+    @apply space-y-4 s-products-list-wrapper;
 
-    s-products-slider-card{
-        max-width: 120px !important;
-    }
+     
 }
 
 .car-search-tree__row-heading h3 {
