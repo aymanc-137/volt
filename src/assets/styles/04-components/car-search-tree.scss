@@ -69,7 +69,7 @@
 }
 
 .car-search-tree__row {
-    @apply flex gap-4 overflow-x-auto justify-around p-5;
+    @apply flex gap-4 overflow-x-auto justify-around py-3;
     scroll-snap-type: x proximity;
 }
 
