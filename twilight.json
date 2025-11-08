@@ -2593,7 +2593,7 @@
                     "icon": "sicon-keyboard_arrow_down",
                     "selected": [],
                     "options": [],
-                    "source": "Categories",
+                    "source": "categories",
                     "multichoice": true,
                     "searchable": true,
                     "required": true,
