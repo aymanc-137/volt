@@ -2461,6 +2461,64 @@
                     "maxLength": 300
                 },
                 {
+                    "id": "enable_gradient_title",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "تفعيل لون متدرج للعنوان",
+                    "description": "يعرض العنوان الرئيسي بتدرج لوني من اللون الأساسي إلى الثانوي.",
+                    "labelHTML": null,
+                    "icon": "sicon-format-fill",
+                    "value": false,
+                    "selected": false,
+                    "required": false
+                },
+                {
+                    "id": "enable_gradient_word",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "تفعيل لون متدرج لكلمة محددة",
+                    "description": "اختر كلمة من العنوان ليتم تلوينها بتدرج لوني.",
+                    "labelHTML": null,
+                    "icon": "sicon-magic-wand",
+                    "value": false,
+                    "selected": false,
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "gradient_word",
+                    "type": "string",
+                    "format": "text",
+                    "label": "الكلمة أو العبارة الملونة",
+                    "description": "أدخل الكلمة التي ترغب بإبرازها بالألوان المتدرجة.",
+                    "labelHTML": null,
+                    "icon": "sicon-format-text-alt",
+                    "placeholder": "مثال: عروضنا",
+                    "value": "",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 1,
+                    "maxLength": 100,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_word",
+                            "operation": "=",
+                            "value": true
+                        },
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
                     "id": "text",
                     "type": "string",
                     "format": "text",

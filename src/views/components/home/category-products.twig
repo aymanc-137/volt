@@ -1,13 +1,23 @@
+{% set title_element_id = 'category-products-title-' ~ (position|default(0)) %}
+{% set gradient_word_active = component.enable_gradient_word and component.gradient_word %}
 <!-- The class "p-4" was changed to "py-4" to remove horizontal padding -->
 <section class="flex items-center my-10 relative justify-center">
     <div class="relative w-full my-32">
                    {% if not component.title_inside_image %}
                                             <div class=" my-5 flex flex-col items-center justify-center w-full" >
-                                                <h5 class=" text-lg text-[var(--color-primary)]">{{ component.title }}</h5>
-                                                <h3 class=" xl:text-2xl text-xl text-[var(--color-tertiary)]" >{{ component.sub_title }} </h3>
+                                            <div>
+                                                {% if component.enable_gradient_title %}
+                                                    <h5 class="text-lg font-semibold bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ component.title }}</h5>
+                                                {% elseif gradient_word_active %}
+                                                    <h5 id="{{ title_element_id }}" class="text-lg font-semibold dynamic-text-color">{{ component.title }}</h5>
+                                                {% else %}
+                                                    <h5 class="text-lg font-semibold text-[var(--color-primary)]">{{ component.title }}</h5>
+                                                {% endif %}
                                                 <span class="navbar-underline"></span>
+                                            </div>
+
+                                                <h3 class=" xl:text-2xl text-xl text-[var(--color-tertiary)]" >{{ component.sub_title }} </h3>
                                          
-                                                <p class="text-xl w-5/6 md:w-1/2 text-center ">{{ component.text }}</p>
                                             </div>
                     {% endif %}
         <!-- Relative Wrapper for Content to ensure it's above the SVG -->
@@ -52,12 +62,11 @@
                                     {# <div class="absolute z-10 w-full h-full bg-gradient-to-t from-[rgba(var(--color-primary),0.9)] via-[rgba(var(--color-primary),0.3)] to-transparent"></div> #}
 
                                     {# Content #}
-          <h1> {{component.is_video | json_encode}}</h1>
-
+ 
                                     {% if component.title_inside_image %}
                                       <div 
 
-                                       style="{{ component.is_video ? '' : 'z-index:100;' }}"
+                                       style="{{ component.is_video ? 'z-index:100;' : '' }}"
                                       
                                       class="w-[85%]  place-self-end my-5 bg-gradient-to-tr
                                        from-[var(--color-primary-30)] 
@@ -65,7 +74,13 @@
                                        to-[var(--color-primary-30)] 
                                        h-2/6 backdrop-blur-sm rounded-custom justify-center flex">
                                             <div class="  flex flex-col items-center justify-center rounded-custom border border-primary w-full" >
-                                            <h5 class=" text-lg text-[var(--color-primary)]">{{ component.title }}</h5>
+                                            {% if component.enable_gradient_title %}
+                                                <h5 class="text-lg font-semibold bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ component.title }}</h5>
+                                            {% elseif gradient_word_active %}
+                                                <h5 id="{{ title_element_id }}" class="text-lg font-semibold dynamic-text-color">{{ component.title }}</h5>
+                                            {% else %}
+                                                <h5 class="text-lg font-semibold text-[var(--color-primary)]">{{ component.title }}</h5>
+                                            {% endif %}
                                                 <h3 class=" xl:text-2xl text-xl text-[var(--color-tertiary)]" >{{ component.sub_title }} </h3>
                                         
                                                     <div class="hide-the-title  flex items-center w-1/2 my-2 justify-center"> 
@@ -92,3 +107,19 @@
  
 
 </section>
+
+{% if gradient_word_active %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const titleEl = document.getElementById('{{ title_element_id }}');
+            if (!titleEl) return;
+            const word = '{{ component.gradient_word|e('js') }}';
+            if (!word) return;
+            const regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+            titleEl.innerHTML = titleEl.innerHTML.replace(
+                regex,
+                '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
+            );
+        });
+    </script>
+{% endif %}
