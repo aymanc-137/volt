@@ -94,7 +94,7 @@
             brand: null,
             model: null,
             year: null,
-            lastCategoryId: null,
+            lastRequestSignature: null,
         };
 
         if (!Array.isArray(categories) || !categories.length) {
@@ -171,9 +171,9 @@
             updateSelectionPath();
 
             if (hasChildren(model)) {
-                 showProductsHint('اختر السنة لاستعراض المنتجات.');
+                fetchProducts(model, { includeDescendants: true });
             } else {
-                 fetchProducts(model);
+                fetchProducts(model);
             }
         }
 
@@ -184,16 +184,23 @@
             state.year = year;
             setActive(rows.years, id);
             updateSelectionPath();
-             fetchProducts(year);
+            fetchProducts(year);
         }
 
-        function fetchProducts(category) {
+        function fetchProducts(category, options = {}) {
+            const { includeDescendants = false } = options;
             if (!category?.id || typeof window.salla?.product?.fetch !== 'function') {
                 showProductsHint('تعذر الاتصال بواجهة المنتجات. تأكد من تحميل منصة سلة.');
                 return;
             }
-
-            state.lastCategoryId = Number(category.id);
+            const ids = (includeDescendants ? collectCategoryIds(category) : [Number(category.id)])
+                .filter((value) => typeof value === 'number' && !Number.isNaN(value));
+            if (!ids.length) {
+                showProductsHint('لا توجد فئات متاحة لتحميل المنتجات.');
+                return;
+            }
+            const requestSignature = `${ids.join(',')}:${includeDescendants ? 'deep' : 'single'}`;
+            state.lastRequestSignature = requestSignature;
             rows.products.classList.add('hidden');
             rows.products.innerHTML = '';
             productsEmptyEl.classList.add('hidden');
@@ -201,10 +208,10 @@
 
             window.salla.product.fetch({
                 source: 'categories',
-                source_value: [state.lastCategoryId],
+                source_value: ids,
             })
                 .then((response) => {
-                    if (state.lastCategoryId !== Number(category.id)) return;
+                    if (state.lastRequestSignature !== requestSignature) return;
                     const products = extractProducts(response);
                     if (!products.length) {
                         showProductsHint('لا توجد منتجات متاحة لهذا الاختيار حالياً.');
@@ -277,18 +284,47 @@
         }
 
         function createOptionTemplate(item, level) {
-            const image = item?.image ? `<img src="${escapeAttribute(item.image)}" alt="${escapeAttribute(item.name || 'category')}" loading="lazy">` : `<span>${escapeHtml((item?.name || '?').charAt(0))}</span>`;
+            const name = item?.name || '';
+            const safeName = escapeHtml(name);
+            const firstLetter = escapeHtml(name.charAt(0) || '?');
+            const isYearLevel = level === 'year';
+            let thumbClass = 'car-search-tree__option-thumb';
+            let thumbContent = '';
+
+            if (isYearLevel) {
+                thumbClass += ' car-search-tree__option-thumb--year';
+                thumbContent = `<span>${safeName}</span>`;
+            } else if (item?.image) {
+                thumbContent = `<img src="${escapeAttribute(item.image)}" alt="${escapeAttribute(name || 'category')}" loading="lazy">`;
+            } else {
+                thumbClass += ' car-search-tree__option-thumb--fallback';
+                thumbContent = `<span>${firstLetter}</span>`;
+            }
+
             return `
                 <button type="button"
                         class="car-search-tree__option"
                         data-id="${item.id}"
                         data-level="${level}">
-                    <span class="car-search-tree__option-thumb ${item?.image ? '' : 'car-search-tree__option-thumb--fallback'}">
-                        ${image}
+                    <span class="${thumbClass}">
+                        ${thumbContent}
                     </span>
-                    <span class="car-search-tree__option-label">${escapeHtml(item?.name || '')}</span>
+                    <span class="car-search-tree__option-label">${safeName}</span>
                 </button>
             `;
+        }
+
+        function collectCategoryIds(category) {
+            const ids = [];
+            (function traverse(node) {
+                if (!node?.id) return;
+                const numericId = Number(node.id);
+                if (!Number.isNaN(numericId)) {
+                    ids.push(numericId);
+                }
+                normalizeChildren(node.sub_categories).forEach(traverse);
+            }(category));
+            return Array.from(new Set(ids));
         }
 
         function extractProducts(response) {

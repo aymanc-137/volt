@@ -100,6 +100,13 @@
     @apply bg-[var(--color-primary-10)] text-2xl font-bold text-[var(--color-primary)];
 }
 
+.car-search-tree__option-thumb--year {
+    @apply bg-[var(--color-primary-5)] text-xl font-bold text-[var(--color-primary)];
+    span {
+        @apply leading-none;
+    }
+}
+
 .car-search-tree__option-label {
     @apply text-sm font-semibold dynamic-text-color line-clamp-2;
 }

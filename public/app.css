@@ -25141,6 +25141,17 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     color: #414042;
     color: var(--color-primary);
 }
+.car-search-tree__option-thumb--year {
+    background-color: var(--color-primary-5);
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+    color: #414042;
+    color: var(--color-primary);
+}
+.car-search-tree__option-thumb--year span {
+    line-height: 1;
+}
 .car-search-tree__option-label {
     overflow: hidden;
     display: -webkit-box;
