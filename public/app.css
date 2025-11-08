@@ -25081,7 +25081,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     justify-content: space-around;
     gap: 1rem;
     overflow-x: auto;
-    padding-bottom: 0.5rem;
+    padding: 1.25rem;
   scroll-snap-type: x proximity;
 }
 .car-search-tree__row::-webkit-scrollbar {
