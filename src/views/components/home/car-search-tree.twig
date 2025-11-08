@@ -17,10 +17,7 @@
                 <span class="car-search-tree__selection-value" data-selected-path>—</span>
             </div>
         </div>
-
-        <div class="car-search-tree__status" data-status aria-live="polite">
-            جاري تحميل ماركات السيارات...
-        </div>
+ 
 
         <div class="car-search-tree__empty hidden" data-empty>
             <div>
@@ -88,8 +85,7 @@
             models: root.querySelector('[data-wrapper="models"]'),
             years: root.querySelector('[data-wrapper="years"]'),
         };
-        const statusEl = root.querySelector('[data-status]');
-        const emptyEl = root.querySelector('[data-empty]');
+         const emptyEl = root.querySelector('[data-empty]');
         const selectionEl = root.querySelector('[data-selected-path]');
         const loadingEl = root.querySelector('[data-products-loading]');
         const productsEmptyEl = root.querySelector('[data-products-empty]');
@@ -102,15 +98,13 @@
         };
 
         if (!Array.isArray(categories) || !categories.length) {
-            statusEl.textContent = 'أضف ماركات عبر لوحة التحكم لبدء استخدام شجرة البحث.';
-            emptyEl.classList.remove('hidden');
+             emptyEl.classList.remove('hidden');
             hideLoading();
             return;
         }
 
         emptyEl.classList.add('hidden');
-        statusEl.textContent = 'اختر ماركة السيارة لعرض الموديلات.';
-        selectionEl.textContent = '—';
+         selectionEl.textContent = '—';
         renderBrands();
 
         function renderBrands() {
@@ -159,11 +153,9 @@
             updateSelectionPath();
 
             if (hasChildren(brand)) {
-                statusEl.textContent = `اختر موديل من ${brand.name}.`;
-                showProductsHint('اختر الموديل لإظهار المنتجات.');
+                 showProductsHint('اختر الموديل لإظهار المنتجات.');
             } else {
-                statusEl.textContent = `جاري عرض منتجات ${brand.name}.`;
-                fetchProducts(brand);
+                 fetchProducts(brand);
             }
         }
 
@@ -179,11 +171,9 @@
             updateSelectionPath();
 
             if (hasChildren(model)) {
-                statusEl.textContent = `اختر سنة الصنع لسيارة ${model.name}.`;
-                showProductsHint('اختر السنة لاستعراض المنتجات.');
+                 showProductsHint('اختر السنة لاستعراض المنتجات.');
             } else {
-                statusEl.textContent = `جارٍ جلب منتجات ${model.name}.`;
-                fetchProducts(model);
+                 fetchProducts(model);
             }
         }
 
@@ -194,8 +184,7 @@
             state.year = year;
             setActive(rows.years, id);
             updateSelectionPath();
-            statusEl.textContent = `جارٍ جلب منتجات سنة ${year.name}.`;
-            fetchProducts(year);
+             fetchProducts(year);
         }
 
         function fetchProducts(category) {
