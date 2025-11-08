@@ -55,9 +55,9 @@
 }
 
 .car-search-tree__row-wrapper {
-    @apply space-y-4 s-products-list-wrapper;
+    @apply space-y-4;
 
-     
+    
 }
 
 .car-search-tree__row-heading h3 {
@@ -130,5 +130,5 @@
 }
 
 .car-search-tree__products-grid {
-    @apply grid gap-4 md:grid-cols-2 xl:grid-cols-3;
+    @apply  s-products-list-wrapper s-products-list-vertical-cards;
 }

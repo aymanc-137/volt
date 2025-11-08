@@ -25058,32 +25058,6 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     margin-bottom: calc(1rem * 0);
     margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
-.car-search-tree__row-wrapper {
-    margin-bottom: 2rem;
-    display: grid;
-}
-@media (min-width: 768px) {
-  .landing-page .center-products .vertical-products .car-search-tree__row-wrapper {
-        display: flex;
-        justify-content: center;
-    }
-}
-@media (max-width: 767px) {
-  .landing-page .center-products .vertical-products .car-search-tree__row-wrapper {
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  }
-}
-@media (min-width: 1024px) {
-  .landing-page .center-products .vertical-products .car-search-tree__row-wrapper .s-product-card-vertical {
-    min-width: 286px;
-    max-width: 286px;
-  }
-}
-@media ((min-width: 768px) and (max-width: 1023px)) {
-  .landing-page .center-products .vertical-products .car-search-tree__row-wrapper .s-product-card-vertical {
-    min-width: 220px;
-  }
-}
 .car-search-tree__row-heading h3 {
     font-size: 1.25rem;
     line-height: 1.75rem;
@@ -25244,19 +25218,49 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     color: var(--color-text-muted,#6B7280);
 }
 .car-search-tree__products-grid {
+    margin-bottom: 2rem;
     display: grid;
-    grid-gap: 1rem;
-    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-gap: 0.625rem;
+    gap: 0.625rem;
+}
+@media (min-width: 640px) {
+    .car-search-tree__products-grid {
+        gap: 1rem;
+    }
 }
 @media (min-width: 768px) {
     .car-search-tree__products-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.5rem;
     }
 }
-@media (min-width: 1280px) {
+@media (min-width: 1024px) {
     .car-search-tree__products-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
+}
+@media (min-width: 768px) {
+  .landing-page .center-products .vertical-products .car-search-tree__products-grid {
+        display: flex;
+        justify-content: center;
+    }
+}
+@media (max-width: 767px) {
+  .landing-page .center-products .vertical-products .car-search-tree__products-grid {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .landing-page .center-products .vertical-products .car-search-tree__products-grid .s-product-card-vertical {
+    min-width: 286px;
+    max-width: 286px;
+  }
+}
+@media ((min-width: 768px) and (max-width: 1023px)) {
+  .landing-page .center-products .vertical-products .car-search-tree__products-grid .s-product-card-vertical {
+    min-width: 220px;
+  }
 }
 .s-block--why-us {
     padding-top: 4rem;
