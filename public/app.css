@@ -25144,16 +25144,6 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     width: 5rem;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    border-radius: 9999px;
-    border-width: 1px;
-    --tw-bg-opacity: 1;
-    background-color: rgba(255, 255, 255, 1);
-    background-color: rgba(255, 255, 255, var(--tw-bg-opacity, 1));
-  border-color: color-mix(in srgb, var(--color-light-box-background) 90%, black);
-}
-.dark *.car-search-tree__option-thumb {
-  border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
 }
 .car-search-tree__option-thumb img {
     height: 100%;

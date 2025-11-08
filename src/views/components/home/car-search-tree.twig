@@ -31,18 +31,12 @@
 
         <div class="car-search-tree__rows">
             <div class="car-search-tree__row-wrapper" data-wrapper="brands">
-                <div class="car-search-tree__row-heading">
-                    <h3>ماركات السيارات</h3>
-                    <p>اختر الماركة المناسبة لسيارتك.</p>
-                </div>
+
                 <div class="car-search-tree__row" data-row="brands"></div>
             </div>
 
             <div class="car-search-tree__row-wrapper hidden" data-wrapper="models">
-                <div class="car-search-tree__row-heading">
-                    <h3>الموديلات</h3>
-                    <p>اختر الموديل لعرض السنوات أو المنتجات.</p>
-                </div>
+ 
                 <div class="car-search-tree__row" data-row="models"></div>
             </div>
 
@@ -56,17 +50,24 @@
         </div>
 
         <div class="car-search-tree__products">
+
             <div class="car-search-tree__products-header">
                 <h3>المنتجات المتوافقة</h3>
                 <p>سيتم تحميل المنتجات تلقائياً بعد إتمام الاختيار.</p>
             </div>
-            <div class="car-search-tree__products-state hidden" data-products-loading>
-                <salla-loading size="32"></salla-loading>
-                <p>جاري تحميل المنتجات...</p>
-            </div>
-            <div class="car-search-tree__products-state" data-products-empty>
-                <p>لم يتم اختيار فئة بعد.</p>
-            </div>
+
+                <div class="hidden" data-products-loading>
+                    <div class="car-search-tree__products-state">
+                        <salla-loading size="32"></salla-loading>
+                        <p>جاري تحميل المنتجات...</p>
+                    </div>
+                </div>
+
+                <div data-products-empty>
+                    <div class="car-search-tree__products-state" >
+                        <p>لم يتم اختيار فئة بعد.</p>
+                    </div>
+                </div>
             <div class="car-search-tree__products-grid hidden" data-row="products"></div>
         </div>
     </div>

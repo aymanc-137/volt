@@ -91,7 +91,7 @@
 }
 
 .car-search-tree__option-thumb {
-    @apply w-20 h-20 rounded-full border dynamic-border-color overflow-hidden flex items-center justify-center bg-white;
+    @apply w-20 h-20 flex items-center justify-center ;
     img {
         @apply w-full h-full object-cover;
     }
