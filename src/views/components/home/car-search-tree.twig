@@ -48,7 +48,9 @@
             </div>
         </div>
 
-        <div class="car-search-tree__selects {{ component.use_dropdown_layout ? '' : 'hidden' }}" data-selects>
+        <div class="car-search-tree__selects " 
+        style="{{ component.use_dropdown_layout ? '' : 'display:none;' }}"
+        data-selects>
             <div class="car-search-tree__select" data-select-wrapper="brand">
                 <label for="{{ brand_select_id }}">اختر الماركة</label>
                 <select id="{{ brand_select_id }}" data-select="brand">
