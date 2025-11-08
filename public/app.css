@@ -25078,6 +25078,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
 }
 .car-search-tree__row {
     display: flex;
+    justify-content: space-around;
     gap: 1rem;
     overflow-x: auto;
     padding-bottom: 0.5rem;
