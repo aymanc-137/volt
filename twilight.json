@@ -2598,6 +2598,16 @@
                     "searchable": true,
                     "required": true,
                     "value": []
+                },
+                {
+                    "id": "hide_brand_labels",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "إخفاء أسماء العلامات والاكتفاء بالشعار",
+                    "description": "عند التفعيل سيتم عرض صورة العلامة فقط بدون الاسم.",
+                    "icon": "sicon-visibility-off",
+                    "value": false,
+                    "required": false
                 }
             ]
         }

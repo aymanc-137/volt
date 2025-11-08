@@ -25116,6 +25116,11 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(1.1) scaleY(1.1);
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
+.car-search-tree__option--no-label {
+    gap: 0px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
 .car-search-tree__option.is-active {
     border-width: 1px;
     border-color: #414042;

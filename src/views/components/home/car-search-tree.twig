@@ -4,7 +4,8 @@
 {% set description = component.description|default('اختر الماركة ثم الموديل والسنة (إن وُجدت) لإظهار المنتجات المتوافقة.') %}
 
 <section class="car-search-tree-block container" id="{{ tree_component_id }}"
-         data-categories='{{ categories_payload|e('html_attr') }}'>
+         data-categories='{{ categories_payload|e('html_attr') }}'
+         data-hide-brand-labels="{{ component.hide_brand_labels ? 'true' : 'false' }}">
     <div class="car-search-tree">
         <div class="car-search-tree__header">
             <div>
@@ -90,6 +91,7 @@
         const loadingEl = root.querySelector('[data-products-loading]');
         const productsEmptyEl = root.querySelector('[data-products-empty]');
         const defaultProductsEmptyContent = productsEmptyEl?.innerHTML || '';
+        const hideBrandLabels = root.dataset.hideBrandLabels === 'true';
 
         const state = {
             brand: null,
@@ -311,15 +313,23 @@
                 thumbContent = `<span>${firstLetter}</span>`;
             }
 
+            const hideLabel = level === 'brand' && hideBrandLabels;
+            const buttonClasses = ['car-search-tree__option'];
+            if (hideLabel) {
+                buttonClasses.push('car-search-tree__option--no-label');
+            }
+            const labelMarkup = hideLabel ? '' : `<span class="car-search-tree__option-label">${safeName}</span>`;
+
             return `
                 <button type="button"
-                        class="car-search-tree__option"
+                        class="${buttonClasses.join(' ')}"
                         data-id="${item.id}"
-                        data-level="${level}">
+                        data-level="${level}"
+                        aria-label="${safeName}">
                     <span class="${thumbClass}">
                         ${thumbContent}
                     </span>
-                    <span class="car-search-tree__option-label">${safeName}</span>
+                    ${labelMarkup}
                 </button>
             `;
         }

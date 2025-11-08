@@ -87,6 +87,10 @@
      transition-all duration-200 hover:scale-110;
 }
 
+.car-search-tree__option--no-label {
+    @apply gap-0 py-4;
+}
+
 .car-search-tree__option.is-active {
     @apply border-[var(--color-primary)] border;
  }
