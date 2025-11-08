@@ -318,7 +318,7 @@
             if (hideLabel) {
                 buttonClasses.push('car-search-tree__option--no-label');
             }
-            const labelMarkup = hideLabel ? '' : `<span class="car-search-tree__option-label">${safeName}</span>`;
+            const labelMarkup = hideLabel || isYearLevel ? '' : `<span class="car-search-tree__option-label">${safeName}</span>`;
 
             return `
                 <button type="button"

@@ -3,7 +3,7 @@
 }
 
 .car-search-tree {
-    @apply border dynamic-border-color rounded-[32px]
+    @apply border dynamic-border-color rounded-custom
     bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)]
     shadow-xl p-6 md:p-10 space-y-8;
 }
@@ -25,7 +25,7 @@
 }
 
 .car-search-tree__selection {
-    @apply px-4 py-3 rounded-2xl bg-[var(--color-primary-5)] text-sm flex flex-col gap-1;
+    @apply px-4 py-3 rounded-custom bg-[var(--color-primary-5)] text-sm flex flex-col gap-1;
 }
 
 .car-search-tree__selection-label {
@@ -37,11 +37,11 @@
 }
 
 .car-search-tree__status {
-    @apply px-4 py-3 rounded-2xl bg-[var(--color-primary-5)] text-sm dynamic-text-color;
+    @apply px-4 py-3 rounded-custom bg-[var(--color-primary-5)] text-sm dynamic-text-color;
 }
 
 .car-search-tree__empty {
-    @apply border border-dashed dynamic-border-color rounded-3xl px-6 py-10 text-center bg-white/60 dark:bg-gray-900/50;
+    @apply border border-dashed dynamic-border-color rounded-custom px-6 py-10 text-center bg-white/60 dark:bg-gray-900/50;
     strong {
         @apply block text-xl dynamic-text-color mb-2;
     }
@@ -118,7 +118,7 @@
 }
 
 .car-search-tree__products {
-    @apply rounded-[28px] border dynamic-border-color bg-white/90 dark:bg-gray-900/60 p-6 space-y-6;
+    @apply rounded-custom border dynamic-border-color dynamic-border-color p-6 space-y-6;
 }
 
 .car-search-tree__products-header h3 {

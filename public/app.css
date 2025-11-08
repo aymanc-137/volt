@@ -24889,7 +24889,6 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     margin-bottom: calc(2rem * var(--tw-space-y-reverse));
 }
 .car-search-tree {
-    border-radius: 32px;
     border-width: 1px;
     background-color: var(--color-light-box-background);
     padding: 1.5rem;
@@ -24897,6 +24896,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
     box-shadow: 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0), 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0,0,0,0)), var(--tw-ring-shadow, 0 0 rgba(0,0,0,0)), var(--tw-shadow);
+  border-radius: var(--border-radius);
   border-color: color-mix(in srgb, var(--color-light-box-background) 90%, black);
 }
 .dark *.car-search-tree {
@@ -24963,7 +24963,6 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-    border-radius: 1rem;
     background-color: var(--color-primary-5);
     padding-left: 1rem;
     padding-right: 1rem;
@@ -24971,6 +24970,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     padding-bottom: 0.75rem;
     font-size: 0.875rem;
     line-height: 1.25rem;
+  border-radius: var(--border-radius);
 }
 .car-search-tree__selection-label {
     text-transform: uppercase;
@@ -24989,7 +24989,6 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
 }
 .car-search-tree__status {
-    border-radius: 1rem;
     background-color: var(--color-primary-5);
     padding-left: 1rem;
     padding-right: 1rem;
@@ -24997,8 +24996,9 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     padding-bottom: 0.75rem;
     font-size: 0.875rem;
     line-height: 1.25rem;
-    color: #2C3E50;
-    color: var(--main-text-color);
+  border-radius: var(--border-radius);
+  color: #2C3E50;
+  color: var(--main-text-color);
 }
 .dark *.car-search-tree__status {
     --tw-text-opacity: 1;
@@ -25006,7 +25006,6 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
 }
 .car-search-tree__empty {
-    border-radius: 1.5rem;
     border-width: 1px;
     border-style: dashed;
     background-color: rgba(255, 255, 255, 0.6);
@@ -25015,6 +25014,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
     text-align: center;
+  border-radius: var(--border-radius);
   border-color: color-mix(in srgb, var(--color-light-box-background) 90%, black);
 }
 .dark *.car-search-tree__empty {
@@ -25183,15 +25183,13 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
 }
 .car-search-tree__products {
-    border-radius: 28px;
     border-width: 1px;
-    background-color: rgba(255, 255, 255, 0.9);
     padding: 1.5rem;
+  border-radius: var(--border-radius);
   border-color: color-mix(in srgb, var(--color-light-box-background) 90%, black);
 }
 .dark *.car-search-tree__products {
   border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
-  background-color: rgba(17, 24, 39, 0.6);
 }
 .car-search-tree__products-header h3 {
     font-size: 1.25rem;
