@@ -2684,7 +2684,130 @@
             "title": "عرض تفصيلي لمنتج - فولت",
             "icon": "sicon-store",
             "path": "home.tap-preview",
-            "fields": []
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "tap-preview-desc",
+                    "value": "<div><strong>عرض تفصيلي لمنتج</strong><br/>شبكة بثلاثة أعمدة تعرض تبويبات بصور مع وصف موجز وصورة جانبية للمنتج.</div>"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "وصف مجموعة التبويبات (لأغراض الوصول)",
+                    "multilanguage": true,
+                    "id": "accordion_label",
+                    "value": "عناصر العروض",
+                    "required": false,
+                    "format": "text",
+                    "description": "يظهر كنص لخاصية aria-label الخاصة بالتبويبات."
+                },
+                {
+                    "id": "aside_image",
+                    "type": "string",
+                    "format": "image",
+                    "label": "صورة المنتج الجانبية",
+                    "description": "صورة يتم عرضها في العمود الأيمن للمكون.",
+                    "icon": "sicon-image",
+                    "value": "https://images.unsplash.com/photo-1601918774946-25832a4be0d8?q=80&w=900&auto=format&fit=crop",
+                    "required": false
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-a11y",
+                    "label": "نص بديل للصورة الجانبية",
+                    "multilanguage": true,
+                    "id": "aside_image_alt",
+                    "value": "GARRETT Turbo",
+                    "required": false,
+                    "format": "text",
+                    "placeholder": "مثال: اسم المنتج"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "عنوان المنتج",
+                    "multilanguage": true,
+                    "id": "aside_title",
+                    "value": "GARRETT",
+                    "required": false,
+                    "format": "text",
+                    "placeholder": "مثال: اسم العلامة"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "وصف مختصر أسفل العنوان",
+                    "multilanguage": true,
+                    "id": "aside_subtitle",
+                    "value": "تيربو",
+                    "required": false,
+                    "format": "text",
+                    "placeholder": "مثال: نوع القطعة"
+                },
+                {
+                    "id": "tabs",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "بطاقات التبويب",
+                    "item_label": "بطاقة",
+                    "description": "أضف بطاقات مزودة بصورة خلفية وعنوان ووصف مختصر.",
+                    "minLength": 1,
+                    "maxLength": 5,
+                    "required": true,
+                    "value": [
+                        {
+                            "tabs.title": "القوة تبدأ من أول ضغطة بنزين!",
+                            "tabs.description": "حسّن استجابة محركك مع تيربو GARRETT المصمّم لعشّاق الأداء. مواد عالية الجودة، تحمّل حراري ممتاز، وتسارع فوري من أول لمسة دواسة.",
+                            "tabs.image": "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?q=80&w=1200&auto=format&fit=crop"
+                        },
+                        {
+                            "tabs.title": "ضمّ ليمنحك تفوّق السباق على الطريق.",
+                            "tabs.description": "شاحن توربيني مطوّر لتدفق هواء أعلى وضغط ثابت عند جميع الدورات، يمنحك عزمًا أقوى واستجابة أسرع مع استهلاك وقود مثالي.",
+                            "tabs.image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop"
+                        },
+                        {
+                            "tabs.title": "أداء عالٍ يبدأ من أول ضغطة بنزين.",
+                            "tabs.description": "تجربة قيادة ممتعة لسيارتك الرياضية: قطع مضمونة، دقة تصنيع، وضمان أداء ثابت بتصميم انسيابي يقلّل الحرارة ويحافظ على الكفاءة.",
+                            "tabs.image": "https://images.unsplash.com/photo-1511300636408-a63a89df3482?q=80&w=1200&auto=format&fit=crop"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "عنوان البطاقة",
+                            "multilanguage": true,
+                            "id": "tabs.title",
+                            "value": null,
+                            "required": true,
+                            "format": "text",
+                            "placeholder": "مثال: عنوان جذاب"
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-typography",
+                            "label": "الوصف",
+                            "multilanguage": true,
+                            "id": "tabs.description",
+                            "value": null,
+                            "required": true,
+                            "format": "textarea",
+                            "placeholder": "الوصف المختصر الذي يظهر أسفل العنوان"
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-image",
+                            "label": "الصورة الخلفية",
+                            "id": "tabs.image",
+                            "value": null,
+                            "required": false,
+                            "format": "image",
+                            "description": "صورة خلفية تغطي مساحة العنوان."
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "support_url": "",

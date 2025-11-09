@@ -1,0 +1,140 @@
+{% set accordion_id = 'tap-preview-' ~ (position|default(0)) %}
+{% set tabs = component.tabs is iterable ? component.tabs : [] %}
+{% set accordion_label = component.accordion_label|default('عناصر العروض') %}
+{% set aside_image = component.aside_image|default(null) %}
+{% set aside_image_alt = component.aside_image_alt|default(component.aside_title) %}
+{% set aside_title = component.aside_title|default('') %}
+{% set aside_subtitle = component.aside_subtitle|default('') %}
+
+<section class="s-block tap-preview-component bg-neutral-100">
+  <div class="max-w-6xl mx-auto p-4 md:p-8">
+    <div class="grid lg:grid-cols-3 gap-4 bg-white rounded-2xl shadow-lg overflow-hidden">
+      <section class="lg:col-span-2 p-4 sm:p-6 space-y-4" id="{{ accordion_id }}" aria-label="{{ accordion_label }}">
+        {% if tabs %}
+          {% for tab in tabs %}
+            {% set tab_panel_id = accordion_id ~ '-panel-' ~ loop.index %}
+            {% set is_open = loop.first %}
+            <article class="rounded-xl overflow-hidden border border-neutral-200" data-accordion-item>
+              <button
+                type="button"
+                class="group relative w-full text-right"
+                aria-expanded="{{ is_open ? 'true' : 'false' }}"
+                aria-controls="{{ tab_panel_id }}"
+              >
+                <div
+                  class="h-28 sm:h-32 md:h-36 bg-cover bg-center {{ tab.image ? '' : 'bg-neutral-200' }}"
+                  {% if tab.image %}
+                    style="background-image:url('{{ tab.image }}');"
+                  {% endif %}
+                >
+                  <div class="h-full w-full bg-black/40 group-aria-expanded:bg-black/20 transition"></div>
+                </div>
+                <div class="absolute inset-0 px-4 sm:px-6 flex items-center">
+                  <h3 class="text-white text-xl sm:text-2xl font-extrabold drop-shadow">
+                    {{ tab.title }}
+                  </h3>
+                </div>
+              </button>
+
+              <div
+                id="{{ tab_panel_id }}"
+                role="region"
+                class="accordion-content grid px-4 sm:px-6 bg-gradient-to-b from-neutral-50 to-white"
+                style="
+                  grid-template-rows: {{ is_open ? '1fr' : '0fr' }};
+                  padding-top: {{ is_open ? '1rem' : '0px' }};
+                  padding-bottom: {{ is_open ? '1rem' : '0px' }};
+                "
+                {% if not is_open %}hidden{% endif %}
+              >
+                <div class="overflow-hidden" style="opacity: {{ is_open ? '1' : '0' }};">
+                  <p class="text-neutral-700 leading-7">
+                    {{ tab.description }}
+                  </p>
+                </div>
+              </div>
+            </article>
+          {% endfor %}
+        {% else %}
+          <div class="rounded-xl border border-dashed border-neutral-300 p-6 text-center text-neutral-600">
+            أضف عناصر من إعدادات المكون لعرض محتوى المعاينة.
+          </div>
+        {% endif %}
+      </section>
+
+      <aside class="p-6 flex flex-col items-center justify-center bg-neutral-50 border-l border-neutral-200">
+        {% if aside_image %}
+          <img
+            src="{{ aside_image }}"
+            alt="{{ aside_image_alt }}"
+            class="w-full max-w-sm object-contain"
+            loading="lazy"
+          />
+        {% endif %}
+
+        {% if aside_title or aside_subtitle %}
+          <div class="text-center mt-4">
+            {% if aside_title %}
+              <h4 class="text-3xl font-black tracking-wide">{{ aside_title }}</h4>
+            {% endif %}
+            {% if aside_subtitle %}
+              <p class="text-xl font-extrabold text-neutral-800 mt-1">{{ aside_subtitle }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+      </aside>
+    </div>
+  </div>
+</section>
+
+{% if tabs %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const container = document.getElementById('{{ accordion_id }}');
+      if (!container) return;
+
+      const items = Array.from(container.querySelectorAll('[data-accordion-item]'));
+      if (!items.length) return;
+
+      function closeAll() {
+        items.forEach((item) => {
+          const btn = item.querySelector('button');
+          const panel = item.querySelector('.accordion-content');
+          if (!btn || !panel) return;
+          btn.setAttribute('aria-expanded', 'false');
+          panel.style.gridTemplateRows = '0fr';
+          panel.style.paddingTop = '0px';
+          panel.style.paddingBottom = '0px';
+          panel.hidden = true;
+          const inner = panel.firstElementChild;
+          if (inner) inner.style.opacity = '0';
+        });
+      }
+
+      function openItem(item) {
+        const btn = item.querySelector('button');
+        const panel = item.querySelector('.accordion-content');
+        if (!btn || !panel) return;
+        btn.setAttribute('aria-expanded', 'true');
+        panel.hidden = false;
+        requestAnimationFrame(() => {
+          panel.style.gridTemplateRows = '1fr';
+          panel.style.paddingTop = '1rem';
+          panel.style.paddingBottom = '1rem';
+          const inner = panel.firstElementChild;
+          if (inner) inner.style.opacity = '1';
+        });
+      }
+
+      items.forEach((item) => {
+        const btn = item.querySelector('button');
+        if (!btn) return;
+        btn.addEventListener('click', () => {
+          const isOpen = btn.getAttribute('aria-expanded') === 'true';
+          closeAll();
+          if (!isOpen) openItem(item);
+        });
+      });
+    });
+  </script>
+{% endif %}
