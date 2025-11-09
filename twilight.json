@@ -2678,6 +2678,13 @@
                     "required": false
                 }
             ]
+        },
+        {
+            "key": "76b7b54c-e8c2-4618-bafd-e7cf431c6d94",
+            "title": "عرض تفصيلي لمنتج - فولت",
+            "icon": "sicon-store",
+            "path": "home.tap-preview",
+            "fields": []
         }
     ],
     "support_url": "",
