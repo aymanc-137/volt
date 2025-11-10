@@ -2567,16 +2567,6 @@ select {
     color: rgba(82, 82, 82, 1);
     color: rgba(82, 82, 82, var(--tw-text-opacity, 1));
 }
-.text-neutral-800 {
-    --tw-text-opacity: 1;
-    color: rgba(38, 38, 38, 1);
-    color: rgba(38, 38, 38, var(--tw-text-opacity, 1));
-}
-.text-neutral-900 {
-    --tw-text-opacity: 1;
-    color: rgba(23, 23, 23, 1);
-    color: rgba(23, 23, 23, var(--tw-text-opacity, 1));
-}
 .text-primary {
     color: #414042;
     color: var(--color-primary);
@@ -2887,6 +2877,15 @@ select {
 }
 .btn:hover {
     opacity: 0.8;
+}
+.btn-primary {
+    border-width: 1px;
+    border-color: #414042;
+    border-color: var(--color-primary);
+    background-color: #414042;
+    background-color: var(--color-primary);
+    color: #ff6767;
+    color: var(--color-primary-reverse);
 }
 .form-label {
     margin-bottom: 0.25rem;
@@ -25959,6 +25958,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     background-color: rgba(243, 244, 246, 1);
     background-color: rgba(243, 244, 246, var(--tw-bg-opacity, 1));
 }
+.hover\:bg-primary-dark:hover {
+    background-color: var(--color-primary-dark);
+}
 .hover\:bg-white:hover {
     --tw-bg-opacity: 1;
     background-color: rgba(255, 255, 255, 1);
@@ -25966,9 +25968,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 }
 .hover\:bg-white\/60:hover {
     background-color: rgba(255, 255, 255, 0.6);
-}
-.hover\:bg-primary-dark:hover {
-    background-color: var(--color-primary-dark);
 }
 .hover\:text-\[var\(--color-primary-dark\)\]:hover {
     color: var(--color-primary-dark);
