@@ -8,18 +8,21 @@
 
 <section class="s-block tap-preview-component   py-10" dir="rtl">
   <div class="max-w-[85rem] mx-auto px-4 md:px-8">
-    <div class="grid lg:grid-cols-3 gap-4   rounded-2xl shadow-lg overflow-hidden border border-neutral-200/60">
+    <div class="grid lg:grid-cols-3 gap-4   rounded-custom 
+    
+    dark:bg-[var(--color-dark-box-background)]
+    bg-[var(--color-light-box-background)]   overflow-hidden dynamic-border-color">
       <section class="lg:col-span-2 p-4 sm:p-6 space-y-4" id="{{ accordion_id }}" aria-label="{{ accordion_label }}">
         {% if tabs %}
           {% for tab in tabs %}
             {% set tab_panel_id = accordion_id ~ '-panel-' ~ loop.index %}
             {% set is_open = loop.first %}
-            <article class="rounded-xl overflow-hidden border bg-no-repeat bg-center"
+            <article class="rounded-xl overflow-hidden  bg-cover bg-no-repeat bg-center"
             
             
              {% if tab.image %}
-                    style="background-image:url('{{ tab.image }}'); background-size:cover;"
-                  {% endif %}
+             style="background-image: linear-gradient(to right, rgba(0,0,0,0.5), rgba(255,255,255,.8)),url('{{ tab.image }}');"
+                   {% endif %}
              data-accordion-item>
               <button
                 type="button"
@@ -31,7 +34,7 @@
                   class="h-20 bg-cover bg-center  relative overflow-hidden"
                  
                 >
-                  <div data-accordion-overlay class="absolute inset-0 bg-black/40 transition duration-300 ease-in-out"></div>
+                  {# <div data-accordion-overlay class="absolute w-full h-full  bg-black/40 transition duration-300 ease-in-out"></div> #}
                 </div>
                 <div class="absolute inset-0 px-4 sm:px-6 flex items-center pointer-events-none">
                   <h3 class="text-white text-xl sm:text-2xl font-extrabold drop-shadow leading-snug">
@@ -46,8 +49,8 @@
                 class="accordion-content grid transition-[grid-template-rows,padding] duration-300 ease-in-out px-4 sm:px-6 bg-gradient-to-b  {{ is_open ? 'grid-rows-[1fr] py-4' : 'grid-rows-[0fr] py-0' }}"
                 {% if not is_open %}hidden{% endif %}
               >
-                <div class="overflow-hidden transition-opacity duration-300 ease-in-out {{ is_open ? 'opacity-100' : 'opacity-0' }}">
-                  <p class="text-neutral-700 leading-7 text-base sm:text-lg">
+                <div class="overflow-hidden transition-opacity w-1/2 duration-300 ease-in-out {{ is_open ? 'opacity-100' : 'opacity-0' }}">
+                  <p class="text-neutral-700 leading-7 text-xl">
                     {{ tab.description }}
                   </p>
                 </div>
