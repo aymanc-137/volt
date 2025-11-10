@@ -7,14 +7,20 @@
 {% set aside_subtitle = component.aside_subtitle|default('') %}
 
 <section class="s-block tap-preview-component   py-10" dir="rtl">
-  <div class="max-w-7xl mx-auto px-4 md:px-8">
+  <div class="max-w-[85rem] mx-auto px-4 md:px-8">
     <div class="grid lg:grid-cols-3 gap-4   rounded-2xl shadow-lg overflow-hidden border border-neutral-200/60">
       <section class="lg:col-span-2 p-4 sm:p-6 space-y-4" id="{{ accordion_id }}" aria-label="{{ accordion_label }}">
         {% if tabs %}
           {% for tab in tabs %}
             {% set tab_panel_id = accordion_id ~ '-panel-' ~ loop.index %}
             {% set is_open = loop.first %}
-            <article class="rounded-xl overflow-hidden border border-neutral-200 bg-white" data-accordion-item>
+            <article class="rounded-xl overflow-hidden border bg-no-repeat bg-center"
+            
+            
+             {% if tab.image %}
+                    style="background-image:url('{{ tab.image }}'); background-size:cover;"
+                  {% endif %}
+             data-accordion-item>
               <button
                 type="button"
                 class="group relative w-full text-right focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
@@ -22,10 +28,8 @@
                 aria-controls="{{ tab_panel_id }}"
               >
                 <div
-                  class="h-28 sm:h-32 md:h-36 bg-cover bg-center {{ tab.image ? '' : 'bg-neutral-200' }} relative overflow-hidden"
-                  {% if tab.image %}
-                    style="background-image:url('{{ tab.image }}'); background-size:cover;"
-                  {% endif %}
+                  class="h-20 bg-cover bg-center  relative overflow-hidden"
+                 
                 >
                   <div data-accordion-overlay class="absolute inset-0 bg-black/40 transition duration-300 ease-in-out"></div>
                 </div>
@@ -39,7 +43,7 @@
               <div
                 id="{{ tab_panel_id }}"
                 role="region"
-                class="accordion-content grid transition-[grid-template-rows,padding] duration-300 ease-in-out px-4 sm:px-6 bg-gradient-to-b from-neutral-50 to-white {{ is_open ? 'grid-rows-[1fr] py-4' : 'grid-rows-[0fr] py-0' }}"
+                class="accordion-content grid transition-[grid-template-rows,padding] duration-300 ease-in-out px-4 sm:px-6 bg-gradient-to-b  {{ is_open ? 'grid-rows-[1fr] py-4' : 'grid-rows-[0fr] py-0' }}"
                 {% if not is_open %}hidden{% endif %}
               >
                 <div class="overflow-hidden transition-opacity duration-300 ease-in-out {{ is_open ? 'opacity-100' : 'opacity-0' }}">
@@ -57,7 +61,7 @@
         {% endif %}
       </section>
 
-      <aside class="p-6 flex flex-col items-center justify-center bg-neutral-50 border-t border-neutral-200 lg:border-t-0 lg:border-l">
+      <aside class="p-6 flex flex-col items-center justify-center rounded-custom">
         {% if aside_image %}
           <img
             src="{{ aside_image }}"

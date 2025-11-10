@@ -1303,6 +1303,9 @@ select {
 .h-px {
     height: 1px;
 }
+.h-8 {
+    height: 2rem;
+}
 .max-h-0 {
     max-height: 0px;
 }
@@ -1439,8 +1442,8 @@ select {
 .max-w-3xl {
     max-width: 48rem;
 }
-.max-w-\[70rem\] {
-    max-width: 70rem;
+.max-w-7xl {
+    max-width: 80rem;
 }
 .max-w-full {
     max-width: 100%;
@@ -1454,8 +1457,8 @@ select {
 .max-w-xs {
     max-width: 20rem;
 }
-.max-w-7xl {
-    max-width: 80rem;
+.max-w-\[85rem\] {
+    max-width: 85rem;
 }
 .flex-1 {
     flex: 1 1 0%;
