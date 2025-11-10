@@ -1,3 +1,12 @@
+{#
+| Variable                        | Type     | Description                                                 |
+|---------------------------------|----------|-------------------------------------------------------------|
+| component.enable_gradient_word  | bool     | Enable coloring a specific word within each tab title       |
+| component.gradient_word         | ?string  | Word/phrase to highlight inside the tab titles              |
+| tabs[].video_url                | ?string  | Optional background video URL for the tab (MP4/WebM)        |
+| tabs[].image                    | ?string  | Used as poster/fallback when a video is provided            |
+#}
+
 {% set accordion_id = 'tap-preview-' ~ (position|default(0)) %}
 {% set tabs = component.tabs is iterable ? component.tabs : [] %}
 {% set accordion_label = component.accordion_label|default('عناصر العروض') %}
@@ -5,39 +14,68 @@
 {% set aside_image_alt = component.aside_image_alt|default(component.aside_title) %}
 {% set aside_title = component.aside_title|default('') %}
 {% set aside_subtitle = component.aside_subtitle|default('') %}
+{% set gradient_word_active = component.enable_gradient_word|default(false) and component.gradient_word is not empty %}
 
 <section class="s-block tap-preview-component   py-10" dir="rtl">
   <div class="max-w-[85rem] mx-auto px-4 md:px-8">
     <div class="grid lg:grid-cols-3 gap-4   rounded-custom 
     
     dark:bg-[var(--color-dark-box-background)]
-    bg-[var(--color-light-box-background)]   dynamic-border-color">
+    bg-[var(--color-light-box-background)] border dynamic-border-color">
       <section class="lg:col-span-2 p-4 sm:p-6 space-y-4" id="{{ accordion_id }}" aria-label="{{ accordion_label }}">
         {% if tabs %}
           {% for tab in tabs %}
             {% set tab_panel_id = accordion_id ~ '-panel-' ~ loop.index %}
             {% set is_open = loop.first %}
-            <article class="rounded-xl overflow-hidden  bg-cover bg-no-repeat bg-center"
-            
-            
-             {% if tab.image %}
-             style="background-image: linear-gradient(to right, rgba(0,0,0,0.5), rgba(255,255,255,.8)),url('{{ tab.image }}');"
-                   {% endif %}
+            {% set tab_video_url = tab.video_url|default('') %}
+            {% set tab_has_video = tab_video_url is not empty %}
+            {% set tab_title_id = accordion_id ~ '-title-' ~ loop.index %}
+            <article class="relative rounded-xl overflow-hidden {{ not tab_has_video ? 'accordion-item-background-' ~ loop.index }} bg-cover bg-no-repeat bg-center"
              data-accordion-item>
+
+             {% if not tab_has_video %}
+               <style>
+               .accordion-item-background-{{loop.index}}{
+                  background-image: linear-gradient(to right, rgba(0,0,0,0.5), var(--color-light-page-background)),url({{ tab.image }});
+               }
+               .dark .accordion-item-background-{{loop.index}}{
+                  background-image: linear-gradient(to right, rgba(0,0,0,0.5), var(--color-dark-page-background)),url({{ tab.image }});
+               }
+               </style>
+             {% else %}
+               <div class="absolute inset-0" aria-hidden="true">
+                 <video
+                   class="w-full h-full object-cover pointer-events-none"
+                   data-tab-video
+                   preload="metadata"
+                   muted
+                   playsinline
+                   loop
+                   poster="{{ tab.image }}"
+                 >
+                   <source src="{{ tab_video_url }}" />
+                 </video>
+                 <div class="absolute inset-0 pointer-events-none bg-gradient-to-r from-black/70 via-black/40 to-[var(--color-light-page-background)] dark:to-[var(--color-dark-page-background)]"></div>
+               </div>
+             {% endif %}
               <button
                 type="button"
-                class="group relative w-full text-right focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+                class="group relative z-[1] w-full text-right"
                 aria-expanded="{{ is_open ? 'true' : 'false' }}"
                 aria-controls="{{ tab_panel_id }}"
               >
                 <div
-                  class="h-20 bg-cover bg-center  relative overflow-hidden"
+                  class="h-20  "
                  
                 >
                   {# <div data-accordion-overlay class="absolute w-full h-full  bg-black/40 transition duration-300 ease-in-out"></div> #}
                 </div>
                 <div class="absolute inset-0 px-4 sm:px-6 flex items-center pointer-events-none">
-                  <h3 class="text-white text-xl sm:text-2xl font-extrabold drop-shadow leading-snug">
+                  <h3
+                    id="{{ tab_title_id }}"
+                    data-tab-title
+                    class="dynamic-text-color font-alshohadaa text-xl sm:text-2xl font-extrabold drop-shadow leading-snug"
+                  >
                     {{ tab.title }}
                   </h3>
                 </div>
@@ -50,7 +88,7 @@
                 {% if not is_open %}hidden{% endif %}
               >
                 <div class="overflow-hidden transition-opacity w-1/2 duration-300 ease-in-out {{ is_open ? 'opacity-100' : 'opacity-0' }}">
-                  <p class="text-neutral-700 leading-7 text-xl">
+                  <p class="dynamic-text-color  text-xl">
                     {{ tab.description }}
                   </p>
                 </div>
@@ -93,8 +131,57 @@
       const container = document.getElementById('{{ accordion_id }}');
       if (!container) return;
 
-      const items = Array.from(container.querySelectorAll('[data-accordion-item]'));
-      if (!items.length) return;
+        const items = Array.from(container.querySelectorAll('[data-accordion-item]'));
+        if (!items.length) return;
+
+      const gradientWordEnabled = {{ gradient_word_active ? 'true' : 'false' }};
+      const gradientWord = {{ component.gradient_word|default('')|json_encode|raw }};
+
+      function applyGradientWord() {
+        if (!gradientWordEnabled || !gradientWord) return;
+        const titles = container.querySelectorAll('[data-tab-title]');
+        if (!titles.length) return;
+        const escaped = gradientWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        if (!escaped) return;
+        const regex = new RegExp('(' + escaped + ')', 'gi');
+        titles.forEach((title) => {
+          const baseText = title.dataset.originalTitle || title.textContent;
+          if (!title.dataset.originalTitle) {
+            title.dataset.originalTitle = baseText;
+          }
+          if (!baseText) return;
+          title.innerHTML = baseText.replace(
+            regex,
+            '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
+          );
+        });
+      }
+
+      function getVideo(item) {
+        return item.querySelector('[data-tab-video]');
+      }
+
+      function pauseVideo(item, reset = false) {
+        const video = getVideo(item);
+        if (!video) return;
+        video.pause();
+        if (reset) {
+          try {
+            video.currentTime = 0;
+          } catch (e) {
+            /* ignore */
+          }
+        }
+      }
+
+      function playVideo(item) {
+        const video = getVideo(item);
+        if (!video) return;
+        const playPromise = video.play();
+        if (playPromise && typeof playPromise.then === 'function') {
+          playPromise.catch(() => {});
+        }
+      }
 
       function closeAll() {
         items.forEach((item) => {
@@ -110,6 +197,7 @@
           const inner = panel.firstElementChild;
           if (inner) inner.style.opacity = '0';
           if (overlay) overlay.style.backgroundColor = 'rgba(0,0,0,0.4)';
+          pauseVideo(item, true);
         });
       }
 
@@ -126,6 +214,7 @@
           const inner = panel.firstElementChild;
           if (inner) inner.style.opacity = '1';
         });
+        playVideo(item);
       }
 
       items.forEach((item) => {
@@ -149,8 +238,10 @@
             const inner = panel.firstElementChild;
             if (inner) inner.style.opacity = '1';
           }
+          playVideo(item);
         } else {
           syncOverlay(false);
+          pauseVideo(item, true);
         }
 
         btn.addEventListener('click', () => {
@@ -162,6 +253,8 @@
           }
         });
       });
+
+      applyGradientWord();
     });
   </script>
 {% endif %}

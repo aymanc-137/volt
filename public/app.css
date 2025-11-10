@@ -999,6 +999,9 @@ select {
 .z-\[2\] {
     z-index: 2;
 }
+.z-\[1\] {
+    z-index: 1;
+}
 .col-span-2 {
     grid-column: span 2 / span 2;
 }
@@ -2089,6 +2092,11 @@ select {
     --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
+.from-black\/70 {
+    --tw-gradient-from: rgba(0, 0, 0, 0.7) var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(0, 0, 0, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
 .via-\[rgba\(var\(--color-primary\)\2c 0\.3\)\] {
     --tw-gradient-to: rgba(var(--color-primary), 0)  var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), rgba(var(--color-primary),0.3) var(--tw-gradient-via-position), var(--tw-gradient-to);
@@ -2105,6 +2113,10 @@ select {
     --tw-gradient-to: rgba(255, 255, 255, 0)  var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), rgba(255, 255, 255, 0.3) var(--tw-gradient-via-position), var(--tw-gradient-to);
 }
+.via-black\/40 {
+    --tw-gradient-to: rgba(0, 0, 0, 0)  var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), rgba(0, 0, 0, 0.4) var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
 .to-\[\#546C5D\] {
     --tw-gradient-to: #546C5D var(--tw-gradient-to-position);
 }
@@ -2119,6 +2131,9 @@ select {
 }
 .to-transparent {
     --tw-gradient-to: transparent var(--tw-gradient-to-position);
+}
+.to-\[var\(--color-light-page-background\)\] {
+    --tw-gradient-to: var(--color-light-page-background) var(--tw-gradient-to-position);
 }
 .bg-contain {
     background-size: contain;
@@ -26134,6 +26149,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     --tw-gradient-from: var(--color-primary) var(--tw-gradient-from-position);
     --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.dark *.dark\:to-\[var\(--color-dark-page-background\)\] {
+    --tw-gradient-to: var(--color-dark-page-background) var(--tw-gradient-to-position);
 }
 .dark *.dark\:text-blue-300 {
     --tw-text-opacity: 1;

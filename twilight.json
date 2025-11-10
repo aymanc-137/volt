@@ -2703,6 +2703,34 @@
                     "description": "يظهر كنص لخاصية aria-label الخاصة بالتبويبات."
                 },
                 {
+                    "id": "enable_gradient_word",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "تلوين كلمة داخل عنوان التبويب",
+                    "description": "عند التفعيل، يمكنك اختيار كلمة واحدة لتمييزها داخل عناوين التبويبات.",
+                    "icon": "sicon-magic-wand",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "gradient_word",
+                    "type": "string",
+                    "format": "text",
+                    "label": "الكلمة أو العبارة الملوّنة",
+                    "description": "أدخل الكلمة التي سيتم تلوينها داخل العنوان.",
+                    "icon": "sicon-format-text-alt",
+                    "placeholder": "مثال: الأداء",
+                    "value": "",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_word",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
                     "id": "aside_image",
                     "type": "string",
                     "format": "image",
@@ -2804,6 +2832,17 @@
                             "required": false,
                             "format": "image",
                             "description": "صورة خلفية تغطي مساحة العنوان."
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-video-player",
+                            "label": "رابط فيديو الخلفية (اختياري)",
+                            "id": "tabs.video_url",
+                            "value": null,
+                            "required": false,
+                            "format": "text",
+                            "placeholder": "https://example.com/video.mp4",
+                            "description": "عند تعبئة هذا الحقل سيتم استبدال الصورة بالفيديو داخل البطاقة ويتم تشغيله عند فتح التبويب فقط."
                         }
                     ]
                 }
