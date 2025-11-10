@@ -1829,9 +1829,6 @@ select {
 .rounded {
     border-radius: .75rem;
 }
-.rounded-2xl {
-    border-radius: 1rem;
-}
 .rounded-3xl {
     border-radius: 1.5rem;
 }
@@ -1928,9 +1925,6 @@ select {
     border-color: rgba(34, 197, 94, 1);
     border-color: rgba(34, 197, 94, var(--tw-border-opacity, 1));
 }
-.border-neutral-200\/60 {
-    border-color: rgba(229, 229, 229, 0.6);
-}
 .border-neutral-300 {
     --tw-border-opacity: 1;
     border-color: rgba(212, 212, 212, 1);
@@ -1959,6 +1953,9 @@ select {
     --tw-bg-opacity: 1;
     background-color: rgba(0, 24, 59, 1);
     background-color: rgba(0, 24, 59, var(--tw-bg-opacity, 1));
+}
+.bg-\[var\(--color-light-box-background\)\] {
+    background-color: var(--color-light-box-background);
 }
 .bg-\[var\(--color-primary\)\] {
     background-color: #414042;
@@ -2038,9 +2035,6 @@ select {
 }
 .bg-white\/95 {
     background-color: rgba(255, 255, 255, 0.95);
-}
-.bg-\[var\(--color-light-box-background\)\] {
-    background-color: var(--color-light-box-background);
 }
 .bg-gradient-to-b {
     background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
@@ -26100,6 +26094,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     border-color: rgba(153, 27, 27, 1);
     border-color: rgba(153, 27, 27, var(--tw-border-opacity, 1));
 }
+.dark *.dark\:bg-\[var\(--color-dark-box-background\)\] {
+    background-color: var(--color-dark-box-background);
+}
 .dark *.dark\:bg-blue-900\/20 {
     background-color: rgba(30, 58, 138, 0.2);
 }
@@ -26127,9 +26124,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 }
 .dark *.dark\:bg-white\/5 {
     background-color: rgba(255, 255, 255, 0.05);
-}
-.dark *.dark\:bg-\[var\(--color-dark-box-background\)\] {
-    background-color: var(--color-dark-box-background);
 }
 .dark *.dark\:from-black {
     --tw-gradient-from: #000 var(--tw-gradient-from-position);
