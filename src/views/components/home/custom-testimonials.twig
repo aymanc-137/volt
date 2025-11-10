@@ -27,9 +27,9 @@
             {% set total_stars = total_stars < 0 ? 0 : total_stars %}
 
             <div class="swiper-slide !w-auto px-4 py-4">
-              <article class="relative w-5/6 mx-auto
+              <article class="relative  w-80 sm:w-96 max-w-full mx-auto
               
-              bg-[var(--color-dark-box-background)]
+              bg-[var(--color-light-box-background)]
 
               dark:bg-[var(--color-dark-box-background)]
 
@@ -43,10 +43,10 @@
                 <p class=" dynamic-text-color leading-relaxed p-5 mb-8">{{ item.text }}</p>
 
                 <div class="relative border-t border-primary  
-                bg-[var(--color-primary-5)] mt-8 pt-8 p-5">
+                bg-[var(--color-primary-5)]   pt-8 p-5">
                   <div class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-orange-500 to-red-600 p-1">
-                      <div class="w-full h-full rounded-full overflow-hidden -mt-10 border-4 border-gray-900">
+                    <div class="w-16 h-16 r   ">
+                      <div class="w-full h-full rounded-full overflow-hidden -mt-10 border-4  ">
                         <img
                           src="{{ avatar_src }}"
                           alt="{{ item.name|trim ? item.name : 'testimonial-' ~ index }}"
@@ -58,7 +58,7 @@
                   </div>
                 </div>
 
-                <div class="text-center mt-10">
+                <div class="text-center   bg-[var(--color-primary-5)]  p-5 ">
                   <h3 class="dynamic-text-color text-xl font-semibold mb-3">{{ item.name|default('عميل متجرنا') }}</h3>
                   <div class="flex justify-center gap-1" aria-label="{{ total_stars }} / 5">
                     {% for star in 1..5 %}
