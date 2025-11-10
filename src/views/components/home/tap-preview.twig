@@ -1,10 +1,10 @@
 {#
-| Variable                        | Type     | Description                                                 |
-|---------------------------------|----------|-------------------------------------------------------------|
-| component.enable_gradient_word  | bool     | Enable coloring a specific word within each tab title       |
-| component.gradient_word         | ?string  | Word/phrase to highlight inside the tab titles              |
-| tabs[].video_url                | ?string  | Optional background video URL for the tab (MP4/WebM)        |
-| tabs[].image                    | ?string  | Used as poster/fallback when a video is provided            |
+| Variable                       | Type     | Description                                                 |
+|--------------------------------|----------|-------------------------------------------------------------|
+| tabs[].enable_gradient_word    | bool     | Enable coloring a specific word for the tab title           |
+| tabs[].gradient_word           | ?string  | Word/phrase to highlight for a single tab                   |
+| tabs[].video_url               | ?string  | Optional background video URL for the tab (MP4/WebM)        |
+| tabs[].image                   | ?string  | Used as poster/fallback when a video is provided            |
 #}
 
 {% set accordion_id = 'tap-preview-' ~ (position|default(0)) %}
@@ -14,7 +14,6 @@
 {% set aside_image_alt = component.aside_image_alt|default(component.aside_title) %}
 {% set aside_title = component.aside_title|default('') %}
 {% set aside_subtitle = component.aside_subtitle|default('') %}
-{% set gradient_word_active = component.enable_gradient_word|default(false) and component.gradient_word is not empty %}
 
 <section class="s-block tap-preview-component   py-10" dir="rtl">
   <div class="max-w-[85rem] mx-auto px-4 md:px-8">
@@ -30,6 +29,8 @@
             {% set tab_video_url = tab.video_url|default('') %}
             {% set tab_has_video = tab_video_url is not empty %}
             {% set tab_title_id = accordion_id ~ '-title-' ~ loop.index %}
+            {% set tab_gradient_word = tab.gradient_word|default('') %}
+            {% set tab_gradient_enabled = tab.enable_gradient_word|default(false) and tab_gradient_word is not empty %}
             <article class="relative rounded-xl overflow-hidden {{ not tab_has_video ? 'accordion-item-background-' ~ loop.index }} bg-cover bg-no-repeat bg-center"
              data-accordion-item>
 
@@ -43,7 +44,7 @@
                }
                </style>
              {% else %}
-               <div class="absolute inset-0" aria-hidden="true">
+               <div class="absolute inset-0 z-0" aria-hidden="true">
                  <video
                    class="w-full h-full object-cover pointer-events-none"
                    data-tab-video
@@ -55,12 +56,12 @@
                  >
                    <source src="{{ tab_video_url }}" />
                  </video>
-                 <div class="absolute inset-0 pointer-events-none bg-gradient-to-r from-black/70 via-black/40 to-[var(--color-light-page-background)] dark:to-[var(--color-dark-page-background)]"></div>
+                 <div class="absolute inset-0 pointer-events-none z-[1] bg-gradient-to-r from-black/70 via-black/40 to-[var(--color-light-page-background)] dark:to-[var(--color-dark-page-background)]"></div>
                </div>
              {% endif %}
               <button
                 type="button"
-                class="group relative z-[1] w-full text-right"
+                class="group relative z-[2] w-full text-right"
                 aria-expanded="{{ is_open ? 'true' : 'false' }}"
                 aria-controls="{{ tab_panel_id }}"
               >
@@ -74,6 +75,8 @@
                   <h3
                     id="{{ tab_title_id }}"
                     data-tab-title
+                    data-gradient-enabled="{{ tab_gradient_enabled ? 'true' : 'false' }}"
+                    data-gradient-word="{{ tab_gradient_word }}"
                     class="dynamic-text-color font-alshohadaa text-xl sm:text-2xl font-extrabold drop-shadow leading-snug"
                   >
                     {{ tab.title }}
@@ -84,7 +87,7 @@
               <div
                 id="{{ tab_panel_id }}"
                 role="region"
-                class="accordion-content grid transition-[grid-template-rows,padding] duration-300 ease-in-out px-4 sm:px-6 bg-gradient-to-b  {{ is_open ? 'grid-rows-[1fr] py-4' : 'grid-rows-[0fr] py-0' }}"
+                class="relative z-[2] accordion-content grid transition-[grid-template-rows,padding] duration-300 ease-in-out px-4 sm:px-6 bg-gradient-to-b  {{ is_open ? 'grid-rows-[1fr] py-4' : 'grid-rows-[0fr] py-0' }}"
                 {% if not is_open %}hidden{% endif %}
               >
                 <div class="overflow-hidden transition-opacity w-1/2 duration-300 ease-in-out {{ is_open ? 'opacity-100' : 'opacity-0' }}">
@@ -131,30 +134,32 @@
       const container = document.getElementById('{{ accordion_id }}');
       if (!container) return;
 
-        const items = Array.from(container.querySelectorAll('[data-accordion-item]'));
-        if (!items.length) return;
+      const items = Array.from(container.querySelectorAll('[data-accordion-item]'));
+      if (!items.length) return;
 
-      const gradientWordEnabled = {{ gradient_word_active ? 'true' : 'false' }};
-      const gradientWord = {{ component.gradient_word|default('')|json_encode|raw }};
+      function applyGradientWord(title) {
+        if (!title) return;
+        if (!title.dataset.originalTitle) {
+          title.dataset.originalTitle = title.textContent;
+        }
 
-      function applyGradientWord() {
-        if (!gradientWordEnabled || !gradientWord) return;
-        const titles = container.querySelectorAll('[data-tab-title]');
-        if (!titles.length) return;
-        const escaped = gradientWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const enabled = title.dataset.gradientEnabled === 'true';
+        const word = title.dataset.gradientWord || '';
+        if (!enabled || !word) {
+          if (title.dataset.originalTitle) {
+            title.innerHTML = title.dataset.originalTitle;
+          }
+          return;
+        }
+
+        const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         if (!escaped) return;
         const regex = new RegExp('(' + escaped + ')', 'gi');
-        titles.forEach((title) => {
-          const baseText = title.dataset.originalTitle || title.textContent;
-          if (!title.dataset.originalTitle) {
-            title.dataset.originalTitle = baseText;
-          }
-          if (!baseText) return;
-          title.innerHTML = baseText.replace(
-            regex,
-            '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
-          );
-        });
+        const content = title.dataset.originalTitle || title.textContent || '';
+        title.innerHTML = content.replace(
+          regex,
+          '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
+        );
       }
 
       function getVideo(item) {
@@ -187,7 +192,6 @@
         items.forEach((item) => {
           const btn = item.querySelector('button');
           const panel = item.querySelector('.accordion-content');
-          const overlay = item.querySelector('[data-accordion-overlay]');
           if (!btn || !panel) return;
           btn.setAttribute('aria-expanded', 'false');
           panel.style.gridTemplateRows = '0fr';
@@ -196,7 +200,6 @@
           panel.hidden = true;
           const inner = panel.firstElementChild;
           if (inner) inner.style.opacity = '0';
-          if (overlay) overlay.style.backgroundColor = 'rgba(0,0,0,0.4)';
           pauseVideo(item, true);
         });
       }
@@ -220,16 +223,10 @@
       items.forEach((item) => {
         const btn = item.querySelector('button');
         if (!btn) return;
-        const overlay = item.querySelector('[data-accordion-overlay]');
         const panel = item.querySelector('.accordion-content');
-
-        function syncOverlay(expanded) {
-          if (!overlay) return;
-          overlay.style.backgroundColor = expanded ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.4)';
-        }
+        const title = item.querySelector('[data-tab-title]');
 
         if (btn.getAttribute('aria-expanded') === 'true') {
-          syncOverlay(true);
           if (panel) {
             panel.hidden = false;
             panel.style.gridTemplateRows = '1fr';
@@ -240,7 +237,6 @@
           }
           playVideo(item);
         } else {
-          syncOverlay(false);
           pauseVideo(item, true);
         }
 
@@ -249,12 +245,11 @@
           closeAll();
           if (!isOpen) {
             openItem(item);
-            syncOverlay(true);
           }
         });
-      });
 
-      applyGradientWord();
+        applyGradientWord(title);
+      });
     });
   </script>
 {% endif %}
@@ -262,8 +257,5 @@
 <style>
   #{{ accordion_id }} .accordion-content {
     transition: grid-template-rows 300ms ease, padding 300ms ease, opacity 250ms ease;
-  }
-  #{{ accordion_id }} [data-accordion-item] button[aria-expanded="true"] [data-accordion-overlay] {
-    background-color: rgba(0, 0, 0, 0.2);
   }
 </style>

@@ -2703,34 +2703,6 @@
                     "description": "يظهر كنص لخاصية aria-label الخاصة بالتبويبات."
                 },
                 {
-                    "id": "enable_gradient_word",
-                    "type": "boolean",
-                    "format": "switch",
-                    "label": "تلوين كلمة داخل عنوان التبويب",
-                    "description": "عند التفعيل، يمكنك اختيار كلمة واحدة لتمييزها داخل عناوين التبويبات.",
-                    "icon": "sicon-magic-wand",
-                    "value": false,
-                    "required": false
-                },
-                {
-                    "id": "gradient_word",
-                    "type": "string",
-                    "format": "text",
-                    "label": "الكلمة أو العبارة الملوّنة",
-                    "description": "أدخل الكلمة التي سيتم تلوينها داخل العنوان.",
-                    "icon": "sicon-format-text-alt",
-                    "placeholder": "مثال: الأداء",
-                    "value": "",
-                    "required": false,
-                    "conditions": [
-                        {
-                            "id": "enable_gradient_word",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ]
-                },
-                {
                     "id": "aside_image",
                     "type": "string",
                     "format": "image",
@@ -2822,6 +2794,32 @@
                             "required": true,
                             "format": "textarea",
                             "placeholder": "الوصف المختصر الذي يظهر أسفل العنوان"
+                        },
+                        {
+                            "type": "boolean",
+                            "icon": "sicon-magic-wand",
+                            "label": "تلوين كلمة داخل العنوان",
+                            "id": "tabs.enable_gradient_word",
+                            "value": false,
+                            "required": false,
+                            "format": "switch"
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "الكلمة أو العبارة الملوّنة",
+                            "id": "tabs.gradient_word",
+                            "value": null,
+                            "required": false,
+                            "format": "text",
+                            "placeholder": "مثال: الأداء",
+                            "conditions": [
+                                {
+                                    "id": "tabs.enable_gradient_word",
+                                    "operation": "=",
+                                    "value": true
+                                }
+                            ]
                         },
                         {
                             "type": "string",
