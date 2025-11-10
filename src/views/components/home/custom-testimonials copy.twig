@@ -27,26 +27,17 @@
             {% set total_stars = total_stars < 0 ? 0 : total_stars %}
 
             <div class="swiper-slide !w-auto px-4 py-4">
-              <article class="relative w-5/6 mx-auto
-              
-              bg-[var(--color-dark-box-background)]
-
-              dark:bg-[var(--color-dark-box-background)]
-
-               dynamic-border-color border rounded-custom  
-               text-right
-               dynamic-text-color shadow-xl">
+              <article class="relative w-80 sm:w-96 max-w-full bg-gray-900 border-2 border-primary/70 rounded-3xl p-6 text-right text-white shadow-xl">
                 <svg class="w-8 h-8 text-primary mb-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
                 </svg>
 
-                <p class=" dynamic-text-color leading-relaxed p-5 mb-8">{{ item.text }}</p>
+                <p class="text-white/90 leading-relaxed mb-8">{{ item.text }}</p>
 
-                <div class="relative border-t border-primary  
-                bg-[var(--color-primary-5)] mt-8 pt-8 p-5">
+                <div class="relative border-t border-white/20 mt-8 pt-8">
                   <div class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2">
                     <div class="w-16 h-16 rounded-full bg-gradient-to-br from-orange-500 to-red-600 p-1">
-                      <div class="w-full h-full rounded-full overflow-hidden -mt-10 border-4 border-gray-900">
+                      <div class="w-full h-full rounded-full overflow-hidden border-4 border-gray-900">
                         <img
                           src="{{ avatar_src }}"
                           alt="{{ item.name|trim ? item.name : 'testimonial-' ~ index }}"
@@ -59,12 +50,12 @@
                 </div>
 
                 <div class="text-center mt-10">
-                  <h3 class="dynamic-text-color text-xl font-semibold mb-3">{{ item.name|default('عميل متجرنا') }}</h3>
+                  <h3 class="text-white text-xl font-semibold mb-3">{{ item.name|default('عميل متجرنا') }}</h3>
                   <div class="flex justify-center gap-1" aria-label="{{ total_stars }} / 5">
                     {% for star in 1..5 %}
                       {% set is_filled = star <= total_stars %}
                       <svg
-                        class="w-6 h-6 {{ is_filled ? 'text-[var(--color-primary)]' : 'text-gray-600' }}"
+                        class="w-6 h-6 {{ is_filled ? 'text-orange-500' : 'text-gray-600' }}"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                         aria-hidden="true"
@@ -80,7 +71,7 @@
         </div>
       </salla-slider>
     {% else %}
-      <div class="text-center text-neutral-500 border border-dashed border-neutral-400 rounded-custom p-10">
+      <div class="text-center text-neutral-500 border border-dashed border-neutral-400 rounded-3xl p-10">
         أضف تقييمات من إعدادات المكون ليظهر المحتوى هنا.
       </div>
     {% endif %}
