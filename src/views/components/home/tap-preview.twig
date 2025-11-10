@@ -1,6 +1,8 @@
 {#
 | Variable                       | Type     | Description                                                 |
 |--------------------------------|----------|-------------------------------------------------------------|
+| component.aside_button_label   | ?string  | Text label for the CTA button below the aside title         |
+| component.aside_button_url     | ?string  | Target URL for the CTA button                               |
 | tabs[].enable_gradient_word    | bool     | Enable coloring a specific word for the tab title           |
 | tabs[].gradient_word           | ?string  | Word/phrase to highlight for a single tab                   |
 | tabs[].video_url               | ?string  | Optional background video URL for the tab (MP4/WebM)        |
@@ -14,6 +16,8 @@
 {% set aside_image_alt = component.aside_image_alt|default(component.aside_title) %}
 {% set aside_title = component.aside_title|default('') %}
 {% set aside_subtitle = component.aside_subtitle|default('') %}
+{% set aside_button_label = component.aside_button_label|default('') %}
+{% set aside_button_url = component.aside_button_url|default('') %}
 
 <section class="s-block tap-preview-component   py-10" dir="rtl">
   <div class="max-w-[85rem] mx-auto px-4 md:px-8">
@@ -115,12 +119,21 @@
           />
         {% endif %}
 
-        <div class="text-center mt-4 space-y-1">
+        <div class="text-center dynamic-text-color mt-4 space-y-3">
           {% if aside_title %}
-            <h4 class="text-3xl font-black tracking-wide text-neutral-900">{{ aside_title }}</h4>
+            <h4 class="text-3xl font-black tracking-wide ">{{ aside_title }}</h4>
           {% endif %}
           {% if aside_subtitle %}
-            <p class="text-xl font-extrabold text-neutral-800">{{ aside_subtitle }}</p>
+            <p class="text-xl font-extrabold ">{{ aside_subtitle }}</p>
+          {% endif %}
+          {% if aside_button_label and aside_button_url %}
+            <a
+              href="{{ aside_button_url }}"
+              class="inline-flex items-center justify-center px-6 py-2 rounded-full font-semibold text-base transition-all duration-200 bg-primary text-white hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              aria-label="{{ aside_button_label }}"
+            >
+              {{ aside_button_label }}
+            </a>
           {% endif %}
         </div>
       </aside>

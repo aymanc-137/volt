@@ -2746,6 +2746,28 @@
                     "placeholder": "مثال: نوع القطعة"
                 },
                 {
+                    "type": "string",
+                    "icon": "sicon-link",
+                    "label": "نص زر الدعوة لاتخاذ إجراء",
+                    "multilanguage": true,
+                    "id": "aside_button_label",
+                    "value": "اكتشف المزيد",
+                    "required": false,
+                    "format": "text",
+                    "placeholder": "مثال: اطلبه الآن"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-link",
+                    "label": "رابط زر الدعوة لاتخاذ إجراء",
+                    "multilanguage": false,
+                    "id": "aside_button_url",
+                    "value": "https://example.com",
+                    "required": false,
+                    "format": "text",
+                    "placeholder": "https://domain.com/product"
+                },
+                {
                     "id": "tabs",
                     "type": "collection",
                     "format": "collection",

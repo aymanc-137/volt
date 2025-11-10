@@ -25967,6 +25967,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 .hover\:bg-white\/60:hover {
     background-color: rgba(255, 255, 255, 0.6);
 }
+.hover\:bg-primary-dark:hover {
+    background-color: var(--color-primary-dark);
+}
 .hover\:text-\[var\(--color-primary-dark\)\]:hover {
     color: var(--color-primary-dark);
 }
@@ -26028,6 +26031,19 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 }
 .focus\:ring-opacity-50:focus {
     --tw-ring-opacity: 0.5;
+}
+.focus-visible\:outline:focus-visible {
+    outline-style: solid;
+}
+.focus-visible\:outline-2:focus-visible {
+    outline-width: 2px;
+}
+.focus-visible\:outline-offset-2:focus-visible {
+    outline-offset: 2px;
+}
+.focus-visible\:outline-primary:focus-visible {
+    outline-color: #414042;
+    outline-color: var(--color-primary);
 }
 .focus-visible\:ring-2:focus-visible {
     --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
