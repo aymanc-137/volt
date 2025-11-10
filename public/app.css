@@ -1936,6 +1936,9 @@ select {
     border-color: rgba(229, 229, 229, 1);
     border-color: rgba(229, 229, 229, var(--tw-border-opacity, 1));
 }
+.border-neutral-200\/60 {
+    border-color: rgba(229, 229, 229, 0.6);
+}
 .border-neutral-300 {
     --tw-border-opacity: 1;
     border-color: rgba(212, 212, 212, 1);
@@ -1959,9 +1962,6 @@ select {
     --tw-border-opacity: 1;
     border-color: rgba(234, 179, 8, 1);
     border-color: rgba(234, 179, 8, var(--tw-border-opacity, 1));
-}
-.border-neutral-200\/60 {
-    border-color: rgba(229, 229, 229, 0.6);
 }
 .bg-\[\#00183B\] {
     --tw-bg-opacity: 1;
@@ -2255,6 +2255,10 @@ select {
     padding-left: 2rem;
     padding-right: 2rem;
 }
+.py-0 {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
 .py-1 {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
@@ -2298,10 +2302,6 @@ select {
 .py-8 {
     padding-top: 2rem;
     padding-bottom: 2rem;
-}
-.py-0 {
-    padding-top: 0px;
-    padding-bottom: 0px;
 }
 .\!pt-1 {
     padding-top: 0.25rem !important;
@@ -2596,6 +2596,11 @@ select {
     color: rgba(38, 38, 38, 1);
     color: rgba(38, 38, 38, var(--tw-text-opacity, 1));
 }
+.text-neutral-900 {
+    --tw-text-opacity: 1;
+    color: rgba(23, 23, 23, 1);
+    color: rgba(23, 23, 23, var(--tw-text-opacity, 1));
+}
 .text-primary {
     color: #414042;
     color: var(--color-primary);
@@ -2636,11 +2641,6 @@ select {
     --tw-text-opacity: 1;
     color: rgba(255, 255, 255, 1);
     color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
-}
-.text-neutral-900 {
-    --tw-text-opacity: 1;
-    color: rgba(23, 23, 23, 1);
-    color: rgba(23, 23, 23, var(--tw-text-opacity, 1));
 }
 .underline {
     text-decoration-line: underline;
@@ -2753,6 +2753,11 @@ select {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
 }
+.transition-\[grid-template-rows\2c padding\] {
+    transition-property: grid-template-rows,padding;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
 .transition-all {
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -2780,11 +2785,6 @@ select {
 }
 .transition-transform {
     transition-property: transform;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
-}
-.transition-\[grid-template-rows\2c padding\] {
-    transition-property: grid-template-rows,padding;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
 }
@@ -26113,9 +26113,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(180deg) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
-.group[aria-expanded="true"] .group-aria-expanded\:bg-black\/20 {
-    background-color: rgba(0, 0, 0, 0.2);
-}
 .dark *.dark\:border-blue-800 {
     --tw-border-opacity: 1;
     border-color: rgba(30, 64, 175, 1);
@@ -26533,6 +26530,10 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
         padding-left: 1.5rem;
         padding-right: 1.5rem;
     }
+    .md\:px-8 {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
     .md\:py-0 {
         padding-top: 0px;
         padding-bottom: 0px;
@@ -26540,10 +26541,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .md\:py-4 {
         padding-top: 1rem;
         padding-bottom: 1rem;
-    }
-    .md\:px-8 {
-        padding-left: 2rem;
-        padding-right: 2rem;
     }
     .md\:pb-16 {
         padding-bottom: 4rem;
