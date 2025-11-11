@@ -203,10 +203,10 @@
                     </div>
                 {% endif %}
 
-                <h1 class="text-xl md:text-2xl leading-10 font-bold mb-6 text-gray-800">{{ product.name }}</h1>
+                <h1 class="text-xl md:text-2xl leading-10 font-bold mb-6 ">{{ product.name }}</h1>
 
                 {% if product.subtitle %}
-                    <h2 class="product-entry__sub-title text-sm text-gray-500 leading-6 mb-2.5">
+                    <h2 class="product-entry__sub-title text-sm  leading-6 mb-2.5">
                         {{ product.subtitle }}
                     </h2>
                 {% endif %}
@@ -422,31 +422,22 @@
     </div>
 
    {# <h1> {{product.rating.count | json_encode}}</h1> #}
-                                   <div class=" my-5 flex flex-col items-center justify-center w-full" >
+                                   <div class=" mt-5 flex flex-col items-center justify-center w-full" >
+                                   <div>
+
                                                  <h3 class=" xl:text-4xl text-2xl dynaimc-text-color" >
                                                  {{ trans('common.rating') }} </h3>
                                         
-                                                <div class="flex hide-the-title  items-center md:w-1/6 w-1/2 my-2 justify-center   ">
-                                                        <div class="flex-grow h-[6px] bg-gradient-to-r from-[var(--color-secondary)] to-transparent"></div>
-                                                        <div class="w-5 h-5  mx-2 border-[4px] border-[var(--color-secondary)] bg-transparent transform rotate-45"></div>
-                                                        <div class="flex-grow h-[6px] bg-gradient-to-l from-[var(--color-secondary)] to-transparent"></div>
-                                                </div>
+                                              <span class="navbar-underline mt-5"></span>
+
+                                             </div>
                                              </div>
     {# Comments Area #}
     {% if store.settings.rating.show_on_product %}
         <salla-comments item-id="{{product.id}}" type="product"></salla-comments>
     {% endif %}
 
-                               <div class=" my-5 flex flex-col items-center justify-center w-full" >
-                                                 <h3 class=" xl:text-4xl text-2xl dynamic-text-color" >
-                                                 {{ trans('common.rating') }} </h3>
-                                        
-                                                <div class="flex hide-the-title  items-center md:w-1/6 w-1/2 my-2 justify-center   ">
-                                                        <div class="flex-grow h-[6px] bg-gradient-to-r from-[var(--color-secondary)] to-transparent"></div>
-                                                        <div class="w-5 h-5  mx-2 border-[4px] border-[var(--color-secondary)] bg-transparent transform rotate-45"></div>
-                                                        <div class="flex-grow h-[6px] bg-gradient-to-l from-[var(--color-secondary)] to-transparent"></div>
-                                                </div>
-                                             </div>
+                              
     
     {# Similar Products Area #}
     <div class="container similar-products-section">
