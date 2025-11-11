@@ -569,10 +569,9 @@ salla-comments
   .s-comments-product{
 
   background-color: transparent !important;
-  @apply custom-rounded bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)];
-
+ 
   .s-comments-container{
-    @apply dynamic-text-color;
+    @apply dynamic-text-color  rounded-custom p-5 bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)];
   }
   }
 
