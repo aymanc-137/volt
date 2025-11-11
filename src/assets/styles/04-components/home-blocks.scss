@@ -233,9 +233,9 @@
     display: contents;
   }
 
-  .s-reviews-testimonial__text > p {
-    @apply order-1 text-base leading-relaxed text-white/90 mb-8;
-  }
+  // .s-reviews-testimonial__text > p {
+  //   @apply order-1 text-base leading-relaxed text-white/90 mb-8;
+  // }
 
   .s-reviews-testimonial__avatar {
     @apply order-2 relative w-full flex justify-center pt-10 mt-2;
