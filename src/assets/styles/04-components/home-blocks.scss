@@ -246,7 +246,7 @@
 
     &:before {
       content: "";
-      @apply absolute top-6 left-0 right-0 h-px     bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)];
+      @apply absolute top-6 left-0 right-0 h-px  bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)];
     }
 
  
@@ -275,7 +275,7 @@
     }
 
     .s-rating-stars-selected svg {
-      @apply text-orange-500;
+      @apply text-[var(--color-primary)];
     }
   }
 }

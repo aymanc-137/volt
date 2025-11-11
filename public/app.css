@@ -21604,13 +21604,16 @@ input[type=radio].sr-only:checked ~ div.s-block--testimonials.testimonials-card-
   left: 0px;
   right: 0px;
   height: 1px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: var(--color-light-box-background);
 }
 input[type=radio].sr-only div.s-block--testimonials.testimonials-card-style .s-reviews-testimonial__avatar:before {
   transition: all 0.3s;
 }
 input[type=radio].sr-only:checked ~ div.s-block--testimonials.testimonials-card-style .s-reviews-testimonial__avatar:before {
   border-color: var(--color-main);
+}
+.s-block--testimonials.testimonials-card-style .s-reviews-testimonial__avatar:is(.dark *):before {
+    background-color: var(--color-dark-box-background);
 }
 .s-block--testimonials.testimonials-card-style .s-reviews-testimonial__avatar img {
     position: relative;
@@ -21666,9 +21669,8 @@ input[type=radio].sr-only:checked ~ div.s-block--testimonials.testimonials-card-
     color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
 }
 .s-block--testimonials.testimonials-card-style .s-reviews-testimonial__rating .s-rating-stars-selected svg {
-    --tw-text-opacity: 1;
-    color: rgba(249, 115, 22, 1);
-    color: rgba(249, 115, 22, var(--tw-text-opacity, 1));
+    color: #414042;
+    color: var(--color-primary);
 }
 /*
   Tabs Block
