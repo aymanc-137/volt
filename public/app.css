@@ -24310,7 +24310,13 @@ salla-comments .s-comments-product .s-comments-container:is(.dark *) {
     --tw-text-opacity: 1;
     color: rgba(229, 231, 235, 1);
     color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
-    background-color: var(--color-dark-box-background);
+}
+salla-comments .s-comments-product .s-comments-container {
+  border-color: color-mix(in srgb, var(--color-light-box-background) 90%, black);
+}
+salla-comments .s-comments-product .s-comments-container:is(.dark *) {
+  border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
+  background-color: var(--color-dark-box-background);
 }
 .brands-nav {
     display: flex;
