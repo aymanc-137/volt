@@ -571,7 +571,7 @@ salla-comments
   background-color: transparent !important;
  
   .s-comments-container{
-    @apply dynamic-text-color dynamic-border-color rounded-custom p-5 bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)];
+    @apply dynamic-text-color border dynamic-border-color rounded-custom p-5 bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)];
   }
   }
 

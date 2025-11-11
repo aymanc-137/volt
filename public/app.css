@@ -24300,6 +24300,7 @@ salla-comments .s-comments-product {
   background-color: transparent !important;
 }
 salla-comments .s-comments-product .s-comments-container {
+    border-width: 1px;
     background-color: var(--color-light-box-background);
     padding: 1.25rem;
   border-radius: var(--border-radius);
