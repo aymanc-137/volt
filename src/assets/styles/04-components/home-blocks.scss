@@ -214,7 +214,7 @@
   }
 
   .s-reviews-testimonial {
-    @apply flex justify-center;
+    @apply flex justify-center bg-transparent;
   }
 
   .s-reviews-testimonial__inner {
@@ -245,21 +245,9 @@
       @apply absolute top-6 left-0 right-0 h-px bg-white/20;
     }
 
-    &:after {
-      content: "";
-      width: 4.5rem;
-      height: 4.5rem;
-      background-image: linear-gradient(to bottom right, #fb923c, #dc2626);
-      border-radius: 9999px;
-      position: absolute;
-      top: 6px;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 0;
-    }
-
+ 
     img {
-      @apply relative z-[1] w-16 h-16 rounded-full object-cover border-4 border-gray-900;
+      @apply relative z-[1] w-16 -mt-10 h-16 rounded-full object-cover border-4 border-gray-900;
     }
   }
 
