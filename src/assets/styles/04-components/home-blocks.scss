@@ -218,7 +218,11 @@
   }
 
   .s-reviews-testimonial__inner {
-    @apply relative flex flex-col bg-gray-900 text-white rounded-[24px] border-2 border-primary p-6 text-right shadow-xl w-80 sm:w-96 max-w-full overflow-visible;
+    @apply relative flex flex-col 
+    
+    bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)]
+    
+    text-white rounded-custom border border-primary p-6 text-right shadow-xl w-80 sm:w-96 max-w-full overflow-visible;
   }
 
   .s-reviews-testimonial__icon {
@@ -247,7 +251,7 @@
 
  
     img {
-      @apply relative z-[1] w-16 -mt-10 h-16 rounded-full object-cover border-4 border-gray-900;
+      @apply relative z-[1] w-16 -mt-10 h-16 rounded-full object-cover ; 
     }
   }
 
