@@ -24344,6 +24344,9 @@ salla-comments .s-comments-product .s-comments-container:is(.dark *) {
 .s-breadcrumb-arrow svg:is(.dark *) {
     fill: var(--color-light-box-background);
 }
+.s-quantity-input-container .s-quantity-input-input {
+  background: transparent !important;
+}
 .brands-nav {
     display: flex;
     flex-wrap: wrap;
