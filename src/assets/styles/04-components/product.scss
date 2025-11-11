@@ -563,11 +563,11 @@ salla-quantity-input[max='1']{
 }
 
 
-.s-comments {
-  .s-comments-product{
+ 
+salla-comments
+{.s-comments-product{
 
-   @apply bg-transparent;
-
+  background-color: transparent !important;
   }
 
 }

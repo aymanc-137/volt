@@ -24296,8 +24296,8 @@ salla-quantity-input[max="1"] .s-quantity-input-button {
 .s-product-card-volt-wishlist-btn .s-product-card-wishlist-added svg {
   fill: url(#wishlist-gradient) !important;
 }
-.s-comments .s-comments-product {
-    background-color: transparent;
+salla-comments .s-comments-product {
+  background-color: transparent !important;
 }
 .brands-nav {
     display: flex;
