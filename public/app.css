@@ -21657,9 +21657,13 @@ input[type=radio].sr-only:checked ~ div.s-block--testimonials.testimonials-card-
     height: 1.5rem;
     width: 1.5rem;
     fill: currentColor;
+    color: #2C3E50;
+    color: var(--main-text-color);
+}
+.s-block--testimonials.testimonials-card-style .s-reviews-testimonial__rating .s-rating-stars-btn-star svg:is(.dark *) {
     --tw-text-opacity: 1;
-    color: rgba(75, 85, 99, 1);
-    color: rgba(75, 85, 99, var(--tw-text-opacity, 1));
+    color: rgba(229, 231, 235, 1);
+    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
 }
 .s-block--testimonials.testimonials-card-style .s-reviews-testimonial__rating .s-rating-stars-selected svg {
     --tw-text-opacity: 1;

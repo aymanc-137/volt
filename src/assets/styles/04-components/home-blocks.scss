@@ -246,7 +246,7 @@
 
     &:before {
       content: "";
-      @apply absolute top-6 left-0 right-0 h-px bg-white/20;
+      @apply absolute top-6 left-0 right-0 h-px     bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)];
     }
 
  
@@ -270,7 +270,7 @@
       @apply inline-flex;
 
       svg {
-        @apply w-6 h-6 text-gray-600 fill-current;
+        @apply w-6 h-6 dynamic-text-color fill-current;
       }
     }
 
