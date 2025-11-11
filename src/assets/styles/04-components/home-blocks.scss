@@ -201,92 +201,92 @@
 }
 
 /* Testimonials default widget overridden to match custom card style */
-// .s-block--testimonials.testimonials-card-style {
-//   @apply py-14;
+.s-block--testimonials.testimonials-card-style {
+  @apply py-14;
 
-//   salla-reviews {
-//     @apply block;
-//   }
+  salla-reviews {
+    @apply block;
+  }
 
-//   .s-reviews-swiper-slide {
-//     width: auto !important;
-//     @apply px-4 py-6;
-//   }
+  .s-reviews-swiper-slide {
+    width: auto !important;
+    @apply px-4 py-6;
+  }
 
-//   .s-reviews-testimonial {
-//     @apply flex justify-center;
-//   }
+  .s-reviews-testimonial {
+    @apply flex justify-center;
+  }
 
-//   .s-reviews-testimonial__inner {
-//     @apply relative flex flex-col bg-gray-900 text-white rounded-[24px] border-2 border-primary p-6 text-right shadow-xl w-80 sm:w-96 max-w-full overflow-visible;
-//   }
+  .s-reviews-testimonial__inner {
+    @apply relative flex flex-col bg-gray-900 text-white rounded-[24px] border-2 border-primary p-6 text-right shadow-xl w-80 sm:w-96 max-w-full overflow-visible;
+  }
 
-//   .s-reviews-testimonial__icon {
-//     @apply absolute top-6 rtl:left-6 ltr:right-6 text-primary;
+  .s-reviews-testimonial__icon {
+    @apply absolute top-6 rtl:left-6 ltr:right-6 text-primary;
 
-//     svg {
-//       @apply w-8 h-8 fill-current;
-//     }
-//   }
+    svg {
+      @apply w-8 h-8 fill-current;
+    }
+  }
 
-//   .s-reviews-testimonial__text {
-//     display: contents;
-//   }
+  .s-reviews-testimonial__text {
+    display: contents;
+  }
 
-//   .s-reviews-testimonial__text > p {
-//     @apply order-1 text-base leading-relaxed text-white/90 mb-8;
-//   }
+  .s-reviews-testimonial__text > p {
+    @apply order-1 text-base leading-relaxed text-white/90 mb-8;
+  }
 
-//   .s-reviews-testimonial__avatar {
-//     @apply order-2 relative w-full flex justify-center pt-10 mt-2;
+  .s-reviews-testimonial__avatar {
+    @apply order-2 relative w-full flex justify-center pt-10 mt-2;
 
-//     &:before {
-//       content: "";
-//       @apply absolute top-6 left-0 right-0 h-px bg-white/20;
-//     }
+    &:before {
+      content: "";
+      @apply absolute top-6 left-0 right-0 h-px bg-white/20;
+    }
 
-//     &:after {
-//       content: "";
-//       width: 4.5rem;
-//       height: 4.5rem;
-//       background-image: linear-gradient(to bottom right, #fb923c, #dc2626);
-//       border-radius: 9999px;
-//       position: absolute;
-//       top: 6px;
-//       left: 50%;
-//       transform: translate(-50%, -50%);
-//       z-index: 0;
-//     }
+    &:after {
+      content: "";
+      width: 4.5rem;
+      height: 4.5rem;
+      background-image: linear-gradient(to bottom right, #fb923c, #dc2626);
+      border-radius: 9999px;
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+    }
 
-//     img {
-//       @apply relative z-[1] w-16 h-16 rounded-full object-cover border-4 border-gray-900;
-//     }
-//   }
+    img {
+      @apply relative z-[1] w-16 h-16 rounded-full object-cover border-4 border-gray-900;
+    }
+  }
 
-//   .s-reviews-testimonial__name_wrapper {
-//     @apply order-3 flex flex-col items-center text-center gap-3 mt-8;
+  .s-reviews-testimonial__name_wrapper {
+    @apply order-3 flex flex-col items-center text-center gap-3 mt-8;
 
-//     h2 {
-//       @apply text-white text-xl font-semibold;
-//     }
-//   }
+    h2 {
+      @apply text-white text-xl font-semibold;
+    }
+  }
 
-//   .s-reviews-testimonial__rating {
-//     @apply mx-0 flex justify-center gap-1;
+  .s-reviews-testimonial__rating {
+    @apply mx-0 flex justify-center gap-1;
 
-//     .s-rating-stars-btn-star {
-//       @apply inline-flex;
+    .s-rating-stars-btn-star {
+      @apply inline-flex;
 
-//       svg {
-//         @apply w-6 h-6 text-gray-600 fill-current;
-//       }
-//     }
+      svg {
+        @apply w-6 h-6 text-gray-600 fill-current;
+      }
+    }
 
-//     .s-rating-stars-selected svg {
-//       @apply text-orange-500;
-//     }
-//   }
-// }
+    .s-rating-stars-selected svg {
+      @apply text-orange-500;
+    }
+  }
+}
 
 /*
   Tabs Block
