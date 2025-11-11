@@ -135,10 +135,10 @@
 
       &__quantity{
         salla-quantity-input{
-          @apply w-full;
+          @apply w-full dynamic-border-color;
           .s-quantity-input-container{
             
-            @apply dynamic-bg-color w-full dynamic-text-color;
+            @apply  w-full;
           }
           .s-quantity-input-input{
             @apply w-[80%]

@@ -23804,22 +23804,13 @@ input[type=radio].sr-only:checked ~ div.pie-wrapper {
     }
   .is-sticky-product-bar .sticky-product-bar__quantity salla-quantity-input {
         width: 100%;
+  border-color: color-mix(in srgb, var(--color-light-box-background) 90%, black);
     }
+.is-sticky-product-bar .sticky-product-bar__quantity salla-quantity-input:is(.dark *) {
+  border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
+}
   .is-sticky-product-bar .sticky-product-bar__quantity salla-quantity-input .s-quantity-input-container {
         width: 100%;
-        color: #2C3E50;
-        color: var(--main-text-color);
-    }
-.is-sticky-product-bar .sticky-product-bar__quantity salla-quantity-input .s-quantity-input-container:is(.dark *) {
-        --tw-text-opacity: 1;
-        color: rgba(229, 231, 235, 1);
-        color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
-    }
-.is-sticky-product-bar .sticky-product-bar__quantity salla-quantity-input .s-quantity-input-container {
-        background-color: var(--color-light-box-background);
-    }
-.is-sticky-product-bar .sticky-product-bar__quantity salla-quantity-input .s-quantity-input-container:is(.dark *) {
-        background-color: var(--color-dark-box-background);
     }
   .is-sticky-product-bar .sticky-product-bar__quantity salla-quantity-input .s-quantity-input-input {
         width: 80%;
