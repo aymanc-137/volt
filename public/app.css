@@ -3161,6 +3161,15 @@ textarea.s-input {
         display: none;
     }
 }
+.product-form .s-form-label {
+    color: #2C3E50;
+    color: var(--main-text-color);
+}
+.product-form .s-form-label:is(.dark *) {
+    --tw-text-opacity: 1;
+    color: rgba(229, 231, 235, 1);
+    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+}
 .s-form-group {
     margin-top: 0.75rem;
     margin-bottom: 0.75rem;
@@ -24346,6 +24355,15 @@ salla-comments .s-comments-product .s-comments-container:is(.dark *) {
 }
 .s-quantity-input-container .s-quantity-input-input {
   background: transparent !important;
+}
+.product-form .form-label {
+    color: #2C3E50;
+    color: var(--main-text-color);
+}
+.product-form .form-label:is(.dark *) {
+    --tw-text-opacity: 1;
+    color: rgba(229, 231, 235, 1);
+    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
 }
 .brands-nav {
     display: flex;

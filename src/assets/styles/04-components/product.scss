@@ -590,3 +590,9 @@ salla-comments
    background: transparent !important;
   }
 }
+
+.product-form {
+  .form-label{
+    @apply dynamic-text-color;
+  }
+}
