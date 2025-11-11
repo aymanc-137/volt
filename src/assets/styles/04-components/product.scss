@@ -579,7 +579,7 @@ salla-comments
 
 s-breadcrumb-arrow{
   svg{
-    @apply text-white;
-    fill: #f1f1f1;
+    @apply fill-[var(--color-light-box-background)] dark:fill-[var(--color-dark-box-background)];
+    
   }
 }
