@@ -21543,16 +21543,18 @@ input[type=radio].sr-only:checked ~ div.has-overlay:after {
     background-color: var(--color-light-box-background);
     padding: 1.5rem;
     text-align: right;
-    --tw-text-opacity: 1;
-    color: rgba(255, 255, 255, 1);
-    color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
     --tw-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
     --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
     box-shadow: 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0), 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0,0,0,0)), var(--tw-ring-shadow, 0 0 rgba(0,0,0,0)), var(--tw-shadow);
   border-radius: var(--border-radius);
+  color: #2C3E50;
+  color: var(--main-text-color);
 }
 .s-block--testimonials.testimonials-card-style .s-reviews-testimonial__inner:is(.dark *) {
+    --tw-text-opacity: 1;
+    color: rgba(229, 231, 235, 1);
+    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
     background-color: var(--color-dark-box-background);
 }
 @media (min-width: 640px) {
@@ -21633,9 +21635,13 @@ input[type=radio].sr-only:checked ~ div.s-block--testimonials.testimonials-card-
     font-size: 1.25rem;
     line-height: 1.75rem;
     font-weight: 600;
+    color: #2C3E50;
+    color: var(--main-text-color);
+}
+.s-block--testimonials.testimonials-card-style .s-reviews-testimonial__name_wrapper h2:is(.dark *) {
     --tw-text-opacity: 1;
-    color: rgba(255, 255, 255, 1);
-    color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
+    color: rgba(229, 231, 235, 1);
+    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
 }
 .s-block--testimonials.testimonials-card-style .s-reviews-testimonial__rating {
     margin-left: 0px;
