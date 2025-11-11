@@ -137,7 +137,8 @@
         salla-quantity-input{
           @apply w-full;
           .s-quantity-input-container{
-            @apply w-full;
+            
+            @apply dynamic-bg-color w-full dynamic-text-color;
           }
           .s-quantity-input-input{
             @apply w-[80%]
@@ -577,7 +578,7 @@ salla-comments
 
 }
 
-s-breadcrumb-arrow{
+.s-breadcrumb-arrow{
   svg{
     @apply fill-[var(--color-light-box-background)] dark:fill-[var(--color-dark-box-background)];
     

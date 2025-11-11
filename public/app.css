@@ -23807,6 +23807,19 @@ input[type=radio].sr-only:checked ~ div.pie-wrapper {
     }
   .is-sticky-product-bar .sticky-product-bar__quantity salla-quantity-input .s-quantity-input-container {
         width: 100%;
+        color: #2C3E50;
+        color: var(--main-text-color);
+    }
+.is-sticky-product-bar .sticky-product-bar__quantity salla-quantity-input .s-quantity-input-container:is(.dark *) {
+        --tw-text-opacity: 1;
+        color: rgba(229, 231, 235, 1);
+        color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    }
+.is-sticky-product-bar .sticky-product-bar__quantity salla-quantity-input .s-quantity-input-container {
+        background-color: var(--color-light-box-background);
+    }
+.is-sticky-product-bar .sticky-product-bar__quantity salla-quantity-input .s-quantity-input-container:is(.dark *) {
+        background-color: var(--color-dark-box-background);
     }
   .is-sticky-product-bar .sticky-product-bar__quantity salla-quantity-input .s-quantity-input-input {
         width: 80%;
@@ -24334,10 +24347,10 @@ salla-comments .s-comments-product .s-comments-container:is(.dark *) {
   border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
   background-color: var(--color-dark-box-background);
 }
-s-breadcrumb-arrow svg {
+.s-breadcrumb-arrow svg {
     fill: var(--color-light-box-background);
 }
-s-breadcrumb-arrow svg:is(.dark *) {
+.s-breadcrumb-arrow svg:is(.dark *) {
     fill: var(--color-dark-box-background);
 }
 .brands-nav {
