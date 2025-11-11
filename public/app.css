@@ -24339,10 +24339,10 @@ salla-comments .s-comments-product .s-comments-container:is(.dark *) {
   background-color: var(--color-dark-box-background);
 }
 .s-breadcrumb-arrow svg {
-    fill: var(--color-light-box-background);
+    fill: var(--color-dark-box-background);
 }
 .s-breadcrumb-arrow svg:is(.dark *) {
-    fill: var(--color-dark-box-background);
+    fill: var(--color-light-box-background);
 }
 .brands-nav {
     display: flex;
