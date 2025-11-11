@@ -460,3 +460,10 @@ salla-modal {
 // .dynamic-hover-color{
 //   @apply border-[var(--background-box-color)] dark:border-[var(--dark-background-box-color)];
 // }
+
+.dynamic-bg-color{
+  
+@apply bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)];
+
+}
+
