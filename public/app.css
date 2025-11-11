@@ -24299,6 +24299,15 @@ salla-quantity-input[max="1"] .s-quantity-input-button {
 salla-comments .s-comments-product {
   background-color: transparent !important;
 }
+salla-comments .s-comments-product .s-comments-container {
+    color: #2C3E50;
+    color: var(--main-text-color);
+}
+salla-comments .s-comments-product .s-comments-container:is(.dark *) {
+    --tw-text-opacity: 1;
+    color: rgba(229, 231, 235, 1);
+    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+}
 .brands-nav {
     display: flex;
     flex-wrap: wrap;
