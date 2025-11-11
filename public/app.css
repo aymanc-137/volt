@@ -23764,9 +23764,8 @@ input[type=radio].sr-only:checked ~ div.pie-wrapper {
         align-items: center;
         justify-content: space-between;
         gap: 0.625rem;
-        --tw-bg-opacity: 1;
-        background-color: rgba(255, 255, 255, 1);
-        background-color: rgba(255, 255, 255, var(--tw-bg-opacity, 1));
+        border-color: #414042;
+        border-color: var(--color-primary);
         padding: 0.75rem;
         opacity: 0;
         --tw-shadow: -1px -2px 9px 0 rgba(0,0,0,0.05);
@@ -23780,6 +23779,10 @@ input[type=radio].sr-only:checked ~ div.pie-wrapper {
         transition-delay: 500ms;
         transition-duration: 700ms;
         transition-timing-function: cubic-bezier(0.55, 0, 0.1, 1);
+        background-color: var(--color-light-box-background);
+    }
+.is-sticky-product-bar .sticky-product-bar:is(.dark *) {
+        background-color: var(--color-dark-box-background);
     }
   @media (min-width: 640px) {
         .is-sticky-product-bar .sticky-product-bar {
