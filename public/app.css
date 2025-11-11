@@ -21513,17 +21513,17 @@ input[type=radio].sr-only:checked ~ div.has-overlay:after {
     padding-top: 3.5rem;
     padding-bottom: 3.5rem;
 }
+.s-block--testimonials.testimonials-card-style .s-reviews-header {
+    color: #2C3E50;
+    color: var(--main-text-color);
+}
+.s-block--testimonials.testimonials-card-style .s-reviews-header:is(.dark *) {
+    --tw-text-opacity: 1;
+    color: rgba(229, 231, 235, 1);
+    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+}
 .s-block--testimonials.testimonials-card-style salla-reviews {
     display: block;
-}
-.s-block--testimonials.testimonials-card-style .s-reviews-swiper-slide {
-  width: auto !important;
-}
-.s-block--testimonials.testimonials-card-style .s-reviews-swiper-slide {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
 }
 .s-block--testimonials.testimonials-card-style .s-reviews-testimonial {
     display: flex;

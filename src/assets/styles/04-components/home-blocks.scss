@@ -202,6 +202,12 @@
 
 /* Testimonials default widget overridden to match custom card style */
 .s-block--testimonials.testimonials-card-style {
+  .s-reviews-header{
+
+    @apply dynamic-text-color;
+
+  }
+
   @apply py-14;
 
   salla-reviews {
@@ -209,8 +215,8 @@
   }
 
   .s-reviews-swiper-slide {
-    width: auto !important;
-    @apply px-4 py-6;
+    // width: auto !important;
+    // @apply px-4 py-6;
   }
 
   .s-reviews-testimonial {
