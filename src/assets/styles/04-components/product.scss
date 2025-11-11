@@ -576,3 +576,10 @@ salla-comments
   }
 
 }
+
+s-breadcrumb-arrow{
+  svg{
+    @apply text-white;
+    fill: #f1f1f1;
+  }
+}
