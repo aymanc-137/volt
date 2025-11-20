@@ -132,6 +132,7 @@
         (function () {
             var STORAGE_KEY = 'theme-mode';
             var root = document.documentElement;
+            var darkModeEnabled = {{ theme.settings.get('dark_mode_enabled', true) ? 'true' : 'false' }};
 
             function persistMode(mode) {
                 try {
@@ -160,6 +161,14 @@
             }
 
             function applyMode(mode, shouldPersist) {
+                // Force light mode if dark mode is disabled
+                if (!darkModeEnabled) {
+                    toggleRootClass(false);
+                    persistMode('light');
+                    dispatchThemeChange('light');
+                    return false;
+                }
+
                 var isDark = toggleRootClass(mode === 'dark');
                 if (shouldPersist) {
                     persistMode(isDark ? 'dark' : 'light');
@@ -176,7 +185,8 @@
                 }
             }
 
-            applyMode(readStoredMode() || 'light', false);
+            // Force light mode if dark mode is disabled, otherwise use stored or default to light
+            applyMode(darkModeEnabled ? (readStoredMode() || 'light') : 'light', false);
 
             document.addEventListener('DOMContentLoaded', function () {
                 var toggle = document.getElementById('theme-toggle');
@@ -203,6 +213,11 @@
                 updateToggleState(root.classList.contains('dark'));
 
                 toggle.addEventListener('click', function () {
+                    // Prevent toggling if dark mode is disabled
+                    if (!darkModeEnabled) {
+                        return;
+                    }
+
                     var nextMode = root.classList.contains('dark') ? 'light' : 'dark';
                     var isDark = applyMode(nextMode, true);
                     updateToggleState(isDark);

@@ -123,6 +123,17 @@
             "format": "line"
         },
         {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "تفعيل الوضع الداكن",
+            "description": "عند التعطيل، سيتم إخفاء زر تبديل الوضع الداكن وسيتم استخدام الوضع الفاتح فقط",
+            "id": "dark_mode_enabled",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
             "type": "static",
             "id": "static-line-colors",
             "format": "line"
