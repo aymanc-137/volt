@@ -202,6 +202,16 @@
             "id": "light-text-color",
             "format": "color",
             "required": false,
+            "value": "#2C3E50"
+        },
+        {
+            "type": "string",
+            "icon": "sicon-palette",
+            "label": "لون النص في (وضع داكن)",
+            "description": null,
+            "id": "main-text-color",
+            "format": "color",
+            "required": false,
             "value": "#1a1a1a"
         },
         {
