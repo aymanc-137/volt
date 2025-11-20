@@ -224,7 +224,8 @@
             "icon": "sicon-palette",
             "label": "لون النص في الوضع المضيئ",
             "description": null,
-            "id": "light-text-color",
+            "id": "main-text-color",
+
             "format": "color",
             "required": false,
             "value": "#2C3E50"
@@ -234,9 +235,9 @@
             "icon": "sicon-palette",
             "label": "لون النص في (وضع داكن)",
             "description": null,
-            "id": "main-text-color",
             "format": "color",
             "required": false,
+            "id": "light-text-color",
             "value": "#1a1a1a",
             "conditions": [
                 {
