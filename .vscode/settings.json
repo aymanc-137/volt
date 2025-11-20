@@ -18,5 +18,6 @@
     "terminal.ansiRed": "#FB543F",
     "terminal.ansiWhite": "#A89984",
     "terminal.ansiYellow": "#FAC03B"
-  }
+  },
+  "livePreview.defaultPreviewPath": "/blue.html"
 }

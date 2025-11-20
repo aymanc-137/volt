@@ -3166,9 +3166,7 @@ textarea.s-input {
     color: var(--main-text-color);
 }
 .product-form .s-form-label:is(.dark *) {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 .s-form-group {
     margin-top: 0.75rem;
@@ -18812,9 +18810,7 @@ input[type=radio].sr-only:checked ~ div.s-app-install-banner-cancel-button {
     color: var(--main-text-color);
 }
 .dark *.dynamic-text-color {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 .dynamic-border-color {
   border-color: color-mix(in srgb, var(--color-light-box-background) 90%, black);
@@ -20401,9 +20397,7 @@ input[type=radio].sr-only:checked ~ div#nav-cart span {
     color: var(--main-text-color);
 }
 .dark *.main-menu {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 .main-menu > li > a[href*=offer] {
     --tw-text-opacity: 1;
@@ -21539,9 +21533,7 @@ input[type=radio].sr-only:checked ~ div.has-overlay:after {
     color: var(--main-text-color);
 }
 .s-block--testimonials.testimonials-card-style .s-reviews-header:is(.dark *) {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 .s-block--testimonials.testimonials-card-style salla-reviews {
     display: block;
@@ -21573,9 +21565,7 @@ input[type=radio].sr-only:checked ~ div.has-overlay:after {
   color: var(--main-text-color);
 }
 .s-block--testimonials.testimonials-card-style .s-reviews-testimonial__inner:is(.dark *) {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
     background-color: var(--color-dark-box-background);
 }
 @media (min-width: 640px) {
@@ -21661,9 +21651,7 @@ input[type=radio].sr-only:checked ~ div.s-block--testimonials.testimonials-card-
     color: var(--main-text-color);
 }
 .s-block--testimonials.testimonials-card-style .s-reviews-testimonial__name_wrapper h2:is(.dark *) {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 .s-block--testimonials.testimonials-card-style .s-reviews-testimonial__rating {
     margin-left: 0px;
@@ -21683,9 +21671,7 @@ input[type=radio].sr-only:checked ~ div.s-block--testimonials.testimonials-card-
     color: var(--main-text-color);
 }
 .s-block--testimonials.testimonials-card-style .s-reviews-testimonial__rating .s-rating-stars-btn-star svg:is(.dark *) {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 .s-block--testimonials.testimonials-card-style .s-reviews-testimonial__rating .s-rating-stars-selected svg {
     color: #414042;
@@ -23136,9 +23122,7 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
   color: var(--main-text-color);
 }
 .flash-offer .flash-offer-container .flash-offer-count-down salla-count-down ul li:is(.dark *):is(.dark *) {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 .flash-offer .flash-offer-container .flash-offer-count-down salla-count-down ul li {
   border: 1px solid #414042 !important;
@@ -23155,9 +23139,7 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
     color: var(--main-text-color);
 }
 .flash-offer .flash-offer-container .flash-offer-count-down salla-count-down ul li .s-count-down-item-label:is(.dark *) {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 .dark *.dark\:text-counter-bg-color {
   --tw-text-opacity: 1;
@@ -23166,9 +23148,7 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
   color: var(--main-text-color);
 }
 .dark .dark\:text-counter-bg-color:is(.dark *) {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 @keyframes flash-offer-shadow-pulse {
   0%, 100% {
@@ -24245,18 +24225,14 @@ salla-quantity-input[max="1"] .s-quantity-input-button {
     color: var(--main-text-color);
 }
 .product-card-volt .s-product-card-content:is(.dark *) {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 .product-card-volt .s-product-card-content .s-product-card-content-title a {
     color: #2C3E50;
     color: var(--main-text-color);
 }
 .product-card-volt .s-product-card-content .s-product-card-content-title a:is(.dark *) {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 .product-card-volt__bottom-border {
   position: absolute;
@@ -24336,9 +24312,7 @@ salla-comments .s-comments-product .s-comments-container {
   color: var(--main-text-color);
 }
 salla-comments .s-comments-product .s-comments-container:is(.dark *) {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 salla-comments .s-comments-product .s-comments-container {
   border-color: color-mix(in srgb, var(--color-light-box-background) 90%, black);
@@ -24361,9 +24335,7 @@ salla-comments .s-comments-product .s-comments-container:is(.dark *) {
     color: var(--main-text-color);
 }
 .product-form .form-label:is(.dark *) {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 .brands-nav {
     display: flex;
@@ -25186,9 +25158,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     color: var(--main-text-color);
 }
 .category-card .category-name:is(.dark *) {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 .category-card:hover {
     --tw-scale-x: 1.05;
@@ -25276,9 +25246,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     color: var(--main-text-color);
 }
 .dark *.car-search-tree__title {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 @media (min-width: 768px) {
     .car-search-tree__title {
@@ -25323,9 +25291,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     color: var(--main-text-color);
 }
 .dark *.car-search-tree__selection-value {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 .car-search-tree__status {
     background-color: var(--color-primary-5);
@@ -25340,9 +25306,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
   color: var(--main-text-color);
 }
 .dark *.car-search-tree__status {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 .car-search-tree__empty {
     border-width: 1px;
@@ -25369,9 +25333,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     color: var(--main-text-color);
 }
 .car-search-tree__empty strong:is(.dark *) {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 .car-search-tree__empty p {
     font-size: 0.875rem;
@@ -25431,9 +25393,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     color: var(--main-text-color);
 }
 .car-search-tree__select select:is(.dark *) {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 .car-search-tree__select select {
   border-color: color-mix(in srgb, var(--color-light-box-background) 90%, black);
@@ -25484,9 +25444,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     color: var(--main-text-color);
 }
 .car-search-tree__row-heading h3:is(.dark *) {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 .car-search-tree__row-heading p {
     font-size: 0.875rem;
@@ -25587,9 +25545,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     color: var(--main-text-color);
 }
 .dark *.car-search-tree__option-label {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 .car-search-tree__products > :not([hidden]) ~ :not([hidden]) {
     --tw-space-y-reverse: 0;
@@ -25617,9 +25573,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     color: var(--main-text-color);
 }
 .car-search-tree__products-header h3:is(.dark *) {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 .car-search-tree__products-header p {
     font-size: 0.875rem;

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VELOCITY | Precision Aero Parts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-blue': '#020617',
+                        'tech-blue': '#0ea5e9', // Sky 500
+                        'cyan-glow': '#22d3ee', // Cyan 400
+                        'surface': '#0f172a'
+                    },
+                    fontFamily: {
+                        'display': ['Orbitron', 'sans-serif'],
+                        'body': ['Roboto', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #1e293b 1px, transparent 1px), linear-gradient(to bottom, #1e293b 1px, transparent 1px)",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Roboto', sans-serif; }
+        h1, h2, h3, .tech-font { font-family: 'Orbitron', sans-serif; }
+        
+        /* Tech Grid Background */
+        .bg-grid {
+            background-size: 40px 40px;
+            mask-image: linear-gradient(to bottom, transparent, black, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 5%, black 40%, transparent 95%);
+        }
+
+        /* Glowing Text Effect */
+        .text-glow {
+            text-shadow: 0 0 15px rgba(34, 211, 238, 0.6);
+        }
+
+        /* Button Glitch Effect on Hover */
+        .clip-corner {
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+        }
+    </style>
+</head>
+<body class="bg-deep-blue text-slate-300 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-deep-blue/80 backdrop-blur-md border-b border-slate-800">
+        <div class="container mx-auto px-6 h-20 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-cyan-glow rounded-full blur-sm absolute opacity-50"></div>
+                <div class="text-2xl font-black tech-font tracking-widest text-white relative z-10 italic">
+                    VELOCITY<span class="text-cyan-glow">.LABS</span>
+                </div>
+            </div>
+            
+            <!-- Menu -->
+            <div class="hidden md:flex space-x-12 text-sm font-bold tracking-widest uppercase">
+                <a href="#" class="hover:text-cyan-glow transition-all hover:scale-110">Aero</a>
+                <a href="#" class="hover:text-cyan-glow transition-all hover:scale-110">Engine</a>
+                <a href="#" class="hover:text-cyan-glow transition-all hover:scale-110">Suspension</a>
+                <a href="#" class="hover:text-cyan-glow transition-all hover:scale-110">Telemetry</a>
+            </div>
+
+            <!-- Cart Icon -->
+            <a href="#" class="relative group">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white group-hover:text-cyan-glow transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+                <span class="absolute -top-1 -right-1 bg-cyan-glow text-black text-[10px] font-bold px-1 rounded">2</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        
+        <!-- Background Grid Animation -->
+        <div class="absolute inset-0 bg-grid-pattern bg-grid opacity-20 pointer-events-none"></div>
+        
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <!-- Using a blue toned image (Nissan GTR or similar vibe) -->
+            <img src="https://images.unsplash.com/photo-1600712242805-5f7c371ed647?q=80&w=1920&auto=format&fit=crop" 
+                 class="w-full h-full object-cover opacity-50 mix-blend-overlay">
+            <div class="absolute inset-0 bg-gradient-to-t from-deep-blue via-deep-blue/60 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-deep-blue via-transparent to-deep-blue"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="bg-cyan-glow/10 border border-cyan-glow text-cyan-glow px-4 py-1 text-xs font-bold tracking-[0.2em] uppercase">System Ready</span>
+                    <span class="h-px w-20 bg-cyan-glow/50"></span>
+                </div>
+                
+                <h1 class="text-6xl md:text-8xl font-black text-white leading-none mb-6 uppercase italic">
+                    Precision <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-glow to-blue-600 text-glow">Dynamics</span>
+                </h1>
+                
+                <p class="text-slate-400 text-lg mb-8 max-w-md border-l-2 border-slate-700 pl-6">
+                    Engineered for the track. Optimized for the street. Unlock the true potential of your machine with our Stage 3 Aerodynamics kit.
+                </p>
+
+                <div class="flex flex-wrap gap-6">
+                    <button class="clip-corner bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white px-10 py-4 font-bold tracking-widest uppercase transition-all shadow-[0_0_20px_rgba(6,182,212,0.4)]">
+                        Initialize Build
+                    </button>
+                    <button class="px-8 py-4 border border-slate-700 text-slate-300 hover:border-cyan-glow hover:text-white hover:bg-cyan-glow/10 transition-all font-bold uppercase tracking-widest clip-corner">
+                        View Specs
+                    </button>
+                </div>
+            </div>
+
+            <!-- HUD / Data Visual Decoration -->
+            <div class="hidden md:block relative opacity-80">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500/20 blur-[100px] rounded-full"></div>
+                <div class="border border-slate-700 bg-deep-blue/50 backdrop-blur-sm p-8 clip-corner relative">
+                    <div class="flex justify-between items-end mb-4">
+                        <div class="text-xs text-slate-500 uppercase tracking-widest">Telemetry</div>
+                        <div class="text-cyan-glow font-mono text-xl animate-pulse">LIVE</div>
+                    </div>
+                    <div class="space-y-4">
+                        <!-- Stat 1 -->
+                        <div>
+                            <div class="flex justify-between text-sm mb-1 text-white">
+                                <span>Downforce</span>
+                                <span>850kg</span>
+                            </div>
+                            <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-cyan-glow w-[85%] shadow-[0_0_10px_rgba(34,211,238,0.8)]"></div>
+                            </div>
+                        </div>
+                        <!-- Stat 2 -->
+                        <div>
+                            <div class="flex justify-between text-sm mb-1 text-white">
+                                <span>Drag Coefficient</span>
+                                <span>0.24cd</span>
+                            </div>
+                            <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-blue-500 w-[92%]"></div>
+                            </div>
+                        </div>
+                        <!-- Stat 3 -->
+                        <div>
+                            <div class="flex justify-between text-sm mb-1 text-white">
+                                <span>Cornering G</span>
+                                <span>1.4g</span>
+                            </div>
+                            <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-cyan-700 w-[70%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Product Carousel / Showcase -->
+    <section class="py-24 bg-surface relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 tech-font uppercase">Upgrade <span class="text-cyan-glow">Modules</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-transparent via-cyan-glow to-transparent mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="bg-deep-blue border border-slate-800 p-6 hover:border-cyan-glow/50 transition-colors group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-slate-800 text-xs font-bold px-3 py-1 text-cyan-glow">NEW</div>
+                    <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=800&auto=format&fit=crop" class="w-full h-48 object-cover mb-6 opacity-80 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0">
+                    <h3 class="text-xl text-white font-bold mb-2 tech-font">Carbon Splitter</h3>
+                    <p class="text-sm text-slate-400 mb-4">Aerospace grade carbon fiber front splitter for maximum downforce.</p>
+                    <div class="flex justify-between items-center border-t border-slate-800 pt-4">
+                        <span class="text-cyan-glow font-mono text-lg">$450.00</span>
+                        <button class="text-white hover:text-cyan-glow uppercase text-xs font-bold tracking-widest transition">Add to Cart +</button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="bg-deep-blue border border-slate-800 p-6 hover:border-cyan-glow/50 transition-colors group relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1618944688253-69f1c4a5498a?q=80&w=800&auto=format&fit=crop" class="w-full h-48 object-cover mb-6 opacity-80 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0">
+                    <h3 class="text-xl text-white font-bold mb-2 tech-font">Titanium Intake</h3>
+                    <p class="text-sm text-slate-400 mb-4">Blue-burnt finish titanium intake piping for improved airflow.</p>
+                    <div class="flex justify-between items-center border-t border-slate-800 pt-4">
+                        <span class="text-cyan-glow font-mono text-lg">$899.00</span>
+                        <button class="text-white hover:text-cyan-glow uppercase text-xs font-bold tracking-widest transition">Add to Cart +</button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="bg-deep-blue border border-slate-800 p-6 hover:border-cyan-glow/50 transition-colors group relative overflow-hidden">
+                     <div class="absolute top-0 right-0 bg-red-600 text-xs font-bold px-3 py-1 text-white">SALE</div>
+                    <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=800&auto=format&fit=crop" class="w-full h-48 object-cover mb-6 opacity-80 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0">
+                    <h3 class="text-xl text-white font-bold mb-2 tech-font">ECU Tuner</h3>
+                    <p class="text-sm text-slate-400 mb-4">Plug-and-play performance chip. Unlock +40HP instantly.</p>
+                    <div class="flex justify-between items-center border-t border-slate-800 pt-4">
+                        <span class="text-cyan-glow font-mono text-lg">$299.00</span>
+                        <button class="text-white hover:text-cyan-glow uppercase text-xs font-bold tracking-widest transition">Add to Cart +</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specs Section -->
+    <section class="py-24 bg-deep-blue border-t border-slate-800">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-16">
+            <div class="md:w-1/2 relative">
+                <!-- Abstract Tech Circle -->
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-slate-700 rounded-full opacity-30 animate-[spin_10s_linear_infinite]"></div>
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 border border-cyan-glow rounded-full opacity-20 animate-[spin_15s_linear_infinite_reverse]"></div>
+                
+                <img src="https://images.unsplash.com/photo-1553440297-174ad7454a0f?q=80&w=800&auto=format&fit=crop" 
+                     class="relative z-10 rounded-lg shadow-2xl border border-slate-700 grayscale hover:grayscale-0 transition duration-700">
+            </div>
+            <div class="md:w-1/2">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 tech-font uppercase">Wind Tunnel <br><span class="text-blue-500">Verified</span></h2>
+                <p class="text-slate-400 mb-8 leading-relaxed">
+                    Every part we sell undergoes rigorous testing in our computational fluid dynamics (CFD) simulations. We don't just sell aesthetics; we sell seconds off your lap time.
+                </p>
+                
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="border-l-2 border-cyan-glow pl-4">
+                        <h4 class="text-white font-bold tech-font">Aerospace Alloy</h4>
+                        <p class="text-sm text-slate-500 mt-1">T6-6061 Aluminum construction.</p>
+                    </div>
+                    <div class="border-l-2 border-cyan-glow pl-4">
+                        <h4 class="text-white font-bold tech-font">Laser Scanned</h4>
+                        <p class="text-sm text-slate-500 mt-1">Perfect fitment guaranteed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-slate-800 text-slate-500 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <div class="text-3xl font-black tech-font text-white mb-4 italic">VELOCITY<span class="text-cyan-glow">.LABS</span></div>
+            <div class="flex justify-center gap-8 text-sm font-bold uppercase tracking-widest mb-8">
+                <a href="#" class="hover:text-white transition">Technology</a>
+                <a href="#" class="hover:text-white transition">Careers</a>
+                <a href="#" class="hover:text-white transition">Legal</a>
+            </div>
+            <p class="text-xs opacity-50">© 2024 Velocity Labs Performance. Engineered in Germany.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
