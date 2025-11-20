@@ -193,7 +193,14 @@
             "id": "color_dark_page_background",
             "format": "color",
             "required": false,
-            "value": "#121212"
+            "value": "#121212",
+            "conditions": [
+                {
+                    "id": "dark_mode_enabled",
+                    "operation": "=",
+                    "value": true
+                }   
+            ]
         },
         {
             "type": "string",
@@ -203,7 +210,14 @@
             "id": "color_dark_box_background",
             "format": "color",
             "required": false,
-            "value": "#1a1a1a"
+            "value": "#1a1a1a",
+            "conditions": [
+                {
+                    "id": "dark_mode_enabled",
+                    "operation": "=",
+                    "value": true
+                }   
+            ]
         },
         {
             "type": "string",
@@ -223,7 +237,14 @@
             "id": "main-text-color",
             "format": "color",
             "required": false,
-            "value": "#1a1a1a"
+            "value": "#1a1a1a",
+            "conditions": [
+                {
+                    "id": "dark_mode_enabled",
+                    "operation": "=",
+                    "value": true
+                }   
+            ]
         },
         {
             "type": "static",
