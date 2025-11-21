@@ -205,6 +205,35 @@
         {
             "type": "string",
             "icon": "sicon-palette",
+            "label": "لون الحدود",
+            "description": null,
+            "id": "color_border",
+            "format": "color",
+            "required": false,
+            "value": "#121212"
+          
+        },
+
+        {
+            "type": "string",
+            "icon": "sicon-palette",
+            "label": "لون الحدود في الوضع الداكن",
+            "description": null,
+            "id": "color_border_dark",
+            "format": "color",
+            "required": false,
+            "value": "#121212",
+            "conditions": [
+                {
+                    "id": "dark_mode_enabled",
+                    "operation": "=",
+                    "value": true
+                }   
+            ]
+        },
+        {
+            "type": "string",
+            "icon": "sicon-palette",
             "label": "لون خلفية الصناديق (وضع داكن)",
             "description": null,
             "id": "color_dark_box_background",
