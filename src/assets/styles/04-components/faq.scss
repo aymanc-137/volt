@@ -256,8 +256,8 @@
 
   // Answer Text
   &__answer {
-    @apply text-gray-700 dark:text-gray-300;
-    @apply border-t border-gray-200 dark:border-gray-700;
+    @apply dynamic-text-color dynamic-border-color;
+ //   @apply border-t border-gray-200 dark:border-gray-700;
     transition: all 0.3s ease-out;
 
     // Responsive spacing
@@ -278,7 +278,7 @@
 
     // Support for inline HTML formatting
     strong {
-      @apply font-semibold text-gray-900 dark:text-white;
+      @apply font-semibold dynamic-text-color;
     }
 
     em {
