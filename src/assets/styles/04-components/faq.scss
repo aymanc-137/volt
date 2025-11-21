@@ -3,8 +3,8 @@
 // Features: Accordion, Dark Mode Support, Responsive Design
 
 .faq-component {
-  @apply py-12 sm:py-16 lg:py-20 dark:bg-[var(--color-dark-page-background)];
-  background-color: var(--color-grey);
+  @apply py-12 sm:py-16 lg:py-20 ;
+ // background-color: var(--color-grey);
 
   &__wrapper {
     @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
@@ -32,7 +32,7 @@
   }
 
   &__title {
-    @apply text-gray-900 dark:text-white transition-colors duration-300;
+    @apply dynamic-text-color transition-colors duration-300;
     animation: fadeInUp 0.6s ease-out 0.1s both;
 
     @keyframes fadeInUp {
@@ -144,7 +144,7 @@
 
       .faq-component__trigger {
         background-color: rgba(var(--color-primary), 0.05);
-        @apply dark:bg-gray-800;
+      //  @apply dark:bg-gray-800;
       }
 
       .faq-component__icon {
@@ -416,15 +416,15 @@
   .faq-component {
     // Ensure proper contrast in dark mode
     &__title {
-      @apply text-white;
+      @apply dynamic-text-color;
     }
 
     &__description {
-      @apply text-gray-300;
+      @apply dynamic-text-color;
     }
 
     &__question {
-      @apply text-gray-100;
+      @apply dynamic-text-color;
 
       .faq-component__item.is-active & {
         @apply text-primary-light;
@@ -432,10 +432,9 @@
     }
 
     &__answer {
-      @apply text-gray-300;
-
+      @apply dynamic-text-color;
       strong {
-        @apply text-gray-100;
+        @apply dynamic-text-color;
       }
 
       a {
