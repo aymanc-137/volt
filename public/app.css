@@ -18813,10 +18813,7 @@ input[type=radio].sr-only:checked ~ div.s-app-install-banner-cancel-button {
     color: var(--light-text-color);
 }
 .dynamic-border-color {
-  border-color: color-mix(in srgb, var(--color-light-box-background) 90%, white);
-}
-.dark *.dynamic-border-color {
-  border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
+  border-color: color-contrast(var(--color-light-box-background) vs black, white);
 }
 .dynamic-bg-color {
     background-color: var(--color-light-box-background);
@@ -23790,11 +23787,8 @@ input[type=radio].sr-only:checked ~ div.pie-wrapper {
     }
   .is-sticky-product-bar .sticky-product-bar__quantity salla-quantity-input {
         width: 100%;
-  border-color: color-mix(in srgb, var(--color-light-box-background) 90%, white);
+  border-color: color-contrast(var(--color-light-box-background) vs black, white);
     }
-.is-sticky-product-bar .sticky-product-bar__quantity salla-quantity-input:is(.dark *) {
-  border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
-}
   .is-sticky-product-bar .sticky-product-bar__quantity salla-quantity-input .s-quantity-input-container {
         width: 100%;
     }
@@ -24177,11 +24171,10 @@ salla-quantity-input[max="1"] .s-quantity-input-button {
   box-shadow: var(--shadow-glow-sm);
 }
 .product-card-volt {
-  border-color: color-mix(in srgb, var(--color-light-box-background) 90%, white);
+  border-color: color-contrast(var(--color-light-box-background) vs black, white);
 }
 .dark *.product-card-volt {
-  border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
-  background-color: var(--color-dark-box-background);
+    background-color: var(--color-dark-box-background);
 }
 .product-card-volt::before, .product-card-volt::after {
   content: "";
@@ -24312,11 +24305,10 @@ salla-comments .s-comments-product .s-comments-container:is(.dark *) {
     color: var(--light-text-color);
 }
 salla-comments .s-comments-product .s-comments-container {
-  border-color: color-mix(in srgb, var(--color-light-box-background) 90%, white);
+  border-color: color-contrast(var(--color-light-box-background) vs black, white);
 }
 salla-comments .s-comments-product .s-comments-container:is(.dark *) {
-  border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
-  background-color: var(--color-dark-box-background);
+    background-color: var(--color-dark-box-background);
 }
 .s-breadcrumb-arrow svg {
     fill: var(--color-dark-box-background);
@@ -25144,11 +25136,10 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
   box-shadow: var(--shadow-glow-sm);
 }
 .category-card {
-  border-color: color-mix(in srgb, var(--color-light-box-background) 90%, white);
+  border-color: color-contrast(var(--color-light-box-background) vs black, white);
 }
 .dark *.category-card {
-  border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
-  background-color: var(--color-dark-box-background);
+    background-color: var(--color-dark-box-background);
 }
 .category-card .category-name {
     color: #2C3E50;
@@ -25203,11 +25194,10 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     box-shadow: 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0), 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0,0,0,0)), var(--tw-ring-shadow, 0 0 rgba(0,0,0,0)), var(--tw-shadow);
   border-radius: var(--border-radius);
-  border-color: color-mix(in srgb, var(--color-light-box-background) 90%, white);
+  border-color: color-contrast(var(--color-light-box-background) vs black, white);
 }
 .dark *.car-search-tree {
-  border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
-  background-color: var(--color-dark-box-background);
+    background-color: var(--color-dark-box-background);
 }
 @media (min-width: 768px) {
     .car-search-tree {
@@ -25315,11 +25305,10 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     padding-bottom: 2.5rem;
     text-align: center;
   border-radius: var(--border-radius);
-  border-color: color-mix(in srgb, var(--color-light-box-background) 90%, white);
+  border-color: color-contrast(var(--color-light-box-background) vs black, white);
 }
 .dark *.car-search-tree__empty {
-  border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
-  background-color: rgba(17, 24, 39, 0.5);
+    background-color: rgba(17, 24, 39, 0.5);
 }
 .car-search-tree__empty strong {
     margin-bottom: 0.5rem;
@@ -25393,10 +25382,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     color: var(--light-text-color);
 }
 .car-search-tree__select select {
-  border-color: color-mix(in srgb, var(--color-light-box-background) 90%, white);
-}
-.car-search-tree__select select:is(.dark *) {
-  border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
+  border-color: color-contrast(var(--color-light-box-background) vs black, white);
 }
 .car-search-tree__select select:focus {
     outline: 2px solid transparent;
@@ -25557,10 +25543,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     border-width: 1px;
     padding: 1.5rem;
   border-radius: var(--border-radius);
-  border-color: color-mix(in srgb, var(--color-light-box-background) 90%, white);
-}
-.dark *.car-search-tree__products {
-  border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
+  border-color: color-contrast(var(--color-light-box-background) vs black, white);
 }
 .car-search-tree__products-header h3 {
     font-size: 1.25rem;
@@ -25773,10 +25756,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
   box-shadow: var(--shadow-glow-sm);
 }
 .s-block--why-us .why-us-feature {
-  border-color: color-mix(in srgb, var(--color-light-box-background) 90%, white);
-}
-.s-block--why-us .why-us-feature:is(.dark *) {
-  border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
+  border-color: color-contrast(var(--color-light-box-background) vs black, white);
 }
 @media (min-width: 768px) {
     .s-block--why-us .why-us-feature {
@@ -25786,11 +25766,10 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
 .s-block--why-us .why-us-feature {
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(10, 11, 14, 0.06);
-  border-color: color-mix(in srgb, var(--color-light-box-background) 90%, white);
+  border-color: color-contrast(var(--color-light-box-background) vs black, white);
 }
 .s-block--why-us .why-us-feature:is(.dark *) {
-  border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
-  background-color: var(--color-dark-box-background);
+    background-color: var(--color-dark-box-background);
 }
 .s-block--why-us .why-us-feature:hover {
     --tw-translate-y: -0.25rem;
