@@ -449,7 +449,7 @@ salla-modal {
 }
 
 .dynamic-border-color{
-  border-color: color-mix(in srgb, var(--color-light-box-background) 90%, black);
+  border-color: color-mix(in srgb, var(--color-light-box-background) 90%, white);
   &:is(.dark *){
     border-color: color-mix(in srgb, var(--color-dark-box-background) 90%, white);
   }
