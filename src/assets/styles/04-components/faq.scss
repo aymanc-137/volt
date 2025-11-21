@@ -168,7 +168,7 @@
     transition: all 0.3s ease-out;
 
     &:hover {
-      @apply bg-gray-50 dark:bg-gray-800;
+      @apply bg-[var(--color-dark-box-background)] dark:bg-[var(--color-light-box-background)];
     }
 
     &:focus-visible {
@@ -200,7 +200,7 @@
 
   // Question Text
   &__question {
-    @apply text-gray-900 dark:text-white;
+    @apply dynamic-text-color;
     transition: color 0.3s ease-out;
 
     // Responsive font sizes

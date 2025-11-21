@@ -22531,14 +22531,10 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
   transition: all 0.3s ease-out;
 }
 .faq-component__trigger:hover {
-    --tw-bg-opacity: 1;
-    background-color: rgba(249, 250, 251, 1);
-    background-color: rgba(249, 250, 251, var(--tw-bg-opacity, 1));
+    background-color: var(--color-dark-box-background);
 }
 .dark .faq-component__trigger:hover {
-    --tw-bg-opacity: 1;
-    background-color: rgba(31, 41, 55, 1);
-    background-color: rgba(31, 41, 55, var(--tw-bg-opacity, 1));
+    background-color: var(--color-light-box-background);
 }
 .faq-component__trigger:focus-visible {
     outline: 2px solid transparent;
@@ -22583,14 +22579,11 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
     }
 }
 .faq-component__question {
-    --tw-text-opacity: 1;
-    color: rgba(17, 24, 39, 1);
-    color: rgba(17, 24, 39, var(--tw-text-opacity, 1));
+    color: #2C3E50;
+    color: var(--main-text-color);
 }
 .dark *.faq-component__question {
-    --tw-text-opacity: 1;
-    color: rgba(255, 255, 255, 1);
-    color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
 }
 .faq-component__question {
   transition: color 0.3s ease-out;
