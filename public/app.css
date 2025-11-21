@@ -22467,11 +22467,6 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
     position: relative;
     overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border-width: 1px;
-  --tw-border-opacity: 1;
-  border-color: rgba(229, 231, 235, 1);
-  border-color: rgba(229, 231, 235, var(--tw-border-opacity, 1));
-  background-color: var(--color-light-box-background);
 }
 .faq-component__item:hover {
     border-color: #414042;
@@ -22916,16 +22911,6 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
 }
 .faq-component__empty-state {
     text-align: center;
-}
-.faq-component__empty-state p {
-    --tw-text-opacity: 1;
-    color: rgba(107, 114, 128, 1);
-    color: rgba(107, 114, 128, var(--tw-text-opacity, 1));
-}
-.faq-component__empty-state p:is(.dark *) {
-    --tw-text-opacity: 1;
-    color: rgba(156, 163, 175, 1);
-    color: rgba(156, 163, 175, var(--tw-text-opacity, 1));
 }
 .faq-component__empty-state p {
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;

@@ -127,7 +127,7 @@
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     // Light mode styles
-    @apply border border-gray-200 bg-light-foreground;
+    //@apply border border-gray-200 bg-light-foreground;
     @apply hover:border-primary hover:shadow-md;
     border-color: var(--color-primary-20);
 
@@ -364,7 +364,7 @@
     @apply text-center;
 
     p {
-      @apply text-gray-500 dark:text-gray-400;
+     // @apply text-gray-500 dark:text-gray-400;
       @apply transition-colors duration-300;
 
       @media (max-width: 640px) {
