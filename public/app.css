@@ -25707,16 +25707,9 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
 }
 .s-block--why-us .why-us-title {
   letter-spacing: -0.015em;
-  color: #2b2d34;
-  color: var(--main-text-color-dark);
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
-}
-.s-block--why-us .why-us-title:is(.dark *) {
-    --tw-text-opacity: 1;
-    color: rgba(255, 255, 255, 1);
-    color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
 }
 .s-block--why-us .why-us-description {
     font-size: 1rem;
@@ -25730,17 +25723,12 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     }
 }
 .s-block--why-us .why-us-description {
-  color: #2C3E50;
-  color: var(--main-text-color);
   opacity: 0.88;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
 }
 .s-block--why-us .why-us-description:is(.dark *) {
-    --tw-text-opacity: 1;
-    color: rgba(209, 213, 219, 1);
-    color: rgba(209, 213, 219, var(--tw-text-opacity, 1));
     opacity: 0.9;
 }
 .s-block--why-us .why-us-features {
@@ -25847,16 +25835,11 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     font-size: 1.125rem;
     line-height: 1.75rem;
     font-weight: 600;
-  color: #2b2d34;
-  color: var(--main-text-color-dark);
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
-}
-.s-block--why-us .why-us-feature__title:is(.dark *) {
-    --tw-text-opacity: 1;
-    color: rgba(255, 255, 255, 1);
-    color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
+    color: #414042;
+    color: var(--color-primary);
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
 }
 .s-block--why-us .why-us-feature__description {
     font-size: 0.875rem;
@@ -25870,17 +25853,15 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     }
 }
 .s-block--why-us .why-us-feature__description {
-  color: #2C3E50;
-  color: var(--main-text-color);
   opacity: 0.9;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
+  color: #2C3E50;
+  color: var(--main-text-color);
 }
 .s-block--why-us .why-us-feature__description:is(.dark *) {
-    --tw-text-opacity: 1;
-    color: rgba(209, 213, 219, 1);
-    color: rgba(209, 213, 219, var(--tw-text-opacity, 1));
+    color: var(--light-text-color);
     opacity: 0.85;
 }
 body.mm-ocd-opened,

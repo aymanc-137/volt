@@ -44,15 +44,14 @@
   .why-us-title {
     @apply text-3xl md:text-4xl leading-tight font-alshohadaa mb-4;
     letter-spacing: -0.015em;
-    color: var(--main-text-color-dark);
-    @apply dark:text-white transition-colors duration-300;
+   
+    @apply   transition-colors duration-300;
   }
 
   .why-us-description {
     @apply text-base md:text-lg leading-relaxed;
-    color: var(--main-text-color);
-    opacity: 0.88;
-    @apply dark:text-gray-300 dark:opacity-90 transition-colors duration-300;
+     opacity: 0.88;
+    @apply  dark:opacity-90 transition-colors duration-300;
   }
 
   .why-us-features {
@@ -106,14 +105,15 @@
 
   .why-us-feature__title {
     @apply text-lg font-semibold mb-2;
-    color: var(--main-text-color-dark);
-    @apply dark:text-white transition-colors duration-300;
+    //color: var(--main-text-color-dark);
+    @apply text-primary transition-colors duration-300;
   }
 
   .why-us-feature__description {
     @apply text-sm md:text-base leading-relaxed;
-    color: var(--main-text-color);
+   // color: var(--main-text-color);
     opacity: 0.9;
-    @apply dark:text-gray-300 dark:opacity-85 transition-colors duration-300;
+    @apply dynamic-text-color
+    dark:opacity-85 transition-colors duration-300;
   }
 }
