@@ -222,7 +222,7 @@
         {
             "type": "string",
             "icon": "sicon-palette",
-            "label": "لون النص في الوضع المضيئ",
+            "label": "لون النص ",
             "description": null,
             "id": "main-text-color",
 
