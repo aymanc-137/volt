@@ -25648,8 +25648,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     }
 }
 .s-block--why-us {
-  background-color: #f5f7f9;
-  background-color: var(--color-grey);
+    background-color: var(var(--color-light-page-background));
 }
 .dark *.s-block--why-us {
     background-color: var(--color-dark-page-background);
@@ -25759,6 +25758,8 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     display: flex;
     align-items: flex-start;
     gap: 1rem;
+    border-width: 1px;
+    background-color: var(--color-dark-box-background);
     padding: 1rem;
     --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
@@ -25777,20 +25778,12 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
 }
 .s-block--why-us .why-us-feature:is(.dark *) {
     border-color: var(--color-border-dark);
+    background-color: var(--color-dark-box-background);
 }
 @media (min-width: 768px) {
     .s-block--why-us .why-us-feature {
         padding: 1.5rem;
     }
-}
-.s-block--why-us .why-us-feature {
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(10, 11, 14, 0.06);
-  border-color: var(--color-border);
-}
-.s-block--why-us .why-us-feature:is(.dark *) {
-    border-color: var(--color-border-dark);
-    background-color: var(--color-dark-box-background);
 }
 .s-block--why-us .why-us-feature:hover {
     --tw-translate-y: -0.25rem;

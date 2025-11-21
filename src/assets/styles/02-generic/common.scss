@@ -449,6 +449,7 @@ salla-modal {
 }
 
 .dynamic-border-color{
+ 
 
   @apply border-[var(--color-border)] dark:border-[var(--color-border-dark)];
   // border-color: color-mix(in srgb, var(--color-light-box-background) 90%, black);
