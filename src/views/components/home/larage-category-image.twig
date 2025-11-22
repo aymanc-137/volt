@@ -1,18 +1,18 @@
 <!-- Categories Grid -->
 <section class="py-20 bg-black slant-top pb-32">
 	<div class="container mx-auto px-6">
-		{% if title %}
+		{% if component.title %}
 			<h2 class="text-4xl md:text-5xl mb-12 text-center italic uppercase">
-				{% if enable_gradient_word and gradient_word %}
-					{{ title|replace({ (gradient_word): '<span class="text-red-600">' ~ gradient_word ~ '</span>' })|raw }}
+				{% if component.enable_gradient_word and component.gradient_word %}
+					{{ component.title|replace({ (component.gradient_word): '<span class="text-red-600">' ~ component.gradient_word ~ '</span>' })|raw }}
 				{% else %}
-					{{ title }}
+					{{ component.title }}
 				{% endif %}
 			</h2>
 		{% endif %}
 
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 h-[600px]">
-			{% for item in items %}
+			{% for item in component.items %}
 				<!-- Category Card {{ loop.index }} -->
 				<div class="relative group overflow-hidden h-full border-r-4 border-red-600 cursor-pointer">
 					<a href="{{ item.link }}" class="block h-full w-full">

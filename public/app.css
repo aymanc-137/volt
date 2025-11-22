@@ -1290,6 +1290,9 @@ select {
 .h-\[34px\] {
     height: 34px;
 }
+.h-\[600px\] {
+    height: 600px;
+}
 .h-\[80vh\] {
     height: 80vh;
 }
@@ -1307,9 +1310,6 @@ select {
 }
 .h-px {
     height: 1px;
-}
-.h-\[600px\] {
-    height: 600px;
 }
 .max-h-0 {
     max-height: 0px;
@@ -1907,11 +1907,11 @@ select {
 .border-l {
     border-left-width: 1px;
 }
-.border-t {
-    border-top-width: 1px;
-}
 .border-r-4 {
     border-right-width: 4px;
+}
+.border-t {
+    border-top-width: 1px;
 }
 .border-dashed {
     border-style: dashed;
@@ -1983,15 +1983,15 @@ select {
     border-color: rgba(239, 68, 68, 1);
     border-color: rgba(239, 68, 68, var(--tw-border-opacity, 1));
 }
-.border-yellow-500 {
-    --tw-border-opacity: 1;
-    border-color: rgba(234, 179, 8, 1);
-    border-color: rgba(234, 179, 8, var(--tw-border-opacity, 1));
-}
 .border-red-600 {
     --tw-border-opacity: 1;
     border-color: rgba(220, 38, 38, 1);
     border-color: rgba(220, 38, 38, var(--tw-border-opacity, 1));
+}
+.border-yellow-500 {
+    --tw-border-opacity: 1;
+    border-color: rgba(234, 179, 8, 1);
+    border-color: rgba(234, 179, 8, var(--tw-border-opacity, 1));
 }
 .bg-\[\#00183B\] {
     --tw-bg-opacity: 1;
@@ -2315,6 +2315,10 @@ select {
     padding-top: 0.625rem;
     padding-bottom: 0.625rem;
 }
+.py-20 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
 .py-3 {
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
@@ -2335,10 +2339,6 @@ select {
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
-.py-20 {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-}
 .\!pt-1 {
     padding-top: 0.25rem !important;
 }
@@ -2353,6 +2353,9 @@ select {
 }
 .pb-16 {
     padding-bottom: 4rem;
+}
+.pb-32 {
+    padding-bottom: 8rem;
 }
 .pb-4 {
     padding-bottom: 1rem;
@@ -2407,9 +2410,6 @@ select {
 }
 .pt-8 {
     padding-top: 2rem;
-}
-.pb-32 {
-    padding-bottom: 8rem;
 }
 .text-left {
     text-align: left;
@@ -26720,13 +26720,13 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
         font-size: 1.5rem;
         line-height: 2rem;
     }
-    .md\:text-base {
-        font-size: 1rem;
-        line-height: 1.5rem;
-    }
     .md\:text-5xl {
         font-size: 3rem;
         line-height: 1;
+    }
+    .md\:text-base {
+        font-size: 1rem;
+        line-height: 1.5rem;
     }
     .md\:first\:pt-24:first-child {
         padding-top: 6rem;
