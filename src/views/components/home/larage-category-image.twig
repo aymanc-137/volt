@@ -15,7 +15,11 @@
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 h-[600px]">
 			{% for item in component.items %}
 				<!-- Category Card {{ loop.index }} -->
-				<div class="relative group overflow-hidden h-full border-r-4 border-[var(--color-scandary)] cursor-pointer">
+				<div class="relative group
+				-skew-x-3
+				 overflow-hidden h-full border-r-4
+				border-[var(--color-scandary)]
+				 cursor-pointer">
 					<a href="{{ item.link }}" class="block h-full w-full">
 						<img src="{{ item.image }}" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110 group-hover:opacity-40 opacity-60" alt="{{ item.title }}">
 						<div class="absolute bottom-0 left-0 p-6 z-10">
