@@ -1,5 +1,12 @@
 <!-- Categories Grid -->
-<section class="py-20  dynamic-bg-color slash-bg slant-top slant-bottom pb-32">
+<section class="border-y border-primary border-dashed py-20 relative  dynamic-bg-color slash-bg slant-top slant-bottom pb-32">
+
+
+
+	<div class="styleish-text absolute bottom-10 right-0 opacity-10 pointer-events-none select-none">
+            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap">سرعة /// أداء /// تحكم</span>
+        </div>
+		
 	<div class="container mx-auto px-6">
 
 <div class="mx-auto">
@@ -37,11 +44,26 @@
 		</div>
 	</div>
 
-	<div class="absolute bottom-10 right-0 opacity-10 pointer-events-none select-none">
-            <span class="text-9xl font-bold text-white display-text whitespace-nowrap">TURBO /// NITRO /// DRIFT</span>
-        </div>
+
 </section>
 <style>
+	@keyframes scroll-horizontal {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(-100%);
+		}
+	}
+
+	.styleish-text {
+		overflow: hidden;
+	}
+
+	.styleish-text .display-text {
+		display: inline-block;
+		animation: scroll-horizontal 25s linear infinite;
+	}
 
        .neon-glow {
             box-shadow: 0 0 10px rgba(204, 255, 0, 0.3);
