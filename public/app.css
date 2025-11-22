@@ -2674,6 +2674,10 @@ select {
     color: rgba(255, 255, 255, 1);
     color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
 }
+.text-\[color\:var\(--color-primary\)\] {
+    color: #414042;
+    color: var(--color-primary);
+}
 .underline {
     text-decoration-line: underline;
 }

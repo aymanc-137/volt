@@ -1,10 +1,10 @@
 <!-- Categories Grid -->
-<section class="py-20 bg-black slant-top pb-32">
+<section class="py-20 dynamic-bg-color slant-top pb-32">
 	<div class="container mx-auto px-6">
 		{% if component.title %}
-			<h2 class="text-4xl md:text-5xl mb-12 text-center italic uppercase">
+			<h2 class="text-4xl md:text-5xl mb-12 text-center italic uppercase dynamic-text-color">
 				{% if component.enable_gradient_word and component.gradient_word %}
-					{{ component.title|replace({ (component.gradient_word): '<span class="text-red-600">' ~ component.gradient_word ~ '</span>' })|raw }}
+					{{ component.title|replace({ (component.gradient_word): '<span class="text-[color:var(--color-primary)]">' ~ component.gradient_word ~ '</span>' })|raw }}
 				{% else %}
 					{{ component.title }}
 				{% endif %}
@@ -14,12 +14,12 @@
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 h-[600px]">
 			{% for item in component.items %}
 				<!-- Category Card {{ loop.index }} -->
-				<div class="relative group overflow-hidden h-full border-r-4 border-red-600 cursor-pointer">
+				<div class="relative group overflow-hidden h-full border-r-4 dynamic-border-color cursor-pointer">
 					<a href="{{ item.link }}" class="block h-full w-full">
 						<img src="{{ item.image }}" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110 group-hover:opacity-40 opacity-60" alt="{{ item.title }}">
 						<div class="absolute bottom-0 left-0 p-6 z-10">
-							<h3 class="text-3xl font-bold italic uppercase skew-x-[-5deg]">{{ item.title }}</h3>
-							<p class="text-red-500 font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">SHOP NOW &rarr;</p>
+							<h3 class="text-3xl font-bold italic uppercase skew-x-[-5deg] dynamic-text-color">{{ item.title }}</h3>
+							<p class="text-[color:var(--color-primary)] font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">SHOP NOW &rarr;</p>
 						</div>
 					</a>
 				</div>
@@ -27,3 +27,17 @@
 		</div>
 	</div>
 </section>
+<style>
+
+	.slant-bottom {
+		clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+	}
+	.slant-top {
+		clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+	}
+
+	/* Speed Line Animation */
+	.speed-lines {
+		background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 0, 0, 0.05) 10px, rgba(255, 0, 0, 0.05) 20px);
+	}
+</style>
