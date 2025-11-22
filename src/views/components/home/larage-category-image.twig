@@ -2,36 +2,55 @@
 <section class="border-y border-primary border-dashed py-20 relative  dynamic-bg-color slash-bg slant-top slant-bottom pb-32">
 
 
+	<div class="styleish-text absolute bottom-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
+		<div class="marquee-content flex whitespace-nowrap w-max">
+			<span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+				سرعة /// أداء /// تحكم &nbsp;&nbsp;&nbsp; سرعة /// أداء /// تحكم &nbsp;&nbsp;&nbsp; سرعة /// أداء /// تحكم &nbsp;&nbsp;&nbsp; سرعة /// أداء /// تحكم
+			</span>
+			<span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+				سرعة /// أداء /// تحكم &nbsp;&nbsp;&nbsp; سرعة /// أداء /// تحكم &nbsp;&nbsp;&nbsp; سرعة /// أداء /// تحكم &nbsp;&nbsp;&nbsp; سرعة /// أداء /// تحكم
+			</span>
+		</div>
+	</div>
+	<style>
+		.marquee-content {
+			animation: marquee 40s linear infinite;
+		}
+		@keyframes marquee {
+			0% {
+				transform: translateX(0);
+			}
+			100% {
+				transform: translateX(-50%);
+			}
+		}
+	</style>
 
-	<div class="styleish-text absolute bottom-10 right-0 opacity-10 pointer-events-none select-none">
-            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap">سرعة /// أداء /// تحكم</span>
-        </div>
-		
 	<div class="container mx-auto px-6">
 
-<div class="mx-auto">
-		{% if component.title %}
-			<h2 class="text-4xl font-alshohadaa md:text-5xl mb-12 text-center italic uppercase dynamic-text-color">
-				{% if component.enable_gradient_word and component.gradient_word %}
-					{{ component.title|replace({ (component.gradient_word): '<span class="text-[var(--color-primary)]">' ~ component.gradient_word ~ '</span>' })|raw }}
-				{% else %}
-					{{ component.title }}
-				{% endif %}
-			</h2>
-			<p class="mx-auto my-5 text-center text-xl">{{component.sub_title}}</p>
-		{% endif %}
-</div>
+		<div class="mx-auto">
+			{% if component.title %}
+				<h2 class="text-4xl font-alshohadaa md:text-5xl mb-12 text-center italic uppercase dynamic-text-color">
+					{% if component.enable_gradient_word and component.gradient_word %}
+						{{ component.title|replace({ (component.gradient_word): '<span class="text-[var(--color-primary)]">' ~ component.gradient_word ~ '</span>' })|raw }}
+					{% else %}
+						{{ component.title }}
+					{% endif %}
+				</h2>
+				<p class="mx-auto my-5 text-center text-xl">{{component.sub_title}}</p>
+			{% endif %}
+		</div>
 		<div class="grid grid-cols-1 md:grid-cols-2 {{ component.categories|length == 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4' }} gap-4 h-[600px]">
 			{% for item in component.categories %}
 				<!-- Category Card {{ loop.index }} -->
 				<div class="relative group
-																																		-skew-x-3
-																																		hover:border-r-8
-																																		 overflow-hidden h-full border-r-4
-																																		border-[var(--color-scandary)]
-																																		 cursor-pointer">
+																																								-skew-x-3
+																																								hover:border-r-8
+																																								 overflow-hidden h-full border-r-4
+																																								border-[var(--color-scandary)]
+																																								 cursor-pointer">
 					<a href="{{ item.url }}" class="block h-full w-full">
- 
+
 						<img src="{{ item.image }}" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110" alt="{{ item.title }}">
 						<div class="absolute inset-0  opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
 						<div class="absolute bottom-0 left-0 p-6 z-10">
@@ -46,29 +65,3 @@
 
 
 </section>
-<style>
-	@keyframes scroll-horizontal {
-		0% {
-			transform: translateX(0);
-		}
-		100% {
-			transform: translateX(-100%);
-		}
-	}
-
-	.styleish-text {
-		overflow: hidden;
-	}
-
-	.styleish-text .display-text {
-		display: inline-block;
-		animation: scroll-horizontal 25s linear infinite;
-	}
-
-       .neon-glow {
-            box-shadow: 0 0 10px rgba(204, 255, 0, 0.3);
-        }
-        .neon-text-glow {
-            text-shadow: 0 0 5px rgba(204, 255, 0, 0.5);
-        }
-</style>
