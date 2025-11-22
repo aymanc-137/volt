@@ -3157,7 +3157,9 @@
                                     "value": "custom"
                                 }
                             ],
-                            "value": []
+                            "value": [],
+                            "minLength": 1,
+                            "maxLength": 10
                         }
                     ]
                 }
