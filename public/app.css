@@ -26150,6 +26150,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 .hover\:bg-white\/60:hover {
     background-color: rgba(255, 255, 255, 0.6);
 }
+.hover\:bg-\[var\(--color-primary-20\)\]:hover {
+    background-color: var(--color-primary-20);
+}
 .hover\:text-\[var\(--color-primary-dark\)\]:hover {
     color: var(--color-primary-dark);
 }
@@ -26260,6 +26263,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     --tw-scale-y: 1.1;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(1.1) scaleY(1.1);
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.group:hover .group-hover\:bg-\[var\(--color-primary-20\)\] {
+    background-color: var(--color-primary-20);
 }
 .group\/carousel:hover .group-hover\/carousel\:opacity-100 {
     opacity: 1;

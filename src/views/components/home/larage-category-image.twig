@@ -1,5 +1,5 @@
 <!-- Categories Grid -->
-<section class="py-20   slash-bg slant-top slant-bottom pb-32">
+<section class="py-20 dynamic-bg-color slash-bg slant-top slant-bottom pb-32">
 	<div class="container mx-auto px-6">
 
 		{% if component.title %}
@@ -22,7 +22,8 @@
 																																		border-[var(--color-scandary)]
 																																		 cursor-pointer">
 					<a href="{{ item.url }}" class="block h-full w-full">
-						<img src="{{ item.image }}" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110  " alt="{{ item.title }}">
+						<img src="{{ item.image }}" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110" alt="{{ item.title }}">
+						<div class="absolute inset-0 w-full h-full transition duration-500 hover:bg-[var(--color-primary-20)]" ></div>
 						<div class="absolute bottom-0 left-0 p-6 z-10">
 							<h3 class="text-3xl font-bold italic uppercase skew-x-[-5deg] dynamic-text-color">{{ item.title }}</h3>
 							<p class="text-[var(--color-primary)] font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">SHOP NOW &rarr;</p>
