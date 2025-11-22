@@ -3096,7 +3096,7 @@
                     ]
                 },
                 {
-                    "id": "items",
+                    "id": "categories",
                     "type": "collection",
                     "format": "collection",
                     "label": "العناصر",
@@ -3104,7 +3104,7 @@
                     "value": [],
                     "fields": [
                         {
-                            "id": "items.image",
+                            "id": "categories.image",
                             "type": "string",
                             "format": "image",
                             "label": "الصورة",
@@ -3112,7 +3112,7 @@
                             "value": null
                         },
                         {
-                            "id": "items.title",
+                            "id": "categories.title",
                             "type": "string",
                             "format": "text",
                             "label": "العنوان",
@@ -3121,7 +3121,7 @@
                             "multilanguage": true
                         },
                         {
-                            "id": "items.link",
+                            "id": "categories.link",
                             "label": "الرابط",
                             "icon": "sicon-link",
                             "type": "items",
