@@ -199,7 +199,7 @@
                     "id": "dark_mode_enabled",
                     "operation": "=",
                     "value": true
-                }   
+                }
             ]
         },
         {
@@ -211,9 +211,7 @@
             "format": "color",
             "required": false,
             "value": "#121212"
-          
         },
-
         {
             "type": "string",
             "icon": "sicon-palette",
@@ -228,7 +226,7 @@
                     "id": "dark_mode_enabled",
                     "operation": "=",
                     "value": true
-                }   
+                }
             ]
         },
         {
@@ -245,7 +243,7 @@
                     "id": "dark_mode_enabled",
                     "operation": "=",
                     "value": true
-                }   
+                }
             ]
         },
         {
@@ -254,7 +252,6 @@
             "label": "لون النص ",
             "description": null,
             "id": "main-text-color",
-
             "format": "color",
             "required": false,
             "value": "#2C3E50"
@@ -273,7 +270,7 @@
                     "id": "dark_mode_enabled",
                     "operation": "=",
                     "value": true
-                }   
+                }
             ]
         },
         {
@@ -2838,7 +2835,7 @@
                     "format": "text",
                     "placeholder": "مثال: اطلبه الآن"
                 },
-                {  
+                {
                     "type": "items",
                     "icon": "sicon-link",
                     "label": "الرابط",
@@ -2998,6 +2995,169 @@
                             "format": "text",
                             "placeholder": "https://example.com/video.mp4",
                             "description": "عند تعبئة هذا الحقل سيتم استبدال الصورة بالفيديو داخل البطاقة ويتم تشغيله عند فتح التبويب فقط."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "01dbcfa2-5e33-40f6-ac2f-89979591f8af",
+            "title": "Larage Category Image",
+            "icon": "sicon-image",
+            "path": "home.larage-category-image",
+            "fields": [
+                {
+                    "id": "title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان",
+                    "description": null,
+                    "labelHTML": null,
+                    "placeholder": "Placeholder text ..",
+                    "icon": "sicon-format-text-alt",
+                    "value": "العنوان",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 3,
+                    "maxLength": 300
+                },
+                {
+                    "id": "sub_title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان الجانبي",
+                    "description": null,
+                    "labelHTML": null,
+                    "placeholder": "Placeholder text ..",
+                    "icon": "sicon-format-text-alt",
+                    "value": "العنوان الجانبي",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 3,
+                    "maxLength": 300
+                },
+                {
+                    "id": "enable_gradient_title",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "تفعيل لون متدرج للعنوان",
+                    "description": "عند التفعيل، سيظهر العنوان بتدرج لوني من اللون الأساسي إلى اللون الثانوي",
+                    "labelHTML": null,
+                    "icon": "sicon-format-fill",
+                    "value": false,
+                    "selected": false,
+                    "required": false
+                },
+                {
+                    "id": "enable_gradient_word",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "تفعيل لون متدرج لكلمة معينة في العنوان",
+                    "description": "عند التفعيل، يمكنك اختيار كلمة معينة من العنوان لتطبيق تدرج لوني عليها",
+                    "labelHTML": null,
+                    "icon": "sicon-magic-wand",
+                    "value": false,
+                    "selected": false,
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "gradient_word",
+                    "type": "string",
+                    "format": "text",
+                    "label": "الكلمة أو العبارة المراد تلوينها",
+                    "description": "أدخل الكلمة أو العبارة التي تريد تطبيق التدرج اللوني عليها",
+                    "icon": "sicon-format-text-alt",
+                    "placeholder": "مثال: متخصصة",
+                    "value": "",
+                    "required": false,
+                    "minLength": 1,
+                    "maxLength": 100,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_word",
+                            "operation": "=",
+                            "value": true
+                        },
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "items",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "Items",
+                    "item_label": "Item",
+                    "value": [],
+                    "fields": [
+                        {
+                            "id": "items.image",
+                            "type": "string",
+                            "format": "image",
+                            "label": "Image",
+                            "icon": "sicon-image",
+                            "value": null
+                        },
+                        {
+                            "id": "items.title",
+                            "type": "string",
+                            "format": "text",
+                            "label": "Title",
+                            "icon": "sicon-format-text-alt",
+                            "value": null,
+                            "multilanguage": true
+                        },
+                        {
+                            "id": "items.link",
+                            "label": "Link",
+                            "icon": "sicon-link",
+                            "type": "items",
+                            "format": "variable-list",
+                            "searchable": true,
+                            "source": "custom",
+                            "sources": [
+                                {
+                                    "label": "منتج",
+                                    "key": "products",
+                                    "value": "products"
+                                },
+                                {
+                                    "label": "تصنيف",
+                                    "key": "categories",
+                                    "value": "categories"
+                                },
+                                {
+                                    "label": "ماركة تجارية",
+                                    "key": "brands",
+                                    "value": "brands"
+                                },
+                                {
+                                    "label": "التخفيضات",
+                                    "key": "offers_link",
+                                    "value": "offers_link"
+                                },
+                                {
+                                    "label": "الماركات التجارية",
+                                    "key": "brands_link",
+                                    "value": "brands_link"
+                                },
+                                {
+                                    "label": "رابط خارجي",
+                                    "key": "custom",
+                                    "value": "custom"
+                                }
+                            ],
+                            "value": []
                         }
                     ]
                 }
