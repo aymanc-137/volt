@@ -18854,7 +18854,8 @@ input[type=radio].sr-only:checked ~ div.s-app-install-banner-cancel-button {
     background-color: var(--color-dark-box-background);
 }
 .slash-bg {
-  background: linear-gradient(135deg, #0a0a0a 25%, #121212 25%, #121212 50%, #0a0a0a 50%, #0a0a0a 75%, #121212 75%);
+  background: linear-gradient(135deg, #414042 25%, #121212 25%, #121212 50%, #414042 50%, #414042 75%, #121212 75%);
+  background: linear-gradient(135deg, var(--color-primary) 25%, #121212 25%, #121212 50%, var(--color-primary) 50%, var(--color-primary) 75%, #121212 75%);
   background-size: 20px 20px;
 }
 .tooltip-content {
