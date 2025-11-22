@@ -1,7 +1,8 @@
 <!-- Categories Grid -->
-<section class="py-20 dynamic-bg-color slash-bg slant-top slant-bottom pb-32">
+<section class="py-20  dynamic-bg-color slash-bg slant-top slant-bottom pb-32">
 	<div class="container mx-auto px-6">
 
+<div class="mx-auto">
 		{% if component.title %}
 			<h2 class="text-4xl font-alshohadaa md:text-5xl mb-12 text-center italic uppercase dynamic-text-color">
 				{% if component.enable_gradient_word and component.gradient_word %}
@@ -10,8 +11,9 @@
 					{{ component.title }}
 				{% endif %}
 			</h2>
+			<p class="mx-auto my-5 text-center text-xl">{{component.sub_title}}</p>
 		{% endif %}
-
+</div>
 		<div class="grid grid-cols-1 md:grid-cols-2 {{ component.categories|length == 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4' }} gap-4 h-[600px]">
 			{% for item in component.categories %}
 				<!-- Category Card {{ loop.index }} -->

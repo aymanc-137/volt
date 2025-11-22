@@ -18854,7 +18854,7 @@ input[type=radio].sr-only:checked ~ div.s-app-install-banner-cancel-button {
     background-color: var(--color-dark-box-background);
 }
 .slash-bg {
-  background: linear-gradient(135deg, var(--color-primary-5) 25%, #121212 25%, #121212 50%, var(--color-primary-5) 50%, var(--color-primary-5) 75%, #121212 75%);
+  background: linear-gradient(135deg, var(--color-primary-5) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, var(--color-primary-5) 50%, var(--color-primary-5) 75%, rgba(0, 0, 0, 0) 75%);
   background-size: 20px 20px;
 }
 .tooltip-content {
@@ -26131,9 +26131,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 }
 .hover\:border-r-8:hover {
     border-right-width: 8px;
-}
-.hover\:bg-\[var\(--color-primary-20\)\]:hover {
-    background-color: var(--color-primary-20);
 }
 .hover\:bg-blue-700:hover {
     --tw-bg-opacity: 1;
