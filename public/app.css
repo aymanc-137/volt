@@ -972,6 +972,9 @@ select {
 .top-full {
     top: 100%;
 }
+.bottom-10 {
+    bottom: 2.5rem;
+}
 .isolate {
     isolation: isolate;
 }
@@ -1584,6 +1587,11 @@ select {
 }
 .cursor-pointer {
     cursor: pointer;
+}
+.select-none {
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
 }
 .resize {
     resize: both;
@@ -2472,6 +2480,10 @@ select {
     font-size: 0.75rem;
     line-height: 1rem;
 }
+.text-9xl {
+    font-size: 8rem;
+    line-height: 1;
+}
 .\!font-thin {
     font-weight: 100 !important;
 }
@@ -2706,6 +2718,9 @@ select {
 }
 .opacity-80 {
     opacity: 0.8;
+}
+.opacity-10 {
+    opacity: 0.1;
 }
 .shadow {
     --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
