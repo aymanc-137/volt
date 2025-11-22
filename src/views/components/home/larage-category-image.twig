@@ -1,0 +1,29 @@
+<!-- Categories Grid -->
+<section class="py-20 bg-black slant-top pb-32">
+	<div class="container mx-auto px-6">
+		{% if title %}
+			<h2 class="text-4xl md:text-5xl mb-12 text-center italic uppercase">
+				{% if enable_gradient_word and gradient_word %}
+					{{ title|replace({ (gradient_word): '<span class="text-red-600">' ~ gradient_word ~ '</span>' })|raw }}
+				{% else %}
+					{{ title }}
+				{% endif %}
+			</h2>
+		{% endif %}
+
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 h-[600px]">
+			{% for item in items %}
+				<!-- Category Card {{ loop.index }} -->
+				<div class="relative group overflow-hidden h-full border-r-4 border-red-600 cursor-pointer">
+					<a href="{{ item.link }}" class="block h-full w-full">
+						<img src="{{ item.image }}" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110 group-hover:opacity-40 opacity-60" alt="{{ item.title }}">
+						<div class="absolute bottom-0 left-0 p-6 z-10">
+							<h3 class="text-3xl font-bold italic uppercase skew-x-[-5deg]">{{ item.title }}</h3>
+							<p class="text-red-500 font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">SHOP NOW &rarr;</p>
+						</div>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>

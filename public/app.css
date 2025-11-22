@@ -1308,6 +1308,9 @@ select {
 .h-px {
     height: 1px;
 }
+.h-\[600px\] {
+    height: 600px;
+}
 .max-h-0 {
     max-height: 0px;
 }
@@ -1530,6 +1533,11 @@ select {
 .rotate-90 {
     --tw-rotate: 90deg;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(90deg) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.skew-x-\[-5deg\] {
+    --tw-skew-x: -5deg;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(-5deg) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .transform {
@@ -1902,6 +1910,9 @@ select {
 .border-t {
     border-top-width: 1px;
 }
+.border-r-4 {
+    border-right-width: 4px;
+}
 .border-dashed {
     border-style: dashed;
 }
@@ -1976,6 +1987,11 @@ select {
     --tw-border-opacity: 1;
     border-color: rgba(234, 179, 8, 1);
     border-color: rgba(234, 179, 8, var(--tw-border-opacity, 1));
+}
+.border-red-600 {
+    --tw-border-opacity: 1;
+    border-color: rgba(220, 38, 38, 1);
+    border-color: rgba(220, 38, 38, var(--tw-border-opacity, 1));
 }
 .bg-\[\#00183B\] {
     --tw-bg-opacity: 1;
@@ -2319,6 +2335,10 @@ select {
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
+.py-20 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
 .\!pt-1 {
     padding-top: 0.25rem !important;
 }
@@ -2387,6 +2407,9 @@ select {
 }
 .pt-8 {
     padding-top: 2rem;
+}
+.pb-32 {
+    padding-bottom: 8rem;
 }
 .text-left {
     text-align: left;
@@ -2469,6 +2492,9 @@ select {
 }
 .uppercase {
     text-transform: uppercase;
+}
+.italic {
+    font-style: italic;
 }
 .leading-10 {
     line-height: 2.5rem;
@@ -18824,6 +18850,10 @@ input[type=radio].sr-only:checked ~ div.s-app-install-banner-cancel-button {
 .dark *.dynamic-bg-color {
     background-color: var(--color-dark-box-background);
 }
+.slash-bg {
+  background: linear-gradient(135deg, #0a0a0a 25%, #121212 25%, #121212 50%, #0a0a0a 50%, #0a0a0a 75%, #121212 75%);
+  background-size: 20px 20px;
+}
 .tooltip-content {
   position: absolute;
   transform: translate(82px, -120px);
@@ -26219,8 +26249,20 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(1.05) scaleY(1.05);
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
+.group:hover .group-hover\:scale-110 {
+    --tw-scale-x: 1.1;
+    --tw-scale-y: 1.1;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(1.1) scaleY(1.1);
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
 .group\/carousel:hover .group-hover\/carousel\:opacity-100 {
     opacity: 1;
+}
+.group:hover .group-hover\:opacity-100 {
+    opacity: 1;
+}
+.group:hover .group-hover\:opacity-40 {
+    opacity: 0.4;
 }
 .group:hover .group-hover\:ring-2 {
     --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
@@ -26681,6 +26723,10 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .md\:text-base {
         font-size: 1rem;
         line-height: 1.5rem;
+    }
+    .md\:text-5xl {
+        font-size: 3rem;
+        line-height: 1;
     }
     .md\:first\:pt-24:first-child {
         padding-top: 6rem;
