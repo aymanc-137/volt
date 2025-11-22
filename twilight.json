@@ -3002,11 +3002,9 @@
         },
         {
             "key": "01dbcfa2-5e33-40f6-ac2f-89979591f8af",
-            "title": {
-                "ar": "Larage Category Image",
-                "en": null
-            },
+            "title": "صور أقسام كبيرة",
             "icon": "sicon-image",
+            "type": "items",
             "path": "home.larage-category-image",
             "fields": [
                 {
