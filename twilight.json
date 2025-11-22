@@ -3002,7 +3002,10 @@
         },
         {
             "key": "01dbcfa2-5e33-40f6-ac2f-89979591f8af",
-            "title": "Larage Category Image",
+            "title": {
+                "ar": "Larage Category Image",
+                "en": null
+            },
             "icon": "sicon-image",
             "path": "home.larage-category-image",
             "fields": [
@@ -3033,7 +3036,7 @@
                     "value": "العنوان الجانبي",
                     "multilanguage": true,
                     "required": false,
-                    "minLength": 3,
+                    "minLength": "1",
                     "maxLength": 300
                 },
                 {
@@ -3075,7 +3078,7 @@
                     "description": "أدخل الكلمة أو العبارة التي تريد تطبيق التدرج اللوني عليها",
                     "icon": "sicon-format-text-alt",
                     "placeholder": "مثال: متخصصة",
-                    "value": "",
+                    "value": null,
                     "required": false,
                     "minLength": 1,
                     "maxLength": 100,
@@ -3096,15 +3099,15 @@
                     "id": "items",
                     "type": "collection",
                     "format": "collection",
-                    "label": "Items",
-                    "item_label": "Item",
+                    "label": "العناصر",
+                    "item_label": "قائمة العناصر",
                     "value": [],
                     "fields": [
                         {
                             "id": "items.image",
                             "type": "string",
                             "format": "image",
-                            "label": "Image",
+                            "label": "الصورة",
                             "icon": "sicon-image",
                             "value": null
                         },
@@ -3112,14 +3115,14 @@
                             "id": "items.title",
                             "type": "string",
                             "format": "text",
-                            "label": "Title",
+                            "label": "العنوان",
                             "icon": "sicon-format-text-alt",
                             "value": null,
                             "multilanguage": true
                         },
                         {
                             "id": "items.link",
-                            "label": "Link",
+                            "label": "الرابط",
                             "icon": "sicon-link",
                             "type": "items",
                             "format": "variable-list",
