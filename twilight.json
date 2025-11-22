@@ -3004,7 +3004,7 @@
             "key": "01dbcfa2-5e33-40f6-ac2f-89979591f8af",
             "title": "صور أقسام كبيرة",
             "icon": "sicon-image",
-            "type": "items",
+            "type": "collection",
             "path": "home.larage-category-image",
             "fields": [
                 {
