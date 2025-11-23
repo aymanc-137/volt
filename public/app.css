@@ -1317,6 +1317,9 @@ select {
 .h-px {
     height: 1px;
 }
+.h-\[500px\] {
+    height: 500px;
+}
 .max-h-0 {
     max-height: 0px;
 }
@@ -2021,6 +2024,10 @@ select {
     border-color: rgba(234, 179, 8, 1);
     border-color: rgba(234, 179, 8, var(--tw-border-opacity, 1));
 }
+.border-\[color\:var\(--color-primary\)\] {
+    border-color: #414042;
+    border-color: var(--color-primary);
+}
 .bg-\[var\(--color-light-box-background\)\] {
     background-color: var(--color-light-box-background);
 }
@@ -2105,6 +2112,13 @@ select {
 }
 .bg-white\/95 {
     background-color: rgba(255, 255, 255, 0.95);
+}
+.bg-\[color\:var\(--color-primary\)\] {
+    background-color: #414042;
+    background-color: var(--color-primary);
+}
+.bg-black\/50 {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 .bg-gradient-to-b {
     background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
@@ -2361,6 +2375,10 @@ select {
 .py-8 {
     padding-top: 2rem;
     padding-bottom: 2rem;
+}
+.px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
 }
 .\!pt-1 {
     padding-top: 0.25rem !important;
@@ -2701,6 +2719,11 @@ select {
     color: rgba(255, 255, 255, 1);
     color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
 }
+.text-gray-200 {
+    --tw-text-opacity: 1;
+    color: rgba(229, 231, 235, 1);
+    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+}
 .underline {
     text-decoration-line: underline;
 }
@@ -2798,6 +2821,11 @@ select {
     filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1)) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.06));
     filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
+.drop-shadow-lg {
+    --tw-drop-shadow: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04)) drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
+    filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04)) drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
+    filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
 .filter {
     filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
@@ -2849,6 +2877,12 @@ select {
     transition-property: transform;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
+}
+.delay-200 {
+    transition-delay: 200ms;
+}
+.delay-300 {
+    transition-delay: 300ms;
 }
 .duration-1000 {
     transition-duration: 1000ms;
@@ -2973,6 +3007,15 @@ select {
 }
 .btn:hover {
     opacity: 0.8;
+}
+.btn-primary {
+    border-width: 1px;
+    border-color: #414042;
+    border-color: var(--color-primary);
+    background-color: #414042;
+    background-color: var(--color-primary);
+    color: #ff6767;
+    color: var(--color-primary-reverse);
 }
 .form-label {
     margin-bottom: 0.25rem;
@@ -26199,6 +26242,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 .hover\:bg-white\/60:hover {
     background-color: rgba(255, 255, 255, 0.6);
 }
+.hover\:bg-transparent:hover {
+    background-color: transparent;
+}
 .hover\:text-\[var\(--color-primary-dark\)\]:hover {
     color: var(--color-primary-dark);
 }
@@ -26208,6 +26254,10 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     color: rgba(29, 31, 31, var(--tw-text-opacity, 1));
 }
 .hover\:text-primary:hover {
+    color: #414042;
+    color: var(--color-primary);
+}
+.hover\:text-\[color\:var\(--color-primary\)\]:hover {
     color: #414042;
     color: var(--color-primary);
 }
@@ -26649,6 +26699,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .md\:h-\[400px\] {
         height: 400px;
     }
+    .md\:h-\[600px\] {
+        height: 600px;
+    }
     .md\:\!w-1\/2 {
         width: 50% !important;
     }
@@ -26782,6 +26835,14 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .md\:text-base {
         font-size: 1rem;
         line-height: 1.5rem;
+    }
+    .md\:text-6xl {
+        font-size: 3.75rem;
+        line-height: 1;
+    }
+    .md\:text-xl {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
     }
     .md\:first\:pt-24:first-child {
         padding-top: 6rem;

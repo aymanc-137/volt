@@ -1,0 +1,31 @@
+<section class="video-banner relative w-full h-[500px] md:h-[600px] overflow-hidden flex items-center justify-center text-center dynamic-bg-color dynamic-text-color">
+    {% if component.video_url %}
+    <div class="absolute inset-0 z-0">
+        <video class="w-full h-full object-cover" autoplay muted loop playsinline>
+            <source src="{{ component.video_url }}" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-black/50"></div>
+    </div>
+    {% endif %}
+    
+    <div class="relative z-10 container px-4 flex flex-col items-center justify-center h-full">
+        {% if component.title %}
+        <h2 class="text-4xl md:text-6xl font-bold mb-6 font-racing text-white animate-slide-in-up drop-shadow-lg">
+            {{ component.title }}
+        </h2>
+        {% endif %}
+        
+        {% if component.description %}
+        <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto font-orbitron text-gray-200 animate-fade-in-up delay-200">
+            {{ component.description }}
+        </p>
+        {% endif %}
+        
+        {% if component.btn_label and component.btn_url %}
+        <a href="{{ component.btn_url }}" 
+           class="btn-primary inline-flex items-center justify-center px-10 py-4 text-lg font-bold text-white transition-all duration-300 bg-[color:var(--color-primary)] border-2 border-[color:var(--color-primary)] rounded hover:bg-transparent hover:text-[color:var(--color-primary)] animate-pulse-glow dynamic-border-color delay-300">
+            {{ component.btn_label }}
+        </a>
+        {% endif %}
+    </div>
+</section>
