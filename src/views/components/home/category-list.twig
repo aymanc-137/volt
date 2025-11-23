@@ -12,14 +12,71 @@
 | component.links[].icon             | string   |                                                                              |
 | component.links[].title            | string   |                                                                              |
 | component.links[].url              | string   |                                                                              |
+| component.slash_hbg                | bool     | Enable slash background                                                       |
+| component.marquee                  | bool     | Enable marquee text                                                          |
+| component.marqueetext              | string   | Marquee text                                                                 |
 | position                           | int      | Sorting number start from zero                                               |
 #}
 
-
-
+{% set slashbg = component.slas_hbg | default(false) %}
+{% set marquee = component.marquee | default(false) %}
+{% set marqueetext = component.marqueetext | default(" سرعة /// أداء /// تحكم ") %}
 
 <span class="navbar-underline"></span>
-<section class="s-block my-10 s-block--categories     ">
+<section class="s-block my-10 s-block--categories border-y border-[var(--color-primary-30)] border-dashed py-20 relative 
+    dynamic-bg-color 
+    {{ slashbg ? 'slash-bg' : ''}}
+    pb-32">
+    {% if marquee %}
+
+    <div class="styleish-text absolute top-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
+        <div class="marquee-reverse-sections flex whitespace-nowrap w-max">
+            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+                {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+            </span>
+            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+                {{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+            </span>
+        </div>
+    </div>
+
+    <div class="styleish-text absolute bottom-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
+        <div class="marquee-content-sections flex whitespace-nowrap w-max">
+            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+                {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+            </span>
+            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+                {{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+            </span>
+        </div>
+    </div>
+
+    <style>
+        .marquee-content-sections {
+            animation: marquee-sections  30s linear infinite;
+        }
+        .marquee-reverse-sections  {
+            animation: marquee-reverse-sections  30s linear infinite;
+        }
+        @keyframes marquee-sections  {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        @keyframes marquee-reverse-sections  {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+    </style>
+
+    {% endif %}
     <!-- Decorative Top Heading -->
     {% if component.title %}
   <div class="mx-auto flex flex-col space-y-6 justify-center items-center my-12 w-5/6">
