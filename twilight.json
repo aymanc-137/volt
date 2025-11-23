@@ -3051,7 +3051,7 @@
                     "label":"نص ماركيو",
                     "type":"string",
                     "format":"text",
-                    "value":"",
+                    "value":" سرعة /// أداء /// تحكم ",
                     "required":false,
                     "minLength": 3,
                     "maxLength": 300,
