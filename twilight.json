@@ -109,6 +109,17 @@
         {
             "type": "boolean",
             "icon": "sicon-toggle-off",
+            "label": "إظهار الشريط العلوي",
+            "description": null,
+            "id": "show_topnav",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
             "label": "عرض روابط الصفحات الهامة في الشريط العلوي",
             "description": "مثل صفحة الهبوط ، المدونة ،الصفحات التعريفية",
             "id": "important_links",

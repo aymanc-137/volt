@@ -6,9 +6,11 @@
 | cart.total       | string  | Formatted total ex: "١٠٠ ر.س"   |
 #}
 {% set important_links = theme.settings.get('important_links') %}
+{% set show_topnav = theme.settings.get('show_topnav', true) %}
 <header class="store-header">
   {# Top Nav #}
-  <div  class="top-navbar   bg-[#00183B]">
+  {% if show_topnav %}
+  <div  class="top-navbar  ">
     <div class="container flex justify-between">
       <div class="flex-1 flex items-center gap-2">
           {# Footer Menu #}
@@ -44,6 +46,7 @@
       <salla-contacts is-header></salla-contacts>
     </div>
   </div>
+  {% endif %}
 
   {# Main Nav #}
   <div id="mainnav" class="main-nav-container  !font-thin shadow-default bg-light-background dark:bg-dark-background">
