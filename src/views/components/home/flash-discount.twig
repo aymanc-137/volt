@@ -1,0 +1,126 @@
+{#
+| Variable        | Type       | Description                                                      |
+|-----------------|------------|------------------------------------------------------------------|
+| display_all_url | ?string    | If it's existed, mean should show load more link to this url     |
+| title           | string     |                                                                  |
+| products        | Products[] |                                                                  |
+| position        | Int        | Sorting number start from zero                                   |
+| limit           | Int        | Number of products to be shown
+|#}
+{% set is_vertical = false %}
+{% set slashbg = component.slas_hbg | default(false) %}
+{% set marquee = component.marquee | default(false) %}
+{% set marqueetext = component.marqueetext | default(" سرعة /// أداء /// تحكم ") %}
+
+<section class="s-block container my-size-flash-discount-{{position}} border-y border-[var(--color-primary-30)] border-dashed py-20 relative 
+    dynamic-bg-color 
+    {{ slashbg ? 'slash-bg' : ''}}
+    pb-32">
+
+    {% if marquee %}
+
+    <div class="styleish-text absolute top-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
+        <div class="marquee-reverse-sections flex whitespace-nowrap w-max">
+            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+                {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+            </span>
+            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+                {{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+            </span>
+        </div>
+    </div>
+
+    <div class="styleish-text absolute bottom-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
+        <div class="marquee-content-sections flex whitespace-nowrap w-max">
+            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+                {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+            </span>
+            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+                {{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+            </span>
+        </div>
+    </div>
+
+    <style>
+        .marquee-content-sections {
+            animation: marquee-sections  30s linear infinite;
+        }
+        .marquee-reverse-sections  {
+            animation: marquee-reverse-sections  30s linear infinite;
+        }
+        @keyframes marquee-sections  {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        @keyframes marquee-reverse-sections  {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+    </style>
+
+    {% endif %}
+
+    {% if component.title %}
+      <div class="s-block__title-harir">
+        <div class="right-side " >
+          <div class="icon-box" >
+
+          {% if component.enable_gradient_title %}
+            <h2 class="block-title bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ component.title }}</h2>
+          {% elseif component.enable_gradient_word and component.gradient_word %}
+            <h2 id="flash-discount-title-{{ position }}" class="block-title dynamic-text-color">{{ component.title }}</h2>
+          {% else %}
+            <h2 class="block-title dynamic-text-color">{{ component.title }}</h2>
+          {% endif %}
+          </div>
+         </div>
+        {% if display_all_url %}
+            <a href="{{ display_all_url }}" class="s-block__display-all">{{ trans('blocks.home.display_all') }} <i class="sicon-arrow-left"></i></a>
+        {% endif %}
+      </div>
+      {% if component.enable_gradient_word and component.gradient_word %}
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            const titleEl = document.getElementById('flash-discount-title-{{ position }}');
+            if (titleEl) {
+              const word = '{{ component.gradient_word }}';
+              const regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\\]\\/g, '\\\\$&') + ')', 'gi');
+              titleEl.innerHTML = titleEl.innerHTML.replace(
+                regex,
+                '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1<\/span>'
+              );
+            }
+          });
+        </script>
+      {% endif %}
+    {% endif %}
+
+       <div class="s-products-list-wrapper s-products-list-horizontal-cards">
+
+    {% for product in component.product %}
+ 
+    <custom-salla-product-card isSpecial 
+    
+    {% if component.show_quantity %}
+    showQuantity
+    {% endif %}
+    
+      shadow-on-hover horizontal product="{{product}}"  ></custom-salla-product-card>
+    
+    {% endfor %}
+    </div>
+
+ 
+{# localStorage.setItem('showQuantity', {{theme.settings.get('showQuantity', true)}}); #}
+
+
+</section>
+
