@@ -2311,7 +2311,7 @@
             "key": "d1b2297e-d50c-4ccb-8e7d-3613ca530fd2",
             "title": "فيديو بنر - فولت",
             "icon": "sicon-store",
-            "path": "home.VideoBanner",
+            "path": "home.video-banner",
             "fields": [
                 {
                     "type": "static",

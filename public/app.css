@@ -1296,6 +1296,9 @@ select {
 .h-\[34px\] {
     height: 34px;
 }
+.h-\[500px\] {
+    height: 500px;
+}
 .h-\[600px\] {
     height: 600px;
 }
@@ -1316,9 +1319,6 @@ select {
 }
 .h-px {
     height: 1px;
-}
-.h-\[500px\] {
-    height: 500px;
 }
 .max-h-0 {
     max-height: 0px;
@@ -1949,6 +1949,10 @@ select {
 .border-none {
     border-style: none;
 }
+.border-\[color\:var\(--color-primary\)\] {
+    border-color: #414042;
+    border-color: var(--color-primary);
+}
 .border-\[var\(--color-primary-30\)\] {
     border-color: var(--color-primary-30);
 }
@@ -2024,9 +2028,9 @@ select {
     border-color: rgba(234, 179, 8, 1);
     border-color: rgba(234, 179, 8, var(--tw-border-opacity, 1));
 }
-.border-\[color\:var\(--color-primary\)\] {
-    border-color: #414042;
-    border-color: var(--color-primary);
+.bg-\[color\:var\(--color-primary\)\] {
+    background-color: #414042;
+    background-color: var(--color-primary);
 }
 .bg-\[var\(--color-light-box-background\)\] {
     background-color: var(--color-light-box-background);
@@ -2045,6 +2049,9 @@ select {
 }
 .bg-black\/40 {
     background-color: rgba(0, 0, 0, 0.4);
+}
+.bg-black\/50 {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 .bg-blue-50 {
     --tw-bg-opacity: 1;
@@ -2112,13 +2119,6 @@ select {
 }
 .bg-white\/95 {
     background-color: rgba(255, 255, 255, 0.95);
-}
-.bg-\[color\:var\(--color-primary\)\] {
-    background-color: #414042;
-    background-color: var(--color-primary);
-}
-.bg-black\/50 {
-    background-color: rgba(0, 0, 0, 0.5);
 }
 .bg-gradient-to-b {
     background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
@@ -2292,6 +2292,10 @@ select {
     padding-left: 0.25rem;
     padding-right: 0.25rem;
 }
+.px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
 .px-2 {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
@@ -2375,10 +2379,6 @@ select {
 .py-8 {
     padding-top: 2rem;
     padding-bottom: 2rem;
-}
-.px-10 {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
 }
 .\!pt-1 {
     padding-top: 0.25rem !important;
@@ -2633,6 +2633,11 @@ select {
     color: rgba(29, 31, 31, 1);
     color: rgba(29, 31, 31, var(--tw-text-opacity, 1));
 }
+.text-gray-200 {
+    --tw-text-opacity: 1;
+    color: rgba(229, 231, 235, 1);
+    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+}
 .text-gray-400 {
     --tw-text-opacity: 1;
     color: rgba(156, 163, 175, 1);
@@ -2718,11 +2723,6 @@ select {
     --tw-text-opacity: 1;
     color: rgba(255, 255, 255, 1);
     color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
-}
-.text-gray-200 {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
 }
 .underline {
     text-decoration-line: underline;
@@ -26234,6 +26234,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     background-color: rgba(243, 244, 246, 1);
     background-color: rgba(243, 244, 246, var(--tw-bg-opacity, 1));
 }
+.hover\:bg-transparent:hover {
+    background-color: transparent;
+}
 .hover\:bg-white:hover {
     --tw-bg-opacity: 1;
     background-color: rgba(255, 255, 255, 1);
@@ -26242,8 +26245,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 .hover\:bg-white\/60:hover {
     background-color: rgba(255, 255, 255, 0.6);
 }
-.hover\:bg-transparent:hover {
-    background-color: transparent;
+.hover\:text-\[color\:var\(--color-primary\)\]:hover {
+    color: #414042;
+    color: var(--color-primary);
 }
 .hover\:text-\[var\(--color-primary-dark\)\]:hover {
     color: var(--color-primary-dark);
@@ -26254,10 +26258,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     color: rgba(29, 31, 31, var(--tw-text-opacity, 1));
 }
 .hover\:text-primary:hover {
-    color: #414042;
-    color: var(--color-primary);
-}
-.hover\:text-\[color\:var\(--color-primary\)\]:hover {
     color: #414042;
     color: var(--color-primary);
 }
@@ -26832,13 +26832,13 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
         font-size: 3rem;
         line-height: 1;
     }
-    .md\:text-base {
-        font-size: 1rem;
-        line-height: 1.5rem;
-    }
     .md\:text-6xl {
         font-size: 3.75rem;
         line-height: 1;
+    }
+    .md\:text-base {
+        font-size: 1rem;
+        line-height: 1.5rem;
     }
     .md\:text-xl {
         font-size: 1.25rem;
