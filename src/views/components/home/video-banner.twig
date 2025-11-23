@@ -1,31 +1,74 @@
-<section class="video-banner relative w-full h-[500px] md:h-[600px] overflow-hidden flex items-center justify-center text-center dynamic-bg-color dynamic-text-color">
+<section class="video-banner relative w-full h-[600px] md:h-[700px] overflow-hidden flex items-center justify-center text-center dynamic-bg-color dynamic-text-color group">
     {% if component.video_url %}
     <div class="absolute inset-0 z-0">
-        <video class="w-full h-full object-cover" autoplay muted loop playsinline>
+        <video
+            class="w-full h-full object-cover"
+            {% if component.poster_image %}poster="{{ component.poster_image }}"{% endif %}
+            autoplay
+            {% if component.start_muted %}muted{% endif %}
+            loop
+            playsinline
+        >
             <source src="{{ component.video_url }}" type="video/mp4">
         </video>
-        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="absolute inset-0 bg-black/60"></div>
     </div>
     {% endif %}
-    
-    <div class="relative z-10 container px-4 flex flex-col items-center justify-center h-full">
+
+    <div class="relative z-10 container px-4 flex flex-col items-center justify-center h-full pt-10">
+        {% if component.badge_text %}
+        <div class="mb-6 inline-block px-6 py-2 rounded-full bg-[color:var(--color-primary)] text-white font-bold uppercase tracking-wider text-sm md:text-base animate-fade-in-up shadow-[0_0_15px_var(--color-primary)]">
+            {{ component.badge_text }}
+        </div>
+        {% endif %}
+
         {% if component.title %}
-        <h2 class="text-4xl md:text-6xl font-bold mb-6 font-racing text-white animate-slide-in-up drop-shadow-lg">
+        <h2 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 font-racing text-white animate-slide-in-up drop-shadow-2xl leading-tight">
             {{ component.title }}
         </h2>
         {% endif %}
-        
+
+        {% if component.subtitle %}
+        <h3 class="text-xl md:text-3xl font-bold mb-6 text-[color:var(--color-scandary)] font-racing animate-slide-in-up delay-100">
+            {{ component.subtitle }}
+        </h3>
+        {% endif %}
+
         {% if component.description %}
-        <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto font-orbitron text-gray-200 animate-fade-in-up delay-200">
+        <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto font-orbitron text-gray-200 animate-fade-in-up delay-200 leading-relaxed">
             {{ component.description }}
         </p>
         {% endif %}
-        
-        {% if component.btn_label and component.btn_url %}
-        <a href="{{ component.btn_url }}" 
-           class="btn-primary inline-flex items-center justify-center px-10 py-4 text-lg font-bold text-white transition-all duration-300 bg-[color:var(--color-primary)] border-2 border-[color:var(--color-primary)] rounded hover:bg-transparent hover:text-[color:var(--color-primary)] animate-pulse-glow dynamic-border-color delay-300">
-            {{ component.btn_label }}
-        </a>
+
+        <div class="flex flex-col sm:flex-row gap-4 mb-16 animate-fade-in-up delay-300 w-full justify-center">
+            {% if component.primary_cta_text and component.primary_cta_url %}
+            <a
+                href="{{ component.primary_cta_url }}"
+                class="btn-primary min-w-[200px] inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-300 bg-[color:var(--color-primary)] border-2 border-[color:var(--color-primary)] rounded hover:bg-transparent hover:text-[color:var(--color-primary)] hover:shadow-[0_0_20px_var(--color-primary)] skew-x-[-10deg] hover:skew-x-0"
+            >
+                <span class="skew-x-[10deg] hover:skew-x-0 transition-transform duration-300">{{ component.primary_cta_text }}</span>
+            </a>
+            {% endif %}
+
+            {% if component.secondary_cta_text and component.secondary_cta_url %}
+            <a
+                href="{{ component.secondary_cta_url }}"
+                class="btn-secondary min-w-[200px] inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-300 bg-transparent border-2 border-white rounded hover:bg-white hover:text-black skew-x-[-10deg] hover:skew-x-0 hover:shadow-[0_0_20px_rgba(255,255,255,0.5)]"
+            >
+                <span class="skew-x-[10deg] hover:skew-x-0 transition-transform duration-300">{{ component.secondary_cta_text }}</span>
+            </a>
+            {% endif %}
+        </div>
+
+        {% if component.stats %}
+        <div class="grid grid-cols-2 md:grid-cols-{{ component.stats|length }} gap-8 md:gap-12 border-t border-white/10 pt-8 animate-fade-in-up delay-500 w-full max-w-4xl mx-auto">
+            {% for stat in component.stats %}
+            <div class="flex flex-col items-center group/stat hover:scale-110 transition-transform duration-300">
+                <span class="text-3xl md:text-5xl font-bold text-white font-racing mb-2 drop-shadow-md group-hover/stat:text-[color:var(--color-scandary)] transition-colors">{{ stat.value }}</span>
+                <span class="text-xs md:text-sm text-gray-400 font-orbitron uppercase tracking-[0.2em]">{{ stat.label }}</span>
+            </div>
+            {% endfor %}
+        </div>
         {% endif %}
     </div>
 </section>
