@@ -1943,6 +1943,9 @@ select {
 .border-none {
     border-style: none;
 }
+.border-\[var\(--color-primary-30\)\] {
+    border-color: var(--color-primary-30);
+}
 .border-\[var\(--color-scandary\)\] {
     border-color: var(--color-scandary);
 }
@@ -2014,9 +2017,6 @@ select {
     --tw-border-opacity: 1;
     border-color: rgba(234, 179, 8, 1);
     border-color: rgba(234, 179, 8, var(--tw-border-opacity, 1));
-}
-.border-\[var\(--color-primary-30\)\] {
-    border-color: var(--color-primary-30);
 }
 .bg-\[\#00183B\] {
     --tw-bg-opacity: 1;
