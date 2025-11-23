@@ -1428,6 +1428,9 @@ select {
 .w-\[85\%\] {
     width: 85%;
 }
+.w-\[90\%\] {
+    width: 90%;
+}
 .w-\[90\] {
     width: 90;
 }
@@ -1450,9 +1453,6 @@ select {
 }
 .w-px {
     width: 1px;
-}
-.w-\[90\%\] {
-    width: 90%;
 }
 .min-w-0 {
     min-width: 0px;
@@ -2020,11 +2020,6 @@ select {
     --tw-border-opacity: 1;
     border-color: rgba(234, 179, 8, 1);
     border-color: rgba(234, 179, 8, var(--tw-border-opacity, 1));
-}
-.bg-\[\#00183B\] {
-    --tw-bg-opacity: 1;
-    background-color: rgba(0, 24, 59, 1);
-    background-color: rgba(0, 24, 59, var(--tw-bg-opacity, 1));
 }
 .bg-\[var\(--color-light-box-background\)\] {
     background-color: var(--color-light-box-background);
