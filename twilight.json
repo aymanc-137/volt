@@ -3054,7 +3054,14 @@
                     "value":"",
                     "required":false,
                     "minLength": 3,
-                    "maxLength": 300
+                    "maxLength": 300,
+                    "conditions": [
+                        {
+                            "id": "marquee",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
 
                 },
                 {
