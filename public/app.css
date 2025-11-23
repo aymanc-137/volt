@@ -957,6 +957,9 @@ select {
 .top-1\/2 {
     top: 50%;
 }
+.top-10 {
+    top: 2.5rem;
+}
 .top-16 {
     top: 4rem;
 }
@@ -974,9 +977,6 @@ select {
 }
 .top-full {
     top: 100%;
-}
-.top-10 {
-    top: 2.5rem;
 }
 .isolate {
     isolation: isolate;
@@ -2014,6 +2014,9 @@ select {
     --tw-border-opacity: 1;
     border-color: rgba(234, 179, 8, 1);
     border-color: rgba(234, 179, 8, var(--tw-border-opacity, 1));
+}
+.border-\[var\(--color-primary-30\)\] {
+    border-color: var(--color-primary-30);
 }
 .bg-\[\#00183B\] {
     --tw-bg-opacity: 1;
