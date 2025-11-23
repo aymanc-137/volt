@@ -1451,6 +1451,9 @@ select {
 .w-px {
     width: 1px;
 }
+.w-\[90\%\] {
+    width: 90%;
+}
 .min-w-0 {
     min-width: 0px;
 }

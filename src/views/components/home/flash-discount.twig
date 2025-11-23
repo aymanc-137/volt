@@ -46,55 +46,61 @@
 
     {% endif %}
 
-    {% if component.title %}
-      <div class="s-block__title-harir">
-        <div class="right-side " >
-          <div class="icon-box" >
 
-          {% if component.enable_gradient_title %}
-            <h2 class="block-title bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ component.title }}</h2>
-          {% elseif component.enable_gradient_word and component.gradient_word %}
-            <h2 id="flash-discount-title-{{ position }}" class="block-title dynamic-text-color">{{ component.title }}</h2>
-          {% else %}
-            <h2 class="block-title dynamic-text-color">{{ component.title }}</h2>
-          {% endif %}
-          </div>
-         </div>
-        {% if display_all_url %}
-            <a href="{{ display_all_url }}" class="s-block__display-all">{{ trans('blocks.home.display_all') }} <i class="sicon-arrow-left"></i></a>
-        {% endif %}
-      </div>
-      {% if component.enable_gradient_word and component.gradient_word %}
-        <script>
-          document.addEventListener('DOMContentLoaded', function() {
-            const titleEl = document.getElementById('flash-discount-title-{{ position }}');
-            if (titleEl) {
-              const word = '{{ component.gradient_word }}';
-              const regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\\]\\/g, '\\\\$&') + ')', 'gi');
-              titleEl.innerHTML = titleEl.innerHTML.replace(
-                regex,
-                '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1<\/span>'
-              );
-            }
-          });
-        </script>
-      {% endif %}
-    {% endif %}
+                {% if component.title %}
+            <div class="mx-auto flex flex-col space-y-6 justify-center items-center my-12 w-5/6">
 
-       <div class="s-products-list-wrapper s-products-list-horizontal-cards">
+                <div class="flex flex-col items-center">
+                {% if component.enable_gradient_title %}
+                    <h1 class="text-4xl font-alshohadaa mb-5 bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{component.title}}</h1>
+                {% elseif component.enable_gradient_word and component.gradient_word %}
+                    <h1 id="category-flash-title-{{ position }}" class="text-4xl font-alshohadaa mb-5 dynamic-text-color">{{component.title}}</h1>
+                {% else %}
+                    <h1 class="text-4xl font-alshohadaa mb-5 dynamic-text-color">{{component.title}}</h1>
+                {% endif %}
+                <span class="navbar-underline"></span>
+                </div>
 
-    {% for product in component.product %}
- 
-    <custom-salla-product-card isSpecial 
-    
-    {% if component.show_quantity %}
-    showQuantity
-    {% endif %}
-    
-      shadow-on-hover horizontal product="{{product}}"  ></custom-salla-product-card>
-    
-    {% endfor %}
-    </div>
+                <div class="text-center mx-auto text-base lg:text-lg dynamic-text-color">
+                    {{component.sub_title}}
+                </div>
+            </div>
+
+            {% if component.enable_gradient_word and component.gradient_word %}
+                <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const titleEl = document.getElementById('category-flash-title-{{ position }}');
+                    if (titleEl) {
+                    const word = '{{ component.gradient_word }}';
+                    const regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+                    titleEl.innerHTML = titleEl.innerHTML.replace(
+                        regex,
+                        '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
+                    );
+                    }
+                });
+                </script>
+            {% endif %}
+
+            {% endif %}
+
+
+
+       <div class="s-products-list-wrapper w-[90%] md:w-5/6 mx-auto  s-products-list-horizontal-cards">
+
+                
+                    {% for product in component.product %}
+                
+                    <custom-salla-product-card isSpecial 
+                    
+                    {% if component.show_quantity %}
+                    showQuantity
+                    {% endif %}
+                    
+                    shadow-on-hover horizontal product="{{product}}"  ></custom-salla-product-card>
+                    
+                    {% endfor %}
+            </div>
 
  
 {# localStorage.setItem('showQuantity', {{theme.settings.get('showQuantity', true)}}); #}
