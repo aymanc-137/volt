@@ -3025,6 +3025,39 @@
                     "maxLength": 300
                 },
                 {
+                    "id":"slas_hbg",
+                    "description": null,
+                    "labelHTML": null,
+                    "label":"تفعيل خلفية مموجة",
+                    "type":"boolean",
+                    "format":"switch",
+                    "value":false,
+                    "required":false
+                },
+                {
+                    "id": "marquee",
+                    "description": null,
+                    "labelHTML": null,
+                    "label":"تفعيل ماركيو",
+                    "type":"boolean",
+                    "format":"switch",
+                    "value":false,
+                    "required":false
+                },
+                {
+                    "id": "marqueetext",
+                    "description": null,
+                    "labelHTML": null,
+                    "label":"نص ماركيو",
+                    "type":"string",
+                    "format":"text",
+                    "value":"",
+                    "required":false,
+                    "minLength": 3,
+                    "maxLength": 300
+
+                },
+                {
                     "id": "sub_title",
                     "type": "string",
                     "format": "text",
