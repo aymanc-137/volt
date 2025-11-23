@@ -975,6 +975,9 @@ select {
 .top-full {
     top: 100%;
 }
+.top-10 {
+    top: 2.5rem;
+}
 .isolate {
     isolation: isolate;
 }
@@ -1440,6 +1443,10 @@ select {
 }
 .w-full {
     width: 100%;
+}
+.w-max {
+    width: -moz-max-content;
+    width: max-content;
 }
 .w-px {
     width: 1px;
