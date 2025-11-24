@@ -20721,11 +20721,7 @@ input[type=radio].sr-only:checked ~ div#nav-cart span {
 .store-footer .contact-social ul {
     margin-bottom: 0px;
 }
-.footer-is-light .store-footer .store-footer__inner {
-    border-width: 8px;
-    border-top-width: 1px;
-    border-style: solid;
-    border-color: var(--color-primary-20);
+.store-footer .footer-bg-gr {
     background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
     --tw-gradient-from: var(--color-light-box-background) var(--tw-gradient-from-position);
     --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
@@ -20734,9 +20730,15 @@ input[type=radio].sr-only:checked ~ div#nav-cart span {
     --tw-gradient-to: var(--color-light-page-background) var(--tw-gradient-to-position);
 }
 @supports (color: rgb(0 0 0 / 0)) and (top: var(--f)) {
-.footer-is-light .store-footer .store-footer__inner {
+.store-footer .footer-bg-gr {
         --tw-gradient-to: rgb(255 255 255 / 0)  var(--tw-gradient-to-position);
     }
+}
+.footer-is-light .store-footer .store-footer__inner {
+    border-width: 8px;
+    border-top-width: 1px;
+    border-style: solid;
+    border-color: var(--color-primary-20);
 }
 .footer-is-light .store-footer .social-link {
     --tw-border-opacity: 1;
