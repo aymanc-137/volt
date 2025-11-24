@@ -11,7 +11,7 @@
   }  
 
   h3{
-    @apply text-lg font-bold mb-3 lg:mb-5;
+    @apply text-lg font-bold mb-3 lg:mb-5 text-[var(--color-primary)];
   }
 
   .social-link {
