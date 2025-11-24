@@ -30,7 +30,7 @@
    // @apply bg-gray-50 text-gray-700;
 
     .store-footer__inner {
-      @apply bg-gradient-to-br border-t border-2 border-[var(--color-primary-20)]
+      @apply bg-gradient-to-br border-t border-2 border-solid slash-bg border-[var(--color-primary-20)]
       from-[var(--color-light-box-background)] 
       via-[var(--color-primary-5)] 
       to-[var(--color-light-page-background)];

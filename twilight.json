@@ -2445,28 +2445,6 @@
                     "selected": true
                 },
                 {
-                    "type": "string",
-                    "icon": "sicon-accessibility",
-                    "label": "عنوان زر الكتم",
-                    "multilanguage": true,
-                    "id": "mute_label",
-                    "value": "كتم الصوت",
-                    "required": false,
-                    "format": "text",
-                    "description": "يستخدم كعنوان وصولي عندما يكون الفيديو يعمل بالصوت"
-                },
-                {
-                    "type": "string",
-                    "icon": "sicon-accessibility",
-                    "label": "عنوان زر تشغيل الصوت",
-                    "multilanguage": true,
-                    "id": "unmute_label",
-                    "value": "تشغيل الصوت",
-                    "required": false,
-                    "format": "text",
-                    "description": "يستخدم كعنوان وصولي عندما يكون الفيديو في وضع الصامت"
-                },
-                {
                     "id": "stats",
                     "type": "collection",
                     "format": "collection",
