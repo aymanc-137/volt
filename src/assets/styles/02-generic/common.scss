@@ -473,6 +473,15 @@ salla-modal {
 }
 
 
+.slash-bg-footer {
+  // background: linear-gradient(135deg, #0a0a0a 25%, #121212 25%, #121212 50%, #0a0a0a 50%, #0a0a0a 75%, #121212 75%);
+   background: linear-gradient(135deg, var(--color-light-page-background)
+    25%, rgba(0, 0, 0, 0)  25%, rgba(0, 0, 0, 0)  50%,
+     var(--color-light-page-background)  50%, var(--color-light-page-background)  75%,
+      rgba(0, 0, 0, 0) 75%);
+  background-size: 20px 20px;
+}
+
 
 .slash-bg {
   // background: linear-gradient(135deg, #0a0a0a 25%, #121212 25%, #121212 50%, #0a0a0a 50%, #0a0a0a 75%, #121212 75%);

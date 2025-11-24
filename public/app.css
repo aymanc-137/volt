@@ -19143,6 +19143,10 @@ input[type=radio].sr-only:checked ~ div.s-app-install-banner-cancel-button {
 .dark *.dynamic-bg-color {
     background-color: var(--color-dark-box-background);
 }
+.slash-bg-footer {
+  background: linear-gradient(135deg, var(--color-light-page-background) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, var(--color-light-page-background) 50%, var(--color-light-page-background) 75%, rgba(0, 0, 0, 0) 75%);
+  background-size: 20px 20px;
+}
 .slash-bg {
   background: linear-gradient(135deg, var(--color-primary-5) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, var(--color-primary-5) 50%, var(--color-primary-5) 75%, rgba(0, 0, 0, 0) 75%);
   background-size: 20px 20px;
@@ -20707,7 +20711,7 @@ input[type=radio].sr-only:checked ~ div#nav-cart span {
     margin-bottom: 0px;
 }
 .footer-is-light .store-footer .store-footer__inner {
-    border-width: 2px;
+    border-width: 8px;
     border-top-width: 1px;
     border-style: solid;
     border-color: var(--color-primary-20);
@@ -20717,7 +20721,7 @@ input[type=radio].sr-only:checked ~ div#nav-cart span {
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
     --tw-gradient-stops: var(--tw-gradient-from), var(--color-primary-5) var(--tw-gradient-via-position), var(--tw-gradient-to);
     --tw-gradient-to: var(--color-light-page-background) var(--tw-gradient-to-position);
-  background: linear-gradient(135deg, var(--color-primary-5) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, var(--color-primary-5) 50%, var(--color-primary-5) 75%, rgba(0, 0, 0, 0) 75%);
+  background: linear-gradient(135deg, var(--color-light-page-background) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, var(--color-light-page-background) 50%, var(--color-light-page-background) 75%, rgba(0, 0, 0, 0) 75%);
   background-size: 20px 20px;
 }
 @supports (color: rgb(0 0 0 / 0)) and (top: var(--f)) {
