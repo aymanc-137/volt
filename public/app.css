@@ -26892,6 +26892,10 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .sm\:gap-8 {
         gap: 2rem;
     }
+    .sm\:border-y {
+        border-top-width: 1px;
+        border-bottom-width: 1px;
+    }
     .sm\:border-t {
         border-top-width: 1px;
     }
