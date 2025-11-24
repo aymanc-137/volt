@@ -37,8 +37,13 @@
 
     .store-footer__inner {
       
-      @apply  footer-bg-gr border-t border-8 border-solid border-[var(--color-primary-20)];
+      @apply    border-t border-8 border-solid border-[var(--color-primary-20)];
      // @apply bg-gray-100 border-b-gray-200;
+
+     @apply bg-gradient-to-br  
+      from-[var(--color-light-box-background)] 
+      via-[var(--color-primary-5)] 
+      to-[var(--color-light-page-background)];
     }
 
     .social-link {
