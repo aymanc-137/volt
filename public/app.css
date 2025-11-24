@@ -2567,6 +2567,9 @@ select {
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
+.\!pb-0 {
+    padding-bottom: 0px !important;
+}
 .\!pt-1 {
     padding-top: 0.25rem !important;
 }
@@ -2641,12 +2644,6 @@ select {
 }
 .pt-8 {
     padding-top: 2rem;
-}
-.pb-0 {
-    padding-bottom: 0px;
-}
-.\!pb-0 {
-    padding-bottom: 0px !important;
 }
 .text-left {
     text-align: left;
@@ -20735,8 +20732,6 @@ input[type=radio].sr-only:checked ~ div#nav-cart span {
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
     --tw-gradient-stops: var(--tw-gradient-from), var(--color-primary-5) var(--tw-gradient-via-position), var(--tw-gradient-to);
     --tw-gradient-to: var(--color-light-page-background) var(--tw-gradient-to-position);
-  background: linear-gradient(135deg, var(--color-light-page-background) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, var(--color-light-page-background) 50%, var(--color-light-page-background) 75%, rgba(0, 0, 0, 0) 75%);
-  background-size: 20px 20px;
 }
 @supports (color: rgb(0 0 0 / 0)) and (top: var(--f)) {
 .footer-is-light .store-footer .store-footer__inner {
