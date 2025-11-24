@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sporty Video Section</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#ffff24', // Yellow
+                        secondary: '#FF3B3B', // Red
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'], // Ensure you have a clean font loaded
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom text stroke for that sporty jersey look */
+        .text-stroke {
+            -webkit-text-stroke: 1px white;
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-gray-900">
+
+    <!-- VIDEO SECTION START -->
+    <section class="relative w-full h-screen min-h-[600px] overflow-hidden">
+        
+        <!-- 1. Background Video -->
+        <!-- Using object-cover to ensure it fills the screen without stretching -->
+        <video 
+            class="absolute top-0 left-0 w-full h-full object-cover"
+            autoplay 
+            loop 
+            muted 
+            playsinline
+            poster="https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        >
+            <!-- Placeholder video (Gym/Crossfit style) -->
+            <source src="https://videos.pexels.com/video-files/5319759/5319759-hd_1920_1080_25fps.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <!-- 2. Dark Overlay (Gradient) -->
+        <!-- Adds contrast so text is readable. Heavier at the bottom. -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/70 z-10"></div>
+
+        <!-- 3. Content Container -->
+        <div class="relative z-20 flex flex-col items-center justify-center h-full px-4 text-center space-y-6">
+            
+            <!-- Top Tagline -->
+            <span class="text-primary font-bold tracking-[0.2em] uppercase text-sm md:text-base animate-pulse">
+                Push Your Limits
+            </span>
+
+            <!-- Main Headline -->
+            <h1 class="text-white text-6xl md:text-8xl font-black italic uppercase tracking-tighter transform -skew-x-6 drop-shadow-lg leading-tight">
+                Unleash <br />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary">The Beast</span>
+            </h1>
+
+            <!-- Description -->
+            <p class="text-gray-200 max-w-2xl text-lg md:text-xl font-medium drop-shadow-md">
+                Join the elite. High-intensity training designed to break barriers and redefine your potential.
+            </p>
+
+            <!-- Action Button -->
+            <div class="pt-4">
+                <a href="#" class="group relative inline-block">
+                    <!-- Button Background (Skewed) -->
+                    <div class="absolute inset-0 bg-secondary transform -skew-x-12 transition-transform duration-300 group-hover:bg-primary group-hover:scale-105"></div>
+                    
+                    <!-- Button Text (Un-skewed visual) -->
+                    <span class="relative block px-10 py-4 font-black uppercase tracking-widest text-white text-lg transform -skew-x-12 transition-colors duration-300 group-hover:text-black">
+                        Join Now
+                    </span>
+                    
+                    <!-- Decorative Elements -->
+                    <div class="absolute -bottom-2 -right-2 w-full h-full border-2 border-primary -skew-x-12 -z-10 transition-all duration-300 group-hover:translate-x-1 group-hover:translate-y-1"></div>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Optional: Decorative bottom border strip -->
+        <div class="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-secondary via-primary to-secondary z-30"></div>
+
+    </section>
+    <!-- VIDEO SECTION END -->
+<!-- VARIANT 2: RACING TRACK STYLE -->
+<section class="relative w-full h-screen min-h-[600px] overflow-hidden bg-neutral-900">
+
+    <!-- 1. High Speed Video -->
+    <video 
+        class="absolute top-0 left-0 w-full h-full object-cover grayscale contrast-125"
+        autoplay loop muted playsinline
+        poster="https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg"
+    >
+        <!-- Placeholder: Car drifting or racing -->
+        <source src="https://videos.pexels.com/video-files/854671/854671-hd_1920_1080_25fps.mp4" type="video/mp4">
+    </video>
+
+    <!-- 2. Racing Stripe Overlay -->
+    <!-- This creates a vertical dark band in the center to hold the text, mimicking a racing stripe on a hood -->
+    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/80 z-10"></div>
+    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-full md:w-1/2 bg-black/70 skew-x-12 border-r-8 border-l-8 border-secondary/80 z-10"></div>
+
+    <!-- 3. Content -->
+    <div class="relative z-20 flex flex-col items-center justify-center h-full text-center px-4">
+        
+        <!-- RPM/Speedo Graphic Decoration -->
+        <div class="mb-4 flex gap-2">
+            <div class="w-12 h-2 bg-primary skew-x-12"></div>
+            <div class="w-12 h-2 bg-primary skew-x-12 opacity-60"></div>
+            <div class="w-12 h-2 bg-primary skew-x-12 opacity-30"></div>
+        </div>
+
+        <h1 class="text-6xl md:text-9xl font-black uppercase text-white italic leading-none mb-2">
+            Track <br>
+            <span class="text-stroke-red text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400">Mode</span>
+        </h1>
+
+        <p class="text-primary font-bold uppercase tracking-[0.3em] mb-8 text-sm md:text-lg">
+            Forged Wheels &bull; Carbon Aero &bull; Exhausts
+        </p>
+
+        <!-- "Engine Start" Style Round Button -->
+        <a href="#" class="group relative flex items-center justify-center">
+            <!-- Pulsing Ring -->
+            <div class="absolute w-20 h-20 bg-secondary rounded-full animate-ping opacity-75"></div>
+            
+            <!-- Main Button Circle -->
+            <div class="relative w-24 h-24 bg-gradient-to-br from-gray-800 to-black rounded-full border-4 border-secondary flex items-center justify-center shadow-[0_0_20px_#FF3B3B] transition-transform transform group-hover:scale-110 group-active:scale-95">
+                <span class="text-white font-bold text-xs uppercase text-center leading-tight">
+                    Start<br>
+                    <span class="text-primary text-xl">Shop</span>
+                </span>
+            </div>
+        </a>
+
+    </div>
+    
+    <!-- Decorative Bottom Bar -->
+    <div class="absolute bottom-8 left-0 w-full flex justify-center gap-1 z-20">
+        <div class="w-2 h-4 bg-primary skew-x-12"></div>
+        <div class="w-2 h-4 bg-white skew-x-12"></div>
+        <div class="w-2 h-4 bg-secondary skew-x-12"></div>
+        <div class="w-2 h-4 bg-black skew-x-12"></div>
+        <div class="w-2 h-4 bg-primary skew-x-12"></div>
+        <div class="w-2 h-4 bg-white skew-x-12"></div>
+        <div class="w-2 h-4 bg-secondary skew-x-12"></div>
+    </div>
+
+    <style>
+        /* Specific style for the outlined text effect */
+        .text-stroke-red {
+            -webkit-text-stroke: 2px #FF3B3B;
+        }
+    </style>
+</section>
+<!-- VARIANT 1: STREET RACER HUD STYLE -->
+<section class="relative w-full h-screen min-h-[600px] overflow-hidden bg-black font-sans">
+    
+    <!-- 1. Car Video Background -->
+    <video 
+        class="absolute top-0 left-0 w-full h-full object-cover opacity-80"
+        autoplay loop muted playsinline
+        poster="https://images.pexels.com/photos/3311574/pexels-photo-3311574.jpeg"
+    >
+        <!-- Placeholder: Night city drive -->
+        <source src="https://videos.pexels.com/video-files/3044167/3044167-hd_1920_1080_30fps.mp4" type="video/mp4">
+    </video>
+
+    <!-- 2. Tech Grid Overlay -->
+    <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+
+    <!-- 3. Center Glass Card -->
+    <div class="relative z-20 flex flex-col items-center justify-center h-full px-4">
+        
+        <!-- Glass Container -->
+        <div class="relative backdrop-blur-md bg-black/40 border border-white/10 p-10 md:p-16 rounded-sm max-w-3xl w-full text-center group">
+            
+            <!-- Corner Accents (HUD Style) -->
+            <div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary"></div>
+            <div class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary"></div>
+            <div class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary"></div>
+            <div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary"></div>
+
+            <!-- Badge -->
+            <span class="inline-block py-1 px-3 border border-secondary text-secondary text-xs font-mono tracking-widest mb-6 uppercase bg-secondary/10">
+                System Ready
+            </span>
+
+            <!-- Headline -->
+            <h2 class="text-5xl md:text-7xl font-black text-white uppercase italic tracking-tighter mb-2 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                Precision <span class="text-primary">Tuning</span>
+            </h2>
+            
+            <!-- Subheadline with "Tech" styling -->
+            <p class="text-gray-300 font-mono text-sm md:text-base mb-8 tracking-wide">
+                // UPGRADE_YOUR_PERFORMANCE <br>
+                <span class="text-secondary">AERO KITS</span> - <span class="text-secondary">ECU MAPS</span> - <span class="text-secondary">TURBOCHARGERS</span>
+            </p>
+
+            <!-- Tech Button -->
+            <a href="#" class="relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-bold text-white transition-all duration-300 bg-secondary rounded hover:bg-primary hover:text-black group">
+                <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
+                <span class="relative flex items-center gap-2">
+                    SHOP ACCESSORIES 
+                    <!-- Arrow Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                </span>
+            </a>
+        </div>
+    </div>
+</section>
+</body>
+</html>

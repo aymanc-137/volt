@@ -1,0 +1,71 @@
+<!-- VARIANT 2: RACING TRACK STYLE -->
+<section class="relative w-full h-screen min-h-[600px] overflow-hidden bg-neutral-900">
+
+    <!-- 1. High Speed Video -->
+    <video 
+        class="absolute top-0 left-0 w-full h-full object-cover grayscale contrast-125"
+        autoplay loop muted playsinline
+        poster="https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg"
+    >
+        <!-- Placeholder: Car drifting or racing -->
+        <source src="https://videos.pexels.com/video-files/854671/854671-hd_1920_1080_25fps.mp4" type="video/mp4">
+    </video>
+
+    <!-- 2. Racing Stripe Overlay -->
+    <!-- This creates a vertical dark band in the center to hold the text, mimicking a racing stripe on a hood -->
+    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/80 z-10"></div>
+    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-full md:w-1/2 bg-black/70 skew-x-12 border-r-8 border-l-8 border-secondary/80 z-10"></div>
+
+    <!-- 3. Content -->
+    <div class="relative z-20 flex flex-col items-center justify-center h-full text-center px-4">
+        
+        <!-- RPM/Speedo Graphic Decoration -->
+        <div class="mb-4 flex gap-2">
+            <div class="w-12 h-2 bg-primary skew-x-12"></div>
+            <div class="w-12 h-2 bg-primary skew-x-12 opacity-60"></div>
+            <div class="w-12 h-2 bg-primary skew-x-12 opacity-30"></div>
+        </div>
+
+        <h1 class="text-6xl md:text-9xl font-black uppercase text-white italic leading-none mb-2">
+            Track <br>
+            <span class="text-stroke-red text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400">Mode</span>
+        </h1>
+
+        <p class="text-primary font-bold uppercase tracking-[0.3em] mb-8 text-sm md:text-lg">
+            Forged Wheels &bull; Carbon Aero &bull; Exhausts
+        </p>
+
+        <!-- "Engine Start" Style Round Button -->
+        <a href="#" class="group relative flex items-center justify-center">
+            <!-- Pulsing Ring -->
+            <div class="absolute w-20 h-20 bg-secondary rounded-full animate-ping opacity-75"></div>
+            
+            <!-- Main Button Circle -->
+            <div class="relative w-24 h-24 bg-gradient-to-br from-gray-800 to-black rounded-full border-4 border-secondary flex items-center justify-center shadow-[0_0_20px_#FF3B3B] transition-transform transform group-hover:scale-110 group-active:scale-95">
+                <span class="text-white font-bold text-xs uppercase text-center leading-tight">
+                    Start<br>
+                    <span class="text-primary text-xl">Shop</span>
+                </span>
+            </div>
+        </a>
+
+    </div>
+    
+    <!-- Decorative Bottom Bar -->
+    <div class="absolute bottom-8 left-0 w-full flex justify-center gap-1 z-20">
+        <div class="w-2 h-4 bg-primary skew-x-12"></div>
+        <div class="w-2 h-4 bg-white skew-x-12"></div>
+        <div class="w-2 h-4 bg-secondary skew-x-12"></div>
+        <div class="w-2 h-4 bg-black skew-x-12"></div>
+        <div class="w-2 h-4 bg-primary skew-x-12"></div>
+        <div class="w-2 h-4 bg-white skew-x-12"></div>
+        <div class="w-2 h-4 bg-secondary skew-x-12"></div>
+    </div>
+
+    <style>
+        /* Specific style for the outlined text effect */
+        .text-stroke-red {
+            -webkit-text-stroke: 2px #FF3B3B;
+        }
+    </style>
+</section>

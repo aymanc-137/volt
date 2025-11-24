@@ -1,0 +1,59 @@
+<!-- VARIANT 1: STREET RACER HUD STYLE -->
+<section class="relative w-full h-screen min-h-[600px] overflow-hidden bg-black font-sans">
+    
+    <!-- 1. Car Video Background -->
+    <video 
+        class="absolute top-0 left-0 w-full h-full object-cover opacity-80"
+        autoplay loop muted playsinline
+        poster="https://images.pexels.com/photos/3311574/pexels-photo-3311574.jpeg"
+    >
+        <!-- Placeholder: Night city drive -->
+        <source src="https://videos.pexels.com/video-files/3044167/3044167-hd_1920_1080_30fps.mp4" type="video/mp4">
+    </video>
+
+    <!-- 2. Tech Grid Overlay -->
+    <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+
+    <!-- 3. Center Glass Card -->
+    <div class="relative z-20 flex flex-col items-center justify-center h-full px-4">
+        
+        <!-- Glass Container -->
+        <div class="relative backdrop-blur-md bg-black/40 border border-white/10 p-10 md:p-16 rounded-sm max-w-3xl w-full text-center group">
+            
+            <!-- Corner Accents (HUD Style) -->
+            <div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary"></div>
+            <div class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary"></div>
+            <div class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary"></div>
+            <div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary"></div>
+
+            <!-- Badge -->
+            <span class="inline-block py-1 px-3 border border-secondary text-secondary text-xs font-mono tracking-widest mb-6 uppercase bg-secondary/10">
+                System Ready
+            </span>
+
+            <!-- Headline -->
+            <h2 class="text-5xl md:text-7xl font-black text-white uppercase italic tracking-tighter mb-2 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                Precision <span class="text-primary">Tuning</span>
+            </h2>
+            
+            <!-- Subheadline with "Tech" styling -->
+            <p class="text-gray-300 font-mono text-sm md:text-base mb-8 tracking-wide">
+                // UPGRADE_YOUR_PERFORMANCE <br>
+                <span class="text-secondary">AERO KITS</span> - <span class="text-secondary">ECU MAPS</span> - <span class="text-secondary">TURBOCHARGERS</span>
+            </p>
+
+            <!-- Tech Button -->
+            <a href="#" class="relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-bold text-white transition-all duration-300 bg-secondary rounded hover:bg-primary hover:text-black group">
+                <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-10"></span>
+                <span class="relative flex items-center gap-2">
+                    SHOP ACCESSORIES 
+                    <!-- Arrow Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                </span>
+            </a>
+        </div>
+    </div>
+</section>
