@@ -1756,6 +1756,9 @@ select {
 .justify-evenly {
     justify-content: space-evenly;
 }
+.gap-0 {
+    gap: 0px;
+}
 .gap-1 {
     gap: 0.25rem;
 }
@@ -2029,6 +2032,9 @@ select {
 }
 .border-l-4 {
     border-left-width: 4px;
+}
+.border-r {
+    border-right-width: 1px;
 }
 .border-r-2 {
     border-right-width: 2px;
@@ -2635,6 +2641,12 @@ select {
 }
 .pt-8 {
     padding-top: 2rem;
+}
+.pb-0 {
+    padding-bottom: 0px;
+}
+.\!pb-0 {
+    padding-bottom: 0px !important;
 }
 .text-left {
     text-align: left;
@@ -27263,9 +27275,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .lg\:flex-row {
         flex-direction: row;
-    }
-    .lg\:gap-6 {
-        gap: 1.5rem;
     }
     .lg\:gap-8 {
         gap: 2rem;
