@@ -19,7 +19,36 @@
 {% set aside_button_label = component.aside_button_label|default('') %}
 {% set aside_button_url = component.aside_button_url|default('') %}
 
-<section class="s-block tap-preview-component   py-10" dir="rtl">
+{% set slashbg = component.slas_hbg | default(false) %}
+{% set marquee = component.marquee | default(false) %}
+{% set marqueetext = component.marqueetext | default(" سرعة /// أداء /// تحكم ") %}
+
+<section class="s-block tap-preview-component relative dynamic-bg-color {{ slashbg ? 'slash-bg' : ''}} py-10" dir="rtl">
+    {% if marquee %}
+
+    <div class="styleish-text absolute top-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
+        <div class="marquee-reverse-sections flex whitespace-nowrap w-max">
+            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+                {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+            </span>
+            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+                {{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+            </span>
+        </div>
+    </div>
+
+    <div class="styleish-text absolute bottom-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
+        <div class="marquee-content-sections flex whitespace-nowrap w-max">
+            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+                {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+            </span>
+            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+                {{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+            </span>
+        </div>
+    </div>
+ 
+    {% endif %}
   <div class="max-w-[85rem] mx-auto px-4 md:px-8">
     <div class="grid lg:grid-cols-3 gap-4   rounded-custom 
     
