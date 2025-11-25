@@ -1820,6 +1820,45 @@
                     "maxLength": 120
                 },
                 {
+                    "id":"slas_hbg",
+                    "description": null,
+                    "labelHTML": null,
+                    "label":"تفعيل خلفية مموجة",
+                    "type":"boolean",
+                    "format":"switch",
+                    "value":false,
+                    "required":false
+                },
+                {
+                    "id": "marquee",
+                    "description": null,
+                    "labelHTML": null,
+                    "label":"تفعيل ماركيو",
+                    "type":"boolean",
+                    "format":"switch",
+                    "value":false,
+                    "required":false
+                },
+                {
+                    "id": "marqueetext",
+                    "description": null,
+                    "labelHTML": null,
+                    "label":"نص ماركيو",
+                    "type":"string",
+                    "format":"text",
+                    "value":" سرعة /// أداء /// تحكم ",
+                    "required":false,
+                    "minLength": 3,
+                    "maxLength": 300,
+                    "conditions": [
+                        {
+                            "id": "marquee",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
                     "id": "features",
                     "type": "collection",
                     "format": "collection",
@@ -2921,45 +2960,6 @@
                     "icon": "sicon-list",
                     "value": false,
                     "required": false
-                },
-                {
-                    "id":"slas_hbg",
-                    "description": null,
-                    "labelHTML": null,
-                    "label":"تفعيل خلفية مموجة",
-                    "type":"boolean",
-                    "format":"switch",
-                    "value":false,
-                    "required":false
-                },
-                {
-                    "id": "marquee",
-                    "description": null,
-                    "labelHTML": null,
-                    "label":"تفعيل ماركيو",
-                    "type":"boolean",
-                    "format":"switch",
-                    "value":false,
-                    "required":false
-                },
-                {
-                    "id": "marqueetext",
-                    "description": null,
-                    "labelHTML": null,
-                    "label":"نص ماركيو",
-                    "type":"string",
-                    "format":"text",
-                    "value":" سرعة /// أداء /// تحكم ",
-                    "required":false,
-                    "minLength": 3,
-                    "maxLength": 300,
-                    "conditions": [
-                        {
-                            "id": "marquee",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ]
                 }
             ]
         },
