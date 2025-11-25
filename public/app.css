@@ -19186,6 +19186,9 @@ input[type=radio].sr-only:checked ~ div.s-app-install-banner-cancel-button {
     transform: translateX(0);
   }
 }
+.styleish-text {
+  z-index: -1;
+}
 .tooltip-content {
   position: absolute;
   transform: translate(82px, -120px);
