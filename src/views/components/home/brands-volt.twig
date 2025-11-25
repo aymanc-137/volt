@@ -15,9 +15,38 @@
 {% set title_text = component.title is defined ? component.title : 'ندعم جميع شركات السيارات' %}
 {% set highlight_word = component.highlighted_word is defined ? component.highlighted_word : 'السيارات' %}
 
+{% set slashbg = component.slas_hbg | default(false) %}
+{% set marquee = component.marquee | default(false) %}
+{% set marqueetext = component.marqueetext | default(" سرعة /// أداء /// تحكم ") %}
+
 {% set brands = component.brands|default([]) %}
 
-<section class="s-block brands-volt">
+<section class="s-block brands-volt relative dynamic-bg-color {{ slashbg ? 'slash-bg' : ''}}">
+   {% if marquee %}
+
+    <div class="styleish-text absolute top-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
+        <div class="marquee-reverse-sections flex whitespace-nowrap w-max">
+            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+                {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+            </span>
+            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+                {{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+            </span>
+        </div>
+    </div>
+
+    <div class="styleish-text absolute bottom-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
+        <div class="marquee-content-sections flex whitespace-nowrap w-max">
+            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+                {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+            </span>
+            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+                {{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+            </span>
+        </div>
+    </div>
+ 
+    {% endif %}
   <div class="container">
     <div class="brands-volt__inner relative isolate overflow-hidden rounded-3xl bg-light-foreground px-6 py-12 text-center shadow-xl sm:px-10 lg:px-16 dark:bg-dark-foreground dark:shadow-none dynamic-text-color">
       <span class="brands-volt__glow pointer-events-none absolute top-16 right-1/2 h-64 w-64 translate-x-1/2 rounded-full bg-gradient-to-br from-primary via-transparent to-transparent blur-3xl opacity-70 -z-10 dark:from-primary"></span>
