@@ -2765,6 +2765,45 @@
                     "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden' ><h6 style='margin-bottom:10px' >معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnWeshaah/category-products.png'></div>"
                 },
                 {
+                    "id":"slas_hbg",
+                    "description": null,
+                    "labelHTML": null,
+                    "label":"تفعيل خلفية مموجة",
+                    "type":"boolean",
+                    "format":"switch",
+                    "value":false,
+                    "required":false
+                },
+                {
+                    "id": "marquee",
+                    "description": null,
+                    "labelHTML": null,
+                    "label":"تفعيل ماركيو",
+                    "type":"boolean",
+                    "format":"switch",
+                    "value":false,
+                    "required":false
+                },
+                {
+                    "id": "marqueetext",
+                    "description": null,
+                    "labelHTML": null,
+                    "label":"نص ماركيو",
+                    "type":"string",
+                    "format":"text",
+                    "value":" سرعة /// أداء /// تحكم ",
+                    "required":false,
+                    "minLength": 3,
+                    "maxLength": 300,
+                    "conditions": [
+                        {
+                            "id": "marquee",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
                     "id": "category_url",
                     "format": "dropdown-list",
                     "type": "items",

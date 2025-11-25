@@ -1,7 +1,37 @@
 {% set title_element_id = 'category-products-title-' ~ (position|default(0)) %}
 {% set gradient_word_active = component.enable_gradient_word and component.gradient_word %}
+
+{% set slashbg = component.slas_hbg | default(false) %}
+{% set marquee = component.marquee | default(false) %}
+{% set marqueetext = component.marqueetext | default(" سرعة /// أداء /// تحكم ") %}
+
 <!-- The class "p-4" was changed to "py-4" to remove horizontal padding -->
-<section class="flex items-center my-10 relative justify-center">
+<section class="flex items-center my-10 relative justify-center dynamic-bg-color {{ slashbg ? 'slash-bg' : ''}}">
+    {% if marquee %}
+
+    <div class="styleish-text absolute top-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
+        <div class="marquee-reverse-sections flex whitespace-nowrap w-max">
+            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+                {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+            </span>
+            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+                {{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+            </span>
+        </div>
+    </div>
+
+    <div class="styleish-text absolute bottom-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
+        <div class="marquee-content-sections flex whitespace-nowrap w-max">
+            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+                {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+            </span>
+            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+                {{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+            </span>
+        </div>
+    </div>
+ 
+    {% endif %}
     <div class="relative w-full my-32">
                    {% if not component.title_inside_image %}
                                             <div class=" my-5 flex flex-col items-center justify-center w-full" >
