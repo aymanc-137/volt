@@ -2437,7 +2437,7 @@
                     "placeholder": "https://domain.com/page",
                     "type": "items",
                     "icon": "sicon-link",
-                    "id": "aside_button_url",
+                    "id": "primary_cta_url",
                     "value": null,
                     "format": "variable-list",
                     "searchable": true,
