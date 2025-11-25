@@ -2431,15 +2431,69 @@
                     "description": "النص الظاهر داخل زر الدعوة الأول"
                 },
                 {
-                    "type": "string",
-                    "icon": "sicon-link",
                     "label": "رابط زر الدعوة الأساسي",
-                    "id": "primary_cta_url",
-                    "value": "#",
                     "required": false,
-                    "format": "url",
                     "description": "الرابط الذي ينتقل إليه الزر الأساسي عند الضغط عليه",
-                    "placeholder": "https://domain.com/page"
+                    "placeholder": "https://domain.com/page",
+                    "type": "items",
+                    "icon": "sicon-link",
+                    "id": "aside_button_url",
+                    "value": null,
+                    "format": "variable-list",
+                    "searchable": true,
+                    "source": "custom",
+                    "sources": [
+                        {
+                            "label": "منتج",
+                            "key": "products",
+                            "value": "products"
+                        },
+                        {
+                            "label": "تصنيف",
+                            "key": "categories",
+                            "value": "categories"
+                        },
+                        {
+                            "label": "ماركة تجارية",
+                            "key": "brands",
+                            "value": "brands"
+                        },
+                        {
+                            "label": "صفحة تعريفية",
+                            "key": "pages",
+                            "value": "pages"
+                        },
+                        {
+                            "label": "مقالة",
+                            "key": "blog_articles",
+                            "value": "blog_articles"
+                        },
+                        {
+                            "label": "تصنيف ضمن المدونة",
+                            "key": "blog_categories",
+                            "value": "blog_categories"
+                        },
+                        {
+                            "label": "التخفيضات",
+                            "key": "offers_link",
+                            "value": "offers_link"
+                        },
+                        {
+                            "label": "الماركات التجارية",
+                            "key": "brands_link",
+                            "value": "brands_link"
+                        },
+                        {
+                            "label": "المدونة",
+                            "key": "blog_link",
+                            "value": "blog_link"
+                        },
+                        {
+                            "label": "رابط خارجي",
+                            "key": "custom",
+                            "value": "custom"
+                        }
+                    ]
                 },
                 {
                     "type": "string",
@@ -2453,15 +2507,69 @@
                     "description": "النص الظاهر داخل زر الدعوة الثاني"
                 },
                 {
-                    "type": "string",
-                    "icon": "sicon-link",
                     "label": "رابط زر الدعوة الثانوي",
                     "id": "secondary_cta_url",
                     "value": "#",
                     "required": false,
-                    "format": "url",
                     "description": "الرابط الذي ينتقل إليه الزر الثانوي عند الضغط عليه",
-                    "placeholder": "https://domain.com/another-page"
+                    "placeholder": "https://domain.com/another-page",
+                    "type": "items",
+                    "icon": "sicon-link",
+                    "format": "variable-list",
+                    "searchable": true,
+                    "source": "custom",
+                    "sources": [
+                        {
+                            "label": "منتج",
+                            "key": "products",
+                            "value": "products"
+                        },
+                        {
+                            "label": "تصنيف",
+                            "key": "categories",
+                            "value": "categories"
+                        },
+                        {
+                            "label": "ماركة تجارية",
+                            "key": "brands",
+                            "value": "brands"
+                        },
+                        {
+                            "label": "صفحة تعريفية",
+                            "key": "pages",
+                            "value": "pages"
+                        },
+                        {
+                            "label": "مقالة",
+                            "key": "blog_articles",
+                            "value": "blog_articles"
+                        },
+                        {
+                            "label": "تصنيف ضمن المدونة",
+                            "key": "blog_categories",
+                            "value": "blog_categories"
+                        },
+                        {
+                            "label": "التخفيضات",
+                            "key": "offers_link",
+                            "value": "offers_link"
+                        },
+                        {
+                            "label": "الماركات التجارية",
+                            "key": "brands_link",
+                            "value": "brands_link"
+                        },
+                        {
+                            "label": "المدونة",
+                            "key": "blog_link",
+                            "value": "blog_link"
+                        },
+                        {
+                            "label": "رابط خارجي",
+                            "key": "custom",
+                            "value": "custom"
+                        }
+                    ]
                 },
                 {
                     "type": "boolean",
