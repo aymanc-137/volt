@@ -27099,16 +27099,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .md\:overflow-hidden {
         overflow: hidden;
     }
-    .md\:border-x {
-        border-left-width: 1px;
-        border-right-width: 1px;
-    }
-    .md\:border-l {
-        border-left-width: 1px;
-    }
-    .md\:border-r {
-        border-right-width: 1px;
-    }
     .md\:border-none {
         border-style: none;
     }

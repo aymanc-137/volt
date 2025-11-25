@@ -44,10 +44,32 @@
         {# Title with Racing Typography #}
         {% if component.title %}
         <h2 class="text-4xl font-alshohadaa md:text-5xl lg:text-6xl font-bold mb-6 font-racing text-white animate-slide-in-up leading-tight tracking-tight">
-            <span class="inline-block bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(255,255,255,0.5)] transform hover:scale-105 transition-transform duration-300">
-                {{ component.title }}
-            </span>
+            {% if component.enable_gradient_word and component.gradient_word %}
+                <span id="video-banner-title-{{ position }}" class="inline-block bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(255,255,255,0.5)] transform hover:scale-105 transition-transform duration-300">
+                    {{ component.title }}
+                </span>
+            {% else %}
+                <span class="inline-block bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(255,255,255,0.5)] transform hover:scale-105 transition-transform duration-300">
+                    {{ component.title }}
+                </span>
+            {% endif %}
         </h2>
+
+        {% if component.enable_gradient_word and component.gradient_word %}
+            <script>
+              document.addEventListener('DOMContentLoaded', function() {
+                const titleEl = document.getElementById('video-banner-title-{{ position }}');
+                if (titleEl) {
+                  const word = '{{ component.gradient_word }}';
+                  const regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+                  titleEl.innerHTML = titleEl.innerHTML.replace(
+                    regex,
+                    '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
+                  );
+                }
+              });
+            </script>
+        {% endif %}
         {% endif %}
 
         {# Subtitle with Accent Color #}

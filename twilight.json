@@ -2365,6 +2365,36 @@
                     "description": "العنوان الرئيسي الظاهر بالخط الكبير"
                 },
                 {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "تلوين كلمة محددة في العنوان",
+                    "description": "تفعيل تلوين كلمة محددة في العنوان الرئيسي بتدرج لوني",
+                    "id": "enable_gradient_word",
+                    "format": "switch",
+                    "required": false,
+                    "value": false,
+                    "selected": false
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-typography",
+                    "label": "الكلمة المراد تلوينها",
+                    "multilanguage": false,
+                    "id": "gradient_word",
+                    "value": "",
+                    "required": false,
+                    "format": "text",
+                    "description": "الكلمة التي سيتم تطبيق التدرج اللوني عليها (يجب أن تكون مطابقة للنص في العنوان)",
+                    "placeholder": "مثال: القصوى",
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_word",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
                     "type": "string",
                     "icon": "sicon-typography",
                     "label": "العنوان الفرعي",
