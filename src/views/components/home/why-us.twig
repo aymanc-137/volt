@@ -17,7 +17,7 @@
 {% set marquee = component.marquee | default(false) %}
 {% set marqueetext = component.marqueetext | default(" سرعة /// أداء /// تحكم ") %}
 
-<section class="s-block s-block--why-us relative   {{ slashbg ? 'slash-bg dynamic-bg-color ' : ''}}">
+<section class="s-block border-y border-[var(--color-primary)] s-block--why-us relative   {{ slashbg ? 'slash-bg dynamic-bg-color ' : ''}}">
   {% if marquee %}
 
   <div class="styleish-text absolute top-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
