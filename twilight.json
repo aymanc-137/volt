@@ -3818,6 +3818,183 @@
                     "value": []
                 }
             ]
+        },
+        {
+            "key": "fdc6ca00-3f9c-4853-b99e-21256640f29d",
+            "title": "المواقع وبيانات التواصل",
+            "icon": "sicon-map-marker-alt",
+            "path": "home.location",
+            "image": "https://cdn.salla.sa/mQgZlG/kvFhVeuUyjK4nHUovBQBZ632Hb6gKV2BXZwid40e.png",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "static-desc",
+                    "value": "<div style='padding:15px;background:#f8f9fa;border-radius:8px;margin-bottom:20px;'><h4 style='margin:0 0 10px;color:#333;'>عنصر المواقع وبيانات التواصل</h4><p style='margin:0;color:#666;font-size:14px;'>يمكنك إضافة عدة مواقع مع خريطة جوجل وبيانات التواصل لكل موقع</p></div>"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "عنوان القسم",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": {
+                        "ar": "مواقعنا",
+                        "en": "Our Locations"
+                    },
+                    "required": false,
+                    "format": "text",
+                    "description": "العنوان الرئيسي للقسم",
+                    "placeholder": "أدخل عنوان القسم...",
+                    "minLength": 0,
+                    "maxLength": 100
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-typography",
+                    "label": "وصف القسم",
+                    "multilanguage": true,
+                    "id": "description",
+                    "value": {
+                        "ar": "تفضل بزيارتنا في أي من فروعنا",
+                        "en": "Visit us at any of our branches"
+                    },
+                    "description": "نص توضيحي يظهر أسفل العنوان",
+                    "format": "textarea",
+                    "required": false,
+                    "placeholder": "أدخل وصف القسم...",
+                    "minLength": 0,
+                    "maxLength": 255
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "تفعيل الحدود",
+                    "description": "إظهار حدود علوية وسفلية باللون الأساسي",
+                    "id": "enable_border",
+                    "format": "switch",
+                    "required": false,
+                    "value": false,
+                    "selected": false
+                },
+                {
+                    "id": "locations",
+                    "type": "collection",
+                    "format": "collection",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 6,
+                    "label": "المواقع",
+                    "item_label": "موقع",
+                    "value": [
+                        {
+                            "locations.name": "الفرع الرئيسي",
+                            "locations.address": "شارع الملك فهد، الرياض، المملكة العربية السعودية",
+                            "locations.phone": "+966 11 123 4567",
+                            "locations.email": "info@example.com",
+                            "locations.working_hours": "السبت - الخميس: 9 صباحاً - 10 مساءً",
+                            "locations.map_embed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.674698098988!2d46.6752957!3d24.7135517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDQyJzQ4LjgiTiA0NsKwNDAnMzEuMSJF!5e0!3m2!1sen!2ssa!4v1234567890"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "type": "string",
+                            "icon": "sicon-store",
+                            "label": "اسم الموقع/الفرع",
+                            "multilanguage": true,
+                            "id": "locations.name",
+                            "value": null,
+                            "required": true,
+                            "format": "text",
+                            "description": "اسم الفرع أو الموقع",
+                            "placeholder": "مثال: الفرع الرئيسي",
+                            "minLength": 2,
+                            "maxLength": 100
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-location",
+                            "label": "العنوان",
+                            "multilanguage": true,
+                            "id": "locations.address",
+                            "value": null,
+                            "required": false,
+                            "format": "textarea",
+                            "description": "العنوان الكامل للموقع",
+                            "placeholder": "أدخل العنوان الكامل...",
+                            "minLength": 0,
+                            "maxLength": 300
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-phone",
+                            "label": "رقم الهاتف",
+                            "id": "locations.phone",
+                            "value": null,
+                            "required": false,
+                            "format": "text",
+                            "description": "رقم الهاتف للتواصل",
+                            "placeholder": "+966 XX XXX XXXX",
+                            "minLength": 0,
+                            "maxLength": 20
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-mail",
+                            "label": "البريد الإلكتروني",
+                            "id": "locations.email",
+                            "value": null,
+                            "required": false,
+                            "format": "text",
+                            "description": "البريد الإلكتروني للتواصل",
+                            "placeholder": "example@domain.com",
+                            "minLength": 0,
+                            "maxLength": 100
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-clock",
+                            "label": "ساعات العمل",
+                            "multilanguage": true,
+                            "id": "locations.working_hours",
+                            "value": null,
+                            "required": false,
+                            "format": "text",
+                            "description": "أوقات العمل",
+                            "placeholder": "مثال: السبت - الخميس: 9 ص - 10 م",
+                            "minLength": 0,
+                            "maxLength": 150
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-map",
+                            "label": "رابط خريطة جوجل (Embed)",
+                            "id": "locations.map_embed",
+                            "value": null,
+                            "required": false,
+                            "format": "text",
+                            "description": "رابط تضمين خريطة جوجل - يمكنك الحصول عليه من Google Maps > مشاركة > تضمين خريطة",
+                            "placeholder": "https://www.google.com/maps/embed?pb=...",
+                            "minLength": 0,
+                            "maxLength": 1000
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-image",
+                            "label": "صورة الموقع (بديل للخريطة)",
+                            "id": "locations.image",
+                            "value": null,
+                            "required": false,
+                            "format": "image",
+                            "description": "صورة تظهر بدلاً من الخريطة إذا لم يتم إضافة رابط الخريطة",
+                            "settings": {
+                                "height": 300,
+                                "width": 600
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "support_url": "",
