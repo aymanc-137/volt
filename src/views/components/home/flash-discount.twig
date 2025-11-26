@@ -13,8 +13,8 @@
 {% set marqueetext = component.marqueetext | default(" سرعة /// أداء /// تحكم ") %}
 
 <section class="    my-size-flash-discount-{{position}} border-y border-[var(--color-primary-30)] border-dashed py-20 relative 
-    dynamic-bg-color 
-    {{ slashbg ? 'slash-bg' : ''}}
+    
+    {{ slashbg ? 'slash-bg dynamic-bg-color ' : ''}}
     pb-32">
 
     {% if marquee %}

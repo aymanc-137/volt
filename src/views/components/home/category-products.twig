@@ -6,7 +6,7 @@
 {% set marqueetext = component.marqueetext | default(" سرعة /// أداء /// تحكم ") %}
 
 <!-- The class "p-4" was changed to "py-4" to remove horizontal padding -->
-<section class="flex items-center my-10 relative justify-center dynamic-bg-color {{ slashbg ? 'slash-bg' : ''}}">
+<section class="flex items-center my-10 relative justify-center  {{ slashbg ? 'slash-bg dynamic-bg-color ' : ''}}">
     {% if marquee %}
 
     <div class="styleish-text absolute top-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
