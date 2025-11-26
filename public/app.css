@@ -2068,6 +2068,10 @@ select {
 .border-\[color\:var\(--color-scandary\)\] {
     border-color: var(--color-scandary);
 }
+.border-\[var\(--color-primary\)\] {
+    border-color: #414042;
+    border-color: var(--color-primary);
+}
 .border-\[var\(--color-primary-30\)\] {
     border-color: var(--color-primary-30);
 }
@@ -2148,13 +2152,6 @@ select {
     --tw-border-opacity: 1;
     border-color: rgba(234, 179, 8, 1);
     border-color: rgba(234, 179, 8, var(--tw-border-opacity, 1));
-}
-.border-\[var\(--primary-color\)\] {
-    border-color: var(--primary-color);
-}
-.border-\[var\(--color-primary\)\] {
-    border-color: #414042;
-    border-color: var(--color-primary);
 }
 .bg-\[color\:var\(--color-primary\)\] {
     background-color: #414042;

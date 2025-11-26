@@ -21,7 +21,10 @@
 
 {% set brands = component.brands|default([]) %}
 
-<section class="s-block brands-volt relative  {{ slashbg ? 'slash-bg   dynamic-bg-color' : ''}}">
+<section class="s-block brands-volt relative 
+ border-y border-[var(--color-primary)] 
+ 
+  {{ slashbg ? 'slash-bg   dynamic-bg-color' : ''}}">
    {% if marquee %}
 
     <div class="styleish-text absolute top-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">

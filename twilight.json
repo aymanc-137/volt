@@ -1581,6 +1581,15 @@
                     ]
                 },
                 {
+                    "id": "enable_border",
+                    "label": "تفعيل الحدود",
+                    "description": null,
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
                     "id": "enable_gradient_title",
                     "type": "boolean",
                     "format": "switch",
@@ -1605,7 +1614,16 @@
                     "required": false,
                     "conditions": [
                         {
-                            "id": "enable_gradient_title",
+                            "id": "enable_border",
+                    "label": "تفعيل الحدود",
+                    "description": null,
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "enable_gradient_title",
                             "operation": "=",
                             "value": false
                         }
@@ -1630,7 +1648,16 @@
                             "value": true
                         },
                         {
-                            "id": "enable_gradient_title",
+                            "id": "enable_border",
+                    "label": "تفعيل الحدود",
+                    "description": null,
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "enable_gradient_title",
                             "operation": "=",
                             "value": false
                         }
@@ -2862,6 +2889,15 @@
                     "maxLength": 300
                 },
                 {
+                    "id": "enable_border",
+                    "label": "تفعيل الحدود",
+                    "description": null,
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
                     "id": "enable_gradient_title",
                     "type": "boolean",
                     "format": "switch",
@@ -2886,7 +2922,16 @@
                     "required": false,
                     "conditions": [
                         {
-                            "id": "enable_gradient_title",
+                            "id": "enable_border",
+                    "label": "تفعيل الحدود",
+                    "description": null,
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "enable_gradient_title",
                             "operation": "=",
                             "value": false
                         }
@@ -2913,7 +2958,16 @@
                             "value": true
                         },
                         {
-                            "id": "enable_gradient_title",
+                            "id": "enable_border",
+                    "label": "تفعيل الحدود",
+                    "description": null,
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "enable_gradient_title",
                             "operation": "=",
                             "value": false
                         }
@@ -3441,6 +3495,15 @@
                     "maxLength": 300
                 },
                 {
+                    "id": "enable_border",
+                    "label": "تفعيل الحدود",
+                    "description": null,
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
                     "id": "enable_gradient_title",
                     "type": "boolean",
                     "format": "switch",
@@ -3465,7 +3528,16 @@
                     "required": false,
                     "conditions": [
                         {
-                            "id": "enable_gradient_title",
+                            "id": "enable_border",
+                    "label": "تفعيل الحدود",
+                    "description": null,
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "enable_gradient_title",
                             "operation": "=",
                             "value": false
                         }
@@ -3490,7 +3562,16 @@
                             "value": true
                         },
                         {
-                            "id": "enable_gradient_title",
+                            "id": "enable_border",
+                    "label": "تفعيل الحدود",
+                    "description": null,
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "enable_gradient_title",
                             "operation": "=",
                             "value": false
                         }
@@ -3662,6 +3743,15 @@
                     ]
                 },
                 {
+                    "id": "enable_border",
+                    "label": "تفعيل الحدود",
+                    "description": null,
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
                     "id": "enable_gradient_title",
                     "type": "boolean",
                     "format": "switch",
@@ -3686,7 +3776,16 @@
                     "required": false,
                     "conditions": [
                         {
-                            "id": "enable_gradient_title",
+                            "id": "enable_border",
+                    "label": "تفعيل الحدود",
+                    "description": null,
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "enable_gradient_title",
                             "operation": "=",
                             "value": false
                         }
@@ -3711,7 +3810,16 @@
                             "value": true
                         },
                         {
-                            "id": "enable_gradient_title",
+                            "id": "enable_border",
+                    "label": "تفعيل الحدود",
+                    "description": null,
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "enable_gradient_title",
                             "operation": "=",
                             "value": false
                         }
