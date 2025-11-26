@@ -22,9 +22,10 @@
 {% set slashbg = component.slas_hbg | default(false) %}
 {% set marquee = component.marquee | default(false) %}
 {% set marqueetext = component.marqueetext | default(" سرعة /// أداء /// تحكم ") %}
+{% set enable_border = component.enable_border | default(false) %}
 
 <section class="s-block tap-preview-component relative  
- {{ slashbg ? 'slash-bg dynamic-bg-color ' : ''}} py-10" dir="rtl">
+ {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} {{ slashbg ? 'slash-bg dynamic-bg-color ' : ''}} py-10" dir="rtl">
     {% if marquee %}
 
     <div class="styleish-text absolute top-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">

@@ -2907,15 +2907,6 @@
                     "maxLength": 300
                 },
                 {
-                    "id": "enable_border",
-                    "label": "تفعيل الحدود",
-                    "description": null,
-                    "type": "boolean",
-                    "format": "switch",
-                    "value": false,
-                    "required": false
-                },
-                {
                     "id": "enable_gradient_title",
                     "type": "boolean",
                     "format": "switch",
@@ -3195,6 +3186,15 @@
                             "value": true
                         }
                     ]
+                },
+                {
+                    "id": "enable_border",
+                    "label": "تفعيل الحدود",
+                    "description": null,
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
                 },
                 {
                     "id": "aside_image",

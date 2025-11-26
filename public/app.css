@@ -2072,9 +2072,6 @@ select {
     border-color: #414042;
     border-color: var(--color-primary);
 }
-.border-\[var\(--color-primary-30\)\] {
-    border-color: var(--color-primary-30);
-}
 .border-\[var\(--color-scandary\)\] {
     border-color: var(--color-scandary);
 }
