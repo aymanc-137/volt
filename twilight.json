@@ -1614,16 +1614,7 @@
                     "required": false,
                     "conditions": [
                         {
-                            "id": "enable_border",
-                    "label": "تفعيل الحدود",
-                    "description": null,
-                    "type": "boolean",
-                    "format": "switch",
-                    "value": false,
-                    "required": false
-                },
-                {
-                    "id": "enable_gradient_title",
+                            "id": "enable_gradient_title",
                             "operation": "=",
                             "value": false
                         }
@@ -1648,16 +1639,7 @@
                             "value": true
                         },
                         {
-                            "id": "enable_border",
-                    "label": "تفعيل الحدود",
-                    "description": null,
-                    "type": "boolean",
-                    "format": "switch",
-                    "value": false,
-                    "required": false
-                },
-                {
-                    "id": "enable_gradient_title",
+                            "id": "enable_gradient_title",
                             "operation": "=",
                             "value": false
                         }
@@ -1886,6 +1868,15 @@
                     ]
                 },
                 {
+                    "id": "enable_border",
+                    "label": "تفعيل الحدود",
+                    "description": null,
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
                     "id": "features",
                     "type": "collection",
                     "format": "collection",
@@ -2045,6 +2036,15 @@
                             "value": true
                         }
                     ]
+                },
+                {
+                    "id": "enable_border",
+                    "label": "تفعيل الحدود",
+                    "description": null,
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
                 },
                 {
                     "id": "brands",
@@ -2448,6 +2448,15 @@
                             "value": true
                         }
                     ]
+                },
+                {
+                    "id": "enable_border",
+                    "label": "تفعيل الحدود",
+                    "description": null,
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
                 }
             ]
         },
@@ -2831,6 +2840,15 @@
                     ]
                 },
                 {
+                    "id": "enable_border",
+                    "label": "تفعيل الحدود",
+                    "description": null,
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
                     "id": "category_url",
                     "format": "dropdown-list",
                     "type": "items",
@@ -2922,16 +2940,7 @@
                     "required": false,
                     "conditions": [
                         {
-                            "id": "enable_border",
-                    "label": "تفعيل الحدود",
-                    "description": null,
-                    "type": "boolean",
-                    "format": "switch",
-                    "value": false,
-                    "required": false
-                },
-                {
-                    "id": "enable_gradient_title",
+                            "id": "enable_gradient_title",
                             "operation": "=",
                             "value": false
                         }
@@ -2958,16 +2967,7 @@
                             "value": true
                         },
                         {
-                            "id": "enable_border",
-                    "label": "تفعيل الحدود",
-                    "description": null,
-                    "type": "boolean",
-                    "format": "switch",
-                    "value": false,
-                    "required": false
-                },
-                {
-                    "id": "enable_gradient_title",
+                            "id": "enable_gradient_title",
                             "operation": "=",
                             "value": false
                         }
@@ -3528,16 +3528,7 @@
                     "required": false,
                     "conditions": [
                         {
-                            "id": "enable_border",
-                    "label": "تفعيل الحدود",
-                    "description": null,
-                    "type": "boolean",
-                    "format": "switch",
-                    "value": false,
-                    "required": false
-                },
-                {
-                    "id": "enable_gradient_title",
+                            "id": "enable_gradient_title",
                             "operation": "=",
                             "value": false
                         }
@@ -3562,16 +3553,7 @@
                             "value": true
                         },
                         {
-                            "id": "enable_border",
-                    "label": "تفعيل الحدود",
-                    "description": null,
-                    "type": "boolean",
-                    "format": "switch",
-                    "value": false,
-                    "required": false
-                },
-                {
-                    "id": "enable_gradient_title",
+                            "id": "enable_gradient_title",
                             "operation": "=",
                             "value": false
                         }
@@ -3776,16 +3758,7 @@
                     "required": false,
                     "conditions": [
                         {
-                            "id": "enable_border",
-                    "label": "تفعيل الحدود",
-                    "description": null,
-                    "type": "boolean",
-                    "format": "switch",
-                    "value": false,
-                    "required": false
-                },
-                {
-                    "id": "enable_gradient_title",
+                            "id": "enable_gradient_title",
                             "operation": "=",
                             "value": false
                         }
@@ -3810,16 +3783,7 @@
                             "value": true
                         },
                         {
-                            "id": "enable_border",
-                    "label": "تفعيل الحدود",
-                    "description": null,
-                    "type": "boolean",
-                    "format": "switch",
-                    "value": false,
-                    "required": false
-                },
-                {
-                    "id": "enable_gradient_title",
+                            "id": "enable_gradient_title",
                             "operation": "=",
                             "value": false
                         }

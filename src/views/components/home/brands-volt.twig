@@ -18,11 +18,12 @@
 {% set slashbg = component.slas_hbg | default(false) %}
 {% set marquee = component.marquee | default(false) %}
 {% set marqueetext = component.marqueetext | default(" سرعة /// أداء /// تحكم ") %}
+{% set enable_border = component.enable_border | default(false) %}
 
 {% set brands = component.brands|default([]) %}
 
 <section class="s-block brands-volt relative 
- border-y border-[var(--color-primary)] 
+ {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} 
  
   {{ slashbg ? 'slash-bg   dynamic-bg-color' : ''}}">
    {% if marquee %}
