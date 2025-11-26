@@ -5,7 +5,7 @@
 | description                 | string  | Section description                                 |
 | enable_border               | boolean | Enable top/bottom border with primary color         |
 | locations[]                 | array   | Array of location objects                           |
-| locations[].name            | string  | Location name                                       |
+| locations[].name            | string  | Location/City name (used as tab label)              |
 | locations[].address         | string  | Full address                                        |
 | locations[].phone           | string  | Phone number                                        |
 | locations[].email           | string  | Email address                                       |
@@ -19,12 +19,13 @@
 {% set title = component.title | default('مواقعنا') %}
 {% set description = component.description | default('') %}
 {% set locations = component.locations | default([]) %}
+{% set component_id = 'location-' ~ position | default(random()) %}
 
 <section class="s-block s-block--locations py-12 md:py-16 {{ enable_border ? 'border-y border-[var(--color-primary)]' : '' }}">
     <div class="container">
         <!-- Section Header -->
         {% if title or description %}
-        <div class="text-center mb-10 md:mb-14">
+        <div class="text-center mb-8 md:mb-12">
             {% if title %}
             <h2 class="text-2xl md:text-4xl font-bold mb-4 dynamic-text-color">
                 <span class="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-scandary)] bg-clip-text text-transparent">
@@ -40,171 +41,305 @@
         </div>
         {% endif %}
 
-        <!-- Locations Grid -->
-        {% if locations | length > 0 %}
-        <div class="grid grid-cols-1 {% if locations | length > 1 %}lg:grid-cols-2{% endif %} gap-6 md:gap-8">
-            {% for location in locations %}
-            <div class="location-card dynamic-bg-color rounded-custom overflow-hidden dynamic-border-color border hover:shadow-lg transition-all duration-300 group">
-                <!-- Map Section -->
-                {% if location.map_embed %}
-                <div class="location-card__map relative h-[250px] md:h-[300px] overflow-hidden">
-                    <iframe 
-                        src="{{ location.map_embed }}"
-                        width="100%" 
-                        height="100%" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade"
-                        class="w-full h-full"
-                    ></iframe>
-                    <!-- Map Overlay Gradient -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
-                {% elseif location.image %}
-                <div class="location-card__image relative h-[250px] md:h-[300px] overflow-hidden">
-                    <img 
-                        src="{{ location.image }}" 
-                        alt="{{ location.name }}" 
-                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
-                    />
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                </div>
-                {% endif %}
-
-                <!-- Contact Info Section -->
-                <div class="location-card__info p-5 md:p-6">
-                    <!-- Location Name -->
-                    {% if location.name %}
-                    <h3 class="text-xl md:text-2xl font-bold mb-4 dynamic-text-color flex items-center gap-2">
-                        <span class="w-8 h-8 rounded-full bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-scandary)] flex items-center justify-center flex-shrink-0">
-                            <i class="sicon-map-marker-alt text-white text-sm"></i>
+        {% if locations %}
+        <!-- Main Location Card with Tabs -->
+        <div class="location-tabbed-card dynamic-bg-color rounded-custom overflow-hidden dynamic-border-color border" id="{{ component_id }}">
+            
+            <!-- City Tabs -->
+            <div class="location-tabs border-b dynamic-border-color">
+                <div class="flex flex-wrap">
+                    {% for location in locations %}
+                    <button 
+                        type="button"
+                        class="location-tab px-6 py-4 text-sm md:text-base font-medium transition-all duration-300 relative {{ loop.first ? 'active' : '' }}"
+                        data-tab="{{ loop.index }}"
+                        data-component="{{ component_id }}"
+                    >
+                        <span class="flex items-center gap-2">
+                            <i class="sicon-map-marker-alt text-sm"></i>
+                            {{ location.name }}
                         </span>
-                        {{ location.name }}
-                    </h3>
-                    {% endif %}
+                    </button>
+                    {% endfor %}
+                </div>
+            </div>
 
-                    <div class="space-y-3">
-                        <!-- Address -->
-                        {% if location.address %}
-                        <div class="flex items-start gap-3 group/item">
-                            <div class="w-10 h-10 rounded-lg bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0 transition-colors group-hover/item:bg-[var(--color-primary)]/20">
-                                <i class="sicon-location text-[var(--color-primary)] text-lg"></i>
-                            </div>
-                            <div>
-                                <span class="text-xs text-gray-400 uppercase tracking-wider">{{ 'العنوان' | trans }}</span>
-                                <p class="dynamic-text-color text-sm md:text-base">{{ location.address }}</p>
-                            </div>
+            <!-- Tab Content Panels -->
+            {% for location in locations %}
+            <div class="location-panel {{ loop.first ? 'active' : '' }}" data-panel="{{ loop.index }}" data-component="{{ component_id }}">
+                <div class="flex flex-col lg:flex-row lg:min-h-[500px]">
+                    
+                    <!-- Map Section (Left Side) -->
+                    <div class="lg:w-1/2 xl:w-3/5 lg:self-stretch">
+                        {% if location.map_embed %}
+                        <div class="location-map h-[300px] md:h-[400px] lg:h-[500px] relative">
+                            <iframe 
+                                src="{{ location.map_embed }}"
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                class="w-full h-full absolute inset-0"
+                            ></iframe>
                         </div>
-                        {% endif %}
-
-                        <!-- Phone -->
-                        {% if location.phone %}
-                        <div class="flex items-start gap-3 group/item">
-                            <div class="w-10 h-10 rounded-lg bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0 transition-colors group-hover/item:bg-[var(--color-primary)]/20">
-                                <i class="sicon-phone text-[var(--color-primary)] text-lg"></i>
-                            </div>
-                            <div>
-                                <span class="text-xs text-gray-400 uppercase tracking-wider">{{ 'الهاتف' | trans }}</span>
-                                <a href="tel:{{ location.phone }}" class="block dynamic-text-color text-sm md:text-base hover:text-[var(--color-primary)] transition-colors" dir="ltr">
-                                    {{ location.phone }}
-                                </a>
-                            </div>
+                        {% elseif location.image %}
+                        <div class="location-map h-[300px] md:h-[400px] lg:h-[500px] relative overflow-hidden">
+                            <img 
+                                src="{{ location.image }}" 
+                                alt="{{ location.name }}" 
+                                class="w-full h-full object-cover absolute inset-0"
+                                loading="lazy"
+                            />
+                            <div class="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
                         </div>
-                        {% endif %}
-
-                        <!-- Email -->
-                        {% if location.email %}
-                        <div class="flex items-start gap-3 group/item">
-                            <div class="w-10 h-10 rounded-lg bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0 transition-colors group-hover/item:bg-[var(--color-primary)]/20">
-                                <i class="sicon-mail text-[var(--color-primary)] text-lg"></i>
-                            </div>
-                            <div>
-                                <span class="text-xs text-gray-400 uppercase tracking-wider">{{ 'البريد الإلكتروني' | trans }}</span>
-                                <a href="mailto:{{ location.email }}" class="block dynamic-text-color text-sm md:text-base hover:text-[var(--color-primary)] transition-colors break-all">
-                                    {{ location.email }}
-                                </a>
-                            </div>
-                        </div>
-                        {% endif %}
-
-                        <!-- Working Hours -->
-                        {% if location.working_hours %}
-                        <div class="flex items-start gap-3 group/item">
-                            <div class="w-10 h-10 rounded-lg bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0 transition-colors group-hover/item:bg-[var(--color-primary)]/20">
-                                <i class="sicon-clock text-[var(--color-primary)] text-lg"></i>
-                            </div>
-                            <div>
-                                <span class="text-xs text-gray-400 uppercase tracking-wider">{{ 'ساعات العمل' | trans }}</span>
-                                <p class="dynamic-text-color text-sm md:text-base">{{ location.working_hours }}</p>
+                        {% else %}
+                        <div class="location-map h-[300px] md:h-[400px] lg:h-[500px] relative bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-scandary)]/10 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="sicon-map text-6xl text-[var(--color-primary)]/30 mb-3"></i>
+                                <p class="text-gray-400 text-sm">{{ 'لا توجد خريطة متاحة' }}</p>
                             </div>
                         </div>
                         {% endif %}
                     </div>
 
-                    <!-- Action Buttons -->
-                    <div class="flex flex-wrap gap-3 mt-6 pt-5 border-t dynamic-border-color">
-                        {% if location.phone %}
-                        <a href="tel:{{ location.phone }}" 
-                           class="flex-1 min-w-[140px] inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-custom bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-scandary)] text-white font-medium text-sm hover:opacity-90 transition-opacity">
-                            <i class="sicon-phone"></i>
-                            {{ 'اتصل بنا' | trans }}
-                        </a>
-                        {% endif %}
-                        {% if location.map_embed %}
-                        <a href="https://maps.google.com/?q={{ location.address | url_encode }}" 
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="flex-1 min-w-[140px] inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-custom border-2 border-[var(--color-primary)] text-[var(--color-primary)] font-medium text-sm hover:bg-[var(--color-primary)] hover:text-white transition-all">
-                            <i class="sicon-directions"></i>
-                            {{ 'احصل على الاتجاهات' | trans }}
-                        </a>
-                        {% endif %}
+                    <!-- Contact Info Section (Right Side) -->
+                    <div class="lg:w-1/2 xl:w-2/5 p-6 md:p-8 lg:p-10 flex flex-col justify-center">
+                        
+                        <!-- Location Title -->
+                        <div class="mb-6 pb-6 border-b dynamic-border-color">
+                            <h3 class="text-2xl md:text-3xl font-bold dynamic-text-color flex items-center gap-3">
+                                <span class="w-12 h-12 rounded-full bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-scandary)] flex items-center justify-center flex-shrink-0 shadow-lg">
+                                    <i class="sicon-map-marker-alt text-white text-xl"></i>
+                                </span>
+                                {{ location.name }}
+                            </h3>
+                        </div>
+
+                        <!-- Contact Details -->
+                        <div class="space-y-5 flex-grow">
+                            
+                            <!-- Address -->
+                            {% if location.address %}
+                            <div class="flex items-start gap-4 group">
+                                <div class="w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-[var(--color-primary)] group-hover:shadow-lg">
+                                    <i class="sicon-location text-xl text-[var(--color-primary)] group-hover:text-white transition-colors"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">{{ 'العنوان' }}</span>
+                                    <p class="dynamic-text-color text-base md:text-lg mt-1">{{ location.address }}</p>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            <!-- Phone -->
+                            {% if location.phone %}
+                            <div class="flex items-start gap-4 group">
+                                <div class="w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-[var(--color-primary)] group-hover:shadow-lg">
+                                    <i class="sicon-phone text-xl text-[var(--color-primary)] group-hover:text-white transition-colors"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">{{ 'الهاتف' }}</span>
+                                    <a href="tel:{{ location.phone }}" class="block dynamic-text-color text-base md:text-lg mt-1 hover:text-[var(--color-primary)] transition-colors" dir="ltr">
+                                        {{ location.phone }}
+                                    </a>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            <!-- Email -->
+                            {% if location.email %}
+                            <div class="flex items-start gap-4 group">
+                                <div class="w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-[var(--color-primary)] group-hover:shadow-lg">
+                                    <i class="sicon-mail text-xl text-[var(--color-primary)] group-hover:text-white transition-colors"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">{{ 'البريد الإلكتروني' }}</span>
+                                    <a href="mailto:{{ location.email }}" class="block dynamic-text-color text-base md:text-lg mt-1 hover:text-[var(--color-primary)] transition-colors break-all">
+                                        {{ location.email }}
+                                    </a>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            <!-- Working Hours -->
+                            {% if location.working_hours %}
+                            <div class="flex items-start gap-4 group">
+                                <div class="w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:bg-[var(--color-primary)] group-hover:shadow-lg">
+                                    <i class="sicon-clock text-xl text-[var(--color-primary)] group-hover:text-white transition-colors"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">{{ 'ساعات العمل' }}</span>
+                                    <p class="dynamic-text-color text-base md:text-lg mt-1">{{ location.working_hours }}</p>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-3 mt-8 pt-6 border-t dynamic-border-color">
+                            {% if location.phone %}
+                            <a href="tel:{{ location.phone }}" 
+                               class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-custom bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-scandary)] text-white font-medium text-base hover:opacity-90 hover:shadow-lg transition-all">
+                                <i class="sicon-phone"></i>
+                                {{ 'اتصل بنا' }}
+                            </a>
+                            {% endif %}
+                            {% if location.map_embed or location.address %}
+                            <a href="https://maps.google.com/?q={{ location.address }}" 
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-custom border-2 border-[var(--color-primary)] text-[var(--color-primary)] font-medium text-base hover:bg-[var(--color-primary)] hover:text-white transition-all">
+                                <i class="sicon-directions"></i>
+                                {{ 'الاتجاهات' }}
+                            </a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
+
         {% else %}
         <!-- Empty State -->
-        <div class="text-center py-12 dynamic-bg-color rounded-custom dynamic-border-color border">
-            <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-[var(--color-primary)]/20 to-[var(--color-scandary)]/20 flex items-center justify-center">
-                <i class="sicon-map-marker-alt text-3xl text-[var(--color-primary)]"></i>
+        <div class="text-center py-16 dynamic-bg-color rounded-custom dynamic-border-color border">
+            <div class="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-[var(--color-primary)]/20 to-[var(--color-scandary)]/20 flex items-center justify-center">
+                <i class="sicon-map-marker-alt text-4xl text-[var(--color-primary)]"></i>
             </div>
-            <p class="text-gray-500 dark:text-gray-400">{{ 'لا توجد مواقع متاحة حالياً' | trans }}</p>
+            <p class="text-gray-500 dark:text-gray-400 text-lg">{{ 'لا توجد مواقع متاحة حالياً' }}</p>
         </div>
         {% endif %}
     </div>
 </section>
 
 <style>
-    .location-card {
+    /* Tabbed Card Container */
+    .location-tabbed-card {
         position: relative;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     }
     
-    .location-card::before {
+    .location-tabbed-card::before {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--color-primary), var(--color-scandary));
+    }
+
+    /* Tab Styles */
+    .location-tab {
+        color: var(--main-text-color);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .dark .location-tab {
+        color: var(--light-text-color);
+    }
+    
+    .location-tab::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
         height: 3px;
         background: linear-gradient(90deg, var(--color-primary), var(--color-scandary));
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+    
+    .location-tab:hover {
+        background: var(--color-primary);
+        background: linear-gradient(135deg, var(--color-primary), var(--color-scandary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .location-tab.active {
+        color: var(--color-primary);
+    }
+    
+    .location-tab.active::after {
+        transform: scaleX(1);
+    }
+
+    /* Panel Styles */
+    .location-panel {
+        display: none;
         opacity: 0;
         transition: opacity 0.3s ease;
     }
     
-    .location-card:hover::before {
+    .location-panel.active {
+        display: block;
         opacity: 1;
+        animation: fadeIn 0.4s ease;
     }
     
-    .location-card__map iframe {
-        filter: grayscale(20%) contrast(1.1);
-        transition: filter 0.3s ease;
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Map Styles */
+    .location-map iframe {
+        filter: contrast(1.05) saturate(1.1);
     }
     
-    .location-card:hover .location-card__map iframe {
-        filter: grayscale(0%) contrast(1);
+    /* Responsive adjustments */
+    @media (max-width: 1023px) {
+        .location-tabs {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .location-tabs > div {
+            min-width: max-content;
+        }
     }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const componentId = '{{ component_id }}';
+    const component = document.getElementById(componentId);
+    
+    if (!component) return;
+    
+    const tabs = component.querySelectorAll('.location-tab[data-component="' + componentId + '"]');
+    const panels = component.querySelectorAll('.location-panel[data-component="' + componentId + '"]');
+    
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const tabIndex = this.getAttribute('data-tab');
+            
+            // Remove active from all tabs
+            tabs.forEach(t => t.classList.remove('active'));
+            // Add active to clicked tab
+            this.classList.add('active');
+            
+            // Hide all panels
+            panels.forEach(p => p.classList.remove('active'));
+            // Show target panel
+            const targetPanel = component.querySelector('.location-panel[data-panel="' + tabIndex + '"]');
+            if (targetPanel) {
+                targetPanel.classList.add('active');
+            }
+        });
+    });
+});
+</script>
