@@ -63,9 +63,9 @@
 
 /* Main Nav */
 .main-nav-container {
-  @apply min-h-[68px] lg:min-h-[84px]   mx-auto;
+  @apply min-h-[68px] lg:min-h-[84px] container mx-auto;
   
-  // Custom background Color
+  // Custom background Color  
   .has-bg &,
   .has-bg & .sub-menu{
     @apply bg-[color:var(--mainnav-bg)];
