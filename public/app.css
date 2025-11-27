@@ -1317,9 +1317,6 @@ select {
 .h-\[24rem\] {
     height: 24rem;
 }
-.h-\[250px\] {
-    height: 250px;
-}
 .h-\[2px\] {
     height: 2px;
 }
@@ -1501,9 +1498,6 @@ select {
 }
 .min-w-0 {
     min-width: 0px;
-}
-.min-w-\[140px\] {
-    min-width: 140px;
 }
 .min-w-\[220px\] {
     min-width: 220px;
@@ -2315,13 +2309,8 @@ select {
     --tw-gradient-to: rgba(0, 0, 0, 0) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
-.from-black\/30 {
-    --tw-gradient-from: rgba(0, 0, 0, 0.3) var(--tw-gradient-from-position);
-    --tw-gradient-to: rgba(0, 0, 0, 0) var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-.from-black\/50 {
-    --tw-gradient-from: rgba(0, 0, 0, 0.5) var(--tw-gradient-from-position);
+.from-black\/20 {
+    --tw-gradient-from: rgba(0, 0, 0, 0.2) var(--tw-gradient-from-position);
     --tw-gradient-to: rgba(0, 0, 0, 0) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
@@ -2358,11 +2347,6 @@ select {
 .from-white {
     --tw-gradient-from: #fff var(--tw-gradient-from-position);
     --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-.from-black\/20 {
-    --tw-gradient-from: rgba(0, 0, 0, 0.2) var(--tw-gradient-from-position);
-    --tw-gradient-to: rgba(0, 0, 0, 0) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 .via-\[color\:var\(--color-primary\)\] {
@@ -2569,6 +2553,10 @@ select {
     padding-top: 3.5rem;
     padding-bottom: 3.5rem;
 }
+.py-16 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
 .py-2 {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
@@ -2600,10 +2588,6 @@ select {
 .py-8 {
     padding-top: 2rem;
     padding-bottom: 2rem;
-}
-.py-16 {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
 }
 .\!pb-0 {
     padding-bottom: 0px !important;
@@ -3091,11 +3075,6 @@ select {
 .drop-shadow-\[0_0_30px_rgba\(255\2c 255\2c 255\2c 0\.5\)\] {
     --tw-drop-shadow: drop-shadow(0 0 30px rgba(255,255,255,0.5));
     filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) drop-shadow(0 0 30px rgba(255,255,255,0.5));
-    filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-.grayscale {
-    --tw-grayscale: grayscale(100%);
-    filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) grayscale(100%) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
     filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 .filter {
@@ -27048,8 +27027,8 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .md\:mb-10 {
         margin-bottom: 2.5rem;
     }
-    .md\:mb-14 {
-        margin-bottom: 3.5rem;
+    .md\:mb-12 {
+        margin-bottom: 3rem;
     }
     .md\:mb-20 {
         margin-bottom: 5rem;
@@ -27062,9 +27041,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .md\:mt-0 {
         margin-top: 0px;
-    }
-    .md\:mb-12 {
-        margin-bottom: 3rem;
     }
     .md\:flex {
         display: flex;
@@ -27083,9 +27059,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .md\:h-56 {
         height: 14rem;
-    }
-    .md\:h-\[300px\] {
-        height: 300px;
     }
     .md\:h-\[32rem\] {
         height: 32rem;
@@ -27198,9 +27171,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .md\:p-10 {
         padding: 2.5rem;
     }
-    .md\:p-6 {
-        padding: 1.5rem;
-    }
     .md\:p-8 {
         padding: 2rem;
     }
@@ -27235,6 +27205,10 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
         font-size: 1.5rem;
         line-height: 2rem;
     }
+    .md\:text-3xl {
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+    }
     .md\:text-4xl {
         font-size: 2.25rem;
         line-height: 2.5rem;
@@ -27262,10 +27236,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .md\:text-xl {
         font-size: 1.25rem;
         line-height: 1.75rem;
-    }
-    .md\:text-3xl {
-        font-size: 1.875rem;
-        line-height: 2.25rem;
     }
     .md\:first\:pt-24:first-child {
         padding-top: 6rem;
@@ -27327,23 +27297,20 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .lg\:h-\[36rem\] {
         height: 36rem;
     }
+    .lg\:h-\[500px\] {
+        height: 500px;
+    }
     .lg\:h-\[800px\] {
         height: 800px;
     }
-    .lg\:h-full {
-        height: 100%;
-    }
-    .lg\:h-\[500px\] {
-        height: 500px;
+    .lg\:min-h-\[500px\] {
+        min-height: 500px;
     }
     .lg\:min-h-\[528px\] {
         min-height: 528px;
     }
-    .lg\:min-h-\[450px\] {
-        min-height: 450px;
-    }
-    .lg\:min-h-\[500px\] {
-        min-height: 500px;
+    .lg\:w-1\/2 {
+        width: 50%;
     }
     .lg\:w-10\/12 {
         width: 83.333333%;
@@ -27371,9 +27338,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .lg\:w-\[calc\(100\%-384px\)\] {
         width: calc(100% - 384px);
-    }
-    .lg\:w-1\/2 {
-        width: 50%;
     }
     .lg\:grid-cols-2 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -27422,11 +27386,11 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
         background-color: rgba(255, 255, 255, 1);
         background-color: rgba(255, 255, 255, var(--tw-bg-opacity, 1));
     }
-    .lg\:p-8 {
-        padding: 2rem;
-    }
     .lg\:p-10 {
         padding: 2.5rem;
+    }
+    .lg\:p-8 {
+        padding: 2rem;
     }
     .lg\:px-0 {
         padding-left: 0px;
@@ -27504,17 +27468,17 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .xl\:h-\[40rem\] {
         height: 40rem;
     }
-    .xl\:w-\[35rem\] {
-        width: 35rem;
-    }
-    .xl\:w-\[80\%\] {
-        width: 80%;
-    }
     .xl\:w-2\/5 {
         width: 40%;
     }
     .xl\:w-3\/5 {
         width: 60%;
+    }
+    .xl\:w-\[35rem\] {
+        width: 35rem;
+    }
+    .xl\:w-\[80\%\] {
+        width: 80%;
     }
     .xl\:rotate-0 {
         --tw-rotate: 0deg;
