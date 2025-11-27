@@ -1538,6 +1538,9 @@ select {
 .max-w-xs {
     max-width: 20rem;
 }
+.max-w-\[100\%\] {
+    max-width: 100%;
+}
 .flex-1 {
     flex: 1 1 0%;
 }
@@ -20446,40 +20449,9 @@ input[type=radio].sr-only:checked ~ div.radio-images__badge {
 }
 /* Main Nav */
 .main-nav-container {
-    width: 100%;
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: 10px;
-    padding-left: 10px;
-}
-@media (min-width: 1280px) {
-    .main-nav-container {
-        max-width: 1280px;
-    }
-}
-.main-nav-container {
-    margin-left: auto;
-    margin-right: auto;
     min-height: 68px;
 }
-@media only screen and (min-width: 1024px) {
-  .main-menu .sub-menu li.mega-menu .main-nav-container ul {
-        margin: 0px;
-        border-style: none;
-        padding: 0px;
-    }
-  .main-menu .sub-menu li.mega-menu .main-nav-container > div {
-        display: none;
-    }
-}
-.s-block--testimonials.main-nav-container {
-    padding: 0px;
-}
 @media (min-width: 1024px) {
-    .s-block--testimonials.main-nav-container {
-        padding-left: 0.625rem;
-        padding-right: 0.625rem;
-    }
     .main-nav-container {
         min-height: 84px;
     }
