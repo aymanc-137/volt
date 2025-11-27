@@ -90,12 +90,12 @@
 }
 
 /* Sticky Header */
-.main-nav-container {
-  &.animated {
-    .inner {
-      transition: top 0.5s, transform 0.5s, -webkit-transform 0.5s, opacity 0.4s;
-    }
-  }
+//.main-nav-container {
+  // &.animated {
+  //   .inner {
+  //     transition: top 0.5s, transform 0.5s, -webkit-transform 0.5s, opacity 0.4s;
+  //   }
+  //}
 
   &.fixed-pinned {
     .inner {
