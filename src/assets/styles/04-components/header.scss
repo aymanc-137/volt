@@ -63,7 +63,7 @@
 
 /* Main Nav */
 .main-nav-container {
-  @apply min-h-[68px] lg:min-h-[84px];
+  @apply min-h-[68px] lg:min-h-[84px] w-[80%] mx-auto;
   
   // Custom background Color
   .has-bg &,
@@ -91,11 +91,11 @@
 
 /* Sticky Header */
 .main-nav-container {
-  // &.animated {
-  //   .inner {
-  //     transition: top 0.5s, transform 0.5s, -webkit-transform 0.5s, opacity 0.4s;
-  //   }
-  // }
+  &.animated {
+    .inner {
+      transition: top 0.5s, transform 0.5s, -webkit-transform 0.5s, opacity 0.4s;
+    }
+  }
 
   &.fixed-pinned {
     .inner {

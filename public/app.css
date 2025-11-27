@@ -20446,7 +20446,10 @@ input[type=radio].sr-only:checked ~ div.radio-images__badge {
 }
 /* Main Nav */
 .main-nav-container {
+    margin-left: auto;
+    margin-right: auto;
     min-height: 68px;
+    width: 80%;
 }
 @media (min-width: 1024px) {
     .main-nav-container {
@@ -20493,6 +20496,9 @@ input[type=radio].sr-only:checked ~ div.radio-images__badge {
     color: var(--color-primary);
 }
 /* Sticky Header */
+.main-nav-container.animated .inner {
+  transition: top 0.5s, transform 0.5s, opacity 0.4s;
+}
 .main-nav-container.fixed-pinned .inner {
   position: fixed;
   top: 0;
