@@ -486,13 +486,11 @@ salla-modal {
 .slash-bg {
   // background: linear-gradient(135deg, #0a0a0a 25%, #121212 25%, #121212 50%, #0a0a0a 50%, #0a0a0a 75%, #121212 75%);
    background: linear-gradient(135deg, var(--color-primary-5) 25%, rgba(0, 0, 0, 0)  25%, rgba(0, 0, 0, 0)  50%, var(--color-primary-5)  50%, var(--color-primary-5)  75%, rgba(0, 0, 0, 0) 75%);
-   
-   .dark &{
+   background-size: 20px 20px;
+
+   .dark & {
     background: linear-gradient(135deg, var(--color-primary-20) 25%, rgba(0, 0, 0, 0)  25%, rgba(0, 0, 0, 0)  50%, var(--color-primary-20)  50%, var(--color-primary-20)  75%, rgba(0, 0, 0, 0) 75%);
    }
-   
-
-   background-size: 20px 20px;
 
 }
 
