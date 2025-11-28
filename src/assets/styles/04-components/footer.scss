@@ -1,13 +1,13 @@
 
 .store-footer {
-  //@apply relative bg-darker text-white mt-8 sm:mt-16;
+  @apply relative bg-darker text-white mt-8 sm:mt-16;
 
   a{
     @apply transition-opacity hover:opacity-75;
   }
 
   &__inner{
-   // @apply bg-dark py-8 lg:py-16 border-b border-dashed border-b-white/10;
+    @apply bg-dark py-8 lg:py-16 border-b border-dashed border-b-white/10;
   }  
 
   h3{
@@ -32,7 +32,7 @@
       to-[var(--color-light-page-background)]
       
       dark:from-[var(--color-dark-box-background)] 
-      dark:to-[var(--color-dark-page-background)]
+       dark:to-[var(--color-dark-page-background)]
       
       ;
   }
