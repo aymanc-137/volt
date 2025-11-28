@@ -20762,6 +20762,12 @@ input[type=radio].sr-only:checked ~ div#nav-cart span {
         --tw-gradient-to: rgb(255 255 255 / 0)  var(--tw-gradient-to-position);
     }
 }
+.store-footer .footer-bg-gr:is(.dark *) {
+    --tw-gradient-from: var(--color-dark-box-background) var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+    --tw-gradient-to: var(--color-dark-page-background) var(--tw-gradient-to-position);
+}
 .footer-is-light .store-footer .store-footer__inner {
     border-width: 8px;
     border-top-width: 1px;
