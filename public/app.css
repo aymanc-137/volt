@@ -20690,30 +20690,6 @@ input[type=radio].sr-only:checked ~ div#nav-cart span {
     border-bottom-width: 1px;
     padding-top: 2rem;
     padding-bottom: 2rem;
-    color: #2C3E50;
-    color: var(--main-text-color);
-}
-.dark *.store-footer__inner {
-    color: var(--light-text-color);
-}
-.store-footer .store-footer__inner {
-    background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
-    --tw-gradient-from: var(--color-light-box-background) var(--tw-gradient-from-position);
-    --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-    --tw-gradient-stops: var(--tw-gradient-from), var(--color-primary-5) var(--tw-gradient-via-position), var(--tw-gradient-to);
-    --tw-gradient-to: var(--color-light-page-background) var(--tw-gradient-to-position);
-}
-@supports (color: rgb(0 0 0 / 0)) and (top: var(--f)) {
-.store-footer .store-footer__inner {
-        --tw-gradient-to: rgb(255 255 255 / 0)  var(--tw-gradient-to-position);
-    }
-}
-.store-footer .store-footer__inner:is(.dark *) {
-    --tw-gradient-from: var(--color-dark-box-background) var(--tw-gradient-from-position);
-    --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-    --tw-gradient-to: var(--color-dark-page-background) var(--tw-gradient-to-position);
 }
 @media (min-width: 1024px) {
     .store-footer__inner {
