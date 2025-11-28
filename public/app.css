@@ -20677,22 +20677,6 @@ input[type=radio].sr-only:checked ~ div#nav-cart span {
 .store-footer a:hover {
     opacity: 0.75;
 }
-.store-footer__inner {
-    border-bottom-width: 1px;
-    border-style: dashed;
-    border-bottom-color: rgba(255, 255, 255, 0.1);
-    --tw-bg-opacity: 1;
-    background-color: rgba(29, 31, 31, 1);
-    background-color: rgba(29, 31, 31, var(--tw-bg-opacity, 1));
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-}
-@media (min-width: 1024px) {
-    .store-footer__inner {
-        padding-top: 4rem;
-        padding-bottom: 4rem;
-    }
-}
 .store-footer h3 {
     margin-bottom: 0.75rem;
     font-size: 1.125rem;
