@@ -3991,16 +3991,14 @@
                         }
                     ]
                 },
-                  {
-                "key": "1825a323-f2fa-4fed-adef-05f6ba297a35",
-                "title": "خلفية على صفحات الاقسام - حرير",
-                "icon": "sicon-store",
-                "path": "home.category-ads",
-                "image": "https://cdn.lamsaweb.com/cdnHarir/image10.png",
-                "fields": [
-    
-            ]
-        }
+                {
+                    "key": "1825a323-f2fa-4fed-adef-05f6ba297a35",
+                    "title": "خلفية على صفحات الاقسام - حرير",
+                    "icon": "sicon-store",
+                    "path": "home.category-ads",
+                    "image": "https://cdn.lamsaweb.com/cdnHarir/image10.png",
+                    "fields": []
+                }
             ]
         }
     ],
