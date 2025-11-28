@@ -275,7 +275,7 @@
             "format": "color",
             "required": false,
             "id": "light-text-color",
-            "value": "#1a1a1a",
+            "value": "#fffdfc",
             "conditions": [
                 {
                     "id": "dark_mode_enabled",
