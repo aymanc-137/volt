@@ -19,6 +19,11 @@
 {% extends "layouts.master" %}
 {% block content %}
     <div class="container px-2.5 ms:px-5 mb-10">
+
+        <div id="category-ads" class="w-full bg-cover bg-center bg-no-repeat hidden justify-center shadow-lg
+                                 h-24 sm:h-32 md:h-56 lg:h-64 xl:h-72 2xl:h-80
+                                 aspect-[5/1]" 
+         data-catid="{{ category.id }}"></div>
         {# add breadcumbs container in pages to make a space in case breadcrumbs is off #}
         <nav class="breadcrumbs w-full py-5">
             <salla-breadcrumb></salla-breadcrumb>
