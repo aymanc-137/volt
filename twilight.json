@@ -3998,78 +3998,9 @@
                 "path": "home.category-ads",
                 "image": "https://cdn.lamsaweb.com/cdnHarir/image10.png",
                 "fields": [
-                    {
-                        "type": "static",
-                        "format": "description",
-                        "id": "static-desc",
-                        "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnHarir/image10.png'></div>"
-                    },
-                    {
-                        "type": "static",
-                        "format": "description",
-                        "id": "static-note",
-                        "value": "<h4 style='color: #2377CD;font-size: 14px;margin:1rem 0px;background: #E9F0FD;padding: 10px 15px;border-radius: 4px;'>لتحصل على الشكل اعلاه اتبع  <a style='text-decoration: underline;' href='https://lamsaweb.com/harir' target='_blank' > دليل العنصر </a></h4>"
-                    },
-                    {
-                        "id": "category_ads",
-                        "type": "collection",
-                        "format": "collection",
-                        "label": "خلفيات الصفحة",
-                        "description": "إضافة صورة علوية على أقسام المنتجات",
-                        "labelHTML": null,
-                        "item_label": "صورة الخلفية و الفئة",
-                        "icon": "sicon-list-add",
-                        "fields": [
-                            {
-                                "id": "category_ads.title",
-                                "type": "string",
-                                "format": "text",
-                                "label": "نص على الصورة",
-                                "description": null,
-                                "labelHTML": null,
-                                "placeholder": "نص عن القسم",
-                                "icon": "sicon-format-text-alt",
-                                "value": "احمى بشرتك مع تشكيلة متنوعة من واقي الشمس",
-                                "multilanguage": true,
-                                "required": false,
-                                "minLength": 6,
-                                "maxLength": "500"
-                            },
-                            {
-                                "id": "category_ads.image",
-                                "type": "string",
-                                "format": "image",
-                                "label": "الصورة",
-                                "description": "المقاس المناسب للصورة هو 1600×1500 بكسل .",
-                                "labelHTML": null,
-                                "placeholder": "e.g. https://hostname.com/image.png",
-                                "icon": "sicon-image",
-                                "value": "https://cdn.salla.sa/form-builder/4UT1YgWC3mx7GNld1v0Gp3U8wHVHAje4i7ofJ11a.jpg",
-                                "required": true
-                            },
-                            {
-                                "id": "category_ads.category",
-                                "type": "items",
-                                "format": "dropdown-list",
-                                "label": "القسم",
-                                "description": "اختر القسم الخاص بالصورة",
-                                "labelHTML": null,
-                                "icon": "sicon-keyboard_arrow_down",
-                                "selected": [],
-                                "options": [],
-                                "source": "categories",
-                                "multichoice": false,
-                                "searchable": true,
-                                "required": true,
-                                "value": []
-                            }
-                    ],
-                    "value": [],
-                    "minLength": 1,
-                    "maxLength": "50"
-                }
+    
             ]
-  }
+        }
             ]
         }
     ],
