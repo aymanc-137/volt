@@ -20669,21 +20669,6 @@ input[type=radio].sr-only:checked ~ div#nav-cart span {
   background: linear-gradient(to right, transparent, #414042, var(--color-scandary), #414042, transparent);
   background: linear-gradient(to right, transparent, var(--color-primary), var(--color-scandary), var(--color-primary), transparent);
 }
-.store-footer {
-    position: relative;
-    margin-top: 2rem;
-    --tw-bg-opacity: 1;
-    background-color: rgba(14, 15, 15, 1);
-    background-color: rgba(14, 15, 15, var(--tw-bg-opacity, 1));
-    --tw-text-opacity: 1;
-    color: rgba(255, 255, 255, 1);
-    color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
-}
-@media (min-width: 640px) {
-    .store-footer {
-        margin-top: 4rem;
-    }
-}
 .store-footer a {
     transition-property: opacity;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
