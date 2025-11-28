@@ -1236,11 +1236,11 @@ select {
 .hidden {
     display: none;
 }
-.aspect-\[7\/8\] {
-    aspect-ratio: 7/8;
-}
 .aspect-\[5\/1\] {
     aspect-ratio: 5/1;
+}
+.aspect-\[7\/8\] {
+    aspect-ratio: 7/8;
 }
 .\!h-36 {
     height: 9rem !important;
@@ -1525,9 +1525,6 @@ select {
 }
 .max-w-6xl {
     max-width: 72rem;
-}
-.max-w-\[100\%\] {
-    max-width: 100%;
 }
 .max-w-\[85rem\] {
     max-width: 85rem;
@@ -26893,6 +26890,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .sm\:grid {
         display: grid;
     }
+    .sm\:h-32 {
+        height: 8rem;
+    }
     .sm\:h-6 {
         height: 1.5rem;
     }
@@ -26904,9 +26904,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .sm\:h-full {
         height: 100%;
-    }
-    .sm\:h-32 {
-        height: 8rem;
     }
     .sm\:\!w-\[220px\] {
         width: 220px !important;
@@ -27303,6 +27300,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .lg\:hidden {
         display: none;
     }
+    .lg\:h-64 {
+        height: 16rem;
+    }
     .lg\:h-\[36rem\] {
         height: 36rem;
     }
@@ -27311,9 +27311,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .lg\:h-\[800px\] {
         height: 800px;
-    }
-    .lg\:h-64 {
-        height: 16rem;
     }
     .lg\:min-h-\[500px\] {
         min-height: 500px;
@@ -27477,11 +27474,11 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .xl\:h-64 {
         height: 16rem;
     }
-    .xl\:h-\[40rem\] {
-        height: 40rem;
-    }
     .xl\:h-72 {
         height: 18rem;
+    }
+    .xl\:h-\[40rem\] {
+        height: 40rem;
     }
     .xl\:w-2\/5 {
         width: 40%;
