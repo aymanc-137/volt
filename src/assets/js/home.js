@@ -52,6 +52,28 @@ class Home extends BasePage {
                         control.classList.add('hidden');
                     }
                 });
+                // Animate text for single slide before returning
+                if (slides[0]) {
+                    const textElements = slides[0].querySelectorAll('[data-carousel-text]');
+                    textElements.forEach((element, index) => {
+                        element.style.opacity = '';
+                        if (index === 0) {
+                            element.classList.add('animate-slide-in-left');
+                        } else {
+                            element.classList.add('animate-fade-in-up');
+                        }
+                    });
+                    // Also handle video for single slide
+                    const video = slides[0].querySelector('video[data-lazy-video]');
+                    if (video) {
+                        const source = video.querySelector('source[data-src]');
+                        if (source) {
+                            source.src = source.dataset.src;
+                            video.load();
+                            video.play().catch(() => {});
+                        }
+                    }
+                }
                 return;
             }
 
