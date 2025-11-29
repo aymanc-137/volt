@@ -14,7 +14,8 @@
     "prod": "webpack --mode production",
     "development": "webpack --mode development",
     "watch": "webpack --mode development --watch",
-    "dev": "salla theme p --store=volt-darkmod --with-editor"
+    "dev": "salla theme p --store=volt-store --with-editor",
+    "dev2": "salla theme p --store=volt-darkmod --with-editor"
 
   },
   "author": "Salla",
