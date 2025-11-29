@@ -129,15 +129,16 @@
             --shadow-glow-sm: 0 0 15px {{theme.color.primary}};
             --shadow-glow: 0 0 20px  {{theme.color.primary}};
 
-            .main-bg-testing{
-                background-image:linear-gradient(45deg, #040E1C, #072957);
-                object-fit: cover;
-                background-position: center;
-                background-repeat: no-repeat; 
-                background-size: cover;
-                min-height: 100vh;  
-            }
+
         }
+
+                .main-bg-testing {
+                    background-image: linear-gradient(45deg, #040E1C, #072957);
+                    background-size: cover;          /* ADD THIS - stretches gradient to cover full element */
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    min-height: 100vh;               /* Optional: ensures body is at least viewport height */
+                }
     </style>
     <script>
         (function () {
