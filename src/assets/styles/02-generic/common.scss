@@ -468,7 +468,7 @@ salla-modal {
 
 .dynamic-bg-color{
   
-@apply bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)];
+  @apply bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)];
 
 }
 
