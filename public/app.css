@@ -19212,7 +19212,7 @@ input[type=radio].sr-only:checked ~ div.s-app-install-banner-cancel-button {
   }
 }
 .styleish-text {
-  z-index: -1;
+  z-index: 1;
 }
 .tooltip-content {
   position: absolute;
