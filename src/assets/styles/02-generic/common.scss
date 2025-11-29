@@ -521,6 +521,7 @@ salla-modal {
  
 
         .styleish-text{
-          @apply dynamic-text-color;
+          color : var(--color-primary);
+        //  @apply dynamic-text-color;
           z-index: -1;
         }
