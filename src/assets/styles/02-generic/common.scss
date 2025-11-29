@@ -528,5 +528,11 @@ salla-modal {
 
 
         .header-btn__icon{
-          @apply dynamic-text-color;
-        }
+         color: var(--color-primary) !important;
+          // @apply dynamic-text-color;
+         
+      }
+
+      .s-cart-summary-total{
+        display: none;
+      }
