@@ -6,17 +6,17 @@
 	<hr class="w-full border-t dynamic-border-color " >
 		<div class="container dynamic-bg-color border-x   dynamic-border-color  grid grid-col-1 lg:grid-cols-6 gap-0">
 			<div class="lg:col-span-2 rtl:lg:pl-20 ltr:lg:pr-20 
-			border-l  
-			 dynamic-border-color
-			 
-			  p-8">
+					border-l  
+					dynamic-border-color
+					dynamic-text-color
+					p-8" >
 				<a href="{{ link('/') }}" class="flex items-center m-0">
 					<h3>{{store.name}}</h3>
 				</a>
 				{% if store.description %}
 					<div class="max-w-sm leading-6 mb-6">
 						{{ store.description|raw }}
-          </div>
+        			  </div>
 				{% endif %}
 
 				<div class="hidden lg:block">
@@ -52,7 +52,7 @@
 
 			<div class="border-l border-r 
 			dynamic-border-color
-			
+			dynamic-text-color
 			p-8">
 				<h3>{{ trans('blocks.footer.pages_links') }}</h3>
 				<salla-menu source="footer"></salla-menu>
@@ -60,7 +60,7 @@
 
 			<div class="border-l border-r 
 			dynamic-border-color
-			
+			dynamic-text-color
 			 p-8">
 				<salla-contacts></salla-contacts>
 
@@ -78,7 +78,7 @@
  
 	</div>
 
-	<div class="md:flex items-center justify-between py-4 container text-center">
+	<div class="md:flex items-center justify-between py-4 dynamic-text-color container text-center">
 		<span class="text-sm copyright-text">{% hook copyright %}</span>
 		<salla-payments></salla-payments>
 	</div>
