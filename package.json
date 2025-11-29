@@ -28,7 +28,7 @@
     "sweetalert2": "^11.22.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.0",
+    "@babel/core": "^7.28.5",
     "@babel/plugin-transform-runtime": "^7.28.0",
     "@babel/preset-env": "^7.16.5",
     "@salla.sa/twilight": "^2.14.257",
