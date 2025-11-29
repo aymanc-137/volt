@@ -24,7 +24,7 @@
 {% set enable_border = component.enable_border | default(false) %}
 
 {# <span class="navbar-underline"></span> #}
-<section class="s-block my-10 s-block--categories   {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} py-20 relative 
+<section class="s-block my-10  z-10 s-block--categories   {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} py-20 relative 
    
     {{ slashbg ? 'slash-bg   dynamic-bg-color' : ''}}
     pb-32">
@@ -32,10 +32,10 @@
 
     <div class="styleish-text absolute top-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
         <div class="marquee-reverse-sections flex whitespace-nowrap w-max">
-            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+            <span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
                 {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
             </span>
-            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+            <span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
                 {{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
             </span>
         </div>
@@ -43,10 +43,10 @@
 
     <div class="styleish-text absolute bottom-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
         <div class="marquee-content-sections flex whitespace-nowrap w-max">
-            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+            <span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
                 {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
             </span>
-            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+            <span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
                 {{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
             </span>
         </div>
@@ -168,7 +168,7 @@ id="main-links-{{ position }}">
               <a href="{{item.url}}" 
                     style="background-image: linear-gradient(to bottom right, {{item.color}}2E , {{item.color_2}}D9 ),url('{{item.image}}') ;"
                     class=" flex items-center justify-center w-72 h-64 rounded-xl shadow-xl bg-cover bg-center hover:shadow-xl hover:scale-105 transition-all duration-300" >
-                  <h3 class="text-white text-2xl font-bold place-self-center">{{item.text}}</h3>
+                  <h3 class="   text-2xl font-bold place-self-center">{{item.text}}</h3>
               </a>
           </div>
 
@@ -197,7 +197,7 @@ id="main-links-{{ position }}">
               <a href="{{item.url}}" 
                     style="background-image: linear-gradient(to bottom right, {{item.color}}2E , {{item.color_2}}D9 ),url('{{item.image}}') ;"
                     class="flex items-center justify-center w-72 h-64 rounded-xl shadow-xl bg-cover bg-center hover:shadow-xl hover:scale-105 transition-all duration-300" >
-                  <h3 class="text-white text-2xl font-bold place-self-center">{{item.text}}</h3>
+                  <h3 class="   text-2xl font-bold place-self-center">{{item.text}}</h3>
               </a>
 
           </div>

@@ -7,15 +7,15 @@
 {% set enable_border = component.enable_border | default(false) %}
 
 <!-- The class "p-4" was changed to "py-4" to remove horizontal padding -->
-<section class="flex items-center overflow-hidden my-10 relative justify-center  {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} {{ slashbg ? 'slash-bg dynamic-bg-color ' : ''}}">
+<section class=" z-10 flex items-center overflow-hidden my-10 relative justify-center  {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} {{ slashbg ? 'slash-bg dynamic-bg-color ' : ''}}">
     {% if marquee %}
 
     <div class="styleish-text absolute top-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
         <div class="marquee-reverse-sections flex whitespace-nowrap w-max">
-            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+            <span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
                 {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
             </span>
-            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+            <span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
                 {{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
             </span>
         </div>
@@ -23,10 +23,10 @@
 
     <div class="styleish-text absolute bottom-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
         <div class="marquee-content-sections flex whitespace-nowrap w-max">
-            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+            <span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
                 {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
             </span>
-            <span class="font-alshohadaa text-9xl font-bold text-white display-text whitespace-nowrap px-4">
+            <span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
                 {{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
             </span>
         </div>

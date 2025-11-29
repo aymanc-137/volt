@@ -19212,7 +19212,14 @@ input[type=radio].sr-only:checked ~ div.s-app-install-banner-cancel-button {
   }
 }
 .styleish-text {
-  z-index: 0;
+    color: #2C3E50;
+    color: var(--main-text-color);
+}
+.dark *.styleish-text {
+    color: var(--light-text-color);
+}
+.styleish-text {
+  z-index: -1;
 }
 .tooltip-content {
   position: absolute;
