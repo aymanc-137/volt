@@ -73,8 +73,8 @@
                       {% if user.type=='user' %}
                         <salla-user-menu avatar-only show-header></salla-user-menu>
                       {% else %}
-                          <button class="header-btn" aria-label="user-icon" onclick="salla.event.dispatch('login::open')">
-                            <i class="header-btn__icon sicon-user-circle "></i>
+                          <button class="header-btn dynamic-text-color" aria-label="user-icon" onclick="salla.event.dispatch('login::open')">
+                            <i class="header-btn__icon sicon-user-circle dynamic-text-color"></i>
                           </button>
                       {% endif %}
 
@@ -86,8 +86,8 @@
                         aria-pressed="false"
                         aria-label="Toggle color mode"
                       >
-                        <i class="header-btn__icon icon sicon-sun" data-theme-icon="light" aria-hidden="true"></i>
-                        <i class="header-btn__icon icon sicon-moon hidden" data-theme-icon="dark" aria-hidden="true" style="display:none"></i>
+                        <i class="header-btn__icon icon sicon-sun dynamic-text-color" data-theme-icon="light" aria-hidden="true"></i>
+                        <i class="header-btn__icon icon sicon-moon hidden dynamic-text-color" data-theme-icon="dark" aria-hidden="true" style="display:none"></i>
                         <span class="sr-only">Toggle color mode</span>
                       </button>
                       {% endif %}
@@ -95,6 +95,27 @@
                       <salla-cart-summary class="ml-4 rtl:ml-[unset] rtl:mr-4 dynamic-text-color">
                         <i slot="icon" class="header-btn__icon icon sicon-shopping-bag dynamic-text-color"></i>
                       </salla-cart-summary>
+
+                      <button id="search-btn"
+                                onclick="(function(){event.preventDefault();
+                                document.querySelector('#search-modal-volt').open();
+                                return false;})();
+                                "
+                                data-modal-id="search-modal-volt"
+                                class="
+                                header-btn ml-4 rtl:ml-[unset] rtl:mr-4
+                                dynamic-text-color"
+                                
+                        type="button"
+                        aria-pressed="false"
+                                
+                                >
+                              
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
+                                    class="size-6 mb-2 dynamic-text-color">
+                                    <path  stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                </svg>
+                        </button>
                   </div>
               </div>
           </div>
@@ -105,3 +126,10 @@
 {% if store.scope %}
     <salla-scopes selection="{{ store.scope.display_as == 'popup' ? 'mandatory' : 'optional' }}"></salla-scopes>
 {% endif %}
+  <salla-modal has-skeleton="true" position="top" class="rounded-md" id="search-modal-volt">
+    <h4>{{ trans('blocks.footer.search') }}</h4>
+		<hr>
+      <div class="m-3 flex-1 md:h-10 h-96">
+        <salla-search inline oval height="36"></salla-search>
+    </div>
+   </salla-modal>
