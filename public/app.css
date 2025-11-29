@@ -19222,7 +19222,11 @@ input[type=radio].sr-only:checked ~ div.s-app-install-banner-cancel-button {
   z-index: -1;
 }
 .header-btn__icon {
-  color: var(--color-primary-50) !important;
+  color: #2C3E50;
+  color: var(--main-text-color);
+}
+.header-btn__icon .dark * {
+  color: var(--light-text-color);
 }
 .s-cart-summary-total {
   display: none;
