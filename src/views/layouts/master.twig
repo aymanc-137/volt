@@ -128,6 +128,15 @@
             --shadow-glow-md: 0 0 25px  {{theme.color.primary}};
             --shadow-glow-sm: 0 0 15px {{theme.color.primary}};
             --shadow-glow: 0 0 20px  {{theme.color.primary}};
+
+            .main-bg-testing{
+                background-image:linear-gradient(45deg, #040E1C, #072957);
+                object-fit: cover;
+                background-position: center;
+                background-repeat: no-repeat; 
+                background-size: cover;
+                min-height: 100vh;  
+            }
         }
     </style>
     <script>
@@ -230,7 +239,12 @@
     {# tracking services, custom css feature. #}
     {% hook 'head:end' %}
 </head>
-<body id="app" class=" bg-light-background dark:bg-dark-background overflow-x-hidden {% hook 'body:classes' %}
+
+{# bg-light-background dark:bg-dark-background  #}
+<body id="app" class=" 
+
+main-bg-testing
+overflow-x-hidden {% hook 'body:classes' %}
   {{ theme.settings.get('footer_is_dark') ? ' footer-is-dark' : ' footer-is-light' }}
   {{ theme.settings.get('topnav_is_dark') ? ' topnav-is-dark' : '' }}
   {{ theme.settings.get('sticky_add_to_cart') ? ' is-sticky-product-bar' : '' }}
