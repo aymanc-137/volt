@@ -95,27 +95,22 @@
                       <salla-cart-summary class="ml-4 rtl:ml-[unset] rtl:mr-4 dynamic-text-color">
                         <i slot="icon" class="header-btn__icon icon sicon-shopping-bag dynamic-text-color"></i>
                       </salla-cart-summary>
+ 
 
-                      <button id="search-btn"
-                                onclick="(function(){event.preventDefault();
+
+                              <button class="header-btn dynamic-text-color" 
+                              id="search-btn"
+                                                   type="button"
+
+                                data-modal-id="search-modal-volt"
+                              aria-label="user-icon" 
+                              onclick="(function(){event.preventDefault();
                                 document.querySelector('#search-modal-volt').open();
                                 return false;})();
                                 "
-                                data-modal-id="search-modal-volt"
-                                class="
-                                header-btn ml-4 rtl:ml-[unset] rtl:mr-4
-                                dynamic-text-color"
-                                
-                        type="button"
-                        aria-pressed="false"
-                                
-                                >
-                              
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
-                                    class="size-6 mb-2 dynamic-text-color">
-                                    <path  stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                                </svg>
-                        </button>
+                              >
+                            <i class="header-btn__icon sicon-magnifying-glass dynamic-text-color"></i>
+                          </button>
                   </div>
               </div>
           </div>
