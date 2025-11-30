@@ -18666,7 +18666,6 @@ h5.subtitle {
   font-weight: 400;
 }
 html {
-  scroll-behavior: smooth;
   scrollbar-gutter: stable;
 }
 .cursor-pointer * {
