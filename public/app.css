@@ -2181,9 +2181,6 @@ select {
     background-color: rgba(0, 0, 0, 1);
     background-color: rgba(0, 0, 0, var(--tw-bg-opacity, 1));
 }
-.bg-black\/20 {
-    background-color: rgba(0, 0, 0, 0.2);
-}
 .bg-black\/40 {
     background-color: rgba(0, 0, 0, 0.4);
 }
@@ -2313,11 +2310,6 @@ select {
     --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
-.from-black {
-    --tw-gradient-from: #000 var(--tw-gradient-from-position);
-    --tw-gradient-to: rgba(0, 0, 0, 0) var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
 .from-black\/20 {
     --tw-gradient-from: rgba(0, 0, 0, 0.2) var(--tw-gradient-from-position);
     --tw-gradient-to: rgba(0, 0, 0, 0) var(--tw-gradient-to-position);
@@ -2330,11 +2322,6 @@ select {
 }
 .from-black\/70 {
     --tw-gradient-from: rgba(0, 0, 0, 0.7) var(--tw-gradient-from-position);
-    --tw-gradient-to: rgba(0, 0, 0, 0) var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-.from-black\/90 {
-    --tw-gradient-from: rgba(0, 0, 0, 0.9) var(--tw-gradient-from-position);
     --tw-gradient-to: rgba(0, 0, 0, 0) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
@@ -2373,10 +2360,6 @@ select {
     --tw-gradient-to: rgba(0, 0, 0, 0)  var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), rgba(0, 0, 0, 0.4) var(--tw-gradient-via-position), var(--tw-gradient-to);
 }
-.via-black\/80 {
-    --tw-gradient-to: rgba(0, 0, 0, 0)  var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-from), rgba(0, 0, 0, 0.8) var(--tw-gradient-via-position), var(--tw-gradient-to);
-}
 .via-transparent {
     --tw-gradient-to: rgba(0, 0, 0, 0)  var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), transparent var(--tw-gradient-via-position), var(--tw-gradient-to);
@@ -2402,9 +2385,6 @@ select {
 }
 .to-\[var\(--color-scandary\)\] {
     --tw-gradient-to: var(--color-scandary) var(--tw-gradient-to-position);
-}
-.to-black\/50 {
-    --tw-gradient-to: rgba(0, 0, 0, 0.5) var(--tw-gradient-to-position);
 }
 .to-purple-600 {
     --tw-gradient-to: #9333ea var(--tw-gradient-to-position);
@@ -26662,15 +26642,12 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(1.1) scaleY(1.1);
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
-.group\/cta:hover .group-hover\/cta\:bg-black\/0 {
-    background-color: rgba(0, 0, 0, 0);
+.group\/cta:hover .group-hover\/cta\:bg-transparent {
+    background-color: transparent;
 }
 .group:hover .group-hover\:bg-\[var\(--color-primary\)\] {
     background-color: #414042;
     background-color: var(--color-primary);
-}
-.group\/cta:hover .group-hover\/cta\:bg-transparent {
-    background-color: transparent;
 }
 .group\/stat:hover .group-hover\/stat\:bg-gradient-to-r {
     background-image: linear-gradient(to right, var(--tw-gradient-stops));
