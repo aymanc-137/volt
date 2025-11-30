@@ -19188,7 +19188,17 @@ input[type=radio].sr-only:checked ~ div.s-app-install-banner-cancel-button {
 .styleish-text {
   z-index: -1;
 }
-.header-btn__icon:hover {
+.btn__icon-dynamic {
+  color: white;
+}
+.btn__icon-dynamic:hover {
+  color: #414042;
+  color: var(--color-primary);
+}
+.dark .btn__icon-dynamic {
+  color: white;
+}
+.dark .btn__icon-dynamic:hover {
   color: #414042;
   color: var(--color-primary);
 }

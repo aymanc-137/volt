@@ -527,17 +527,21 @@ salla-modal {
         }
 
 
-        .header-btn__icon{
-
+        .btn__icon-dynamic{
+          
           &:hover{
              color: var(--color-primary);
           }
       
-          // color: white;
+         color: white;
   
-          // .dark &{
-          //   color: var(--light-text-color);
-          // }
+           .dark &{
+                      color: white;
+
+          &:hover{
+             color: var(--color-primary);
+          }
+           }
 
           // @apply dynamic-text-color;
          
