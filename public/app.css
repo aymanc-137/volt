@@ -1070,6 +1070,10 @@ select {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
 }
+.mx-4 {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
 .mx-auto {
     margin-left: auto;
     margin-right: auto;
@@ -1097,10 +1101,6 @@ select {
 .my-auto {
     margin-top: auto;
     margin-bottom: auto;
-}
-.mx-4 {
-    margin-left: 1rem;
-    margin-right: 1rem;
 }
 .-mb-52 {
     margin-bottom: -13rem;
@@ -1197,6 +1197,9 @@ select {
 }
 .mt-8 {
     margin-top: 2rem;
+}
+.mr-\[9px\] {
+    margin-right: 9px;
 }
 .line-clamp-1 {
     overflow: hidden;
@@ -27688,6 +27691,13 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 }
 .rtl\:mr-4:where([dir="rtl"], [dir="rtl"] *) {
     margin-right: 1rem;
+}
+.rtl\:ml-\[9px\]:where([dir="rtl"], [dir="rtl"] *) {
+    margin-left: 9px;
+}
+.rtl\:mr-\[unset\]:where([dir="rtl"], [dir="rtl"] *) {
+    margin-right: 0;
+    margin-right: initial;
 }
 .rtl\:rotate-180:where([dir="rtl"], [dir="rtl"] *) {
     --tw-rotate: 180deg;
