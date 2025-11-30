@@ -19185,12 +19185,6 @@ input[type=radio].sr-only:checked ~ div.s-app-install-banner-cancel-button {
 .styleish-text {
   z-index: -1;
 }
-.header-btn__icon {
-  color: white;
-}
-.dark .header-btn__icon {
-  color: var(--light-text-color);
-}
 .s-cart-summary-total {
   display: none;
 }
@@ -20574,9 +20568,11 @@ input[type=radio].sr-only:checked ~ div.radio-images__badge {
     border-color: rgba(229, 231, 235, var(--tw-border-opacity, 1));
     font-size: 1.25rem;
     line-height: 1.75rem;
-    --tw-text-opacity: 1;
-    color: rgba(55, 65, 81, 1);
-    color: rgba(55, 65, 81, var(--tw-text-opacity, 1));
+    color: #2C3E50;
+    color: var(--main-text-color);
+}
+.dark *.header-btn__icon {
+    color: var(--light-text-color);
 }
 .header-btn__icon.icon {
     margin-right: 9px;
