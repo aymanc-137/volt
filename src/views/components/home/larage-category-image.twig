@@ -56,7 +56,7 @@
 		<div class="grid grid-cols-1 md:grid-cols-2 {{ component.categories|length == 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4' }} gap-4 h-[600px]">
 			{% for item in component.categories %}
 				<!-- Category Card {{ loop.index }} -->
-				<div class="relative group
+				<div class="  relative group
 																																																				-skew-x-3
 																																																				hover:border-r-8
 																																																				 overflow-hidden h-full border-r-4
@@ -65,10 +65,11 @@
 					<a href="{{ item.url }}" class="block h-full w-full">
 
 						<img src="{{ item.image }}" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110" alt="{{ item.title }}">
-						<div class="absolute inset-0  opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
+						{# <div class="absolute inset-0  opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div> #}
+						<div class="absolute inset-0     bg-gradient-to-t from-[var(--color-primary-20)] to-transparent duration-300"></div>
 						<div class="absolute bottom-0 left-0 p-6 z-10">
 							<h3 class="text-3xl font-bold italic uppercase skew-x-[-5deg] dynamic-text-color">{{ item.title }}</h3>
-							<p class="text-[var(--color-primary)] font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">SHOP NOW &rarr;</p>
+							{# <p class="text-[var(--color-primary)] font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">SHOP NOW &rarr;</p> #}
 						</div>
 					</a>
 				</div>
