@@ -1,7 +1,7 @@
 html {
   scroll-behavior: smooth;
-  //scrollbar-gutter: stable;
-   overflow-y: scroll; // Always show scrollbar to prevent layout shift
+  
+    // Always show scrollbar to prevent layout shift
 
 }  
 // using salla.document.onClick(...), become effective when all children are none pointer events.

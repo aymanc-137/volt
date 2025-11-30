@@ -18667,7 +18667,6 @@ h5.subtitle {
 }
 html {
   scroll-behavior: smooth;
-  scrollbar-gutter: stable;
 }
 .cursor-pointer * {
   pointer-events: none;
