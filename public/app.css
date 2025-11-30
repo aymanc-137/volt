@@ -20876,6 +20876,8 @@ input[type=radio].sr-only:checked ~ div#nav-cart span {
   .main-menu .has-children > a:after {
     font-family: "sallaicons";
     content: "\e970";
+    margin-top: auto;
+    margin-bottom: auto;
     margin-left: 0.125rem;
     margin-right: 0.125rem;
     display: inline-block;
