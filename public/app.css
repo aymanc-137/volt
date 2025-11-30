@@ -1070,10 +1070,6 @@ select {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
 }
-.mx-4 {
-    margin-left: 1rem;
-    margin-right: 1rem;
-}
 .mx-auto {
     margin-left: auto;
     margin-right: auto;
@@ -1165,6 +1161,9 @@ select {
 .mr-2 {
     margin-right: 0.5rem;
 }
+.mr-\[9px\] {
+    margin-right: 9px;
+}
 .mt-1 {
     margin-top: 0.25rem;
 }
@@ -1197,9 +1196,6 @@ select {
 }
 .mt-8 {
     margin-top: 2rem;
-}
-.mr-\[9px\] {
-    margin-right: 9px;
 }
 .line-clamp-1 {
     overflow: hidden;
@@ -19192,6 +19188,10 @@ input[type=radio].sr-only:checked ~ div.s-app-install-banner-cancel-button {
 .styleish-text {
   z-index: -1;
 }
+.header-btn__icon:hover {
+  color: #414042;
+  color: var(--color-primary);
+}
 .s-cart-summary-total {
   display: none;
 }
@@ -20558,9 +20558,6 @@ input[type=radio].sr-only:checked ~ div.radio-images__badge {
     transition-property: opacity;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
-}
-.header-btn:hover {
-    opacity: 0.8;
 }
 .header-btn__icon {
     display: flex;
@@ -27673,6 +27670,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 .rtl\:ml-8:where([dir="rtl"], [dir="rtl"] *) {
     margin-left: 2rem;
 }
+.rtl\:ml-\[9px\]:where([dir="rtl"], [dir="rtl"] *) {
+    margin-left: 9px;
+}
 .rtl\:ml-\[unset\]:where([dir="rtl"], [dir="rtl"] *) {
     margin-left: 0;
     margin-left: initial;
@@ -27691,9 +27691,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 }
 .rtl\:mr-4:where([dir="rtl"], [dir="rtl"] *) {
     margin-right: 1rem;
-}
-.rtl\:ml-\[9px\]:where([dir="rtl"], [dir="rtl"] *) {
-    margin-left: 9px;
 }
 .rtl\:mr-\[unset\]:where([dir="rtl"], [dir="rtl"] *) {
     margin-right: 0;

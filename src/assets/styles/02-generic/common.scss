@@ -528,6 +528,10 @@ salla-modal {
 
 
         .header-btn__icon{
+
+          &:hover{
+             color: var(--color-primary);
+          }
       
           // color: white;
   
