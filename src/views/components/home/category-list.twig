@@ -19,38 +19,57 @@
 #}
 
 {% set slashbg = component.slas_hbg | default(false) %}
+{% set slash_color = component.slash_color | default('#ededed') %}
+{% set slash_size = component.slash_size | default('20') %}
 {% set marquee = component.marquee | default(false) %}
 {% set marqueetext = component.marqueetext | default(" سرعة /// أداء /// تحكم ") %}
+{% set marquee_text_size = component.marquee_text_size | default('text-9xl') %}
+{% set marquee_is_moving = component.marquee_is_moving | default(true) %}
+{% set marquee_position = component.marquee_position | default('both') %}
 {% set enable_border = component.enable_border | default(false) %}
 
 {# <span class="navbar-underline"></span> #}
 <section class="  z-10 s-block--categories   {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} py-20 relative 
    
-    {{ slashbg ? 'slash-bg   dynamic-bg-color' : ''}}
+    {{ slashbg ? 'slash-bg-custom-' ~ position ~ '   dynamic-bg-color' : ''}}
     pb-32">
+
+    {% if slashbg %}
+    <style>
+        .slash-bg-custom-{{ position }} {
+            background: linear-gradient(135deg, {{ slash_color }} 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, {{ slash_color }} 50%, {{ slash_color }} 75%, rgba(0, 0, 0, 0) 75%);
+            background-size: {{ slash_size }}px {{ slash_size }}px;
+        }
+    </style>
+    {% endif %}
+
     {% if marquee %}
 
+    {% if marquee_position == 'top' or marquee_position == 'both' %}
     <div class="styleish-text absolute top-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
-        <div class="marquee-reverse-sections flex whitespace-nowrap w-max">
-            <span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
+        <div class="{{ marquee_is_moving ? 'marquee-reverse-sections' : '' }} flex whitespace-nowrap w-max">
+            <span class="font-alshohadaa {{ marquee_text_size }} font-bold    display-text whitespace-nowrap px-4">
                 {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
             </span>
-            <span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
+            <span class="font-alshohadaa {{ marquee_text_size }} font-bold    display-text whitespace-nowrap px-4">
                 {{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
             </span>
         </div>
     </div>
+    {% endif %}
 
+    {% if marquee_position == 'bottom' or marquee_position == 'both' %}
     <div class="styleish-text absolute bottom-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
-        <div class="marquee-content-sections flex whitespace-nowrap w-max">
-            <span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
+        <div class="{{ marquee_is_moving ? 'marquee-content-sections' : '' }} flex whitespace-nowrap w-max">
+            <span class="font-alshohadaa {{ marquee_text_size }} font-bold    display-text whitespace-nowrap px-4">
                 {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
             </span>
-            <span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
+            <span class="font-alshohadaa {{ marquee_text_size }} font-bold    display-text whitespace-nowrap px-4">
                 {{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
             </span>
         </div>
     </div>
+    {% endif %}
  
     {% endif %}
     <!-- Decorative Top Heading -->

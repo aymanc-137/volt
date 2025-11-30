@@ -1552,6 +1552,24 @@
                     "required":false
                 },
                 {
+                    "id": "slash_color",
+                    "label": "لون الشرطات",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#ededed", 
+                    "required": false,
+                    "conditions": [{"id": "slas_hbg", "operation": "=", "value": true}]
+                },
+                {
+                    "id": "slash_size",
+                    "label": "حجم الشرطات (بكسل)",
+                    "type": "string",
+                    "format": "text", 
+                    "value": "20",
+                    "required": false,
+                    "conditions": [{"id": "slas_hbg", "operation": "=", "value": true}]
+                },
+                {
                     "id": "marquee",
                     "description": null,
                     "labelHTML": null,
@@ -1560,6 +1578,44 @@
                     "format":"switch",
                     "value":false,
                     "required":false
+                },
+                {
+                    "id": "marquee_text_size",
+                    "label": "حجم النص",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "value": "text-9xl",
+                    "required": false,
+                    "options": [
+                        {"label": "كبير جداً (9XL)", "value": "text-9xl"},
+                        {"label": "كبير (7XL)", "value": "text-7xl"},
+                        {"label": "متوسط (5XL)", "value": "text-5xl"},
+                        {"label": "صغير (3XL)", "value": "text-3xl"}
+                    ],
+                    "conditions": [{"id": "marquee", "operation": "=", "value": true}]
+                },
+                {
+                    "id": "marquee_is_moving",
+                    "label": "تحريك النص",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": true,
+                    "required": false,
+                    "conditions": [{"id": "marquee", "operation": "=", "value": true}]
+                },
+                {
+                    "id": "marquee_position",
+                    "label": "موقع النص",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "value": "both",
+                    "required": false,
+                    "options": [
+                        {"label": "أعلى", "value": "top"},
+                        {"label": "أسفل", "value": "bottom"},
+                        {"label": "كلاهما", "value": "both"}
+                    ],
+                    "conditions": [{"id": "marquee", "operation": "=", "value": true}]
                 },
                 {
                     "id": "marqueetext",
