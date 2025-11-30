@@ -65,7 +65,7 @@
   .why-us-feature {
     @apply flex items-start gap-4 rounded-custom p-4 md:p-6 shadow-sm transition-all duration-300 hover-glow-sm  
     dark:bg-[var(--color-dark-box-background)]
-    bg-[var(--color-dark-box-background)]
+    bg-[var(--color-light-box-background)]
     border
     dynamic-border-color;
    // background: rgba(255, 255, 255, 0.92);
@@ -73,7 +73,7 @@
     &:hover {
       @apply -translate-y-1;
       border-color: var(--color-primary-20);
-      @apply dark:border-[var(--color-primary-20)];
+      @apply border-[var(--color-primary-20)];
     }
   }
 
@@ -84,7 +84,7 @@
     border-radius: 1.25rem;
     background: rgba(var(--color-primary), 0.1);
     color: var(--color-primary);
-    @apply dark:bg-[var(--color-primary-20)] dark:text-[var(--color-primary)];
+    @apply bg-[var(--color-primary-20)];
 
     &::after {
       content: "";
@@ -114,6 +114,6 @@
    // color: var(--main-text-color);
     opacity: 0.9;
     @apply dynamic-text-color
-    dark:opacity-85 transition-colors duration-300;
+      transition-colors duration-300;
   }
 }
