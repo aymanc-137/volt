@@ -51,7 +51,7 @@
   .why-us-description {
     @apply text-base md:text-lg leading-relaxed;
      opacity: 0.88;
-    @apply  dark:opacity-90 transition-colors duration-300;
+    @apply   dynamic-text-color transition-colors duration-300;
   }
 
   .why-us-features {

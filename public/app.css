@@ -26104,9 +26104,11 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
+  color: #2C3E50;
+  color: var(--main-text-color);
 }
 .s-block--why-us .why-us-description:is(.dark *) {
-    opacity: 0.9;
+    color: var(--light-text-color);
 }
 .s-block--why-us .why-us-features {
     display: grid;
