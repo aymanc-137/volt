@@ -81,7 +81,7 @@
                       {% if theme.settings.get('dark_mode_enabled', true) %}
                       <button
                         id="theme-toggle"
-                        class="header-btn ml-4 rtl:ml-[unset] rtl:mr-4"
+                        class="header-btn  mx-4"
                         type="button"
                         aria-pressed="false"
                         aria-label="Toggle color mode"
@@ -92,7 +92,7 @@
                       </button>
                       {% endif %}
                       
-                            <button class="header-bt mx-2 dynamic-text-color" 
+                            <button class="   dynamic-text-color" 
                               id="search-btn"
                               type="button"
                               data-modal-id="search-modal-volt"
@@ -103,8 +103,8 @@
                             <i class="header-btn__icon sicon-search dynamic-text-color"></i>
                           </button>
 
-                      <salla-cart-summary class="ml-4  dynamic-text-color">
-                      {# rtl:ml-[unset] rtl:mr-4 #}
+                      <salla-cart-summary class="ml-4 rtl:ml-[unset] rtl:mr-4 dynamic-text-color">
+                      {#  #}
                         <i slot="icon" class="header-btn__icon icon sicon-shopping-bag dynamic-text-color"></i>
                       </salla-cart-summary>
  
@@ -121,7 +121,7 @@
 {% if store.scope %}
     <salla-scopes selection="{{ store.scope.display_as == 'popup' ? 'mandatory' : 'optional' }}"></salla-scopes>
 {% endif %}
-  <salla-modal has-skeleton="true" position="top" class="rounded-md" id="search-modal-volt">
+  <salla-modal has-skeleton="true" position="top" class="rounded-custom" id="search-modal-volt">
     <h4>{{ trans('blocks.footer.search') }}</h4>
 		<hr>
       <div class="m-3 flex-1 md:h-10 h-96">

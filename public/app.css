@@ -1098,6 +1098,10 @@ select {
     margin-top: auto;
     margin-bottom: auto;
 }
+.mx-4 {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
 .-mb-52 {
     margin-bottom: -13rem;
 }
