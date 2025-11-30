@@ -49,7 +49,7 @@
         font-family: 'sallaicons';
         content: "\e970";
         
-        @apply my-auto inline-block transition-transform duration-300 self-end mx-0.5 text-lg opacity-50 leading-4;
+        @apply mb-auto inline-block transition-transform duration-300 self-end mx-0.5 text-lg opacity-50 leading-4;
       }
 
       &.root-level {
