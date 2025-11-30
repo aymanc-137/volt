@@ -149,8 +149,10 @@
   }
 
   .mm-spn.mm-spn--light {
-    color: #000;
-    background: #ffffff;
+    @apply dynamic-text-color dynamic-bg-color;
+
+    // color: #000;
+    // background: #ffffff;
   }
 
   .mm-spn {

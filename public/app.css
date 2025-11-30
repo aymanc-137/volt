@@ -20995,10 +20995,19 @@ input[type=radio].sr-only:checked ~ div.main-menu .sub-menu {
   }
 }
 @media only screen and (max-width: 1024px) {
-  .mm-spn.mm-spn--light {
-    color: #000;
-    background: #ffffff;
-  }
+.mm-spn.mm-spn--light {
+        color: #2C3E50;
+        color: var(--main-text-color);
+    }
+.dark .mm-spn.mm-spn--light {
+        color: var(--light-text-color);
+    }
+.mm-spn.mm-spn--light {
+        background-color: var(--color-light-box-background);
+    }
+.dark .mm-spn.mm-spn--light {
+        background-color: var(--color-dark-box-background);
+    }
   .mm-spn ul.main-menu li:before {
         height: 0.5rem;
         width: 0.5rem;
