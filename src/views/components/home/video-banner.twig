@@ -43,13 +43,13 @@
 
         {# Title with Racing Typography #}
         {% if component.title %}
-        <h2 class="text-4xl font-alshohadaa md:text-5xl lg:text-6xl font-bold mb-6 font-racing text-white animate-slide-in-up leading-tight tracking-tight">
+        <h2 class="text-4xl font-alshohadaa md:text-5xl lg:text-6xl font-bold mb-6 font-racing dynamic-text-color animate-slide-in-up leading-tight tracking-tight">
             {% if component.enable_gradient_word and component.gradient_word %}
-                <span id="video-banner-title-{{ position }}" class="inline-block bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(255,255,255,0.5)] transform hover:scale-105 transition-transform duration-300">
+                <span id="video-banner-title-{{ position }}" class="inline-block transform hover:scale-105 transition-transform duration-300">
                     {{ component.title }}
                 </span>
             {% else %}
-                <span class="inline-block bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(255,255,255,0.5)] transform hover:scale-105 transition-transform duration-300">
+                <span class="inline-block transform hover:scale-105 transition-transform duration-300">
                     {{ component.title }}
                 </span>
             {% endif %}
@@ -83,7 +83,7 @@
 
         {# Description with Modern Typography #}
         {% if component.description %}
-        <p class="text-base md:text-xl lg:text-2xl mb-12 max-w-4xl mx-auto font-orbitron text-gray-300 animate-fade-in-up delay-200 leading-relaxed px-6 relative">
+        <p class="text-base md:text-xl lg:text-2xl mb-12 max-w-4xl mx-auto font-orbitron dynamic-text-color opacity-80 animate-fade-in-up delay-200 leading-relaxed px-6 relative">
             <span class="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-[color:var(--color-primary)] to-[color:var(--color-scandary)]"></span>
             {{ component.description }}
         </p>
@@ -147,14 +147,14 @@
                     <div class="absolute -bottom-2 -right-2 w-3 h-3 bg-[color:var(--color-primary)] opacity-0 group-hover/stat:opacity-100 transition-opacity duration-300"></div>
                     
                     {# Value #}
-                    <span class="text-4xl md:text-6xl lg:text-7xl font-bold text-white font-racing mb-3 relative">
+                    <span class="text-4xl md:text-6xl lg:text-7xl font-bold dynamic-text-color font-racing mb-3 relative">
                         <span class="relative inline-block group-hover/stat:text-transparent group-hover/stat:bg-gradient-to-r group-hover/stat:from-[color:var(--color-primary)] group-hover/stat:to-[color:var(--color-scandary)] group-hover/stat:bg-clip-text transition-all duration-500 drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]" data-counter data-target="{{ stat.value }}">
                             0
                         </span>
                     </span>
                     
                     {# Label #}
-                    <span class="text-xs md:text-sm text-gray-400 group-hover/stat:text-gray-200 font-orbitron uppercase tracking-[0.25em] transition-colors duration-300 text-center">
+                    <span class="text-xs md:text-sm dynamic-text-color opacity-70 group-hover/stat:opacity-100 font-orbitron uppercase tracking-[0.25em] transition-colors duration-300 text-center">
                         {{ stat.label }}
                     </span>
                     

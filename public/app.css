@@ -2081,9 +2081,6 @@ select {
     border-color: #414042;
     border-color: var(--color-primary);
 }
-.border-\[var\(--color-scandary\)\] {
-    border-color: var(--color-scandary);
-}
 .border-blue-200 {
     --tw-border-opacity: 1;
     border-color: rgba(191, 219, 254, 1);
@@ -2158,6 +2155,9 @@ select {
     --tw-border-opacity: 1;
     border-color: rgba(234, 179, 8, 1);
     border-color: rgba(234, 179, 8, var(--tw-border-opacity, 1));
+}
+.border-\[var\(--color-scandary\)\] {
+    border-color: var(--color-scandary);
 }
 .bg-\[color\:var\(--color-primary\)\] {
     background-color: #414042;
@@ -2296,11 +2296,6 @@ select {
 .from-\[rgba\(var\(--color-primary\)\2c 0\.9\)\] {
     --tw-gradient-from: rgba(var(--color-primary),0.9) var(--tw-gradient-from-position);
     --tw-gradient-to: rgba(var(--color-primary), 0) var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-.from-\[var\(--color-light-box-background\)\] {
-    --tw-gradient-from: var(--color-light-box-background) var(--tw-gradient-from-position);
-    --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 .from-\[var\(--color-light-page-background\)\] {
@@ -26804,11 +26799,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 }
 .dark *.dark\:bg-white\/5 {
     background-color: rgba(255, 255, 255, 0.05);
-}
-.dark *.dark\:from-\[var\(--color-dark-box-background\)\] {
-    --tw-gradient-from: var(--color-dark-box-background) var(--tw-gradient-from-position);
-    --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 .dark *.dark\:from-\[var\(--color-dark-page-background\)\] {
     --tw-gradient-from: var(--color-dark-page-background) var(--tw-gradient-from-position);

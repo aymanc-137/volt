@@ -56,7 +56,7 @@
 		<div class="grid grid-cols-1 md:grid-cols-2 {{ component.categories|length == 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4' }} gap-4 h-[600px]">
 			{% for item in component.categories %}
 				<!-- Category Card {{ loop.index }} -->
-				<div class="relative group -skew-x-3 hover:border-r-8 overflow-hidden h-full border-r-4 border-b dynamic-border-color cursor-pointer">
+				<div class="relative group -skew-x-3 hover:border-r-8 overflow-hidden h-full border-r-4 border-b border-[var(--color-scandary)] cursor-pointer">
 					<a href="{{ item.url }}" class="block h-full w-full">
 
 						<img src="{{ item.image }}" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110" alt="{{ item.title }}">
