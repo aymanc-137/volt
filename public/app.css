@@ -2308,6 +2308,11 @@ select {
     --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
+.from-\[var\(--color-primary-20\)\] {
+    --tw-gradient-from: var(--color-primary-20) var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
 .from-\[var\(--color-primary-30\)\] {
     --tw-gradient-from: var(--color-primary-30) var(--tw-gradient-from-position);
     --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
@@ -2358,8 +2363,13 @@ select {
     --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
-.from-\[var\(--color-primary-20\)\] {
-    --tw-gradient-from: var(--color-primary-20) var(--tw-gradient-from-position);
+.from-\[var\(--color-primary-50\)\] {
+    --tw-gradient-from: var(--color-primary-50) var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.from-\[var\(--color-light-box-background\)\] {
+    --tw-gradient-from: var(--color-light-box-background) var(--tw-gradient-from-position);
     --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
@@ -26812,6 +26822,11 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 }
 .dark *.dark\:from-primary {
     --tw-gradient-from: var(--color-primary) var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.dark *.dark\:from-\[var\(--color-dark-box-background\)\] {
+    --tw-gradient-from: var(--color-dark-box-background) var(--tw-gradient-from-position);
     --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
