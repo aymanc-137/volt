@@ -14,27 +14,27 @@
 
 	{% if marquee %}
 
-	<div class="styleish-text absolute top-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
-		<div class="marquee-reverse-sections flex whitespace-nowrap w-max">
-			<span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
-				{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
-			</span>
-			<span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
-				{{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
-			</span>
+		<div class="styleish-text absolute top-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
+			<div class="marquee-reverse-sections flex whitespace-nowrap w-max">
+				<span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
+					{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+				</span>
+				<span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
+					{{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+				</span>
+			</div>
 		</div>
-	</div>
 
-	<div class="styleish-text absolute bottom-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
-		<div class="marquee-content-sections flex whitespace-nowrap w-max">
-			<span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
-				{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
-			</span>
-			<span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
-				{{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
-			</span>
+		<div class="styleish-text absolute bottom-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
+			<div class="marquee-content-sections flex whitespace-nowrap w-max">
+				<span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
+					{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+				</span>
+				<span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
+					{{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
+				</span>
+			</div>
 		</div>
-	</div>
 
 	{% endif %}
 
@@ -56,15 +56,15 @@
 		<div class="grid grid-cols-1 md:grid-cols-2 {{ component.categories|length == 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4' }} gap-4 h-[600px]">
 			{% for item in component.categories %}
 				<!-- Category Card {{ loop.index }} -->
-				<div class="relative group
-																																																				-skew-x-3
-																																																				hover:border-r-8
-																																																				 overflow-hidden h-full border-r-4
-																																																				border-[var(--color-scandary)]
-																																																				 cursor-pointer">
-					<a href="{{ item.url }}" class="block h-full w-full">
 
-						<img src="{{ item.image }}" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110" alt="{{ item.title }}">
+				<div class="relative group																																								border-[var(--color-scandary)]
+																																																				 cursor-pointer">
+					<a href="{{ item.url }}" class="block h-full w-full
+					bg-gradient-to-t from-[var(--color-primary)] to-transparent
+					">
+
+						<img src="{{ item.image }}" class="absolute inset-0 w-full h-full 
+						object-cover transition duration-500 group-hover:scale-110" alt="{{ item.title }}">
 						<div class="absolute inset-0  opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
 						<div class="absolute bottom-0 left-0 p-6 z-10">
 							<h3 class="text-3xl font-bold italic uppercase skew-x-[-5deg] dynamic-text-color">{{ item.title }}</h3>
@@ -72,7 +72,10 @@
 						</div>
 					</a>
 				</div>
+
 			{% endfor %}
+
+
 		</div>
 	</div>
 
