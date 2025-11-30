@@ -55,7 +55,7 @@
               <div class="flex items-stretch justify-between relative">
                   <div class="flex items-center">
                       <a class="lg:hidden mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4" href="#mobile-menu" aria-label="Open-menu">
-                        <i class="sicon-menu text-primary text-2xl"></i>
+                        <i class="hover:text-[var(--color-primary)] sicon-menu text-primary text-2xl"></i>
                       </a>
                       <a class="navbar-brand" href="{{ store.url }}">
                           <img fetchpriority="high" width="100%" height="100%" loading="eager" src="{{ store.logo }}" alt="{{ store.name }} logo">
@@ -88,9 +88,9 @@
                         aria-pressed="false"
                         aria-label="Toggle color mode"
                       >
-                        <i class="header-btn__icon icon sicon-moon hidden dynamic-text-color" data-theme-icon="dark" aria-hidden="true" style="display:none"></i>
+                        <i class="hover:text-[var(--color-primary)] header-btn__icon icon sicon-moon hidden dynamic-text-color" data-theme-icon="dark" aria-hidden="true" style="display:none"></i>
 
-                        <i class="header-btn__icon icon sicon-sun dynamic-text-color" data-theme-icon="light" aria-hidden="true"></i>
+                        <i class="hover:text-[var(--color-primary)] header-btn__icon icon sicon-sun dynamic-text-color" data-theme-icon="light" aria-hidden="true"></i>
                         <span class="sr-only">Toggle color mode</span>
                       </button>
                       {% endif %}
@@ -104,13 +104,13 @@
                               onclick="(function(){event.preventDefault();
                                 document.querySelector('#search-modal-volt').open();
                                 return false;})();">
-                            <i class="header-btn__icon sicon-search dynamic-text-color"></i>
+                            <i class="hover:text-[var(--color-primary)] header-btn__icon sicon-search dynamic-text-color"></i>
                           </button>
 
 
                     <salla-cart-summary class="ml-4 rtl:ml-[unset] rtl:mr-4 dynamic-text-color">
                       {#  #}
-                        <i slot="icon" class="header-btn__icon icon sicon-shopping-bag dynamic-text-color"></i>
+                        <i slot="icon" class=" hover:text-[var(--color-primary)] header-btn__icon icon sicon-shopping-bag dynamic-text-color"></i>
                       </salla-cart-summary>
 
 
