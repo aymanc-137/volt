@@ -16,10 +16,10 @@
 
 	<div class="styleish-text absolute top-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
 		<div class="marquee-reverse-sections flex whitespace-nowrap w-max">
-			<span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
+			<span class="font-alshohadaa text-9xl font-bold display-text whitespace-nowrap px-4 dynamic-text-color">
 				{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
 			</span>
-			<span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
+			<span class="font-alshohadaa text-9xl font-bold display-text whitespace-nowrap px-4 dynamic-text-color">
 				{{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
 			</span>
 		</div>
@@ -27,10 +27,10 @@
 
 	<div class="styleish-text absolute bottom-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
 		<div class="marquee-content-sections flex whitespace-nowrap w-max">
-			<span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
+			<span class="font-alshohadaa text-9xl font-bold display-text whitespace-nowrap px-4 dynamic-text-color">
 				{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
 			</span>
-			<span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
+			<span class="font-alshohadaa text-9xl font-bold display-text whitespace-nowrap px-4 dynamic-text-color">
 				{{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
 			</span>
 		</div>
@@ -50,26 +50,18 @@
 						{{ component.title }}
 					{% endif %}
 				</h2>
-				<p class="mx-auto my-5 text-center text-xl">{{component.sub_title}}</p>
+				<p class="mx-auto my-5 text-center text-xl dynamic-text-color">{{component.sub_title}}</p>
 			{% endif %}
 		</div>
 		<div class="grid grid-cols-1 md:grid-cols-2 {{ component.categories|length == 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4' }} gap-4 h-[600px]">
 			{% for item in component.categories %}
 				<!-- Category Card {{ loop.index }} -->
-				<div class="  relative group
-																																																				-skew-x-3
-																																																				hover:border-r-8
-																																																				 overflow-hidden h-full border-r-4
-																																																				 border-b
-																																																				border-[var(--color-scandary)]
-																																																				 cursor-pointer">
+				<div class="relative group -skew-x-3 hover:border-r-8 overflow-hidden h-full border-r-4 border-b dynamic-border-color cursor-pointer">
 					<a href="{{ item.url }}" class="block h-full w-full">
 
 						<img src="{{ item.image }}" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110" alt="{{ item.title }}">
 						{# <div class="absolute inset-0  opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div> #}
-						<div class="absolute inset-0     bg-gradient-to-t from-[var(--color-light-box-background)] 
-						dark:from-[var(--color-dark-box-background)] 
-						to-transparent duration-300"></div>
+						<div class="absolute inset-0 bg-gradient-to-t from-[var(--color-light-page-background)] dark:from-[var(--color-dark-page-background)] to-transparent duration-300"></div>
 						<div class="absolute bottom-0 left-0 p-6 z-10">
 							<h3 class="text-3xl font-bold italic uppercase skew-x-[-5deg] dynamic-text-color">{{ item.title }}</h3>
 							{# <p class="text-[var(--color-primary)] font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">SHOP NOW &rarr;</p> #}
