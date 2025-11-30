@@ -57,11 +57,8 @@
 			{% for item in component.categories %}
 				<!-- Category Card {{ loop.index }} -->
 
-				<div class="relative group																																								border-[var(--color-scandary)]
-																																																				 cursor-pointer">
-					<a href="{{ item.url }}" class="block h-full w-full
-					bg-gradient-to-t from-[var(--color-primary)] to-transparent
-					">
+				<div class="relative group bg-gradient-to-t from-[var(--color-primary)] to-transparent border-[var(--color-scandary)] cursor-pointer">
+					<a href="{{ item.url }}" class="block h-full w-full">
 
 						<img src="{{ item.image }}" class="absolute inset-0 w-full h-full 
 						object-cover transition duration-500 group-hover:scale-110" alt="{{ item.title }}">
