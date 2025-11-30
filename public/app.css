@@ -20562,8 +20562,7 @@ input[type=radio].sr-only:checked ~ div.radio-images__badge {
     align-items: center;
     justify-content: center;
     border-width: 1px;
-    border-color: #414042;
-    border-color: var(--color-primary);
+    border-color: var(--color-primary-50);
     font-size: 1.25rem;
     line-height: 1.75rem;
   border-radius: var(--border-radius);
