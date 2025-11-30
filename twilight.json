@@ -1552,6 +1552,48 @@
                     "required":false
                 },
                 {
+                    "id": "slash_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "لون الخلفية المموجة",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#000000",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "slas_hbg",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "slash_size",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "حجم الخلفية المموجة (بالبكسل)",
+                    "type": "string",
+                    "format": "select",
+                    "value": "20",
+                    "required": false,
+                    "options": [
+                        {"label": "صغير (10px)", "value": "10"},
+                        {"label": "متوسط (15px)", "value": "15"},
+                        {"label": "عادي (20px)", "value": "20"},
+                        {"label": "كبير (25px)", "value": "25"},
+                        {"label": "كبير جداً (30px)", "value": "30"},
+                        {"label": "ضخم (40px)", "value": "40"}
+                    ],
+                    "conditions": [
+                        {
+                            "id": "slas_hbg",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
                     "id": "marquee",
                     "description": null,
                     "labelHTML": null,
@@ -1572,6 +1614,70 @@
                     "required":false,
                     "minLength": 3,
                     "maxLength": 300,
+                    "conditions": [
+                        {
+                            "id": "marquee",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "marquee_text_size",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "حجم نص الماركيو",
+                    "type": "string",
+                    "format": "select",
+                    "value": "text-9xl",
+                    "required": false,
+                    "options": [
+                        {"label": "صغير جداً (XS)", "value": "text-4xl"},
+                        {"label": "صغير (SM)", "value": "text-5xl"},
+                        {"label": "متوسط (MD)", "value": "text-6xl"},
+                        {"label": "كبير (LG)", "value": "text-7xl"},
+                        {"label": "كبير جداً (XL)", "value": "text-8xl"},
+                        {"label": "ضخم (2XL)", "value": "text-9xl"}
+                    ],
+                    "conditions": [
+                        {
+                            "id": "marquee",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "marquee_is_moving",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "تفعيل حركة الماركيو",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": true,
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "marquee",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "marquee_position",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "موقع نص الماركيو",
+                    "type": "string",
+                    "format": "select",
+                    "value": "both",
+                    "required": false,
+                    "options": [
+                        {"label": "أعلى فقط", "value": "top"},
+                        {"label": "أسفل فقط", "value": "bottom"},
+                        {"label": "أعلى وأسفل", "value": "both"}
+                    ],
                     "conditions": [
                         {
                             "id": "marquee",
