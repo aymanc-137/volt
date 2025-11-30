@@ -2081,6 +2081,9 @@ select {
     border-color: #414042;
     border-color: var(--color-primary);
 }
+.border-\[var\(--color-scandary\)\] {
+    border-color: var(--color-scandary);
+}
 .border-blue-200 {
     --tw-border-opacity: 1;
     border-color: rgba(191, 219, 254, 1);
@@ -2155,9 +2158,6 @@ select {
     --tw-border-opacity: 1;
     border-color: rgba(234, 179, 8, 1);
     border-color: rgba(234, 179, 8, var(--tw-border-opacity, 1));
-}
-.border-\[var\(--color-scandary\)\] {
-    border-color: var(--color-scandary);
 }
 .bg-\[color\:var\(--color-primary\)\] {
     background-color: #414042;
@@ -2353,11 +2353,6 @@ select {
     --tw-gradient-to: rgba(0, 0, 0, 0) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
-.from-white {
-    --tw-gradient-from: #fff var(--tw-gradient-from-position);
-    --tw-gradient-to: rgba(255, 255, 255, 0) var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
 .via-\[color\:var\(--color-primary\)\] {
     --tw-gradient-to: rgba(255, 255, 255, 0)  var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), var(--color-primary) var(--tw-gradient-via-position), var(--tw-gradient-to);
@@ -2381,10 +2376,6 @@ select {
 .via-black\/80 {
     --tw-gradient-to: rgba(0, 0, 0, 0)  var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), rgba(0, 0, 0, 0.8) var(--tw-gradient-via-position), var(--tw-gradient-to);
-}
-.via-gray-100 {
-    --tw-gradient-to: rgba(243, 244, 246, 0)  var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-from), #f3f4f6 var(--tw-gradient-via-position), var(--tw-gradient-to);
 }
 .via-transparent {
     --tw-gradient-to: rgba(0, 0, 0, 0)  var(--tw-gradient-to-position);
@@ -2423,9 +2414,6 @@ select {
 }
 .to-transparent {
     --tw-gradient-to: transparent var(--tw-gradient-to-position);
-}
-.to-white {
-    --tw-gradient-to: #fff var(--tw-gradient-to-position);
 }
 .bg-\[length\:200\%_100\%\] {
     background-size: 200% 100%;
@@ -2873,11 +2861,6 @@ select {
     color: rgba(29, 31, 31, 1);
     color: rgba(29, 31, 31, var(--tw-text-opacity, 1));
 }
-.text-gray-300 {
-    --tw-text-opacity: 1;
-    color: rgba(209, 213, 219, 1);
-    color: rgba(209, 213, 219, var(--tw-text-opacity, 1));
-}
 .text-gray-400 {
     --tw-text-opacity: 1;
     color: rgba(156, 163, 175, 1);
@@ -3079,11 +3062,6 @@ select {
 }
 .drop-shadow-\[0_0_20px_var\(--color-scandary\)\] {
     --tw-drop-shadow: drop-shadow(0 0 20px var(--color-scandary));
-    filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-.drop-shadow-\[0_0_30px_rgba\(255\2c 255\2c 255\2c 0\.5\)\] {
-    --tw-drop-shadow: drop-shadow(0 0 30px rgba(255,255,255,0.5));
-    filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) drop-shadow(0 0 30px rgba(255,255,255,0.5));
     filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 .filter {
@@ -26691,6 +26669,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     background-color: #414042;
     background-color: var(--color-primary);
 }
+.group\/cta:hover .group-hover\/cta\:bg-transparent {
+    background-color: transparent;
+}
 .group\/stat:hover .group-hover\/stat\:bg-gradient-to-r {
     background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
@@ -26705,11 +26686,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 .group\/stat:hover .group-hover\/stat\:bg-clip-text {
     -webkit-background-clip: text;
             background-clip: text;
-}
-.group\/stat:hover .group-hover\/stat\:text-gray-200 {
-    --tw-text-opacity: 1;
-    color: rgba(229, 231, 235, 1);
-    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
 }
 .group\/stat:hover .group-hover\/stat\:text-transparent {
     color: transparent;
