@@ -161,7 +161,7 @@
   @apply border-none outline-none transition-opacity hover:opacity-80;
 
   &__icon{
-    @apply text-xl w-10 h-10  l border border-[var(--color-primary)] rounded-custom flex items-center justify-center dynamic-text-color;
+    @apply text-xl w-10 h-10  dynamic-text-color border border-[var(--color-primary)] rounded-custom flex items-center justify-center  ;
     &.icon{
       @apply mr-[9px] rtl:ml-[9px] rtl:mr-[unset];
     }
