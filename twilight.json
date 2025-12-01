@@ -1552,41 +1552,6 @@
                     "required":false
                 },
                 {
-                    "id": "slash_bg_color",
-                    "description": "لون خلفية الخطوط المائلة",
-                    "labelHTML": null,
-                    "label":"لون الخلفية المموجة",
-                    "type":"string",
-                    "format":"color",
-                    "inputType": "color",
-                    "value": "#1a1a1a",
-                    "required":false,
-                    "conditions": [
-                        {
-                            "id": "slas_hbg",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ]
-                },
-                {
-                    "id": "slash_bg_size",
-                    "description": "حجم الخطوط المائلة بالبكسل",
-                    "labelHTML": null,
-                    "label":"حجم الخطوط المائلة",
-                    "type":"number",
-                    "format":"number",
-                    "value": 20,
-                    "required":false,
-                    "conditions": [
-                        {
-                            "id": "slas_hbg",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ]
-                },
-                {
                     "id": "marquee",
                     "description": null,
                     "labelHTML": null,
@@ -1607,71 +1572,6 @@
                     "required":false,
                     "minLength": 3,
                     "maxLength": 300,
-                    "conditions": [
-                        {
-                            "id": "marquee",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ]
-                },
-                {
-                    "id": "marquee_text_size",
-                    "description": "حجم النص بالـ rem",
-                    "labelHTML": null,
-                    "label":"حجم نص ماركيو",
-                    "type":"number",
-                    "format":"number",
-                    "value": 9,
-                    "required":false,
-                    "conditions": [
-                        {
-                            "id": "marquee",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ]
-                },
-                {
-                    "id": "marquee_is_moving",
-                    "description": "تفعيل أو إيقاف حركة النص",
-                    "labelHTML": null,
-                    "label":"تحريك النص",
-                    "type":"boolean",
-                    "format":"switch",
-                    "value": true,
-                    "required":false,
-                    "conditions": [
-                        {
-                            "id": "marquee",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ]
-                },
-                {
-                    "id": "marquee_text_position",
-                    "description": "موقع ظهور النص",
-                    "labelHTML": null,
-                    "label":"موقع النص",
-                    "type":"string",
-                    "format":"select",
-                    "value": "both",
-                    "required":false,
-                    "options": [
-                        {
-                            "label": "أعلى فقط",
-                            "value": "top"
-                        },
-                        {
-                            "label": "أسفل فقط",
-                            "value": "bottom"
-                        },
-                        {
-                            "label": "أعلى وأسفل",
-                            "value": "both"
-                        }
-                    ],
                     "conditions": [
                         {
                             "id": "marquee",
