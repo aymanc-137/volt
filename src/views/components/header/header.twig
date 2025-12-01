@@ -124,7 +124,7 @@
 {% if store.scope %}
     <salla-scopes selection="{{ store.scope.display_as == 'popup' ? 'mandatory' : 'optional' }}"></salla-scopes>
 {% endif %}
-  <salla-modal has-skeleton="true" position="top" class="rounded-custom" id="search-modal-volt">
+  <salla-modal has-skeleton="true" position="top" class="custom-salla-volt-modal" id="search-modal-volt">
     <h4>{{ trans('blocks.footer.search') }}</h4>
 		<hr>
       <div class="m-3 flex-1 md:h-10 h-96">

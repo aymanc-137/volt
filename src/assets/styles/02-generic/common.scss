@@ -597,3 +597,12 @@ salla-modal {
       .s-cart-summary-total{
         display: none;
       }
+
+
+      .custom-salla-volt-modal{
+
+      .s-modal-body {
+       @apply custom-rounded; 
+      }
+
+    }
