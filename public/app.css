@@ -2899,6 +2899,11 @@ select {
     color: rgba(255, 255, 255, 1);
     color: rgba(255, 255, 255, var(--tw-text-opacity, 1));
 }
+.text-slate-900 {
+    --tw-text-opacity: 1;
+    color: rgba(15, 23, 42, 1);
+    color: rgba(15, 23, 42, var(--tw-text-opacity, 1));
+}
 .underline {
     text-decoration-line: underline;
 }
