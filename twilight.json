@@ -1581,6 +1581,71 @@
                     ]
                 },
                 {
+                    "id": "marquee_text_size",
+                    "description": "حجم النص بالـ rem",
+                    "labelHTML": null,
+                    "label":"حجم نص ماركيو",
+                    "type":"string",
+                    "format":"text",
+                    "value": "9",
+                    "required":false,
+                    "conditions": [
+                        {
+                            "id": "marquee",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "marquee_is_moving",
+                    "description": "تفعيل أو إيقاف حركة النص",
+                    "labelHTML": null,
+                    "label":"تحريك النص",
+                    "type":"boolean",
+                    "format":"switch",
+                    "value": true,
+                    "required":false,
+                    "conditions": [
+                        {
+                            "id": "marquee",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "marquee_text_position",
+                    "description": "موقع ظهور النص",
+                    "labelHTML": null,
+                    "label":"موقع النص",
+                    "type":"string",
+                    "format":"select",
+                    "value": "both",
+                    "required":false,
+                    "options": [
+                        {
+                            "label": "أعلى فقط",
+                            "value": "top"
+                        },
+                        {
+                            "label": "أسفل فقط",
+                            "value": "bottom"
+                        },
+                        {
+                            "label": "أعلى وأسفل",
+                            "value": "both"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "id": "marquee",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
                     "id": "enable_border",
                     "label": "تفعيل الحدود",
                     "description": null,
