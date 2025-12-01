@@ -1657,7 +1657,13 @@
                     "labelHTML": null,
                     "icon": "sicon-keyboard_arrow_down",
                     "selected": [],
-                    "options": [],
+                    "options": [
+                        {
+                            "label": "dasdas",
+                            "value": "Value 1",
+                            "key": "8c49d000-f3fa-4242-afd6-2801c3612b37"
+                        }
+                    ],
                     "source": "Manual",
                     "multichoice": true,
                     "searchable": true,
