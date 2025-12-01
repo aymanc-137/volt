@@ -27,7 +27,7 @@
 {# <span class="navbar-underline"></span> #}
 <section class="  z-10 s-block--categories   {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} py-20 relative 
    
-    {{ slashbg ? 'slash-bg-{{position}}   dynamic-bg-color' : ''}}
+    {{ slashbg ? 'slash-bg-' ~ position ~ '   dynamic-bg-color' : ''}}
     pb-32">
     {% if marquee %}
 
