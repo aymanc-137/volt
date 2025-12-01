@@ -1,9 +1,54 @@
 html {
   scroll-behavior: smooth;
   
-    // Always show scrollbar to prevent layout shift
+  // Always show scrollbar to prevent layout shift
 
+  // Custom scrollbar with primary color
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--color-light-page-background);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-d);
+  }
+
+  // Firefox scrollbar
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) var(--color-light-page-background);
+}
+
+// Dark mode scrollbar
+.dark html,
+html.dark {
+  &::-webkit-scrollbar-track {
+    background: var(--color-dark-page-background);
+  }
+  scrollbar-color: var(--color-primary) var(--color-dark-page-background);
+}
+
+// Text selection/highlight color
+::selection {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+::-moz-selection {
+  background-color: var(--color-primary);
+  color: #fff;
 }  
+
+
+
+
 // using salla.document.onClick(...), become effective when all children are none pointer events.
 .cursor-pointer * {
   pointer-events: none;

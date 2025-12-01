@@ -18636,6 +18636,48 @@ h5.subtitle {
 }
 html {
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #414042 var(--color-light-page-background);
+  scrollbar-color: var(--color-primary) var(--color-light-page-background);
+}
+html::-webkit-scrollbar {
+  width: 10px;
+}
+html::-webkit-scrollbar-track {
+  background: var(--color-light-page-background);
+}
+html::-webkit-scrollbar-thumb {
+  background: #414042;
+  background: var(--color-primary);
+  border-radius: 5px;
+}
+html::-webkit-scrollbar-thumb:hover {
+  background: #272628;
+  background: var(--color-primary-d);
+}
+.dark html,
+html.dark {
+  scrollbar-color: #414042 var(--color-dark-page-background);
+  scrollbar-color: var(--color-primary) var(--color-dark-page-background);
+}
+.dark html::-webkit-scrollbar-track,
+html.dark::-webkit-scrollbar-track {
+  background: var(--color-dark-page-background);
+}
+::-moz-selection {
+  background-color: #414042;
+  background-color: var(--color-primary);
+  color: #fff;
+}
+::selection {
+  background-color: #414042;
+  background-color: var(--color-primary);
+  color: #fff;
+}
+::-moz-selection {
+  background-color: #414042;
+  background-color: var(--color-primary);
+  color: #fff;
 }
 .cursor-pointer * {
   pointer-events: none;
