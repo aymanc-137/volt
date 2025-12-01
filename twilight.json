@@ -1621,9 +1621,8 @@
                     "description": "موقع ظهور النص",
                     "labelHTML": null,
                     "label": "موقع النص",
-                    "type": "string",
-                    "format": "dropdown-list",
-                    "source": "custom",
+                    "type": "items",
+                    "format": "dropdown-list",                  
                     "value": "both",
                     "required": false,
                     "options": [
