@@ -1628,7 +1628,7 @@
                     "selected": [],
                     "source": "Manual",
                     "options": [
-            {
+                    {
                             "label": "أعلى فقط",
                             "value": "top",
                             "key": "8c49d000-f3fa-4242-afd6-2801c3612b37"
@@ -1651,23 +1651,6 @@
                             "value": true
                         }
                     ]
-                },
-                {
-                    "id": "dropdown_list",
-                    "type": "items",
-                    "format": "dropdown-list",
-                    "label": "Dropdown List",
-                    "description": null,
-                    "labelHTML": null,
-                    "icon": "sicon-keyboard_arrow_down",
-                    "selected": [],
-                    "options": [
-                        
-                    ],
-                    "source": "Manual",
-                    "multichoice": true,
-                    "searchable": true,
-                    "required": false
                 },
                 {
                     "id": "enable_border",

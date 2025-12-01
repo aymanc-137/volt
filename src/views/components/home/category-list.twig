@@ -22,16 +22,19 @@
 {% set marquee = component.marquee | default(false) %}
 {% set marqueetext = component.marqueetext | default(" سرعة /// أداء /// تحكم ") %}
 {% set enable_border = component.enable_border | default(false) %}
-
+{% set marquee_text_position = component.marquee_text_position | default('both') %}
+{% set marquee_is_moving = component.marquee_is_moving | default(true) %}
 {# <span class="navbar-underline"></span> #}
 <section class="  z-10 s-block--categories   {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} py-20 relative 
    
-    {{ slashbg ? 'slash-bg   dynamic-bg-color' : ''}}
+    {{ slashbg ? 'slash-bg-{{position}}   dynamic-bg-color' : ''}}
     pb-32">
     {% if marquee %}
 
+    {% if marquee_text_position == 'top' or marquee_text_position == 'both' %}
+
     <div class="styleish-text absolute top-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
-        <div class="marquee-reverse-sections flex whitespace-nowrap w-max">
+        <div class="{{ marquee_is_moving ? 'marquee-reverse-sections' : '' }} flex whitespace-nowrap w-max">
             <span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
                 {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
             </span>
@@ -41,8 +44,12 @@
         </div>
     </div>
 
+    {% endif %}
+
+    {% if marquee_text_position == 'bottom' or marquee_text_position == 'both' %}
+
     <div class="styleish-text absolute bottom-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
-        <div class="marquee-content-sections flex whitespace-nowrap w-max">
+        <div class="{{ marquee_is_moving ? 'marquee-content-sections' : '' }} flex whitespace-nowrap w-max">
             <span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
                 {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
             </span>
@@ -52,6 +59,7 @@
         </div>
     </div>
  
+    {% endif %}
     {% endif %}
     <!-- Decorative Top Heading -->
     {% if component.title %}
@@ -147,63 +155,11 @@ id="main-links-{{ position }}">
 </div>
 
 </section> 
-
-
-{# <div class=" bg-gradient-to-l from-[#90B99F] to-[#546C5D]  flex flex-col items-center justify-center"> #}
-
-
-{# <section class="s-block s-block--categories mx-auto animate-on-scroll border border-blue-500 ">
-<div class="container border border-red-500 ">
-<salla-slider  
-type="carousel"
-controls-outer
-show-controls="false" 
-class="border border-green-500"
-id="main-links-{{ position }}">
-<div slot="items">
-
-      {% for item in component.links %}
-
-          <div class="swiper-slide border border-yellow-500 slide--one-sixth">
-              <a href="{{item.url}}" 
-                    style="background-image: linear-gradient(to bottom right, {{item.color}}2E , {{item.color_2}}D9 ),url('{{item.image}}') ;"
-                    class=" flex items-center justify-center w-72 h-64 rounded-xl shadow-xl bg-cover bg-center hover:shadow-xl hover:scale-105 transition-all duration-300" >
-                  <h3 class="   text-2xl font-bold place-self-center">{{item.text}}</h3>
-              </a>
-          </div>
-
-      {% endfor %}
-
-</div>
-</salla-slider>
-</div>
-</section>  #}
-
-
-
-{# 
-<section class="s-block s-block--categories animate-on-scroll">
-
-<div class="container big-image-category justify-center items-center ">
-<salla-slider  
-type="carousel"
-controls-outer
-show-controls="false" 
-id="main-links-{{ position }}">
-<div slot="items">
-      {% for cat in component.links %}
-       <div class="swiper-slide slide--one-sixth ">
-         
-              <a href="{{item.url}}" 
-                    style="background-image: linear-gradient(to bottom right, {{item.color}}2E , {{item.color_2}}D9 ),url('{{item.image}}') ;"
-                    class="flex items-center justify-center w-72 h-64 rounded-xl shadow-xl bg-cover bg-center hover:shadow-xl hover:scale-105 transition-all duration-300" >
-                  <h3 class="   text-2xl font-bold place-self-center">{{item.text}}</h3>
-              </a>
-
-          </div>
-      {% endfor %}
-</div>
-</salla-slider>
-</div>
-</section>  #}
-
+ 
+ <style>
+ .slash-bg-{{position}} {
+    background: linear-gradient(135deg, var(--color-primary-5) 25%, rgba(0, 0, 0, 0)  25%, rgba(0, 0, 0, 0)  50%, var(--color-primary-5)  50%, var(--color-primary-5)  75%, rgba(0, 0, 0, 0) 75%);
+   background-size: 20px 20px;
+}
+ 
+ </style>
