@@ -1500,16 +1500,18 @@
         },
         {
             "key": "9d83a6e2-8933-4d1c-ab63-5a711805249c",
-            "title": "قائمة عناصر - فولت",
+            "title": {
+                "ar": "قائمة عناصر - فولت",
+                "en": null
+            },
             "icon": "sicon-store",
             "path": "home.category-list",
-            "image": "https://cdn.lamsaweb.com/cdnEinaya/category-list.png",
             "fields": [
                 {
                     "type": "static",
                     "format": "description",
                     "id": "static-desc",
-                    "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden' ><h6 style='margin-bottom:10px' >معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnEinaya/category-list.png'></div>"
+                    "value": "<div  ><h6  >معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnEinaya/category-list.png'></div>"
                 },
                 {
                     "id": "title",
@@ -1542,34 +1544,34 @@
                     "maxLength": 300
                 },
                 {
-                    "id":"slas_hbg",
+                    "id": "slas_hbg",
                     "description": null,
                     "labelHTML": null,
-                    "label":"تفعيل خلفية مموجة",
-                    "type":"boolean",
-                    "format":"switch",
-                    "value":false,
-                    "required":false
+                    "label": "تفعيل خلفية مموجة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
                 },
                 {
                     "id": "marquee",
                     "description": null,
                     "labelHTML": null,
-                    "label":"تفعيل ماركيو",
-                    "type":"boolean",
-                    "format":"switch",
-                    "value":false,
-                    "required":false
+                    "label": "تفعيل ماركيو",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
                 },
                 {
                     "id": "marqueetext",
                     "description": null,
                     "labelHTML": null,
-                    "label":"نص ماركيو",
-                    "type":"string",
-                    "format":"text",
-                    "value":" سرعة /// أداء /// تحكم ",
-                    "required":false,
+                    "label": "نص ماركيو",
+                    "type": "string",
+                    "format": "text",
+                    "value": "سرعة /// أداء /// تحكم",
+                    "required": false,
                     "minLength": 3,
                     "maxLength": 300,
                     "conditions": [
@@ -1584,11 +1586,11 @@
                     "id": "marquee_text_size",
                     "description": "حجم النص بالـ rem",
                     "labelHTML": null,
-                    "label":"حجم نص ماركيو",
-                    "type":"string",
-                    "format":"text",
+                    "label": "حجم نص ماركيو",
+                    "type": "string",
+                    "format": "text",
                     "value": "9",
-                    "required":false,
+                    "required": false,
                     "conditions": [
                         {
                             "id": "marquee",
@@ -1601,11 +1603,11 @@
                     "id": "marquee_is_moving",
                     "description": "تفعيل أو إيقاف حركة النص",
                     "labelHTML": null,
-                    "label":"تحريك النص",
-                    "type":"boolean",
-                    "format":"switch",
+                    "label": "تحريك النص",
+                    "type": "boolean",
+                    "format": "switch",
                     "value": true,
-                    "required":false,
+                    "required": false,
                     "conditions": [
                         {
                             "id": "marquee",
@@ -1618,12 +1620,12 @@
                     "id": "marquee_text_position",
                     "description": "موقع ظهور النص",
                     "labelHTML": null,
-                    "label":"موقع النص",
-                    "type":"string",
+                    "label": "موقع النص",
+                    "type": "string",
                     "format": "dropdown-list",
-                    "source":"custom",
+                    "source": "custom",
                     "value": "both",
-                    "required":false,
+                    "required": false,
                     "options": [
                         {
                             "label": "أعلى فقط",
@@ -1645,6 +1647,21 @@
                             "value": true
                         }
                     ]
+                },
+                {
+                    "id": "dropdown_list",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "Dropdown List",
+                    "description": null,
+                    "labelHTML": null,
+                    "icon": "sicon-keyboard_arrow_down",
+                    "selected": [],
+                    "options": [],
+                    "source": "Manual",
+                    "multichoice": true,
+                    "searchable": true,
+                    "required": false
                 },
                 {
                     "id": "enable_border",
@@ -1694,7 +1711,7 @@
                     "description": "أدخل الكلمة أو العبارة التي تريد تطبيق التدرج اللوني عليها",
                     "icon": "sicon-format-text-alt",
                     "placeholder": "مثال: متخصصة",
-                    "value": "",
+                    "value": null,
                     "required": false,
                     "minLength": 1,
                     "maxLength": 100,
@@ -1895,34 +1912,34 @@
                     "maxLength": 120
                 },
                 {
-                    "id":"slas_hbg",
+                    "id": "slas_hbg",
                     "description": null,
                     "labelHTML": null,
-                    "label":"تفعيل خلفية مموجة",
-                    "type":"boolean",
-                    "format":"switch",
-                    "value":false,
-                    "required":false
+                    "label": "تفعيل خلفية مموجة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
                 },
                 {
                     "id": "marquee",
                     "description": null,
                     "labelHTML": null,
-                    "label":"تفعيل ماركيو",
-                    "type":"boolean",
-                    "format":"switch",
-                    "value":false,
-                    "required":false
+                    "label": "تفعيل ماركيو",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
                 },
                 {
                     "id": "marqueetext",
                     "description": null,
                     "labelHTML": null,
-                    "label":"نص ماركيو",
-                    "type":"string",
-                    "format":"text",
-                    "value":" سرعة /// أداء /// تحكم ",
-                    "required":false,
+                    "label": "نص ماركيو",
+                    "type": "string",
+                    "format": "text",
+                    "value": " سرعة /// أداء /// تحكم ",
+                    "required": false,
                     "minLength": 3,
                     "maxLength": 300,
                     "conditions": [
@@ -2065,34 +2082,34 @@
                     "maxLength": 80
                 },
                 {
-                    "id":"slas_hbg",
+                    "id": "slas_hbg",
                     "description": null,
                     "labelHTML": null,
-                    "label":"تفعيل خلفية مموجة",
-                    "type":"boolean",
-                    "format":"switch",
-                    "value":false,
-                    "required":false
+                    "label": "تفعيل خلفية مموجة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
                 },
                 {
                     "id": "marquee",
                     "description": null,
                     "labelHTML": null,
-                    "label":"تفعيل ماركيو",
-                    "type":"boolean",
-                    "format":"switch",
-                    "value":false,
-                    "required":false
+                    "label": "تفعيل ماركيو",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
                 },
                 {
                     "id": "marqueetext",
                     "description": null,
                     "labelHTML": null,
-                    "label":"نص ماركيو",
-                    "type":"string",
-                    "format":"text",
-                    "value":" سرعة /// أداء /// تحكم ",
-                    "required":false,
+                    "label": "نص ماركيو",
+                    "type": "string",
+                    "format": "text",
+                    "value": " سرعة /// أداء /// تحكم ",
+                    "required": false,
                     "minLength": 3,
                     "maxLength": 300,
                     "conditions": [
@@ -2477,34 +2494,34 @@
                     "value": []
                 },
                 {
-                    "id":"slas_hbg",
+                    "id": "slas_hbg",
                     "description": null,
                     "labelHTML": null,
-                    "label":"تفعيل خلفية مموجة",
-                    "type":"boolean",
-                    "format":"switch",
-                    "value":false,
-                    "required":false
+                    "label": "تفعيل خلفية مموجة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
                 },
                 {
                     "id": "marquee",
                     "description": null,
                     "labelHTML": null,
-                    "label":"تفعيل ماركيو",
-                    "type":"boolean",
-                    "format":"switch",
-                    "value":false,
-                    "required":false
+                    "label": "تفعيل ماركيو",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
                 },
                 {
                     "id": "marqueetext",
                     "description": null,
                     "labelHTML": null,
-                    "label":"نص ماركيو",
-                    "type":"string",
-                    "format":"text",
-                    "value":" سرعة /// أداء /// تحكم ",
-                    "required":false,
+                    "label": "نص ماركيو",
+                    "type": "string",
+                    "format": "text",
+                    "value": " سرعة /// أداء /// تحكم ",
+                    "required": false,
                     "minLength": 3,
                     "maxLength": 300,
                     "conditions": [
@@ -2867,34 +2884,34 @@
                     "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden' ><h6 style='margin-bottom:10px' >معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnWeshaah/category-products.png'></div>"
                 },
                 {
-                    "id":"slas_hbg",
+                    "id": "slas_hbg",
                     "description": null,
                     "labelHTML": null,
-                    "label":"تفعيل خلفية مموجة",
-                    "type":"boolean",
-                    "format":"switch",
-                    "value":false,
-                    "required":false
+                    "label": "تفعيل خلفية مموجة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
                 },
                 {
                     "id": "marquee",
                     "description": null,
                     "labelHTML": null,
-                    "label":"تفعيل ماركيو",
-                    "type":"boolean",
-                    "format":"switch",
-                    "value":false,
-                    "required":false
+                    "label": "تفعيل ماركيو",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
                 },
                 {
                     "id": "marqueetext",
                     "description": null,
                     "labelHTML": null,
-                    "label":"نص ماركيو",
-                    "type":"string",
-                    "format":"text",
-                    "value":" سرعة /// أداء /// تحكم ",
-                    "required":false,
+                    "label": "نص ماركيو",
+                    "type": "string",
+                    "format": "text",
+                    "value": " سرعة /// أداء /// تحكم ",
+                    "required": false,
                     "minLength": 3,
                     "maxLength": 300,
                     "conditions": [
@@ -3215,34 +3232,34 @@
                     "description": "يظهر كنص لخاصية aria-label الخاصة بالتبويبات."
                 },
                 {
-                    "id":"slas_hbg",
+                    "id": "slas_hbg",
                     "description": null,
                     "labelHTML": null,
-                    "label":"تفعيل خلفية مموجة",
-                    "type":"boolean",
-                    "format":"switch",
-                    "value":false,
-                    "required":false
+                    "label": "تفعيل خلفية مموجة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
                 },
                 {
                     "id": "marquee",
                     "description": null,
                     "labelHTML": null,
-                    "label":"تفعيل ماركيو",
-                    "type":"boolean",
-                    "format":"switch",
-                    "value":false,
-                    "required":false
+                    "label": "تفعيل ماركيو",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
                 },
                 {
                     "id": "marqueetext",
                     "description": null,
                     "labelHTML": null,
-                    "label":"نص ماركيو",
-                    "type":"string",
-                    "format":"text",
-                    "value":" سرعة /// أداء /// تحكم ",
-                    "required":false,
+                    "label": "نص ماركيو",
+                    "type": "string",
+                    "format": "text",
+                    "value": " سرعة /// أداء /// تحكم ",
+                    "required": false,
                     "minLength": 3,
                     "maxLength": 300,
                     "conditions": [
@@ -3503,34 +3520,34 @@
                     "maxLength": 300
                 },
                 {
-                    "id":"slas_hbg",
+                    "id": "slas_hbg",
                     "description": null,
                     "labelHTML": null,
-                    "label":"تفعيل خلفية مموجة",
-                    "type":"boolean",
-                    "format":"switch",
-                    "value":false,
-                    "required":false
+                    "label": "تفعيل خلفية مموجة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
                 },
                 {
                     "id": "marquee",
                     "description": null,
                     "labelHTML": null,
-                    "label":"تفعيل ماركيو",
-                    "type":"boolean",
-                    "format":"switch",
-                    "value":false,
-                    "required":false
+                    "label": "تفعيل ماركيو",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
                 },
                 {
                     "id": "marqueetext",
                     "description": null,
                     "labelHTML": null,
-                    "label":"نص ماركيو",
-                    "type":"string",
-                    "format":"text",
-                    "value":" سرعة /// أداء /// تحكم ",
-                    "required":false,
+                    "label": "نص ماركيو",
+                    "type": "string",
+                    "format": "text",
+                    "value": " سرعة /// أداء /// تحكم ",
+                    "required": false,
                     "minLength": 3,
                     "maxLength": 300,
                     "conditions": [
@@ -3540,7 +3557,6 @@
                             "value": true
                         }
                     ]
-
                 },
                 {
                     "id": "sub_title",
@@ -3700,7 +3716,7 @@
                 }
             ]
         },
-         {
+        {
             "key": "25e5ae98-f706-4cab-b1f0-885be7a7ad6a",
             "title": "عروض تنتهي قريبا - حرير",
             "icon": "sicon-gift-card",
@@ -3749,34 +3765,34 @@
                     "maxLength": "100"
                 },
                 {
-                    "id":"slas_hbg",
+                    "id": "slas_hbg",
                     "description": null,
                     "labelHTML": null,
-                    "label":"تفعيل خلفية مموجة",
-                    "type":"boolean",
-                    "format":"switch",
-                    "value":false,
-                    "required":false
+                    "label": "تفعيل خلفية مموجة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
                 },
                 {
                     "id": "marquee",
                     "description": null,
                     "labelHTML": null,
-                    "label":"تفعيل ماركيو",
-                    "type":"boolean",
-                    "format":"switch",
-                    "value":false,
-                    "required":false
+                    "label": "تفعيل ماركيو",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
                 },
                 {
                     "id": "marqueetext",
                     "description": null,
                     "labelHTML": null,
-                    "label":"نص ماركيو",
-                    "type":"string",
-                    "format":"text",
-                    "value":" سرعة /// أداء /// تحكم ",
-                    "required":false,
+                    "label": "نص ماركيو",
+                    "type": "string",
+                    "format": "text",
+                    "value": " سرعة /// أداء /// تحكم ",
+                    "required": false,
                     "minLength": 3,
                     "maxLength": 300,
                     "conditions": [
