@@ -1620,7 +1620,8 @@
                     "labelHTML": null,
                     "label":"موقع النص",
                     "type":"string",
-                    "format":"select",
+                    "format": "dropdown-list",
+                    "source":"custom",
                     "value": "both",
                     "required":false,
                     "options": [
