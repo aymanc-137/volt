@@ -1,7 +1,4 @@
-# CLAUDE.md
-
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
+ 
 ## Project Overview
 
 **Volt** is a custom Salla e-commerce theme built on the Twilight theme engine. It's a fork/customization of Theme Raed (the official Salla starter theme) for creating online stores on the Salla platform. The theme uses Twig templating, Tailwind CSS, and vanilla JavaScript with Salla's proprietary APIs.
