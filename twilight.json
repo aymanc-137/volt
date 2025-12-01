@@ -1554,6 +1554,63 @@
                     "required": false
                 },
                 {
+                    "id": "slas_hbg_size",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "حجم خلفية مموجة",
+                    "type": "string",
+                    "format": "text",
+                    "value": "20",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "slas_hbg",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                                
+                {
+                    "id": "slas_hbg_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "لون الخلفية المموجة",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#000000",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "slas_hbg_use_primary_color",
+                            "operation": "=",
+                            "value": false
+                        },
+                        {
+                            "id": "slas_hbg",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                                {
+                    "id": "slas_hbg_use_primary_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "استخدام اللون الرئيسي في الخلفية المموجة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "slas_hbg",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
                     "id": "marquee",
                     "description": null,
                     "labelHTML": null,
@@ -4069,5 +4126,7 @@
     "description": {
         "ar": "",
         "en": ""
+    }
+}
     }
 }
