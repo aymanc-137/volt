@@ -23,7 +23,8 @@
 {% set marqueetext = component.marqueetext | default(" سرعة /// أداء /// تحكم ") %}
 {% set enable_border = component.enable_border | default(false) %}
 {% set marquee_text_position = component.marquee_text_position | default('both') %}
-{% set marquee_is_moving = component.marquee_is_moving | default(true) %}
+{% set marquee_is_moving = component.marquee_is_moving %}
+{% set marquee_text_size= component.marquee_text_size | default('8') %}
 {# <span class="navbar-underline"></span> #}
 <section class="  z-10 s-block--categories   {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} py-20 relative 
    
@@ -34,11 +35,17 @@
     {% if marquee_text_position == 'top' or marquee_text_position == 'both' %}
 
     <div class="styleish-text absolute top-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
-        <div class="{{ marquee_is_moving ? 'marquee-reverse-sections' : '' }} flex whitespace-nowrap w-max">
-            <span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
+        <div 
+        style="font-size: {{marquee_text_size}}rem, line-height:1"
+        class="{{ marquee_is_moving ? 'marquee-reverse-sections' : '' }} 
+        flex
+        
+        
+         whitespace-nowrap w-max">
+            <span class="font-alshohadaa   font-bold    display-text whitespace-nowrap px-4">
                 {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
             </span>
-            <span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
+            <span class="font-alshohadaa   font-bold    display-text whitespace-nowrap px-4">
                 {{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
             </span>
         </div>
@@ -49,11 +56,15 @@
     {% if marquee_text_position == 'bottom' or marquee_text_position == 'both' %}
 
     <div class="styleish-text absolute bottom-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
-        <div class="{{ marquee_is_moving ? 'marquee-content-sections' : '' }} flex whitespace-nowrap w-max">
-            <span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
+        <div
+         
+        style="font-size: {{marquee_text_size}}rem; line-height:1;"
+
+         class="{{ marquee_is_moving ? 'marquee-content-sections' : '' }} flex whitespace-nowrap w-max">
+            <span class="font-alshohadaa font-bold display-text whitespace-nowrap px-4">
                 {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
             </span>
-            <span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
+            <span class="font-alshohadaa font-bold display-text whitespace-nowrap px-4">
                 {{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
             </span>
         </div>
