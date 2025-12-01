@@ -1625,18 +1625,23 @@
                     "format": "dropdown-list",
                     "value": [],
                     "required": false,
+                    "selected": [],
+                    "source": "Manual",
                     "options": [
-                        {
+            {
                             "label": "أعلى فقط",
-                            "value": "top"
+                            "value": "top",
+                            "key": "8c49d000-f3fa-4242-afd6-2801c3612b37"
                         },
                         {
                             "label": "أسفل فقط",
-                            "value": "bottom"
+                            "value": "bottom",
+                            "key": "5b3cd4f8-e6ca-412c-9ba4-9a18d4377352"
                         },
                         {
                             "label": "أعلى وأسفل",
-                            "value": "both"
+                            "value": "both",
+                            "key": "8ca8cc73-f668-456b-b787-ffde396bd2e8"
                         }
                     ],
                     "conditions": [
@@ -1657,21 +1662,7 @@
                     "icon": "sicon-keyboard_arrow_down",
                     "selected": [],
                     "options": [
-                        {
-                            "label": "أعلى فقط",
-                            "value": "top",
-                            "key": "8c49d000-f3fa-4242-afd6-2801c3612b37"
-                        },
-                        {
-                            "label": "أسفل فقط",
-                            "value": "bottom",
-                            "key": "5b3cd4f8-e6ca-412c-9ba4-9a18d4377352"
-                        },
-                        {
-                            "label": "أعلى وأسفل",
-                            "value": "both",
-                            "key": "8ca8cc73-f668-456b-b787-ffde396bd2e8"
-                        }
+                        
                     ],
                     "source": "Manual",
                     "multichoice": true,
