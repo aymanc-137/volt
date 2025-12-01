@@ -606,3 +606,15 @@ salla-modal {
       }
 
     }
+
+
+
+
+
+    .s-modal-overlay{
+
+  @apply backdrop-blur-xl;
+  // background-color: var(--color-primary-l);
+  background-color: var(--color-primary)33;
+
+ }
