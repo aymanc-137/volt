@@ -1593,7 +1593,8 @@
                         }
                     ]
                 },
-                                {
+                
+                {
                     "id": "slas_hbg_use_primary_color",
                     "description": null,
                     "labelHTML": null,
@@ -4128,5 +4129,4 @@
         "en": ""
     }
 }
-    }
-}
+    
