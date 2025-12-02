@@ -582,7 +582,7 @@ salla-comments
   &:has(salla-comment-item) {
     // APPLY YOUR CSS STYLES HERE
     // This is effectively the same as adding a class
-     @apply  bg-white p-5;
+     @apply bg-white p-5;
   }
   }
   }
@@ -616,6 +616,6 @@ salla-comments
   &:has(salla-comment-item) {
     // APPLY YOUR CSS STYLES HERE
     // This is effectively the same as adding a class
-     @apply neo-shadow bg-white p-5;
+     @apply  bg-white p-5;
   }
 }
