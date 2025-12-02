@@ -22652,6 +22652,13 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
 .s-block--tabs-produtcs + .s-block--tabs-produtcs {
   padding-top: 2em;
 }
+.s-slider-block__title h2 {
+    color: #2C3E50;
+    color: var(--main-text-color);
+}
+.s-slider-block__title h2:is(.dark *) {
+    color: var(--light-text-color);
+}
 .faq-component {
     padding-top: 3rem;
     padding-bottom: 3rem;
@@ -24034,6 +24041,8 @@ input[type=radio].sr-only:checked ~ div.share-btns-list {
     padding-bottom: 0px;
 }
 .salla-comment-card {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
     border-width: 1px;
     background-color: var(--color-light-box-background);
     padding: 2.5rem;
