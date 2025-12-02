@@ -378,6 +378,17 @@
             "selected": false
         },
         {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "عرض الوصف أسفل صورة المنتج",
+            "description": "عند التفعيل، سيظهر وصف المنتج أسفل الصورة مباشرة. عند التعطيل، سيظهر الوصف في قسم منفصل أسفل الصفحة",
+            "id": "product_description_position_under",
+            "format": "switch",
+            "required": false,
+            "value": false,
+            "selected": false
+        },
+        {
             "type": "string",
             "icon": "sicon-pencil-ruler",
             "label": "نصف قطر الحدود",
