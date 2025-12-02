@@ -22652,11 +22652,11 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
 .s-block--tabs-produtcs + .s-block--tabs-produtcs {
   padding-top: 2em;
 }
-.s-slider-block__title h2 {
+.s-slider-block__title {
     color: #2C3E50;
     color: var(--main-text-color);
 }
-.s-slider-block__title h2:is(.dark *) {
+.dark *.s-slider-block__title {
     color: var(--light-text-color);
 }
 .faq-component {
@@ -24756,6 +24756,13 @@ salla-comments .s-comments-product .s-comments-container:has(.s-reviews-summary-
     background-color: rgba(255, 255, 255, 1);
     background-color: rgba(255, 255, 255, var(--tw-bg-opacity, 1));
     padding: 1.25rem;
+}
+.s-reviews-summary-header .s-reviews-summary-average, .s-reviews-summary-header .s-reviews-summary-recommendation-percentage {
+    color: #2C3E50;
+    color: var(--main-text-color);
+}
+.s-reviews-summary-header .s-reviews-summary-average:is(.dark *), .s-reviews-summary-header .s-reviews-summary-recommendation-percentage:is(.dark *) {
+    color: var(--light-text-color);
 }
 .brands-nav {
     display: flex;

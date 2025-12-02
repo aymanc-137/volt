@@ -620,3 +620,10 @@ salla-comments
      @apply  bg-white p-5;
   }
 }
+
+
+.s-reviews-summary-header{
+  .s-reviews-summary-average , .s-reviews-summary-recommendation-percentage{
+    @apply dynamic-text-color;
+  }
+}
