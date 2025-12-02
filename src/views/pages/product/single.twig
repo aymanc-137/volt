@@ -428,9 +428,9 @@
     {# Description and Comments Area #}
     {% if not product_description_next_image %}
         {% if product.description or store.settings.rating.show_on_product %}
-            <div class="container mt-5">
+            <div class="container mt-5 ">
                 {% if product.description %}
-                    <div class="product__description leading-7">
+                    <div class="product__description salla-comment-card leading-7">
                         <h3 class="mb-4 font-semibold text-2xl">{{ trans('pages.products.description') }}</h3>
 
                         {% set product_desc = product.description|replace({"&nbsp;":"\n"}) %}

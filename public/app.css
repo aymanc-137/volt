@@ -23951,9 +23951,6 @@ model-viewer[style*=width]:before {
 }
 .s-comments-product {
     margin-bottom: 1rem;
-    --tw-bg-opacity: 1;
-    background-color: rgba(243, 244, 246, 1);
-    background-color: rgba(243, 244, 246, var(--tw-bg-opacity, 1));
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
@@ -24035,6 +24032,16 @@ input[type=radio].sr-only:checked ~ div.share-btns-list {
 .cart-item salla-conditional-fields > section:last-child {
     margin-bottom: 0px;
     padding-bottom: 0px;
+}
+.salla-comment-card {
+    border-width: 1px;
+    background-color: var(--color-light-box-background);
+  border-radius: var(--border-radius);
+  border-color: var(--color-border);
+}
+.dark *.salla-comment-card {
+    border-color: var(--color-border-dark);
+    background-color: var(--color-dark-box-background);
 }
 .s-product-card-content-pie-svg-base {
   transition: stroke-dashoffset 1s linear;
@@ -27526,10 +27533,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .xl\:text-2xl {
         font-size: 1.5rem;
         line-height: 2rem;
-    }
-    .xl\:text-4xl {
-        font-size: 2.25rem;
-        line-height: 2.5rem;
     }
 }
 @media (min-width: 1536px) {

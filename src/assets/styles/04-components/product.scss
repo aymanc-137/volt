@@ -22,7 +22,7 @@
   }
 
   &-product {
-    @apply bg-gray-100 mb-4 md:mb-14 py-4 md:py-14;
+    @apply   mb-4 md:mb-14 py-4 md:py-14;
 
     .s-comments-container {
       @apply container;
@@ -47,6 +47,9 @@
   }
 }
 
+.salla-comment-card{
+  @apply bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)] border dynamic-border-color rounded-custom; 
+}
 // Digital Rating(SVG)---------------------------
 .s-product-card-content-pie-svg-base{ 
   transition: stroke-dashoffset 1s linear;
