@@ -1561,6 +1561,62 @@
                     "maxLength": 300
                 },
                 {
+                    "id": "enable_gradient_title",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "تفعيل لون متدرج للعنوان",
+                    "description": "عند التفعيل، سيظهر العنوان بتدرج لوني من اللون الأساسي إلى اللون الثانوي",
+                    "labelHTML": null,
+                    "icon": "sicon-format-fill",
+                    "value": false,
+                    "selected": false,
+                    "required": false
+                },
+                {
+                    "id": "enable_gradient_word",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "تفعيل لون متدرج لكلمة معينة في العنوان",
+                    "description": "عند التفعيل، يمكنك اختيار كلمة معينة من العنوان لتطبيق تدرج لوني عليها",
+                    "labelHTML": null,
+                    "icon": "sicon-magic-wand",
+                    "value": false,
+                    "selected": false,
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "gradient_word",
+                    "type": "string",
+                    "format": "text",
+                    "label": "الكلمة أو العبارة المراد تلوينها",
+                    "description": "أدخل الكلمة أو العبارة التي تريد تطبيق التدرج اللوني عليها",
+                    "icon": "sicon-format-text-alt",
+                    "placeholder": "مثال: متخصصة",
+                    "value": null,
+                    "required": false,
+                    "minLength": 1,
+                    "maxLength": 100,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_word",
+                            "operation": "=",
+                            "value": true
+                        },
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
                     "type": "static",
                     "format": "description",
                     "id": "group-background-settings",
@@ -1748,62 +1804,6 @@
                     "format": "switch",
                     "value": false,
                     "required": false
-                },
-                {
-                    "id": "enable_gradient_title",
-                    "type": "boolean",
-                    "format": "switch",
-                    "label": "تفعيل لون متدرج للعنوان",
-                    "description": "عند التفعيل، سيظهر العنوان بتدرج لوني من اللون الأساسي إلى اللون الثانوي",
-                    "labelHTML": null,
-                    "icon": "sicon-format-fill",
-                    "value": false,
-                    "selected": false,
-                    "required": false
-                },
-                {
-                    "id": "enable_gradient_word",
-                    "type": "boolean",
-                    "format": "switch",
-                    "label": "تفعيل لون متدرج لكلمة معينة في العنوان",
-                    "description": "عند التفعيل، يمكنك اختيار كلمة معينة من العنوان لتطبيق تدرج لوني عليها",
-                    "labelHTML": null,
-                    "icon": "sicon-magic-wand",
-                    "value": false,
-                    "selected": false,
-                    "required": false,
-                    "conditions": [
-                        {
-                            "id": "enable_gradient_title",
-                            "operation": "=",
-                            "value": false
-                        }
-                    ]
-                },
-                {
-                    "id": "gradient_word",
-                    "type": "string",
-                    "format": "text",
-                    "label": "الكلمة أو العبارة المراد تلوينها",
-                    "description": "أدخل الكلمة أو العبارة التي تريد تطبيق التدرج اللوني عليها",
-                    "icon": "sicon-format-text-alt",
-                    "placeholder": "مثال: متخصصة",
-                    "value": null,
-                    "required": false,
-                    "minLength": 1,
-                    "maxLength": 100,
-                    "conditions": [
-                        {
-                            "id": "enable_gradient_word",
-                            "operation": "=",
-                            "value": true
-                        },
-                        {
-                            "id": "enable_gradient_title",
-                            "operation": "=",
-                            "value": false
-                        }
-                    ]
                 },
                 {
                     "type": "static",
