@@ -422,16 +422,14 @@
     </div>
 
    {# <h1> {{product.rating.count | json_encode}}</h1> #}
-                                   <div class=" mt-5 flex flex-col items-center justify-center w-full" >
-                                   <div>
+        <div class=" mt-5 flex flex-col items-center justify-center w-full" >
+            <div>
+                <h3 class=" xl:text-4xl text-2xl dynamic-text-color" >
+                     {{ trans('common.rating') }} </h3>
+                <span class="navbar-underline mt-5"></span>
+            </div>
+        </div>
 
-                                                 <h3 class=" xl:text-4xl text-2xl dynamic-text-color" >
-                                                 {{ trans('common.rating') }} </h3>
-                                        
-                                              <span class="navbar-underline mt-5"></span>
-
-                                             </div>
-                                             </div>
     {# Comments Area #}
     {% if store.settings.rating.show_on_product %}
         <salla-comments item-id="{{product.id}}" type="product"></salla-comments>
