@@ -486,11 +486,7 @@
 }
 
 .s-slider-block__title{
-
-  h2{ 
     @apply dynamic-text-color;
-  }
-  
 }
 // Import FAQ Component Styles
 @import './faq';
