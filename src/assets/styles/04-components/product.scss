@@ -609,18 +609,7 @@ salla-comments
   }
 }
 
-.s-condition-comments-container {
-  
-  // 1. Check if it contains the Summary Wrapper (Filled state)
-  &:has(.s-reviews-summary-wrapper),
-  // 2. OR check if it contains specific comment items
-  &:has(salla-comment-item) {
-    // APPLY YOUR CSS STYLES HERE
-    // This is effectively the same as adding a class
-     @apply  bg-white p-5;
-  }
-}
-
+ 
 
 .s-reviews-summary-header{
   .s-reviews-summary-average , .s-reviews-summary-recommendation-percentage{
