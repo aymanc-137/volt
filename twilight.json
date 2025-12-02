@@ -1633,12 +1633,6 @@
                     ]
                 },
                 {
-                    "type": "static",
-                    "format": "description",
-                    "id": "group-marquee-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>📜 إعدادات النص المتحرك</strong></div>"
-                },
-                {
                     "id": "marquee",
                     "description": null,
                     "labelHTML": null,
@@ -1736,12 +1730,6 @@
                             "value": true
                         }
                     ]
-                },
-                {
-                    "type": "static",
-                    "format": "description",
-                    "id": "group-effects-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>✨ إعدادات التأثيرات</strong></div>"
                 },
                 {
                     "id": "enable_border",
