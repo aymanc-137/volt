@@ -576,6 +576,14 @@ salla-comments
  
   .s-comments-container{
     @apply dynamic-text-color border dynamic-border-color rounded-custom p-5 bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)];
+  
+    &:has(.s-reviews-summary-wrapper),
+  // 2. OR check if it contains specific comment items
+  &:has(salla-comment-item) {
+    // APPLY YOUR CSS STYLES HERE
+    // This is effectively the same as adding a class
+     @apply  bg-white p-5;
+  }
   }
   }
 
@@ -597,5 +605,17 @@ salla-comments
 .product-form {
   .form-label{
     @apply dynamic-text-color;
+  }
+}
+
+.s-condition-comments-container {
+  
+  // 1. Check if it contains the Summary Wrapper (Filled state)
+  &:has(.s-reviews-summary-wrapper),
+  // 2. OR check if it contains specific comment items
+  &:has(salla-comment-item) {
+    // APPLY YOUR CSS STYLES HERE
+    // This is effectively the same as adding a class
+     @apply neo-shadow bg-white p-5;
   }
 }
