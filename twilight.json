@@ -1525,6 +1525,12 @@
                     "value": "<div  ><h6  >معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnEinaya/category-list.png'></div>"
                 },
                 {
+                    "type": "static",
+                    "format": "description",
+                    "id": "group-title-settings",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>⚙️ إعدادات العنوان</strong></div>"
+                },
+                {
                     "id": "title",
                     "type": "string",
                     "format": "text",
@@ -1553,6 +1559,12 @@
                     "required": false,
                     "minLength": 3,
                     "maxLength": 300
+                },
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "group-background-settings",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🎨 إعدادات الخلفية</strong></div>"
                 },
                 {
                     "id": "slas_hbg",
@@ -1619,6 +1631,12 @@
                             "value": true
                         }
                     ]
+                },
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "group-marquee-settings",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>📜 إعدادات النص المتحرك</strong></div>"
                 },
                 {
                     "id": "marquee",
@@ -1720,6 +1738,12 @@
                     ]
                 },
                 {
+                    "type": "static",
+                    "format": "description",
+                    "id": "group-effects-settings",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>✨ إعدادات التأثيرات</strong></div>"
+                },
+                {
                     "id": "enable_border",
                     "label": "تفعيل الحدود",
                     "description": null,
@@ -1792,6 +1816,12 @@
                             "value": false
                         }
                     ]
+                },
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "group-items-settings",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>📋 إعدادات العناصر</strong></div>"
                 },
                 {
                     "id": "links",

@@ -939,9 +939,6 @@ select {
 .bottom-1 {
     bottom: 0.25rem;
 }
-.bottom-1\/4 {
-    bottom: 25%;
-}
 .bottom-10 {
     bottom: 2.5rem;
 }
@@ -951,17 +948,20 @@ select {
 .bottom-6 {
     bottom: 1.5rem;
 }
+.bottom-\[15\%\] {
+    bottom: 15%;
+}
 .left-0 {
     left: 0px;
 }
 .left-1\/2 {
     left: 50%;
 }
-.left-1\/3 {
-    left: 33.333333%;
-}
 .left-4 {
     left: 1rem;
+}
+.left-\[25\%\] {
+    left: 25%;
 }
 .right-0 {
     right: 0px;
@@ -969,14 +969,14 @@ select {
 .right-1\/2 {
     right: 50%;
 }
-.right-1\/3 {
-    right: 33.333333%;
-}
 .right-4 {
     right: 1rem;
 }
 .right-\[-38px\] {
     right: -38px;
+}
+.right-\[25\%\] {
+    right: 25%;
 }
 .top-0 {
     top: 0px;
@@ -986,9 +986,6 @@ select {
 }
 .top-1\/2 {
     top: 50%;
-}
-.top-1\/4 {
-    top: 25%;
 }
 .top-10 {
     top: 2.5rem;
@@ -1008,32 +1005,11 @@ select {
 .top-\[11px\] {
     top: 11px;
 }
-.top-full {
-    top: 100%;
-}
-.bottom-\[10\%\] {
-    bottom: 10%;
-}
-.left-\[20\%\] {
-    left: 20%;
-}
-.right-\[20\%\] {
-    right: 20%;
-}
-.top-\[10\%\] {
-    top: 10%;
-}
-.bottom-\[15\%\] {
-    bottom: 15%;
-}
-.left-\[25\%\] {
-    left: 25%;
-}
-.right-\[25\%\] {
-    right: 25%;
-}
 .top-\[15\%\] {
     top: 15%;
+}
+.top-full {
+    top: 100%;
 }
 .isolate {
     isolation: isolate;

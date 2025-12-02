@@ -1,5 +1,8 @@
 {
   "blocks": {
+    "footer": {
+      "search": "بحث"
+    },
     "header": {
       "cart": "السلة"
     },

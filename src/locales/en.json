@@ -1,5 +1,8 @@
 {
   "blocks": {
+    "footer": {
+      "search": "Search"
+    },
     "header": {
       "cart": "Cart"
     },
