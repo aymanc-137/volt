@@ -8,6 +8,9 @@
     }
   },
   "pages": {
+    "products":{
+        "description":"وصف المنتج"
+    },
     "cart": {
       "cart_options": "خيارات السلة"
     },

@@ -24038,7 +24038,14 @@ input[type=radio].sr-only:checked ~ div.share-btns-list {
     background-color: var(--color-light-box-background);
     padding: 2.5rem;
   border-radius: var(--border-radius);
-  border-color: var(--color-border);
+  color: #2C3E50;
+  color: var(--main-text-color);
+}
+.dark *.salla-comment-card {
+    color: var(--light-text-color);
+}
+.salla-comment-card {
+    border-color: var(--color-border);
 }
 .dark *.salla-comment-card {
     border-color: var(--color-border-dark);

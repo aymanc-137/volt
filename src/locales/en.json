@@ -8,6 +8,9 @@
     }
   },
   "pages": {
+    "products":{
+        "description":"Product description"
+    },
     "cart": {
       "cart_options": "Cart Options"
     },
