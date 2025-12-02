@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Glow Effect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .text-glow {
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.8), 0 0 20px rgba(0, 255, 0, 0.6), 0 0 30px rgba(0, 255, 0, 0.4);
+        }
+        .text-glow-small {
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-black">
+    <section class="relative w-11/12 max-w-3xl px-10 py-14 bg-black bg-opacity-80 overflow-hidden">
+        <!-- Glow balls -->
+        <div class="absolute top-1/4 left-1/12 w-48 h-48 bg-green-500 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-44 h-44 bg-emerald-400 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+        <div class="absolute top-1/2 right-1/4 w-36 h-36 bg-green-600 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+        
+        <!-- Content -->
+        <div class="relative z-10 text-green-500 font-mono">
+            <h1 class="text-4xl font-bold mb-5 text-glow">
+                &gt; SYSTEM ACCESS GRANTED
+            </h1>
+            <p class="text-lg leading-relaxed mb-4 text-glow-small">
+                &gt; Initializing secure connection...
+            </p>
+            <p class="text-lg leading-relaxed mb-4 text-glow-small">
+                &gt; Decrypting data streams...
+            </p>
+            <p class="text-lg leading-relaxed mb-4 text-glow-small">
+                &gt; Welcome to the mainframe. All systems operational.
+            </p>
+            <p class="text-lg leading-relaxed text-glow-small">
+                &gt; Status: ONLINE
+            </p>
+        </div>
+    </section>
+</body>
+</html>

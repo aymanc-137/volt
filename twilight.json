@@ -1729,6 +1729,15 @@
                     "required": false
                 },
                 {
+                    "id": "enable_glow",
+                    "label": "تفعيل تأثير التوهج",
+                    "description": "إضافة كرات متوهجة في الخلفية باستخدام الألوان الأساسية والثانوية",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
                     "id": "enable_gradient_title",
                     "type": "boolean",
                     "format": "switch",
