@@ -1619,6 +1619,111 @@
                 {
                     "type": "static",
                     "format": "description",
+                    "id": "group-items-settings",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>📋 إعدادات العناصر</strong></div>"
+                },
+                {
+                    "id": "links",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "روابط عناصر",
+                    "description": null,
+                    "labelHTML": null,
+                    "item_label": null,
+                    "icon": "sicon-list-add",
+                    "fields": [
+                        {
+                            "id": "links.image",
+                            "type": "string",
+                            "format": "image",
+                            "label": "صورة الخلفية",
+                            "description": "* المقاس المناسب للصورة هو 250 × 280 بكسل .",
+                            "labelHTML": null,
+                            "placeholder": "e.g. https://hostname.com/image.png",
+                            "icon": "sicon-image",
+                            "value": "https://cdn.lamsaweb.com/cdnEinaya/linkimage.png",
+                            "required": false
+                        },
+                        {
+                            "id": "links.url",
+                            "label": "رابط الإعلان",
+                            "description": null,
+                            "labelHTML": null,
+                            "icon": "sicon-link",
+                            "required": true,
+                            "value": [],
+                            "format": "variable-list",
+                            "searchable": true,
+                            "type": "items",
+                            "source": "custom",
+                            "sources": [
+                                {
+                                    "label": "منتج",
+                                    "key": "products",
+                                    "value": "products"
+                                },
+                                {
+                                    "label": "تصنيف",
+                                    "key": "categories",
+                                    "value": "categories"
+                                },
+                                {
+                                    "label": "ماركة تجارية",
+                                    "key": "brands",
+                                    "value": "brands"
+                                },
+                                {
+                                    "label": "التخفيضات",
+                                    "key": "offers_link",
+                                    "value": "offers_link"
+                                },
+                                {
+                                    "label": "الماركات التجارية",
+                                    "key": "brands_link",
+                                    "value": "brands_link"
+                                },
+                                {
+                                    "label": "رابط خارجي",
+                                    "key": "custom",
+                                    "value": "custom"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "links.text",
+                            "type": "string",
+                            "format": "text",
+                            "label": "النص",
+                            "description": null,
+                            "labelHTML": null,
+                            "placeholder": "Placeholder text ..",
+                            "icon": "sicon-format-text-alt",
+                            "value": "قسم الجراحة و المناظير",
+                            "multilanguage": true,
+                            "required": false,
+                            "minLength": 3,
+                            "maxLength": 100
+                        },
+                        {
+                            "id": "links.color",
+                            "type": "string",
+                            "format": "color",
+                            "inputType": "color",
+                            "label": "أللون الاول",
+                            "description": null,
+                            "labelHTML": null,
+                            "icon": "sicon-format-fill",
+                            "value": "#004956",
+                            "required": false
+                        }
+                    ],
+                    "value": [],
+                    "minLength": 1,
+                    "maxLength": 15
+                },
+                                {
+                    "type": "static",
+                    "format": "description",
                     "id": "group-background-settings",
                     "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🎨 إعدادات الخلفية</strong></div>"
                 },
@@ -1804,111 +1909,6 @@
                     "format": "switch",
                     "value": false,
                     "required": false
-                },
-                {
-                    "type": "static",
-                    "format": "description",
-                    "id": "group-items-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>📋 إعدادات العناصر</strong></div>"
-                },
-                {
-                    "id": "links",
-                    "type": "collection",
-                    "format": "collection",
-                    "label": "روابط عناصر",
-                    "description": null,
-                    "labelHTML": null,
-                    "item_label": null,
-                    "icon": "sicon-list-add",
-                    "fields": [
-                        {
-                            "id": "links.image",
-                            "type": "string",
-                            "format": "image",
-                            "label": "صورة الخلفية",
-                            "description": "* المقاس المناسب للصورة هو 250 × 280 بكسل .",
-                            "labelHTML": null,
-                            "placeholder": "e.g. https://hostname.com/image.png",
-                            "icon": "sicon-image",
-                            "value": "https://cdn.lamsaweb.com/cdnEinaya/linkimage.png",
-                            "required": false
-                        },
-                        {
-                            "id": "links.url",
-                            "label": "رابط الإعلان",
-                            "description": null,
-                            "labelHTML": null,
-                            "icon": "sicon-link",
-                            "required": true,
-                            "value": [],
-                            "format": "variable-list",
-                            "searchable": true,
-                            "type": "items",
-                            "source": "custom",
-                            "sources": [
-                                {
-                                    "label": "منتج",
-                                    "key": "products",
-                                    "value": "products"
-                                },
-                                {
-                                    "label": "تصنيف",
-                                    "key": "categories",
-                                    "value": "categories"
-                                },
-                                {
-                                    "label": "ماركة تجارية",
-                                    "key": "brands",
-                                    "value": "brands"
-                                },
-                                {
-                                    "label": "التخفيضات",
-                                    "key": "offers_link",
-                                    "value": "offers_link"
-                                },
-                                {
-                                    "label": "الماركات التجارية",
-                                    "key": "brands_link",
-                                    "value": "brands_link"
-                                },
-                                {
-                                    "label": "رابط خارجي",
-                                    "key": "custom",
-                                    "value": "custom"
-                                }
-                            ]
-                        },
-                        {
-                            "id": "links.text",
-                            "type": "string",
-                            "format": "text",
-                            "label": "النص",
-                            "description": null,
-                            "labelHTML": null,
-                            "placeholder": "Placeholder text ..",
-                            "icon": "sicon-format-text-alt",
-                            "value": "قسم الجراحة و المناظير",
-                            "multilanguage": true,
-                            "required": false,
-                            "minLength": 3,
-                            "maxLength": 100
-                        },
-                        {
-                            "id": "links.color",
-                            "type": "string",
-                            "format": "color",
-                            "inputType": "color",
-                            "label": "أللون الاول",
-                            "description": null,
-                            "labelHTML": null,
-                            "icon": "sicon-format-fill",
-                            "value": "#004956",
-                            "required": false
-                        }
-                    ],
-                    "value": [],
-                    "minLength": 1,
-                    "maxLength": 15
                 }
             ]
         },
