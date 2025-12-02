@@ -32,7 +32,7 @@
                     font-weight: 700 !important;
                     box-shadow: 2px 2px 8px 2px var(--color-primary-20);
                        
-                    .s-count-down-item-label{
+                    .s-count-down-item-label , .s-count-down-item-value{
                         @apply dynamic-text-color;
                     }
 

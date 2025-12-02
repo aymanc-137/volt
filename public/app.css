@@ -23520,11 +23520,11 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
 .flash-offer .flash-offer-container .flash-offer-count-down salla-count-down ul li {
   box-shadow: 2px 2px 8px 2px var(--color-primary-20);
 }
-.flash-offer .flash-offer-container .flash-offer-count-down salla-count-down ul li .s-count-down-item-label {
+.flash-offer .flash-offer-container .flash-offer-count-down salla-count-down ul li .s-count-down-item-label, .flash-offer .flash-offer-container .flash-offer-count-down salla-count-down ul li .s-count-down-item-value {
     color: #2C3E50;
     color: var(--main-text-color);
 }
-.flash-offer .flash-offer-container .flash-offer-count-down salla-count-down ul li .s-count-down-item-label:is(.dark *) {
+.flash-offer .flash-offer-container .flash-offer-count-down salla-count-down ul li .s-count-down-item-label:is(.dark *), .flash-offer .flash-offer-container .flash-offer-count-down salla-count-down ul li .s-count-down-item-value:is(.dark *) {
     color: var(--light-text-color);
 }
 .dark *.dark\:text-counter-bg-color {
