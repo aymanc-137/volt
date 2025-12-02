@@ -575,6 +575,7 @@ salla-comments
   background-color: transparent !important;
  
   .s-comments-container{
+    display: none;
     @apply dynamic-text-color border dynamic-border-color rounded-custom p-5 bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)];
   
     &:has(.s-reviews-summary-wrapper),
@@ -582,7 +583,7 @@ salla-comments
   &:has(salla-comment-item) {
     // APPLY YOUR CSS STYLES HERE
     // This is effectively the same as adding a class
-     @apply bg-white p-5;
+     display: block;
   }
   }
   }

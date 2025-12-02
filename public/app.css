@@ -24698,9 +24698,10 @@ salla-comments .s-comments-product {
   background-color: transparent !important;
 }
 salla-comments .s-comments-product .s-comments-container {
-    border-width: 1px;
-    background-color: var(--color-light-box-background);
-    padding: 1.25rem;
+  display: none;
+  border-width: 1px;
+  background-color: var(--color-light-box-background);
+  padding: 1.25rem;
   border-radius: var(--border-radius);
   color: #2C3E50;
   color: var(--main-text-color);
@@ -24716,10 +24717,7 @@ salla-comments .s-comments-product .s-comments-container:is(.dark *) {
     background-color: var(--color-dark-box-background);
 }
 salla-comments .s-comments-product .s-comments-container:has(.s-reviews-summary-wrapper), salla-comments .s-comments-product .s-comments-container:has(salla-comment-item) {
-    --tw-bg-opacity: 1;
-    background-color: rgba(255, 255, 255, 1);
-    background-color: rgba(255, 255, 255, var(--tw-bg-opacity, 1));
-    padding: 1.25rem;
+  display: block;
 }
 .s-breadcrumb-arrow svg {
     fill: var(--color-dark-box-background);
