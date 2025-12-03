@@ -1350,6 +1350,9 @@ select {
 .h-\[34px\] {
     height: 34px;
 }
+.h-\[400px\] {
+    height: 400px;
+}
 .h-\[600px\] {
     height: 600px;
 }
@@ -1370,9 +1373,6 @@ select {
 }
 .h-px {
     height: 1px;
-}
-.h-\[400px\] {
-    height: 400px;
 }
 .max-h-0 {
     max-height: 0px;

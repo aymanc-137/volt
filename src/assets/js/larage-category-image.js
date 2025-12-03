@@ -184,7 +184,7 @@ class LarageCategoryImage extends BasePage {
             <section class="${sectionClasses}">
                 ${glowHtml}
                 ${marqueeTopHtml}
-                ${marqueeBottomHtml}
+                ${marqueeBottomHtml}        
                 <div class="container mx-auto px-6">
                     ${titleHtml}
                     <div class="grid grid-cols-1 md:grid-cols-2 ${gridCols} gap-4 h-[400px]">
