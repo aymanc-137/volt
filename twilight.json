@@ -4781,6 +4781,44 @@
                     "format": "switch",
                     "value": false,
                     "required": false
+                },
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "group-category-page-settings",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>📄 إعدادات صفحة القسم</strong></div>"
+                },
+                {
+                    "id": "show_in_category_page",
+                    "label": "عرض في صفحة القسم",
+                    "description": "عند التفعيل، سيتم عرض هذا العنصر في صفحة القسم المحدد بدلاً من الصفحة الرئيسية",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "target_category",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "القسم المستهدف",
+                    "description": "اختر القسم الذي سيظهر فيه هذا العنصر",
+                    "labelHTML": null,
+                    "icon": "sicon-keyboard_arrow_down",
+                    "selected": [],
+                    "options": [],
+                    "source": "categories",
+                    "multichoice": false,
+                    "searchable": true,
+                    "required": false,
+                    "value": [],
+                    "conditions": [
+                        {
+                            "id": "show_in_category_page",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
                 }
             ]
         },
