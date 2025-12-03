@@ -4244,6 +4244,12 @@
                     "value": "<h4 style='color: #2377CD;font-size: 14px;margin:1rem 0px;background: #E9F0FD;padding: 10px 15px;border-radius: 4px;'>لتحصل على الشكل اعلاه اتبع  <a style='text-decoration: underline;' href='https://lamsaweb.com/harir' target='_blank' > دليل العنصر </a></h4>"
                 },
                 {
+                    "type": "static",
+                    "format": "description",
+                    "id": "group-title-settings",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>⚙️ إعدادات العنوان</strong></div>"
+                },
+                {
                     "id": "my_space",
                     "type": "number",
                     "format": "slider",
@@ -4272,54 +4278,6 @@
                     "required": false,
                     "minLength": 6,
                     "maxLength": "100"
-                },
-                {
-                    "id": "slas_hbg",
-                    "description": null,
-                    "labelHTML": null,
-                    "label": "تفعيل خلفية مموجة",
-                    "type": "boolean",
-                    "format": "switch",
-                    "value": false,
-                    "required": false
-                },
-                {
-                    "id": "marquee",
-                    "description": null,
-                    "labelHTML": null,
-                    "label": "نصوص متحركة",
-                    "type": "boolean",
-                    "format": "switch",
-                    "value": false,
-                    "required": false
-                },
-                {
-                    "id": "marqueetext",
-                    "description": null,
-                    "labelHTML": null,
-                    "label": "النص المتحرك ",
-                    "type": "string",
-                    "format": "text",
-                    "value": " سرعة /// أداء /// تحكم ",
-                    "required": false,
-                    "minLength": 3,
-                    "maxLength": 300,
-                    "conditions": [
-                        {
-                            "id": "marquee",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ]
-                },
-                {
-                    "id": "enable_border",
-                    "label": "تفعيل الحدود",
-                    "description": null,
-                    "type": "boolean",
-                    "format": "switch",
-                    "value": false,
-                    "required": false
                 },
                 {
                     "id": "enable_gradient_title",
@@ -4378,6 +4336,12 @@
                     ]
                 },
                 {
+                    "type": "static",
+                    "format": "description",
+                    "id": "group-items-settings",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>📋 إعدادات المنتجات</strong></div>"
+                },
+                {
                     "id": "show_quantity",
                     "type": "boolean",
                     "format": "switch",
@@ -4404,6 +4368,195 @@
                     "searchable": true,
                     "required": true,
                     "value": []
+                },
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "group-background-settings",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🎨 إعدادات الخلفية</strong></div>"
+                },
+                {
+                    "id": "slas_hbg",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "تفعيل خلفية مموجة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "slas_hbg_size",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "حجم الخطوط",
+                    "type": "string",
+                    "format": "text",
+                    "value": "20",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "slas_hbg",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "slas_hbg_use_primary_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "استخدام اللون الرئيسي في الخطوط المموجة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "slas_hbg",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "slas_hbg_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "لون الخطوط",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#000000",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "slas_hbg_use_primary_color",
+                            "operation": "=",
+                            "value": false
+                        },
+                        {
+                            "id": "slas_hbg",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "marquee",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "نصوص متحركة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "marqueetext",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "نص ",
+                    "type": "string",
+                    "format": "text",
+                    "value": "سرعة /// أداء /// تحكم",
+                    "required": false,
+                    "minLength": 3,
+                    "maxLength": 300,
+                    "conditions": [
+                        {
+                            "id": "marquee",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "marquee_text_size",
+                    "description": "حجم النص بالـ rem",
+                    "labelHTML": null,
+                    "label": "حجم نص متحرك",
+                    "type": "string",
+                    "format": "text",
+                    "value": "9",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "marquee",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "marquee_is_moving",
+                    "description": "تفعيل أو إيقاف حركة النص",
+                    "labelHTML": null,
+                    "label": "تحريك النص",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": true,
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "marquee",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "marquee_text_position",
+                    "description": "موقع ظهور النص",
+                    "labelHTML": null,
+                    "label": "موقع النص",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "value": [],
+                    "required": false,
+                    "selected": [],
+                    "source": "Manual",
+                    "options": [
+                        {
+                            "label": "أعلى فقط",
+                            "value": "top",
+                            "key": "flash-discount-top"
+                        },
+                        {
+                            "label": "أسفل فقط",
+                            "value": "bottom",
+                            "key": "flash-discount-bottom"
+                        },
+                        {
+                            "label": "أعلى وأسفل",
+                            "value": "both",
+                            "key": "flash-discount-both"
+                        }
+                    ],
+                    "conditions": [
+                        {
+                            "id": "marquee",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "enable_border",
+                    "label": "تفعيل الحدود",
+                    "description": null,
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "enable_glow",
+                    "label": "تفعيل تأثير التوهج",
+                    "description": "إضافة كرات متوهجة في الخلفية باستخدام الألوان الأساسية والثانوية",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
                 }
             ]
         },
