@@ -72,7 +72,8 @@ class LarageCategoryImage extends BasePage {
                 // Check if target category matches current category
                 const targetCategory = component.target_category;
                 const targetCatId = targetCategory?.[0] || targetCategory?.id;
-                
+                console.log('targetCatId', targetCatId);
+                console.log('cat_id', cat_id);
                 if (targetCatId != cat_id) {
                     return;
                 }
