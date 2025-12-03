@@ -74,7 +74,7 @@ class LarageCategoryImage extends BasePage {
                 const targetCatId = targetCategory?.[0] || targetCategory?.id;
                 console.log('targetCatId', targetCatId);
                 console.log('cat_id', cat_id);
-                if (targetCatId != cat_id) {
+                if (targetCatId.id != cat_id) {
                     return;
                 }
 
