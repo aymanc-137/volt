@@ -5,33 +5,54 @@
 {% set marquee = component.marquee | default(false) %}
 {% set marqueetext = component.marqueetext | default(" سرعة /// أداء /// تحكم ") %}
 {% set enable_border = component.enable_border | default(false) %}
+{% set enable_glow = component.enable_glow | default(false) %}
+{% set marquee_text_position = component.marquee_text_position | default('both') %}
+{% set marquee_is_moving = component.marquee_is_moving %}
+{% set marquee_text_size = component.marquee_text_size | default('8') %}
+{% set slas_hbg_size = component.slas_hbg_size | default('20') %}
+{% set slas_hbg_use_primary_color = component.slas_hbg_use_primary_color %}
+{% set slas_hbg_color = component.slas_hbg_color~"1A" | default('#0000001A') %}
 
 <!-- The class "p-4" was changed to "py-4" to remove horizontal padding -->
-<section class=" z-10 flex items-center overflow-hidden   relative justify-center  {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} {{ slashbg ? 'slash-bg dynamic-bg-color ' : ''}}">
+<section class=" z-10 flex items-center overflow-hidden relative justify-center {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} {{ slashbg ? 'slash-bg-' ~ position ~ ' dynamic-bg-color' : ''}}">
+    {% if enable_glow %}
+    <!-- Glow balls -->
+    <div class="absolute top-[15%] left-[25%] w-64 h-64 rounded-full blur-3xl opacity-60 pointer-events-none" style="background-color: var(--color-primary);"></div>
+    <div class="absolute bottom-[15%] right-[25%] w-56 h-56 rounded-full blur-3xl opacity-60 pointer-events-none" style="background-color: var(--color-scandary);"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-52 h-52 rounded-full blur-3xl opacity-60 pointer-events-none" style="background-color: var(--color-primary);"></div>
+    {% endif %}
     {% if marquee %}
 
+    {% if marquee_text_position == 'top' or marquee_text_position == 'both' %}
     <div class="styleish-text absolute top-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
-        <div class="marquee-reverse-sections flex whitespace-nowrap w-max">
-            <span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
+        <div 
+        style="font-size: {{marquee_text_size}}rem; line-height:1;"
+        class="{{ marquee_is_moving ? 'marquee-reverse-sections' : '' }} flex whitespace-nowrap w-max">
+            <span class="font-alshohadaa font-bold display-text whitespace-nowrap px-4">
                 {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
             </span>
-            <span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
+            <span class="font-alshohadaa font-bold display-text whitespace-nowrap px-4">
                 {{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
             </span>
         </div>
     </div>
+    {% endif %}
 
+    {% if marquee_text_position == 'bottom' or marquee_text_position == 'both' %}
     <div class="styleish-text absolute bottom-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
-        <div class="marquee-content-sections flex whitespace-nowrap w-max">
-            <span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
+        <div
+        style="font-size: {{marquee_text_size}}rem; line-height:1;"
+        class="{{ marquee_is_moving ? 'marquee-content-sections' : '' }} flex whitespace-nowrap w-max">
+            <span class="font-alshohadaa font-bold display-text whitespace-nowrap px-4">
                 {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
             </span>
-            <span class="font-alshohadaa text-9xl font-bold    display-text whitespace-nowrap px-4">
+            <span class="font-alshohadaa font-bold display-text whitespace-nowrap px-4">
                 {{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
             </span>
         </div>
     </div>
- 
+    {% endif %}
+
     {% endif %}
     <div class="relative w-full my-32">
                    {% if not component.title_inside_image %}
@@ -154,3 +175,21 @@
         });
     </script>
 {% endif %}
+
+<style>
+{% if slas_hbg_use_primary_color %}
+.slash-bg-{{position}} {
+   background: linear-gradient(135deg, var(--color-primary-10) 25%, rgba(0, 0, 0, 0)  
+   25%, rgba(0, 0, 0, 0)  50%, var(--color-primary-10)  50%, 
+                                var(--color-primary-10) 75%, rgba(0, 0, 0, 0) 75%);
+  background-size: {{slas_hbg_size}}px {{slas_hbg_size}}px;
+}
+{% else %}
+.slash-bg-{{position}} {
+   background: linear-gradient(135deg, {{slas_hbg_color}} 25%, rgba(0, 0, 0, 0)  
+   25%, rgba(0, 0, 0, 0)  50%, {{slas_hbg_color}}  50%, 
+                                {{slas_hbg_color}} 75%, rgba(0, 0, 0, 0) 75%);
+  background-size: {{slas_hbg_size}}px {{slas_hbg_size}}px;
+}
+{% endif %}
+</style>
