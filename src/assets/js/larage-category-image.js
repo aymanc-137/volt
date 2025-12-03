@@ -16,10 +16,10 @@ class LarageCategoryImage extends BasePage {
             // const components = res.data;
 
             // TEST: External API call for testing (remove after publish)
-            //const res = await fetch('https://api.npoint.io/larage-category-image-test');
-            //const data = await res.json();
-            //const components = data.data;
-            const components = [{"component":{
+            const res = await fetch('https://api.npoint.io/229d91aac91ebb887a59');
+            const data = await res.json();
+            const components = data.data;
+            const componentsold = [{"component":{
                                  
                                                     "ar": {
                                                         "title": "العنوان",
