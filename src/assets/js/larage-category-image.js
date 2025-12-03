@@ -122,10 +122,10 @@ class LarageCategoryImage extends BasePage {
             }
             titleHtml = `
                 <div class="mx-auto">
-                    <h2 class="text-4xl font-alshohadaa md:text-5xl mb-12 text-center italic uppercase dynamic-text-color">
+                    <h2 class="text-2xl font-alshohadaa md:text-4xl mb-6 text-center italic uppercase dynamic-text-color">
                         ${titleContent}
                     </h2>
-                    <p class="mx-auto my-5 text-center text-xl dynamic-text-color">${component.sub_title || ''}</p>
+                    <p class="mx-auto my-2 text-center text-xl dynamic-text-color">${component.sub_title || ''}</p>
                 </div>
             `;
         }
@@ -152,7 +152,7 @@ class LarageCategoryImage extends BasePage {
             'py-20',
             'relative',
             slashbg ? `slash-bg-${position} dynamic-bg-color` : '',
-            'pb-32'
+            'pb-16'
         ].filter(Boolean).join(' ');
 
         // Build style for slash background
@@ -187,7 +187,7 @@ class LarageCategoryImage extends BasePage {
                 ${marqueeBottomHtml}
                 <div class="container mx-auto px-6">
                     ${titleHtml}
-                    <div class="grid grid-cols-1 md:grid-cols-2 ${gridCols} gap-4 h-[600px]">
+                    <div class="grid grid-cols-1 md:grid-cols-2 ${gridCols} gap-4 h-[400px]">
                         ${categoriesHtml}
                     </div>
                 </div>
