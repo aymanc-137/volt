@@ -90,19 +90,27 @@
 </section>
 
 <style>
+
 {% if slas_hbg_use_primary_color %}
-.slash-bg-{{position}} {
-   background: linear-gradient(135deg, var(--color-primary-10) 25%, rgba(0, 0, 0, 0)  
-   25%, rgba(0, 0, 0, 0)  50%, var(--color-primary-10)  50%, 
-                                var(--color-primary-10) 75%, rgba(0, 0, 0, 0) 75%);
-  background-size: {{slas_hbg_size}}px {{slas_hbg_size}}px;
-}
+
+	.slash-bg-{{position}} 
+		{
+		background: linear-gradient(135deg, var(--color-primary-10) 25%, rgba(0, 0, 0, 0)  
+		25%, rgba(0, 0, 0, 0)  50%, var(--color-primary-10)  50%, 
+										var(--color-primary-10) 75%, rgba(0, 0, 0, 0) 75%);
+										background-size: {{slas_hbg_size}}px {{slas_hbg_size}}px;
+		}
+
 {% else %}
-.slash-bg-{{position}} {
-   background: linear-gradient(135deg, {{slas_hbg_color}} 25%, rgba(0, 0, 0, 0)  
-   25%, rgba(0, 0, 0, 0)  50%, {{slas_hbg_color}}  50%, 
-                                {{slas_hbg_color}} 75%, rgba(0, 0, 0, 0) 75%);
-  background-size: {{slas_hbg_size}}px {{slas_hbg_size}}px;
-}
+
+	.slash-bg-{{position}} {
+
+	background: linear-gradient(135deg, {{slas_hbg_color}} 25%, rgba(0, 0, 0, 0)  
+	25%, rgba(0, 0, 0, 0)  50%, {{slas_hbg_color}}  50%, 
+									{{slas_hbg_color}} 75%, rgba(0, 0, 0, 0) 75%);
+									background-size: {{slas_hbg_size}}px {{slas_hbg_size}}px;
+	}
+
 {% endif %}
+
 </style>
