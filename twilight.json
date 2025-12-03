@@ -1721,7 +1721,7 @@
                     "minLength": 1,
                     "maxLength": 15
                 },
-                                {
+                {
                     "type": "static",
                     "format": "description",
                     "id": "group-background-settings",
@@ -3481,51 +3481,6 @@
                     "searchable": true,
                     "required": true,
                     "value": []
-                },
-                {
-                    "id": "background_color",
-                    "type": "string",
-                    "format": "color",
-                    "inputType": "color",
-                    "label": "لون الخلفية",
-                    "description": null,
-                    "labelHTML": null,
-                    "icon": "sicon-format-fill",
-                    "value": "#FDF7ED",
-                    "required": false
-                },
-                {
-                    "id": "show_border",
-                    "type": "boolean",
-                    "format": "switch",
-                    "label": "عرض الحدود",
-                    "description": null,
-                    "labelHTML": null,
-                    "icon": "sicon-check",
-                    "value": false,
-                    "required": false
-                },
-                {
-                    "id": "show_wavy",
-                    "type": "boolean",
-                    "format": "switch",
-                    "label": "عرض الحافة الموجية",
-                    "description": null,
-                    "labelHTML": null,
-                    "icon": "sicon-check",
-                    "value": false,
-                    "required": false
-                },
-                {
-                    "id": "show_color_background",
-                    "type": "boolean",
-                    "format": "switch",
-                    "label": "عرض الخلفية",
-                    "description": null,
-                    "labelHTML": null,
-                    "icon": "sicon-check",
-                    "value": false,
-                    "required": false
                 },
                 {
                     "type": "static",
