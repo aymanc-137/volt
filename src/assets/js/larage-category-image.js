@@ -16,10 +16,50 @@ class LarageCategoryImage extends BasePage {
             // const components = res.data;
 
             // TEST: External API call for testing (remove after publish)
-            const res = await fetch('https://api.npoint.io/larage-category-image-test');
-            const data = await res.json();
-            const components = data.data;
-            console.log('Test API response:', data);
+            //const res = await fetch('https://api.npoint.io/larage-category-image-test');
+            //const data = await res.json();
+            //const components = data.data;
+            const components = [{"component":{
+                                 
+                                                    "ar": {
+                                                        "title": "العنوان",
+                                                        "sub_title": "العنوان الجانبي"
+                                                    },
+                                                    "key": "01dbcfa2-5e33-40f6-ac2f-89979591f8af",
+                                                    "marquee": false,
+                                                    "slas_hbg": false,
+                                                    "categories": [
+                                                        {
+                                                        "ar": {
+                                                            "title": "قطع سيارات السرعة"
+                                                        },
+                                                        "link": "https://salla.design/dev-pbdsq67yexku5kq3/redirect/categories/1967275527",
+                                                        "image": "https://cdn.files.salla.network/homepage/1573552885/12896eba-0f7b-423c-b05e-9e848cf1a544.webp",
+                                                        "title": "قطع سيارات السرعة"
+                                                        }
+                                                    ],
+                                                    "enable_glow": false,
+                                                    "enable_border": false,
+                                                    "slas_hbg_color": "#000000",
+                                                    "target_category": [
+                                                        {
+                                                        "name": "المحرك",
+                                                        "id": 1967275527,
+                                                        "sub_categories": null,
+                                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/المحرك/c1967275527",
+                                                        "icon": "sicon-store",
+                                                        "image": null
+                                                        }
+                                                    ],
+                                                    "enable_gradient_word": false,
+                                                    "enable_gradient_title": false,
+                                                    "show_in_category_page": true,
+                                                    "title": "العنوان",
+                                                    "sub_title": "العنوان الجانبي"
+                                                    }
+                                    }
+                                    ];
+            console.log('Test API response:', components);
 
             components.forEach(item => {
                 const component = item.component;
