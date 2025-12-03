@@ -11,8 +11,15 @@ class LarageCategoryImage extends BasePage {
         const cat_id = container.dataset.catid;
 
         try {
-            const res = await salla.api.request('component/list', { params: { paths: ['home.larage-category-image'] } });
-            const components = res.data;
+            // TODO: Uncomment after publish - Salla API call
+            // const res = await salla.api.request('component/list', { params: { paths: ['home.larage-category-image'] } });
+            // const components = res.data;
+
+            // TEST: External API call for testing (remove after publish)
+            const res = await fetch('https://api.npoint.io/larage-category-image-test');
+            const data = await res.json();
+            const components = data.data;
+            console.log('Test API response:', data);
 
             components.forEach(item => {
                 const component = item.component;

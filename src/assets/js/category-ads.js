@@ -13,7 +13,7 @@ const cat_id = CatElement.dataset.catid;
     try {
         await salla.api.request('component/list', { params: { paths: ['home.category-ads'] } })
         .then((res) => {
-            //  console.log(res);
+              console.log(res);
              const catArray = res.data[0].component.category_ads;
 
             catArray.forEach(element => {
