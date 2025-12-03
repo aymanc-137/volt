@@ -31,7 +31,7 @@
 {% set slas_hbg_use_primary_color = component.slas_hbg_use_primary_color %}
 {% set slas_hbg_color = component.slas_hbg_color~"1A" | default('#0000001A') %}
 
-<section class="z-10 s-block tap-preview-component overflow-hidden relative {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} {{ slashbg ? 'slash-bg-' ~ position ~ ' dynamic-bg-color' : ''}} py-10" dir="rtl">
+<section class="z-10 tap-preview-component overflow-hidden relative {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} {{ slashbg ? 'slash-bg-' ~ position ~ ' dynamic-bg-color' : ''}} py-10" dir="rtl">
     {% if enable_glow %}
     <!-- Glow balls -->
     <div class="absolute top-[15%] left-[25%] w-64 h-64 rounded-full blur-3xl opacity-60 pointer-events-none" style="background-color: var(--color-primary);"></div>
