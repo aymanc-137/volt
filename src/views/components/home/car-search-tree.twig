@@ -6,11 +6,12 @@
 {% set model_select_id = tree_component_id ~ '-model-select' %}
 {% set year_select_id = tree_component_id ~ '-year-select' %}
 
-<section class="car-search-tree-block container" id="{{ tree_component_id }}"
+<section class="car-search-tree-block  " id="{{ tree_component_id }}"
          data-categories='{{ categories_payload|e('html_attr') }}'
          data-hide-brand-labels="{{ component.hide_brand_labels ? 'true' : 'false' }}"
          data-display-mode="{{ component.use_dropdown_layout ? 'dropdown' : 'tiles' }}">
-    <div class="car-search-tree {{ component.use_dropdown_layout ? 'car-search-tree--dropdown' : '' }}">
+
+    <div class="car-search-tree border-y dynamic-border-color   {{ component.use_dropdown_layout ? 'car-search-tree--dropdown' : '' }}">
         <div class="car-search-tree__header">
             <div>
                 <p class="car-search-tree__eyebrow">{{ component.badge|default('اكتشف ملاءمة القطع') }}</p>

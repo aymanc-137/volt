@@ -1,10 +1,9 @@
 .car-search-tree-block {
-    @apply my-5;
+    @apply my-10;
 }
 
 .car-search-tree {
-    @apply border dynamic-border-color rounded-custom
-    bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)]
+    @apply bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)]
     shadow-xl p-6 md:p-10 space-y-8;
 }
 
