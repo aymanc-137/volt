@@ -16,49 +16,13 @@ class LarageCategoryImage extends BasePage {
             // const components = res.data;
 
             // TEST: External API call for testing (remove after publish)
-            const res = await fetch('https://api.npoint.io/229d91aac91ebb887a59');
-            const data = await res.json();
-            const components = data.data;
-            const componentsold = [{"component":{
-                                 
-                                                    "ar": {
-                                                        "title": "العنوان",
-                                                        "sub_title": "العنوان الجانبي"
-                                                    },
-                                                    "key": "01dbcfa2-5e33-40f6-ac2f-89979591f8af",
-                                                    "marquee": false,
-                                                    "slas_hbg": false,
-                                                    "categories": [
-                                                        {
-                                                        "ar": {
-                                                            "title": "قطع سيارات السرعة"
-                                                        },
-                                                        "link": "https://salla.design/dev-pbdsq67yexku5kq3/redirect/categories/1967275527",
-                                                        "image": "https://cdn.files.salla.network/homepage/1573552885/12896eba-0f7b-423c-b05e-9e848cf1a544.webp",
-                                                        "title": "قطع سيارات السرعة"
-                                                        }
-                                                    ],
-                                                    "enable_glow": false,
-                                                    "enable_border": false,
-                                                    "slas_hbg_color": "#000000",
-                                                    "target_category": [
-                                                        {
-                                                        "name": "المحرك",
-                                                        "id": 1967275527,
-                                                        "sub_categories": null,
-                                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/المحرك/c1967275527",
-                                                        "icon": "sicon-store",
-                                                        "image": null
-                                                        }
-                                                    ],
-                                                    "enable_gradient_word": false,
-                                                    "enable_gradient_title": false,
-                                                    "show_in_category_page": true,
-                                                    "title": "العنوان",
-                                                    "sub_title": "العنوان الجانبي"
-                                                    }
-                                    }
-                                    ];
+           // const res = await fetch('https://api.npoint.io/229d91aac91ebb887a59');
+           // const data = await res.json();
+          //  const components = data.data;
+            const components = [{"component":
+                                        {"ar":{"title":"العنوان","sub_title":"العنوان الجانبي"},"key":"01dbcfa2-5e33-40f6-ac2f-89979591f8af","title":"العنوان","marquee":true,"slas_hbg":true,"sub_title":"العنوان الجانبي","categories":[{"ar":{"title":"قطع سيارات السرعة"},"link":"https://salla.design/dev-pbdsq67yexku5kq3/redirect/categories/1967275527","image":"https://cdn.files.salla.network/homepage/1573552885/12896eba-0f7b-423c-b05e-9e848cf1a544.webp","title":"قطع سيارات السرعة"},{"ar":{"title":"كفرات"},"link":"https://salla.design/dev-pbdsq67yexku5kq3/redirect/products/1958852814","image":"https://cdn.files.salla.network/homepage/1573552885/e40cf31c-113a-4572-82f1-cee5f237368d.webp","title":"كفرات"},{"ar":{"title":"ختر لون سيارتك"},"link":"https://salla.design/dev-pbdsq67yexku5kq3/redirect/products/1958852814","image":"https://cdn.files.salla.network/homepage/1573552885/10589b0a-3e53-4b52-b8fa-304f80ba6a22.webp","title":"ختر لون سيارتك"}],"enable_glow":false,"marqueetext":"سرعة /// أداء /// تحكم","enable_border":true,"slas_hbg_size":"80","slas_hbg_color":"#000000","target_category":[{"id":1967275527,"url":"https://salla.design/dev-pbdsq67yexku5kq3/المحرك/c1967275527","icon":"sicon-store","name":"المحرك","image":null,"sub_categories":null}],"marquee_is_moving":true,"marquee_text_size":"15","enable_gradient_word":false,"enable_gradient_title":false,"marquee_text_position":"top","show_in_category_page":true,"slas_hbg_use_primary_color":false}
+                                    
+        }];
             console.log('Test API response:', components);
 
             components.forEach(item => {
