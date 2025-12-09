@@ -144,7 +144,7 @@
 }
 
 .car-search-tree__products {
-    @apply rounded-custom border dynamic-border-color  p-6 space-y-6;
+    @apply rounded-custom border-t dynamic-border-color p-6 space-y-6;
 }
 
 .car-search-tree__products-header h3 {

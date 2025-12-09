@@ -25984,7 +25984,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
 }
 .car-search-tree__products {
-    border-width: 1px;
+    border-top-width: 1px;
     padding: 1.5rem;
   border-radius: var(--border-radius);
   border-color: var(--color-border);
