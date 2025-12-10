@@ -16,7 +16,7 @@ module.exports = {
         'wishlist-card': asset('js/partials/wishlist-card.js'),
         checkout: [asset('js/cart.js'), asset('js/thankyou.js')],
         pages   : [asset('js/loyalty.js'), asset('js/brands.js'),],
-        product : [asset('js/product.js'), asset('js/products.js'),asset('js/category-ads.js'),asset('js/larage-category-image.js'),asset('js/car-search-tree.js')],
+        product : [asset('js/product.js'), asset('js/products.js'),asset('js/category-ads.js'),asset('js/larage-category-image.js'),asset('js/car-search-tree.js'),asset('js/flash-offer.js')],
         order   : asset('js/order.js'),
         testimonials   : asset('js/testimonials.js')
     },

@@ -1,3 +1,5 @@
+{# Skip rendering on home page if this component is set to show only on category pages #}
+{% if not component.show_in_category_page %}
 {% set slashbg = component.slas_hbg | default(false) %}
 {% set marquee = component.marquee | default(false) %}
 {% set marqueetext = component.marqueetext | default(" سرعة /// أداء /// تحكم ") %}
@@ -117,3 +119,4 @@
 }
 {% endif %}
 </style>
+{% endif %}
