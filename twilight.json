@@ -3873,6 +3873,32 @@
                     "icon": "sicon-list",
                     "value": false,
                     "required": false
+                },
+                {
+                    "id": "show_in_category_page",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "عرض في صفحة التصنيف",
+                    "description": "عند التفعيل سيتم عرض المكون في صفحة التصنيف المحدد.",
+                    "icon": "sicon-store",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "target_category",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "التصنيف المستهدف",
+                    "description": "اختر التصنيف الذي سيظهر فيه هذا المكون",
+                    "labelHTML": null,
+                    "icon": "sicon-keyboard_arrow_down",
+                    "selected": [],
+                    "options": [],
+                    "source": "categories",
+                    "multichoice": false,
+                    "searchable": true,
+                    "required": false,
+                    "value": []
                 }
             ]
         },
