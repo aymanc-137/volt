@@ -1,3 +1,5 @@
+{# Skip rendering on home page if this component is set to show only on category pages #}
+{% if not component.show_in_category_page %}
 {% set tree_component_id = 'car-search-tree-' ~ (component.key|default(position|default(0))) %}
 {% set categories_payload = component.category|default([])|json_encode %}
 {% set heading = component.title|default('ابحث عن سيارتك') %}
@@ -492,3 +494,4 @@
         }
     }());
 </script>
+{% endif %}

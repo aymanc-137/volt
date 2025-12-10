@@ -18,33 +18,601 @@ class CarSearchTree extends BasePage {
             // TEST: Mock data for testing (remove after publish)
             const components = [{
                 "component": {
-                    "key": "716e33df-97f4-4808-97a8-c8784d339916",
-                    "title": "قائمة بحث المركبات",
-                    "description": "اختر الماركة ثم الموديل والسنة (إن وُجدت) لإظهار المنتجات المتوافقة.",
-                    "badge": "اكتشف ملاءمة القطع",
-                    "hide_brand_labels": false,
-                    "use_dropdown_layout": false,
-                    "category": [
-                        {
-                            "id": 1967275527,
-                            "name": "المحرك",
-                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/المحرك/c1967275527",
-                            "icon": "sicon-store",
-                            "image": null,
-                            "sub_categories": []
-                        }
-                    ],
-                    "show_in_category_page": true,
-                    "target_category": [
-                        {
-                            "id": 1967275527,
-                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/المحرك/c1967275527",
-                            "icon": "sicon-store",
-                            "name": "المحرك",
-                            "image": null,
-                            "sub_categories": null
-                        }
-                    ]
+                   
+                                "key": "716e33df-97f4-4808-97a8-c8784d339916",
+                                "category": [
+                                    {
+                                    "name": "GMC",
+                                    "id": 1364904282,
+                                    "sub_categories": [
+                                        {
+                                        "name": "Acadia",
+                                        "id": 938677275,
+                                        "sub_categories": [
+                                            {
+                                            "name": "2015",
+                                            "id": 211334044,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2015/c211334044",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            },
+                                            {
+                                            "name": "2016",
+                                            "id": 1583731357,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2016/c1583731357",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            }
+                                        ],
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/acadia/c938677275",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/vE9vU3zfMrxiTt49s45TLM2F7NRLFXT6rcU9VbpB.jpg"
+                                        },
+                                        {
+                                        "name": "Canyon",
+                                        "id": 1653496429,
+                                        "sub_categories": [
+                                            {
+                                            "name": "2022",
+                                            "id": 2049904799,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2022/c2049904799",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            },
+                                            {
+                                            "name": "2020",
+                                            "id": 567369369,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2020/c567369369",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            }
+                                        ],
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/canyon/c1653496429",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/xqpsa0gNhahS3dS9hVjuXWM9gnwnlLYojuPrVNXC.jpg"
+                                        },
+                                        {
+                                        "name": "Sierra",
+                                        "id": 802352211,
+                                        "sub_categories": [
+                                            {
+                                            "name": "2019",
+                                            "id": 1300536475,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2019/c1300536475",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            },
+                                            {
+                                            "name": "2020",
+                                            "id": 526498788,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2020/c526498788",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            },
+                                            {
+                                            "name": "2021",
+                                            "id": 1766775525,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2021/c1766775525",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            }
+                                        ],
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/sierra/c802352211",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/f5WIkBkycEQPRH7BE7SEWY7i2HJ5KwlTfQGwFt1E.png"
+                                        },
+                                        {
+                                        "name": "Terrain",
+                                        "id": 1266952797,
+                                        "sub_categories": [
+                                            {
+                                            "name": "2016",
+                                            "id": 1550681315,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2016/c1550681315",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            },
+                                            {
+                                            "name": "2019",
+                                            "id": 776643564,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2019/c776643564",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            }
+                                        ],
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/terrain/c1266952797",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/Pcrv4aDRNy3Rr9YAy8EHFEiAwqAhAQ9pf5gM6Kw4.png"
+                                        },
+                                        {
+                                        "name": "Yukon",
+                                        "id": 1093367640,
+                                        "sub_categories": [
+                                            {
+                                            "name": "2017",
+                                            "id": 817514209,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2017/c817514209",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            }
+                                        ],
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/yukon/c1093367640",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/dqTDPFeDJCLrsrufOP8zXDTjh9m7xabGKQGJCmdL.png"
+                                        }
+                                    ],
+                                    "url": "https://salla.design/dev-pbdsq67yexku5kq3/gmc/c1364904282",
+                                    "icon": "sicon-store",
+                                    "image": "https://cdn.salla.sa/QdAQnV/categories/noPca4fMvDWXEOcLEoYNwx7NjhxLKSiNAIXyU6hj.png"
+                                    },
+                                    {
+                                    "name": "TOYOTA",
+                                    "id": 414594214,
+                                    "sub_categories": [
+                                        {
+                                        "name": "Camry",
+                                        "id": 481478408,
+                                        "sub_categories": [
+                                            {
+                                            "name": "2020",
+                                            "id": 668532975,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2020/c668532975",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            }
+                                        ],
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/camry/c481478408",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/58WjDzqBkdaaIiPUje9N3QiV3zLOyI3ODVetmjMf.png"
+                                        },
+                                        {
+                                        "name": "Corolla",
+                                        "id": 946078986,
+                                        "sub_categories": [
+                                            {
+                                            "name": "2020",
+                                            "id": 1132678889,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2020/c1132678889",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            },
+                                            {
+                                            "name": "2019",
+                                            "id": 493383146,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2019/c493383146",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            }
+                                        ],
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/corolla/c946078986",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/NypcqXfbNgYRfNWtV0EGpkQANrsdt6pn0lJn8BCu.png"
+                                        },
+                                        {
+                                        "name": "Hilux",
+                                        "id": 798740240,
+                                        "sub_categories": [
+                                            {
+                                            "name": "2019",
+                                            "id": 1865845995,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2019/c1865845995",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            },
+                                            {
+                                            "name": "2020",
+                                            "id": 957590516,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2020/c957590516",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            },
+                                            {
+                                            "name": "2021",
+                                            "id": 184077045,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2021/c184077045",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            }
+                                        ],
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/hilux/c798740240",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/8HeKfGuRD4d9NuScrIttBWckpps3j6L69lrJ3ymm.png"
+                                        },
+                                        {
+                                        "name": "LandCruiser",
+                                        "id": 623520787,
+                                        "sub_categories": [
+                                            {
+                                            "name": "2018",
+                                            "id": 9377776,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2018/c9377776",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            },
+                                            {
+                                            "name": "2019",
+                                            "id": 1381250801,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2019/c1381250801",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            }
+                                        ],
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/landcruiser/c623520787",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/Q9Fi632bc0htBvAb4JV3sNvbSIw565DDF3uMw12L.png"
+                                        },
+                                        {
+                                        "name": "RAV4",
+                                        "id": 1820829727,
+                                        "sub_categories": [
+                                            {
+                                            "name": "2020",
+                                            "id": 2007945726,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2020/c2007945726",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            }
+                                        ],
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/rav4/c1820829727",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/7eyueEQu64uNsE5UMTB3BOa36amZc86TIttX1cCD.png"
+                                        }
+                                    ],
+                                    "url": "https://salla.design/dev-pbdsq67yexku5kq3/toyota/c414594214",
+                                    "icon": "sicon-store",
+                                    "image": "https://cdn.salla.sa/QdAQnV/categories/q6MQIRKkJh4NiytL0WoQVavRS7az3HNeApKauktZ.png"
+                                    },
+                                    {
+                                    "name": "Hyundai",
+                                    "id": 1463909032,
+                                    "sub_categories": [
+                                        {
+                                        "name": "Elantra",
+                                        "id": 1742153417,
+                                        "sub_categories": null,
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/elantra/c1742153417",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/RtfxBz69xrblOoJ8atTqghtonTglEHiPIVJ1J7Cx.jpg"
+                                        },
+                                        {
+                                        "name": "Kona",
+                                        "id": 60384459,
+                                        "sub_categories": null,
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/kona/c60384459",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/p82sOBpFRVUHZgc3wscy4MtH3DORjbc24f6jLEmv.jpg"
+                                        },
+                                        {
+                                        "name": "SantaFe",
+                                        "id": 2032779734,
+                                        "sub_categories": null,
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/santafe/c2032779734",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/hnNkFvz4ygkWW8tarJXxlrxYqCOHwz9kP3JZUFza.jpg"
+                                        },
+                                        {
+                                        "name": "Sonata",
+                                        "id": 1082478034,
+                                        "sub_categories": [
+                                            {
+                                            "name": "2014",
+                                            "id": 1913579735,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2014/c1913579735",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            },
+                                            {
+                                            "name": "2022",
+                                            "id": 1340864464,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2022/c1340864464",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            }
+                                        ],
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/sonata/c1082478034",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/QtnINAZtU5qKf1FxbczjC7rao4JByQ9Wr3hMhBWy.png"
+                                        },
+                                        {
+                                        "name": "Tucson",
+                                        "id": 1041607389,
+                                        "sub_categories": null,
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/tucson/c1041607389",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/Try3Ohr5cIVdAcJ4prrUrFQFp92x1hqBqxi8DIoe.jpg"
+                                        }
+                                    ],
+                                    "url": "https://salla.design/dev-pbdsq67yexku5kq3/hyundai/c1463909032",
+                                    "icon": "sicon-store",
+                                    "image": "https://cdn.salla.sa/QdAQnV/categories/PPjkXQFwbkt7IPb31f1rmJpoFDcGaeokV2OLnDmD.png"
+                                    },
+                                    {
+                                    "name": "Honda",
+                                    "id": 1504845229,
+                                    "sub_categories": [
+                                        {
+                                        "name": "Accord",
+                                        "id": 415392564,
+                                        "sub_categories": [
+                                            {
+                                            "name": "2020",
+                                            "id": 1832730361,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2020/c1832730361",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            },
+                                            {
+                                            "name": "2021",
+                                            "id": 1058692602,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2021/c1058692602",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            },
+                                            {
+                                            "name": "2016",
+                                            "id": 149388539,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2016/c149388539",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            }
+                                        ],
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/accord/c415392564",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/NLPl3NBZKXZPQ3tlCEhzjy5csw2Rj84sCHaqXfQM.png"
+                                        },
+                                        {
+                                        "name": "Civic",
+                                        "id": 1789428277,
+                                        "sub_categories": [
+                                            {
+                                            "name": "2020",
+                                            "id": 1523424196,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2020/c1523424196",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            },
+                                            {
+                                            "name": "2016",
+                                            "id": 883604165,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2016/c883604165",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            }
+                                        ],
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/civic/c1789428277",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/38XSxQLSnMbMuhw8T2SOwrD8vvZLMIvKNCdFhk7h.png"
+                                        },
+                                        {
+                                        "name": "CRV",
+                                        "id": 266415410,
+                                        "sub_categories": [
+                                            {
+                                            "name": "2016",
+                                            "id": 108517830,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2016/c108517830",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            },
+                                            {
+                                            "name": "2018",
+                                            "id": 1348270279,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2018/c1348270279",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            },
+                                            {
+                                            "name": "2015",
+                                            "id": 574162880,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2015/c574162880",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            }
+                                        ],
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/crv/c266415410",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/ie1ntIoXVDgeTcURM1RYLb3qwjRCa0GRxBDeEGRf.png"
+                                        },
+                                        {
+                                        "name": "HRV",
+                                        "id": 1430608652,
+                                        "sub_categories": [
+                                            {
+                                            "name": "2015",
+                                            "id": 1239631298,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2015/c1239631298",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            },
+                                            {
+                                            "name": "2020",
+                                            "id": 1198760653,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2020/c1198760653",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            }
+                                        ],
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/hrv/c1430608652",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/vgupMPsWctiAMthR1bB2Zdh3bcqxmQzZiHeDE8Fc.png"
+                                        },
+                                        {
+                                        "name": "Pilot",
+                                        "id": 656570893,
+                                        "sub_categories": null,
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/pilot/c656570893",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/PY8BMS3kKoObPp3lK0WFCF3g42Wb9emQM8jx5Zdd.png"
+                                        }
+                                    ],
+                                    "url": "https://salla.design/dev-pbdsq67yexku5kq3/honda/c1504845229",
+                                    "icon": "sicon-store",
+                                    "image": "https://cdn.salla.sa/QdAQnV/categories/OiZN7IwGC7yeDeEaeTVUGvhvGlQSYV7h0Nkt49U5.png"
+                                    },
+                                    {
+                                    "name": "FORD",
+                                    "id": 1288816555,
+                                    "sub_categories": [
+                                        {
+                                        "name": "Mustang",
+                                        "id": 1361042157,
+                                        "sub_categories": [
+                                            {
+                                            "name": "2019",
+                                            "id": 1912425515,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2019/c1912425515",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            }
+                                        ],
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/mustang/c1361042157",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/categories/GjKpwXXLdIfV2wTj97iveScSFB24c2RpMweaA7Ff.png"
+                                        },
+                                        {
+                                        "name": "F150",
+                                        "id": 2093029615,
+                                        "sub_categories": [
+                                            {
+                                            "name": "2015",
+                                            "id": 1525898019,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2015/c1525898019",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            },
+                                            {
+                                            "name": "2016",
+                                            "id": 886602284,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2016/c886602284",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            }
+                                        ],
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/f150/c2093029615",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/categories/U26cEfmy7cHjY1RNqWX8pA2Tqo5mSyDwrOMab8UN.jpg"
+                                        },
+                                        {
+                                        "name": "Explorer",
+                                        "id": 87649778,
+                                        "sub_categories": [
+                                            {
+                                            "name": "2015",
+                                            "id": 1350809646,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2015/c1350809646",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            }
+                                        ],
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/explorer/c87649778",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/categories/IkVvuqNSNyQiIjjNgMdBmMi660Fr76sXb34bYCuB.jpg"
+                                        },
+                                        {
+                                        "name": "Bronco",
+                                        "id": 1284958718,
+                                        "sub_categories": [
+                                            {
+                                            "name": "2021",
+                                            "id": 577292079,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2021/c577292079",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            },
+                                            {
+                                            "name": "2022",
+                                            "id": 2083907112,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2022/c2083907112",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            }
+                                        ],
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/bronco/c1284958718",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/v6g3nCArez4lTrTzERSY7zIIZg3lwljDWQaXgho3.png"
+                                        },
+                                        {
+                                        "name": "Escape",
+                                        "id": 335697402,
+                                        "sub_categories": [
+                                            {
+                                            "name": "2020",
+                                            "id": 1246432809,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2020/c1246432809",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            },
+                                            {
+                                            "name": "2019",
+                                            "id": 605039914,
+                                            "sub_categories": null,
+                                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/2019/c605039914",
+                                            "icon": "sicon-store",
+                                            "image": null
+                                            }
+                                        ],
+                                        "url": "https://salla.design/dev-pbdsq67yexku5kq3/escape/c335697402",
+                                        "icon": "sicon-store",
+                                        "image": "https://cdn.salla.sa/QdAQnV/tgUFERqcyAjJNcZxpVEPG1wCV8OnbrIw0IiG7sjM.jpg"
+                                        }
+                                    ],
+                                    "url": "https://salla.design/dev-pbdsq67yexku5kq3/ford/c1288816555",
+                                    "icon": "sicon-store",
+                                    "image": "https://cdn.salla.sa/QdAQnV/categories/nf2gYSZHyuzxxx8WW3htaa2BZmCICwmwoTpPUvWd.png"
+                                    }
+                                ],
+                                "target_category": [
+                                    {
+                                    "name": "بحث",
+                                    "id": 1194286336,
+                                    "sub_categories": null,
+                                    "url": "https://salla.design/dev-pbdsq67yexku5kq3/بحث/c1194286336",
+                                    "icon": "sicon-store",
+                                    "image": null
+                                    }
+                                ],
+                                "hide_brand_labels": true,
+                                "use_dropdown_layout": true,
+                                "show_in_category_page": true
+
                 },
                 "position": 1
             }];
