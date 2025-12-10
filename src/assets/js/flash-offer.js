@@ -73,7 +73,7 @@ class FlashOffer extends BasePage {
                 // Check if target category matches current category
                 const targetCategory = component.target_category;
                 const targetCatId = targetCategory?.[0] || targetCategory?.id;
-                console.log('targetCatId', targetCatId);
+                console.log('targetCatId', targetCatId.id);
                 console.log('cat_id', cat_id);
                 
                 if (targetCatId.id != cat_id) {
