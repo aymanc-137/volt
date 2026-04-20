@@ -1044,6 +1044,12 @@ select {
 .z-\[3\] {
     z-index: 3;
 }
+.z-2 {
+    z-index: 2;
+}
+.-z-2 {
+    z-index: -2;
+}
 .col-span-2 {
     grid-column: span 2 / span 2;
 }
@@ -2157,6 +2163,11 @@ select {
 .border-white\/80 {
     border-color: rgba(255, 255, 255, 0.8);
 }
+.border-neutral-200 {
+    --tw-border-opacity: 1;
+    border-color: rgba(229, 229, 229, 1);
+    border-color: rgba(229, 229, 229, var(--tw-border-opacity, 1));
+}
 .bg-\[color\:var\(--color-primary\)\] {
     background-color: #414042;
     background-color: var(--color-primary);
@@ -3084,6 +3095,11 @@ select {
 }
 .transition-transform {
     transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+.transition-\[flex\2c border-color\] {
+    transition-property: flex,border-color;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
 }
@@ -26810,6 +26826,11 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     --tw-border-opacity: 1;
     border-color: rgba(153, 27, 27, 1);
     border-color: rgba(153, 27, 27, var(--tw-border-opacity, 1));
+}
+.dark *.dark\:border-neutral-700 {
+    --tw-border-opacity: 1;
+    border-color: rgba(64, 64, 64, 1);
+    border-color: rgba(64, 64, 64, var(--tw-border-opacity, 1));
 }
 .dark *.dark\:bg-\[var\(--color-dark-box-background\)\] {
     background-color: var(--color-dark-box-background);
