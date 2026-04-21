@@ -63,13 +63,15 @@
   }
 
   .why-us-feature {
+ 
+
+
     @apply flex items-start gap-4 rounded-custom p-4 md:p-6 shadow-sm transition-all duration-300 hover-glow-sm  
     dark:bg-[var(--color-dark-box-background)]
     bg-[var(--color-light-box-background)]
     border
     dynamic-border-color;
-   // background: rgba(255, 255, 255, 0.92);
-  
+   
     &:hover {
       @apply -translate-y-1;
       border-color: var(--color-primary-20);
