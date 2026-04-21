@@ -67,12 +67,12 @@
 
 
     @apply flex items-start gap-4 rounded-custom p-4 md:p-6 shadow-sm transition-all duration-300   
-    dark:bg-[var(--color-dark-box-background-40)]
-    bg-[var(--color-light-box-background-40)]
+ 
+    bg-[var(--color-primary-5)]
     
     rtl:border-r-4 ltr:border-l-4
-     
-    dynamic-border-color;
+     border-primary
+     ;
    
     &:hover {
       
@@ -105,7 +105,7 @@
   }
 
   .why-us-feature:hover .why-us-feature__icon::after {
-    opacity: 1;
+    // opacity: 1;
   }
 
   .why-us-feature__title {
