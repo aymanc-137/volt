@@ -66,17 +66,19 @@
  
 
 
-    @apply flex items-start gap-4 rounded-custom p-4 md:p-6 shadow-sm transition-all duration-300 hover-glow-sm  
+    @apply flex items-start gap-4 rounded-custom p-4 md:p-6 shadow-sm transition-all duration-300   
     dark:bg-[var(--color-dark-box-background-40)]
     bg-[var(--color-light-box-background-40)]
     
-    border
+    rtl:border-r-4 ltr:border-l-4
+     
     dynamic-border-color;
    
     &:hover {
-      @apply -translate-y-1;
-      border-color: var(--color-primary-20);
-      @apply border-[var(--color-primary-20)];
+      
+      
+    
+      
     }
   }
 
