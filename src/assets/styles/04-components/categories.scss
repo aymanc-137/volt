@@ -1,18 +1,19 @@
 
-.category-card{
-  @apply border-2
-  bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)]
+.category-card {
+  background: radial-gradient(var(--color-dark-box-background), var(--color-light-box-background));
 
-  dynamic-border-color 
-   
-   transition-all duration-300 rounded-custom hover-glow-sm;
+  .dark & {
+    background: radial-gradient(var(--color-light-box-background), var(--color-dark-box-background));
+  }
+
+  @apply border-2 dynamic-border-color transition-all duration-300 rounded-custom hover-glow-sm;
   // background-color:  var(--color-dark-page-backgroun);
   .category-name {
     @apply dynamic-text-color;
   }
   &:hover{
     img{
-      @apply scale-110 transition-all duration-300;
+      @apply scale-125 mb-10 transition-all duration-300 ease-in-out;
     }
    @apply border-[var(--color-primary)] scale-105;
           //transition: opacity 0.3s ease;

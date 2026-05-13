@@ -29,170 +29,150 @@
 {% set marquee_text_size = component.marquee_text_size | default('8') %}
 {% set slas_hbg_size = component.slas_hbg_size | default('20') %}
 {% set slas_hbg_use_primary_color = component.slas_hbg_use_primary_color %}
-{% set slas_hbg_color = component.slas_hbg_color~"1A" | default('#0000001A') %}
+{% set slas_hbg_color = component.slas_hbg_color ~ "1A" | default('#0000001A') %}
 
 {# <span class="navbar-underline"></span> #}
-<section class="  z-10 s-block--categories   {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} py-20 relative overflow-hidden
-   
-    {{ slashbg ? 'slash-bg-' ~ position ~ '   dynamic-bg-color' : ''}}
-    pb-32">
-    {% if enable_glow %}
-    <!-- Glow balls -->
-    <div class="absolute top-[15%] left-[25%] w-64 h-64 rounded-full blur-3xl opacity-60 pointer-events-none" style="background-color: var(--color-primary);"></div>
-    <div class="absolute bottom-[15%] right-[25%] w-56 h-56 rounded-full blur-3xl opacity-60 pointer-events-none" style="background-color: var(--color-scandary);"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-52 h-52 rounded-full blur-3xl opacity-60 pointer-events-none" style="background-color: var(--color-primary);"></div>
-    {% endif %}
+<section
+    class="z-10 s-block--categories py-20 relative overflow-hidden pb-32 {{ enable_border ? 'border-y border-[var(--color-primary)]' : '' }} {{ slashbg ? 'slash-bg-' ~ position ~ ' dynamic-bg-color' : '' }}"
+>
     {% if marquee %}
+        {% if marquee_text_position == 'top' or marquee_text_position == 'both' %}
+            <div class="styleish-text absolute top-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
+                <div
+                    style="font-size: {{ marquee_text_size }}rem; line-height: 1;"
+                    class="{{ marquee_is_moving ? 'marquee-reverse-sections' : '' }} flex whitespace-nowrap w-max"
+                >
+                    <span class="font-alshohadaa font-bold display-text whitespace-nowrap px-4">
+                        {{ marqueetext }}&nbsp;&nbsp;&nbsp; {{ marqueetext }}&nbsp;&nbsp;&nbsp; {{ marqueetext }}&nbsp;&nbsp;&nbsp; {{ marqueetext }}
+                    </span>
+                    <span class="font-alshohadaa font-bold display-text whitespace-nowrap px-4">
+                        {{ marqueetext }}&nbsp;&nbsp;&nbsp;{{ marqueetext }}&nbsp;&nbsp;&nbsp; {{ marqueetext }}&nbsp;&nbsp;&nbsp; {{ marqueetext }}
+                    </span>
+                </div>
+            </div>
+        {% endif %}
 
-    {% if marquee_text_position == 'top' or marquee_text_position == 'both' %}
-
-    <div class="styleish-text absolute top-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
-        <div 
-        style="font-size: {{marquee_text_size}}rem; line-height:1;"
-        class="{{ marquee_is_moving ? 'marquee-reverse-sections' : '' }} 
-        flex
-        
-        
-         whitespace-nowrap w-max">
-            <span class="font-alshohadaa   font-bold    display-text whitespace-nowrap px-4">
-                {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
-            </span>
-            <span class="font-alshohadaa   font-bold    display-text whitespace-nowrap px-4">
-                {{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
-            </span>
-        </div>
-    </div>
-
+        {% if marquee_text_position == 'bottom' or marquee_text_position == 'both' %}
+            <div class="styleish-text absolute bottom-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
+                <div
+                    style="font-size: {{ marquee_text_size }}rem; line-height: 1;"
+                    class="{{ marquee_is_moving ? 'marquee-content-sections' : '' }} flex whitespace-nowrap w-max"
+                >
+                    <span class="font-alshohadaa font-bold display-text whitespace-nowrap px-4">
+                        {{ marqueetext }}&nbsp;&nbsp;&nbsp; {{ marqueetext }}&nbsp;&nbsp;&nbsp; {{ marqueetext }}&nbsp;&nbsp;&nbsp; {{ marqueetext }}
+                    </span>
+                    <span class="font-alshohadaa font-bold display-text whitespace-nowrap px-4">
+                        {{ marqueetext }}&nbsp;&nbsp;&nbsp;{{ marqueetext }}&nbsp;&nbsp;&nbsp; {{ marqueetext }}&nbsp;&nbsp;&nbsp; {{ marqueetext }}
+                    </span>
+                </div>
+            </div>
+        {% endif %}
     {% endif %}
 
-    {% if marquee_text_position == 'bottom' or marquee_text_position == 'both' %}
-
-    <div class="styleish-text absolute bottom-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
-        <div
-         
-        style="font-size: {{marquee_text_size}}rem; line-height:1;"
-
-         class="{{ marquee_is_moving ? 'marquee-content-sections' : '' }} flex whitespace-nowrap w-max">
-            <span class="font-alshohadaa font-bold display-text whitespace-nowrap px-4">
-                {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
-            </span>
-            <span class="font-alshohadaa font-bold display-text whitespace-nowrap px-4">
-                {{marqueetext}}&nbsp;&nbsp;&nbsp;{{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}&nbsp;&nbsp;&nbsp; {{marqueetext}}
-            </span>
-        </div>
-    </div>
- 
-    {% endif %}
-    {% endif %}
     <!-- Decorative Top Heading -->
     {% if component.title %}
-  <div class="mx-auto flex flex-col space-y-6 justify-center items-center my-12 w-5/6">
+        <div class="mx-auto flex flex-col space-y-6 justify-center items-center my-12 w-5/6">
+            <div class="flex flex-col items-center">
+                {% if component.enable_gradient_title %}
+                    <h1 class="z-1 text-4xl font-alshohadaa mb-5 bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ component.title }}</h1>
+                {% elseif component.enable_gradient_word and component.gradient_word %}
+                    <h1 id="category-list-title-{{ position }}" class="text-4xl z-1 font-alshohadaa mb-5 dynamic-text-color">{{ component.title }}</h1>
+                {% else %}
+                    <h1 class="z-1 text-4xl font-alshohadaa mb-5 dynamic-text-color">{{ component.title }}</h1>
+                {% endif %}
+                <span class="navbar-underline"></span>
+            </div>
 
-    <div class="flex flex-col items-center">
-      {% if component.enable_gradient_title %}
-        <h1 class="text-4xl font-alshohadaa mb-5 bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{component.title}}</h1>
-      {% elseif component.enable_gradient_word and component.gradient_word %}
-        <h1 id="category-list-title-{{ position }}" class="text-4xl font-alshohadaa mb-5 dynamic-text-color">{{component.title}}</h1>
-      {% else %}
-        <h1 class="text-4xl font-alshohadaa mb-5 dynamic-text-color">{{component.title}}</h1>
-      {% endif %}
-      <span class="navbar-underline"></span>
+            <div class="z-1 text-center mx-auto text-base lg:text-lg dynamic-text-color">
+                {{ component.sub_title }}
+            </div>
+        </div>
+
+        {% if component.enable_gradient_word and component.gradient_word %}
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const titleEl = document.getElementById('category-list-title-{{ position }}');
+                    if (titleEl) {
+                        const word = '{{ component.gradient_word }}';
+                        const regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+                        titleEl.innerHTML = titleEl.innerHTML.replace(
+                            regex,
+                            '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
+                        );
+                    }
+                });
+            </script>
+        {% endif %}
+    {% endif %}
+
+    <div class="w-[90] big-image-category justify-center items-center">
+        <salla-slider
+            type="carousel"
+            controls-outer
+            autoplay
+            show-controls="true"
+            id="main-links-{{ position }}"
+        >
+            <div slot="items">
+                {% for index, item in component.links %}
+                    <div class="swiper-slide my-10 slide-one-one">
+                        <div class="w-32 h-32 md:w-56 md:h-56 overflow-hidden category-card category-card-bg-{{ index }}">
+                            <h3 class="z-1 text-center my-2 category-name text-lg md:text-2xl font-extrabold place-self-center">{{ item.text }}</h3>
+
+                            <style>
+                                .category-card-bg-{{ index }}:hover {
+                                    background: linear-gradient(to bottom, {{ item.color }}4D, {{ item.color }}66);
+                                }
+                            </style>
+
+                            <a href="{{ item.url }}" class="w-full h-full flex flex-col items-center justify-evenly">
+                                <img
+                                    class="w-32 h-32 bg-contain bg-center border-none bg-no-repeat"
+                                    src="{{ item.image }}"
+                                    {# style="background-image: url('{{item.image}}') ;" #}
+                                >
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </salla-slider>
     </div>
 
-    <div class="text-center mx-auto text-base lg:text-lg dynamic-text-color">
-        {{component.sub_title}}
-      </div>
-  </div>
+    {% if enable_glow %}
+        <!-- Glow balls -->
+        <div class="absolute top-[15%] left-[25%] w-64 h-64 rounded-full blur-3xl opacity-60 pointer-events-none" style="background-color: var(--color-primary);"></div>
+        <div class="absolute bottom-[15%] right-[25%] w-56 h-56 rounded-full blur-3xl opacity-60 pointer-events-none" style="background-color: var(--color-scandary);"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-52 h-52 rounded-full blur-3xl opacity-60 pointer-events-none" style="background-color: var(--color-primary);"></div>
+    {% endif %}
+</section>
 
-  {% if component.enable_gradient_word and component.gradient_word %}
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const titleEl = document.getElementById('category-list-title-{{ position }}');
-        if (titleEl) {
-          const word = '{{ component.gradient_word }}';
-          const regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
-          titleEl.innerHTML = titleEl.innerHTML.replace(
-            regex,
-            '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
-          );
+<style>
+    {% if slas_hbg_use_primary_color %}
+        .slash-bg-{{ position }} {
+            background: linear-gradient(
+                135deg,
+                var(--color-primary-10) 25%,
+                rgba(0, 0, 0, 0) 25%,
+                rgba(0, 0, 0, 0) 50%,
+                var(--color-primary-10) 50%,
+                var(--color-primary-10) 75%,
+                rgba(0, 0, 0, 0) 75%
+            );
+            background-size: {{ slas_hbg_size }}px {{ slas_hbg_size }}px;
         }
-      });
-    </script>
-  {% endif %}
-
-{% endif %}
-
-<div class="w-[90]  big-image-category justify-center items-center ">
-<salla-slider  
-type="carousel"
-controls-outer
-autoplay
-show-controls="true" 
-id="main-links-{{ position }}">
-
-<div slot="items">
-      {% for index,item in component.links %}
-          <div class="swiper-slide my-10  slide-one-one  ">
-
-          <div
-           class="w-32 h-32 md:w-56 md:h-56 overflow-hidden
-          category-card
-      
-         category-card-bg-{{index}}
-
-          "
-          
-          >
-          <style>
-          
-            .category-card-bg-{{index}}:hover
-            {
-             
-              background: linear-gradient(to bottom  ,{{item.color}}4D ,{{item.color}}66 );
-            }
-          </style>
-
-          <a href="{{item.url}}"
-                    class="w-full h-full flex flex-col items-center justify-evenly"
-                    
-                   
-                     >
-                     <img class="w-32 h-32 bg-contain bg-center border-none bg-no-repeat"
-                     src="{{item.image}}"
-                     {# style="background-image: url('{{item.image}}') ;" #}
-
-                     >
-                  <h3
-                  
-                   class=" text-center category-name
-                   
-                   text-lg md:text-2xl font-bold place-self-center">{{item.text}}</h3>
-          </a>
-
-          </div>
-          </div>
-      {% endfor %}
-</div>
-
-</salla-slider>
-</div>
-
-</section> 
- 
- <style>
- {% if slas_hbg_use_primary_color %}
- .slash-bg-{{position}} {
-    background: linear-gradient(135deg, var(--color-primary-10) 25%, rgba(0, 0, 0, 0)  
-    25%, rgba(0, 0, 0, 0)  50%, var(--color-primary-10)  50%, 
-                                 var(--color-primary-10) 75%, rgba(0, 0, 0, 0) 75%);
-   background-size: {{slas_hbg_size}}px {{slas_hbg_size}}px;
-}
-{% else %}
-.slash-bg-{{position}} {
-    background: linear-gradient(135deg, {{slas_hbg_color}} 25%, rgba(0, 0, 0, 0)  
-    25%, rgba(0, 0, 0, 0)  50%, {{slas_hbg_color}}  50%, 
-                                 {{slas_hbg_color}} 75%, rgba(0, 0, 0, 0) 75%);
-   background-size: {{slas_hbg_size}}px {{slas_hbg_size}}px;
-}
-{% endif %} 
- </style>
+    {% else %}
+        .slash-bg-{{ position }} {
+            background: linear-gradient(
+                135deg,
+                {{ slas_hbg_color }} 25%,
+                rgba(0, 0, 0, 0) 25%,
+                rgba(0, 0, 0, 0) 50%,
+                {{ slas_hbg_color }} 50%,
+                {{ slas_hbg_color }} 75%,
+                rgba(0, 0, 0, 0) 75%
+            );
+            background-size: {{ slas_hbg_size }}px {{ slas_hbg_size }}px;
+        }
+    {% endif %}
+</style>

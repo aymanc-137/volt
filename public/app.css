@@ -25579,11 +25579,11 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
   display: hidden;
 }
 .category-card {
-    border-width: 2px;
-    background-color: var(--color-light-box-background);
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
+  background: radial-gradient(var(--color-dark-box-background), var(--color-light-box-background));
+  border-width: 2px;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
   border-radius: var(--border-radius);
 }
 .category-card:hover {
@@ -25594,7 +25594,9 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
 }
 .dark *.category-card {
     border-color: var(--color-border-dark);
-    background-color: var(--color-dark-box-background);
+}
+.dark .category-card {
+  background: radial-gradient(var(--color-light-box-background), var(--color-dark-box-background));
 }
 .category-card .category-name {
     color: #2C3E50;
@@ -25612,13 +25614,14 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     border-color: var(--color-primary);
 }
 .category-card:hover img {
-    --tw-scale-x: 1.1;
-    --tw-scale-y: 1.1;
-    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(1.1) scaleY(1.1);
+    margin-bottom: 2.5rem;
+    --tw-scale-x: 1.25;
+    --tw-scale-y: 1.25;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(1.25) scaleY(1.25);
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
     transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .category-card:hover .category-name {
   background: linear-gradient(to right, #414042, var(--color-scandary));
