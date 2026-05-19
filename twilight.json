@@ -1794,6 +1794,16 @@
                     ]
                 },
                 {
+                    "id": "straight_lines_bg",
+                    "description": "خطوط عمودية مضيئة بتدرج من اللون الرئيسي تنبثق من جانب القسم",
+                    "labelHTML": null,
+                    "label": "تفعيل خلفية خطوط مستقيمة مع توهج جانبي",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
                     "id": "marquee",
                     "description": null,
                     "labelHTML": null,
