@@ -1729,13 +1729,55 @@
                 },
                 {
                     "id": "slas_hbg",
-                    "description": null,
+                    "description": "اختر نوع الخطوط من الإعداد التالي بعد التفعيل",
                     "labelHTML": null,
-                    "label": "تفعيل خلفية مموجة",
+                    "label": "تفعيل خلفية الخطوط",
                     "type": "boolean",
                     "format": "switch",
                     "value": false,
                     "required": false
+                },
+                {
+                    "id": "slas_hbg_type",
+                    "description": "اختر اتجاه الخطوط في الخلفية",
+                    "labelHTML": null,
+                    "label": "نوع الخطوط",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "value": [],
+                    "selected": [
+                        {
+                            "label": "مائلة (الوضع الافتراضي)",
+                            "value": "inclined",
+                            "key": "slas-type-inclined"
+                        }
+                    ],
+                    "source": "Manual",
+                    "options": [
+                        {
+                            "label": "مائلة (الوضع الافتراضي)",
+                            "value": "inclined",
+                            "key": "slas-type-inclined"
+                        },
+                        {
+                            "label": "عمودية (من أعلى لأسفل)",
+                            "value": "vertical",
+                            "key": "slas-type-vertical"
+                        },
+                        {
+                            "label": "أفقية (من يسار ليمين)",
+                            "value": "horizontal",
+                            "key": "slas-type-horizontal"
+                        }
+                    ],
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "slas_hbg",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
                 },
                 {
                     "id": "slas_hbg_size",
@@ -1770,7 +1812,7 @@
                             "value": true
                         }
                     ]
-                },          
+                },
                 {
                     "id": "slas_hbg_color",
                     "description": null,
@@ -1792,16 +1834,6 @@
                             "value": true
                         }
                     ]
-                },
-                {
-                    "id": "straight_lines_bg",
-                    "description": "خطوط عمودية مضيئة بتدرج من اللون الرئيسي تنبثق من جانب القسم",
-                    "labelHTML": null,
-                    "label": "تفعيل خلفية خطوط مستقيمة مع توهج جانبي",
-                    "type": "boolean",
-                    "format": "switch",
-                    "value": false,
-                    "required": false
                 },
                 {
                     "id": "marquee",
@@ -1878,7 +1910,7 @@
                     "selected": [],
                     "source": "Manual",
                     "options": [
-                    {
+                        {
                             "label": "أعلى فقط",
                             "value": "top",
                             "key": "8c49d000-f3fa-4242-afd6-2801c3612b37"
@@ -5388,4 +5420,3 @@
         "en": ""
     }
 }
-    
