@@ -1945,11 +1945,36 @@
                 },
                 {
                     "id": "enable_glow",
-                    "label": "تفعيل تأثير التوهج",
-                    "description": "إضافة كرات متوهجة في الخلفية باستخدام الألوان الأساسية والثانوية",
-                    "type": "boolean",
-                    "format": "switch",
-                    "value": false,
+                    "label": "تأثير التوهج",
+                    "description": "اختر اتجاه انبثاق الضوء المتوهج من حواف القسم",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "value": [],
+                    "selected": [
+                        {
+                            "label": "بدون توهج",
+                            "value": "none",
+                            "key": "glow-none"
+                        }
+                    ],
+                    "source": "Manual",
+                    "options": [
+                        {
+                            "label": "بدون توهج",
+                            "value": "none",
+                            "key": "glow-none"
+                        },
+                        {
+                            "label": "توهج من الجانبين (يسار ويمين)",
+                            "value": "sides",
+                            "key": "glow-sides"
+                        },
+                        {
+                            "label": "توهج من الأعلى والأسفل",
+                            "value": "top_bottom",
+                            "key": "glow-top-bottom"
+                        }
+                    ],
                     "required": false
                 }
             ]
