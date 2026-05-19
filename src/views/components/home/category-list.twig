@@ -14,7 +14,7 @@
 | component.links[].url              | string   |                                                                              |
 | component.slash_hbg                | bool     | Enable lines background                                                       |
 | component.slas_hbg_type            | string   | Line direction: 'inclined' (default) / 'vertical' / 'horizontal'             |
-| component.enable_glow              | string   | Glow direction: 'none' (default) / 'sides' / 'top_bottom'                   |
+| component.enable_glow              | string   | 'none' / 'circles' / 'sides' / 'top_bottom' / 'left' / 'right' / 'top' / 'bottom' |
 | component.marquee                  | bool     | Enable marquee text                                                          |
 | component.marqueetext              | string   | Marquee text                                                                 |
 | position                           | int      | Sorting number start from zero                                               |
@@ -142,12 +142,24 @@
         </salla-slider>
     </div>
 
-    {% if glow_type == 'sides' %}
+    {% if glow_type == 'circles' %}
+        <div class="absolute top-[15%] left-[25%] w-64 h-64 rounded-full blur-3xl opacity-60 pointer-events-none" style="z-index:-1; background-color:var(--color-primary);"></div>
+        <div class="absolute bottom-[15%] right-[25%] w-56 h-56 rounded-full blur-3xl opacity-60 pointer-events-none" style="z-index:-1; background-color:var(--color-scandary);"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-52 h-52 rounded-full blur-3xl opacity-60 pointer-events-none" style="z-index:-1; background-color:var(--color-primary);"></div>
+    {% elseif glow_type == 'sides' %}
         <div class="absolute inset-y-0 left-0 pointer-events-none" style="z-index:-1; width:40%; background:linear-gradient(to right, var(--color-primary), transparent); opacity:0.22;"></div>
         <div class="absolute inset-y-0 right-0 pointer-events-none" style="z-index:-1; width:40%; background:linear-gradient(to left, var(--color-scandary), transparent); opacity:0.22;"></div>
     {% elseif glow_type == 'top_bottom' %}
         <div class="absolute inset-x-0 top-0 pointer-events-none" style="z-index:-1; height:45%; background:linear-gradient(to bottom, var(--color-primary), transparent); opacity:0.22;"></div>
         <div class="absolute inset-x-0 bottom-0 pointer-events-none" style="z-index:-1; height:45%; background:linear-gradient(to top, var(--color-scandary), transparent); opacity:0.22;"></div>
+    {% elseif glow_type == 'left' %}
+        <div class="absolute inset-y-0 left-0 pointer-events-none" style="z-index:-1; width:40%; background:linear-gradient(to right, var(--color-primary), transparent); opacity:0.25;"></div>
+    {% elseif glow_type == 'right' %}
+        <div class="absolute inset-y-0 right-0 pointer-events-none" style="z-index:-1; width:40%; background:linear-gradient(to left, var(--color-primary), transparent); opacity:0.25;"></div>
+    {% elseif glow_type == 'top' %}
+        <div class="absolute inset-x-0 top-0 pointer-events-none" style="z-index:-1; height:45%; background:linear-gradient(to bottom, var(--color-primary), transparent); opacity:0.25;"></div>
+    {% elseif glow_type == 'bottom' %}
+        <div class="absolute inset-x-0 bottom-0 pointer-events-none" style="z-index:-1; height:45%; background:linear-gradient(to top, var(--color-primary), transparent); opacity:0.25;"></div>
     {% endif %}
 </section>
 
