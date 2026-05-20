@@ -1722,6 +1722,15 @@
                     "maxLength": 15
                 },
                 {
+                    "id": "show_car_search",
+                    "label": "عرض محرك بحث السيارات بجانب السلايدر",
+                    "description": "يظهر مربع بحث السيارات على الجانب الآخر من قائمة التصنيفات — يتم تحميله تلقائياً من إعدادات مكوّن شجرة البحث",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
                     "type": "static",
                     "format": "description",
                     "id": "group-background-settings",
