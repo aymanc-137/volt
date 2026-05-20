@@ -2001,6 +2001,64 @@
                         }
                     ],
                     "required": false
+                },
+                {
+                    "id": "glow_use_theme_colors",
+                    "label": "استخدام ألوان السمة للتوهج",
+                    "description": "عند التفعيل يستخدم اللون الأساسي والثانوي للسمة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": true,
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "enable_glow",
+                            "operation": "!=",
+                            "value": "none"
+                        }
+                    ]
+                },
+                {
+                    "id": "glow_color_1",
+                    "label": "لون التوهج الأول",
+                    "description": "اللون الرئيسي للتوهج (الجانب الأيسر / الأعلى / الكرة الأولى)",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#7c3aed",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "glow_use_theme_colors",
+                            "operation": "=",
+                            "value": false
+                        },
+                        {
+                            "id": "enable_glow",
+                            "operation": "!=",
+                            "value": "none"
+                        }
+                    ]
+                },
+                {
+                    "id": "glow_color_2",
+                    "label": "لون التوهج الثاني",
+                    "description": "اللون الثانوي للتوهج (الجانب الأيمن / الأسفل / الكرة الثانية) — يُستخدم فقط في الأنواع المزدوجة",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#06b6d4",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "glow_use_theme_colors",
+                            "operation": "=",
+                            "value": false
+                        },
+                        {
+                            "id": "enable_glow",
+                            "operation": "!=",
+                            "value": "none"
+                        }
+                    ]
                 }
             ]
         },

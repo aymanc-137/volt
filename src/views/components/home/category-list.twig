@@ -15,6 +15,9 @@
 | component.slash_hbg                | bool     | Enable lines background                                                       |
 | component.slas_hbg_type            | string   | Line direction: 'inclined' (default) / 'vertical' / 'horizontal'             |
 | component.enable_glow              | string   | 'none' / 'circles' / 'sides' / 'top_bottom' / 'left' / 'right' / 'top' / 'bottom' |
+| component.glow_use_theme_colors    | bool     | Use theme primary/secondary colors for glow (default true)                   |
+| component.glow_color_1             | string   | Custom first glow color (hex) when not using theme colors                    |
+| component.glow_color_2             | string   | Custom second glow color (hex) for paired glow types                         |
 | component.marquee                  | bool     | Enable marquee text                                                          |
 | component.marqueetext              | string   | Marquee text                                                                 |
 | position                           | int      | Sorting number start from zero                                               |
@@ -25,6 +28,9 @@
 {% set marqueetext = component.marqueetext | default(" سرعة /// أداء /// تحكم ") %}
 {% set enable_border = component.enable_border | default(false) %}
 {% set glow_type = component.enable_glow | default('none') %}
+{% set glow_use_theme = component.glow_use_theme_colors | default(true) %}
+{% set glow_c1 = glow_use_theme ? 'var(--color-primary)'  : (component.glow_color_1 | default('var(--color-primary)')) %}
+{% set glow_c2 = glow_use_theme ? 'var(--color-scandary)' : (component.glow_color_2 | default('var(--color-scandary)')) %}
 {% set marquee_text_position = component.marquee_text_position | default('both') %}
 {% set marquee_is_moving = component.marquee_is_moving %}
 {% set marquee_text_size = component.marquee_text_size | default('8') %}
@@ -143,23 +149,23 @@
     </div>
 
     {% if glow_type == 'circles' %}
-        <div class="absolute top-[15%] left-[25%] w-64 h-64 rounded-full blur-3xl opacity-60 pointer-events-none" style="z-index:-1; background-color:var(--color-primary);"></div>
-        <div class="absolute bottom-[15%] right-[25%] w-56 h-56 rounded-full blur-3xl opacity-60 pointer-events-none" style="z-index:-1; background-color:var(--color-scandary);"></div>
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-52 h-52 rounded-full blur-3xl opacity-60 pointer-events-none" style="z-index:-1; background-color:var(--color-primary);"></div>
+        <div class="absolute top-[15%] left-[25%] w-64 h-64 rounded-full blur-3xl opacity-60 pointer-events-none" style="z-index:-1; background-color:{{ glow_c1 }};"></div>
+        <div class="absolute bottom-[15%] right-[25%] w-56 h-56 rounded-full blur-3xl opacity-60 pointer-events-none" style="z-index:-1; background-color:{{ glow_c2 }};"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-52 h-52 rounded-full blur-3xl opacity-60 pointer-events-none" style="z-index:-1; background-color:{{ glow_c1 }};"></div>
     {% elseif glow_type == 'sides' %}
-        <div class="absolute inset-y-0 left-0 pointer-events-none" style="z-index:-1; width:40%; background:linear-gradient(to right, var(--color-primary), transparent); opacity:0.22;"></div>
-        <div class="absolute inset-y-0 right-0 pointer-events-none" style="z-index:-1; width:40%; background:linear-gradient(to left, var(--color-scandary), transparent); opacity:0.22;"></div>
+        <div class="absolute inset-y-0 left-0 pointer-events-none" style="z-index:-1; width:40%; background:linear-gradient(to right, {{ glow_c1 }}, transparent); opacity:0.22;"></div>
+        <div class="absolute inset-y-0 right-0 pointer-events-none" style="z-index:-1; width:40%; background:linear-gradient(to left, {{ glow_c2 }}, transparent); opacity:0.22;"></div>
     {% elseif glow_type == 'top_bottom' %}
-        <div class="absolute inset-x-0 top-0 pointer-events-none" style="z-index:-1; height:45%; background:linear-gradient(to bottom, var(--color-primary), transparent); opacity:0.22;"></div>
-        <div class="absolute inset-x-0 bottom-0 pointer-events-none" style="z-index:-1; height:45%; background:linear-gradient(to top, var(--color-scandary), transparent); opacity:0.22;"></div>
+        <div class="absolute inset-x-0 top-0 pointer-events-none" style="z-index:-1; height:45%; background:linear-gradient(to bottom, {{ glow_c1 }}, transparent); opacity:0.22;"></div>
+        <div class="absolute inset-x-0 bottom-0 pointer-events-none" style="z-index:-1; height:45%; background:linear-gradient(to top, {{ glow_c2 }}, transparent); opacity:0.22;"></div>
     {% elseif glow_type == 'left' %}
-        <div class="absolute inset-y-0 left-0 pointer-events-none" style="z-index:-1; width:40%; background:linear-gradient(to right, var(--color-primary), transparent); opacity:0.25;"></div>
+        <div class="absolute inset-y-0 left-0 pointer-events-none" style="z-index:-1; width:40%; background:linear-gradient(to right, {{ glow_c1 }}, transparent); opacity:0.25;"></div>
     {% elseif glow_type == 'right' %}
-        <div class="absolute inset-y-0 right-0 pointer-events-none" style="z-index:-1; width:40%; background:linear-gradient(to left, var(--color-primary), transparent); opacity:0.25;"></div>
+        <div class="absolute inset-y-0 right-0 pointer-events-none" style="z-index:-1; width:40%; background:linear-gradient(to left, {{ glow_c1 }}, transparent); opacity:0.25;"></div>
     {% elseif glow_type == 'top' %}
-        <div class="absolute inset-x-0 top-0 pointer-events-none" style="z-index:-1; height:45%; background:linear-gradient(to bottom, var(--color-primary), transparent); opacity:0.25;"></div>
+        <div class="absolute inset-x-0 top-0 pointer-events-none" style="z-index:-1; height:45%; background:linear-gradient(to bottom, {{ glow_c1 }}, transparent); opacity:0.25;"></div>
     {% elseif glow_type == 'bottom' %}
-        <div class="absolute inset-x-0 bottom-0 pointer-events-none" style="z-index:-1; height:45%; background:linear-gradient(to top, var(--color-primary), transparent); opacity:0.25;"></div>
+        <div class="absolute inset-x-0 bottom-0 pointer-events-none" style="z-index:-1; height:45%; background:linear-gradient(to top, {{ glow_c1 }}, transparent); opacity:0.25;"></div>
     {% endif %}
 </section>
 
