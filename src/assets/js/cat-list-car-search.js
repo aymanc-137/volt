@@ -10,7 +10,7 @@ import CarSearchTree from './car-search-tree';
  */
 class CatListCarSearch extends BasePage {
     async onReady() {
-        const containers = document.querySelectorAll('[data-cat-list-car-search]');
+        const containers = document.querySelectorAll('[data-home-car-search]');
         if (!containers.length) return;
 
         try {

@@ -21,9 +21,10 @@
 {% set animation_type = component.animation_type  %}
 {% set autoplay = component.autoplay ?? false %}
 {% set autoplay_delay = component.autoplay_delay ?? 5 %}
+{% set show_car_search = component.show_car_search | default(false) %}
 
 {% set block_id = 'enhanced-image-carousel-' ~ position %}
- <section dir="ltr"  class="h-[80vh] w-full" id="{{ block_id }}">
+ <section dir="ltr"  class="h-[80vh] w-full relative" id="{{ block_id }}">
     <div
         class="enhanced-carousel h-full  relative group/carousel"
         data-enhanced-carousel
@@ -146,4 +147,14 @@
             {% endif %}
         </div>
     </div>
+
+    {% if show_car_search %}
+    {# Single car-search box overlaid on the carousel — JS populates via salla.api #}
+    <div class="hidden lg:flex absolute top-1/2 -translate-y-1/2 left-6 xl:left-10 z-20
+                w-72 xl:w-80 max-h-[85%] flex-col overflow-y-auto
+                rounded-2xl shadow-2xl
+                bg-white/90 dark:bg-dark-foreground/95 backdrop-blur-md"
+         data-home-car-search="{{ position }}">
+    </div>
+    {% endif %}
 </section>
