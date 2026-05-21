@@ -167,5 +167,6 @@
 [data-home-car-search] {
     .car-search-tree__selects {
         @apply grid-cols-1;
+        grid-gap: 0.5rem;
     }
 }
