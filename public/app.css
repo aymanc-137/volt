@@ -1442,6 +1442,9 @@ select {
 .w-1\/2 {
     width: 50%;
 }
+.w-1\/5 {
+    width: 20%;
+}
 .w-10 {
     width: 2.5rem;
 }
@@ -1502,9 +1505,6 @@ select {
 .w-7 {
     width: 1.75rem;
 }
-.w-72 {
-    width: 18rem;
-}
 .w-8 {
     width: 2rem;
 }
@@ -1542,6 +1542,9 @@ select {
 }
 .w-px {
     width: 1px;
+}
+.w-2\/5 {
+    width: 40%;
 }
 .min-w-0 {
     min-width: 0px;
@@ -27590,9 +27593,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .xl\:w-3\/5 {
         width: 60%;
-    }
-    .xl\:w-80 {
-        width: 20rem;
     }
     .xl\:w-\[35rem\] {
         width: 35rem;
