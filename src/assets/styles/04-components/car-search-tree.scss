@@ -162,3 +162,10 @@
 .car-search-tree__products-grid {
     @apply  s-products-list-wrapper s-products-list-vertical-cards;
 }
+
+// When rendered inside the carousel overlay, stack dropdowns vertically
+[data-home-car-search] {
+    .car-search-tree__selects {
+        @apply grid-cols-1;
+    }
+}

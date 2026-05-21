@@ -26114,6 +26114,9 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     min-width: 220px;
   }
 }
+[data-home-car-search] .car-search-tree__selects {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
 .s-block--why-us {
     padding-top: 4rem;
     padding-bottom: 4rem;
