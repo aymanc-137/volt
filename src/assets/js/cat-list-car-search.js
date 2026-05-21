@@ -21,9 +21,6 @@ class CatListCarSearch extends BasePage {
             const item = res.data?.[0];
             if (!item?.component) return;
 
-            // Force dropdown layout — more compact than the tile grid
-            item.component.use_dropdown_layout = true;
-
             const treeRenderer = new CarSearchTree();
 
             containers.forEach(container => {
