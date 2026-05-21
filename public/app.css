@@ -1400,8 +1400,8 @@ select {
 .max-h-\[300px\] {
     max-height: 300px;
 }
-.max-h-\[85\%\] {
-    max-height: 85%;
+.max-h-\[80\%\] {
+    max-height: 80%;
 }
 .max-h-full {
     max-height: 100%;
