@@ -33,7 +33,7 @@
         data-autoplay="{{ autoplay ? 'true' : 'false' }}"
         data-autoplay-delay="{{ autoplay_delay * 1000 }}"
     >
-        <div class="relative overflow-hidden h-full  bg-white dark:bg-dark-box-background">
+        <div class="relative overflow-hidden h-full   dark:bg-dark-box-background">
             <div class="{% if animation_type == 'fade' %}relative{% else %}flex transition-transform{% endif %} h-full duration-500 ease-in-out will-change-transform" data-carousel-track>
                 {% for slide in slides %}
                 {% set alignment = slide.content_alignment ?? 'center' %}
