@@ -654,6 +654,7 @@ class CarSearchTree extends BasePage {
         const badge = component.badge || 'اكتشف ملاءمة القطع';
         const hide_brand_labels = component.hide_brand_labels || false;
         const use_dropdown_layout = component.use_dropdown_layout || false;
+        this._extraCardAttrs = Array.isArray(component.card_attributes) ? component.card_attributes : [];
         const brand_select_id = `${tree_component_id}-brand-select`;
         const model_select_id = `${tree_component_id}-model-select`;
         const year_select_id = `${tree_component_id}-year-select`;
@@ -964,6 +965,7 @@ class CarSearchTree extends BasePage {
             const card = document.createElement('custom-salla-product-card');
             card.setAttribute('product', JSON.stringify(product));
             card.setAttribute('shadow-on-hover', '');
+            (this._extraCardAttrs || []).forEach(attr => card.setAttribute(attr, ''));
             fragment.appendChild(card);
         });
         rows.products.innerHTML = '';

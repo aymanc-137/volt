@@ -22,6 +22,7 @@ class CatListCarSearch extends BasePage {
             if (!item?.component) return;
 
             item.component.use_dropdown_layout = true;
+            item.component.card_attributes = ['minimal'];
 
             const treeRenderer = new CarSearchTree();
 
