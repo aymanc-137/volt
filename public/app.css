@@ -25667,7 +25667,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
   -webkit-text-fill-color: transparent;
 }
 .car-search-tree-block {
-    background-color: var(--color-light-box-background);
+    background-color: var(--color-light-box-background)/40;
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
 }
@@ -26110,6 +26110,10 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
   .landing-page .center-products .vertical-products .car-search-tree__products-grid .s-product-card-vertical {
     min-width: 220px;
   }
+}
+[data-home-car-search] .car-search-tree-block {
+  padding-top: 0rem !important;
+  padding-bottom: 0rem !important;
 }
 [data-home-car-search] .car-search-tree {
   padding: 1rem !important;

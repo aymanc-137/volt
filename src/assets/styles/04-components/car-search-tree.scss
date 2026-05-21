@@ -1,5 +1,5 @@
 .car-search-tree-block {
-    @apply py-10 bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)];
+    @apply py-10 bg-[var(--color-light-box-background)/40] dark:bg-[var(--color-dark-box-background)];
 }
 
 .car-search-tree {
@@ -165,6 +165,12 @@
 
 // When rendered inside the carousel overlay, stack dropdowns vertically
 [data-home-car-search] {
+
+    .car-search-tree-block{
+        padding-top: 0rem !important;
+        padding-bottom: 0rem !important;
+
+    }
    
     
     .car-search-tree{
