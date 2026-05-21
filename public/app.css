@@ -26127,7 +26127,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
   display: none;
 }
 [data-home-car-search] .car-search-tree__products .car-search-tree__products-grid {
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 .s-block--why-us {
     padding-top: 4rem;

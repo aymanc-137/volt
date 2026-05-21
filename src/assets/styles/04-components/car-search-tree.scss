@@ -165,6 +165,8 @@
 
 // When rendered inside the carousel overlay, stack dropdowns vertically
 [data-home-car-search] {
+   
+    
     .car-search-tree{
         padding : 1rem !important;
     }
@@ -179,7 +181,7 @@
             display: none;
         }
         .car-search-tree__products-grid{
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         }
     }
 }
