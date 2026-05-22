@@ -33,7 +33,7 @@
         data-autoplay="{{ autoplay ? 'true' : 'false' }}"
         data-autoplay-delay="{{ autoplay_delay * 1000 }}"
     >
-        <div class="relative overflow-hidden h-full   dark:bg-dark-box-background">
+        <div class="relative overflow-hidden h-full dark:bg-dark-box-background">
             <div class="{% if animation_type == 'fade' %}relative{% else %}flex transition-transform{% endif %} h-full duration-500 ease-in-out will-change-transform" data-carousel-track>
                 {% for slide in slides %}
                 {% set alignment = slide.content_alignment ?? 'center' %}
@@ -86,7 +86,7 @@
                                                 <span>{{ slide.title_part1 }}</span>
                                             {% endif %}
                                             {% if slide.title_gradient %}
-                                                <span class="bg-gradient-to-r text-3xl font-semibold sm:text-4xl lg:text-7xl from-primary to-scandary bg-clip-text text-transparent">{{ slide.title_gradient }}</span>
+                                                <span class="bg-gradient-to-r  from-primary to-scandary bg-clip-text text-transparent">{{ slide.title_gradient }}</span>
                                             {% endif %}
                                             {% if slide.title_part3 %}
                                                 <span>{{ slide.title_part3 }}</span>
