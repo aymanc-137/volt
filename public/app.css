@@ -25667,7 +25667,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
   -webkit-text-fill-color: transparent;
 }
 .car-search-tree-block {
-    background-color: var(--color-light-box-background)/40;
+    background-color: var(--color-light-box-background);
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
 }
@@ -26114,6 +26114,12 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
 [data-home-car-search] .car-search-tree-block {
   padding-top: 0rem !important;
   padding-bottom: 0rem !important;
+}
+[data-home-car-search] .car-search-tree-block {
+  background-color: var(--color-light-page-background-40);
+}
+[data-home-car-search] .car-search-tree-block:is(.dark *) {
+    background-color: var(--color-dark-page-background-40);
 }
 [data-home-car-search] .car-search-tree {
   padding: 1rem !important;

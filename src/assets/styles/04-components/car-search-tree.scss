@@ -1,5 +1,5 @@
 .car-search-tree-block {
-    @apply py-10 bg-[var(--color-light-box-background)/40] dark:bg-[var(--color-dark-box-background)];
+    @apply py-10 bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)];
 }
 
 .car-search-tree {
@@ -170,7 +170,10 @@
         padding-top: 0rem !important;
         padding-bottom: 0rem !important;
 
+        @apply bg-[var(--color-light-page-background-40)] dark:bg-[var(--color-dark-page-background-40)];
     }
+
+
    
     
     .car-search-tree{
@@ -182,7 +185,7 @@
     }
 
     .car-search-tree__products{
-        padding : 0rem !important;
+         padding : 0rem !important;
         .car-search-tree__products-header{
             display: none;
         }

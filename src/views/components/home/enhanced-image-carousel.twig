@@ -150,8 +150,10 @@
 
     {% if show_car_search %}
     {# Single car-search box overlaid on the carousel — JS populates via salla.api #}
-    <div class="hidden lg:flex absolute top-1/2 -translate-y-1/2 left-6 xl:left-10 z-20
-                w-2/5 max-h-[80%] flex-col overflow-y-auto
+    <div class="flex absolute
+                bottom-0 translate-y-1/2 left-1/2 -translate-x-1/2 w-[90%]
+                lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0 lg:left-6 xl:left-10 lg:w-2/5
+                z-20 max-h-[80%] flex-col overflow-y-auto
                 rounded-2xl shadow-2xl
                 dark:bg-dark-foreground/50 backdrop-blur-md"
          dir="rtl"
