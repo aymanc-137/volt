@@ -1364,11 +1364,11 @@ select {
 .h-\[400px\] {
     height: 400px;
 }
+.h-\[58dvh\] {
+    height: 58dvh;
+}
 .h-\[600px\] {
     height: 600px;
-}
-.h-\[80vh\] {
-    height: 80vh;
 }
 .h-auto {
     height: auto;
@@ -2577,6 +2577,10 @@ select {
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
 }
+.py-6 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
 .py-8 {
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -2749,9 +2753,6 @@ select {
 }
 .leading-12 {
     line-height: 3rem;
-}
-.leading-20 {
-    line-height: 5rem;
 }
 .leading-5 {
     line-height: 1.25rem;
@@ -27092,9 +27093,17 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
         padding-left: 1.5rem;
         padding-right: 1.5rem;
     }
+    .sm\:py-10 {
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+    }
     .sm\:py-16 {
         padding-top: 4rem;
         padding-bottom: 4rem;
+    }
+    .sm\:py-3 {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
     }
     .sm\:py-5 {
         padding-top: 1.25rem;
@@ -27109,11 +27118,17 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .sm\:pr-8 {
         padding-right: 2rem;
     }
+    .sm\:pt-0 {
+        padding-top: 0px;
+    }
     .sm\:pt-12 {
         padding-top: 3rem;
     }
     .sm\:pt-20 {
         padding-top: 5rem;
+    }
+    .sm\:pt-4 {
+        padding-top: 1rem;
     }
     .sm\:text-2xl {
         font-size: 1.5rem;
@@ -27186,6 +27201,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .md\:h-\[400px\] {
         height: 400px;
+    }
+    .md\:h-\[65dvh\] {
+        height: 65dvh;
     }
     .md\:h-\[700px\] {
         height: 700px;
@@ -27358,6 +27376,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
         font-size: 1.25rem;
         line-height: 1.75rem;
     }
+    .md\:leading-20 {
+        line-height: 5rem;
+    }
     .md\:first\:pt-24:first-child {
         padding-top: 6rem;
     }
@@ -27435,6 +27456,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .lg\:h-\[800px\] {
         height: 800px;
+    }
+    .lg\:h-\[80dvh\] {
+        height: 80dvh;
     }
     .lg\:min-h-\[500px\] {
         min-height: 500px;
@@ -27620,6 +27644,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .xl\:h-72 {
         height: 18rem;
+    }
+    .xl\:h-\[100dvh\] {
+        height: 100dvh;
     }
     .xl\:h-\[40rem\] {
         height: 40rem;
