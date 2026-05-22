@@ -24,7 +24,7 @@
 {% set show_car_search = component.show_car_search | default(false) %}
 
 {% set block_id = 'enhanced-image-carousel-' ~ position %}
- <section dir="ltr"  class="h-[80vh] w-full relative" id="{{ block_id }}">
+ <section dir="ltr" class="h-[58dvh] md:h-[65dvh] lg:h-[80dvh] xl:h-[100dvh] w-full relative" id="{{ block_id }}">
     <div
         class="enhanced-carousel h-full  relative group/carousel"
         data-enhanced-carousel
@@ -78,10 +78,10 @@
                             bg-gradient-to-l dark:from-[var(--color-dark-page-background)] 
                             from-[var(--color-light-page-background)] 
                             to-transparent
-                            flex h-full w-full px-6 py-10 sm:px-12 md:px-16 lg:px-20">
-                                <div class="flex my-auto w-full max-w-2xl flex-col gap-4 dynamic-text-color {{alignment_class[alignment[0]] ?? 'items-center text-center'}}">
+                            flex h-full w-full px-6 py-6 sm:px-12 sm:py-10 md:px-16 lg:px-20">
+                                <div class="flex my-auto w-full max-w-2xl flex-col gap-2 sm:gap-4 pt-16 sm:pt-0 dynamic-text-color {{alignment_class[alignment[0]] ?? 'items-center text-center'}}">
                                     {% if slide.title_part1 or slide.title_gradient or slide.title_part3 %}
-                                        <h3 class="font-alshohadaa text-2xl leading-20 font-semibold md:text-4xl lg:text-6xl opacity-0" data-carousel-text="title">
+                                        <h3 class="font-alshohadaa text-xl sm:text-2xl md:text-4xl lg:text-6xl md:leading-20 font-semibold opacity-0" data-carousel-text="title">
                                             {% if slide.title_part1 %}
                                                 <span>{{ slide.title_part1 }}</span>
                                             {% endif %}
@@ -94,12 +94,12 @@
                                         </h3>
                                     {% endif %}
                                     {% if slide.description %}
-                                        <p class="text-base sm:text-lg lg:text-xl dynamic-text-color opacity-0" data-carousel-text="description">{{ slide.description }}</p>
+                                        <p class="text-sm sm:text-base md:text-lg lg:text-xl dynamic-text-color opacity-0" data-carousel-text="description">{{ slide.description }}</p>
                                     {% endif %}
                                     {% if slide.button_label and slide.button_url %}
-                                        <div class="pt-4 opacity-0 " data-carousel-text="button">
+                                        <div class="pt-2 sm:pt-4 opacity-0" data-carousel-text="button">
                                             <a class="hover-glow transition-all duration-300" href="{{ slide.button_url }}" >
-                                                <div class="inline-flex   items-center gap-2 justify-center  btn btn--primary px-8 py-4   font-semibold uppercase tracking-wide  hover:scale-110  cursor-pointer">
+                                                <div class="inline-flex items-center gap-2 justify-center btn btn--primary px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 text-sm sm:text-base font-semibold uppercase tracking-wide hover:scale-110 cursor-pointer">
                                                     {{ slide.button_label }}
                                                     <i class="sicon-arrow-right rtl:rotate-180"></i>
                                                 </div>
