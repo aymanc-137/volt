@@ -180,8 +180,12 @@
         padding : 1rem !important;
     }
     .car-search-tree__selects {
-        // @apply grid-cols-1;
         grid-gap: 0.5rem;
+        grid-template-columns: repeat(3, 1fr);
+
+        @media (min-width: 1024px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
     }
 
     .car-search-tree__products{
@@ -192,5 +196,9 @@
         .car-search-tree__products-grid{
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         }
+    }
+
+    .car-search-tree__selection{
+        @apply hidden md:block;
     }
 }
