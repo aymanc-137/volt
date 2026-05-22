@@ -1,0 +1,461 @@
+{#
+| Variable              | Type    | Description |
+|-----------------------|---------|-------------|
+| items                 | array   | List of sliders |
+| items[].url           | string  | |
+| items[].link_type     | ?string | category, product, offers, page, external_link, brand |
+| items[].image.url     | string  | |
+| items[].image.alt    | string  | |
+| position              | int     | Sorting number start from zero |
+#}
+
+{% set animation_type = component.animation_type is iterable ? component.animation_type[0] : component.animation_type %}
+{% set animation_type = animation_type | default('fade') %}
+{% set indicator_position = component.indicator_position is iterable ? component.indicator_position[0] : component.indicator_position %}
+{% set indicator_position = indicator_position | default('bottom') %}
+{% set header_style = component.header_style is iterable ? component.header_style[0] : component.header_style %}
+{% set header_style = header_style | default('blur') %}
+
+<style>
+    {% if component.header_overlay != false %}
+        custom-main-menu {
+            color: var(--color-primary-reverse) !important;
+            transition: color 0.3s ease;
+        }
+        .top-navbar {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+    {% endif %}
+
+    /* Custom duration class since Tailwind doesn't have duration-2000 by default */
+    .duration-2000 {
+        transition-duration: 2000ms;
+    }
+
+    /* Pointer events */
+    .carousel-slide {
+        pointer-events: none;
+    }
+    .carousel-slide.activeslide {
+        pointer-events: auto;
+    }
+
+    /* ── Slide animation mode ── */
+    .carousel-slide-mode .carousel-slide {
+        opacity: 1 !important;
+        transition: transform 800ms ease-in-out !important;
+        transform: translateX(100%);
+    }
+    [dir="rtl"] .carousel-slide-mode .carousel-slide,
+    .rtl .carousel-slide-mode .carousel-slide {
+        transform: translateX(-100%);
+    }
+    .carousel-slide-mode .carousel-slide.activeslide {
+        transform: translateX(0) !important;
+    }
+
+    /* ── Indicators ── */
+    .carousel-indicators {
+        position: absolute;
+        z-index: 50;
+        display: flex;
+        gap: 0.5rem;
+    }
+    .carousel-indicators--bottom {
+        bottom: 1.25rem;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: row;
+    }
+    .carousel-indicators--side {
+        right: 1.25rem;
+        top: 50%;
+        transform: translateY(-50%);
+        flex-direction: column;
+    }
+    [dir="rtl"] .carousel-indicators--side,
+    .rtl .carousel-indicators--side {
+        right: auto;
+        left: 1.25rem;
+    }
+    .carousel-indicator-dot {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 9999px;
+        background: rgba(255, 255, 255, 0.45);
+        cursor: pointer;
+        transition: background 300ms, transform 300ms;
+        border: none;
+        padding: 0;
+    }
+    .carousel-indicator-dot.active {
+        background: rgba(255, 255, 255, 1);
+        transform: scale(1.4);
+    }
+
+    .home-carousel-{{ position }} {
+    }
+</style>
+
+{# #38bdf8 #6366f1 #}
+
+<section
+    data-section-name="home.slider-ads"
+    class="border-b border-[var(--color-primary-light)] slider-ads-component overflow-hidden w-full flex flex-col xl:h-[100dvh] lg:h-[80dvh] md:h-[65dvh] h-[58dvh] relative"
+    data-ad-bar="{{ component.ad_bar_under_slider_Ads != false ? 'true' : 'false' }}"
+    {# style=" background: linear-gradient(to right, {{ component.color_1 | default('#38bdf8') }} , {{ component.color_2 | default('#6366f1') }}); " #}
+>
+    {# ── Dark gradient scrim — only when overlay is on AND style is dark_gradient ── #}
+    {% if component.header_overlay != false and header_style == 'dark_gradient' %}
+        <div
+            class="absolute inset-x-0 top-0 pointer-events-none z-[5]"
+            style="height: 220px; background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, transparent 100%);"
+            aria-hidden="true"
+        ></div>
+    {% endif %}
+
+    <div
+        id="carousel-{{ position }}"
+        data-animation="{{ animation_type }}"
+        data-indicator="{{ indicator_position }}"
+        class="overflow-visible home-carousel home-carousel-{{ position }} h-full main-carousel !w-full relative overflow-hidden{% if animation_type == 'slide' %} carousel-slide-mode{% endif %}"
+    >
+        <div class="carousel-items relative flex h-full w-full">
+            {% for index, item in component.slides_ads %}
+                <div
+                    style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);"
+                    class="carousel-slide overflow-visible absolute inset-0 text-white justify-center flex-col h-full w-full bg-center bg-cover bg-no-repeat opacity-0 flex transition-opacity duration-2000 ease-in-out pointer-events-none"
+                    data-index="{{ index }}"
+                    {% if item.url and not item.button_title %}
+                        data-clickable="true"
+                        data-slide-url="{{ item.url }}"
+                    {% endif %}
+                >
+                    {% if item.use_video %}
+                        <div
+                            class="video-wrapper absolute inset-0 bg-center bg-cover bg-no-repeat"
+                            style="background-image: url('{{ item.image }}');"
+                        >
+                            <video
+                                autoplay
+                                muted
+                                loop
+                                playsinline
+                                src="{{ item.video_url }}"
+                                class="absolute inset-0 w-full h-full object-cover"
+                            ></video>
+                        </div>
+                    {% else %}
+                        <div
+                            class="absolute inset-0 bg-center bg-cover bg-no-repeat"
+                            style="background-image: url('{{ item.image }}');"
+                        ></div>
+                    {% endif %}
+
+                    <!-- Gradient overlay (same for both video and image) -->
+
+                    {% set postion = 'text-center' %}
+                    {% if item.postion[0] == "right" %}
+                        {% set postion = 'text-start' %}
+                    {% elseif item.postion[0] == "left" %}
+                        {% set postion = 'text-end' %}
+                    {% endif %}
+
+                    <div class="relative z-10 xl:w-[70%] lg:w-[75%] md:w-[80%] w-[85%] xl:h-5/6 lg:h-5/6 md:h-5/6 h-5/6 flex flex-col justify-center pt-20 md:pt-0 gap-1 place-self-center {{ postion }}">
+                        {% set title_size = item.title_size[0] | default('large') %}
+                        {% set subtitle_size = item.subtitle_size[0] | default('medium') %}
+
+                        <h1
+                            class="
+                                {% if title_size == 'small' %}xl:text-3xl lg:text-2xl md:text-xl text-sm
+                                {% elseif title_size == 'medium' %}xl:text-4xl lg:text-3xl md:text-2xl text-base
+                                {% elseif title_size == 'xlarge' %}xl:text-8xl lg:text-6xl md:text-5xl text-2xl
+                                {% else %}xl:text-6xl lg:text-4xl md:text-3xl text-lg
+                                {% endif %}
+                                my-1 font-extrabold"
+                            style="color: {{ item.title_color | default('#ffffff') }};"
+                        >{{ item.title }}</h1>
+                        <h3
+                            class="my-1 md:w-[60%] w-full
+                                {% if subtitle_size == 'small' %}xl:text-lg lg:text-base md:text-sm text-xs
+                                {% elseif subtitle_size == 'large' %}xl:text-3xl lg:text-2xl md:text-xl text-base
+                                {% elseif subtitle_size == 'xlarge' %}xl:text-4xl lg:text-3xl md:text-2xl text-lg
+                                {% else %}xl:text-2xl lg:text-xl md:text-lg text-sm
+                                {% endif %}"
+                            style="color: {{ item.subtitle_color | default('#ffffff') }};"
+                        >{{ item.description }}</h3>
+                        {% if item.button_title %}
+                            <salla-button href="{{ item.url }}" class="btn--rounded-full !text-white my-1">
+                                {{ item.button_title }}
+                            </salla-button>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="container xl:-mt-60 lg:-mt-[10rem] md:-mt-[8rem] -mt-[6rem] bg-transparent big-image-category z-20 justify-center items-center">
+            <salla-slider
+                type="carousel"
+                controls-outer
+                show-controls="false"
+                id="main-links-{{ position }}"
+            >
+                <div slot="items">
+                    {% for item in component.links %}
+                        <div class="swiper-slide overflow-visible slide-one-one">
+                            <div class="w-[100px] h-[80px] md:w-[150px] md:h-[130px] lg:w-[180px] lg:h-[160px] xl:w-[240px] xl:h-[200px] rounded-xl shadow-xl overflow-hidden">
+                                <a
+                                    href="{{ item.url }}"
+                                    class="w-full h-full flex items-center justify-center bg-cover bg-center hover:shadow-xl hover:scale-105 transition-all duration-300"
+                                    style="background-image: linear-gradient(to bottom right, {{ item.color }}2E , {{ item.color_2 }}D9 ), url('{{ item.image }}');"
+                                >
+                                    <h3
+                                        style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);"
+                                        class="text-white text-sm text-center md:text-2xl font-bold place-self-center"
+                                    >{{ item.text }}</h3>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </salla-slider>
+        </div>
+
+        {% if indicator_position != 'none' %}
+            <div class="carousel-indicators carousel-indicators--{{ indicator_position }}" aria-label="Slide indicators">
+                {% for index, item in component.slides_ads %}
+                    <button
+                        class="carousel-indicator-dot{% if index == 0 %} active{% endif %}"
+                        data-slide="{{ index }}"
+                        aria-label="Slide {{ index + 1 }}"
+                    ></button>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('[id^="carousel-"]').forEach(function (carouselContainer) {
+                initCarousel(carouselContainer);
+
+                // Click handlers for slides with URLs
+                carouselContainer.querySelectorAll('.carousel-slide[data-slide-url]').forEach(function (slide) {
+                    slide.addEventListener('click', function (e) {
+                        if (!e.target.closest('salla-button')) {
+                            const url = slide.getAttribute('data-slide-url');
+                            if (url) window.location.href = url;
+                        }
+                    });
+                });
+            });
+
+            function initCarousel(container) {
+                const slides = container.querySelectorAll('.carousel-slide');
+                if (slides.length === 0) return;
+
+                const animationType = container.dataset.animation || 'fade';
+                const isRTL = document.documentElement.dir === 'rtl' || document.body.classList.contains('rtl');
+                const slideDuration = 6000;
+                const transitionDuration = animationType === 'slide' ? 800 : 1000;
+
+                let currentIndex = 0;
+                let isTransitioning = false;
+                let interval;
+
+                const dots = container.querySelectorAll('.carousel-indicator-dot');
+
+                // ── Init first slide ──
+                if (animationType === 'slide') {
+                    slides[0].style.transform = 'translateX(0)';
+                    slides[0].classList.add('activeslide');
+                } else {
+                    slides[0].classList.add('opacity-100', 'activeslide');
+                }
+
+                startAutoplay();
+
+                // ── Indicator click ──
+                dots.forEach(function (dot) {
+                    dot.addEventListener('click', function () {
+                        const target = parseInt(dot.dataset.slide, 10);
+                        if (target !== currentIndex) {
+                            const dir = target > currentIndex ? 'next' : 'prev';
+                            goToSlide(target, dir);
+                            resetAutoplay();
+                        }
+                    });
+                });
+
+                function updateDots(index) {
+                    dots.forEach(function (d, i) {
+                        d.classList.toggle('active', i === index);
+                    });
+                }
+
+                function goToSlide(index, direction) {
+                    if (isTransitioning || index === currentIndex) return;
+                    isTransitioning = true;
+
+                    const prevIndex = currentIndex;
+                    currentIndex = index;
+
+                    if (animationType === 'slide') {
+                        // Determine entry/exit directions (account for RTL)
+                        const enterFrom = (direction === 'next')
+                            ? (isRTL ? '-100%' : '100%')
+                            : (isRTL ? '100%' : '-100%');
+                        const exitTo = (direction === 'next')
+                            ? (isRTL ? '100%' : '-100%')
+                            : (isRTL ? '-100%' : '100%');
+
+                        // Position incoming slide off-screen instantly (no transition)
+                        slides[currentIndex].style.transition = 'none';
+                        slides[currentIndex].style.transform = `translateX(${enterFrom})`;
+                        slides[currentIndex].classList.add('activeslide');
+
+                        // Force reflow so the position is applied before transition starts
+                        slides[currentIndex].offsetHeight;
+
+                        // Now animate both slides
+                        const trans = `transform ${transitionDuration}ms ease-in-out`;
+                        slides[prevIndex].style.transition = trans;
+                        slides[currentIndex].style.transition = trans;
+
+                        slides[prevIndex].style.transform = `translateX(${exitTo})`;
+                        slides[currentIndex].style.transform = 'translateX(0)';
+
+                        setTimeout(function () {
+                            slides[prevIndex].classList.remove('activeslide');
+                            slides[prevIndex].style.transition = 'none';
+                            slides[prevIndex].style.transform = isRTL ? 'translateX(-100%)' : 'translateX(100%)';
+                            isTransitioning = false;
+                        }, transitionDuration);
+                    } else {
+                        // Fade mode
+                        slides[prevIndex].classList.remove('opacity-100', 'activeslide');
+                        slides[currentIndex].classList.add('opacity-100', 'activeslide');
+                        setTimeout(function () { isTransitioning = false; }, transitionDuration);
+                    }
+
+                    updateDots(currentIndex);
+                }
+
+                function nextSlide() {
+                    if (!isTransitioning) {
+                        goToSlide((currentIndex + 1) % slides.length, 'next');
+                    }
+                }
+
+                function startAutoplay() {
+                    interval = setInterval(nextSlide, slideDuration);
+                }
+
+                function resetAutoplay() {
+                    clearInterval(interval);
+                    startAutoplay();
+                }
+            }
+        });
+    </script>
+</section>
+
+{% if component.header_overlay != false %}
+    <style>
+        /* All screens */
+        {% if header_style == 'dark_gradient' %}
+            /* Remove blur — replaced by the dark gradient scrim on the slider */
+            .s-header:has(~ .slider-ads-component) .main-nav-container .inner::before,
+            .s-header:has(~ main .slider-ads-component) .main-nav-container .inner::before {
+                backdrop-filter: none !important;
+            }
+        {% endif %}
+        {% if component.header_border == false %}
+            .s-header:has(~ .slider-ads-component) .main-nav-container .inner,
+            .s-header:has(~ main .slider-ads-component) .main-nav-container .inner {
+                border-bottom-width: 0 !important;
+            }
+        {% endif %}
+        .s-header:has(~ .slider-ads-component),
+        .s-header:has(~ main .slider-ads-component) {
+            box-shadow: none !important;
+            max-width: 100% !important;
+            width: 100% !important;
+            overflow: visible !important;
+            z-index: 50 !important;
+            position: absolute !important;
+            transition: background-color 0.3s ease;
+        }
+        .s-header:has(~ .slider-ads-component) .main-nav-container.has-bg,
+        .s-header:has(~ main .slider-ads-component) .main-nav-container.has-bg {
+            background-color: transparent !important;
+            transition: background-color 0.3s ease;
+        }
+        {% if header_style != 'dark_gradient' %}
+            @media (min-width: 768px) {
+                .s-header:has(~ .slider-ads-component),
+                .s-header:has(~ main .slider-ads-component) {
+                    background-color: #FFFFFF2E;
+                }
+            }
+        {% endif %}
+        .sicon-search,
+        .sicon-heart,
+        .sicon-user-circle,
+        .sicon-cart {
+            color: white !important;
+            transition: color 0.3s ease;
+        }
+
+        {% if theme.settings.get('show_mega_menu', false) %}
+            /* White bg + dark text only when a mega menu dropdown is open */
+            @media (min-width: 768px) {
+                .s-header:has(~ .slider-ads-component):has(.has-children:hover > .sub-menu),
+                .s-header:has(~ main .slider-ads-component):has(.has-children:hover > .sub-menu) {
+                    background-color: #fff !important;
+                }
+                .s-header:has(~ .slider-ads-component):has(.has-children:hover > .sub-menu) .main-nav-container.has-bg,
+                .s-header:has(~ main .slider-ads-component):has(.has-children:hover > .sub-menu) .main-nav-container.has-bg {
+                    background-color: #fff !important;
+                }
+                .s-header:has(~ .slider-ads-component):has(.has-children:hover > .sub-menu) custom-main-menu,
+                .s-header:has(~ main .slider-ads-component):has(.has-children:hover > .sub-menu) custom-main-menu {
+                    color: var(--color-tertiary) !important;
+                }
+                .s-header:has(~ .slider-ads-component):has(.has-children:hover > .sub-menu) .sicon-search,
+                .s-header:has(~ .slider-ads-component):has(.has-children:hover > .sub-menu) .sicon-heart,
+                .s-header:has(~ .slider-ads-component):has(.has-children:hover > .sub-menu) .sicon-user-circle,
+                .s-header:has(~ .slider-ads-component):has(.has-children:hover > .sub-menu) .sicon-cart,
+                .s-header:has(~ main .slider-ads-component):has(.has-children:hover > .sub-menu) .sicon-search,
+                .s-header:has(~ main .slider-ads-component):has(.has-children:hover > .sub-menu) .sicon-heart,
+                .s-header:has(~ main .slider-ads-component):has(.has-children:hover > .sub-menu) .sicon-user-circle,
+                .s-header:has(~ main .slider-ads-component):has(.has-children:hover > .sub-menu) .sicon-cart {
+                    color: var(--color-tertiary) !important;
+                }
+                .s-header:has(~ .slider-ads-component):has(.has-children:hover > .sub-menu) .header-btn__icon svg,
+                .s-header:has(~ main .slider-ads-component):has(.has-children:hover > .sub-menu) .header-btn__icon svg {
+                    color: var(--color-tertiary) !important;
+                    fill: var(--color-tertiary) !important;
+                }
+                .s-header:has(~ .slider-ads-component):has(.has-children:hover > .sub-menu) .inner {
+                    border-color: var(--color-primary-light) !important;
+                }
+            }
+        {% endif %}
+
+        /* When scrolled: always restore blur + bottom border on .inner regardless of style options */
+        .s-header:has(~ .slider-ads-component) .main-nav-container.fixed-pinned .inner,
+        .s-header:has(~ .slider-ads-component) .main-nav-container.fixed-header .inner,
+        .s-header:has(~ main .slider-ads-component) .main-nav-container.fixed-pinned .inner,
+        .s-header:has(~ main .slider-ads-component) .main-nav-container.fixed-header .inner {
+            border-bottom-width: 1px !important;
+        }
+        .s-header:has(~ .slider-ads-component) .main-nav-container.fixed-pinned .inner::before,
+        .s-header:has(~ .slider-ads-component) .main-nav-container.fixed-header .inner::before,
+        .s-header:has(~ main .slider-ads-component) .main-nav-container.fixed-pinned .inner::before,
+        .s-header:has(~ main .slider-ads-component) .main-nav-container.fixed-header .inner::before {
+            backdrop-filter: blur(10px) !important;
+        }
+    </style>
+{% endif %}

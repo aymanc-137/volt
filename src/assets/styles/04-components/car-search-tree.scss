@@ -162,3 +162,43 @@
 .car-search-tree__products-grid {
     @apply  s-products-list-wrapper s-products-list-vertical-cards;
 }
+
+// When rendered inside the carousel overlay, stack dropdowns vertically
+[data-home-car-search] {
+
+    .car-search-tree-block{
+        padding-top: 0rem !important;
+        padding-bottom: 0rem !important;
+
+        @apply bg-[var(--color-light-page-background-40)] dark:bg-[var(--color-dark-page-background-40)];
+    }
+
+
+   
+    
+    .car-search-tree{
+        padding : 1rem !important;
+    }
+    .car-search-tree__selects {
+        grid-gap: 0.5rem;
+        grid-template-columns: repeat(3, 1fr);
+
+        @media (min-width: 1024px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+
+    .car-search-tree__products{
+         padding : 0rem !important;
+        .car-search-tree__products-header{
+            display: none;
+        }
+        .car-search-tree__products-grid{
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+    }
+
+    .car-search-tree__selection{
+        @apply hidden md:block;
+    }
+}

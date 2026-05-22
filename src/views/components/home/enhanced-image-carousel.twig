@@ -21,9 +21,10 @@
 {% set animation_type = component.animation_type  %}
 {% set autoplay = component.autoplay ?? false %}
 {% set autoplay_delay = component.autoplay_delay ?? 5 %}
+{% set show_car_search = component.show_car_search | default(false) %}
 
 {% set block_id = 'enhanced-image-carousel-' ~ position %}
- <section dir="ltr"  class="h-[80vh] w-full" id="{{ block_id }}">
+ <section dir="ltr" class="h-[58dvh] md:h-[65dvh] lg:h-[80dvh] xl:h-[100dvh] w-full relative" id="{{ block_id }}">
     <div
         class="enhanced-carousel h-full  relative group/carousel"
         data-enhanced-carousel
@@ -32,7 +33,7 @@
         data-autoplay="{{ autoplay ? 'true' : 'false' }}"
         data-autoplay-delay="{{ autoplay_delay * 1000 }}"
     >
-        <div class="relative overflow-hidden h-full  bg-white dark:bg-dark-box-background">
+        <div class="relative overflow-hidden h-full dark:bg-dark-box-background">
             <div class="{% if animation_type == 'fade' %}relative{% else %}flex transition-transform{% endif %} h-full duration-500 ease-in-out will-change-transform" data-carousel-track>
                 {% for slide in slides %}
                 {% set alignment = slide.content_alignment ?? 'center' %}
@@ -77,15 +78,15 @@
                             bg-gradient-to-l dark:from-[var(--color-dark-page-background)] 
                             from-[var(--color-light-page-background)] 
                             to-transparent
-                            flex h-full w-full px-6 py-10 sm:px-12 md:px-16 lg:px-20">
-                                <div class="flex my-auto w-full max-w-2xl flex-col gap-4 dynamic-text-color {{alignment_class[alignment[0]] ?? 'items-center text-center'}}">
+                            flex h-full w-full px-6 py-1 sm:px-12 sm:py-10 md:px-16 lg:px-20">
+                                <div class="flex {{ show_car_search ? 'mt-14 sm:mt-16 mb-auto' : 'my-auto' }} w-full max-w-2xl flex-col gap-2 sm:gap-4 dynamic-text-color {{alignment_class[alignment[0]] ?? 'items-center text-center'}}">
                                     {% if slide.title_part1 or slide.title_gradient or slide.title_part3 %}
-                                        <h3 class="font-alshohadaa text-3xl leading-20 font-semibold sm:text-4xl lg:text-6xl opacity-0" data-carousel-text="title">
+                                        <h3 class="font-alshohadaa text-xl sm:text-2xl md:text-4xl lg:text-6xl md:leading-20 font-semibold opacity-0" data-carousel-text="title">
                                             {% if slide.title_part1 %}
                                                 <span>{{ slide.title_part1 }}</span>
                                             {% endif %}
                                             {% if slide.title_gradient %}
-                                                <span class="bg-gradient-to-r text-3xl font-semibold sm:text-4xl lg:text-7xl from-primary to-scandary bg-clip-text text-transparent">{{ slide.title_gradient }}</span>
+                                                <span class="bg-gradient-to-r  from-primary to-scandary bg-clip-text text-transparent">{{ slide.title_gradient }}</span>
                                             {% endif %}
                                             {% if slide.title_part3 %}
                                                 <span>{{ slide.title_part3 }}</span>
@@ -93,12 +94,12 @@
                                         </h3>
                                     {% endif %}
                                     {% if slide.description %}
-                                        <p class="text-base sm:text-lg lg:text-xl dynamic-text-color opacity-0" data-carousel-text="description">{{ slide.description }}</p>
+                                        <p class="text-sm sm:text-base md:text-lg lg:text-xl dynamic-text-color opacity-0" data-carousel-text="description">{{ slide.description }}</p>
                                     {% endif %}
                                     {% if slide.button_label and slide.button_url %}
-                                        <div class="pt-4 opacity-0 " data-carousel-text="button">
+                                        <div class="pt-2 sm:pt-4 opacity-0" data-carousel-text="button">
                                             <a class="hover-glow transition-all duration-300" href="{{ slide.button_url }}" >
-                                                <div class="inline-flex   items-center gap-2 justify-center  btn btn--primary px-8 py-4   font-semibold uppercase tracking-wide  hover:scale-110  cursor-pointer">
+                                                <div class="inline-flex items-center gap-2 justify-center btn btn--primary px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 text-sm sm:text-base font-semibold uppercase tracking-wide hover:scale-110 cursor-pointer">
                                                     {{ slide.button_label }}
                                                     <i class="sicon-arrow-right rtl:rotate-180"></i>
                                                 </div>
@@ -146,4 +147,22 @@
             {% endif %}
         </div>
     </div>
+
+    {% if show_car_search %}
+    <style>
+        @media (max-width: 1023px) {
+            #{{ block_id }} + * { padding-top: 10rem; }
+        }
+    </style>
+    {# Single car-search box overlaid on the carousel — JS populates via salla.api #}
+    <div class="flex absolute
+                bottom-0 translate-y-1/2 left-0 right-0 w-full rounded-none
+                lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0 lg:left-6 lg:right-auto xl:left-10 lg:w-2/5 lg:rounded-2xl
+                z-20 max-h-[80%] flex-col overflow-y-auto
+                shadow-2xl
+                dark:bg-dark-foreground/50 backdrop-blur-md"
+         dir="rtl"
+         data-home-car-search="{{ position }}">
+    </div>
+    {% endif %}
 </section>
