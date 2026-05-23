@@ -4101,7 +4101,7 @@
                 {
                     "id": "custom_json_data",
                     "type": "string",
-                    "format": "code",
+                    "format": "textarea",
                     "label": "بيانات JSON المخصصة",
                     "description": null,
                     "labelHTML": null,
