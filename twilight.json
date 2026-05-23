@@ -4070,16 +4070,6 @@
                     "required": false
                 },
                 {
-                    "id": "custom_json_data",
-                    "type": "text",
-                    "format": "text",
-                    "label": "بيانات JSON المخصصة",
-                    "description": "الصق هنا JSON المُصدَّر من تطبيق مدير تصنيفات السيارات.",
-                    "icon": "sicon-code",
-                    "value": "",
-                    "required": false
-                },
-                {
                     "id": "show_in_category_page",
                     "type": "boolean",
                     "format": "switch",
