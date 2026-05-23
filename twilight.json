@@ -4019,7 +4019,10 @@
         },
         {
             "key": "716e33df-97f4-4808-97a8-c8784d339916",
-            "title": "قائمة بحث المركبات",
+            "title": {
+                "ar": "قائمة بحث المركبات",
+                "en": null
+            },
             "icon": "sicon-store",
             "path": "home.car-search-tree",
             "fields": [
@@ -4094,6 +4097,18 @@
                     "searchable": true,
                     "required": false,
                     "value": []
+                },
+                {
+                    "id": "custom_json_data",
+                    "type": "string",
+                    "format": "code",
+                    "label": "بيانات JSON المخصصة",
+                    "description": null,
+                    "labelHTML": null,
+                    "placeholder": "body { color: green; }",
+                    "icon": "sicon-browser-code",
+                    "value": null,
+                    "required": false
                 }
             ]
         },
