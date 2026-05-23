@@ -10,6 +10,8 @@
 
 <section class="car-search-tree-block  border-y dynamic-border-color  " id="{{ tree_component_id }}"
          data-categories='{{ categories_payload|e('html_attr') }}'
+         data-custom-mode="{{ component.use_custom_json ? 'true' : 'false' }}"
+         data-custom-json='{{ component.custom_json_data|default('')|e('html_attr') }}'
          data-hide-brand-labels="{{ component.hide_brand_labels ? 'true' : 'false' }}"
          data-display-mode="{{ component.use_dropdown_layout ? 'dropdown' : 'tiles' }}">
 
@@ -104,7 +106,10 @@
         if (!root || root.dataset.initialized === 'true') return;
         root.dataset.initialized = 'true';
 
-        const categories = safeParse(root.dataset.categories);
+        const useCustomJson = root.dataset.customMode === 'true';
+        const categories = useCustomJson
+            ? safeParse(root.dataset.customJson)
+            : safeParse(root.dataset.categories);
         const rows = {
             brands: root.querySelector('[data-row="brands"]'),
             models: root.querySelector('[data-row="models"]'),
@@ -191,15 +196,14 @@
         }
 
         function handleSelection(level, id) {
-            const numericId = Number(id);
-            if (!numericId) return;
+            if (!id) return;
 
             if (level === 'brand') {
-                selectBrand(numericId);
+                selectBrand(id);
             } else if (level === 'model') {
-                selectModel(numericId);
+                selectModel(id);
             } else if (level === 'year') {
-                selectYear(numericId);
+                selectYear(id);
             }
         }
 
@@ -257,23 +261,37 @@
                 showProductsHint('تعذر الاتصال بواجهة المنتجات. تأكد من تحميل منصة سلة.');
                 return;
             }
-            const ids = (includeDescendants ? collectCategoryIds(category) : [Number(category.id)])
-                .filter((value) => typeof value === 'number' && !Number.isNaN(value));
-            if (!ids.length) {
-                showProductsHint('لا توجد فئات متاحة لتحميل المنتجات.');
-                return;
+
+            let fetchCall, requestSignature;
+
+            if (useCustomJson) {
+                const productIds = includeDescendants
+                    ? collectProductIds(category)
+                    : (Array.isArray(category.products) ? category.products : []);
+                if (!productIds.length) {
+                    showProductsHint('لا توجد منتجات مرتبطة بهذا الاختيار.');
+                    return;
+                }
+                requestSignature = productIds.join(',') + ':products';
+                fetchCall = window.salla.product.fetch({ source: 'products', source_value: productIds });
+            } else {
+                const ids = (includeDescendants ? collectCategoryIds(category) : [Number(category.id)])
+                    .filter((value) => typeof value === 'number' && !Number.isNaN(value));
+                if (!ids.length) {
+                    showProductsHint('لا توجد فئات متاحة لتحميل المنتجات.');
+                    return;
+                }
+                requestSignature = `${ids.join(',')}:${includeDescendants ? 'deep' : 'single'}`;
+                fetchCall = window.salla.product.fetch({ source: 'categories', source_value: ids });
             }
-            const requestSignature = `${ids.join(',')}:${includeDescendants ? 'deep' : 'single'}`;
+
             state.lastRequestSignature = requestSignature;
             rows.products.classList.add('hidden');
             rows.products.innerHTML = '';
             productsEmptyEl.classList.add('hidden');
             showLoading();
 
-            window.salla.product.fetch({
-                source: 'categories',
-                source_value: ids,
-            })
+            fetchCall
                 .then((response) => {
                     if (state.lastRequestSignature !== requestSignature) return;
                     const products = extractProducts(response);
@@ -344,7 +362,7 @@
             if (isDropdownMode) return;
             if (!container) return;
             container.querySelectorAll('.car-search-tree__option').forEach((button) => {
-                button.classList.toggle('is-active', Number(button.dataset.id) === Number(id));
+                button.classList.toggle('is-active', String(button.dataset.id) === String(id));
             });
         }
 
@@ -353,7 +371,7 @@
         }
 
         function findById(list, id) {
-            return list?.find((item) => Number(item.id) === Number(id));
+            return list?.find((item) => String(item.id) === String(id));
         }
 
         function normalizeChildren(children) {
@@ -457,6 +475,18 @@
                 const numericId = Number(node.id);
                 if (!Number.isNaN(numericId)) {
                     ids.push(numericId);
+                }
+                normalizeChildren(node.sub_categories).forEach(traverse);
+            }(category));
+            return Array.from(new Set(ids));
+        }
+
+        function collectProductIds(category) {
+            const ids = [];
+            (function traverse(node) {
+                if (!node) return;
+                if (Array.isArray(node.products)) {
+                    node.products.forEach((id) => { if (id) ids.push(id); });
                 }
                 normalizeChildren(node.sub_categories).forEach(traverse);
             }(category));
