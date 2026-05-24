@@ -247,112 +247,163 @@
 </section>
 
 <script>
+  console.log('[PS] script tag reached');
+
   (function () {
-    function init() {
+    var LOG = '[PS]';
+
+    try {
       var uid = {{ uid | json_encode }};
       var interval = {{ autoplay_interval }};
       var products = {{ products | json_encode }};
+      console.log(LOG, 'twig vars OK -> uid:', uid, '| interval:', interval, '| products count:', (products && products.length));
+      console.log(LOG, 'products payload:', products);
+    } catch (e) {
+      console.error(LOG, 'FAILED to parse twig-injected vars:', e);
+      return;
+    }
 
-      var root = document.getElementById(uid);
-      if (!root) { console.warn('[product-showcase] root not found:', uid); return; }
-      if (root.dataset.psInit === '1') return;
-      root.dataset.psInit = '1';
+    function init() {
+      console.log(LOG, 'init() running. readyState=', document.readyState);
 
-      var stage     = document.getElementById(uid + '-stage');
-      var dotsWrap  = document.getElementById(uid + '-dots');
-      var topBox    = document.getElementById(uid + '-top');
-      var botBox    = document.getElementById(uid + '-bot');
-      var elTagline = document.getElementById(uid + '-tagline');
-      var elName    = document.getElementById(uid + '-name');
-      var elPrice   = document.getElementById(uid + '-price');
-      var elDesc    = document.getElementById(uid + '-desc');
-      var elSpecs   = document.getElementById(uid + '-specs');
-      var elLinkTop = document.getElementById(uid + '-link-top');
-      var elLinkBot = document.getElementById(uid + '-link-bot');
+      try {
+        var root = document.getElementById(uid);
+        console.log(LOG, 'root element:', root);
+        if (!root) {
+          console.error(LOG, 'root #' + uid + ' NOT FOUND in DOM. All elements with id starting ps-:',
+            Array.prototype.slice.call(document.querySelectorAll('[id^="ps-"]')).map(function (e) { return e.id; }));
+          return;
+        }
+        if (root.dataset.psInit === '1') { console.warn(LOG, 'already initialized, skipping'); return; }
+        root.dataset.psInit = '1';
 
-      var slides = Array.prototype.slice.call(stage.querySelectorAll('.ps-slide'));
-      var current = 0;
-      var timer = null;
+        var refs = {
+          stage:     document.getElementById(uid + '-stage'),
+          dotsWrap:  document.getElementById(uid + '-dots'),
+          topBox:    document.getElementById(uid + '-top'),
+          botBox:    document.getElementById(uid + '-bot'),
+          elTagline: document.getElementById(uid + '-tagline'),
+          elName:    document.getElementById(uid + '-name'),
+          elPrice:   document.getElementById(uid + '-price'),
+          elDesc:    document.getElementById(uid + '-desc'),
+          elSpecs:   document.getElementById(uid + '-specs'),
+          elLinkTop: document.getElementById(uid + '-link-top'),
+          elLinkBot: document.getElementById(uid + '-link-bot'),
+          prevBtn:   document.getElementById(uid + '-prev'),
+          nextBtn:   document.getElementById(uid + '-next')
+        };
 
-      var dots = products.map(function (_, i) {
-        var btn = document.createElement('button');
-        btn.className = 'ps-dot-btn';
-        btn.setAttribute('aria-label', 'انتقل للمنتج ' + (i + 1));
-        btn.addEventListener('click', function () { show(i); restart(); });
-        dotsWrap.appendChild(btn);
-        return btn;
-      });
+        var missing = [];
+        for (var k in refs) { if (!refs[k]) missing.push(k); }
+        if (missing.length) {
+          console.error(LOG, 'missing DOM refs:', missing, 'refs map:', refs);
+          return;
+        }
+        console.log(LOG, 'all DOM refs OK');
 
-      function show(index, immediate) {
-        var next = ((index % products.length) + products.length) % products.length;
-        if (!immediate && next === current) return;
-        var prev = current;
-        current = next;
+        var slides = Array.prototype.slice.call(refs.stage.querySelectorAll('.ps-slide'));
+        console.log(LOG, 'slides found:', slides.length);
+        if (!slides.length) { console.error(LOG, 'no .ps-slide elements inside stage'); return; }
 
-        slides.forEach(function (el, i) {
-          if (i === next) {
-            el.classList.remove('is-leaving');
-            void el.offsetWidth;
-            el.classList.add('is-active');
-          } else if (i === prev && !immediate) {
-            el.classList.remove('is-active');
-            el.classList.add('is-leaving');
-          } else {
-            el.classList.remove('is-active', 'is-leaving');
-          }
+        var current = 0;
+        var timer = null;
+
+        var dots = products.map(function (_, i) {
+          var btn = document.createElement('button');
+          btn.className = 'ps-dot-btn';
+          btn.setAttribute('aria-label', 'انتقل للمنتج ' + (i + 1));
+          btn.addEventListener('click', function () { show(i); restart(); });
+          refs.dotsWrap.appendChild(btn);
+          return btn;
         });
+        console.log(LOG, 'dots built:', dots.length);
 
-        dots.forEach(function (d, i) { d.classList.toggle('active', i === next); });
-        swapInfo(products[next]);
+        function show(index, immediate) {
+          try {
+            var next = ((index % products.length) + products.length) % products.length;
+            if (!immediate && next === current) return;
+            var prev = current;
+            current = next;
+            console.log(LOG, 'show()', { from: prev, to: next, immediate: !!immediate });
+
+            slides.forEach(function (el, i) {
+              if (i === next) {
+                el.classList.remove('is-leaving');
+                void el.offsetWidth;
+                el.classList.add('is-active');
+              } else if (i === prev && !immediate) {
+                el.classList.remove('is-active');
+                el.classList.add('is-leaving');
+              } else {
+                el.classList.remove('is-active', 'is-leaving');
+              }
+            });
+
+            dots.forEach(function (d, i) { d.classList.toggle('active', i === next); });
+            swapInfo(products[next]);
+          } catch (e) {
+            console.error(LOG, 'show() threw:', e);
+          }
+        }
+
+        function swapInfo(p) {
+          try {
+            refs.topBox.classList.add('fading');
+            refs.botBox.classList.add('fading');
+            setTimeout(function () {
+              try {
+                var name    = p['products.name']        || '';
+                var tagline = p['products.tagline']     || '';
+                var price   = p['products.price']       || '';
+                var desc    = p['products.description'] || '';
+                var specs   = p['products.specs']       || '';
+                var link    = p['products.link']        || '';
+
+                refs.elTagline.textContent = tagline ? '— ' + tagline : '';
+                refs.elName.textContent    = name;
+                refs.elPrice.textContent   = price;
+                refs.elDesc.textContent    = desc;
+
+                refs.elSpecs.innerHTML = specs
+                  ? specs.split(',').map(function (s) { return '<span class="ps-spec">' + s.trim() + '</span>'; }).join('')
+                  : '';
+
+                refs.elLinkTop.innerHTML = link ? '<a href="' + link + '" class="ps-link">عرض المنتج ›</a>' : '';
+                refs.elLinkBot.innerHTML = '';
+
+                refs.topBox.classList.remove('fading');
+                refs.botBox.classList.remove('fading');
+              } catch (e) { console.error(LOG, 'swapInfo timeout threw:', e); }
+            }, 300);
+          } catch (e) { console.error(LOG, 'swapInfo threw:', e); }
+        }
+
+        function start() {
+          clearInterval(timer);
+          timer = setInterval(function () { show(current + 1); }, interval);
+          console.log(LOG, 'autoplay started, interval=', interval);
+        }
+        function restart() { if (timer) start(); }
+
+        refs.prevBtn.addEventListener('click', function () { show(current - 1); restart(); });
+        refs.nextBtn.addEventListener('click', function () { show(current + 1); restart(); });
+
+        root.addEventListener('mouseenter', function () { clearInterval(timer); timer = null; });
+        root.addEventListener('mouseleave', function () { start(); });
+
+        show(0, true);
+        start();
+        console.log(LOG, 'init() complete');
+      } catch (e) {
+        console.error(LOG, 'init() threw:', e);
       }
-
-      function swapInfo(p) {
-        topBox.classList.add('fading');
-        botBox.classList.add('fading');
-        setTimeout(function () {
-          var name    = p['products.name']        || '';
-          var tagline = p['products.tagline']     || '';
-          var price   = p['products.price']       || '';
-          var desc    = p['products.description'] || '';
-          var specs   = p['products.specs']       || '';
-          var link    = p['products.link']        || '';
-
-          elTagline.textContent = tagline ? '— ' + tagline : '';
-          elName.textContent    = name;
-          elPrice.textContent   = price;
-          elDesc.textContent    = desc;
-
-          elSpecs.innerHTML = specs
-            ? specs.split(',').map(function (s) { return '<span class="ps-spec">' + s.trim() + '</span>'; }).join('')
-            : '';
-
-          elLinkTop.innerHTML = link ? '<a href="' + link + '" class="ps-link">عرض المنتج ›</a>' : '';
-          elLinkBot.innerHTML = '';
-
-          topBox.classList.remove('fading');
-          botBox.classList.remove('fading');
-        }, 300);
-      }
-
-      function start() {
-        clearInterval(timer);
-        timer = setInterval(function () { show(current + 1); }, interval);
-      }
-      function restart() { if (timer) start(); }
-
-      document.getElementById(uid + '-prev').addEventListener('click', function () { show(current - 1); restart(); });
-      document.getElementById(uid + '-next').addEventListener('click', function () { show(current + 1); restart(); });
-
-      root.addEventListener('mouseenter', function () { clearInterval(timer); timer = null; });
-      root.addEventListener('mouseleave', function () { start(); });
-
-      show(0, true);
-      start();
     }
 
     if (document.readyState === 'loading') {
+      console.log(LOG, 'doc still loading, deferring init to DOMContentLoaded');
       document.addEventListener('DOMContentLoaded', init);
     } else {
+      console.log(LOG, 'doc ready, init now (readyState=' + document.readyState + ')');
       init();
     }
   })();
