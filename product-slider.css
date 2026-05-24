@@ -1,0 +1,98 @@
+/* Compiled from product-slider.scss. Re-compile with:
+   npx sass product-slider.scss product-slider.css --no-source-map */
+
+product-showcase { display: block; }
+
+.ps-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.ps-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  will-change: transform, opacity, filter;
+  opacity: 0;
+  filter: blur(24px);
+  transform: translate3d(120%, 0, 0) scale(0.85);
+  transition:
+    transform 1.2s cubic-bezier(.22, .61, .36, 1),
+    opacity   1.2s ease,
+    filter    1.2s ease;
+}
+.ps-slide.is-active {
+  opacity: 1;
+  filter: blur(0);
+  transform: translate3d(0, 0, 0) scale(1);
+}
+.ps-slide.is-leaving {
+  opacity: 0;
+  filter: blur(24px);
+  transform: translate3d(-120%, 0, 0) scale(0.85);
+}
+.ps-slide img {
+  max-height: 75%;
+  max-width: 75%;
+  object-fit: contain;
+  filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.45));
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.ps-info {
+  transition: opacity .6s ease, transform .6s ease;
+}
+.ps-info.is-fading {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.ps-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 60%;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle,
+    rgba(168, 85, 247, 0.35),
+    rgba(59, 130, 246, 0.15) 50%,
+    transparent 70%
+  );
+  filter: blur(60px);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ps-grid {
+  position: absolute;
+  inset: 0;
+  opacity: .2;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.ps-dot {
+  height: 8px;
+  width: 8px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.3);
+  transition: width .5s ease, background-color .5s ease;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.ps-dot.is-active {
+  width: 28px;
+  background: #fff;
+}

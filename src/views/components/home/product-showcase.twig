@@ -13,6 +13,7 @@
 | products[].link             | string   | Optional product page URL                        |
 | position                    | int      | Component position in the page                   |
 #}
+{{ component | json_encode }}
 
 {% set products = component.products | default([]) %}
 {% set title = component.title | default('') %}
