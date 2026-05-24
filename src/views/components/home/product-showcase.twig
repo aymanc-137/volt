@@ -13,12 +13,10 @@
 | products[].link             | string   | Optional product page URL                        |
 | position                    | int      | Component position in the page                   |
 #}
-{{ component | json_encode }}
-
 {% set products = component.products | default([]) %}
 {% set title = component.title | default('') %}
-{% set autoplay_interval = component.autoplay_interval | default(5000) | number_format(0, '.', '') %}
-{% set uid = 'ps-' ~ position | default(random()) %}
+{% set autoplay_interval = (component.autoplay_interval | default(5000)) + 0 %}
+{% set uid = 'ps-' ~ (position | default(random())) %}
 
 {% if products | length %}
 <section class="s-block s-block--product-showcase" id="{{ uid }}-section">
@@ -214,9 +212,10 @@
         <div class="ps-glow" id="{{ uid }}-glow"></div>
         <div id="{{ uid }}-stage" style="position:relative; height:100%; width:100%;">
           {% for item in products %}
+          {% set img = item['products.image'] | default('') %}
           <div class="ps-slide" data-index="{{ loop.index0 }}">
             <img
-              src="{{ item['products.image'] | default('') }}"
+              src="{{ img ?: 'https://via.placeholder.com/600x600/1e293b/64748b?text=No+Image' }}"
               alt="{{ item['products.name'] | default('') }}"
               loading="{{ loop.first ? 'eager' : 'lazy' }}"
             />
