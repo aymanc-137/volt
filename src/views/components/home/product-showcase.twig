@@ -212,11 +212,12 @@
         <div class="ps-glow" id="{{ uid }}-glow"></div>
         <div id="{{ uid }}-stage" style="position:relative; height:100%; width:100%;">
           {% for item in products %}
-          {% set img = item['products.image'] | default('') %}
+          {% set img = item.image | default(item['products.image']) | default('') %}
+          {% set itemName = item.name | default(item['products.name']) | default('') %}
           <div class="ps-slide" data-index="{{ loop.index0 }}">
             <img
               src="{{ img ?: 'https://via.placeholder.com/600x600/1e293b/64748b?text=No+Image' }}"
-              alt="{{ item['products.name'] | default('') }}"
+              alt="{{ itemName }}"
               loading="{{ loop.first ? 'eager' : 'lazy' }}"
             />
           </div>
@@ -362,12 +363,13 @@
             refs.botBox.classList.add('fading');
             setTimeout(function () {
               try {
-                var name    = p['products.name']        || '';
-                var tagline = p['products.tagline']     || '';
-                var price   = p['products.price']       || '';
-                var desc    = p['products.description'] || '';
-                var specs   = p['products.specs']       || '';
-                var link    = p['products.link']        || '';
+                var name    = p.name        || p['products.name']        || '';
+                var tagline = p.tagline     || p['products.tagline']     || '';
+                var price   = p.price       || p['products.price']       || '';
+                var desc    = p.description || p['products.description'] || '';
+                var specs   = p.specs       || p['products.specs']       || '';
+                var link    = p.link        || p['products.link']        || '';
+                console.log('[PS] swapInfo fields:', { name: name, image: p.image, raw: p });
 
                 refs.elTagline.textContent = tagline ? '— ' + tagline : '';
                 refs.elName.textContent    = name;
