@@ -21,6 +21,7 @@
         "component-square-photos",
         "component-store-features",
         "component-youtube",
+        "component-product-showcase",
         "menu-images",
         "filters"
     ],
@@ -5550,6 +5551,152 @@
                                 "height": 300,
                                 "width": 600
                             }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "عرض المنتجات المميزة",
+            "path": "home.product-showcase",
+            "image": "https://cdn.salla.sa/mQgZlG/kvFhVeuUyjK4nHUovBQBZ632Hb6gKV2BXZwid40e.png",
+            "fields": [
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "عنوان القسم",
+                    "id": "title",
+                    "value": "",
+                    "required": false,
+                    "format": "text",
+                    "description": "عنوان اختياري يظهر فوق السلايدر",
+                    "placeholder": "أدخل عنوان القسم...",
+                    "minLength": 0,
+                    "maxLength": 120
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-timer",
+                    "label": "مدة التبديل التلقائي (ميلي ثانية)",
+                    "id": "autoplay_interval",
+                    "value": "5000",
+                    "required": false,
+                    "format": "text",
+                    "description": "المدة بالميلي ثانية بين كل منتج (افتراضي: 5000)",
+                    "placeholder": "5000"
+                },
+                {
+                    "id": "products",
+                    "type": "collection",
+                    "format": "collection",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 10,
+                    "label": "المنتجات",
+                    "item_label": "منتج",
+                    "value": [
+                        {
+                            "products.name": "اسم المنتج",
+                            "products.tagline": "وصف قصير",
+                            "products.price": "299 ر.س",
+                            "products.description": "وصف تفصيلي للمنتج يظهر في بطاقة المعلومات.",
+                            "products.specs": "ميزة 1, ميزة 2, ميزة 3",
+                            "products.image": "",
+                            "products.link": ""
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "type": "string",
+                            "icon": "sicon-image",
+                            "label": "صورة المنتج",
+                            "id": "products.image",
+                            "value": null,
+                            "required": true,
+                            "format": "image",
+                            "description": "صورة المنتج التي تظهر في منتصف السلايدر",
+                            "settings": {
+                                "height": 600,
+                                "width": 600
+                            }
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "اسم المنتج",
+                            "id": "products.name",
+                            "value": "",
+                            "required": true,
+                            "format": "text",
+                            "description": "الاسم الرئيسي للمنتج",
+                            "placeholder": "مثال: سماعات Aether X1",
+                            "minLength": 1,
+                            "maxLength": 80
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-typography",
+                            "label": "الشعار القصير (Tagline)",
+                            "id": "products.tagline",
+                            "value": "",
+                            "required": false,
+                            "format": "text",
+                            "description": "جملة قصيرة جذابة تظهر فوق الاسم",
+                            "placeholder": "مثال: صوت يعيد التعريف",
+                            "minLength": 0,
+                            "maxLength": 60
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-price-tag",
+                            "label": "السعر",
+                            "id": "products.price",
+                            "value": "",
+                            "required": false,
+                            "format": "text",
+                            "description": "نص السعر كما تريده أن يظهر",
+                            "placeholder": "مثال: 349 ر.س",
+                            "minLength": 0,
+                            "maxLength": 30
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-note",
+                            "label": "الوصف",
+                            "id": "products.description",
+                            "value": "",
+                            "required": false,
+                            "format": "textarea",
+                            "description": "وصف تفصيلي يظهر في البطاقة السفلية",
+                            "placeholder": "أدخل وصفاً للمنتج...",
+                            "minLength": 0,
+                            "maxLength": 400
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-list",
+                            "label": "المواصفات (مفصولة بفاصلة)",
+                            "id": "products.specs",
+                            "value": "",
+                            "required": false,
+                            "format": "text",
+                            "description": "أدخل المواصفات مفصولة بفاصلة، مثال: بلوتوث 5.4, بطارية 40 ساعة",
+                            "placeholder": "مواصفة 1, مواصفة 2, مواصفة 3",
+                            "minLength": 0,
+                            "maxLength": 200
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-link",
+                            "label": "رابط المنتج (اختياري)",
+                            "id": "products.link",
+                            "value": "",
+                            "required": false,
+                            "format": "text",
+                            "description": "رابط صفحة المنتج - إذا أضفته سيظهر زر 'عرض المنتج'",
+                            "placeholder": "https://...",
+                            "minLength": 0,
+                            "maxLength": 300
                         }
                     ]
                 }

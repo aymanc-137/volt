@@ -1,0 +1,351 @@
+{#
+| Variable                    | Type     | Description                                      |
+|-----------------------------|----------|--------------------------------------------------|
+| title                       | string   | Optional section title above the slider          |
+| autoplay_interval           | int      | Milliseconds between slides (default 5000)       |
+| products[]                  | array    | Collection of product items                      |
+| products[].name             | string   | Product name                                     |
+| products[].tagline          | string   | Short tagline shown above the name               |
+| products[].price            | string   | Price string (e.g. "299 ر.س")                   |
+| products[].description      | string   | Product description paragraph                    |
+| products[].specs            | string   | Comma-separated spec tags                        |
+| products[].image            | string   | Product image URL                                |
+| products[].link             | string   | Optional product page URL                        |
+| position                    | int      | Component position in the page                   |
+#}
+
+{% set products = component.products | default([]) %}
+{% set title = component.title | default('') %}
+{% set autoplay_interval = component.autoplay_interval | default(5000) | number_format(0, '.', '') %}
+{% set uid = 'ps-' ~ position | default(random()) %}
+
+{% if products | length %}
+<section class="s-block s-block--product-showcase" id="{{ uid }}-section">
+
+  <style>
+    #{{ uid }} {
+      position: relative;
+      min-height: 90vh;
+      overflow: hidden;
+      background: var(--color-dark-page-background, #0f172a);
+    }
+
+    #{{ uid }} .ps-grid {
+      position: absolute;
+      inset: 0;
+      opacity: .15;
+      background-image:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    #{{ uid }} .ps-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateX(120%) scale(0.85);
+      filter: blur(24px);
+      transition:
+        transform 1.2s cubic-bezier(.22,.61,.36,1),
+        opacity   1.2s ease,
+        filter    1.2s ease;
+    }
+    #{{ uid }} .ps-slide.is-active {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      filter: blur(0);
+      pointer-events: auto;
+    }
+    #{{ uid }} .ps-slide.is-leaving {
+      opacity: 0;
+      transform: translateX(-120%) scale(0.85);
+      filter: blur(24px);
+      pointer-events: none;
+    }
+    #{{ uid }} .ps-slide img {
+      max-height: 70%;
+      max-width: 70%;
+      object-fit: contain;
+      filter: drop-shadow(0 25px 35px rgba(0,0,0,0.5));
+    }
+
+    #{{ uid }} .ps-glow {
+      position: absolute;
+      width: 55%;
+      height: 55%;
+      border-radius: 9999px;
+      background: radial-gradient(circle, rgba(var(--ps-accent-rgb, 168,85,247),.3), rgba(59,130,246,.12) 50%, transparent 70%);
+      filter: blur(70px);
+      z-index: 0;
+      pointer-events: none;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #{{ uid }} .ps-info {
+      transition: opacity .5s ease, transform .5s ease;
+      color: var(--color-dark-page-foreground, #fff);
+    }
+    #{{ uid }} .ps-info.fading {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    #{{ uid }} .ps-card {
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.05);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+    }
+
+    #{{ uid }} .ps-tagline {
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--color-scandary, #a855f7);
+      margin-bottom: .5rem;
+    }
+    #{{ uid }} .ps-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: .5rem;
+      color: var(--color-dark-page-foreground, #fff);
+    }
+    #{{ uid }} .ps-price {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--color-scandary, #a855f7);
+    }
+    #{{ uid }} .ps-desc {
+      font-size: .875rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,.75);
+      margin-bottom: 1rem;
+    }
+    #{{ uid }} .ps-spec {
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.06);
+      border-radius: 9999px;
+      padding: .25rem .75rem;
+      font-size: .75rem;
+      color: rgba(255,255,255,.8);
+      margin: .2rem;
+    }
+
+    #{{ uid }} .ps-dot-btn {
+      height: 8px;
+      border-radius: 9999px;
+      background: rgba(255,255,255,.3);
+      transition: width .5s ease, background .5s ease;
+      width: 8px;
+      border: none;
+      cursor: pointer;
+    }
+    #{{ uid }} .ps-dot-btn.active {
+      width: 28px;
+      background: #fff;
+    }
+
+    #{{ uid }} .ps-nav-btn {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(255,255,255,.2);
+      background: transparent;
+      color: rgba(255,255,255,.8);
+      font-size: 1.25rem;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    #{{ uid }} .ps-nav-btn:hover { background: rgba(255,255,255,.1); }
+
+    #{{ uid }} .ps-link {
+      display: inline-block;
+      margin-top: .75rem;
+      padding: .4rem 1rem;
+      border-radius: 9999px;
+      background: var(--color-scandary, #a855f7);
+      color: #fff;
+      font-size: .8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    #{{ uid }} .ps-link:hover { opacity: .85; }
+  </style>
+
+  {% if title %}
+  <div style="background: var(--color-dark-page-background, #0f172a); padding: 2rem 0 0; text-align: center;">
+    <h2 style="color: var(--color-dark-page-foreground, #fff); font-size: 1.75rem; font-weight: 700; margin: 0;">{{ title }}</h2>
+  </div>
+  {% endif %}
+
+  <div id="{{ uid }}">
+    <div class="ps-grid"></div>
+
+    <!-- main stage -->
+    <div style="position:relative; z-index:10; display:flex; align-items:center; justify-content:center; height:80vh; max-width:90rem; margin:0 auto; padding:0 1.5rem;">
+
+      <!-- top-right info card -->
+      <div class="ps-info ps-card" id="{{ uid }}-top"
+           style="position:absolute; top:1.5rem; right:1.5rem; z-index:20; max-width:20rem;">
+        <div class="ps-tagline" id="{{ uid }}-tagline">—</div>
+        <div class="ps-name" id="{{ uid }}-name">—</div>
+        <div class="ps-price" id="{{ uid }}-price">—</div>
+        <div id="{{ uid }}-link-top"></div>
+      </div>
+
+      <!-- center image stage -->
+      <div style="position:relative; height:65vh; width:100%; max-width:48rem;">
+        <div class="ps-glow" id="{{ uid }}-glow"></div>
+        <div id="{{ uid }}-stage" style="position:relative; height:100%; width:100%;">
+          {% for item in products %}
+          <div class="ps-slide" data-index="{{ loop.index0 }}">
+            <img
+              src="{{ item['products.image'] | default('') }}"
+              alt="{{ item['products.name'] | default('') }}"
+              loading="{{ loop.first ? 'eager' : 'lazy' }}"
+            />
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- bottom-left info card -->
+      <div class="ps-info ps-card" id="{{ uid }}-bot"
+           style="position:absolute; bottom:1.5rem; left:1.5rem; z-index:20; max-width:22rem;">
+        <div class="ps-desc" id="{{ uid }}-desc">—</div>
+        <div id="{{ uid }}-specs"></div>
+        <div id="{{ uid }}-link-bot"></div>
+      </div>
+    </div>
+
+    <!-- controls -->
+    <div style="position:relative; z-index:20; display:flex; align-items:center; justify-content:center; gap:.75rem; padding-bottom:2rem;">
+      <button class="ps-nav-btn" id="{{ uid }}-prev" aria-label="السابق">&#8249;</button>
+      <div id="{{ uid }}-dots" style="display:flex; align-items:center; gap:.5rem;"></div>
+      <button class="ps-nav-btn" id="{{ uid }}-next" aria-label="التالي">&#8250;</button>
+    </div>
+  </div>
+
+  <script>
+  (function() {
+    const uid = {{ uid | json_encode }};
+    const interval = {{ autoplay_interval }};
+    const products = {{ products | json_encode }};
+
+    const stage   = document.getElementById(uid + '-stage');
+    const dotsWrap = document.getElementById(uid + '-dots');
+    const topBox  = document.getElementById(uid + '-top');
+    const botBox  = document.getElementById(uid + '-bot');
+    const elTagline = document.getElementById(uid + '-tagline');
+    const elName    = document.getElementById(uid + '-name');
+    const elPrice   = document.getElementById(uid + '-price');
+    const elDesc    = document.getElementById(uid + '-desc');
+    const elSpecs   = document.getElementById(uid + '-specs');
+    const elLinkTop = document.getElementById(uid + '-link-top');
+    const elLinkBot = document.getElementById(uid + '-link-bot');
+
+    const slides = Array.from(stage.querySelectorAll('.ps-slide'));
+    let current = 0;
+    let timer;
+
+    /* build dot indicators */
+    const dots = products.map(function(_, i) {
+      const btn = document.createElement('button');
+      btn.className = 'ps-dot-btn';
+      btn.setAttribute('aria-label', 'انتقل للمنتج ' + (i + 1));
+      btn.addEventListener('click', function() { show(i); restart(); });
+      dotsWrap.appendChild(btn);
+      return btn;
+    });
+
+    function show(index, immediate) {
+      const next = ((index % products.length) + products.length) % products.length;
+      if (!immediate && next === current) return;
+      const prev = current;
+      current = next;
+
+      slides.forEach(function(el, i) {
+        el.classList.remove('is-active', 'is-leaving');
+        if (i === next) {
+          void el.offsetWidth;
+          el.classList.add('is-active');
+        } else if (i === prev && !immediate) {
+          el.classList.add('is-leaving');
+        }
+      });
+
+      dots.forEach(function(d, i) {
+        d.classList.toggle('active', i === next);
+      });
+
+      swapInfo(products[next]);
+    }
+
+    function swapInfo(p) {
+      topBox.classList.add('fading');
+      botBox.classList.add('fading');
+      setTimeout(function() {
+        const name    = p['products.name']        || '';
+        const tagline = p['products.tagline']     || '';
+        const price   = p['products.price']       || '';
+        const desc    = p['products.description'] || '';
+        const specs   = p['products.specs']       || '';
+        const link    = p['products.link']        || '';
+
+        elTagline.textContent = tagline ? '— ' + tagline : '';
+        elName.textContent    = name;
+        elPrice.textContent   = price;
+        elDesc.textContent    = desc;
+
+        elSpecs.innerHTML = specs
+          ? specs.split(',').map(function(s) {
+              return '<span class="ps-spec">' + s.trim() + '</span>';
+            }).join('')
+          : '';
+
+        const linkHtml = link
+          ? '<a href="' + link + '" class="ps-link">عرض المنتج ›</a>'
+          : '';
+        elLinkTop.innerHTML = linkHtml;
+        elLinkBot.innerHTML = '';
+
+        topBox.classList.remove('fading');
+        botBox.classList.remove('fading');
+      }, 300);
+    }
+
+    function start() {
+      clearInterval(timer);
+      timer = setInterval(function() { show(current + 1); }, interval);
+    }
+    function restart() { start(); }
+
+    document.getElementById(uid + '-prev').addEventListener('click', function() { show(current - 1); restart(); });
+    document.getElementById(uid + '-next').addEventListener('click', function() { show(current + 1); restart(); });
+
+    const root = document.getElementById(uid);
+    root.addEventListener('mouseenter', function() { clearInterval(timer); });
+    root.addEventListener('mouseleave', function() { start(); });
+
+    show(0, true);
+    start();
+  })();
+  </script>
+
+</section>
+{% endif %}
