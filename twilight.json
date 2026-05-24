@@ -11,6 +11,7 @@
         "color",
         "breadcrumb",
         "unite-cards-height",
+        "component-featured-products",
         "component-fixed-banner",
         "component-fixed-products",
         "component-products-slider",
@@ -20,7 +21,6 @@
         "component-square-photos",
         "component-store-features",
         "component-youtube",
-        "component-product-showcase",
         "menu-images",
         "filters"
     ],
