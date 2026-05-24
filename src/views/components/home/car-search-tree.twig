@@ -233,6 +233,7 @@
             if (!model) return;
             state.model = model;
             state.year = null;
+            resetProductsArea();
 
             setActive(rows.models, id);
             renderOptions(rows.years, normalizeChildren(model.sub_categories), 'year');
@@ -250,6 +251,7 @@
             const year = findById(normalizeChildren(state.model.sub_categories), id);
             if (!year) return;
             state.year = year;
+            resetProductsArea();
             setActive(rows.years, id);
             updateSelectionPath();
             fetchProducts(year);
