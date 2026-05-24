@@ -5614,11 +5614,7 @@
                             "value": null,
                             "required": true,
                             "format": "image",
-                            "description": "صورة المنتج التي تظهر في منتصف السلايدر",
-                            "settings": {
-                                "height": 600,
-                                "width": 600
-                            }
+                            "description": "صورة المنتج التي تظهر في منتصف السلايدر"
                         },
                         {
                             "type": "string",
