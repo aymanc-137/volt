@@ -273,7 +273,7 @@
                     return;
                 }
                 requestSignature = productIds.join(',') + ':products';
-                fetchCall = window.salla.product.fetch({ source: 'products', source_value: productIds });
+                fetchCall = window.salla.product.fetch({ source: 'selected', source_value: productIds.map(Number) });
             } else {
                 const ids = (includeDescendants ? collectCategoryIds(category) : [Number(category.id)])
                     .filter((value) => typeof value === 'number' && !Number.isNaN(value));
