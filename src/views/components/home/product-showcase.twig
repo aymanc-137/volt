@@ -18,6 +18,8 @@
 {% set autoplay_interval = (component.autoplay_interval | default(5000)) + 0 %}
 {% set uid = 'ps-' ~ (position | default(random())) %}
 
+{{ products | json_encode }}
+
 {% if products | length %}
 <section class="s-block s-block--product-showcase" id="{{ uid }}-section">
 
@@ -241,111 +243,118 @@
     </div>
   </div>
 
-  <script>
-  (function() {
-    const uid = {{ uid | json_encode }};
-    const interval = {{ autoplay_interval }};
-    const products = {{ products | json_encode }};
-
-    const stage   = document.getElementById(uid + '-stage');
-    const dotsWrap = document.getElementById(uid + '-dots');
-    const topBox  = document.getElementById(uid + '-top');
-    const botBox  = document.getElementById(uid + '-bot');
-    const elTagline = document.getElementById(uid + '-tagline');
-    const elName    = document.getElementById(uid + '-name');
-    const elPrice   = document.getElementById(uid + '-price');
-    const elDesc    = document.getElementById(uid + '-desc');
-    const elSpecs   = document.getElementById(uid + '-specs');
-    const elLinkTop = document.getElementById(uid + '-link-top');
-    const elLinkBot = document.getElementById(uid + '-link-bot');
-
-    const slides = Array.from(stage.querySelectorAll('.ps-slide'));
-    let current = 0;
-    let timer;
-
-    /* build dot indicators */
-    const dots = products.map(function(_, i) {
-      const btn = document.createElement('button');
-      btn.className = 'ps-dot-btn';
-      btn.setAttribute('aria-label', 'انتقل للمنتج ' + (i + 1));
-      btn.addEventListener('click', function() { show(i); restart(); });
-      dotsWrap.appendChild(btn);
-      return btn;
-    });
-
-    function show(index, immediate) {
-      const next = ((index % products.length) + products.length) % products.length;
-      if (!immediate && next === current) return;
-      const prev = current;
-      current = next;
-
-      slides.forEach(function(el, i) {
-        el.classList.remove('is-active', 'is-leaving');
-        if (i === next) {
-          void el.offsetWidth;
-          el.classList.add('is-active');
-        } else if (i === prev && !immediate) {
-          el.classList.add('is-leaving');
-        }
-      });
-
-      dots.forEach(function(d, i) {
-        d.classList.toggle('active', i === next);
-      });
-
-      swapInfo(products[next]);
-    }
-
-    function swapInfo(p) {
-      topBox.classList.add('fading');
-      botBox.classList.add('fading');
-      setTimeout(function() {
-        const name    = p['products.name']        || '';
-        const tagline = p['products.tagline']     || '';
-        const price   = p['products.price']       || '';
-        const desc    = p['products.description'] || '';
-        const specs   = p['products.specs']       || '';
-        const link    = p['products.link']        || '';
-
-        elTagline.textContent = tagline ? '— ' + tagline : '';
-        elName.textContent    = name;
-        elPrice.textContent   = price;
-        elDesc.textContent    = desc;
-
-        elSpecs.innerHTML = specs
-          ? specs.split(',').map(function(s) {
-              return '<span class="ps-spec">' + s.trim() + '</span>';
-            }).join('')
-          : '';
-
-        const linkHtml = link
-          ? '<a href="' + link + '" class="ps-link">عرض المنتج ›</a>'
-          : '';
-        elLinkTop.innerHTML = linkHtml;
-        elLinkBot.innerHTML = '';
-
-        topBox.classList.remove('fading');
-        botBox.classList.remove('fading');
-      }, 300);
-    }
-
-    function start() {
-      clearInterval(timer);
-      timer = setInterval(function() { show(current + 1); }, interval);
-    }
-    function restart() { start(); }
-
-    document.getElementById(uid + '-prev').addEventListener('click', function() { show(current - 1); restart(); });
-    document.getElementById(uid + '-next').addEventListener('click', function() { show(current + 1); restart(); });
-
-    const root = document.getElementById(uid);
-    root.addEventListener('mouseenter', function() { clearInterval(timer); });
-    root.addEventListener('mouseleave', function() { start(); });
-
-    show(0, true);
-    start();
-  })();
-  </script>
-
+  </div>
 </section>
+
+<script>
+  (function () {
+    function init() {
+      var uid = {{ uid | json_encode }};
+      var interval = {{ autoplay_interval }};
+      var products = {{ products | json_encode }};
+
+      var root = document.getElementById(uid);
+      if (!root) { console.warn('[product-showcase] root not found:', uid); return; }
+      if (root.dataset.psInit === '1') return;
+      root.dataset.psInit = '1';
+
+      var stage     = document.getElementById(uid + '-stage');
+      var dotsWrap  = document.getElementById(uid + '-dots');
+      var topBox    = document.getElementById(uid + '-top');
+      var botBox    = document.getElementById(uid + '-bot');
+      var elTagline = document.getElementById(uid + '-tagline');
+      var elName    = document.getElementById(uid + '-name');
+      var elPrice   = document.getElementById(uid + '-price');
+      var elDesc    = document.getElementById(uid + '-desc');
+      var elSpecs   = document.getElementById(uid + '-specs');
+      var elLinkTop = document.getElementById(uid + '-link-top');
+      var elLinkBot = document.getElementById(uid + '-link-bot');
+
+      var slides = Array.prototype.slice.call(stage.querySelectorAll('.ps-slide'));
+      var current = 0;
+      var timer = null;
+
+      var dots = products.map(function (_, i) {
+        var btn = document.createElement('button');
+        btn.className = 'ps-dot-btn';
+        btn.setAttribute('aria-label', 'انتقل للمنتج ' + (i + 1));
+        btn.addEventListener('click', function () { show(i); restart(); });
+        dotsWrap.appendChild(btn);
+        return btn;
+      });
+
+      function show(index, immediate) {
+        var next = ((index % products.length) + products.length) % products.length;
+        if (!immediate && next === current) return;
+        var prev = current;
+        current = next;
+
+        slides.forEach(function (el, i) {
+          if (i === next) {
+            el.classList.remove('is-leaving');
+            void el.offsetWidth;
+            el.classList.add('is-active');
+          } else if (i === prev && !immediate) {
+            el.classList.remove('is-active');
+            el.classList.add('is-leaving');
+          } else {
+            el.classList.remove('is-active', 'is-leaving');
+          }
+        });
+
+        dots.forEach(function (d, i) { d.classList.toggle('active', i === next); });
+        swapInfo(products[next]);
+      }
+
+      function swapInfo(p) {
+        topBox.classList.add('fading');
+        botBox.classList.add('fading');
+        setTimeout(function () {
+          var name    = p['products.name']        || '';
+          var tagline = p['products.tagline']     || '';
+          var price   = p['products.price']       || '';
+          var desc    = p['products.description'] || '';
+          var specs   = p['products.specs']       || '';
+          var link    = p['products.link']        || '';
+
+          elTagline.textContent = tagline ? '— ' + tagline : '';
+          elName.textContent    = name;
+          elPrice.textContent   = price;
+          elDesc.textContent    = desc;
+
+          elSpecs.innerHTML = specs
+            ? specs.split(',').map(function (s) { return '<span class="ps-spec">' + s.trim() + '</span>'; }).join('')
+            : '';
+
+          elLinkTop.innerHTML = link ? '<a href="' + link + '" class="ps-link">عرض المنتج ›</a>' : '';
+          elLinkBot.innerHTML = '';
+
+          topBox.classList.remove('fading');
+          botBox.classList.remove('fading');
+        }, 300);
+      }
+
+      function start() {
+        clearInterval(timer);
+        timer = setInterval(function () { show(current + 1); }, interval);
+      }
+      function restart() { if (timer) start(); }
+
+      document.getElementById(uid + '-prev').addEventListener('click', function () { show(current - 1); restart(); });
+      document.getElementById(uid + '-next').addEventListener('click', function () { show(current + 1); restart(); });
+
+      root.addEventListener('mouseenter', function () { clearInterval(timer); timer = null; });
+      root.addEventListener('mouseleave', function () { start(); });
+
+      show(0, true);
+      start();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>
 {% endif %}
