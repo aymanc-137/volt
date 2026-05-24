@@ -5556,7 +5556,9 @@
             ]
         },
         {
-            "name": "عرض المنتجات المميزة",
+            "key": "a3f1c2d4-8e5b-4a7f-9c6d-2b0e3f1a4d87",
+            "title": "عرض المنتجات المميزة",
+            "icon": "sicon-layers",
             "path": "home.product-showcase",
             "image": "https://cdn.salla.sa/mQgZlG/kvFhVeuUyjK4nHUovBQBZ632Hb6gKV2BXZwid40e.png",
             "fields": [
