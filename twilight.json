@@ -5618,7 +5618,7 @@
                     "description": "عند التفعيل، يمكنك اختيار كلمة معينة من العنوان لتطبيق تدرج لوني عليها",
                     "labelHTML": null,
                     "icon": "sicon-magic-wand",
-                    "value": "رياضية",
+                    "value": false,
                     "selected": false,
                     "required": false,
                     "conditions": [
@@ -5633,7 +5633,7 @@
                     "description": "أدخل الكلمة أو العبارة التي تريد تطبيق التدرج اللوني عليها",
                     "icon": "sicon-format-text-alt",
                     "placeholder": "مثال: متخصصة",
-                    "value": null,
+                    "value": "رياضية",
                     "required": false,
                     "minLength": 1,
                     "maxLength": 100,
