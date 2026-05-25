@@ -10,6 +10,7 @@
 | component.after_image             | string   | Image shown on the left of the divider                               |
 | component.before_label            | ?string  | Caption over the "before" image                                      |
 | component.after_label             | ?string  | Caption over the "after" image                                       |
+| component.product_image           | ?string  | Product image shown above the body text                              |
 | component.body_text               | ?string  | Paragraph beneath the comparison image                               |
 | component.link                    | ?string  | Variable-list link (product/category/brand/custom)                   |
 | component.link_text               | ?string  | Button label                                                         |
@@ -24,6 +25,7 @@
 {% set after_label = component.after_label | default('') %}
 {% set body_text = component.body_text | default('') %}
 {% set link_text = component.link_text | default('') %}
+{% set product_image = component.product_image | default('') %}
 
 {% if before_image and after_image %}
 <section id="{{ uid }}-section" class="s-block s-block--before-after">
@@ -91,18 +93,21 @@
       border-radius: 9999px;
       background: #fff;
       color: #111;
-      display: grid;
-      place-items: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
       font-size: 1.25rem;
       font-weight: 700;
+      line-height: 1;
       cursor: ew-resize;
       box-shadow: 0 6px 20px rgba(0, 0, 0, .35);
       z-index: 4;
       touch-action: none;
       user-select: none;
     }
-    #{{ uid }}-handle::before { content: '‹'; margin-right: 2px; }
-    #{{ uid }}-handle::after  { content: '›'; margin-left:  2px; }
+    #{{ uid }}-handle::before { content: '‹'; }
+    #{{ uid }}-handle::after  { content: '›'; }
 
     #{{ uid }}-label-before,
     #{{ uid }}-label-after {
@@ -126,15 +131,22 @@
       max-width: 42rem;
       margin: 2.5rem auto 0;
       text-align: center;
-      color: var(--color-dark-page-foreground, #111);
     }
     #{{ uid }}-body p {
       font-size: 1rem;
       line-height: 1.8;
-      color: rgba(0, 0, 0, .75);
       margin: 0 0 1.5rem;
     }
-    .dark #{{ uid }}-body p { color: rgba(255, 255, 255, .8); }
+    #{{ uid }}-product-img {
+      display: block;
+      max-width: 16rem;
+      max-height: 14rem;
+      width: auto;
+      height: auto;
+      margin: 0 auto 1.5rem;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 30px rgba(0, 0, 0, .35));
+    }
 
     #{{ uid }}-cta {
       display: inline-block;
@@ -206,9 +218,12 @@
       ></button>
     </div>
 
-    {% if body_text or link_text %}
-      <div id="{{ uid }}-body">
-        {% if body_text %}<p>{{ body_text }}</p>{% endif %}
+    {% if product_image or body_text or link_text %}
+      <div id="{{ uid }}-body" class="dynamic-text-color">
+        {% if product_image %}
+          <img id="{{ uid }}-product-img" src="{{ product_image }}" alt="" loading="lazy" />
+        {% endif %}
+        {% if body_text %}<p class="dynamic-text-color">{{ body_text }}</p>{% endif %}
         {% if link_text %}
           {% set link_url = component.link %}
           {% if link_url is iterable %}{% set link_url = link_url.url | default('') %}{% endif %}

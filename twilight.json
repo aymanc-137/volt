@@ -6195,11 +6195,21 @@
                     "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>📝 النص والرابط</strong></div>"
                 },
                 {
+                    "id": "product_image",
+                    "type": "string",
+                    "format": "image",
+                    "label": "صورة المنتج",
+                    "description": "صورة المنتج التي تظهر فوق النص التعريفي",
+                    "icon": "sicon-image",
+                    "value": "",
+                    "required": false
+                },
+                {
                     "id": "body_text",
                     "type": "string",
                     "format": "textarea",
                     "label": "النص التعريفي",
-                    "description": "نص يظهر تحت صورة المقارنة",
+                    "description": "نص يظهر تحت صورة المنتج",
                     "icon": "sicon-note",
                     "placeholder": "أدخل النص هنا...",
                     "value": "تركيبة متطورة لإزالة أعند البقع وأتربة الطرق السعودية في دقائق معدودة، تعيد لسيارتك لمعانها الأصلي وتحمي طلاءها من أشعة الشمس الحارقة. آمنة على جميع أنواع الدهانات ومناسبة للاستخدام المنزلي.",

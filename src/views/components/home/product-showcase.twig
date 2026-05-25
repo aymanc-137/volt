@@ -36,9 +36,9 @@
 {% set marqueetext = component.marqueetext | default(' سرعة /// أداء /// تحكم ') %}
 {% set enable_border = component.enable_border | default(false) %}
 {% set glow_type = component.enable_glow | default('none') %}
-{% set glow_use_theme = component.glow_use_theme_colors | default(true) %}
-{% set glow_c1 = glow_use_theme ? 'var(--color-primary)'  : (component.glow_color_1 | default('var(--color-primary)')) %}
-{% set glow_c2 = glow_use_theme ? 'var(--color-scandary)' : (component.glow_color_2 | default('var(--color-scandary)')) %}
+{% set glow_use_theme = component.glow_use_theme_colors ?? true %}
+{% set glow_c1 = glow_use_theme ? 'var(--color-primary)'  : (component.glow_color_1 ?? 'var(--color-primary)') %}
+{% set glow_c2 = glow_use_theme ? 'var(--color-scandary)' : (component.glow_color_2 ?? 'var(--color-scandary)') %}
 {% set marquee_text_position = component.marquee_text_position | default('both') %}
 {% set marquee_is_moving = component.marquee_is_moving %}
 {% set marquee_text_size = component.marquee_text_size | default('8') %}
