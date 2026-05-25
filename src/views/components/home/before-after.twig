@@ -61,16 +61,11 @@
       -webkit-user-drag: none;
     }
 
-    #{{ uid }}-after-wrap {
-      position: absolute;
-      inset: 0;
-      width: 50%;
-      overflow: hidden;
-      will-change: width;
-    }
-    #{{ uid }}-after-wrap img {
-      width: calc(100% / 0.5);
-      max-width: none;
+    #{{ uid }}-after-img {
+      clip-path: inset(0 50% 0 0);
+      -webkit-clip-path: inset(0 50% 0 0);
+      will-change: clip-path;
+      z-index: 2;
     }
 
     #{{ uid }}-divider {
@@ -193,13 +188,11 @@
   <div id="{{ uid }}-wrap">
 
     <div id="{{ uid }}-stage" data-ba-stage>
-      {# Before image (right side, full width underneath) #}
+      {# Before image (underneath, always fully visible) #}
       <img src="{{ before_image }}" alt="{{ before_label }}" />
 
-      {# After image clipped to the left portion #}
-      <div id="{{ uid }}-after-wrap" data-ba-after>
-        <img src="{{ after_image }}" alt="{{ after_label }}" />
-      </div>
+      {# After image (stacked on top, clipped to the left portion) #}
+      <img id="{{ uid }}-after-img" src="{{ after_image }}" alt="{{ after_label }}" />
 
       {% if before_label %}<div id="{{ uid }}-label-before">{{ before_label }}</div>{% endif %}
       {% if after_label  %}<div id="{{ uid }}-label-after">{{ after_label }}</div>{% endif %}
@@ -230,19 +223,23 @@
 <script>
   (function () {
     function init() {
-      var stage   = document.getElementById('{{ uid }}-stage');
-      var after   = document.getElementById('{{ uid }}-after-wrap');
-      var divider = document.getElementById('{{ uid }}-divider');
-      var handle  = document.getElementById('{{ uid }}-handle');
-      if (!stage || !after || !handle) return;
+      var stage    = document.getElementById('{{ uid }}-stage');
+      var afterImg = document.getElementById('{{ uid }}-after-img');
+      var divider  = document.getElementById('{{ uid }}-divider');
+      var handle   = document.getElementById('{{ uid }}-handle');
+      if (!stage || !afterImg || !handle) return;
       if (stage.dataset.baInit === '1') return;
       stage.dataset.baInit = '1';
 
       var dragging = false;
+      var currentPct = 50;
 
       function setPosition(percent) {
         percent = Math.max(0, Math.min(100, percent));
-        after.style.width = percent + '%';
+        currentPct = percent;
+        var clip = 'inset(0 ' + (100 - percent) + '% 0 0)';
+        afterImg.style.clipPath = clip;
+        afterImg.style.webkitClipPath = clip;
         divider.style.left = percent + '%';
         handle.style.left  = percent + '%';
       }
@@ -284,9 +281,8 @@
 
       // keyboard support
       handle.addEventListener('keydown', function (e) {
-        var current = parseFloat(after.style.width) || 50;
-        if (e.key === 'ArrowLeft')  setPosition(current - 4);
-        if (e.key === 'ArrowRight') setPosition(current + 4);
+        if (e.key === 'ArrowLeft')  setPosition(currentPct - 4);
+        if (e.key === 'ArrowRight') setPosition(currentPct + 4);
       });
 
       setPosition(50);
