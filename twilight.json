@@ -4019,7 +4019,10 @@
         },
         {
             "key": "716e33df-97f4-4808-97a8-c8784d339916",
-            "title": "قائمة بحث المركبات",
+            "title": {
+                "ar": "قائمة بحث المركبات",
+                "en": null
+            },
             "icon": "sicon-store",
             "path": "home.car-search-tree",
             "fields": [
@@ -4060,6 +4063,16 @@
                     "required": false
                 },
                 {
+                    "id": "use_custom_json",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "استخدام بيانات مخصصة بدلاً من تصنيفات المتجر",
+                    "description": "عند التفعيل سيتم استخدام JSON المُدخل من تطبيق مدير التصنيفات بدلاً من تصنيفات المتجر.",
+                    "icon": "sicon-settings",
+                    "value": false,
+                    "required": false
+                },
+                {
                     "id": "show_in_category_page",
                     "type": "boolean",
                     "format": "switch",
@@ -4084,6 +4097,18 @@
                     "searchable": true,
                     "required": false,
                     "value": []
+                },
+                {
+                    "id": "custom_json_data",
+                    "type": "string",
+                    "format": "textarea",
+                    "label": "بيانات JSON المخصصة",
+                    "description": null,
+                    "labelHTML": null,
+                    "placeholder": "body { color: green; }",
+                    "icon": "sicon-browser-code",
+                    "value": null,
+                    "required": false
                 }
             ]
         },
@@ -5526,6 +5551,924 @@
                                 "width": 600
                             }
                         }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "a3f1c2d4-8e5b-4a7f-9c6d-2b0e3f1a4d87",
+            "title": "عرض المنتجات المميزة",
+            "icon": "sicon-layers",
+            "path": "home.product-showcase",
+            "image": "https://cdn.salla.sa/mQgZlG/kvFhVeuUyjK4nHUovBQBZ632Hb6gKV2BXZwid40e.png",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "group-title-settings",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>⚙️ إعدادات العنوان</strong></div>"
+                },
+                {
+                    "id": "title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان",
+                    "description": "عنوان اختياري يظهر فوق السلايدر",
+                    "labelHTML": null,
+                    "placeholder": "أدخل عنوان القسم...",
+                    "icon": "sicon-format-text-alt",
+                    "value": "جنوط رياضية تليق بسيارتك",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 300
+                },
+                {
+                    "id": "sub_title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان الجانبي",
+                    "description": null,
+                    "labelHTML": null,
+                    "placeholder": "Placeholder text ..",
+                    "icon": "sicon-format-text-alt",
+                    "value": "تشكيلة مختارة من أفخم الجنوط الرياضية والكاربون فايبر بمقاسات تناسب جميع السيارات في المملكة",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 300
+                },
+                {
+                    "id": "enable_gradient_title",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "تفعيل لون متدرج للعنوان",
+                    "description": "عند التفعيل، سيظهر العنوان بتدرج لوني من اللون الأساسي إلى اللون الثانوي",
+                    "labelHTML": null,
+                    "icon": "sicon-format-fill",
+                    "value": false,
+                    "selected": false,
+                    "required": false
+                },
+                {
+                    "id": "enable_gradient_word",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "تفعيل لون متدرج لكلمة معينة في العنوان",
+                    "description": "عند التفعيل، يمكنك اختيار كلمة معينة من العنوان لتطبيق تدرج لوني عليها",
+                    "labelHTML": null,
+                    "icon": "sicon-magic-wand",
+                    "value": false,
+                    "selected": false,
+                    "required": false,
+                    "conditions": [
+                        { "id": "enable_gradient_title", "operation": "=", "value": false }
+                    ]
+                },
+                {
+                    "id": "gradient_word",
+                    "type": "string",
+                    "format": "text",
+                    "label": "الكلمة أو العبارة المراد تلوينها",
+                    "description": "أدخل الكلمة أو العبارة التي تريد تطبيق التدرج اللوني عليها",
+                    "icon": "sicon-format-text-alt",
+                    "placeholder": "مثال: متخصصة",
+                    "value": "رياضية",
+                    "required": false,
+                    "minLength": 1,
+                    "maxLength": 100,
+                    "conditions": [
+                        { "id": "enable_gradient_word", "operation": "=", "value": true },
+                        { "id": "enable_gradient_title", "operation": "=", "value": false }
+                    ]
+                },
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "group-slider-settings",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🎞️ إعدادات السلايدر</strong></div>"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-timer",
+                    "label": "مدة التبديل التلقائي (ميلي ثانية)",
+                    "id": "autoplay_interval",
+                    "value": "5000",
+                    "required": false,
+                    "format": "text",
+                    "description": "المدة بالميلي ثانية بين كل منتج (افتراضي: 5000)",
+                    "placeholder": "5000"
+                },
+                {
+                    "id": "products",
+                    "type": "collection",
+                    "format": "collection",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 10,
+                    "label": "المنتجات",
+                    "item_label": "منتج",
+                    "value": [
+                        {
+                            "products.name": "جنط فولت سبورت R20",
+                            "products.tagline": "خفة الكاربون.. قوة السباق",
+                            "products.price": "4,250 ر.س",
+                            "products.description": "جنط رياضي بتصميم خماسي مزدوج مصنوع من سبيكة الألمنيوم الطيراني المعالج حراريًا، يقلل الوزن غير المعلق ويمنح سيارتك ثبات السباقات الحقيقية على الطرق السعودية.",
+                            "products.specs": "مقاس 20 إنش, خامة الألمنيوم الطيراني, تصميم خماسي مزدوج, طلاء مقاوم للحرارة",
+                            "products.image": "https://cdn.lamsaweb.com/cdnVolt/1.png",
+                            "products.link": []
+                        },
+                        {
+                            "products.name": "جنط فولت كاربون GT R19",
+                            "products.tagline": "حضور أسود.. ولمسة كاربون",
+                            "products.price": "5,890 ر.س",
+                            "products.description": "إصدار محدود بلمسات كاربون فايبر أصلية على وجه الجنط، مصمم لمحبي السيارات الرياضية الذين يبحثون عن مظهر مميز وأداء يلائم سرعات الحلبات.",
+                            "products.specs": "مقاس 19 إنش, لمسات كاربون فايبر, طلاء أسود مطفي, مقاوم لارتفاع الحرارة",
+                            "products.image": "https://cdn.lamsaweb.com/cdnVolt/2.png",
+                            "products.link": []
+                        },
+                        {
+                            "products.name": "جنط فولت تيتانيوم R22",
+                            "products.tagline": "فخامة بمعايير الخليج",
+                            "products.price": "7,150 ر.س",
+                            "products.description": "تصميم مستوحى من سيارات السوبر كار الأوروبية بطلاء تيتانيوم لامع يبرز فخامة سيارتك تحت شمس الرياض وجدة، مع توازن مثالي للسرعات العالية.",
+                            "products.specs": "مقاس 22 إنش, طلاء تيتانيوم, تصميم متعدد الأذرع, خفيف الوزن",
+                            "products.image": "https://cdn.lamsaweb.com/cdnVolt/3.png",
+                            "products.link": []
+                        },
+                        {
+                            "products.name": "جنط فولت تراك إيديشن R18",
+                            "products.tagline": "صُمّم للحلبة.. جاهز للطريق",
+                            "products.price": "3,490 ر.س",
+                            "products.description": "إصدار خاص بمحبي القيادة الديناميكية، بتصميم مفتوح يساعد على تبريد الفرامل أثناء الانطلاقات الطويلة على الطرق السريعة في المملكة.",
+                            "products.specs": "مقاس 18 إنش, تصميم مفتوح للتهوية, متوافق مع الفرامل الكبيرة, إنتاج محدود",
+                            "products.image": "https://cdn.lamsaweb.com/cdnVolt/4.png",
+                            "products.link": []
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "type": "string",
+                            "icon": "sicon-image",
+                            "label": "صورة المنتج",
+                            "id": "products.image",
+                            "value": null,
+                            "required": true,
+                            "format": "image",
+                            "description": "صورة المنتج التي تظهر في منتصف السلايدر"
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "اسم المنتج",
+                            "id": "products.name",
+                            "value": "",
+                            "required": true,
+                            "format": "text",
+                            "description": "الاسم الرئيسي للمنتج",
+                            "placeholder": "مثال: سماعات Aether X1",
+                            "minLength": 1,
+                            "maxLength": 80
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-typography",
+                            "label": "الشعار القصير (Tagline)",
+                            "id": "products.tagline",
+                            "value": "",
+                            "required": false,
+                            "format": "text",
+                            "description": "جملة قصيرة جذابة تظهر فوق الاسم",
+                            "placeholder": "مثال: صوت يعيد التعريف",
+                            "minLength": 0,
+                            "maxLength": 60
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-price-tag",
+                            "label": "السعر",
+                            "id": "products.price",
+                            "value": "",
+                            "required": false,
+                            "format": "text",
+                            "description": "نص السعر كما تريده أن يظهر",
+                            "placeholder": "مثال: 349 ر.س",
+                            "minLength": 0,
+                            "maxLength": 30
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-note",
+                            "label": "الوصف",
+                            "id": "products.description",
+                            "value": "",
+                            "required": false,
+                            "format": "textarea",
+                            "description": "وصف تفصيلي يظهر في البطاقة السفلية",
+                            "placeholder": "أدخل وصفاً للمنتج...",
+                            "minLength": 0,
+                            "maxLength": 400
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-list",
+                            "label": "المواصفات (مفصولة بفاصلة)",
+                            "id": "products.specs",
+                            "value": "",
+                            "required": false,
+                            "format": "text",
+                            "description": "أدخل المواصفات مفصولة بفاصلة، مثال: بلوتوث 5.4, بطارية 40 ساعة",
+                            "placeholder": "مواصفة 1, مواصفة 2, مواصفة 3",
+                            "minLength": 0,
+                            "maxLength": 200
+                        },
+                        {
+                            "id": "products.link",
+                            "label": "رابط المنتج (اختياري)",
+                            "description": "اختر منتج، تصنيف، ماركة، أو أدخل رابطاً خارجياً — إذا حُدد سيظهر زر 'عرض المنتج'",
+                            "labelHTML": null,
+                            "icon": "sicon-link",
+                            "required": false,
+                            "value": [],
+                            "format": "variable-list",
+                            "searchable": true,
+                            "type": "items",
+                            "source": "custom",
+                            "sources": [
+                                {
+                                    "label": "منتج",
+                                    "key": "products",
+                                    "value": "products"
+                                },
+                                {
+                                    "label": "تصنيف",
+                                    "key": "categories",
+                                    "value": "categories"
+                                },
+                                {
+                                    "label": "ماركة تجارية",
+                                    "key": "brands",
+                                    "value": "brands"
+                                },
+                                {
+                                    "label": "التخفيضات",
+                                    "key": "offers_link",
+                                    "value": "offers_link"
+                                },
+                                {
+                                    "label": "الماركات التجارية",
+                                    "key": "brands_link",
+                                    "value": "brands_link"
+                                },
+                                {
+                                    "label": "رابط خارجي",
+                                    "key": "custom",
+                                    "value": "custom"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "group-background-settings",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🎨 إعدادات الخلفية</strong></div>"
+                },
+                {
+                    "id": "slas_hbg",
+                    "description": "اختر نوع الخطوط من الإعداد التالي بعد التفعيل",
+                    "labelHTML": null,
+                    "label": "تفعيل خلفية الخطوط",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "slas_hbg_type",
+                    "description": "اختر اتجاه الخطوط في الخلفية",
+                    "labelHTML": null,
+                    "label": "نوع الخطوط",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "value": [],
+                    "selected": [
+                        { "label": "مائلة (الوضع الافتراضي)", "value": "inclined", "key": "slas-type-inclined" }
+                    ],
+                    "source": "Manual",
+                    "options": [
+                        { "label": "مائلة (الوضع الافتراضي)", "value": "inclined", "key": "slas-type-inclined" },
+                        { "label": "عمودية (من أعلى لأسفل)", "value": "vertical", "key": "slas-type-vertical" },
+                        { "label": "أفقية (من يسار ليمين)", "value": "horizontal", "key": "slas-type-horizontal" }
+                    ],
+                    "required": false,
+                    "conditions": [
+                        { "id": "slas_hbg", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "slas_hbg_size",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "حجم الخطوط",
+                    "type": "string",
+                    "format": "text",
+                    "value": "20",
+                    "required": false,
+                    "conditions": [
+                        { "id": "slas_hbg", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "slas_hbg_use_primary_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "استخدام اللون الرئيسي في الخطوط المموجة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false,
+                    "conditions": [
+                        { "id": "slas_hbg", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "slas_hbg_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "لون الخطوط",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#000000",
+                    "required": false,
+                    "conditions": [
+                        { "id": "slas_hbg_use_primary_color", "operation": "=", "value": false },
+                        { "id": "slas_hbg", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "marquee",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "نصوص متحركة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "marqueetext",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "نص ",
+                    "type": "string",
+                    "format": "text",
+                    "value": "سرعة /// أداء /// تحكم",
+                    "required": false,
+                    "minLength": 3,
+                    "maxLength": 300,
+                    "conditions": [
+                        { "id": "marquee", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "marquee_text_size",
+                    "description": "حجم النص بالـ rem",
+                    "labelHTML": null,
+                    "label": "حجم نص متحرك",
+                    "type": "string",
+                    "format": "text",
+                    "value": "9",
+                    "required": false,
+                    "conditions": [
+                        { "id": "marquee", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "marquee_is_moving",
+                    "description": "تفعيل أو إيقاف حركة النص",
+                    "labelHTML": null,
+                    "label": "تحريك النص",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": true,
+                    "required": false,
+                    "conditions": [
+                        { "id": "marquee", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "marquee_text_position",
+                    "description": "موقع ظهور النص",
+                    "labelHTML": null,
+                    "label": "موقع النص",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "value": [],
+                    "required": false,
+                    "selected": [],
+                    "source": "Manual",
+                    "options": [
+                        { "label": "أعلى فقط", "value": "top", "key": "ps-mq-top" },
+                        { "label": "أسفل فقط", "value": "bottom", "key": "ps-mq-bottom" },
+                        { "label": "أعلى وأسفل", "value": "both", "key": "ps-mq-both" }
+                    ],
+                    "conditions": [
+                        { "id": "marquee", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "enable_border",
+                    "label": "تفعيل الحدود",
+                    "description": null,
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "enable_glow",
+                    "label": "تأثير التوهج",
+                    "description": "اختر نوع التوهج في الخلفية",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "value": [],
+                    "selected": [
+                        { "label": "بدون توهج", "value": "none", "key": "ps-glow-none" }
+                    ],
+                    "source": "Manual",
+                    "options": [
+                        { "label": "بدون توهج", "value": "none", "key": "ps-glow-none" },
+                        { "label": "كرات متوهجة (الكلاسيكي)", "value": "circles", "key": "ps-glow-circles" },
+                        { "label": "توهج من الجانبين", "value": "sides", "key": "ps-glow-sides" },
+                        { "label": "توهج من الأعلى والأسفل", "value": "top_bottom", "key": "ps-glow-top-bottom" },
+                        { "label": "توهج من اليسار فقط", "value": "left", "key": "ps-glow-left" },
+                        { "label": "توهج من اليمين فقط", "value": "right", "key": "ps-glow-right" },
+                        { "label": "توهج من الأعلى فقط", "value": "top", "key": "ps-glow-top" },
+                        { "label": "توهج من الأسفل فقط", "value": "bottom", "key": "ps-glow-bottom" }
+                    ],
+                    "required": false
+                },
+                {
+                    "id": "glow_use_theme_colors",
+                    "label": "استخدام ألوان السمة للتوهج",
+                    "description": "عند التفعيل يستخدم اللون الأساسي والثانوي للسمة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": true,
+                    "required": false,
+                    "conditions": [
+                        { "id": "enable_glow", "operation": "!=", "value": "none" }
+                    ]
+                },
+                {
+                    "id": "glow_color_1",
+                    "label": "لون التوهج الأول",
+                    "description": "اللون الرئيسي للتوهج (الجانب الأيسر / الأعلى / الكرة الأولى)",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#7c3aed",
+                    "required": false,
+                    "conditions": [
+                        { "id": "glow_use_theme_colors", "operation": "=", "value": false },
+                        { "id": "enable_glow", "operation": "!=", "value": "none" }
+                    ]
+                },
+                {
+                    "id": "glow_color_2",
+                    "label": "لون التوهج الثاني",
+                    "description": "اللون الثانوي للتوهج (الجانب الأيمن / الأسفل / الكرة الثانية) — يُستخدم فقط في الأنواع المزدوجة",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#06b6d4",
+                    "required": false,
+                    "conditions": [
+                        { "id": "glow_use_theme_colors", "operation": "=", "value": false },
+                        { "id": "enable_glow", "operation": "!=", "value": "none" }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "b8e2d3c5-9f6c-4b8a-a7d8-3c1f4e2b5d98",
+            "title": "مقارنة قبل وبعد",
+            "icon": "sicon-image",
+            "path": "home.before-after",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "group-title-settings",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>⚙️ إعدادات العنوان</strong></div>"
+                },
+                {
+                    "id": "title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان",
+                    "description": "عنوان اختياري يظهر فوق صورة المقارنة",
+                    "labelHTML": null,
+                    "placeholder": "أدخل عنوان القسم...",
+                    "icon": "sicon-format-text-alt",
+                    "value": "نظافة تليق بسيارتك",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 300
+                },
+                {
+                    "id": "sub_title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان الجانبي",
+                    "description": null,
+                    "labelHTML": null,
+                    "placeholder": "Placeholder text ..",
+                    "icon": "sicon-format-text-alt",
+                    "value": "اسحب الفاصل وشاهد الفرق المذهل قبل وبعد استخدام منظف فولت المتطور",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 300
+                },
+                {
+                    "id": "enable_gradient_title",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "تفعيل لون متدرج للعنوان",
+                    "description": "عند التفعيل، سيظهر العنوان بتدرج لوني من اللون الأساسي إلى اللون الثانوي",
+                    "labelHTML": null,
+                    "icon": "sicon-format-fill",
+                    "value": false,
+                    "selected": false,
+                    "required": false
+                },
+                {
+                    "id": "enable_gradient_word",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "تفعيل لون متدرج لكلمة معينة في العنوان",
+                    "description": "عند التفعيل، يمكنك اختيار كلمة معينة من العنوان لتطبيق تدرج لوني عليها",
+                    "labelHTML": null,
+                    "icon": "sicon-magic-wand",
+                    "value": false,
+                    "selected": false,
+                    "required": false,
+                    "conditions": [
+                        { "id": "enable_gradient_title", "operation": "=", "value": false }
+                    ]
+                },
+                {
+                    "id": "gradient_word",
+                    "type": "string",
+                    "format": "text",
+                    "label": "الكلمة أو العبارة المراد تلوينها",
+                    "description": null,
+                    "icon": "sicon-format-text-alt",
+                    "placeholder": "مثال: الفرق",
+                    "value": null,
+                    "required": false,
+                    "minLength": 1,
+                    "maxLength": 100,
+                    "conditions": [
+                        { "id": "enable_gradient_word", "operation": "=", "value": true },
+                        { "id": "enable_gradient_title", "operation": "=", "value": false }
+                    ]
+                },
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "group-images-settings",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🖼️ صور المقارنة</strong></div>"
+                },
+                {
+                    "id": "before_image",
+                    "type": "string",
+                    "format": "image",
+                    "label": "صورة (قبل)",
+                    "description": "الصورة التي تظهر على يمين الفاصل",
+                    "icon": "sicon-image",
+                    "value": "https://cdn.lamsaweb.com/cdnVolt/before.jpg",
+                    "required": true
+                },
+                {
+                    "id": "after_image",
+                    "type": "string",
+                    "format": "image",
+                    "label": "صورة (بعد)",
+                    "description": "الصورة التي تظهر على يسار الفاصل",
+                    "icon": "sicon-image",
+                    "value": "https://cdn.lamsaweb.com/cdnVolt/after.jpg",
+                    "required": true
+                },
+                {
+                    "id": "before_label",
+                    "type": "string",
+                    "format": "text",
+                    "label": "نص فوق صورة (قبل)",
+                    "icon": "sicon-format-text-alt",
+                    "placeholder": "قبل",
+                    "value": "قبل",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 30
+                },
+                {
+                    "id": "after_label",
+                    "type": "string",
+                    "format": "text",
+                    "label": "نص فوق صورة (بعد)",
+                    "icon": "sicon-format-text-alt",
+                    "placeholder": "بعد",
+                    "value": "بعد",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 30
+                },
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "group-cta-settings",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>📝 النص والرابط</strong></div>"
+                },
+                {
+                    "id": "product_image",
+                    "type": "string",
+                    "format": "image",
+                    "label": "صورة المنتج",
+                    "description": "صورة المنتج التي تظهر فوق النص التعريفي",
+                    "icon": "sicon-image",
+                    "value": "",
+                    "required": false
+                },
+                {
+                    "id": "body_text",
+                    "type": "string",
+                    "format": "textarea",
+                    "label": "النص التعريفي",
+                    "description": "نص يظهر تحت صورة المنتج",
+                    "icon": "sicon-note",
+                    "placeholder": "أدخل النص هنا...",
+                    "value": "تركيبة متطورة لإزالة أعند البقع وأتربة الطرق السعودية في دقائق معدودة، تعيد لسيارتك لمعانها الأصلي وتحمي طلاءها من أشعة الشمس الحارقة. آمنة على جميع أنواع الدهانات ومناسبة للاستخدام المنزلي.",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 800
+                },
+                {
+                    "id": "link",
+                    "label": "الرابط",
+                    "description": "اختر منتج، تصنيف، ماركة، أو أدخل رابطاً خارجياً",
+                    "labelHTML": null,
+                    "icon": "sicon-link",
+                    "required": false,
+                    "value": [],
+                    "format": "variable-list",
+                    "searchable": true,
+                    "type": "items",
+                    "source": "custom",
+                    "sources": [
+                        { "label": "منتج", "key": "products", "value": "products" },
+                        { "label": "تصنيف", "key": "categories", "value": "categories" },
+                        { "label": "ماركة تجارية", "key": "brands", "value": "brands" },
+                        { "label": "التخفيضات", "key": "offers_link", "value": "offers_link" },
+                        { "label": "الماركات التجارية", "key": "brands_link", "value": "brands_link" },
+                        { "label": "رابط خارجي", "key": "custom", "value": "custom" }
+                    ]
+                },
+                {
+                    "id": "link_text",
+                    "type": "string",
+                    "format": "text",
+                    "label": "نص الزر",
+                    "icon": "sicon-format-text-alt",
+                    "placeholder": "اطلب الآن",
+                    "value": "اطلب منظف فولت الآن",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 60
+                },
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "group-background-settings",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🎨 إعدادات الخلفية</strong></div>"
+                },
+                {
+                    "id": "slas_hbg",
+                    "description": "اختر نوع الخطوط من الإعداد التالي بعد التفعيل",
+                    "labelHTML": null,
+                    "label": "تفعيل خلفية الخطوط",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "slas_hbg_type",
+                    "description": "اختر اتجاه الخطوط في الخلفية",
+                    "labelHTML": null,
+                    "label": "نوع الخطوط",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "value": [],
+                    "selected": [
+                        { "label": "مائلة (الوضع الافتراضي)", "value": "inclined", "key": "ba-slas-inclined" }
+                    ],
+                    "source": "Manual",
+                    "options": [
+                        { "label": "مائلة (الوضع الافتراضي)", "value": "inclined", "key": "ba-slas-inclined" },
+                        { "label": "عمودية (من أعلى لأسفل)", "value": "vertical", "key": "ba-slas-vertical" },
+                        { "label": "أفقية (من يسار ليمين)", "value": "horizontal", "key": "ba-slas-horizontal" }
+                    ],
+                    "required": false,
+                    "conditions": [
+                        { "id": "slas_hbg", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "slas_hbg_size",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "حجم الخطوط",
+                    "type": "string",
+                    "format": "text",
+                    "value": "20",
+                    "required": false,
+                    "conditions": [
+                        { "id": "slas_hbg", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "slas_hbg_use_primary_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "استخدام اللون الرئيسي في الخطوط المموجة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false,
+                    "conditions": [
+                        { "id": "slas_hbg", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "slas_hbg_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "لون الخطوط",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#000000",
+                    "required": false,
+                    "conditions": [
+                        { "id": "slas_hbg_use_primary_color", "operation": "=", "value": false },
+                        { "id": "slas_hbg", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "marquee",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "نصوص متحركة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "marqueetext",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "نص ",
+                    "type": "string",
+                    "format": "text",
+                    "value": "نظافة /// لمعان /// حماية",
+                    "required": false,
+                    "minLength": 3,
+                    "maxLength": 300,
+                    "conditions": [
+                        { "id": "marquee", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "marquee_text_size",
+                    "description": "حجم النص بالـ rem",
+                    "labelHTML": null,
+                    "label": "حجم نص متحرك",
+                    "type": "string",
+                    "format": "text",
+                    "value": "8",
+                    "required": false,
+                    "conditions": [
+                        { "id": "marquee", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "marquee_is_moving",
+                    "description": "تفعيل أو إيقاف حركة النص",
+                    "labelHTML": null,
+                    "label": "تحريك النص",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": true,
+                    "required": false,
+                    "conditions": [
+                        { "id": "marquee", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "marquee_text_position",
+                    "description": "موقع ظهور النص",
+                    "labelHTML": null,
+                    "label": "موقع النص",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "value": [],
+                    "required": false,
+                    "selected": [],
+                    "source": "Manual",
+                    "options": [
+                        { "label": "أعلى فقط", "value": "top", "key": "ba-mq-top" },
+                        { "label": "أسفل فقط", "value": "bottom", "key": "ba-mq-bottom" },
+                        { "label": "أعلى وأسفل", "value": "both", "key": "ba-mq-both" }
+                    ],
+                    "conditions": [
+                        { "id": "marquee", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "enable_border",
+                    "label": "تفعيل الحدود",
+                    "description": null,
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "enable_glow",
+                    "label": "تأثير التوهج",
+                    "description": "اختر نوع التوهج في الخلفية",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "value": [],
+                    "selected": [
+                        { "label": "بدون توهج", "value": "none", "key": "ba-glow-none" }
+                    ],
+                    "source": "Manual",
+                    "options": [
+                        { "label": "بدون توهج", "value": "none", "key": "ba-glow-none" },
+                        { "label": "كرات متوهجة (الكلاسيكي)", "value": "circles", "key": "ba-glow-circles" },
+                        { "label": "توهج من الجانبين", "value": "sides", "key": "ba-glow-sides" },
+                        { "label": "توهج من الأعلى والأسفل", "value": "top_bottom", "key": "ba-glow-top-bottom" },
+                        { "label": "توهج من اليسار فقط", "value": "left", "key": "ba-glow-left" },
+                        { "label": "توهج من اليمين فقط", "value": "right", "key": "ba-glow-right" },
+                        { "label": "توهج من الأعلى فقط", "value": "top", "key": "ba-glow-top" },
+                        { "label": "توهج من الأسفل فقط", "value": "bottom", "key": "ba-glow-bottom" }
+                    ],
+                    "required": false
+                },
+                {
+                    "id": "glow_use_theme_colors",
+                    "label": "استخدام ألوان السمة للتوهج",
+                    "description": "عند التفعيل يستخدم اللون الأساسي والثانوي للسمة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": true,
+                    "required": false,
+                    "conditions": [
+                        { "id": "enable_glow", "operation": "!=", "value": "none" }
+                    ]
+                },
+                {
+                    "id": "glow_color_1",
+                    "label": "لون التوهج الأول",
+                    "description": "اللون الرئيسي للتوهج (الجانب الأيسر / الأعلى / الكرة الأولى)",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#7c3aed",
+                    "required": false,
+                    "conditions": [
+                        { "id": "glow_use_theme_colors", "operation": "=", "value": false },
+                        { "id": "enable_glow", "operation": "!=", "value": "none" }
+                    ]
+                },
+                {
+                    "id": "glow_color_2",
+                    "label": "لون التوهج الثاني",
+                    "description": "اللون الثانوي للتوهج (الجانب الأيمن / الأسفل / الكرة الثانية) — يُستخدم فقط في الأنواع المزدوجة",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#06b6d4",
+                    "required": false,
+                    "conditions": [
+                        { "id": "glow_use_theme_colors", "operation": "=", "value": false },
+                        { "id": "enable_glow", "operation": "!=", "value": "none" }
                     ]
                 }
             ]

@@ -1,0 +1,564 @@
+{#
+| Variable                           | Type     | Description                                                                  |
+|------------------------------------|----------|------------------------------------------------------------------------------|
+| component.title                    | ?string  | Main title text                                                              |
+| component.sub_title                | ?string  | Subtitle/description text                                                    |
+| component.enable_gradient_title    | bool     | Gradient color across full title                                             |
+| component.enable_gradient_word     | bool     | Gradient on a specific word in the title                                     |
+| component.gradient_word            | ?string  | The word to apply gradient color to                                          |
+| component.autoplay_interval        | int      | Milliseconds between slides (default 5000)                                   |
+| component.products[]               | array    | Collection of product items (name/tagline/price/description/specs/image/link)|
+| component.slas_hbg                 | bool     | Enable diagonal-lines background                                             |
+| component.slas_hbg_type            | string   | 'inclined' (default) / 'vertical' / 'horizontal'                             |
+| component.slas_hbg_size            | string   | Lines spacing in px                                                          |
+| component.slas_hbg_use_primary_color | bool   | Use theme primary color for the lines                                        |
+| component.slas_hbg_color           | string   | Custom hex color for the lines                                               |
+| component.marquee                  | bool     | Enable marquee decorative text                                               |
+| component.marqueetext              | string   | Marquee text content                                                         |
+| component.marquee_text_size        | string   | Marquee font size (rem)                                                      |
+| component.marquee_is_moving        | bool     | Animate the marquee                                                          |
+| component.marquee_text_position    | string   | 'top' / 'bottom' / 'both'                                                    |
+| component.enable_border            | bool     | Top/bottom borders on the section                                            |
+| component.enable_glow              | string   | 'none' / 'circles' / 'sides' / 'top_bottom' / 'left' / 'right' / 'top' / 'bottom' |
+| component.glow_use_theme_colors    | bool     | Use theme primary/secondary colors for glow (default true)                   |
+| component.glow_color_1             | string   | Custom first glow color (hex)                                                |
+| component.glow_color_2             | string   | Custom second glow color (hex)                                               |
+| position                           | int      | Component position in the page                                               |
+#}
+{% set products = component.products | default([]) %}
+{% set title = component.title | default('') %}
+{% set sub_title = component.sub_title | default('') %}
+{% set autoplay_interval = (component.autoplay_interval | default(5000)) + 0 %}
+{% set uid = 'ps-' ~ (position | default(random())) %}
+
+{% set slashbg = component.slas_hbg | default(false) %}
+{% set marquee = component.marquee | default(false) %}
+{% set marqueetext = component.marqueetext | default(' سرعة /// أداء /// تحكم ') %}
+{% set enable_border = component.enable_border | default(false) %}
+{% set glow_type = component.enable_glow | default('none') %}
+{% set glow_use_theme = component.glow_use_theme_colors ?? true %}
+{% set glow_c1 = glow_use_theme ? 'var(--color-primary)'  : (component.glow_color_1 ?? 'var(--color-primary)') %}
+{% set glow_c2 = glow_use_theme ? 'var(--color-scandary)' : (component.glow_color_2 ?? 'var(--color-scandary)') %}
+{% set marquee_text_position = component.marquee_text_position | default('both') %}
+{% set marquee_is_moving = component.marquee_is_moving %}
+{% set marquee_text_size = component.marquee_text_size | default('8') %}
+{% set slas_hbg_size = component.slas_hbg_size | default('20') %}
+{% set slas_hbg_use_primary_color = component.slas_hbg_use_primary_color %}
+{% set slas_hbg_color = (component.slas_hbg_color | default('#000000')) ~ '1A' %}
+{% set slas_hbg_type = component.slas_hbg_type | default('inclined') %}
+{% set slas_angle = slas_hbg_type == 'vertical' ? '90' : (slas_hbg_type == 'horizontal' ? '0' : '135') %}
+
+{% if products | length %}
+<section
+  class="s-block s-block--product-showcase relative overflow-hidden {{ enable_border ? 'border-y border-[var(--color-primary)]' : '' }} {{ slashbg ? 'slash-bg-' ~ position ~ ' dynamic-bg-color' : '' }}"
+  id="{{ uid }}-section"
+>
+
+  <style>
+    #{{ uid }}-section {
+      position: relative;
+      overflow: hidden;
+    }
+    #{{ uid }} {
+      position: relative;
+      min-height: 90vh;
+      overflow: hidden;
+     }
+
+    #{{ uid }} .ps-grid {
+      position: absolute;
+      inset: 0;
+      opacity: .15;
+ 
+      pointer-events: none;
+    }
+
+    #{{ uid }} .ps-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateX(120%) scale(0.85);
+      filter: blur(24px);
+      transition:
+        transform 1.2s cubic-bezier(.22,.61,.36,1),
+        opacity   1.2s ease,
+        filter    1.2s ease;
+    }
+    #{{ uid }} .ps-slide.is-active {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      filter: blur(0);
+      pointer-events: auto;
+    }
+    #{{ uid }} .ps-slide.is-leaving {
+      opacity: 0;
+      transform: translateX(-120%) scale(0.85);
+      filter: blur(24px);
+      pointer-events: none;
+    }
+    #{{ uid }} .ps-slide img {
+      max-height: 70%;
+      max-width: 70%;
+      object-fit: contain;
+      filter: drop-shadow(0 25px 35px rgba(0,0,0,0.5));
+    }
+
+    #{{ uid }} .ps-glow {
+      position: absolute;
+      width: 55%;
+      height: 55%;
+      border-radius: 9999px;
+      background: radial-gradient(circle, rgba(var(--ps-accent-rgb, 168,85,247),.3), rgba(59,130,246,.12) 50%, transparent 70%);
+      filter: blur(70px);
+      z-index: 0;
+      pointer-events: none;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #{{ uid }} .ps-info {
+      transition: opacity .5s ease, transform .5s ease;
+      color: var(--color-dark-page-foreground, #fff);
+    }
+    #{{ uid }} .ps-info.fading {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    #{{ uid }} .ps-card {
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.05);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+    }
+
+    #{{ uid }} .ps-tagline {
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--color-scandary, #a855f7);
+      margin-bottom: .5rem;
+    }
+    #{{ uid }} .ps-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: .5rem;
+      color: var(--color-dark-page-foreground, #fff);
+    }
+    #{{ uid }} .ps-price {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--color-scandary, #a855f7);
+    }
+    #{{ uid }} .ps-desc {
+      font-size: .875rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,.75);
+      margin-bottom: 1rem;
+    }
+    #{{ uid }} .ps-spec {
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.06);
+      border-radius: 9999px;
+      padding: .25rem .75rem;
+      font-size: .75rem;
+      color: rgba(255,255,255,.8);
+      margin: .2rem;
+    }
+
+    #{{ uid }} .ps-dot-btn {
+      height: 8px;
+      border-radius: 9999px;
+      background: rgba(255,255,255,.3);
+      transition: width .5s ease, background .5s ease;
+      width: 8px;
+      border: none;
+      cursor: pointer;
+    }
+    #{{ uid }} .ps-dot-btn.active {
+      width: 28px;
+      background: #fff;
+    }
+
+    #{{ uid }} .ps-nav-btn {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(255,255,255,.2);
+      background: transparent;
+      color: rgba(255,255,255,.8);
+      font-size: 1.25rem;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    #{{ uid }} .ps-nav-btn:hover { background: rgba(255,255,255,.1); }
+
+    #{{ uid }} .ps-link {
+      display: inline-block;
+      margin-top: .75rem;
+      padding: .4rem 1rem;
+      border-radius: 9999px;
+      background: var(--color-scandary, #a855f7);
+      color: #fff;
+      font-size: .8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    #{{ uid }} .ps-link:hover { opacity: .85; }
+  </style>
+
+  {% if marquee %}
+    {% if marquee_text_position == 'top' or marquee_text_position == 'both' %}
+      <div class="styleish-text absolute top-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
+        <div
+          style="font-size: {{ marquee_text_size }}rem; line-height: 1;"
+          class="{{ marquee_is_moving ? 'marquee-reverse-sections' : '' }} flex whitespace-nowrap w-max"
+        >
+          <span class="font-alshohadaa font-bold display-text whitespace-nowrap px-4">
+            {{ marqueetext }}&nbsp;&nbsp;&nbsp; {{ marqueetext }}&nbsp;&nbsp;&nbsp; {{ marqueetext }}&nbsp;&nbsp;&nbsp; {{ marqueetext }}
+          </span>
+          <span class="font-alshohadaa font-bold display-text whitespace-nowrap px-4">
+            {{ marqueetext }}&nbsp;&nbsp;&nbsp; {{ marqueetext }}&nbsp;&nbsp;&nbsp; {{ marqueetext }}&nbsp;&nbsp;&nbsp; {{ marqueetext }}
+          </span>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if marquee_text_position == 'bottom' or marquee_text_position == 'both' %}
+      <div class="styleish-text absolute bottom-10 left-0 w-full opacity-10 pointer-events-none select-none overflow-hidden" dir="ltr">
+        <div
+          style="font-size: {{ marquee_text_size }}rem; line-height: 1;"
+          class="{{ marquee_is_moving ? 'marquee-content-sections' : '' }} flex whitespace-nowrap w-max"
+        >
+          <span class="font-alshohadaa font-bold display-text whitespace-nowrap px-4">
+            {{ marqueetext }}&nbsp;&nbsp;&nbsp; {{ marqueetext }}&nbsp;&nbsp;&nbsp; {{ marqueetext }}&nbsp;&nbsp;&nbsp; {{ marqueetext }}
+          </span>
+          <span class="font-alshohadaa font-bold display-text whitespace-nowrap px-4">
+            {{ marqueetext }}&nbsp;&nbsp;&nbsp; {{ marqueetext }}&nbsp;&nbsp;&nbsp; {{ marqueetext }}&nbsp;&nbsp;&nbsp; {{ marqueetext }}
+          </span>
+        </div>
+      </div>
+    {% endif %}
+  {% endif %}
+
+  {% if title %}
+    <div class="mx-auto flex flex-col space-y-6 justify-center items-center my-12 w-5/6 relative z-10">
+      <div class="flex flex-col items-center">
+        {% if component.enable_gradient_title %}
+          <h1 class="z-1 text-4xl font-alshohadaa mb-5 bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ title }}</h1>
+        {% elseif component.enable_gradient_word and component.gradient_word %}
+          <h1 id="{{ uid }}-title" class="text-4xl z-1 font-alshohadaa mb-5 dynamic-text-color">{{ title }}</h1>
+        {% else %}
+          <h1 class="z-1 text-4xl font-alshohadaa mb-5 dynamic-text-color">{{ title }}</h1>
+        {% endif %}
+        <span class="navbar-underline"></span>
+      </div>
+
+      {% if sub_title %}
+        <div class="z-1 text-center mx-auto text-base lg:text-lg dynamic-text-color">
+          {{ sub_title }}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if component.enable_gradient_word and component.gradient_word %}
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          var titleEl = document.getElementById('{{ uid }}-title');
+          if (titleEl) {
+            var word = '{{ component.gradient_word|e('js') }}';
+            var regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+            titleEl.innerHTML = titleEl.innerHTML.replace(
+              regex,
+              '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
+            );
+          }
+        });
+      </script>
+    {% endif %}
+  {% endif %}
+
+  <div id="{{ uid }}">
+    <div class="ps-grid"></div>
+
+    <!-- main stage -->
+    <div style="position:relative; z-index:10; display:flex; align-items:center; justify-content:center; height:80vh; max-width:90rem; margin:0 auto; padding:0 1.5rem;">
+
+      <!-- top-right info card -->
+      <div class="ps-info ps-card" id="{{ uid }}-top"
+           style="position:absolute; top:1.5rem; right:1.5rem; z-index:20; max-width:20rem;">
+        <div class="ps-tagline" id="{{ uid }}-tagline">—</div>
+        <div class="ps-name" id="{{ uid }}-name">—</div>
+        <div class="ps-price" id="{{ uid }}-price">—</div>
+        <div id="{{ uid }}-link-top"></div>
+      </div>
+
+      <!-- center image stage -->
+      <div style="position:relative; height:65vh; width:100%; max-width:48rem;">
+        <div class="ps-glow" id="{{ uid }}-glow"></div>
+        <div id="{{ uid }}-stage" style="position:relative; height:100%; width:100%;">
+          {% for item in products %}
+          {% set img = item.image | default(item['products.image']) | default('') %}
+          {% set itemName = item.name | default(item['products.name']) | default('') %}
+          <div class="ps-slide" data-index="{{ loop.index0 }}">
+            <img
+              src="{{ img ?: 'https://via.placeholder.com/600x600/1e293b/64748b?text=No+Image' }}"
+              alt="{{ itemName }}"
+              loading="{{ loop.first ? 'eager' : 'lazy' }}"
+            />
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- bottom-left info card -->
+      <div class="ps-info ps-card" id="{{ uid }}-bot"
+           style="position:absolute; bottom:1.5rem; left:1.5rem; z-index:20; max-width:22rem;">
+        <div class="ps-desc" id="{{ uid }}-desc">—</div>
+        <div id="{{ uid }}-specs"></div>
+        <div id="{{ uid }}-link-bot"></div>
+      </div>
+    </div>
+
+    <!-- controls -->
+    <div style="position:relative; z-index:20; display:flex; align-items:center; justify-content:center; gap:.75rem; padding-bottom:2rem;">
+      <button class="ps-nav-btn" id="{{ uid }}-prev" aria-label="السابق">&#8249;</button>
+      <div id="{{ uid }}-dots" style="display:flex; align-items:center; gap:.5rem;"></div>
+      <button class="ps-nav-btn" id="{{ uid }}-next" aria-label="التالي">&#8250;</button>
+    </div>
+  </div>
+
+  {% if glow_type == 'circles' %}
+    <div style="position:absolute; top:15%; left:25%; width:16rem; height:16rem; border-radius:9999px; filter:blur(64px); opacity:.6; pointer-events:none; z-index:0; background-color:{{ glow_c1 }};"></div>
+    <div style="position:absolute; bottom:15%; right:25%; width:14rem; height:14rem; border-radius:9999px; filter:blur(64px); opacity:.6; pointer-events:none; z-index:0; background-color:{{ glow_c2 }};"></div>
+    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:13rem; height:13rem; border-radius:9999px; filter:blur(64px); opacity:.6; pointer-events:none; z-index:0; background-color:{{ glow_c1 }};"></div>
+  {% elseif glow_type == 'sides' %}
+    <div style="position:absolute; top:0; bottom:0; left:0; width:40%; pointer-events:none; z-index:0; background:linear-gradient(to right, {{ glow_c1 }}, transparent); opacity:.22;"></div>
+    <div style="position:absolute; top:0; bottom:0; right:0; width:40%; pointer-events:none; z-index:0; background:linear-gradient(to left, {{ glow_c2 }}, transparent); opacity:.22;"></div>
+  {% elseif glow_type == 'top_bottom' %}
+    <div style="position:absolute; left:0; right:0; top:0; height:45%; pointer-events:none; z-index:0; background:linear-gradient(to bottom, {{ glow_c1 }}, transparent); opacity:.22;"></div>
+    <div style="position:absolute; left:0; right:0; bottom:0; height:45%; pointer-events:none; z-index:0; background:linear-gradient(to top, {{ glow_c2 }}, transparent); opacity:.22;"></div>
+  {% elseif glow_type == 'left' %}
+    <div style="position:absolute; top:0; bottom:0; left:0; width:40%; pointer-events:none; z-index:0; background:linear-gradient(to right, {{ glow_c1 }}, transparent); opacity:.25;"></div>
+  {% elseif glow_type == 'right' %}
+    <div style="position:absolute; top:0; bottom:0; right:0; width:40%; pointer-events:none; z-index:0; background:linear-gradient(to left, {{ glow_c1 }}, transparent); opacity:.25;"></div>
+  {% elseif glow_type == 'top' %}
+    <div style="position:absolute; left:0; right:0; top:0; height:45%; pointer-events:none; z-index:0; background:linear-gradient(to bottom, {{ glow_c1 }}, transparent); opacity:.25;"></div>
+  {% elseif glow_type == 'bottom' %}
+    <div style="position:absolute; left:0; right:0; bottom:0; height:45%; pointer-events:none; z-index:0; background:linear-gradient(to top, {{ glow_c1 }}, transparent); opacity:.25;"></div>
+  {% endif %}
+</section>
+
+<style>
+  {% if slas_hbg_use_primary_color %}
+    .slash-bg-{{ position }} {
+      background: linear-gradient(
+        {{ slas_angle }}deg,
+        var(--color-primary-10) 25%,
+        rgba(0, 0, 0, 0) 25%,
+        rgba(0, 0, 0, 0) 50%,
+        var(--color-primary-10) 50%,
+        var(--color-primary-10) 75%,
+        rgba(0, 0, 0, 0) 75%
+      );
+      background-size: {{ slas_hbg_size }}px {{ slas_hbg_size }}px;
+    }
+  {% else %}
+    .slash-bg-{{ position }} {
+      background: linear-gradient(
+        {{ slas_angle }}deg,
+        {{ slas_hbg_color }} 25%,
+        rgba(0, 0, 0, 0) 25%,
+        rgba(0, 0, 0, 0) 50%,
+        {{ slas_hbg_color }} 50%,
+        {{ slas_hbg_color }} 75%,
+        rgba(0, 0, 0, 0) 75%
+      );
+      background-size: {{ slas_hbg_size }}px {{ slas_hbg_size }}px;
+    }
+  {% endif %}
+</style>
+
+<script>
+  console.log('[PS] script tag reached');
+
+  (function () {
+    var LOG = '[PS]';
+
+    try {
+      var uid = {{ uid | json_encode | raw }};
+      var interval = {{ autoplay_interval }};
+      var products = {{ products | json_encode | raw }};
+      console.log(LOG, 'twig vars OK -> uid:', uid, '| interval:', interval, '| products count:', (products && products.length));
+      console.log(LOG, 'products payload:', products);
+    } catch (e) {
+      console.error(LOG, 'FAILED to parse twig-injected vars:', e);
+      return;
+    }
+
+    function init() {
+      console.log(LOG, 'init() running. readyState=', document.readyState);
+
+      try {
+        var root = document.getElementById(uid);
+        console.log(LOG, 'root element:', root);
+        if (!root) {
+          console.error(LOG, 'root #' + uid + ' NOT FOUND in DOM. All elements with id starting ps-:',
+            Array.prototype.slice.call(document.querySelectorAll('[id^="ps-"]')).map(function (e) { return e.id; }));
+          return;
+        }
+        if (root.dataset.psInit === '1') { console.warn(LOG, 'already initialized, skipping'); return; }
+        root.dataset.psInit = '1';
+
+        var refs = {
+          stage:     document.getElementById(uid + '-stage'),
+          dotsWrap:  document.getElementById(uid + '-dots'),
+          topBox:    document.getElementById(uid + '-top'),
+          botBox:    document.getElementById(uid + '-bot'),
+          elTagline: document.getElementById(uid + '-tagline'),
+          elName:    document.getElementById(uid + '-name'),
+          elPrice:   document.getElementById(uid + '-price'),
+          elDesc:    document.getElementById(uid + '-desc'),
+          elSpecs:   document.getElementById(uid + '-specs'),
+          elLinkTop: document.getElementById(uid + '-link-top'),
+          elLinkBot: document.getElementById(uid + '-link-bot'),
+          prevBtn:   document.getElementById(uid + '-prev'),
+          nextBtn:   document.getElementById(uid + '-next')
+        };
+
+        var missing = [];
+        for (var k in refs) { if (!refs[k]) missing.push(k); }
+        if (missing.length) {
+          console.error(LOG, 'missing DOM refs:', missing, 'refs map:', refs);
+          return;
+        }
+        console.log(LOG, 'all DOM refs OK');
+
+        var slides = Array.prototype.slice.call(refs.stage.querySelectorAll('.ps-slide'));
+        console.log(LOG, 'slides found:', slides.length);
+        if (!slides.length) { console.error(LOG, 'no .ps-slide elements inside stage'); return; }
+
+        var current = 0;
+        var timer = null;
+
+        var dots = products.map(function (_, i) {
+          var btn = document.createElement('button');
+          btn.className = 'ps-dot-btn';
+          btn.setAttribute('aria-label', 'انتقل للمنتج ' + (i + 1));
+          btn.addEventListener('click', function () { show(i); restart(); });
+          refs.dotsWrap.appendChild(btn);
+          return btn;
+        });
+        console.log(LOG, 'dots built:', dots.length);
+
+        function show(index, immediate) {
+          try {
+            var next = ((index % products.length) + products.length) % products.length;
+            if (!immediate && next === current) return;
+            var prev = current;
+            current = next;
+            console.log(LOG, 'show()', { from: prev, to: next, immediate: !!immediate });
+
+            slides.forEach(function (el, i) {
+              if (i === next) {
+                el.classList.remove('is-leaving');
+                void el.offsetWidth;
+                el.classList.add('is-active');
+              } else if (i === prev && !immediate) {
+                el.classList.remove('is-active');
+                el.classList.add('is-leaving');
+              } else {
+                el.classList.remove('is-active', 'is-leaving');
+              }
+            });
+
+            dots.forEach(function (d, i) { d.classList.toggle('active', i === next); });
+            swapInfo(products[next]);
+          } catch (e) {
+            console.error(LOG, 'show() threw:', e);
+          }
+        }
+
+        function swapInfo(p) {
+          try {
+            refs.topBox.classList.add('fading');
+            refs.botBox.classList.add('fading');
+            setTimeout(function () {
+              try {
+                var name    = p.name        || p['products.name']        || '';
+                var tagline = p.tagline     || p['products.tagline']     || '';
+                var price   = p.price       || p['products.price']       || '';
+                var desc    = p.description || p['products.description'] || '';
+                var specs   = p.specs       || p['products.specs']       || '';
+                var rawLink = p.link != null ? p.link : p['products.link'];
+                var link = '';
+                if (typeof rawLink === 'string') {
+                  link = rawLink;
+                } else if (rawLink && typeof rawLink === 'object') {
+                  link = rawLink.url || rawLink.value || rawLink.link || '';
+                }
+                console.log('[PS] swapInfo fields:', { name: name, image: p.image, link: link, raw: p });
+
+                refs.elTagline.textContent = tagline ? '— ' + tagline : '';
+                refs.elName.textContent    = name;
+                refs.elPrice.textContent   = price;
+                refs.elDesc.textContent    = desc;
+
+                refs.elSpecs.innerHTML = specs
+                  ? specs.split(',').map(function (s) { return '<span class="ps-spec">' + s.trim() + '</span>'; }).join('')
+                  : '';
+
+                refs.elLinkTop.innerHTML = link ? '<a href="' + link + '" class="ps-link">عرض المنتج ›</a>' : '';
+                refs.elLinkBot.innerHTML = '';
+
+                refs.topBox.classList.remove('fading');
+                refs.botBox.classList.remove('fading');
+              } catch (e) { console.error(LOG, 'swapInfo timeout threw:', e); }
+            }, 300);
+          } catch (e) { console.error(LOG, 'swapInfo threw:', e); }
+        }
+
+        function start() {
+          clearInterval(timer);
+          timer = setInterval(function () { show(current + 1); }, interval);
+          console.log(LOG, 'autoplay started, interval=', interval);
+        }
+        function restart() { if (timer) start(); }
+
+        refs.prevBtn.addEventListener('click', function () { show(current - 1); restart(); });
+        refs.nextBtn.addEventListener('click', function () { show(current + 1); restart(); });
+
+        root.addEventListener('mouseenter', function () { clearInterval(timer); timer = null; });
+        root.addEventListener('mouseleave', function () { start(); });
+
+        show(0, true);
+        start();
+        console.log(LOG, 'init() complete');
+      } catch (e) {
+        console.error(LOG, 'init() threw:', e);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      console.log(LOG, 'doc still loading, deferring init to DOMContentLoaded');
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      console.log(LOG, 'doc ready, init now (readyState=' + document.readyState + ')');
+      init();
+    }
+  })();
+</script>
+{% endif %}
+ 

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Showcase Slider</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="product-slider.css" />
+</head>
+<body class="bg-slate-950 text-white font-sans">
+
+  <product-showcase></product-showcase>
+
+  <script>
+    (function () {
+      class ProductShowcase extends HTMLElement {
+        constructor() {
+          super();
+          this.products = [
+            {
+              name: "Aether X1 Headphones",
+              tagline: "Sound, redefined.",
+              price: "$349",
+              description: "Hybrid active noise cancellation with 40h battery life and spatial audio engineered for studio precision.",
+              specs: ["Bluetooth 5.4", "40h Battery", "Hi-Res Audio"],
+              image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80"
+            },
+            {
+              name: "Nova Smartwatch Pro",
+              tagline: "Time, intelligently.",
+              price: "$499",
+              description: "Track your health, workouts and sleep with the most accurate biosensor array on a 1.9\" AMOLED display.",
+              specs: ["AMOLED Display", "GPS + Cellular", "ECG Sensor"],
+              image: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=800&auto=format&fit=crop&q=80"
+            },
+            {
+              name: "Lumen Camera 4K",
+              tagline: "Capture every detail.",
+              price: "$1,299",
+              description: "Full-frame 45MP sensor with 8K video, in-body stabilization and a magnesium alloy weather-sealed body.",
+              specs: ["45MP Sensor", "8K Video", "IBIS Stabilizer"],
+              image: "https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?w=800&auto=format&fit=crop&q=80"
+            },
+            {
+              name: "Pulse Wireless Earbuds",
+              tagline: "Tiny, but mighty.",
+              price: "$199",
+              description: "Adaptive EQ, transparency mode and seamless device switching in a stem-free, waterproof design.",
+              specs: ["IP67 Rated", "ANC + Transparency", "30h w/ Case"],
+              image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800&auto=format&fit=crop&q=80"
+            }
+          ];
+          this.current = 0;
+          this.interval = 5000;
+          this.timer = null;
+        }
+
+        connectedCallback() {
+          try {
+            this.render();
+            this.cacheRefs();
+            this.buildSlides();
+            this.show(0, true);
+            this.start();
+          } catch (err) {
+            console.error('[product-showcase] init failed:', err);
+            this.innerHTML = '<pre style="color:red;padding:1rem;">' + err.message + '</pre>';
+          }
+        }
+
+        disconnectedCallback() {
+          clearInterval(this.timer);
+        }
+
+        render() {
+          this.innerHTML = [
+            '<section class="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">',
+              '<div class="ps-grid"></div>',
+
+              '<header class="relative z-20 flex items-center justify-between px-8 py-6 md:px-16">',
+                '<div class="text-xl font-bold tracking-tight">',
+                  '<span class="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">VOLT</span>',
+                  '<span class="ml-1 text-sm font-normal text-white/60">Showcase</span>',
+                '</div>',
+                '<nav class="hidden gap-8 text-sm text-white/70 md:flex">',
+                  '<a href="#" class="transition hover:text-white">Products</a>',
+                  '<a href="#" class="transition hover:text-white">Collections</a>',
+                  '<a href="#" class="transition hover:text-white">About</a>',
+                '</nav>',
+              '</header>',
+
+              '<div class="relative z-10 mx-auto flex h-[80vh] max-w-7xl items-center justify-center px-6">',
+
+                '<div data-info="top" class="ps-info absolute right-4 top-4 z-20 max-w-xs rounded-2xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur-xl md:right-12 md:top-10">',
+                  '<div data-tagline class="mb-2 text-xs uppercase tracking-[0.25em] text-purple-300">&mdash;</div>',
+                  '<div data-name class="mb-2 text-2xl font-bold leading-tight">&mdash;</div>',
+                  '<div data-price class="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-lg font-semibold text-transparent">&mdash;</div>',
+                '</div>',
+
+                '<div class="relative h-[60vh] w-full max-w-3xl">',
+                  '<div class="ps-glow"></div>',
+                  '<div data-stage class="ps-stage"></div>',
+                '</div>',
+
+                '<div data-info="bottom" class="ps-info absolute bottom-6 left-4 z-20 max-w-sm rounded-2xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur-xl md:bottom-12 md:left-12">',
+                  '<div data-desc class="mb-4 text-sm leading-relaxed text-white/80">&mdash;</div>',
+                  '<div data-specs class="flex flex-wrap gap-2"></div>',
+                '</div>',
+              '</div>',
+
+              '<div class="relative z-20 flex items-center justify-center gap-3 pb-10">',
+                '<button data-prev aria-label="Previous" class="grid h-10 w-10 place-items-center rounded-full border border-white/20 text-white/80 transition hover:bg-white/10">&lsaquo;</button>',
+                '<div data-dots class="flex items-center gap-2"></div>',
+                '<button data-next aria-label="Next" class="grid h-10 w-10 place-items-center rounded-full border border-white/20 text-white/80 transition hover:bg-white/10">&rsaquo;</button>',
+              '</div>',
+            '</section>'
+          ].join('');
+        }
+
+        cacheRefs() {
+          this.stage    = this.querySelector('[data-stage]');
+          this.topBox   = this.querySelector('[data-info="top"]');
+          this.botBox   = this.querySelector('[data-info="bottom"]');
+          this.elTag    = this.querySelector('[data-tagline]');
+          this.elName   = this.querySelector('[data-name]');
+          this.elPrice  = this.querySelector('[data-price]');
+          this.elDesc   = this.querySelector('[data-desc]');
+          this.elSpecs  = this.querySelector('[data-specs]');
+          this.dotsWrap = this.querySelector('[data-dots]');
+
+          var self = this;
+          this.querySelector('[data-prev]').addEventListener('click', function () { self.go(-1); });
+          this.querySelector('[data-next]').addEventListener('click', function () { self.go(1); });
+          this.addEventListener('mouseenter', function () { clearInterval(self.timer); });
+          this.addEventListener('mouseleave', function () { self.start(); });
+        }
+
+        buildSlides() {
+          var self = this;
+          this.slides = this.products.map(function (p, i) {
+            var el = document.createElement('div');
+            el.className = 'ps-slide';
+            el.innerHTML = '<img src="' + p.image + '" alt="' + p.name + '" loading="' + (i === 0 ? 'eager' : 'lazy') + '" />';
+            self.stage.appendChild(el);
+            return el;
+          });
+
+          this.dots = this.products.map(function (_, i) {
+            var dot = document.createElement('button');
+            dot.className = 'ps-dot';
+            dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+            dot.addEventListener('click', function () { self.show(i); });
+            self.dotsWrap.appendChild(dot);
+            return dot;
+          });
+        }
+
+        go(direction) {
+          this.show(this.current + direction);
+        }
+
+        show(index, immediate) {
+          var len  = this.products.length;
+          var next = ((index % len) + len) % len;
+          var prev = this.current;
+          if (!immediate && next === prev) return;
+
+          this.current = next;
+
+          this.slides.forEach(function (el, i) {
+            if (i === next) {
+              el.classList.remove('is-leaving');
+              void el.offsetWidth;
+              el.classList.add('is-active');
+            } else if (i === prev && !immediate) {
+              el.classList.remove('is-active');
+              el.classList.add('is-leaving');
+            } else {
+              el.classList.remove('is-active', 'is-leaving');
+            }
+          });
+
+          this.dots.forEach(function (d, i) { d.classList.toggle('is-active', i === next); });
+
+          this.swapInfo(this.products[next]);
+          if (this.timer) this.start();
+        }
+
+        swapInfo(p) {
+          var self = this;
+          this.topBox.classList.add('is-fading');
+          this.botBox.classList.add('is-fading');
+
+          setTimeout(function () {
+            self.elTag.textContent   = p.tagline;
+            self.elName.textContent  = p.name;
+            self.elPrice.textContent = p.price;
+            self.elDesc.textContent  = p.description;
+            self.elSpecs.innerHTML   = p.specs.map(function (s) {
+              return '<span class="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white/80">' + s + '</span>';
+            }).join('');
+            self.topBox.classList.remove('is-fading');
+            self.botBox.classList.remove('is-fading');
+          }, 300);
+        }
+
+        start() {
+          clearInterval(this.timer);
+          var self = this;
+          this.timer = setInterval(function () { self.go(1); }, this.interval);
+        }
+      }
+
+      if (!customElements.get('product-showcase')) {
+        customElements.define('product-showcase', ProductShowcase);
+      }
+    })();
+  </script>
+
+</body>
+</html>
