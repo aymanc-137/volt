@@ -1,0 +1,302 @@
+{#
+| Variable                          | Type     | Description                                                          |
+|-----------------------------------|----------|----------------------------------------------------------------------|
+| component.title                   | ?string  | Main title                                                           |
+| component.sub_title               | ?string  | Subtitle                                                             |
+| component.enable_gradient_title   | bool     | Gradient across full title                                           |
+| component.enable_gradient_word    | bool     | Gradient on a specific word                                          |
+| component.gradient_word           | ?string  | Word to apply gradient to                                            |
+| component.before_image            | string   | Image shown on the right of the divider                              |
+| component.after_image             | string   | Image shown on the left of the divider                               |
+| component.before_label            | ?string  | Caption over the "before" image                                      |
+| component.after_label             | ?string  | Caption over the "after" image                                       |
+| component.body_text               | ?string  | Paragraph beneath the comparison image                               |
+| component.link                    | ?string  | Variable-list link (product/category/brand/custom)                   |
+| component.link_text               | ?string  | Button label                                                         |
+| position                          | int      | Component position in the page                                       |
+#}
+{% set uid = 'ba-' ~ (position | default(random())) %}
+{% set title = component.title | default('') %}
+{% set sub_title = component.sub_title | default('') %}
+{% set before_image = component.before_image | default('') %}
+{% set after_image = component.after_image | default('') %}
+{% set before_label = component.before_label | default('') %}
+{% set after_label = component.after_label | default('') %}
+{% set body_text = component.body_text | default('') %}
+{% set link_text = component.link_text | default('') %}
+
+{% if before_image and after_image %}
+<section id="{{ uid }}-section" class="s-block s-block--before-after">
+
+  <style>
+    #{{ uid }}-section {
+      position: relative;
+      overflow: hidden;
+      padding: 4rem 1rem;
+    }
+
+    #{{ uid }}-wrap {
+      max-width: 56rem;
+      margin: 0 auto;
+    }
+
+    #{{ uid }}-stage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border-radius: 1rem;
+      overflow: hidden;
+      user-select: none;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, .2);
+      background: #000;
+    }
+
+    #{{ uid }}-stage img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
+
+    #{{ uid }}-after-wrap {
+      position: absolute;
+      inset: 0;
+      width: 50%;
+      overflow: hidden;
+      will-change: width;
+    }
+    #{{ uid }}-after-wrap img {
+      width: calc(100% / 0.5);
+      max-width: none;
+    }
+
+    #{{ uid }}-divider {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 3px;
+      background: #fff;
+      box-shadow: 0 0 12px rgba(0, 0, 0, .35);
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    #{{ uid }}-handle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 3rem;
+      height: 3rem;
+      border-radius: 9999px;
+      background: #fff;
+      color: #111;
+      display: grid;
+      place-items: center;
+      font-size: 1.25rem;
+      font-weight: 700;
+      cursor: ew-resize;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .35);
+      z-index: 4;
+      touch-action: none;
+      user-select: none;
+    }
+    #{{ uid }}-handle::before { content: '‹'; margin-right: 2px; }
+    #{{ uid }}-handle::after  { content: '›'; margin-left:  2px; }
+
+    #{{ uid }}-label-before,
+    #{{ uid }}-label-after {
+      position: absolute;
+      top: 1rem;
+      padding: .35rem .9rem;
+      border-radius: 9999px;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      background: rgba(0, 0, 0, .55);
+      color: #fff;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 2;
+    }
+    #{{ uid }}-label-before { right: 1rem; }
+    #{{ uid }}-label-after  { left: 1rem; }
+
+    #{{ uid }}-body {
+      max-width: 42rem;
+      margin: 2.5rem auto 0;
+      text-align: center;
+      color: var(--color-dark-page-foreground, #111);
+    }
+    #{{ uid }}-body p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(0, 0, 0, .75);
+      margin: 0 0 1.5rem;
+    }
+    .dark #{{ uid }}-body p { color: rgba(255, 255, 255, .8); }
+
+    #{{ uid }}-cta {
+      display: inline-block;
+      padding: .8rem 1.75rem;
+      border-radius: 9999px;
+      background: var(--color-primary, #7c3aed);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+    #{{ uid }}-cta:hover { transform: translateY(-2px); opacity: .92; }
+  </style>
+
+  {% if title %}
+    <div class="mx-auto flex flex-col space-y-4 justify-center items-center mb-10 w-5/6 relative z-10">
+      <div class="flex flex-col items-center">
+        {% if component.enable_gradient_title %}
+          <h1 class="z-1 text-4xl font-alshohadaa mb-3 bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ title }}</h1>
+        {% elseif component.enable_gradient_word and component.gradient_word %}
+          <h1 id="{{ uid }}-title" class="text-4xl z-1 font-alshohadaa mb-3 dynamic-text-color">{{ title }}</h1>
+        {% else %}
+          <h1 class="z-1 text-4xl font-alshohadaa mb-3 dynamic-text-color">{{ title }}</h1>
+        {% endif %}
+        <span class="navbar-underline"></span>
+      </div>
+      {% if sub_title %}
+        <div class="z-1 text-center mx-auto text-base lg:text-lg dynamic-text-color">
+          {{ sub_title }}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if component.enable_gradient_word and component.gradient_word %}
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          var titleEl = document.getElementById('{{ uid }}-title');
+          if (titleEl) {
+            var word = '{{ component.gradient_word|e('js') }}';
+            var regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+            titleEl.innerHTML = titleEl.innerHTML.replace(
+              regex,
+              '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
+            );
+          }
+        });
+      </script>
+    {% endif %}
+  {% endif %}
+
+  <div id="{{ uid }}-wrap">
+
+    <div id="{{ uid }}-stage" data-ba-stage>
+      {# Before image (right side, full width underneath) #}
+      <img src="{{ before_image }}" alt="{{ before_label }}" />
+
+      {# After image clipped to the left portion #}
+      <div id="{{ uid }}-after-wrap" data-ba-after>
+        <img src="{{ after_image }}" alt="{{ after_label }}" />
+      </div>
+
+      {% if before_label %}<div id="{{ uid }}-label-before">{{ before_label }}</div>{% endif %}
+      {% if after_label  %}<div id="{{ uid }}-label-after">{{ after_label }}</div>{% endif %}
+
+      <div id="{{ uid }}-divider" data-ba-divider></div>
+      <button
+        type="button"
+        id="{{ uid }}-handle"
+        data-ba-handle
+        aria-label="اسحب لرؤية المقارنة"
+      ></button>
+    </div>
+
+    {% if body_text or link_text %}
+      <div id="{{ uid }}-body">
+        {% if body_text %}<p>{{ body_text }}</p>{% endif %}
+        {% if link_text %}
+          {% set link_url = component.link %}
+          {% if link_url is iterable %}{% set link_url = link_url.url | default('') %}{% endif %}
+          <a id="{{ uid }}-cta" href="{{ link_url | default('#') }}">{{ link_text }}</a>
+        {% endif %}
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+<script>
+  (function () {
+    function init() {
+      var stage   = document.getElementById('{{ uid }}-stage');
+      var after   = document.getElementById('{{ uid }}-after-wrap');
+      var divider = document.getElementById('{{ uid }}-divider');
+      var handle  = document.getElementById('{{ uid }}-handle');
+      if (!stage || !after || !handle) return;
+      if (stage.dataset.baInit === '1') return;
+      stage.dataset.baInit = '1';
+
+      var dragging = false;
+
+      function setPosition(percent) {
+        percent = Math.max(0, Math.min(100, percent));
+        after.style.width = percent + '%';
+        divider.style.left = percent + '%';
+        handle.style.left  = percent + '%';
+      }
+
+      function pointerXToPercent(clientX) {
+        var rect = stage.getBoundingClientRect();
+        return ((clientX - rect.left) / rect.width) * 100;
+      }
+
+      function start(e) {
+        dragging = true;
+        document.body.style.cursor = 'ew-resize';
+        move(e);
+      }
+
+      function move(e) {
+        if (!dragging) return;
+        var x = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
+        if (x == null) return;
+        setPosition(pointerXToPercent(x));
+        if (e.cancelable) e.preventDefault();
+      }
+
+      function end() {
+        dragging = false;
+        document.body.style.cursor = '';
+      }
+
+      handle.addEventListener('mousedown', start);
+      handle.addEventListener('touchstart', start, { passive: false });
+      stage.addEventListener('mousedown', start);
+      stage.addEventListener('touchstart', start, { passive: false });
+
+      window.addEventListener('mousemove', move);
+      window.addEventListener('touchmove', move, { passive: false });
+      window.addEventListener('mouseup', end);
+      window.addEventListener('touchend', end);
+      window.addEventListener('touchcancel', end);
+
+      // keyboard support
+      handle.addEventListener('keydown', function (e) {
+        var current = parseFloat(after.style.width) || 50;
+        if (e.key === 'ArrowLeft')  setPosition(current - 4);
+        if (e.key === 'ArrowRight') setPosition(current + 4);
+      });
+
+      setPosition(50);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>
+{% endif %}
