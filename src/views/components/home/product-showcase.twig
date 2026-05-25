@@ -498,8 +498,14 @@
                 var price   = p.price       || p['products.price']       || '';
                 var desc    = p.description || p['products.description'] || '';
                 var specs   = p.specs       || p['products.specs']       || '';
-                var link    = p.link        || p['products.link']        || '';
-                console.log('[PS] swapInfo fields:', { name: name, image: p.image, raw: p });
+                var rawLink = p.link != null ? p.link : p['products.link'];
+                var link = '';
+                if (typeof rawLink === 'string') {
+                  link = rawLink;
+                } else if (rawLink && typeof rawLink === 'object') {
+                  link = rawLink.url || rawLink.value || rawLink.link || '';
+                }
+                console.log('[PS] swapInfo fields:', { name: name, image: p.image, link: link, raw: p });
 
                 refs.elTagline.textContent = tagline ? '— ' + tagline : '';
                 refs.elName.textContent    = name;
