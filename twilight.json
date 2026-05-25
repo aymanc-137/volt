@@ -6251,6 +6251,225 @@
                     "required": false,
                     "minLength": 0,
                     "maxLength": 60
+                },
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "group-background-settings",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🎨 إعدادات الخلفية</strong></div>"
+                },
+                {
+                    "id": "slas_hbg",
+                    "description": "اختر نوع الخطوط من الإعداد التالي بعد التفعيل",
+                    "labelHTML": null,
+                    "label": "تفعيل خلفية الخطوط",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "slas_hbg_type",
+                    "description": "اختر اتجاه الخطوط في الخلفية",
+                    "labelHTML": null,
+                    "label": "نوع الخطوط",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "value": [],
+                    "selected": [
+                        { "label": "مائلة (الوضع الافتراضي)", "value": "inclined", "key": "ba-slas-inclined" }
+                    ],
+                    "source": "Manual",
+                    "options": [
+                        { "label": "مائلة (الوضع الافتراضي)", "value": "inclined", "key": "ba-slas-inclined" },
+                        { "label": "عمودية (من أعلى لأسفل)", "value": "vertical", "key": "ba-slas-vertical" },
+                        { "label": "أفقية (من يسار ليمين)", "value": "horizontal", "key": "ba-slas-horizontal" }
+                    ],
+                    "required": false,
+                    "conditions": [
+                        { "id": "slas_hbg", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "slas_hbg_size",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "حجم الخطوط",
+                    "type": "string",
+                    "format": "text",
+                    "value": "20",
+                    "required": false,
+                    "conditions": [
+                        { "id": "slas_hbg", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "slas_hbg_use_primary_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "استخدام اللون الرئيسي في الخطوط المموجة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false,
+                    "conditions": [
+                        { "id": "slas_hbg", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "slas_hbg_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "لون الخطوط",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#000000",
+                    "required": false,
+                    "conditions": [
+                        { "id": "slas_hbg_use_primary_color", "operation": "=", "value": false },
+                        { "id": "slas_hbg", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "marquee",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "نصوص متحركة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "marqueetext",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "نص ",
+                    "type": "string",
+                    "format": "text",
+                    "value": "نظافة /// لمعان /// حماية",
+                    "required": false,
+                    "minLength": 3,
+                    "maxLength": 300,
+                    "conditions": [
+                        { "id": "marquee", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "marquee_text_size",
+                    "description": "حجم النص بالـ rem",
+                    "labelHTML": null,
+                    "label": "حجم نص متحرك",
+                    "type": "string",
+                    "format": "text",
+                    "value": "8",
+                    "required": false,
+                    "conditions": [
+                        { "id": "marquee", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "marquee_is_moving",
+                    "description": "تفعيل أو إيقاف حركة النص",
+                    "labelHTML": null,
+                    "label": "تحريك النص",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": true,
+                    "required": false,
+                    "conditions": [
+                        { "id": "marquee", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "marquee_text_position",
+                    "description": "موقع ظهور النص",
+                    "labelHTML": null,
+                    "label": "موقع النص",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "value": [],
+                    "required": false,
+                    "selected": [],
+                    "source": "Manual",
+                    "options": [
+                        { "label": "أعلى فقط", "value": "top", "key": "ba-mq-top" },
+                        { "label": "أسفل فقط", "value": "bottom", "key": "ba-mq-bottom" },
+                        { "label": "أعلى وأسفل", "value": "both", "key": "ba-mq-both" }
+                    ],
+                    "conditions": [
+                        { "id": "marquee", "operation": "=", "value": true }
+                    ]
+                },
+                {
+                    "id": "enable_border",
+                    "label": "تفعيل الحدود",
+                    "description": null,
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "id": "enable_glow",
+                    "label": "تأثير التوهج",
+                    "description": "اختر نوع التوهج في الخلفية",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "value": [],
+                    "selected": [
+                        { "label": "بدون توهج", "value": "none", "key": "ba-glow-none" }
+                    ],
+                    "source": "Manual",
+                    "options": [
+                        { "label": "بدون توهج", "value": "none", "key": "ba-glow-none" },
+                        { "label": "كرات متوهجة (الكلاسيكي)", "value": "circles", "key": "ba-glow-circles" },
+                        { "label": "توهج من الجانبين", "value": "sides", "key": "ba-glow-sides" },
+                        { "label": "توهج من الأعلى والأسفل", "value": "top_bottom", "key": "ba-glow-top-bottom" },
+                        { "label": "توهج من اليسار فقط", "value": "left", "key": "ba-glow-left" },
+                        { "label": "توهج من اليمين فقط", "value": "right", "key": "ba-glow-right" },
+                        { "label": "توهج من الأعلى فقط", "value": "top", "key": "ba-glow-top" },
+                        { "label": "توهج من الأسفل فقط", "value": "bottom", "key": "ba-glow-bottom" }
+                    ],
+                    "required": false
+                },
+                {
+                    "id": "glow_use_theme_colors",
+                    "label": "استخدام ألوان السمة للتوهج",
+                    "description": "عند التفعيل يستخدم اللون الأساسي والثانوي للسمة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": true,
+                    "required": false,
+                    "conditions": [
+                        { "id": "enable_glow", "operation": "!=", "value": "none" }
+                    ]
+                },
+                {
+                    "id": "glow_color_1",
+                    "label": "لون التوهج الأول",
+                    "description": "اللون الرئيسي للتوهج (الجانب الأيسر / الأعلى / الكرة الأولى)",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#7c3aed",
+                    "required": false,
+                    "conditions": [
+                        { "id": "glow_use_theme_colors", "operation": "=", "value": false },
+                        { "id": "enable_glow", "operation": "!=", "value": "none" }
+                    ]
+                },
+                {
+                    "id": "glow_color_2",
+                    "label": "لون التوهج الثاني",
+                    "description": "اللون الثانوي للتوهج (الجانب الأيمن / الأسفل / الكرة الثانية) — يُستخدم فقط في الأنواع المزدوجة",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#06b6d4",
+                    "required": false,
+                    "conditions": [
+                        { "id": "glow_use_theme_colors", "operation": "=", "value": false },
+                        { "id": "enable_glow", "operation": "!=", "value": "none" }
+                    ]
                 }
             ]
         }
