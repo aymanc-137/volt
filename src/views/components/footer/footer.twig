@@ -53,8 +53,11 @@
 					dynamic-border-color
 					dynamic-text-color
 					p-8" >
-				<a href="{{ link('/') }}" class="flex items-center m-0">
-					<h3>{{store.name}}</h3>
+				<a href="{{ link('/') }}" class="flex flex-col items-start m-0 mb-4" aria-label="{{ store.name }} logo">
+					{% if store.logo %}
+						<img src="{{ store.logo }}" alt="{{ store.name }} logo" width="80" height="80" loading="lazy" class="mb-2 max-h-20 w-auto object-contain" />
+					{% endif %}
+					<h3>{{ store.name }}</h3>
 				</a>
 				{% if store.description %}
 					<div class="max-w-sm leading-6 mb-6">

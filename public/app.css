@@ -1409,6 +1409,9 @@ select {
 .max-h-full {
     max-height: 100%;
 }
+.max-h-20 {
+    max-height: 5rem;
+}
 .min-h-7 {
     min-height: 1.75rem;
 }
@@ -27854,9 +27857,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .ltr\:lg\:pl-10:where([dir="ltr"], [dir="ltr"] *) {
         padding-left: 2.5rem;
     }
-    .ltr\:lg\:pl-20:where([dir="ltr"], [dir="ltr"] *) {
-        padding-left: 5rem;
-    }
     .ltr\:lg\:pr-20:where([dir="ltr"], [dir="ltr"] *) {
         padding-right: 5rem;
     }
@@ -28019,9 +28019,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .rtl\:lg\:pr-10:where([dir="rtl"], [dir="rtl"] *) {
         padding-right: 2.5rem;
-    }
-    .rtl\:lg\:pr-20:where([dir="rtl"], [dir="rtl"] *) {
-        padding-right: 5rem;
     }
 }
 @media (min-width: 480px) {
