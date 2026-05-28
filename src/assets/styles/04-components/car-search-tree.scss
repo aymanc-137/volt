@@ -202,3 +202,12 @@
         @apply hidden md:block;
     }
 }
+
+// Bottom-pinned variant: keep dropdowns horizontal on desktop and don't stretch full-width
+[data-home-car-search].home-car-search--bottom {
+    @media (min-width: 1024px) {
+        .car-search-tree__selects {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
