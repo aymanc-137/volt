@@ -26159,6 +26159,11 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
 [data-home-car-search] .car-search-tree__products {
   padding: 0rem !important;
 }
+[data-home-car-search] .car-search-tree__products {
+  overflow-y: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+}
 [data-home-car-search] .car-search-tree__products .car-search-tree__products-header {
   display: none;
 }

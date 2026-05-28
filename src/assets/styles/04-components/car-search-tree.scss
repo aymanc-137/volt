@@ -190,6 +190,9 @@
 
     .car-search-tree__products{
          padding : 0rem !important;
+         overflow-y: auto;
+         flex: 1 1 auto;
+         min-height: 0;
         .car-search-tree__products-header{
             display: none;
         }
