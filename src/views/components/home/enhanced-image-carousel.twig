@@ -162,14 +162,10 @@
     {# Single car-search box overlaid on the carousel — JS populates via salla.api #}
     <div class="flex absolute
                 bottom-0 translate-y-1/2 left-0 right-0 w-full rounded-none
-                {% if not car_search_at_bottom %}
-                  lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0 lg:left-6 lg:right-auto xl:left-10 lg:w-2/5 lg:rounded-2xl
-                {% else %}
-                  lg:left-1/2 lg:right-auto lg:-translate-x-1/2 lg:-translate-y-1/2 lg:w-auto lg:max-w-5xl lg:rounded-2xl
-                {% endif %}
+                {% if not car_search_at_bottom %}lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0 lg:left-6 lg:right-auto xl:left-10 lg:w-2/5 lg:rounded-2xl{% endif %}
                 z-20 max-h-[80%] flex-col overflow-y-auto
                 shadow-2xl
-                dark:bg-dark-foreground/50 backdrop-blur-md{% if car_search_at_bottom %} home-car-search--bottom{% endif %}"
+                dark:bg-dark-foreground/50 backdrop-blur-md"
          dir="rtl"
          data-home-car-search="{{ position }}">
     </div>
