@@ -202,3 +202,12 @@
         @apply hidden md:block;
     }
 }
+
+// Horizontal-dropdowns variant for the bottom-pinned bar: keep selects side-by-side on lg+
+[data-home-car-search].home-car-search--horizontal {
+    @media (min-width: 1024px) {
+        .car-search-tree__selects {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}

@@ -1363,6 +1363,18 @@
                     ]
                 },
                 {
+                    "id": "car_search_horizontal_dropdowns",
+                    "label": "صفّ القوائم المنسدلة أفقياً على الشاشات الكبيرة",
+                    "description": "عرض قوائم بحث السيارات بجانب بعضها بدلاً من تكديسها عمودياً",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false,
+                    "conditions": [
+                        { "id": "car_search_at_bottom", "operation": "=", "value": true }
+                    ]
+                },
+                {
                     "id": "slides",
                     "type": "collection",
                     "format": "collection",
