@@ -1351,6 +1351,18 @@
                     "required": false
                 },
                 {
+                    "id": "car_search_at_bottom",
+                    "label": "إظهار محرك البحث أسفل السلايدر دائماً",
+                    "description": "بدلاً من ظهوره على الجانب في الشاشات الكبيرة، يبقى مربع البحث في الأسفل كما في الجوال",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false,
+                    "conditions": [
+                        { "id": "show_car_search", "operation": "=", "value": true }
+                    ]
+                },
+                {
                     "id": "slides",
                     "type": "collection",
                     "format": "collection",

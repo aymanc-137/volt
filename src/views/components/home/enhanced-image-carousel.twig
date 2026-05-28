@@ -22,6 +22,7 @@
 {% set autoplay = component.autoplay ?? false %}
 {% set autoplay_delay = component.autoplay_delay ?? 5 %}
 {% set show_car_search = component.show_car_search | default(false) %}
+{% set car_search_at_bottom = component.car_search_at_bottom ?? false %}
 
 {% set block_id = 'enhanced-image-carousel-' ~ position %}
  <section dir="ltr" class="h-[58dvh] md:h-[65dvh] lg:h-[80dvh] xl:h-[100dvh] w-full relative" id="{{ block_id }}">
@@ -150,14 +151,18 @@
 
     {% if show_car_search %}
     <style>
-        @media (max-width: 1023px) {
+        {% if car_search_at_bottom %}
             #{{ block_id }} + * { padding-top: 10rem; }
-        }
+        {% else %}
+            @media (max-width: 1023px) {
+                #{{ block_id }} + * { padding-top: 10rem; }
+            }
+        {% endif %}
     </style>
     {# Single car-search box overlaid on the carousel — JS populates via salla.api #}
     <div class="flex absolute
                 bottom-0 translate-y-1/2 left-0 right-0 w-full rounded-none
-                lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0 lg:left-6 lg:right-auto xl:left-10 lg:w-2/5 lg:rounded-2xl
+                {% if not car_search_at_bottom %}lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0 lg:left-6 lg:right-auto xl:left-10 lg:w-2/5 lg:rounded-2xl{% endif %}
                 z-20 max-h-[80%] flex-col overflow-y-auto
                 shadow-2xl
                 dark:bg-dark-foreground/50 backdrop-blur-md"
