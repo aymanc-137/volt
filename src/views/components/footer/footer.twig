@@ -23,13 +23,15 @@
     line-height: .85;
     letter-spacing: -.02em;
     white-space: nowrap;
-    color: {{ bg_fill }};
-    -webkit-text-stroke: 2px {{ bg_stroke }};
-    text-stroke: 2px {{ bg_stroke }};
-    opacity: .9;
     margin: 0;
+    background: linear-gradient(to bottom, {{ bg_stroke }} 50%, {{ bg_fill }} 50%);
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+            color: transparent;
+    opacity: .9;
   }
-  .store-footer__inner { position: relative; }
+  .store-footer__inner { position: relative; padding-top: 3rem; }
   .store-footer__inner > .container,
   .store-footer__bottom { position: relative; z-index: 1; }
 </style>
