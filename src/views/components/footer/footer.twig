@@ -1,8 +1,49 @@
+{% set bg_text_enabled = theme.settings.get('footer_bg_text_enabled') ?? true %}
+{% set bg_text = theme.settings.get('footer_bg_text') | default('') %}
+{% set bg_use_theme = theme.settings.get('footer_bg_text_use_theme_colors') ?? true %}
+{% set bg_stroke = bg_use_theme ? 'var(--color-primary)'  : (theme.settings.get('footer_bg_text_stroke_color') ?? 'var(--color-primary)') %}
+{% set bg_fill   = bg_use_theme ? 'var(--color-scandary)' : (theme.settings.get('footer_bg_text_fill_color')   ?? 'transparent') %}
+
+<style>
+  .store-footer__bg-text-wrap {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+  }
+  .store-footer__bg-text {
+    font-family: 'alshohadaa', var(--font-family, sans-serif);
+    font-weight: 900;
+    font-size: clamp(8rem, 22vw, 22rem);
+    line-height: .85;
+    letter-spacing: -.02em;
+    white-space: nowrap;
+    color: {{ bg_fill }};
+    -webkit-text-stroke: 2px {{ bg_stroke }};
+    text-stroke: 2px {{ bg_stroke }};
+    opacity: .9;
+    margin: 0;
+  }
+  .store-footer__inner { position: relative; }
+  .store-footer__inner > .container,
+  .store-footer__bottom { position: relative; z-index: 1; }
+</style>
+
 <footer class="store-footer ">
-	<div aria-label="footer" class="store-footer__inner slash-bg 
-	
-	 
+	<div aria-label="footer" class="store-footer__inner slash-bg
+
+
 	 !pb-0 ">
+	{% if bg_text_enabled and bg_text %}
+		<div class="store-footer__bg-text-wrap" aria-hidden="true">
+			<span class="store-footer__bg-text">{{ bg_text }}</span>
+		</div>
+	{% endif %}
 	<hr class="w-full border-t dynamic-border-color " >
 		<div class="container dynamic-bg-color border-x   dynamic-border-color  grid grid-col-1 lg:grid-cols-6 gap-0">
 			<div class="lg:col-span-2 rtl:lg:pl-20 ltr:lg:pr-20 
@@ -78,7 +119,7 @@
  
 	</div>
 
-	<div class="md:flex items-center justify-between py-4 dynamic-text-color container text-center">
+	<div class="store-footer__bottom md:flex items-center justify-between py-4 dynamic-text-color container text-center">
 		<span class="text-sm copyright-text">{% hook copyright %}</span>
 		<salla-payments></salla-payments>
 	</div>

@@ -303,6 +303,74 @@
             "selected": false
         },
         {
+            "type": "boolean",
+            "icon": "sicon-format-text-alt",
+            "label": "تفعيل النص الكبير خلف الفوتر",
+            "description": "إظهار نص زخرفي كبير خلف أعمدة الفوتر بحدود ملونة",
+            "id": "footer_bg_text_enabled",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "string",
+            "icon": "sicon-format-text-alt",
+            "label": "النص الكبير خلف الفوتر",
+            "description": "النص الزخرفي الذي يظهر خلف الأعمدة (يفضل كلمة أو كلمتين)",
+            "id": "footer_bg_text",
+            "format": "text",
+            "required": false,
+            "value": "VOLT",
+            "placeholder": "VOLT",
+            "multilanguage": true,
+            "minLength": 0,
+            "maxLength": 30,
+            "conditions": [
+                { "id": "footer_bg_text_enabled", "operation": "=", "value": true }
+            ]
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-format-fill",
+            "label": "استخدام ألوان السمة للنص الكبير",
+            "description": "عند التفعيل يستخدم اللون الأساسي للحدود والثانوي للتعبئة",
+            "id": "footer_bg_text_use_theme_colors",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true,
+            "conditions": [
+                { "id": "footer_bg_text_enabled", "operation": "=", "value": true }
+            ]
+        },
+        {
+            "id": "footer_bg_text_stroke_color",
+            "type": "string",
+            "format": "color",
+            "label": "لون حدود النص الكبير",
+            "description": "لون الإطار الخارجي للنص",
+            "value": "#7c3aed",
+            "required": false,
+            "conditions": [
+                { "id": "footer_bg_text_use_theme_colors", "operation": "=", "value": false },
+                { "id": "footer_bg_text_enabled", "operation": "=", "value": true }
+            ]
+        },
+        {
+            "id": "footer_bg_text_fill_color",
+            "type": "string",
+            "format": "color",
+            "label": "لون تعبئة النص الكبير",
+            "description": "لون داخل النص (يُنصح بلون شفاف أو قريب من لون الخلفية)",
+            "value": "#06b6d4",
+            "required": false,
+            "conditions": [
+                { "id": "footer_bg_text_use_theme_colors", "operation": "=", "value": false },
+                { "id": "footer_bg_text_enabled", "operation": "=", "value": true }
+            ]
+        },
+        {
             "type": "static",
             "id": "static-line5",
             "format": "line"
