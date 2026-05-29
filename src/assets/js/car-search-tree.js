@@ -291,18 +291,17 @@ class CarSearchTree extends BasePage {
 
     handleSelection(level, id, state, rows, wrappers, selectionEl, loadingEl, productsEmptyEl, defaultProductsEmptyContent, categories, hideBrandLabels, isDropdownMode, selects, selectWrappers) {
         console.log('[CarSearchTree] handleSelection', { level, id, useCustomJson: state.useCustomJson });
-        const numericId = Number(id);
-        if (!numericId) {
-            console.warn('[CarSearchTree] id is not numeric, aborting', id);
+        if (!id) {
+            console.warn('[CarSearchTree] empty id, aborting');
             return;
         }
 
         if (level === 'brand') {
-            this.selectBrand(numericId, state, rows, wrappers, selectionEl, loadingEl, productsEmptyEl, defaultProductsEmptyContent, categories, hideBrandLabels, isDropdownMode, selects, selectWrappers);
+            this.selectBrand(id, state, rows, wrappers, selectionEl, loadingEl, productsEmptyEl, defaultProductsEmptyContent, categories, hideBrandLabels, isDropdownMode, selects, selectWrappers);
         } else if (level === 'model') {
-            this.selectModel(numericId, state, rows, wrappers, selectionEl, loadingEl, productsEmptyEl, defaultProductsEmptyContent, hideBrandLabels, isDropdownMode, selects, selectWrappers);
+            this.selectModel(id, state, rows, wrappers, selectionEl, loadingEl, productsEmptyEl, defaultProductsEmptyContent, hideBrandLabels, isDropdownMode, selects, selectWrappers);
         } else if (level === 'year') {
-            this.selectYear(numericId, state, rows, wrappers, selectionEl, loadingEl, productsEmptyEl, defaultProductsEmptyContent, isDropdownMode);
+            this.selectYear(id, state, rows, wrappers, selectionEl, loadingEl, productsEmptyEl, defaultProductsEmptyContent, isDropdownMode);
         }
     }
 
@@ -477,7 +476,7 @@ class CarSearchTree extends BasePage {
         if (isDropdownMode) return;
         if (!container) return;
         container.querySelectorAll('.car-search-tree__option').forEach((button) => {
-            button.classList.toggle('is-active', Number(button.dataset.id) === Number(id));
+            button.classList.toggle('is-active', String(button.dataset.id) === String(id));
         });
     }
 
@@ -486,7 +485,7 @@ class CarSearchTree extends BasePage {
     }
 
     findById(list, id) {
-        return list?.find((item) => Number(item.id) === Number(id));
+        return list?.find((item) => String(item.id) === String(id));
     }
 
     normalizeChildren(children) {
