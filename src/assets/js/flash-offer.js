@@ -2,89 +2,68 @@ import BasePage from './base-page';
 
 class FlashOffer extends BasePage {
     async onReady() {
+        const LOG = '[FlashOffer]';
         const container = document.querySelector('#flash-offer');
 
-        if (!container || !salla.url.is_page('product.index')) {
+        if (!container) {
+            console.log(LOG, 'no #flash-offer placeholder on page, skipping');
+            return;
+        }
+        if (!salla.url.is_page('product.index')) {
+            console.log(LOG, 'not on product.index page, skipping');
             return;
         }
 
         const cat_id = container.dataset.catid;
+        console.log(LOG, 'current category id:', cat_id);
 
         try {
-            // TODO: Uncomment after publish - Salla API call
-            // const res = await salla.api.request('component/list', { params: { paths: ['home.flash-offer'] } });
-            // const components = res.data;
+            const res = await salla.api.request('component/list', { params: { paths: ['home.flash-offer'] } });
+            const components = res.data;
 
-            // TEST: Mock data for testing (remove after publish)
-            const components = [{
-                "component": {
-                    "key": "5b0f0805-0f41-444f-a50d-610796cbdb9f",
-                    "badge_text": "عرض محدود الوقت",
-                    "title": "عرض حصري",
-                    "enable_gradient_word": false,
-                    "gradient_word": "",
-                    "description": "احصل على أفضل العروض اليوم فقط",
-                    "url": "تسوق الآن",
-                    "image": "https://images.unsplash.com/photo-1601918774946-25832a4be0d8?q=80&w=900&auto=format&fit=crop",
-                    "product": [
-                        {
-                            "id": 123456,
-                            "name": "منتج تجريبي",
-                            "url": "https://example.com/product",
-                            "discount_ends": "2025-12-31 23:59:59"
-                        }
-                    ],
-                    "slas_hbg": false,
-                    "slas_hbg_size": "20",
-                    "slas_hbg_use_primary_color": false,
-                    "slas_hbg_color": "#000000",
-                    "marquee": false,
-                    "marqueetext": " سرعة /// أداء /// تحكم ",
-                    "marquee_text_position": "both",
-                    "marquee_is_moving": true,
-                    "marquee_text_size": "8",
-                    "enable_border": false,
-                    "enable_glow": false,
-                    "show_in_category_page": true,
-                    "target_category": [
-                        {
-                            "id": 1194286336,
-                            "url": "https://salla.design/dev-pbdsq67yexku5kq3/بحث/c1194286336",
-                            "icon": "sicon-store",
-                            "name": "بحث",
-                            "image": null,
-                            "sub_categories": null
-                        }
-                    ]
-                },
-                "position": 1
-            }];
+            console.log(LOG, 'API response:', components);
 
-            console.log('Flash Offer API response:', components);
+            if (!Array.isArray(components) || !components.length) {
+                console.warn(LOG, 'no flash-offer components returned');
+                return;
+            }
 
-            components.forEach(item => {
+            components.forEach((item, idx) => {
                 const component = item.component;
-                
-                // Check if this component is set to show in category page
+                if (!component) {
+                    console.warn(LOG, `item[${idx}] has no .component`, item);
+                    return;
+                }
+
                 if (!component.show_in_category_page) {
+                    console.log(LOG, `item[${idx}] show_in_category_page is off, skipping`);
                     return;
                 }
 
-                // Check if target category matches current category
-                const targetCategory = component.target_category;
-                const targetCatId = targetCategory?.[0] || targetCategory?.id;
-                /// console.log('targetCatId', targetCatId.id);
-               /// console.log('cat_id', cat_id);
-                
-                if (targetCatId.id != cat_id) {
+                // target_category is a dropdown-list field — Salla delivers it as an array
+                // even though multichoice is false. Handle both shapes defensively.
+                const targetField = component.target_category;
+                const targetCat = Array.isArray(targetField) ? targetField[0] : targetField;
+                const targetCatId = targetCat?.id ?? targetCat?.value ?? targetCat;
+
+                console.log(LOG, `item[${idx}] target:`, { targetCatId, cat_id });
+
+                if (!targetCatId) {
+                    console.warn(LOG, `item[${idx}] has no target_category set, skipping`);
+                    return;
+                }
+                if (String(targetCatId) !== String(cat_id)) {
+                    console.log(LOG, `item[${idx}] target ${targetCatId} ≠ current ${cat_id}, skipping`);
                     return;
                 }
 
-                // Build and render the component
+                console.log(LOG, `item[${idx}] matched — rendering`);
+                container.classList.remove('hidden');
                 this.renderComponent(container, component, item.position);
             });
 
         } catch (e) {
+            console.error(LOG, 'onReady threw:', e);
             salla.logger.error(e);
         }
     }

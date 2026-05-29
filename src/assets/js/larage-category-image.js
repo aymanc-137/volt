@@ -2,51 +2,68 @@ import BasePage from './base-page';
 
 class LarageCategoryImage extends BasePage {
     async onReady() {
+        const LOG = '[LarageCategoryImage]';
         const container = document.querySelector('#larage-category-image');
 
-        if (!container || !salla.url.is_page('product.index')) {
+        if (!container) {
+            console.log(LOG, 'no #larage-category-image placeholder on page, skipping');
+            return;
+        }
+        if (!salla.url.is_page('product.index')) {
+            console.log(LOG, 'not on product.index page, skipping');
             return;
         }
 
         const cat_id = container.dataset.catid;
+        console.log(LOG, 'current category id:', cat_id);
 
         try {
-            // TODO: Uncomment after publish - Salla API call
-            // const res = await salla.api.request('component/list', { params: { paths: ['home.larage-category-image'] } });
-            // const components = res.data;
+            const res = await salla.api.request('component/list', { params: { paths: ['home.larage-category-image'] } });
+            const components = res.data;
 
-            // TEST: External API call for testing (remove after publish)
-           // const res = await fetch('https://api.npoint.io/229d91aac91ebb887a59');
-           // const data = await res.json();
-          //  const components = data.data;
-            const components = [{"component":
-                                        {"ar":{"title":"العنوان","sub_title":"العنوان الجانبي"},"key":"01dbcfa2-5e33-40f6-ac2f-89979591f8af","title":"العنوان","marquee":true,"slas_hbg":true,"sub_title":"العنوان الجانبي","categories":[{"ar":{"title":"قطع سيارات السرعة"},"link":"https://salla.design/dev-pbdsq67yexku5kq3/redirect/categories/1967275527","image":"https://cdn.files.salla.network/homepage/1573552885/12896eba-0f7b-423c-b05e-9e848cf1a544.webp","title":"قطع سيارات السرعة"},{"ar":{"title":"كفرات"},"link":"https://salla.design/dev-pbdsq67yexku5kq3/redirect/products/1958852814","image":"https://cdn.files.salla.network/homepage/1573552885/e40cf31c-113a-4572-82f1-cee5f237368d.webp","title":"كفرات"},{"ar":{"title":"ختر لون سيارتك"},"link":"https://salla.design/dev-pbdsq67yexku5kq3/redirect/products/1958852814","image":"https://cdn.files.salla.network/homepage/1573552885/10589b0a-3e53-4b52-b8fa-304f80ba6a22.webp","title":"ختر لون سيارتك"}],"enable_glow":false,"marqueetext":"سرعة /// أداء /// تحكم","enable_border":true,"slas_hbg_size":"80","slas_hbg_color":"#000000","target_category":[{"id":1967275527,"url":"https://salla.design/dev-pbdsq67yexku5kq3/المحرك/c1967275527","icon":"sicon-store","name":"المحرك","image":null,"sub_categories":null}],"marquee_is_moving":true,"marquee_text_size":"15","enable_gradient_word":false,"enable_gradient_title":false,"marquee_text_position":"top","show_in_category_page":true,"slas_hbg_use_primary_color":false}
-                                    
-        }];
-            console.log('Test API response:', components);
+            console.log(LOG, 'API response:', components);
 
-            components.forEach(item => {
+            if (!Array.isArray(components) || !components.length) {
+                console.warn(LOG, 'no larage-category-image components returned');
+                return;
+            }
+
+            components.forEach((item, idx) => {
                 const component = item.component;
-                
-                // Check if this component is set to show in category page
+                if (!component) {
+                    console.warn(LOG, `item[${idx}] has no .component`, item);
+                    return;
+                }
+
                 if (!component.show_in_category_page) {
+                    console.log(LOG, `item[${idx}] show_in_category_page is off, skipping`);
                     return;
                 }
 
-                // Check if target category matches current category
-                const targetCategory = component.target_category;
-                const targetCatId = targetCategory?.[0] || targetCategory?.id;
-                console.log('targetCatId', targetCatId);
-                console.log('cat_id', cat_id);
-                if (targetCatId.id != cat_id) {
+                // target_category is a dropdown-list field — Salla delivers it as an array
+                // even though multichoice is false. Handle both shapes defensively.
+                const targetField = component.target_category;
+                const targetCat = Array.isArray(targetField) ? targetField[0] : targetField;
+                const targetCatId = targetCat?.id ?? targetCat?.value ?? targetCat;
+
+                console.log(LOG, `item[${idx}] target:`, { targetCatId, cat_id });
+
+                if (!targetCatId) {
+                    console.warn(LOG, `item[${idx}] has no target_category set, skipping`);
+                    return;
+                }
+                if (String(targetCatId) !== String(cat_id)) {
+                    console.log(LOG, `item[${idx}] target ${targetCatId} ≠ current ${cat_id}, skipping`);
                     return;
                 }
 
-                // Build and render the component
+                console.log(LOG, `item[${idx}] matched — rendering`);
+                container.classList.remove('hidden');
                 this.renderComponent(container, component, item.position);
             });
 
         } catch (e) {
+            console.error(LOG, 'onReady threw:', e);
             salla.logger.error(e);
         }
     }
@@ -132,7 +149,7 @@ class LarageCategoryImage extends BasePage {
 
         // Build categories grid HTML
         const gridCols = categories.length === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4';
-        let categoriesHtml = categories.map((item, index) => `
+        let categoriesHtml = categories.map((item) => `
             <div class="relative group -skew-x-3 hover:border-r-8 overflow-hidden h-full border-r-4 border-b border-[var(--color-scandary)] cursor-pointer">
                 <a href="${item.url}" class="block h-full w-full">
                     <img src="${item.image}" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-110" alt="${item.title}">
