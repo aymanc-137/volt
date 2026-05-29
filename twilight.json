@@ -6564,6 +6564,117 @@
                     ]
                 }
             ]
+        },
+        {
+            "key": "c9a4f1d8-3e5b-4c7a-b9d2-6f1c8e3a5d72",
+            "title": "صورة تفاعلية بنقاط منتجات",
+            "icon": "sicon-image",
+            "path": "home.hotspot-image",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "group-title-settings",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>⚙️ إعدادات العنوان</strong></div>"
+                },
+                {
+                    "id": "title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان",
+                    "description": "عنوان اختياري يظهر فوق الصورة",
+                    "icon": "sicon-format-text-alt",
+                    "placeholder": "أدخل عنوان القسم...",
+                    "value": "اكتشف المنتجات",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 300
+                },
+                {
+                    "id": "sub_title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان الجانبي",
+                    "icon": "sicon-format-text-alt",
+                    "placeholder": "Placeholder text ..",
+                    "value": "اضغط على النقاط على الصورة لعرض المنتج",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 300
+                },
+                {
+                    "id": "enable_gradient_title",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "تفعيل لون متدرج للعنوان",
+                    "description": "عند التفعيل، سيظهر العنوان بتدرج لوني من اللون الأساسي إلى اللون الثانوي",
+                    "icon": "sicon-format-fill",
+                    "value": false,
+                    "selected": false,
+                    "required": false
+                },
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "group-image-settings",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🖼️ الصورة والنقاط</strong></div>"
+                },
+                {
+                    "id": "image",
+                    "type": "string",
+                    "format": "image",
+                    "label": "صورة الخلفية",
+                    "description": "ارفع صورة عالية الجودة (يُفضل بنسبة 16:9 أو 4:3)",
+                    "icon": "sicon-image",
+                    "value": "",
+                    "required": true
+                },
+                {
+                    "id": "image_alt",
+                    "type": "string",
+                    "format": "text",
+                    "label": "نص بديل للصورة (Alt)",
+                    "description": "وصف الصورة لمحركات البحث وقارئات الشاشة",
+                    "icon": "sicon-format-text-alt",
+                    "value": "",
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 200
+                },
+                {
+                    "id": "hotspots_json",
+                    "type": "string",
+                    "format": "textarea",
+                    "label": "بيانات النقاط (JSON)",
+                    "description": "افتح أداة Hotspot Builder، ارفع نفس الصورة، حدد النقاط، ثم انسخ JSON والصقه هنا",
+                    "icon": "sicon-browser-code",
+                    "placeholder": "[{\"x\":45,\"y\":60,\"pid\":1234567,\"label\":\"\"}]",
+                    "value": "[]",
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 5000
+                },
+                {
+                    "id": "dot_color",
+                    "type": "string",
+                    "format": "color",
+                    "label": "لون نقاط المنتجات",
+                    "description": "اللون الأساسي للنقاط القابلة للضغط",
+                    "value": "#ffffff",
+                    "required": false
+                },
+                {
+                    "id": "dot_accent_color",
+                    "type": "string",
+                    "format": "color",
+                    "label": "لون النبض حول النقاط",
+                    "description": "اللون المتوهج حول النقطة (يُنصح بلون مرتبط بالعلامة)",
+                    "value": "#a855f7",
+                    "required": false
+                }
+            ]
         }
     ],
     "support_url": "",

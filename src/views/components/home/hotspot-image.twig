@@ -1,0 +1,342 @@
+{#
+| Variable                          | Type     | Description                                                    |
+|-----------------------------------|----------|----------------------------------------------------------------|
+| component.title                   | ?string  | Main title                                                     |
+| component.sub_title               | ?string  | Subtitle                                                       |
+| component.enable_gradient_title   | bool     | Gradient across full title                                     |
+| component.image                   | string   | Background image URL                                           |
+| component.image_alt               | ?string  | Alt text for the image                                         |
+| component.hotspots_json           | string   | JSON array of {x, y, pid, label} from the Hotspot Builder      |
+| component.dot_color               | ?string  | Dot fill color (hex)                                           |
+| component.dot_accent_color        | ?string  | Pulse / ring color (hex)                                       |
+| position                          | int      | Component position in the page                                 |
+#}
+{% set uid = 'hi-' ~ (position | default(random())) %}
+{% set title = component.title | default('') %}
+{% set sub_title = component.sub_title | default('') %}
+{% set image = component.image | default('') %}
+{% set image_alt = component.image_alt | default(title) %}
+{% set hotspots_raw = component.hotspots_json | default('[]') %}
+{% set dot_color = component.dot_color ?? '#ffffff' %}
+{% set dot_accent = component.dot_accent_color ?? '#a855f7' %}
+
+{% if image %}
+<section id="{{ uid }}-section" class="s-block s-block--hotspot-image">
+
+  <style>
+    #{{ uid }}-section {
+      position: relative;
+      padding: 3rem 1rem 4rem;
+    }
+    #{{ uid }}-stage {
+      position: relative;
+      max-width: 80rem;
+      margin: 2rem auto 0;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,.2);
+      user-select: none;
+    }
+    #{{ uid }}-stage > img {
+      display: block;
+      width: 100%;
+      height: auto;
+      -webkit-user-drag: none;
+    }
+    #{{ uid }}-stage .hi-dot {
+      position: absolute;
+      width: 1.75rem;
+      height: 1.75rem;
+      margin-left: -0.875rem;
+      margin-top: -0.875rem;
+      border-radius: 9999px;
+      background: {{ dot_color }};
+      border: 2px solid {{ dot_accent }};
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      z-index: 2;
+      box-shadow: 0 4px 12px rgba(0,0,0,.3);
+      transition: transform .25s ease;
+    }
+    #{{ uid }}-stage .hi-dot:hover,
+    #{{ uid }}-stage .hi-dot.is-active {
+      transform: scale(1.2);
+    }
+    #{{ uid }}-stage .hi-dot::before {
+      content: '';
+      position: absolute;
+      inset: -0.5rem;
+      border-radius: 9999px;
+      background: {{ dot_accent }};
+      opacity: .5;
+      animation: hi-pulse-{{ position }} 2s ease-out infinite;
+      z-index: -1;
+    }
+    #{{ uid }}-stage .hi-dot::after {
+      content: '+';
+      color: {{ dot_accent }};
+      font-weight: 900;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+    @keyframes hi-pulse-{{ position }} {
+      0%   { transform: scale(.8); opacity: .6; }
+      100% { transform: scale(1.8); opacity: 0; }
+    }
+
+    #{{ uid }}-card {
+      position: absolute;
+      z-index: 5;
+      width: min(20rem, 80vw);
+      max-height: 70%;
+      overflow-y: auto;
+      border-radius: 1rem;
+      background: var(--color-light-page-background, #fff);
+      box-shadow: 0 25px 60px rgba(0,0,0,.35);
+      transform: translate(-50%, calc(-100% - 1rem));
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s ease, transform .25s ease;
+    }
+    .dark #{{ uid }}-card { background: var(--color-dark-page-background, #111); }
+    #{{ uid }}-card.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #{{ uid }}-card-close {
+      position: absolute;
+      top: .5rem;
+      inset-inline-end: .5rem;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 9999px;
+      border: none;
+      background: rgba(0,0,0,.55);
+      color: #fff;
+      cursor: pointer;
+      z-index: 2;
+      font-size: 1rem;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+    }
+    #{{ uid }}-card-body {
+      padding: 1rem;
+      min-height: 8rem;
+    }
+    #{{ uid }}-card-body .hi-loading {
+      display: grid;
+      place-items: center;
+      padding: 2rem 0;
+      color: var(--color-text-muted, #6B7280);
+    }
+    #{{ uid }}-card-body .hi-error {
+      padding: 1rem;
+      text-align: center;
+      color: #b91c1c;
+      font-size: .9rem;
+    }
+
+    @media (max-width: 640px) {
+      #{{ uid }}-card {
+        position: fixed;
+        bottom: 0;
+        inset-inline-start: 0;
+        inset-inline-end: 0;
+        width: 100%;
+        max-height: 75vh;
+        left: auto;
+        top: auto;
+        transform: translateY(100%);
+        border-radius: 1.25rem 1.25rem 0 0;
+      }
+      #{{ uid }}-card.is-open {
+        transform: translateY(0);
+      }
+    }
+  </style>
+
+  {% if title %}
+    <div class="mx-auto flex flex-col space-y-3 justify-center items-center w-5/6 relative z-10">
+      <div class="flex flex-col items-center">
+        {% if component.enable_gradient_title %}
+          <h1 class="z-1 text-4xl font-alshohadaa mb-3 bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ title }}</h1>
+        {% else %}
+          <h1 class="z-1 text-4xl font-alshohadaa mb-3 dynamic-text-color">{{ title }}</h1>
+        {% endif %}
+        <span class="navbar-underline"></span>
+      </div>
+      {% if sub_title %}
+        <div class="z-1 text-center mx-auto text-base lg:text-lg dynamic-text-color">
+          {{ sub_title }}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div id="{{ uid }}-stage" data-hotspots='{{ hotspots_raw | e('html_attr') }}'>
+    <img src="{{ image }}" alt="{{ image_alt | default('') }}" loading="lazy" />
+
+    {# Floating product card overlay #}
+    <div id="{{ uid }}-card" role="dialog" aria-hidden="true">
+      <button type="button" id="{{ uid }}-card-close" aria-label="إغلاق">&times;</button>
+      <div id="{{ uid }}-card-body">
+        <div class="hi-loading">
+          <salla-loading size="32"></salla-loading>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    function init() {
+      var LOG = '[HotspotImage:{{ uid }}]';
+      var stage   = document.getElementById('{{ uid }}-stage');
+      var card    = document.getElementById('{{ uid }}-card');
+      var cardBody = document.getElementById('{{ uid }}-card-body');
+      var closeBtn = document.getElementById('{{ uid }}-card-close');
+      if (!stage || !card) return;
+      if (stage.dataset.hiInit === '1') return;
+      stage.dataset.hiInit = '1';
+
+      var hotspots = [];
+      try {
+        hotspots = JSON.parse(stage.dataset.hotspots || '[]');
+      } catch (e) {
+        console.error(LOG, 'failed to parse hotspots JSON:', e);
+        return;
+      }
+      console.log(LOG, 'hotspots:', hotspots);
+
+      if (!Array.isArray(hotspots) || !hotspots.length) {
+        console.warn(LOG, 'no hotspots configured');
+        return;
+      }
+
+      // Cache product fetches so repeated clicks on the same dot are instant
+      var productCache = {};
+
+      hotspots.forEach(function (h, i) {
+        if (typeof h.x !== 'number' || typeof h.y !== 'number' || !h.pid) {
+          console.warn(LOG, 'skipping invalid hotspot at index', i, h);
+          return;
+        }
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'hi-dot';
+        dot.style.left = h.x + '%';
+        dot.style.top  = h.y + '%';
+        dot.setAttribute('aria-label', h.label || ('المنتج ' + (i + 1)));
+        dot.dataset.pid = String(h.pid);
+        dot.dataset.x = String(h.x);
+        dot.dataset.y = String(h.y);
+        dot.addEventListener('click', function (ev) {
+          ev.stopPropagation();
+          openCard(dot);
+        });
+        stage.insertBefore(dot, card);
+      });
+
+      function setActiveDot(dot) {
+        stage.querySelectorAll('.hi-dot.is-active').forEach(function (el) {
+          el.classList.remove('is-active');
+        });
+        if (dot) dot.classList.add('is-active');
+      }
+
+      function positionCard(dot) {
+        var x = parseFloat(dot.dataset.x);
+        var y = parseFloat(dot.dataset.y);
+        if (isNaN(x) || isNaN(y)) return;
+        // On desktop the card sits above the dot, centered. On narrow mobile the CSS
+        // pins it to the bottom of the viewport as a sheet — let CSS handle that case.
+        if (window.matchMedia('(max-width: 640px)').matches) return;
+        card.style.left = x + '%';
+        card.style.top  = y + '%';
+      }
+
+      function renderProductCard(product) {
+        var card = document.createElement('custom-salla-product-card');
+        card.setAttribute('product', JSON.stringify(product));
+        card.setAttribute('shadow-on-hover', '');
+        return card;
+      }
+
+      function openCard(dot) {
+        setActiveDot(dot);
+        positionCard(dot);
+        card.classList.add('is-open');
+        card.setAttribute('aria-hidden', 'false');
+
+        var pid = dot.dataset.pid;
+        if (productCache[pid]) {
+          cardBody.innerHTML = '';
+          cardBody.appendChild(renderProductCard(productCache[pid]));
+          return;
+        }
+
+        cardBody.innerHTML = '<div class="hi-loading"><salla-loading size="32"></salla-loading></div>';
+
+        if (!window.salla || typeof window.salla.product?.fetch !== 'function') {
+          cardBody.innerHTML = '<div class="hi-error">تعذر الاتصال بواجهة المنتجات.</div>';
+          return;
+        }
+
+        window.salla.product.fetch({
+          source: 'selected',
+          source_value: [Number(pid)],
+        })
+          .then(function (res) {
+            var products = res?.data?.products || res?.data?.items || res?.data || res?.products || [];
+            var product = Array.isArray(products) ? products[0] : products;
+            if (!product) {
+              cardBody.innerHTML = '<div class="hi-error">لم يتم العثور على المنتج.</div>';
+              return;
+            }
+            productCache[pid] = product;
+            cardBody.innerHTML = '';
+            cardBody.appendChild(renderProductCard(product));
+          })
+          .catch(function (err) {
+            console.error(LOG, 'product fetch failed', err);
+            cardBody.innerHTML = '<div class="hi-error">حدث خطأ أثناء تحميل المنتج.</div>';
+          });
+      }
+
+      function closeCard() {
+        card.classList.remove('is-open');
+        card.setAttribute('aria-hidden', 'true');
+        setActiveDot(null);
+      }
+
+      closeBtn.addEventListener('click', function (ev) {
+        ev.stopPropagation();
+        closeCard();
+      });
+
+      // Click anywhere else on the stage → close
+      stage.addEventListener('click', function (ev) {
+        if (!card.contains(ev.target) && !ev.target.classList.contains('hi-dot')) {
+          closeCard();
+        }
+      });
+
+      // Esc → close
+      document.addEventListener('keydown', function (ev) {
+        if (ev.key === 'Escape' && card.classList.contains('is-open')) {
+          closeCard();
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>
+{% endif %}
