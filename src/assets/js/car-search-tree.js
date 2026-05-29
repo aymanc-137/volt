@@ -71,6 +71,8 @@ class CarSearchTree extends BasePage {
     renderComponent(container, component, position, currentCategoryId) {
         const tree_component_id = `car-search-tree-${component.key || position}`;
         const categories_payload = JSON.stringify(component.category || []);
+        const use_custom_json = component.use_custom_json || false;
+        const custom_json_raw = typeof component.custom_json_data === 'string' ? component.custom_json_data : '';
         const heading = component.title || 'ابحث عن سيارتك';
         const description = component.description || 'اختر الماركة ثم الموديل والسنة (إن وُجدت) لإظهار المنتجات المتوافقة.';
         const badge = component.badge || 'اكتشف ملاءمة القطع';
@@ -85,6 +87,8 @@ class CarSearchTree extends BasePage {
         const html = `
             <section class="car-search-tree-block border-y dynamic-border-color" id="${tree_component_id}"
                      data-categories='${this.escapeHtml(categories_payload)}'
+                     data-custom-mode="${use_custom_json ? 'true' : 'false'}"
+                     data-custom-json='${this.escapeHtml(custom_json_raw)}'
                      data-hide-brand-labels="${hide_brand_labels ? 'true' : 'false'}"
                      data-display-mode="${use_dropdown_layout ? 'dropdown' : 'tiles'}"
                      data-current-category-id="${currentCategoryId}">
@@ -182,7 +186,10 @@ class CarSearchTree extends BasePage {
         if (!root || root.dataset.initialized === 'true') return;
         root.dataset.initialized = 'true';
 
-        const categories = this.safeParse(root.dataset.categories);
+        const useCustomJson = root.dataset.customMode === 'true';
+        const categories = useCustomJson
+            ? this.safeParse(root.dataset.customJson)
+            : this.safeParse(root.dataset.categories);
         const rows = {
             brands: root.querySelector('[data-row="brands"]'),
             models: root.querySelector('[data-row="models"]'),
@@ -220,6 +227,7 @@ class CarSearchTree extends BasePage {
             model: null,
             year: null,
             lastRequestSignature: null,
+            useCustomJson,
         };
 
         if (isDropdownMode) {
@@ -348,23 +356,43 @@ class CarSearchTree extends BasePage {
             this.showProductsHint('تعذر الاتصال بواجهة المنتجات. تأكد من تحميل منصة سلة.', productsEmptyEl, rows);
             return;
         }
-        const ids = (includeDescendants ? this.collectCategoryIds(category) : [Number(category.id)])
-            .filter((value) => typeof value === 'number' && !Number.isNaN(value));
-        if (!ids.length) {
-            this.showProductsHint('لا توجد فئات متاحة لتحميل المنتجات.', productsEmptyEl, rows);
-            return;
+
+        let fetchCall, requestSignature;
+
+        if (state.useCustomJson) {
+            const productIds = includeDescendants
+                ? this.collectProductIds(category)
+                : (Array.isArray(category.products) ? category.products : []);
+            if (!productIds.length) {
+                this.showProductsHint('لا توجد منتجات مرتبطة بهذا الاختيار.', productsEmptyEl, rows);
+                return;
+            }
+            requestSignature = productIds.join(',') + ':products';
+            fetchCall = window.salla.product.fetch({
+                source: 'selected',
+                source_value: productIds.map(Number),
+            });
+        } else {
+            const ids = (includeDescendants ? this.collectCategoryIds(category) : [Number(category.id)])
+                .filter((value) => typeof value === 'number' && !Number.isNaN(value));
+            if (!ids.length) {
+                this.showProductsHint('لا توجد فئات متاحة لتحميل المنتجات.', productsEmptyEl, rows);
+                return;
+            }
+            requestSignature = `${ids.join(',')}:${includeDescendants ? 'deep' : 'single'}`;
+            fetchCall = window.salla.product.fetch({
+                source: 'categories',
+                source_value: ids,
+            });
         }
-        const requestSignature = `${ids.join(',')}:${includeDescendants ? 'deep' : 'single'}`;
+
         state.lastRequestSignature = requestSignature;
         rows.products.classList.add('hidden');
         rows.products.innerHTML = '';
         productsEmptyEl.classList.add('hidden');
         this.showLoading(loadingEl);
 
-        window.salla.product.fetch({
-            source: 'categories',
-            source_value: ids,
-        })
+        fetchCall
             .then((response) => {
                 if (state.lastRequestSignature !== requestSignature) return;
                 const products = this.extractProducts(response);
@@ -547,6 +575,19 @@ class CarSearchTree extends BasePage {
             const numericId = Number(node.id);
             if (!Number.isNaN(numericId)) {
                 ids.push(numericId);
+            }
+            this.normalizeChildren(node.sub_categories).forEach(traverse);
+        };
+        traverse(category);
+        return Array.from(new Set(ids));
+    }
+
+    collectProductIds(category) {
+        const ids = [];
+        const traverse = (node) => {
+            if (!node) return;
+            if (Array.isArray(node.products)) {
+                node.products.forEach((id) => { if (id) ids.push(id); });
             }
             this.normalizeChildren(node.sub_categories).forEach(traverse);
         };
