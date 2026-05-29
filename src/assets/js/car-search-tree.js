@@ -68,11 +68,16 @@ class CarSearchTree extends BasePage {
         }
     }
 
-    renderComponent(container, component, position, currentCategoryId) {
+    renderComponent(container, component, position, currentCategoryId, options = {}) {
         const tree_component_id = `car-search-tree-${component.key || position}`;
         const categories_payload = JSON.stringify(component.category || []);
         const use_custom_json = component.use_custom_json || false;
         const custom_json_raw = typeof component.custom_json_data === 'string' ? component.custom_json_data : '';
+        const show_search_button = options.showSearchButton === true;
+        // Grab target category url for the "Go to results" button
+        const targetField = component.target_category;
+        const targetCat = Array.isArray(targetField) ? targetField[0] : targetField;
+        const target_category_url = targetCat?.url || '';
         const heading = component.title || 'ابحث عن سيارتك';
         const description = component.description || 'اختر الماركة ثم الموديل والسنة (إن وُجدت) لإظهار المنتجات المتوافقة.';
         const badge = component.badge || 'اكتشف ملاءمة القطع';
@@ -91,7 +96,9 @@ class CarSearchTree extends BasePage {
                      data-custom-json='${this.escapeHtml(custom_json_raw)}'
                      data-hide-brand-labels="${hide_brand_labels ? 'true' : 'false'}"
                      data-display-mode="${use_dropdown_layout ? 'dropdown' : 'tiles'}"
-                     data-current-category-id="${currentCategoryId}">
+                     data-current-category-id="${currentCategoryId}"
+                     data-show-search-button="${show_search_button ? 'true' : 'false'}"
+                     data-target-category-url="${this.escapeAttribute(target_category_url)}">
 
                 <div class="car-search-tree container ${use_dropdown_layout ? 'car-search-tree--dropdown' : ''}">
                     <div class="car-search-tree__header">
@@ -150,7 +157,16 @@ class CarSearchTree extends BasePage {
                         </div>
                     </div>
 
-                    <div class="car-search-tree__products">
+                    ${show_search_button ? `
+                        <div class="car-search-tree__submit" data-submit-wrapper>
+                            <button type="button" class="car-search-tree__submit-btn" data-submit-btn disabled>
+                                <i class="sicon-search"></i>
+                                <span>اعرض النتائج</span>
+                            </button>
+                        </div>
+                    ` : ''}
+
+                    <div class="car-search-tree__products${show_search_button ? ' hidden' : ''}">
                         <div class="car-search-tree__products-header">
                             <h3>المنتجات المتوافقة</h3>
                             <p>سيتم تحميل المنتجات تلقائياً بعد إتمام الاختيار.</p>
@@ -221,6 +237,9 @@ class CarSearchTree extends BasePage {
         const hideBrandLabels = root.dataset.hideBrandLabels === 'true';
         const displayMode = root.dataset.displayMode || 'tiles';
         const isDropdownMode = displayMode === 'dropdown';
+        const showSearchButton = root.dataset.showSearchButton === 'true';
+        const targetCategoryUrl = root.dataset.targetCategoryUrl || '';
+        const submitBtn = root.querySelector('[data-submit-btn]');
 
         const state = {
             brand: null,
@@ -228,7 +247,24 @@ class CarSearchTree extends BasePage {
             year: null,
             lastRequestSignature: null,
             useCustomJson,
+            showSearchButton,
+            targetCategoryUrl,
+            submitBtn,
         };
+
+        if (showSearchButton && submitBtn) {
+            submitBtn.addEventListener('click', () => {
+                if (!state.brand) return;
+                const params = new URLSearchParams();
+                params.set('volt_brand', String(state.brand.id));
+                if (state.model) params.set('volt_model', String(state.model.id));
+                if (state.year)  params.set('volt_year',  String(state.year.id));
+                const url = targetCategoryUrl
+                    ? `${targetCategoryUrl}${targetCategoryUrl.includes('?') ? '&' : '?'}${params.toString()}`
+                    : `?${params.toString()}`;
+                window.location.href = url;
+            });
+        }
 
         if (isDropdownMode) {
             rowsContainer?.classList.add('hidden');
@@ -249,6 +285,36 @@ class CarSearchTree extends BasePage {
         emptyEl.classList.add('hidden');
         selectionEl.textContent = '—';
         this.renderBrands(rows, wrappers, categories, state, selectionEl, loadingEl, productsEmptyEl, defaultProductsEmptyContent, hideBrandLabels, isDropdownMode, selects, selectWrappers, currentCategoryId);
+
+        // Auto-select from ?volt_brand=&volt_model=&volt_year= URL params (category page only)
+        if (!showSearchButton) {
+            this.applyUrlPreselection(categories, state, rows, wrappers, selectionEl, loadingEl, productsEmptyEl, defaultProductsEmptyContent, hideBrandLabels, isDropdownMode, selects, selectWrappers);
+        }
+    }
+
+    applyUrlPreselection(categories, state, rows, wrappers, selectionEl, loadingEl, productsEmptyEl, defaultProductsEmptyContent, hideBrandLabels, isDropdownMode, selects, selectWrappers) {
+        const params = new URLSearchParams(window.location.search);
+        const brandId = params.get('volt_brand');
+        const modelId = params.get('volt_model');
+        const yearId  = params.get('volt_year');
+        if (!brandId) return;
+
+        console.log('[CarSearchTree] URL preselection', { brandId, modelId, yearId });
+
+        // Cascade selections; each step needs DOM updates to settle before the next click
+        setTimeout(() => {
+            this.handleSelection('brand', brandId, state, rows, wrappers, selectionEl, loadingEl, productsEmptyEl, defaultProductsEmptyContent, categories, hideBrandLabels, isDropdownMode, selects, selectWrappers);
+            if (modelId) {
+                setTimeout(() => {
+                    this.handleSelection('model', modelId, state, rows, wrappers, selectionEl, loadingEl, productsEmptyEl, defaultProductsEmptyContent, categories, hideBrandLabels, isDropdownMode, selects, selectWrappers);
+                    if (yearId) {
+                        setTimeout(() => {
+                            this.handleSelection('year', yearId, state, rows, wrappers, selectionEl, loadingEl, productsEmptyEl, defaultProductsEmptyContent, categories, hideBrandLabels, isDropdownMode, selects, selectWrappers);
+                        }, 50);
+                    }
+                }, 50);
+            }
+        }, 50);
     }
 
     renderBrands(rows, wrappers, categories, state, selectionEl, loadingEl, productsEmptyEl, defaultProductsEmptyContent, hideBrandLabels, isDropdownMode, selects, selectWrappers, currentCategoryId) {
@@ -461,6 +527,9 @@ class CarSearchTree extends BasePage {
     updateSelectionPath(state, selectionEl) {
         const parts = [state.brand?.name, state.model?.name, state.year?.name].filter(Boolean);
         selectionEl.textContent = parts.length ? parts.join(' / ') : '—';
+        if (state.submitBtn) {
+            state.submitBtn.disabled = !state.brand;
+        }
     }
 
     clearRow(container, wrapper, level, isDropdownMode, selects, selectWrappers) {

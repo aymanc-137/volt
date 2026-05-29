@@ -28,7 +28,9 @@ class CatListCarSearch extends BasePage {
 
             containers.forEach(container => {
                 container.classList.remove('hidden');
-                treeRenderer.renderComponent(container, item.component, item.position, null);
+                treeRenderer.renderComponent(container, item.component, item.position, null, {
+                    showSearchButton: true,
+                });
             });
         } catch (e) {
             salla.logger.error(e);

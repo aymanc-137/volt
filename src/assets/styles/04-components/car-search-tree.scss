@@ -80,6 +80,25 @@
     }
 }
 
+.car-search-tree__submit {
+    @apply flex justify-center mt-4;
+}
+
+.car-search-tree__submit-btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-8 py-3 text-base font-semibold text-white
+           bg-[var(--color-primary)] hover:bg-[var(--color-scandary)]
+           transition-all duration-200 hover:scale-105
+           shadow-lg shadow-[var(--color-primary-30)];
+
+    i {
+        @apply text-xl;
+    }
+
+    &:disabled {
+        @apply opacity-50 cursor-not-allowed hover:scale-100 hover:bg-[var(--color-primary)];
+    }
+}
+
 .car-search-tree__row-wrapper {
     @apply space-y-4;
 
