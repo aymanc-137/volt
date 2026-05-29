@@ -290,8 +290,12 @@ class CarSearchTree extends BasePage {
     }
 
     handleSelection(level, id, state, rows, wrappers, selectionEl, loadingEl, productsEmptyEl, defaultProductsEmptyContent, categories, hideBrandLabels, isDropdownMode, selects, selectWrappers) {
+        console.log('[CarSearchTree] handleSelection', { level, id, useCustomJson: state.useCustomJson });
         const numericId = Number(id);
-        if (!numericId) return;
+        if (!numericId) {
+            console.warn('[CarSearchTree] id is not numeric, aborting', id);
+            return;
+        }
 
         if (level === 'brand') {
             this.selectBrand(numericId, state, rows, wrappers, selectionEl, loadingEl, productsEmptyEl, defaultProductsEmptyContent, categories, hideBrandLabels, isDropdownMode, selects, selectWrappers);
@@ -304,7 +308,16 @@ class CarSearchTree extends BasePage {
 
     selectBrand(id, state, rows, wrappers, selectionEl, loadingEl, productsEmptyEl, defaultProductsEmptyContent, categories, hideBrandLabels, isDropdownMode, selects, selectWrappers) {
         const brand = this.findById(categories, id);
-        if (!brand) return;
+        console.log('[CarSearchTree] selectBrand', {
+            id,
+            brand,
+            categoriesCount: categories?.length,
+            subCategoriesCount: brand?.sub_categories?.length,
+        });
+        if (!brand) {
+            console.warn('[CarSearchTree] brand not found in categories', { id, categories });
+            return;
+        }
         state.brand = brand;
         state.model = null;
         state.year = null;
