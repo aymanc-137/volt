@@ -2,13 +2,20 @@ import BasePage from './base-page';
 
 class CarSearchTree extends BasePage {
     async onReady() {
+        const LOG = '[CarSearchTree]';
         const container = document.querySelector('#car-search-tree');
 
-        if (!container || !salla.url.is_page('product.index')) {
+        if (!container) {
+            console.log(LOG, 'no #car-search-tree placeholder on page, skipping');
+            return;
+        }
+        if (!salla.url.is_page('product.index')) {
+            console.log(LOG, 'not on product.index page, skipping');
             return;
         }
 
         const cat_id = container.dataset.catid;
+        console.log(LOG, 'current category id:', cat_id);
 
         try {
             // TODO: Uncomment after publish - Salla API call
@@ -617,31 +624,49 @@ class CarSearchTree extends BasePage {
                 "position": 1
             }];
 
-            console.log('Car Search Tree API response:', components);
+            console.log(LOG, 'API/mock response:', components);
 
-            components.forEach(item => {
+            if (!Array.isArray(components) || !components.length) {
+                console.warn(LOG, 'no car-search-tree components returned');
+                return;
+            }
+
+            components.forEach((item, idx) => {
                 const component = item.component;
-                
-                // Check if this component is set to show in category page
+                if (!component) {
+                    console.warn(LOG, `item[${idx}] has no .component`, item);
+                    return;
+                }
+
                 if (!component.show_in_category_page) {
+                    console.log(LOG, `item[${idx}] show_in_category_page is off, skipping`);
                     return;
                 }
 
-                // Check if target category matches current category
-                const targetCategory = component.target_category;
-                const targetCatId = targetCategory?.[0] || targetCategory?.id;
-                console.log('targetCatId', targetCatId);
-                console.log('cat_id', cat_id);
-                
-                if (targetCatId.id != cat_id) {
+                // target_category is a dropdown-list field — Salla delivers it as an array
+                // even though multichoice is false. Handle both shapes defensively.
+                const targetField = component.target_category;
+                const targetCat = Array.isArray(targetField) ? targetField[0] : targetField;
+                const targetCatId = targetCat?.id ?? targetCat?.value ?? targetCat;
+
+                console.log(LOG, `item[${idx}] target:`, { targetField, targetCat, targetCatId, cat_id });
+
+                if (!targetCatId) {
+                    console.warn(LOG, `item[${idx}] has no target_category set, skipping`);
+                    return;
+                }
+                if (String(targetCatId) !== String(cat_id)) {
+                    console.log(LOG, `item[${idx}] target ${targetCatId} ≠ current ${cat_id}, skipping`);
                     return;
                 }
 
-                // Build and render the component
+                console.log(LOG, `item[${idx}] matched — rendering`);
+                container.classList.remove('hidden');
                 this.renderComponent(container, component, item.position, cat_id);
             });
 
         } catch (e) {
+            console.error(LOG, 'onReady threw:', e);
             salla.logger.error(e);
         }
     }
