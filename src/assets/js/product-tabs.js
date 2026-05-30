@@ -116,13 +116,13 @@ class ProductTabs extends BasePage {
         const tabButtons = Array.prototype.slice.call(mount.querySelectorAll('.product-tabs__tab'));
         const sections = Array.prototype.slice.call(mount.querySelectorAll('.product-tabs__section'));
 
-        // Click → smooth scroll to section (offset for the pinned bar)
+        // Click → smooth scroll to section (offset for the pinned bar + sticky header)
         tabButtons.forEach(btn => {
             btn.addEventListener('click', () => {
                 const target = document.getElementById(btn.dataset.tabTarget);
                 if (!target) return;
                 const barH = bar ? bar.offsetHeight : 0;
-                const top = target.getBoundingClientRect().top + window.pageYOffset - barH - 20;
+                const top = target.getBoundingClientRect().top + window.pageYOffset - barH - this.headerOffset() - 12;
                 window.scrollTo({ top, behavior: 'smooth' });
             });
         });
@@ -163,16 +163,20 @@ class ProductTabs extends BasePage {
         };
 
         const pin = () => {
-            if (pinned) return;
-            placeholder.style.height = bar.offsetHeight + 'px';
-            bar.parentNode.insertBefore(placeholder, bar);
-            bar.classList.add('is-pinned');
-            pinned = true;
+            if (!pinned) {
+                placeholder.style.height = bar.offsetHeight + 'px';
+                bar.parentNode.insertBefore(placeholder, bar);
+                bar.classList.add('is-pinned');
+                pinned = true;
+            }
+            // Keep tucked below the sticky site header while it is revealed
+            bar.style.top = this.headerOffset() + 'px';
         };
 
         const unpin = () => {
             if (!pinned) return;
             bar.classList.remove('is-pinned');
+            bar.style.top = '';
             if (placeholder.parentNode) placeholder.parentNode.removeChild(placeholder);
             pinned = false;
         };
@@ -186,6 +190,17 @@ class ProductTabs extends BasePage {
         onScroll();
         window.addEventListener('scroll', onScroll, { passive: true });
         window.addEventListener('resize', () => { unpin(); measure(); onScroll(); }, { passive: true });
+    }
+
+    // Height occupied by the site's sticky/fixed header at the top of the viewport
+    // (0 when no fixed header is currently shown).
+    headerOffset() {
+        const inner = document.querySelector('#mainnav .inner') || document.querySelector('.main-nav-container .inner');
+        if (!inner) return 0;
+        if (getComputedStyle(inner).position !== 'fixed') return 0;
+        const rect = inner.getBoundingClientRect();
+        // Only count it if it is actually pinned to the top of the viewport
+        return rect.top <= 1 ? Math.max(0, rect.bottom) : 0;
     }
 
     // Keep the active tab scrolled into view inside a horizontally-scrolling bar
