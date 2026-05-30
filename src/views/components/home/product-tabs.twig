@@ -1,0 +1,14 @@
+{#
+| Variable                         | Type     | Description                                                        |
+|----------------------------------|----------|--------------------------------------------------------------------|
+| component.tabs_data              | object[] | Collection: per-product tab definitions                            |
+| component.tabs_data[].product    | object[] | Selected product (dropdown-list) — product id in [0].id            |
+| component.tabs_data[].tabs_json  | string   | JSON: { "tabs": [...] } exported from the Tab Builder tool          |
+| component.tabs_sticky            | bool     | Keep the tab bar pinned while scrolling                            |
+| position                         | int      | Component position                                                 |
+
+  Data-only component: it renders nothing on the home page. The product page
+  (single.twig) fetches this component via salla.api `component/list` and renders
+  the matching product's tabs. See src/assets/js/product-tabs.js.
+#}
+{# intentionally renders no visible output #}

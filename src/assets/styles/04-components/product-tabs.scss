@@ -1,0 +1,204 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Product Tabs (single product page)
+// Tab bar scrolls to stacked sections; content is always present in the page.
+// ─────────────────────────────────────────────────────────────────────────────
+
+.product-tabs {
+    @apply w-full mt-8;
+
+    &.hidden { display: none; }
+}
+
+// ── Tab bar ──────────────────────────────────────────────────────────────────
+// An auto-width centered pill. `--sticky` is just a flag; the actual pinning is
+// done in JS via `is-pinned` (position: fixed) so it is immune to ancestor
+// overflow/transform contexts.
+.product-tabs__bar {
+    @apply z-30 mb-6 mt-2 mx-auto rounded-custom;
+    width: fit-content;
+    max-width: 100%;
+    padding: .3rem .55rem;
+    background: var(--color-light-box-background);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, .06);
+
+    .product-tabs__bar-inner {
+        @apply flex gap-2 overflow-x-auto;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar { display: none; }
+    }
+
+    // Pinned below the sticky header (top is set inline by product-tabs.js)
+    &.is-pinned {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 92%;
+        z-index: 40;
+        margin: .6rem 0 0;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, .14);
+    }
+}
+.dark .product-tabs__bar { background: var(--color-dark-box-background); }
+
+// Reserves the bar's space while it is pinned, preventing a layout jump
+.product-tabs__bar-placeholder { width: 100%; }
+
+.product-tabs__tab {
+    @apply whitespace-nowrap rounded-custom px-7 py-3 text-sm font-semibold transition-all;
+    @apply dynamic-text-color;
+    background: var(--color-primary-5, rgba(0, 0, 0, .04));
+    border: 1px solid transparent;
+    cursor: pointer;
+    flex-shrink: 0;
+
+    &:hover {
+        border-color: var(--color-primary);
+    }
+
+    &.is-active {
+        background: var(--color-primary);
+        color: #fff;
+        box-shadow: 0 4px 14px var(--color-primary-30, rgba(0, 0, 0, .15));
+    }
+}
+
+// ── Sections ─────────────────────────────────────────────────────────────────
+.product-tabs__sections {
+    @apply flex flex-col gap-10;
+}
+
+.product-tabs__section {
+    scroll-margin-top: 6rem;
+
+    &-title {
+        @apply text-xl md:text-2xl font-bold mb-4 dynamic-text-color;
+        position: relative;
+        padding-inline-start: .85rem;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset-inline-start: 0;
+            top: .15em;
+            bottom: .15em;
+            width: 4px;
+            border-radius: 4px;
+            background: linear-gradient(to bottom, var(--color-primary), var(--color-scandary));
+        }
+    }
+
+    &-body { @apply leading-7 dynamic-text-color; }
+}
+
+// ── About ────────────────────────────────────────────────────────────────────
+.ptab-about {
+    @apply leading-8;
+
+    p { @apply mb-3; }
+    ul, ol { @apply mb-3 ps-6; }
+    ul { @apply list-disc; }
+    ol { @apply list-decimal; }
+    img { @apply rounded-custom my-3 max-w-full h-auto; }
+}
+
+// ── FAQ ──────────────────────────────────────────────────────────────────────
+.ptab-faq {
+    @apply flex flex-col gap-3;
+
+    &__item {
+        @apply rounded-custom border dynamic-border-color overflow-hidden;
+        background: var(--color-primary-5, rgba(0, 0, 0, .03));
+    }
+
+    &__q {
+        @apply px-4 py-3 font-semibold cursor-pointer flex items-center justify-between gap-3 dynamic-text-color;
+        list-style: none;
+
+        &::-webkit-details-marker { display: none; }
+
+        &::after {
+            content: '\002B'; // +
+            @apply text-lg font-bold transition-transform;
+            color: var(--color-primary);
+        }
+    }
+
+    &__item[open] &__q::after {
+        content: '\2212'; // −
+    }
+
+    &__a {
+        @apply px-4 pb-4 pt-1 leading-7 text-sm opacity-80;
+    }
+}
+
+// ── Specs table ──────────────────────────────────────────────────────────────
+.ptab-specs {
+    @apply w-full border-collapse rounded-custom overflow-hidden;
+    border: 1px solid var(--color-primary-10, rgba(0, 0, 0, .08));
+
+    tr {
+        border-bottom: 1px solid var(--color-primary-10, rgba(0, 0, 0, .06));
+        &:last-child { border-bottom: 0; }
+        &:nth-child(odd) { background: var(--color-primary-5, rgba(0, 0, 0, .025)); }
+    }
+
+    th, td {
+        @apply px-4 py-3 text-sm text-start align-top dynamic-text-color;
+    }
+
+    th {
+        @apply font-bold w-2/5;
+        background: var(--color-primary-5, rgba(0, 0, 0, .04));
+    }
+}
+
+// ── Media (customer images/videos) ───────────────────────────────────────────
+.ptab-media {
+    @apply grid grid-cols-2 md:grid-cols-3 gap-3;
+
+    &__item {
+        @apply rounded-custom overflow-hidden m-0;
+        border: 1px solid var(--color-primary-10, rgba(0, 0, 0, .08));
+
+        img {
+            @apply w-full h-full object-cover block aspect-square;
+        }
+    }
+
+    &__video {
+        position: relative;
+        aspect-ratio: 16 / 9;
+
+        iframe, video {
+            @apply absolute inset-0 w-full h-full;
+            border: 0;
+        }
+    }
+
+    &__cap {
+        @apply px-2 py-1.5 text-xs opacity-70 dynamic-text-color;
+    }
+}
+
+// ── How to use (steps) ───────────────────────────────────────────────────────
+.ptab-howto {
+    @apply flex flex-col gap-5 list-none p-0 m-0;
+
+    &__step {
+        @apply flex gap-4 items-start;
+    }
+
+    &__num {
+        @apply flex-shrink-0 grid place-items-center w-9 h-9 rounded-full font-bold text-sm text-white;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-scandary));
+    }
+
+    &__content { @apply flex-1 min-w-0; }
+
+    &__title { @apply text-base font-bold mb-1 dynamic-text-color; }
+    &__text  { @apply text-sm leading-7 opacity-80 dynamic-text-color; }
+    &__img   { @apply rounded-custom mt-3 max-w-xs w-full h-auto; }
+}
