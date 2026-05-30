@@ -10,33 +10,34 @@
 }
 
 // ── Tab bar ──────────────────────────────────────────────────────────────────
-// `--sticky` is just a flag; the actual pinning is done in JS via `is-pinned`
-// (position: fixed) so it is immune to ancestor overflow/transform contexts.
+// An auto-width centered pill. `--sticky` is just a flag; the actual pinning is
+// done in JS via `is-pinned` (position: fixed) so it is immune to ancestor
+// overflow/transform contexts.
 .product-tabs__bar {
-    @apply z-30 mb-6;
+    @apply z-30 mb-6 mt-2 mx-auto rounded-custom;
+    width: fit-content;
+    max-width: 100%;
+    padding: .3rem .55rem;
     background: var(--color-light-box-background);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, .06);
 
     .product-tabs__bar-inner {
-        @apply flex gap-2 overflow-x-auto py-3 px-1;
+        @apply flex gap-2 overflow-x-auto;
         scrollbar-width: none;
-        border-bottom: 1px solid var(--color-primary-10, rgba(0, 0, 0, .08));
 
         &::-webkit-scrollbar { display: none; }
     }
 
-    // Pinned to the viewport top (toggled by product-tabs.js on scroll)
+    // Pinned below the sticky header (top is set inline by product-tabs.js)
     &.is-pinned {
         position: fixed;
         top: 0;
-        inset-inline: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 92%;
         z-index: 40;
-        margin: 0;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, .08);
-
-        .product-tabs__bar-inner {
-            width: 95%;
-            margin-inline: auto;
-        }
+        margin: .6rem 0 0;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, .14);
     }
 }
 .dark .product-tabs__bar { background: var(--color-dark-box-background); }
