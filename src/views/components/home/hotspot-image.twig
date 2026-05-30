@@ -26,15 +26,10 @@
   <style>
     #{{ uid }}-section {
       position: relative;
-      padding: 3rem 1rem 4rem;
     }
     #{{ uid }}-stage {
       position: relative;
-      max-width: 80rem;
-      margin: 2rem auto 0;
-      border-radius: 1.25rem;
-      overflow: hidden;
-      box-shadow: 0 25px 60px rgba(0,0,0,.2);
+      width: 100%;
       user-select: none;
     }
     #{{ uid }}-stage > img {
@@ -87,103 +82,43 @@
 
     #{{ uid }}-card {
       position: absolute;
-      z-index: 5;
-      width: min(20rem, 80vw);
-      max-height: 70%;
-      overflow-y: auto;
-      border-radius: 1rem;
-      background: var(--color-light-page-background, #fff);
-      box-shadow: 0 25px 60px rgba(0,0,0,.35);
-      transform: translate(-50%, calc(-100% - 1rem));
+      z-index: 50;
+      width: 13.5rem;
+      transform: translate(-50%, calc(-100% - 1.5rem));
       opacity: 0;
+      visibility: hidden;
       pointer-events: none;
-      transition: opacity .25s ease, transform .25s ease;
+      transition: opacity .2s ease, visibility 0s linear .2s;
     }
-    .dark #{{ uid }}-card { background: var(--color-dark-page-background, #111); }
+    #{{ uid }}-card.hi-card-below {
+      transform: translate(-50%, 1.5rem);
+    }
     #{{ uid }}-card.is-open {
       opacity: 1;
+      visibility: visible;
       pointer-events: auto;
+      transition: opacity .2s ease, visibility 0s linear 0s;
     }
-    #{{ uid }}-card-close {
-      position: absolute;
-      top: .5rem;
-      inset-inline-end: .5rem;
-      width: 2rem;
-      height: 2rem;
-      border-radius: 9999px;
-      border: none;
-      background: rgba(0,0,0,.55);
-      color: #fff;
-      cursor: pointer;
-      z-index: 2;
-      font-size: 1rem;
-      line-height: 1;
-      display: grid;
-      place-items: center;
-    }
-    #{{ uid }}-card-body {
-      padding: 1rem;
-      min-height: 8rem;
-    }
-    #{{ uid }}-card-body .hi-loading {
-      display: grid;
-      place-items: center;
-      padding: 2rem 0;
-      color: var(--color-text-muted, #6B7280);
-    }
-    #{{ uid }}-card-body .hi-error {
-      padding: 1rem;
+    #{{ uid }}-card .hi-loading,
+    #{{ uid }}-card .hi-error {
+      padding: .75rem;
+      background: var(--color-light-page-background, #fff);
+      border-radius: .5rem;
       text-align: center;
-      color: #b91c1c;
-      font-size: .9rem;
+      font-size: .8rem;
     }
-
-    @media (max-width: 640px) {
-      #{{ uid }}-card {
-        position: fixed;
-        bottom: 0;
-        inset-inline-start: 0;
-        inset-inline-end: 0;
-        width: 100%;
-        max-height: 75vh;
-        left: auto;
-        top: auto;
-        transform: translateY(100%);
-        border-radius: 1.25rem 1.25rem 0 0;
-      }
-      #{{ uid }}-card.is-open {
-        transform: translateY(0);
-      }
-    }
+    .dark #{{ uid }}-card .hi-loading,
+    .dark #{{ uid }}-card .hi-error { background: var(--color-dark-page-background, #111); color: #fff; }
   </style>
-
-  {% if title %}
-    <div class="mx-auto flex flex-col space-y-3 justify-center items-center w-5/6 relative z-10">
-      <div class="flex flex-col items-center">
-        {% if component.enable_gradient_title %}
-          <h1 class="z-1 text-4xl font-alshohadaa mb-3 bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ title }}</h1>
-        {% else %}
-          <h1 class="z-1 text-4xl font-alshohadaa mb-3 dynamic-text-color">{{ title }}</h1>
-        {% endif %}
-        <span class="navbar-underline"></span>
-      </div>
-      {% if sub_title %}
-        <div class="z-1 text-center mx-auto text-base lg:text-lg dynamic-text-color">
-          {{ sub_title }}
-        </div>
-      {% endif %}
-    </div>
-  {% endif %}
 
   <div id="{{ uid }}-stage" data-hotspots='{{ hotspots_raw | e('html_attr') }}'>
     <img src="{{ image }}" alt="{{ image_alt | default('') }}" loading="lazy" />
 
-    {# Floating product card overlay #}
+    {# Floating product card overlay — click outside to close #}
     <div id="{{ uid }}-card" role="dialog" aria-hidden="true">
-      <button type="button" id="{{ uid }}-card-close" aria-label="إغلاق">&times;</button>
       <div id="{{ uid }}-card-body">
         <div class="hi-loading">
-          <salla-loading size="32"></salla-loading>
+          <salla-loading size="24"></salla-loading>
         </div>
       </div>
     </div>
@@ -197,7 +132,6 @@
       var stage   = document.getElementById('{{ uid }}-stage');
       var card    = document.getElementById('{{ uid }}-card');
       var cardBody = document.getElementById('{{ uid }}-card-body');
-      var closeBtn = document.getElementById('{{ uid }}-card-close');
       if (!stage || !card) return;
       if (stage.dataset.hiInit === '1') return;
       stage.dataset.hiInit = '1';
@@ -251,11 +185,15 @@
         var x = parseFloat(dot.dataset.x);
         var y = parseFloat(dot.dataset.y);
         if (isNaN(x) || isNaN(y)) return;
-        // On desktop the card sits above the dot, centered. On narrow mobile the CSS
-        // pins it to the bottom of the viewport as a sheet — let CSS handle that case.
-        if (window.matchMedia('(max-width: 640px)').matches) return;
         card.style.left = x + '%';
         card.style.top  = y + '%';
+        // If the dot is in the top ~30% of the image, the upward-extending card
+        // would clip above the stage. Flip it to render below the dot instead.
+        if (y < 30) {
+          card.classList.add('hi-card-below');
+        } else {
+          card.classList.remove('hi-card-below');
+        }
       }
 
       function renderProductCard(product) {
@@ -312,16 +250,12 @@
         setActiveDot(null);
       }
 
-      closeBtn.addEventListener('click', function (ev) {
-        ev.stopPropagation();
+      // Click anywhere outside a dot/card → close
+      document.addEventListener('click', function (ev) {
+        if (!card.classList.contains('is-open')) return;
+        if (card.contains(ev.target)) return;
+        if (ev.target.classList && ev.target.classList.contains('hi-dot')) return;
         closeCard();
-      });
-
-      // Click anywhere else on the stage → close
-      stage.addEventListener('click', function (ev) {
-        if (!card.contains(ev.target) && !ev.target.classList.contains('hi-dot')) {
-          closeCard();
-        }
       });
 
       // Esc → close
