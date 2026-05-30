@@ -2063,6 +2063,10 @@ select {
     border-top-left-radius: 0.375rem;
     border-top-right-radius: 0.375rem;
 }
+.rounded-t-none {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
 .border {
     border-width: 1px;
 }
@@ -27317,11 +27321,17 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .md\:\!w-1\/2 {
         width: 50% !important;
     }
+    .md\:\!w-2\/4 {
+        width: 50% !important;
+    }
     .md\:\!w-\[75\%\] {
         width: 75% !important;
     }
     .md\:w-1\/4 {
         width: 25%;
+    }
+    .md\:w-2\/4 {
+        width: 50%;
     }
     .md\:w-24 {
         width: 6rem;
