@@ -6675,6 +6675,71 @@
                     "required": false
                 }
             ]
+        },
+        {
+            "key": "e7b3a9c1-4d2f-4e8b-9a6c-1f3d5b7e2a48",
+            "title": "تبويبات المنتجات",
+            "icon": "sicon-list",
+            "path": "home.product-tabs",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "product-tabs-note",
+                    "value": "<div style='background-color:#ddedff;color:#0a5a90;padding:16px 20px;font-size:14px;border-radius:4px;margin:0 0 18px;'>هذا العنصر لا يظهر في الصفحة الرئيسية. أضفه مرة واحدة، وسيتم استدعاؤه تلقائياً في صفحات المنتجات لعرض التبويبات. لكل منتج: اختر المنتج ثم الصق بيانات التبويبات (JSON) المصدّرة من أداة «منشئ التبويبات».</div>"
+                },
+                {
+                    "id": "tabs_data",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "تبويبات المنتجات",
+                    "item_label": "منتج",
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 100,
+                    "value": [],
+                    "fields": [
+                        {
+                            "id": "tabs_data.product",
+                            "type": "items",
+                            "format": "dropdown-list",
+                            "label": "المنتج",
+                            "description": "اختر المنتج الذي ستظهر له هذه التبويبات",
+                            "icon": "sicon-keyboard_arrow_down",
+                            "selected": [],
+                            "options": [],
+                            "source": "products",
+                            "multichoice": false,
+                            "searchable": true,
+                            "required": true,
+                            "value": []
+                        },
+                        {
+                            "id": "tabs_data.tabs_json",
+                            "type": "string",
+                            "format": "textarea",
+                            "label": "بيانات التبويبات (JSON)",
+                            "description": "الصق هنا JSON المصدّر من أداة منشئ التبويبات",
+                            "icon": "sicon-browser-code",
+                            "placeholder": "{\"tabs\":[{\"type\":\"about\",\"title\":\"عن المنتج\",\"content\":\"...\"}]}",
+                            "value": "{\"tabs\":[]}",
+                            "required": false,
+                            "minLength": 0,
+                            "maxLength": 20000
+                        }
+                    ]
+                },
+                {
+                    "id": "tabs_sticky",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "تثبيت شريط التبويبات عند التمرير",
+                    "description": "يبقى شريط التبويبات ظاهراً أعلى الشاشة أثناء تصفّح الأقسام",
+                    "icon": "sicon-pin",
+                    "value": true,
+                    "required": false
+                }
+            ]
         }
     ],
     "support_url": "",
