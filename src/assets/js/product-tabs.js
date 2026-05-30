@@ -66,8 +66,10 @@ class ProductTabs extends BasePage {
                 return;
             }
 
-            this.render(mount, renderable, sticky, productId);
+            // Unhide BEFORE rendering so the sticky bar can be measured with a
+            // real layout (a display:none element reports zero rects).
             mount.classList.remove('hidden');
+            this.render(mount, renderable, sticky, productId);
             console.log(LOG, 'rendered', renderable.length, 'tabs');
         } catch (e) {
             console.error(LOG, 'onReady threw:', e);
@@ -182,14 +184,19 @@ class ProductTabs extends BasePage {
         };
 
         const onScroll = () => {
-            if (window.pageYOffset >= startY) pin();
+            // startY > 0 guards against a bad (zero) measurement pinning at load
+            if (startY > 0 && window.pageYOffset >= startY) pin();
             else unpin();
         };
+
+        const remeasure = () => { unpin(); measure(); onScroll(); };
 
         measure();
         onScroll();
         window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', () => { unpin(); measure(); onScroll(); }, { passive: true });
+        window.addEventListener('resize', remeasure, { passive: true });
+        // Layout above the bar can shift as images load — re-measure once settled
+        window.addEventListener('load', remeasure, { passive: true });
     }
 
     // Height occupied by the site's sticky/fixed header at the top of the viewport
