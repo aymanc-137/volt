@@ -35,27 +35,65 @@
 | product.image.url                      | string                      |                                                                        |
 | product.image.alt                      | ?string                     |                                                                        |
 | product.images                         | array                       |                                                                        |
+| product.images[].id                    | int                         |                                                                        |
+| product.images[].url                   | string                      |                                                                        |
+| product.images[].alt                   | ?string                     |                                                                        |
+| product.images[].video_url             | ?string                     |                                                                        |
+| product.images[].type                  | string                      | `image` `video`                                                        |
 | product.brand                          | ?object                     |                                                                        |
+| product.brand.id                       | int                         |                                                                        |
+| product.brand.url                      | ?string                     |                                                                        |
+| product.brand.name                     | ?string                     |                                                                        |
+| product.brand.logo                     | ?string                     |                                                                        |
 | product.tags                           | ?Tags[] *Collection         |                                                                        |
+| product.tags[].name                    | string                      |                                                                        |
+| product.tags[].url                     | string                      |                                                                        |
 | product.options                        | ProductOption[] *Collection | @see views/pages/partials/product/options.twig                         |
-| position                               | int                         |                                                                        |
+| product.notify_availability            | ?object                     | does product outOfStock & can visitor subscribe to notify availability |
+| product.notify_availability.channels   | array                       | ex: ['sms', 'email']                                                   |
+| product.notify_availability.subscribed | bool                        | Does user subscribed before                                            |
+| product.donation                       | ?ProductDonation            |                                                                        |
+| product.donation.target_message        | ?string                     | Message if reached to target or target expired                         |
+| product.donation.collected_amount      | float                       |                                                                        |
+| product.donation.target_amount         | float                       |                                                                        |
+| product.donation.target_percent        | float                       |                                                                        |
+| product.donation.target_end_date       | ?Date                       |                                                                        |
+| product.donation.can_donate            | bool                        | `true` When there is no campaign or (target not reached & not expired) |
+| product.has_read_more                  | bool                        |                                                                        |
+| product.can_add_note                   | bool                        |                                                                        |
+| product.can_show_remained_quantity     | bool                        |                                                                        |
+| product.can_show_sold                  | bool                        |                                                                        |
+| product.can_upload_file                | bool                        |                                                                        |
+| product.has_custom_form                | bool                        | Is it for  `Food` or `Custom Service` product                          |
+| product.has_metadata                   | bool                        |                                                                        |
+| product.has_options                    | bool                        |                                                                        |
+| product.is_on_sale                     | bool                        | Product has discounted price                                           |
+| product.is_hidden_quantity             | bool                        | The quantity is hidden by merchant, or product not available           |
+| product.is_available                   | bool                        |                                                                        |
+| product.is_in_wishlist                 | bool                        |                                                                        |
+| product.is_out_of_stock                | bool                        |                                                                        |
+| product.is_require_shipping            | bool                        |                                                                        |
+| product.base_currency_price            | float                       | product.price with base currency (SAR)                                 |
+| product.discount_percentage            | ?string                     | ex: "20%"                                                              |
+| product.has_3d_image                   | bool                        |                                                                        |
+| product.has_size_guide                 | bool                        |                                                                        |
+| product.is_giftable                    | bool                        |                                                                        |
+| product.add_to_cart_label              | string                      |                                                                        |
+| product.currency                       | string                      |                                                                        |
 #}
 {% extends "layouts.master" %}
 {% block content %}
-    <div class="container dynamic-text-color">
-        {# Breadcrumb #}
+    <div class="container">
+        {# add breadcumbs container in pages to make a space in case breadcrumbs is off #}
         <nav class="breadcrumbs w-full py-5">
             <salla-breadcrumb></salla-breadcrumb>
         </nav>
-
         <div class="flex flex-col items-start md:flex-row" id="product-{{ product.id }}">
-
-            {# ---------- LEFT: image / slider ---------- #}
             <div class="sidebar md:sticky top-24 w-full md:!w-2/4 rtl:ml-8 ltr:mr-8 pb-8 md:pb-16 overflow-hidden shrink-0">
                 {% set has_many_images = product.images|length > 1 %}
                 <salla-slider
                         id="details-slider-{{ product.id }}"
-                        class="details-slider rounded-custom image-slider"
+                        class="details-slider rounded-md image-slider"
                         type="thumbs"
                         loop="false"
                         auto-height
@@ -71,16 +109,15 @@
                             onclick="salla.wishlist.toggle('{{ product.id }}')"
                             shape="icon"
                             fill="outline"
-                            color="light"
-                            aria-label="add to wishlist">
+                            color="light">
                         <i class="sicon-heart"></i>
                     </salla-button>
 
                     {# Calories Badge #}
                     {% if product.calories %}
-                        <div class="absolute z-[2] top-4 rtl:left-4 ltr:right-4 dynamic-bg-color shadow-sm flex flex-col justify-center items-center rounded-full w-20 h-20 md:w-24 md:h-24">
+                        <div class="absolute z-[2] top-4 rtl:left-4 ltr:right-4 bg-white shadow-sm flex flex-col justify-center items-center rounded-full w-20 h-20 md:w-24 md:h-24">
                             <span class="text-red-500 text-xl leading-none font-bold">{{ product.calories }}</span>
-                            <span class="text-xs opacity-60">{{ trans('pages.products.calories') }}</span>
+                            <span class="text-xs text-gray-500">{{ trans('pages.products.calories') }}</span>
                         </div>
                     {% endif %}
 
@@ -94,7 +131,7 @@
                                     src="{{ image.three_d_image_url }}"
                                     shadow-intensity="1" alt="{{ image.alt }}">
                                 </model-viewer>
-                            {% else %}
+                                    {% else %}
                                 <a data-fslightbox="product_{{ product.id }}"
                                    data-img-id="{{ image.id }}"
                                    data-slid-index="{{ loop.index-1 }}"{% if image.video_url %} data-video-src="{{ image.video_url }}"{% endif %}
@@ -109,9 +146,10 @@
                                              alt="{{ image.alt }}"
                                              class="h-full object-{{ theme.settings.get('slider_background_size') }} w-full {{ image.three_d_image_url ? 'model-poster' : '' }}">
                                     {% else %}
-                                        <img id="{{image.id}}" src="{{ 'images/s-empty.png' | cdn }}" data-src="{{ image.url }}"
+                                        <img id="{{image.id}}" src="{{ image.url }}"
+                                             loading="lazy"
                                              alt="{{ image.alt }}"
-                                             class="lazy h-full object-{{ theme.settings.get('slider_background_size') }} w-full {{ image.three_d_image_url ? 'model-poster' : '' }}">
+                                             class="h-full object-{{ theme.settings.get('slider_background_size') }} w-full {{ image.three_d_image_url ? 'model-poster' : '' }}">
                                     {% endif %}
                                 </a>
                             {% endif %}
@@ -125,12 +163,13 @@
                                     {% if loop.index < 5 %}
                                         <img src="{{ image.url }}"
                                              loading="eager"
-                                             class="object-cover w-full h-full dynamic-bg-color rounded-custom overflow-hidden"
+                                             class="object-cover w-full h-full bg-gray-100 rounded-md overflow-hidden"
                                              title="{{ image.alt }}"
                                              alt="{{ image.alt }}"/>
                                     {% else %}
-                                        <img data-src="{{ image.url }}" src="{{ 'images/s-empty.png' | cdn }}"
-                                             class="object-cover w-full h-full lazy dynamic-bg-color rounded-custom overflow-hidden"
+                                        <img src="{{ image.url }}"
+                                             loading="lazy"
+                                             class="object-cover w-full h-full bg-gray-100 rounded-md overflow-hidden"
                                              title="{{ image.alt }}"
                                              alt="{{ image.alt }}"/>
                                     {% endif %}
@@ -141,7 +180,6 @@
                 </salla-slider>
             </div>
 
-            {# ---------- RIGHT: details, description, form ---------- #}
             <div class="main-content md:sticky md:overflow-hidden top-24 w-full md:w-2/4 md:pb-16">
 
                 {% hook 'product:single.description.start' %}
@@ -157,10 +195,10 @@
                     </div>
                 {% endif %}
 
-                <h1 class="text-xl md:text-2xl leading-10 font-bold mb-6 dynamic-text-color">{{ product.name }}</h1>
+                <h1 class="text-xl md:text-2xl leading-10 font-bold mb-6 text-gray-800">{{ product.name }}</h1>
 
                 {% if product.subtitle %}
-                    <h2 class="product-entry__sub-title text-sm leading-6 mb-2.5 opacity-70">
+                    <h2 class="product-entry__sub-title text-sm text-gray-500 leading-6 mb-2.5">
                         {{ product.subtitle }}
                     </h2>
                 {% endif %}
@@ -171,21 +209,20 @@
                 {% endif %}
 
                 {% if product.is_taxable %}
-                    <small class="opacity-60">{{ trans('pages.products.tax_included') }}</small>
+                    <small class="color-grey">{{ trans('pages.products.tax_included') }}</small>
                 {% endif %}
-
                 {# Price #}
                 <div class="flex whitespace-nowrap gap-4 items-center">
-                    <div class="{{ product.is_on_sale ? '' : 'hidden' }} space-x-2 rtl:space-x-reverse whitespace-nowrap">
-                        <p class="text-red-800 font-bold text-xl inline-block">{{product.sale_price|money}}</p>
-                        <span class="opacity-60 line-through">{{product.regular_price|money}}</span>
-                    </div>
-                    <div class="gap-4 {{ product.is_on_sale ? 'hidden' : 'flex' }}">
-                        {% if product.starting_price %}
-                            <span>{{ trans('pages.products.starting_price') }}</span>
-                        {% endif %}
-                        <p class="font-bold text-xl inline-block">{{product.starting_price ? product.starting_price|money : product.price|money }}</p>
-                    </div>
+                  <div class="{{ product.is_on_sale ? '' : 'hidden' }} space-x-2 rtl:space-x-reverse whitespace-nowrap">
+                      <p class="text-red-800 font-bold text-xl inline-block">{{product.sale_price|money}}</p>
+                      <span class="text-gray-500 line-through">{{product.regular_price|money}}</span>
+                  </div>
+                  <div class="gap-4 {{ product.is_on_sale ? 'hidden' : 'flex' }}">
+                      {% if product.starting_price %} 
+                          <span class="">{{ trans('pages.products.starting_price') }}</span>
+                      {% endif %} 
+                          <p class=" font-bold text-xl inline-block"> {{product.starting_price ? product.starting_price|money : product.price|money }}</p>
+                  </div>
                 </div>
 
                 <div class="product__description p-2 px-5 sm:p-1 leading-7 mb-3">
@@ -211,7 +248,8 @@
                     <div class="mb-3">
                         {% for tag in product.tags %}
                             <a href="{{ tag.url }}"
-                               class="rtl:ml-2 ltr:mr-2 inline-flex opacity-70 hover:text-primary underline text-sm mb-1">{{ tag.name }},</a>
+                               class="rtl:ml-2 ltr:mr-2 inline-flex  text-gray-500 hover:text-primary underline text-sm mb-1">{{ tag.name }}
+                                ,</a>
                         {% endfor %}
                     </div>
                 {% endif %}
@@ -226,13 +264,13 @@
                             shape="icon"
                             fill="outline"
                             color="light"
-                            aria-label="add to wishlist">
+							aria-label="add to wishlist">
                         <i class="sicon-heart"></i>
                     </salla-button>
                 </div>
 
                 {% if product.sold_quantity or product.can_show_remained_quantity %}
-                    <div class="dynamic-bg-color py-2.5 mb-5 rounded-custom inline-flex text-sm border dynamic-border-color">
+                    <div class="bg-white py-2.5 mb-5 rounded-md inline-flex text-sm">
                         {% if product.sold_quantity %}
                             <div class="px-4 !text-red-800">
                                 <i class="sicon-fire rtl:ml-1.5 ltr:mr-1.5"></i> {{ trans('pages.products.sold') }}
@@ -240,7 +278,7 @@
                             </div>
                         {% endif %}
                         {% if product.can_show_remained_quantity %}
-                            <div class="px-4 rtl:even:border-r ltr:even:border-l even:dynamic-border-color">
+                            <div class="px-4 rtl:even:border-r ltr:even:border-l even:border-gray-200">
                                 <i class="!text-red-800 sicon-box-bankers rtl:ml-1.5 ltr:mr-1.5"></i>
                                 {{ trans('pages.products.remained') }}
                                 <span>{{ product.quantity }}</span>
@@ -248,9 +286,8 @@
                         {% endif %}
                     </div>
                 {% endif %}
-
                 {% if product.sku %}
-                    <div class="mb-4 flex justify-between sm:grid sm:grid-cols-3 dynamic-bg-color border dynamic-border-color rounded-custom px-4 py-2">
+                    <div class="mb-4 flex justify-between sm:grid sm:grid-cols-3 bg-white rounded-md px-4 py-2">
                         <div class="flex items-center">
                             <i class="sicon-barcode mx-1"></i>
                             {{ trans('pages.products.sku') }}
@@ -258,17 +295,16 @@
                         <div class="text-unicode product-sku">{{ product.sku }}</div>
                     </div>
                 {% endif %}
-
                 {% hook 'product:single.description' %}
 
                 {# Installment Methods #}
                 <salla-installment price="{{ product.price }}"></salla-installment>
                 {% if product.has_metadata %}
-                    <salla-metadata></salla-metadata>
+                <salla-metadata></salla-metadata>
                 {% endif %}
 
                 {% if product.show_availability %}
-                    <section class="dynamic-bg-color border dynamic-border-color p-5 rounded-custom mb-5 last:mb-0">
+                    <section class="bg-white p-5 rounded-md mb-5 last:mb-0">
                         <div class="center-between">
                             <label class="flex items-center text-base">
                                 <span class="sicon-location rtl:ml-1 ltr:mr-1"></span>
@@ -288,14 +324,17 @@
                     </section>
                 {% endif %}
 
-                {# Digital Files Settings #}
-                {% if product.digital_files_settings %}
-                    <digital-files-settings settings='{{ product.digital_files_settings|json_encode }}'></digital-files-settings>
-                {% endif %}
+
+				{# Digital Files Settings #}
+				{% if product.digital_files_settings %}
+					<digital-files-settings settings='{{ product.digital_files_settings|json_encode }}'></digital-files-settings>
+				{% endif %}
+				{# End Digital Files Settings #}
 
                 <form class="form product-form" enctype="multipart/form-data" method="post"
-                      onsubmit="return salla.form.onSubmit('cart.addItem', event)">
+                      onsubmit="return salla.form.onSubmit('cart.addItem', event)" >
                     <input type="hidden" name="id" value="{{ product.id }}">
+
 
                     {% hook 'product:single.form.start' %}
 
@@ -303,7 +342,7 @@
 
                     {% hook 'product:single.form.end' %}
 
-                    <section class="flex dynamic-bg-color border dynamic-border-color p-5 sm:pb-0 rounded-custom rounded-b-none">
+                    <section class="flex bg-white p-5 sm:pb-0 rounded-md rounded-b-none">
                         <div class="center-between w-full">
                             <label class="form-label">
                                 <b class="block">
@@ -312,22 +351,21 @@
                             </label>
 
                             <div class="flex whitespace-nowrap price-wrapper gap-4 items-center">
-                                <div class="{{ product.is_on_sale ? '' : 'hidden' }} price_is_on_sale space-x-2 rtl:space-x-reverse whitespace-nowrap">
-                                    <h2 class="total-price text-red-800 font-bold text-xl inline-block">{{product.sale_price|money}}</h2>
-                                    <span class="before-price opacity-60 line-through">{{product.regular_price|money}}</span>
-                                </div>
-                                <div class="starting-or-normal-price gap-4 {{ product.is_on_sale ? 'hidden' : 'flex' }}">
-                                    {% if product.starting_price %}
-                                        <span class="starting-price-title">{{ trans('pages.products.starting_price') }}</span>
-                                    {% endif %}
-                                    <h2 class="total-price font-bold text-xl inline-block">{{product.starting_price ? product.starting_price|money : product.price|money }}</h2>
-                                </div>
+                              <div class="{{ product.is_on_sale ? '' : 'hidden' }} price_is_on_sale space-x-2 rtl:space-x-reverse whitespace-nowrap">
+                                <h2 class="total-price text-red-800 font-bold text-xl inline-block">{{product.sale_price|money}}</h2>
+                                <span class="before-price text-gray-500 line-through">{{product.regular_price|money}}</span>
+                              </div>
+                              <div class="starting-or-normal-price gap-4 {{ product.is_on_sale ? 'hidden' : 'flex' }}">
+                                {% if product.starting_price %} 
+                                  <span class="starting-price-title">{{ trans('pages.products.starting_price') }}</span>
+                                {% endif %} 
+                                <h2 class="total-price font-bold text-xl inline-block"> {{product.starting_price ? product.starting_price|money : product.price|money }}</h2>
+                              </div>
                             </div>
 
                             <div class="out-of-stock min-h-7 leading-7 hidden text-base text-red-600 !opacity-50 font-bold">{{ trans('pages.products.out_of_stock')}}</div>
                         </div>
                     </section>
-
                     {# Pre-order Campaign #}
                     {% if product.has_preorder_campaign %}
                         <section class="mt-5 p-5">
@@ -335,7 +373,7 @@
                         </section>
                     {% endif %}
 
-                    <section class="sticky-product-bar dynamic-bg-color border-x border-b dynamic-border-color p-5 rounded-custom rounded-t-none">
+                    <section class="sticky-product-bar bg-white p-5 rounded-md rounded-b-none">
                         {# Quantity #}
                         {% if product.is_hidden_quantity or product.type == 'booking' %}
                             <input type="hidden" value="1" name="quantity" aria-label="Quantity"/>
@@ -345,10 +383,9 @@
                                     {{ trans('pages.products.quantity') }}
                                 </label>
                                 <salla-quantity-input max="{{ product.max_quantity }}" value="1" name="quantity" aria-label="Quantity"
-                                  class="dynamic-border-color flex justify-end"></salla-quantity-input>
+                                  class="border-gray-200 flex justify-end"></salla-quantity-input>
                             </div>
                         {% endif %}
-
                         {# Add to cart #}
                         <salla-add-product-button
                                 {{product.can_quick_buy ? 'quick-buy' : ''}}
@@ -363,16 +400,17 @@
                                 loader-position="end"
                                 type="submit"
                                 width="wide"
+                                {# Notify availability props#}
                                 {% if product.notify_availability %}
                                     {{ product.notify_availability.subscribed ? 'is-subscribed' : '' }}
                                     channels="{{ product.notify_availability.channels|join(',') }}"
                                     subscribed-options="{{ product.notify_availability.subscribed_options|json_encode }}"
                                     {{ product.notify_availability.options ? 'notify-options-availability' : '' }}
                                 {% endif %}>
+
                             {{ product.add_to_cart_label }}
                         </salla-add-product-button>
                     </section>
-
                     {% if product.is_giftable %}
                         <salla-gifting class="mt-5" widget-subtitle="{{ gifting_intro }}" product-id="{{ product.id }}" {{ product.is_require_shipping ? 'physical-products' : ''  }}></salla-gifting>
                     {% endif %}
@@ -382,19 +420,16 @@
                 <salla-quick-order class="mt-5 md:-mb-2 block"></salla-quick-order>
             </div>
         </div>
-
         <salla-offer></salla-offer>
     </div>
 
-    {# Comments #}
+    {# Comments Area #}
     {% if store.settings.rating.show_on_product %}
-        <div class="container">
-            <salla-comments item-id="{{product.id}}" type="product"></salla-comments>
-        </div>
+        <salla-comments item-id="{{product.id}}" type="product"></salla-comments>
     {% endif %}
-
-    {# Similar Products #}
-    <div class="container similar-products-section">
+    
+    {# Similar Products Area #}
+    <div class="container">
         <salla-products-slider source="related" source-value="{{product.id}}" block-title="{{trans('pages.products.similar_products')}}" display-all-url></salla-products-slider>
     </div>
 {% endblock %}
