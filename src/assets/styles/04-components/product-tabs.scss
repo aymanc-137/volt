@@ -10,25 +10,39 @@
 }
 
 // ── Tab bar ──────────────────────────────────────────────────────────────────
+// `--sticky` is just a flag; the actual pinning is done in JS via `is-pinned`
+// (position: fixed) so it is immune to ancestor overflow/transform contexts.
 .product-tabs__bar {
     @apply z-30 mb-6;
-
-    &--sticky {
-        @apply sticky top-0;
-    }
+    background: var(--color-light-box-background);
 
     .product-tabs__bar-inner {
         @apply flex gap-2 overflow-x-auto py-3 px-1;
-        background: var(--color-light-box-background);
         scrollbar-width: none;
         border-bottom: 1px solid var(--color-primary-10, rgba(0, 0, 0, .08));
 
         &::-webkit-scrollbar { display: none; }
     }
-    .dark & .product-tabs__bar-inner {
-        background: var(--color-dark-box-background);
+
+    // Pinned to the viewport top (toggled by product-tabs.js on scroll)
+    &.is-pinned {
+        position: fixed;
+        top: 0;
+        inset-inline: 0;
+        z-index: 40;
+        margin: 0;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, .08);
+
+        .product-tabs__bar-inner {
+            width: 95%;
+            margin-inline: auto;
+        }
     }
 }
+.dark .product-tabs__bar { background: var(--color-dark-box-background); }
+
+// Reserves the bar's space while it is pinned, preventing a layout jump
+.product-tabs__bar-placeholder { width: 100%; }
 
 .product-tabs__tab {
     @apply whitespace-nowrap rounded-full px-5 py-2 text-sm font-semibold transition-all;

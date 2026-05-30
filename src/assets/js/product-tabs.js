@@ -116,23 +116,24 @@ class ProductTabs extends BasePage {
         const tabButtons = Array.prototype.slice.call(mount.querySelectorAll('.product-tabs__tab'));
         const sections = Array.prototype.slice.call(mount.querySelectorAll('.product-tabs__section'));
 
-        // Click → smooth scroll to section (offset for the sticky bar + site header)
+        // Click → smooth scroll to section (offset for the pinned bar)
         tabButtons.forEach(btn => {
             btn.addEventListener('click', () => {
                 const target = document.getElementById(btn.dataset.tabTarget);
                 if (!target) return;
                 const barH = bar ? bar.offsetHeight : 0;
-                const top = target.getBoundingClientRect().top + window.pageYOffset - barH - 90;
+                const top = target.getBoundingClientRect().top + window.pageYOffset - barH - 20;
                 window.scrollTo({ top, behavior: 'smooth' });
             });
         });
+
+        if (bar) this.setupSticky(bar);
 
         // Scroll-spy → highlight the section currently in view
         if ('IntersectionObserver' in window && sections.length) {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (!entry.isIntersecting) return;
-                    const idx = entry.target.dataset.tabSection;
                     tabButtons.forEach(b => {
                         const isActive = b.dataset.tabTarget === entry.target.id;
                         b.classList.toggle('is-active', isActive);
@@ -142,6 +143,49 @@ class ProductTabs extends BasePage {
             }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
             sections.forEach(s => observer.observe(s));
         }
+    }
+
+    // JS sticky: pin the bar with position:fixed once the page scrolls past it.
+    // This avoids `position: sticky` failing inside ancestors that establish a
+    // scroll/transform containing block (overflow-x:hidden on body, etc.).
+    setupSticky(bar) {
+        if (!bar.classList.contains('product-tabs__bar--sticky')) return;
+
+        const placeholder = document.createElement('div');
+        placeholder.className = 'product-tabs__bar-placeholder';
+        let pinned = false;
+        let startY = 0;
+
+        const measure = () => {
+            // When pinned, the placeholder occupies the bar's natural slot.
+            const ref = pinned ? placeholder : bar;
+            startY = ref.getBoundingClientRect().top + window.pageYOffset;
+        };
+
+        const pin = () => {
+            if (pinned) return;
+            placeholder.style.height = bar.offsetHeight + 'px';
+            bar.parentNode.insertBefore(placeholder, bar);
+            bar.classList.add('is-pinned');
+            pinned = true;
+        };
+
+        const unpin = () => {
+            if (!pinned) return;
+            bar.classList.remove('is-pinned');
+            if (placeholder.parentNode) placeholder.parentNode.removeChild(placeholder);
+            pinned = false;
+        };
+
+        const onScroll = () => {
+            if (window.pageYOffset >= startY) pin();
+            else unpin();
+        };
+
+        measure();
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', () => { unpin(); measure(); onScroll(); }, { passive: true });
     }
 
     // Keep the active tab scrolled into view inside a horizontally-scrolling bar
