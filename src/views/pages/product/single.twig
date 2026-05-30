@@ -50,95 +50,164 @@
 
         <div class="flex flex-col items-start md:flex-row" id="product-{{ product.id }}">
 
-            {# ---------- LEFT: image / slider ---------- #}
-            <div class="sidebar md:sticky top-24 w-full md:!w-2/4 rtl:ml-8 ltr:mr-8 pb-8 md:pb-16 overflow-hidden shrink-0">
+            {# ---------- LEFT: image slider + custom thumbnail column ---------- #}
+            <div class="sidebar md:sticky top-24 w-full md:!w-2/4 rtl:ml-8 ltr:mr-8 pb-8 md:pb-16 shrink-0">
                 {% set has_many_images = product.images|length > 1 %}
-                <salla-slider
-                        id="details-slider-{{ product.id }}"
-                        class="details-slider rounded-custom image-slider"
-                        type="thumbs"
-                        loop="false"
-                        auto-height
-                        listen-to-thumbnails-option
-                        show-thumbs-controls="false">
-                    {% if product.promotion_title %}
-                        <div class="promotion-title">{{ product.promotion_title }}</div>
-                    {% endif %}
 
-                    <salla-button
-                            class="btn--wishlist animated sws"
-                            data-id="{{ product.id }}"
-                            onclick="salla.wishlist.toggle('{{ product.id }}')"
-                            shape="icon"
-                            fill="outline"
-                            color="light"
-                            aria-label="add to wishlist">
-                        <i class="sicon-heart"></i>
-                    </salla-button>
+                <div class="flex flex-row-reverse md:gap-3" id="product-gallery-{{ product.id }}">
 
-                    {# Calories Badge #}
-                    {% if product.calories %}
-                        <div class="absolute z-[2] top-4 rtl:left-4 ltr:right-4 dynamic-bg-color shadow-sm flex flex-col justify-center items-center rounded-full w-20 h-20 md:w-24 md:h-24">
-                            <span class="text-red-500 text-xl leading-none font-bold">{{ product.calories }}</span>
-                            <span class="text-xs opacity-60">{{ trans('pages.products.calories') }}</span>
-                        </div>
-                    {% endif %}
-
-                    <div slot="items">
-                        {% for image in product.images %}
-                            {% if image.three_d_image_url %}
-                                <model-viewer style="min-height: 500px;" class="swiper-slide model-entry w-full h-full"
-                                    loading="eager" camera-controls
-                                    touch-action="pan-y" auto-rotate
-                                    poster="{{ image.url }}"
-                                    src="{{ image.three_d_image_url }}"
-                                    shadow-intensity="1" alt="{{ image.alt }}">
-                                </model-viewer>
-                            {% else %}
-                                <a data-fslightbox="product_{{ product.id }}"
-                                   data-img-id="{{ image.id }}"
-                                   data-slid-index="{{ loop.index-1 }}"{% if image.video_url %} data-video-src="{{ image.video_url }}"{% endif %}
-                                   data-caption="{{ image.alt }}"
-                                   data-infinite="false"
-                                   data-type="{{ image.video_url?'youtube':'image' }}"
-                                   href="{{ (image.video_url is iterable ? image.video_url|first : image.video_url)|default(image.url) }}"
-                                   aria-label="{{ product.name }}"
-                                   class="swiper-slide magnify-wrapper homeslider__slide {{ image.video_url?'video-entry':'' }}">
-                                    {% if loop.first %}
-                                        <img id="{{image.id}}" fetchpriority="high" loading="eager" src="{{ image.url }}"
-                                             alt="{{ image.alt }}"
-                                             class="h-full object-{{ theme.settings.get('slider_background_size') }} w-full {{ image.three_d_image_url ? 'model-poster' : '' }}">
-                                    {% else %}
-                                        <img id="{{image.id}}" src="{{ 'images/s-empty.png' | cdn }}" data-src="{{ image.url }}"
-                                             alt="{{ image.alt }}"
-                                             class="lazy h-full object-{{ theme.settings.get('slider_background_size') }} w-full {{ image.three_d_image_url ? 'model-poster' : '' }}">
-                                    {% endif %}
-                                </a>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-
+                    {# Vertical thumbnail column (md+) / horizontal scroll row (mobile) #}
                     {% if has_many_images %}
-                        <div slot="thumbs">
+                        <div class="product-thumbs flex md:flex-col gap-2 overflow-x-auto md:overflow-x-visible md:overflow-y-auto md:max-h-[32rem] md:w-20 pt-2 md:pt-0 mt-3 md:mt-0 shrink-0"
+                             data-product-thumbs>
                             {% for image in product.images %}
-                                <div class="slide--one-fourth {{ image.video_url?'video-entry':'' }} {{ image.three_d_image_url?'model-entry':'' }}" data-caption="{{ image.alt }}">
+                                <button type="button"
+                                        class="product-thumbs__btn shrink-0 w-16 h-16 md:w-20 md:h-16 rounded-custom border-2 dynamic-border-color overflow-hidden focus:outline-none transition-all {{ loop.first ? 'is-active' : '' }}"
+                                        data-thumb-index="{{ loop.index0 }}"
+                                        aria-label="{{ image.alt }}">
                                     {% if loop.index < 5 %}
                                         <img src="{{ image.url }}"
                                              loading="eager"
-                                             class="object-cover w-full h-full dynamic-bg-color rounded-custom overflow-hidden"
-                                             title="{{ image.alt }}"
+                                             class="object-cover w-full h-full"
                                              alt="{{ image.alt }}"/>
                                     {% else %}
                                         <img data-src="{{ image.url }}" src="{{ 'images/s-empty.png' | cdn }}"
-                                             class="object-cover w-full h-full lazy dynamic-bg-color rounded-custom overflow-hidden"
-                                             title="{{ image.alt }}"
+                                             class="lazy object-cover w-full h-full"
                                              alt="{{ image.alt }}"/>
                                     {% endif %}
-                                </div>
+                                </button>
                             {% endfor %}
                         </div>
                     {% endif %}
-                </salla-slider>
+
+                    {# Main image slider — no built-in thumbs, we drive it ourselves #}
+                    <div class="flex-1 min-w-0 overflow-hidden">
+                        <salla-slider
+                                id="details-slider-{{ product.id }}"
+                                class="details-slider rounded-custom image-slider"
+                                loop="false"
+                                auto-height>
+                            {% if product.promotion_title %}
+                                <div class="promotion-title">{{ product.promotion_title }}</div>
+                            {% endif %}
+
+                            <salla-button
+                                    class="btn--wishlist animated sws"
+                                    data-id="{{ product.id }}"
+                                    onclick="salla.wishlist.toggle('{{ product.id }}')"
+                                    shape="icon"
+                                    fill="outline"
+                                    color="light"
+                                    aria-label="add to wishlist">
+                                <i class="sicon-heart"></i>
+                            </salla-button>
+
+                            {# Calories Badge #}
+                            {% if product.calories %}
+                                <div class="absolute z-[2] top-4 rtl:left-4 ltr:right-4 dynamic-bg-color shadow-sm flex flex-col justify-center items-center rounded-full w-20 h-20 md:w-24 md:h-24">
+                                    <span class="text-red-500 text-xl leading-none font-bold">{{ product.calories }}</span>
+                                    <span class="text-xs opacity-60">{{ trans('pages.products.calories') }}</span>
+                                </div>
+                            {% endif %}
+
+                            <div slot="items">
+                                {% for image in product.images %}
+                                    {% if image.three_d_image_url %}
+                                        <model-viewer style="min-height: 500px;" class="swiper-slide model-entry w-full h-full"
+                                            loading="eager" camera-controls
+                                            touch-action="pan-y" auto-rotate
+                                            poster="{{ image.url }}"
+                                            src="{{ image.three_d_image_url }}"
+                                            shadow-intensity="1" alt="{{ image.alt }}">
+                                        </model-viewer>
+                                    {% else %}
+                                        <a data-fslightbox="product_{{ product.id }}"
+                                           data-img-id="{{ image.id }}"
+                                           data-slid-index="{{ loop.index-1 }}"{% if image.video_url %} data-video-src="{{ image.video_url }}"{% endif %}
+                                           data-caption="{{ image.alt }}"
+                                           data-infinite="false"
+                                           data-type="{{ image.video_url?'youtube':'image' }}"
+                                           href="{{ (image.video_url is iterable ? image.video_url|first : image.video_url)|default(image.url) }}"
+                                           aria-label="{{ product.name }}"
+                                           class="swiper-slide magnify-wrapper homeslider__slide {{ image.video_url?'video-entry':'' }}">
+                                            {% if loop.first %}
+                                                <img id="{{image.id}}" fetchpriority="high" loading="eager" src="{{ image.url }}"
+                                                     alt="{{ image.alt }}"
+                                                     class="h-full object-{{ theme.settings.get('slider_background_size') }} w-full {{ image.three_d_image_url ? 'model-poster' : '' }}">
+                                            {% else %}
+                                                <img id="{{image.id}}" src="{{ 'images/s-empty.png' | cdn }}" data-src="{{ image.url }}"
+                                                     alt="{{ image.alt }}"
+                                                     class="lazy h-full object-{{ theme.settings.get('slider_background_size') }} w-full {{ image.three_d_image_url ? 'model-poster' : '' }}">
+                                            {% endif %}
+                                        </a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </salla-slider>
+                    </div>
+                </div>
+
+                {% if has_many_images %}
+                    <script>
+                      (function () {
+                        function init() {
+                          var sliderEl = document.getElementById('details-slider-{{ product.id }}');
+                          var gallery  = document.getElementById('product-gallery-{{ product.id }}');
+                          if (!sliderEl || !gallery) return;
+
+                          var thumbs = gallery.querySelectorAll('[data-thumb-index]');
+                          if (!thumbs.length) return;
+
+                          function setActive(idx) {
+                            thumbs.forEach(function (t) {
+                              t.classList.toggle('is-active', String(t.dataset.thumbIndex) === String(idx));
+                            });
+                          }
+
+                          // Resolve the inner Swiper instance; salla-slider attaches it on the inner `.swiper` element
+                          function getSwiper(attempt) {
+                            attempt = attempt || 0;
+                            var sw = sliderEl.querySelector('.swiper');
+                            if (sw && sw.swiper) return Promise.resolve(sw.swiper);
+                            if (attempt > 20) return Promise.resolve(null);
+                            return new Promise(function (resolve) {
+                              setTimeout(function () { resolve(getSwiper(attempt + 1)); }, 100);
+                            });
+                          }
+
+                          getSwiper().then(function (swiper) {
+                            thumbs.forEach(function (btn) {
+                              btn.addEventListener('click', function () {
+                                var idx = Number(btn.dataset.thumbIndex);
+                                if (swiper && typeof swiper.slideTo === 'function') {
+                                  swiper.slideTo(idx);
+                                }
+                                setActive(idx);
+                              });
+                            });
+
+                            if (swiper && typeof swiper.on === 'function') {
+                              swiper.on('slideChange', function () {
+                                setActive(swiper.activeIndex);
+                              });
+                            } else {
+                              // Fallback: listen for salla-slider's own slideChange event
+                              sliderEl.addEventListener('slideChange', function (ev) {
+                                var idx = ev.detail?.index ?? ev.detail?.activeIndex;
+                                if (idx != null) setActive(idx);
+                              });
+                            }
+                          });
+                        }
+
+                        if (document.readyState === 'loading') {
+                          document.addEventListener('DOMContentLoaded', init);
+                        } else {
+                          init();
+                        }
+                      })();
+                    </script>
+                {% endif %}
             </div>
 
             {# ---------- RIGHT: details, description, form ---------- #}

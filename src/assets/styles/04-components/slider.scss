@@ -17,48 +17,6 @@ salla-slider{
     .s-slider-block__title-nav{
       @apply hidden sm:flex;
     }
-
-    // Thumbnails on the side instead of below — desktop only
-    @media (min-width: 768px) {
-      .s-slider-container {
-        display: flex;
-        flex-direction: row-reverse; // RTL: thumbs to the right
-        gap: 0.75rem;
-        background: transparent;
-        border: 0;
-        padding: 0;
-      }
-
-      // Main swiper (first sibling) takes the remaining width
-      .s-slider-container > .swiper:nth-of-type(1) {
-        flex: 1 1 0%;
-        min-width: 0;
-      }
-
-      // Thumbs swiper (second sibling) becomes a narrow vertical column
-      .s-slider-container > .swiper:nth-of-type(2) {
-        flex: 0 0 5.5rem;
-        max-height: 32rem;
-        height: auto !important;
-
-        .swiper-wrapper {
-          flex-direction: column;
-          height: auto;
-        }
-
-        .swiper-slide {
-          width: 5.5rem !important;
-          height: 5rem !important;
-          margin: 0 0 0.5rem !important;
-        }
-      }
-
-      // Make the slotted thumbnail tiles fill their slide
-      .slide--one-fourth {
-        @apply !w-full;
-        max-width: none;
-      }
-    }
   }
 
   .slide--one-fourth{
@@ -70,10 +28,25 @@ salla-slider{
   }
 
 
-  // Fix Flickering in Safari 
+  // Fix Flickering in Safari
   .swiper-slide{
     -webkit-transform: translateZ(0);
     -webkit-backface-visibility: hidden;
+  }
+}
+
+// Custom side-thumbnail column for product page — replaces salla-slider type=thumbs
+.product-thumbs__btn {
+  @apply opacity-70 hover:opacity-100 transition-opacity;
+  border-color: transparent;
+
+  &.is-active {
+    @apply opacity-100;
+    border-color: var(--color-primary);
+  }
+
+  img {
+    @apply block;
   }
 }
 
