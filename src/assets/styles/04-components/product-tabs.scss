@@ -46,7 +46,7 @@
 .product-tabs__bar-placeholder { width: 100%; }
 
 .product-tabs__tab {
-    @apply whitespace-nowrap rounded-full px-5 py-2 text-sm font-semibold transition-all;
+    @apply whitespace-nowrap rounded-custom px-7 py-3 text-sm font-semibold transition-all;
     @apply dynamic-text-color;
     background: var(--color-primary-5, rgba(0, 0, 0, .04));
     border: 1px solid transparent;
