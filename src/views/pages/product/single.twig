@@ -42,19 +42,19 @@
 #}
 {% extends "layouts.master" %}
 {% block content %}
-    <div class="container dynamic-text-color">
+    <div class=" w-[95%] mx-auto dynamic-text-color">
         {# Breadcrumb #}
         <nav class="breadcrumbs w-full py-5">
             <salla-breadcrumb></salla-breadcrumb>
         </nav>
 
-        <div class="flex flex-col items-start md:flex-row" id="product-{{ product.id }}">
+        <div class="flex flex-col md:flex-row md:items-stretch" id="product-{{ product.id }}">
 
             {# ---------- LEFT: image slider + custom thumbnail column ---------- #}
-            <div class="sidebar md:sticky top-24 w-full md:!w-2/4 rtl:ml-8 ltr:mr-8 pb-8 md:pb-16 shrink-0">
+            <div class=" p-5 rounded-custom dynamic-bg-color dynamic-border-color sidebar md:sticky top-24 w-full md:!w-2/4 rtl:ml-8 ltr:mr-8 pb-8 md:pb-16 shrink-0">
                 {% set has_many_images = product.images|length > 1 %}
 
-                <div class="flex flex-row-reverse md:gap-3" id="product-gallery-{{ product.id }}">
+                <div class="flex flex-row md:gap-3" id="product-gallery-{{ product.id }}">
 
                     {# Vertical thumbnail column (md+) / horizontal scroll row (mobile) #}
                     {% if has_many_images %}
@@ -211,7 +211,7 @@
             </div>
 
             {# ---------- RIGHT: details, description, form ---------- #}
-            <div class="main-content md:sticky md:overflow-hidden top-24 w-full md:w-2/4 md:pb-16">
+            <div class=" p-5 rounded-custom dynamic-bg-color dynamic-border-color  main-content md:sticky md:overflow-hidden top-24 w-full md:w-2/4 md:pb-16">
 
                 {% hook 'product:single.description.start' %}
 
@@ -226,7 +226,7 @@
                     </div>
                 {% endif %}
 
-                <h1 class="text-xl md:text-2xl leading-10 font-bold mb-6 dynamic-text-color">{{ product.name }}</h1>
+                <h1 class="font-alshohadaa dynamic-text-color text-xl md:text-2xl leading-10 font-bold mb-6 ">{{ product.name }}</h1>
 
                 {% if product.subtitle %}
                     <h2 class="product-entry__sub-title text-sm leading-6 mb-2.5 opacity-70">
@@ -372,7 +372,7 @@
 
                     {% hook 'product:single.form.end' %}
 
-                    <section class="flex dynamic-bg-color border dynamic-border-color p-5 sm:pb-0 rounded-custom rounded-b-none">
+                    <section class="flex dynamic-bg-color p-5 sm:pb-0 rounded-custom rounded-b-none">
                         <div class="center-between w-full">
                             <label class="form-label">
                                 <b class="block">
@@ -404,7 +404,7 @@
                         </section>
                     {% endif %}
 
-                    <section class="sticky-product-bar dynamic-bg-color border-x border-b dynamic-border-color p-5 rounded-custom rounded-t-none">
+                    <section class="sticky-product-bar dynamic-bg-color p-5 rounded-custom rounded-t-none">
                         {# Quantity #}
                         {% if product.is_hidden_quantity or product.type == 'booking' %}
                             <input type="hidden" value="1" name="quantity" aria-label="Quantity"/>
