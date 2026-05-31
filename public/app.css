@@ -25044,10 +25044,11 @@ salla-comments .s-comments-product .s-comments-container:has(.s-reviews-summary-
   display: block;
 }
 .s-breadcrumb-arrow svg{
-    fill: var(--color-dark-box-background);
+    fill: var(--light-text-color);
 }
 .s-breadcrumb-arrow svg:is(.dark *){
-    fill: var(--color-light-box-background);
+    fill: #2C3E50;
+    fill: var(--main-text-color);
 }
 .s-quantity-input-container .s-quantity-input-input {
   background: transparent !important;

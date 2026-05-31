@@ -609,7 +609,9 @@ salla-comments
 
 .s-breadcrumb-arrow{
   svg{
-    @apply fill-[var(--color-dark-box-background)] dark:fill-[var(--color-light-box-background)];
+    // @apply dark:text-[var(--light-text-color)] text-[var(--main-text-color)]; //e5e7eb
+    
+   @apply fill-[var(--light-text-color)] dark:fill-[var(--main-text-color)];
     
   }
 }
