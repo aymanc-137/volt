@@ -73,6 +73,17 @@
             "format": "switch"
         },
         {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "id": "product_card_border_animation",
+            "label": "تفعيل حركة الإطار المتحرك عند تمرير المؤشر على بطاقة المنتج",
+            "description": "حركة الإطار التي تبدأ من الزاوية عند مرور المؤشر فوق بطاقة المنتج",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
             "type": "static",
             "id": "static-line1",
             "format": "line"

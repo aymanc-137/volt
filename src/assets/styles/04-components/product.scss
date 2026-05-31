@@ -541,6 +541,23 @@ salla-quantity-input[max='1']{
   opacity: 1;
 }
 
+// Disabled via theme setting (product_card_border_animation): remove the
+// corner-to-corner growing border segments on hover. The card keeps its
+// static border and glow; only the moving border animation is suppressed.
+.no-card-border-animation {
+  .product-card-volt {
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+
+  .product-card-volt__bottom-border,
+  .product-card-volt__left-border {
+    display: none;
+  }
+}
+
 
 .s-product-card-volt-wishlist-btn{
 
