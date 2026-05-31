@@ -30,7 +30,6 @@ class ProductTabs extends BasePage {
             }
 
             const component = components[0].component;
-            const sticky = component?.tabs_sticky !== false;
             const collection = component?.tabs_data || component?.['tabs_data'] || [];
             if (!Array.isArray(collection) || !collection.length) {
                 console.warn(LOG, 'component has no tabs_data items');
@@ -69,7 +68,7 @@ class ProductTabs extends BasePage {
             // Unhide BEFORE rendering so the sticky bar can be measured with a
             // real layout (a display:none element reports zero rects).
             mount.classList.remove('hidden');
-            this.render(mount, renderable, sticky, productId);
+            this.render(mount, renderable, productId);
             console.log(LOG, 'rendered', renderable.length, 'tabs');
         } catch (e) {
             console.error(LOG, 'onReady threw:', e);
@@ -88,7 +87,7 @@ class ProductTabs extends BasePage {
         }
     }
 
-    render(mount, tabs, sticky, productId) {
+    render(mount, tabs, productId) {
         const uid = 'ptabs-' + productId;
 
         const barButtons = tabs.map((tab, i) =>
@@ -104,7 +103,7 @@ class ProductTabs extends BasePage {
         ).join('');
 
         mount.innerHTML = `
-            <div class="product-tabs__bar ${sticky ? 'product-tabs__bar--sticky' : ''}" role="tablist" data-tabs-bar>
+            <div class="product-tabs__bar product-tabs__bar--sticky" role="tablist" data-tabs-bar>
                 <div class="product-tabs__bar-inner">${barButtons}</div>
             </div>
             <div class="product-tabs__sections">${sections}</div>
@@ -131,20 +130,46 @@ class ProductTabs extends BasePage {
 
         if (bar) this.setupSticky(bar);
 
-        // Scroll-spy → highlight the section currently in view
-        if ('IntersectionObserver' in window && sections.length) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) return;
-                    tabButtons.forEach(b => {
-                        const isActive = b.dataset.tabTarget === entry.target.id;
-                        b.classList.toggle('is-active', isActive);
-                        if (isActive) this.ensureVisibleInBar(b);
-                    });
-                });
-            }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
-            sections.forEach(s => observer.observe(s));
-        }
+        // Scroll-spy → highlight the section currently in view.
+        // Deterministic: pick the last section whose top has scrolled past a
+        // reference line just below the pinned bar. An IntersectionObserver band
+        // matched zero or multiple sections depending on their heights, which made
+        // the active tab flicker; this always resolves to exactly one section.
+        if (!sections.length) return;
+
+        let activeId = null;
+        const setActive = (id) => {
+            if (id === activeId) return;
+            activeId = id;
+            tabButtons.forEach(b => {
+                const isActive = b.dataset.tabTarget === id;
+                b.classList.toggle('is-active', isActive);
+                if (isActive) this.ensureVisibleInBar(b);
+            });
+        };
+
+        const spy = () => {
+            const line = (bar ? bar.offsetHeight : 0) + this.headerOffset() + 24;
+
+            // At the very bottom of the page, force the last section active so the
+            // final (often short) tab can always be reached.
+            if (window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 2) {
+                setActive(sections[sections.length - 1].id);
+                return;
+            }
+
+            let current = sections[0];
+            for (const s of sections) {
+                if (s.getBoundingClientRect().top - line <= 0) current = s;
+                else break;
+            }
+            setActive(current.id);
+        };
+
+        spy();
+        window.addEventListener('scroll', spy, { passive: true });
+        window.addEventListener('resize', spy, { passive: true });
+        window.addEventListener('load', spy, { passive: true });
     }
 
     // JS sticky: pin the bar with position:fixed once the page scrolls past it.

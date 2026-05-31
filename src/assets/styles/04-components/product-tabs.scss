@@ -66,11 +66,18 @@
 
 // ── Sections ─────────────────────────────────────────────────────────────────
 .product-tabs__sections {
-    @apply flex flex-col gap-10;
+    @apply flex flex-col gap-16 md:gap-20;
 }
 
 .product-tabs__section {
-    scroll-margin-top: 6rem;
+    scroll-margin-top: 8rem;
+
+    // Subtle divider above each section (except the first) to reinforce the
+    // extra breathing room between blocks.
+    & + & {
+        @apply pt-12 md:pt-16;
+        border-top: 1px solid var(--color-primary-10, rgba(0, 0, 0, .07));
+    }
 
     &-title {
         @apply text-xl md:text-2xl font-bold mb-4 dynamic-text-color;

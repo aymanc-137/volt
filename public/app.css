@@ -26755,10 +26755,27 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
 .product-tabs__sections{
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 4rem;
+}
+@media (min-width: 768px){
+    .product-tabs__sections{
+        gap: 5rem;
+    }
 }
 .product-tabs__section {
-  scroll-margin-top: 6rem;
+  scroll-margin-top: 8rem;
+}
+.product-tabs__section + .product-tabs__section{
+    padding-top: 3rem;
+}
+@media (min-width: 768px){
+    .product-tabs__section + .product-tabs__section{
+        padding-top: 4rem;
+    }
+}
+.product-tabs__section + .product-tabs__section {
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
+  border-top: 1px solid var(--color-primary-10, rgba(0, 0, 0, 0.07));
 }
 .product-tabs__section-title{
     margin-bottom: 1rem;
