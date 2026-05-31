@@ -235,6 +235,18 @@ salla-button {
 .volt {
  button {
  @apply btn btn--primary hover-glow;
+
+   // Product-card primary button: replace the scale-up hover with an inner
+   // white border (inset ring). Cancels the transform/scale inherited from
+   // `.btn` and `.btn--primary` so the button stays put on hover.
+   &:hover {
+     transform: none;
+     box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.9), var(--shadow-glow);
+   }
+
+   &:active {
+     transform: none;
+   }
  }
 
 
