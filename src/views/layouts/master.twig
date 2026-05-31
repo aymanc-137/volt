@@ -273,7 +273,9 @@ overflow-x-hidden {% hook 'body:classes' %}
     {% hook 'body:start' %}
     {% if announcement_bar_position == 'top' %}{% include 'pages.partials.announcement-bar' %}{% endif %}
     {% component 'header.header' %}
-    {% if announcement_bar_position == 'under_header' %}{% include 'pages.partials.announcement-bar' %}{% endif %}
+    {# under_header: every page. under_carousel: home page renders it inside the
+       enhanced-image-carousel component, every other page falls back here. #}
+    {% if announcement_bar_position == 'under_header' or (announcement_bar_position == 'under_carousel' and not is_page('index')) %}{% include 'pages.partials.announcement-bar' %}{% endif %}
     {% block content %}{% endblock %}
     {% if announcement_bar_position == 'above_footer' %}{% include 'pages.partials.announcement-bar' %}{% endif %}
     {% component 'footer.footer' %}

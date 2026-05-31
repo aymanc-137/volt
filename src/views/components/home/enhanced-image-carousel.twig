@@ -182,3 +182,10 @@
     {% endif %}
     {% endif %}
 </section>
+
+{# Announcement bar positioned directly under the hero carousel (home page only).
+   Guarded so it renders once even if the merchant added multiple carousels. #}
+{% if theme.settings.get('announcement_bar_position') == 'under_carousel' and not theme.settings.get('_announcement_bar_rendered') %}
+    {{ theme.settings.set('_announcement_bar_rendered', true) }}
+    {% include 'pages.partials.announcement-bar' %}
+{% endif %}

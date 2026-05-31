@@ -135,6 +135,11 @@
                     "label": "أعلى تذييل الصفحة",
                     "value": "above_footer",
                     "key": "ab-pos-above-footer"
+                },
+                {
+                    "label": "أسفل السلايدر في الرئيسية (وأسفل القائمة في باقي الصفحات)",
+                    "value": "under_carousel",
+                    "key": "ab-pos-under-carousel"
                 }
             ],
             "source": "Manual",
