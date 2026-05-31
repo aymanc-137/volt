@@ -26,6 +26,7 @@
     {% set ab_text_size = theme.settings.get('announcement_bar_text_size', 15) %}
     {% set ab_speed     = theme.settings.get('announcement_bar_speed', 25) %}
     {% set ab_position  = theme.settings.get('announcement_bar_position', 'top') %}
+    {% set ab_lang      = user.language.code|default('ar') %}
 
     <div class="announcement-bar announcement-bar--{{ ab_position }}"
          role="marquee"
@@ -36,9 +37,13 @@
                 {# Two copies of the list → seamless -50% loop #}
                 {% for copy in 1..2 %}
                     {% for item in ab_items %}
+                        {# Multilanguage fields come back as a {lang: value} map here; resolve to the current language #}
                         {% set txt = item.text %}
+                        {% if txt is iterable %}{% set txt = txt[ab_lang] ?? (txt|first) %}{% endif %}
                         {% set url = item.url %}
+                        {% if url is iterable %}{% set url = url[ab_lang] ?? (url|first) %}{% endif %}
                         {% set img = item.image %}
+                        {% if img is iterable %}{% set img = img[ab_lang] ?? (img|first) %}{% endif %}
                         {% set hidden_attr = copy == 2 ? ' aria-hidden="true" tabindex="-1"' : '' %}
                         {% if url %}
                             <a class="announcement-bar__item" href="{{ url }}"{{ hidden_attr|raw }}>
