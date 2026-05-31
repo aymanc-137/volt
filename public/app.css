@@ -26721,12 +26721,14 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     padding-right: 1.75rem;
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
+    font-family: Alshohadaa, sans-serif;
     font-size: 0.875rem;
     line-height: 1.25rem;
     font-weight: 600;
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
+  font-family: "Alshohadaa", sans-serif;
   border-radius: var(--border-radius);
   color: #2C3E50;
   color: var(--main-text-color);
@@ -26755,11 +26757,11 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
 .product-tabs__sections{
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 5rem;
 }
 @media (min-width: 768px){
     .product-tabs__sections{
-        gap: 5rem;
+        gap: 6rem;
     }
 }
 .product-tabs__section {
@@ -26779,11 +26781,13 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
 }
 .product-tabs__section-title{
     margin-bottom: 1rem;
+    font-family: Alshohadaa, sans-serif;
     font-size: 1.25rem;
     line-height: 1.75rem;
     font-weight: 700;
-    color: #2C3E50;
-    color: var(--main-text-color);
+  font-family: "Alshohadaa", sans-serif;
+  color: #2C3E50;
+  color: var(--main-text-color);
 }
 .dark *.product-tabs__section-title{
     color: var(--light-text-color);
@@ -27056,11 +27060,13 @@ input[type=radio].sr-only:checked ~ div.ptab-media__video iframe,input[type=radi
 }
 .ptab-howto__title{
     margin-bottom: 0.25rem;
+    font-family: Alshohadaa, sans-serif;
     font-size: 1rem;
     line-height: 1.5rem;
     font-weight: 700;
-    color: #2C3E50;
-    color: var(--main-text-color);
+  font-family: "Alshohadaa", sans-serif;
+  color: #2C3E50;
+  color: var(--main-text-color);
 }
 .dark *.ptab-howto__title{
     color: var(--light-text-color);

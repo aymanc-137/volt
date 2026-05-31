@@ -46,7 +46,7 @@
 .product-tabs__bar-placeholder { width: 100%; }
 
 .product-tabs__tab {
-    @apply whitespace-nowrap rounded-custom px-7 py-3 text-sm font-semibold transition-all;
+    @apply whitespace-nowrap rounded-custom px-7 py-3 text-sm font-semibold transition-all font-alshohadaa;
     @apply dynamic-text-color;
     background: var(--color-primary-5, rgba(0, 0, 0, .04));
     border: 1px solid transparent;
@@ -66,7 +66,7 @@
 
 // ── Sections ─────────────────────────────────────────────────────────────────
 .product-tabs__sections {
-    @apply flex flex-col gap-16 md:gap-20;
+    @apply flex flex-col gap-20 md:gap-24;
 }
 
 .product-tabs__section {
@@ -80,7 +80,7 @@
     }
 
     &-title {
-        @apply text-xl md:text-2xl font-bold mb-4 dynamic-text-color;
+        @apply text-xl md:text-2xl font-bold mb-4 dynamic-text-color font-alshohadaa;
         position: relative;
         padding-inline-start: .85rem;
 
@@ -205,7 +205,7 @@
 
     &__content { @apply flex-1 min-w-0; }
 
-    &__title { @apply text-base font-bold mb-1 dynamic-text-color; }
+    &__title { @apply text-base font-bold mb-1 dynamic-text-color font-alshohadaa; }
     &__text  { @apply text-sm leading-7 opacity-80 dynamic-text-color; }
     &__img   { @apply rounded-custom mt-3 max-w-xs w-full h-auto; }
 }
