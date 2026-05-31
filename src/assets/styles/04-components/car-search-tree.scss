@@ -225,6 +225,30 @@
     }
 }
 
+// Bottom-pinned hero search: below lg the carousel is short, so compact the
+// widget (tighter rhythm, smaller title, drop the decorative eyebrow/subtitle)
+// to make it fit the available height — no scrollbar, no clipped content.
+@media (max-width: 1023px) {
+    [data-home-car-search] {
+        .car-search-tree {
+            @apply space-y-3;
+        }
+
+        .car-search-tree__header {
+            @apply gap-2;
+        }
+
+        .car-search-tree__eyebrow,
+        .car-search-tree__subtitle {
+            @apply hidden;
+        }
+
+        .car-search-tree__title {
+            @apply text-lg mb-0;
+        }
+    }
+}
+
 // Horizontal-dropdowns variant for the bottom-pinned bar: keep selects side-by-side on lg+
 [data-home-car-search].home-car-search--horizontal {
     @media (min-width: 1024px) {
