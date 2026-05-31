@@ -57,10 +57,10 @@
     &__item {
         display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 1.5rem;
         // Horizontal padding sets the breathing room around each item (and,
         // since the arrow sits flush between items, on both sides of the arrow).
-        padding: 0 1.85rem;
+        padding: 0 4rem;
         white-space: nowrap;
         font-size: var(--ab-text-size);
         line-height: 1;
@@ -94,13 +94,9 @@
 
 // RTL: the flex track is anchored to the right edge and extends left, so it must
 // scroll in the +X direction (otherwise it slides off the right, leaving a gap).
-// Also flip the arrows so they still point in the reading direction.
+// Arrows keep their base (right-pointing) direction in RTL.
 [dir="rtl"] .announcement-bar.is-ready .announcement-bar__track {
     animation-name: announcement-scroll-rtl;
-}
-
-[dir="rtl"] .announcement-bar__arrow {
-    transform: scaleX(-1);
 }
 
 // Respect reduced-motion preferences: stop the scroll, keep content visible.
