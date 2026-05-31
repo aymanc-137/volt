@@ -8,12 +8,14 @@
 | announcement_bar_arrow_color          | string   | separator arrow color                                    |
 | announcement_bar_height               | int      | bar height in px                                         |
 | announcement_bar_text_size            | int      | item text size in px                                     |
-| announcement_bar_speed                | int      | full-loop duration in seconds (lower = faster)           |
+| announcement_bar_speed                | int      | seconds for the strip to cross one screen width (lower = faster) |
 | announcement_items                    | object[] | repeatable items: .image (?), .text (?), .url (?)        |
 
- Site-wide moving ticker. Items are rendered twice so the CSS marquee can loop
- seamlessly (the track translates by -50%). Each item is optionally a link and
- may carry an image; an arrow/chevron separator follows every item.
+ Site-wide infinite marquee. The markup renders ONE sequence of items; the
+ inline script clones it just enough to exceed the bar width and then the CSS
+ animates the track by -50%, so the loop is seamless on any screen / item count.
+ Each item is optionally a link and may carry an image; an arrow/chevron
+ separator follows every item.
 #}
 {% set ab_enabled = theme.settings.get('announcement_bar_enabled', false) %}
 {% set ab_items   = theme.settings.get('announcement_items', []) %}
@@ -28,47 +30,88 @@
     {% set ab_position  = theme.settings.get('announcement_bar_position', 'top') %}
     {% set ab_lang      = user.language.code|default('ar') %}
 
-    {# Repeat the items enough times that one group is densely packed (≈18 units
-       wide) regardless of how few items the merchant added — this removes the
-       big empty gaps a sparse group would leave. Duration scales with the repeat
-       count so the on-screen scroll speed stays the same no matter the density. #}
-    {% set ab_count    = ab_items|length %}
-    {% set ab_repeats  = max(2, (18 / ab_count)|round(0, 'ceil')) %}
-    {% set ab_duration = ab_speed * ab_repeats %}
-
     <div class="announcement-bar announcement-bar--{{ ab_position }}"
          role="marquee"
          aria-label="{{ theme.is_rtl ? 'إعلانات' : 'Announcements' }}"
-         style="--ab-bg: {{ ab_bg }}; --ab-text: {{ ab_text }}; --ab-arrow: {{ ab_arrow }}; --ab-height: {{ ab_height }}px; --ab-text-size: {{ ab_text_size }}px; --ab-speed: {{ ab_duration }}s;">
+         data-speed="{{ ab_speed }}"
+         style="--ab-bg: {{ ab_bg }}; --ab-text: {{ ab_text }}; --ab-arrow: {{ ab_arrow }}; --ab-height: {{ ab_height }}px; --ab-text-size: {{ ab_text_size }}px;">
         <div class="announcement-bar__track">
-            {# Two identical groups; each fills the bar width (CSS min-width:100%)
-               and both animate translateX(-100%) for a seamless infinite loop.
-               The 2nd group is a visual duplicate, hidden from assistive tech. #}
-            {% for copy in 1..2 %}
-                <div class="announcement-bar__group"{% if copy == 2 %} aria-hidden="true"{% endif %}>
-                    {% for r in 1..ab_repeats %}
-                        {% for item in ab_items %}
-                            {# Multilanguage fields come back as a {lang: value} map here; resolve to the current language #}
-                            {% set txt = item.text %}
-                            {% if txt is iterable %}{% set txt = txt[ab_lang] ?? (txt|first) %}{% endif %}
-                            {% set url = item.url %}
-                            {% if url is iterable %}{% set url = url[ab_lang] ?? (url|first) %}{% endif %}
-                            {% set img = item.image %}
-                            {% if img is iterable %}{% set img = img[ab_lang] ?? (img|first) %}{% endif %}
-                            {% set link_attr = copy == 2 ? ' tabindex="-1"' : '' %}
-                            {% if url %}
-                                <a class="announcement-bar__item" href="{{ url }}"{{ link_attr|raw }}>
-                            {% else %}
-                                <span class="announcement-bar__item">
-                            {% endif %}
-                                {% if img %}<img src="{{ img }}" alt="{{ txt|default('')|e('html_attr') }}" loading="lazy">{% endif %}
-                                {% if txt %}<span class="announcement-bar__text">{{ txt }}</span>{% endif %}
-                            {% if url %}</a>{% else %}</span>{% endif %}
-                            <span class="announcement-bar__arrow" aria-hidden="true"></span>
-                        {% endfor %}
-                    {% endfor %}
-                </div>
-            {% endfor %}
+            <div class="announcement-bar__seq">
+                {% for item in ab_items %}
+                    {# Multilanguage fields come back as a {lang: value} map here; resolve to the current language #}
+                    {% set txt = item.text %}
+                    {% if txt is iterable %}{% set txt = txt[ab_lang] ?? (txt|first) %}{% endif %}
+                    {% set url = item.url %}
+                    {% if url is iterable %}{% set url = url[ab_lang] ?? (url|first) %}{% endif %}
+                    {% set img = item.image %}
+                    {% if img is iterable %}{% set img = img[ab_lang] ?? (img|first) %}{% endif %}
+                    {% if url %}
+                        <a class="announcement-bar__item" href="{{ url }}">
+                    {% else %}
+                        <span class="announcement-bar__item">
+                    {% endif %}
+                        {% if img %}<img src="{{ img }}" alt="{{ txt|default('')|e('html_attr') }}" loading="lazy">{% endif %}
+                        {% if txt %}<span class="announcement-bar__text">{{ txt }}</span>{% endif %}
+                    {% if url %}</a>{% else %}</span>{% endif %}
+                    <span class="announcement-bar__arrow" aria-hidden="true"></span>
+                {% endfor %}
+            </div>
         </div>
     </div>
+
+    <script>
+    (function () {
+        // Clone the base sequence until the first half of the track is wider than
+        // the bar, then drive a seamless translateX(-50%) loop at a steady speed.
+        function setup(bar) {
+            var track = bar.querySelector('.announcement-bar__track');
+            if (!track) return;
+
+            // Reset to a single sequence (idempotent across resize / re-runs).
+            var seqs = track.querySelectorAll('.announcement-bar__seq');
+            for (var i = seqs.length - 1; i >= 1; i--) { seqs[i].parentNode.removeChild(seqs[i]); }
+            var seq = track.querySelector('.announcement-bar__seq');
+            if (!seq) return;
+
+            var barWidth = bar.clientWidth;
+            var seqWidth = seq.getBoundingClientRect().width;
+            if (!barWidth || !seqWidth) return;
+
+            // Copies so ONE half of the track exceeds the bar width (+1 safety).
+            var half = Math.ceil(barWidth / seqWidth) + 1;
+            var total = half * 2;
+
+            var frag = document.createDocumentFragment();
+            for (var c = 1; c < total; c++) {
+                var clone = seq.cloneNode(true);
+                clone.setAttribute('aria-hidden', 'true');
+                var links = clone.querySelectorAll('a');
+                for (var l = 0; l < links.length; l++) { links[l].setAttribute('tabindex', '-1'); }
+                frag.appendChild(clone);
+            }
+            track.appendChild(frag);
+
+            // Steady speed: data-speed = seconds to traverse one bar width.
+            var speed = parseFloat(bar.getAttribute('data-speed')) || 25;
+            var pxPerSec = barWidth / speed;
+            var shift = half * seqWidth;            // distance of the -50% step
+            track.style.setProperty('--ab-duration', (shift / pxPerSec).toFixed(2) + 's');
+
+            bar.classList.add('is-ready');
+        }
+
+        function setupAll() {
+            var bars = document.querySelectorAll('.announcement-bar');
+            for (var i = 0; i < bars.length; i++) { setup(bars[i]); }
+        }
+
+        var debounce;
+        function onResize() { clearTimeout(debounce); debounce = setTimeout(setupAll, 200); }
+
+        if (document.readyState !== 'loading') { setupAll(); }
+        else { document.addEventListener('DOMContentLoaded', setupAll); }
+        window.addEventListener('load', setupAll);   // re-measure after fonts/images settle
+        window.addEventListener('resize', onResize);
+    })();
+    </script>
 {% endif %}
