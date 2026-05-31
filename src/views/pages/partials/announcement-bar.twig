@@ -1,0 +1,57 @@
+{#
+| Variable                              | Type     | Description                                              |
+|---------------------------------------|----------|----------------------------------------------------------|
+| announcement_bar_enabled              | bool     | master switch                                            |
+| announcement_bar_position             | string   | top | under_header | above_footer                        |
+| announcement_bar_bg_color             | string   | bar background color                                     |
+| announcement_bar_text_color           | string   | item text color                                          |
+| announcement_bar_arrow_color          | string   | separator arrow color                                    |
+| announcement_bar_height               | int      | bar height in px                                         |
+| announcement_bar_text_size            | int      | item text size in px                                     |
+| announcement_bar_speed                | int      | full-loop duration in seconds (lower = faster)           |
+| announcement_items                    | object[] | repeatable items: .image (?), .text (?), .url (?)        |
+
+ Site-wide moving ticker. Items are rendered twice so the CSS marquee can loop
+ seamlessly (the track translates by -50%). Each item is optionally a link and
+ may carry an image; an arrow/chevron separator follows every item.
+#}
+{% set ab_enabled = theme.settings.get('announcement_bar_enabled', false) %}
+{% set ab_items   = theme.settings.get('announcement_items', []) %}
+
+{% if ab_enabled and ab_items|length %}
+    {% set ab_bg        = theme.settings.get('announcement_bar_bg_color', '#FFD400') %}
+    {% set ab_text      = theme.settings.get('announcement_bar_text_color', '#000000') %}
+    {% set ab_arrow     = theme.settings.get('announcement_bar_arrow_color', '#000000') %}
+    {% set ab_height    = theme.settings.get('announcement_bar_height', 44) %}
+    {% set ab_text_size = theme.settings.get('announcement_bar_text_size', 15) %}
+    {% set ab_speed     = theme.settings.get('announcement_bar_speed', 25) %}
+    {% set ab_position  = theme.settings.get('announcement_bar_position', 'top') %}
+
+    <div class="announcement-bar announcement-bar--{{ ab_position }}"
+         role="marquee"
+         aria-label="{{ theme.is_rtl ? 'إعلانات' : 'Announcements' }}"
+         style="--ab-bg: {{ ab_bg }}; --ab-text: {{ ab_text }}; --ab-arrow: {{ ab_arrow }}; --ab-height: {{ ab_height }}px; --ab-text-size: {{ ab_text_size }}px; --ab-speed: {{ ab_speed }}s;">
+        <div class="announcement-bar__viewport">
+            <div class="announcement-bar__track">
+                {# Two copies of the list → seamless -50% loop #}
+                {% for copy in 1..2 %}
+                    {% for item in ab_items %}
+                        {% set txt = item.text %}
+                        {% set url = item.url %}
+                        {% set img = item.image %}
+                        {% set hidden_attr = copy == 2 ? ' aria-hidden="true" tabindex="-1"' : '' %}
+                        {% if url %}
+                            <a class="announcement-bar__item" href="{{ url }}"{{ hidden_attr|raw }}>
+                        {% else %}
+                            <span class="announcement-bar__item"{{ hidden_attr|raw }}>
+                        {% endif %}
+                            {% if img %}<img src="{{ img }}" alt="{{ txt|default('')|e('html_attr') }}" loading="lazy">{% endif %}
+                            {% if txt %}<span class="announcement-bar__text">{{ txt }}</span>{% endif %}
+                        {% if url %}</a>{% else %}</span>{% endif %}
+                        <span class="announcement-bar__arrow" aria-hidden="true"></span>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endif %}

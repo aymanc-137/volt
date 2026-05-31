@@ -268,10 +268,14 @@ overflow-x-hidden {% hook 'body:classes' %}
     <a href="https://www.enable-javascript.com/" rel="noreferrer"
        target="_blank">To enable JavaScript on webpage</a>.
 </noscript>
+{% set announcement_bar_position = theme.settings.get('announcement_bar_position', 'top') %}
 <div class="app-inner flex flex-col min-h-full">
     {% hook 'body:start' %}
+    {% if announcement_bar_position == 'top' %}{% include 'pages.partials.announcement-bar' %}{% endif %}
     {% component 'header.header' %}
+    {% if announcement_bar_position == 'under_header' %}{% include 'pages.partials.announcement-bar' %}{% endif %}
     {% block content %}{% endblock %}
+    {% if announcement_bar_position == 'above_footer' %}{% include 'pages.partials.announcement-bar' %}{% endif %}
     {% component 'footer.footer' %}
 </div>
 {% hook 'body:end' %}

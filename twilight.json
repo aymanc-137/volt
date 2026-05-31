@@ -85,6 +85,233 @@
         },
         {
             "type": "static",
+            "format": "line",
+            "id": "announcement-bar-line"
+        },
+        {
+            "type": "static",
+            "format": "title",
+            "id": "announcement-bar-title",
+            "value": "شريط الإعلانات المتحرك",
+            "variant": "h6"
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "id": "announcement_bar_enabled",
+            "label": "تفعيل شريط الإعلانات المتحرك",
+            "description": "شريط نصي متحرك يظهر في جميع صفحات المتجر",
+            "format": "switch",
+            "required": false,
+            "value": false,
+            "selected": false
+        },
+        {
+            "id": "announcement_bar_position",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "موضع الشريط",
+            "icon": "sicon-list",
+            "required": true,
+            "selected": [
+                {
+                    "label": "أعلى الصفحة",
+                    "value": "top",
+                    "key": "ab-pos-top"
+                }
+            ],
+            "options": [
+                {
+                    "label": "أعلى الصفحة",
+                    "value": "top",
+                    "key": "ab-pos-top"
+                },
+                {
+                    "label": "أسفل القائمة الرئيسية",
+                    "value": "under_header",
+                    "key": "ab-pos-under-header"
+                },
+                {
+                    "label": "أعلى تذييل الصفحة",
+                    "value": "above_footer",
+                    "key": "ab-pos-above-footer"
+                }
+            ],
+            "source": "Manual",
+            "conditions": [
+                {
+                    "id": "announcement_bar_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "type": "string",
+            "icon": "sicon-palette",
+            "id": "announcement_bar_bg_color",
+            "label": "لون خلفية الشريط",
+            "format": "color",
+            "required": false,
+            "value": "#FFD400",
+            "conditions": [
+                {
+                    "id": "announcement_bar_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "type": "string",
+            "icon": "sicon-palette",
+            "id": "announcement_bar_text_color",
+            "label": "لون النص",
+            "format": "color",
+            "required": false,
+            "value": "#000000",
+            "conditions": [
+                {
+                    "id": "announcement_bar_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "type": "string",
+            "icon": "sicon-palette",
+            "id": "announcement_bar_arrow_color",
+            "label": "لون السهم الفاصل بين العناصر",
+            "format": "color",
+            "required": false,
+            "value": "#000000",
+            "conditions": [
+                {
+                    "id": "announcement_bar_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "type": "number",
+            "format": "integer",
+            "icon": "sicon-pencil-ruler",
+            "id": "announcement_bar_height",
+            "label": "ارتفاع الشريط (بكسل)",
+            "placeholder": "القيمة",
+            "value": 44,
+            "minimum": 28,
+            "maximum": 120,
+            "required": false,
+            "conditions": [
+                {
+                    "id": "announcement_bar_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "type": "number",
+            "format": "integer",
+            "icon": "sicon-pencil-ruler",
+            "id": "announcement_bar_text_size",
+            "label": "حجم النص (بكسل)",
+            "placeholder": "القيمة",
+            "value": 15,
+            "minimum": 10,
+            "maximum": 48,
+            "required": false,
+            "conditions": [
+                {
+                    "id": "announcement_bar_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "type": "number",
+            "format": "integer",
+            "icon": "sicon-clock",
+            "id": "announcement_bar_speed",
+            "label": "سرعة الحركة (ثانية، الأقل = أسرع)",
+            "placeholder": "القيمة",
+            "value": 25,
+            "minimum": 5,
+            "maximum": 120,
+            "required": false,
+            "conditions": [
+                {
+                    "id": "announcement_bar_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "announcement_items",
+            "type": "collection",
+            "format": "collection",
+            "label": null,
+            "item_label": "عنصر",
+            "required": false,
+            "minLength": 1,
+            "maxLength": 20,
+            "value": [
+                {
+                    "announcement_items.text": "PERFOMANCE"
+                },
+                {
+                    "announcement_items.text": "KITSUNE"
+                }
+            ],
+            "fields": [
+                {
+                    "type": "string",
+                    "format": "image",
+                    "icon": "sicon-image",
+                    "id": "announcement_items.image",
+                    "label": "صورة (اختياري)",
+                    "value": null,
+                    "required": false
+                },
+                {
+                    "type": "string",
+                    "format": "text",
+                    "icon": "sicon-format-text-alt",
+                    "id": "announcement_items.text",
+                    "label": "النص",
+                    "multilanguage": true,
+                    "value": null,
+                    "required": false,
+                    "placeholder": "أدخل نص العنصر هنا...",
+                    "minLength": 0,
+                    "maxLength": 100
+                },
+                {
+                    "type": "string",
+                    "format": "url",
+                    "icon": "sicon-link",
+                    "id": "announcement_items.url",
+                    "label": "الرابط (اختياري)",
+                    "value": null,
+                    "required": false,
+                    "placeholder": "https://"
+                }
+            ],
+            "conditions": [
+                {
+                    "id": "announcement_bar_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "type": "static",
             "id": "static-line1",
             "format": "line"
         },

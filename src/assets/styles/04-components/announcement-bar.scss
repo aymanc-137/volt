@@ -1,0 +1,108 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Announcement Bar (site-wide moving ticker)
+// A continuously scrolling strip of items (image + text + link), separated by
+// arrow/chevron shapes. Driven entirely by theme settings; rendered in
+// master.twig at one of three positions (top / under header / above footer).
+// All colors & sizes come from CSS custom properties set inline per store.
+// ─────────────────────────────────────────────────────────────────────────────
+
+.announcement-bar {
+    --ab-bg: #ffd400;
+    --ab-text: #000;
+    --ab-arrow: #000;
+    --ab-height: 44px;
+    --ab-text-size: 15px;
+    --ab-speed: 25s;
+
+    width: 100%;
+    height: var(--ab-height);
+    background: var(--ab-bg);
+    color: var(--ab-text);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    z-index: 40;
+
+    &__viewport {
+        @apply w-full overflow-hidden;
+    }
+
+    // The track holds the items twice over; translating it by -50% scrolls
+    // exactly one full set, so the loop is seamless.
+    &__track {
+        display: flex;
+        align-items: center;
+        width: max-content;
+        will-change: transform;
+        animation: announcement-scroll var(--ab-speed) linear infinite;
+    }
+
+    // Pause while the visitor is reading / hovering.
+    &:hover &__track {
+        animation-play-state: paused;
+    }
+
+    &__item {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0 1.1rem;
+        white-space: nowrap;
+        font-size: var(--ab-text-size);
+        line-height: 1;
+        font-weight: 700;
+        color: var(--ab-text);
+        text-decoration: none;
+        transition: opacity 0.2s ease;
+
+        &:hover {
+            color: var(--ab-text);
+            text-decoration: none;
+            opacity: 0.75;
+        }
+
+        img {
+            height: calc(var(--ab-height) * 0.6);
+            width: auto;
+            object-fit: contain;
+        }
+    }
+
+    // Arrow / chevron separator between items (points in the scroll direction).
+    &__arrow {
+        flex: 0 0 auto;
+        width: calc(var(--ab-height) * 0.5);
+        height: var(--ab-height);
+        background: var(--ab-arrow);
+        clip-path: polygon(0 0, 55% 0, 100% 50%, 55% 100%, 0 100%, 45% 50%);
+    }
+}
+
+// RTL: scroll the other way and flip the arrows so they still point forward.
+[dir="rtl"] .announcement-bar__track {
+    animation-name: announcement-scroll-rtl;
+}
+
+[dir="rtl"] .announcement-bar__arrow {
+    transform: scaleX(-1);
+}
+
+// Respect reduced-motion preferences: stop the scroll, keep content visible.
+@media (prefers-reduced-motion: reduce) {
+    .announcement-bar__track {
+        animation: none;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+@keyframes announcement-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+@keyframes announcement-scroll-rtl {
+    from { transform: translateX(0); }
+    to   { transform: translateX(50%); }
+}
