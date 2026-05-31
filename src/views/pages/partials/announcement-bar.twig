@@ -32,10 +32,12 @@
          role="marquee"
          aria-label="{{ theme.is_rtl ? 'إعلانات' : 'Announcements' }}"
          style="--ab-bg: {{ ab_bg }}; --ab-text: {{ ab_text }}; --ab-arrow: {{ ab_arrow }}; --ab-height: {{ ab_height }}px; --ab-text-size: {{ ab_text_size }}px; --ab-speed: {{ ab_speed }}s;">
-        <div class="announcement-bar__viewport">
-            <div class="announcement-bar__track">
-                {# Two copies of the list → seamless -50% loop #}
-                {% for copy in 1..2 %}
+        <div class="announcement-bar__track">
+            {# Two identical groups; each fills the bar width (CSS min-width:100%)
+               and both animate translateX(-100%) for a seamless infinite loop.
+               The 2nd group is a visual duplicate, hidden from assistive tech. #}
+            {% for copy in 1..2 %}
+                <div class="announcement-bar__group"{% if copy == 2 %} aria-hidden="true"{% endif %}>
                     {% for item in ab_items %}
                         {# Multilanguage fields come back as a {lang: value} map here; resolve to the current language #}
                         {% set txt = item.text %}
@@ -44,19 +46,19 @@
                         {% if url is iterable %}{% set url = url[ab_lang] ?? (url|first) %}{% endif %}
                         {% set img = item.image %}
                         {% if img is iterable %}{% set img = img[ab_lang] ?? (img|first) %}{% endif %}
-                        {% set hidden_attr = copy == 2 ? ' aria-hidden="true" tabindex="-1"' : '' %}
+                        {% set link_attr = copy == 2 ? ' tabindex="-1"' : '' %}
                         {% if url %}
-                            <a class="announcement-bar__item" href="{{ url }}"{{ hidden_attr|raw }}>
+                            <a class="announcement-bar__item" href="{{ url }}"{{ link_attr|raw }}>
                         {% else %}
-                            <span class="announcement-bar__item"{{ hidden_attr|raw }}>
+                            <span class="announcement-bar__item">
                         {% endif %}
                             {% if img %}<img src="{{ img }}" alt="{{ txt|default('')|e('html_attr') }}" loading="lazy">{% endif %}
                             {% if txt %}<span class="announcement-bar__text">{{ txt }}</span>{% endif %}
                         {% if url %}</a>{% else %}</span>{% endif %}
                         <span class="announcement-bar__arrow" aria-hidden="true"></span>
                     {% endfor %}
-                {% endfor %}
-            </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endif %}
