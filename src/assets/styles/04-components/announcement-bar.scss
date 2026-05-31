@@ -92,7 +92,13 @@
     }
 }
 
-// RTL: flip the arrows so they still point in the reading direction.
+// RTL: the flex track is anchored to the right edge and extends left, so it must
+// scroll in the +X direction (otherwise it slides off the right, leaving a gap).
+// Also flip the arrows so they still point in the reading direction.
+[dir="rtl"] .announcement-bar.is-ready .announcement-bar__track {
+    animation-name: announcement-scroll-rtl;
+}
+
 [dir="rtl"] .announcement-bar__arrow {
     transform: scaleX(-1);
 }
@@ -107,4 +113,9 @@
 @keyframes announcement-scroll {
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
+}
+
+@keyframes announcement-scroll-rtl {
+    from { transform: translateX(0); }
+    to   { transform: translateX(50%); }
 }
