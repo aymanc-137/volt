@@ -86,6 +86,61 @@
         {
             "type": "static",
             "format": "line",
+            "id": "fixed-buttons-line"
+        },
+        {
+            "type": "static",
+            "format": "title",
+            "id": "fixed-buttons-title",
+            "value": "الأزرار العائمة",
+            "variant": "h6"
+        },
+        {
+            "id": "is_scroll_enable",
+            "type": "boolean",
+            "format": "switch",
+            "label": "تفعيل زر الرجوع للأعلى",
+            "description": null,
+            "icon": "sicon-toggle-off",
+            "value": true,
+            "selected": false,
+            "required": false
+        },
+        {
+            "id": "is_whatsapp_enable",
+            "type": "boolean",
+            "format": "switch",
+            "label": "تفعيل زر الواتساب",
+            "description": null,
+            "icon": "sicon-toggle-off",
+            "value": true,
+            "selected": false,
+            "required": false
+        },
+        {
+            "id": "whatsapp_number",
+            "type": "string",
+            "format": "text",
+            "label": "رقم الواتساب",
+            "description": null,
+            "placeholder": "+966512345678",
+            "icon": "sicon-format-text-alt",
+            "value": null,
+            "multilanguage": false,
+            "required": false,
+            "minLength": 3,
+            "maxLength": 30,
+            "conditions": [
+                {
+                    "id": "is_whatsapp_enable",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "type": "static",
+            "format": "line",
             "id": "announcement-bar-line"
         },
         {

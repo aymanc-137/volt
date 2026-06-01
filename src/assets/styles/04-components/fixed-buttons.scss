@@ -1,0 +1,92 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Fixed floating buttons (WhatsApp + scroll-to-top)
+// Rendered at the end of master.twig, toggled via theme settings. The scroll
+// button shows a circular progress ring driven by App.iniScroll() in app.js.
+// Ported from the weshaah theme; colors adapted to volt's primary utilities.
+// ─────────────────────────────────────────────────────────────────────────────
+
+.fixed-buttons {
+    @apply relative z-[9999] pointer-events-none;
+
+    > * {
+        @apply pointer-events-auto;
+    }
+}
+
+.whatsapp-button {
+    @apply fixed z-[9999] w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center cursor-pointer hover:bg-green-600 transition-all duration-300 shadow-lg;
+
+    // Default position; more space on small screens to clear the bottom nav.
+    bottom: 6rem;
+
+    @media (max-width: 767px) {
+        bottom: 8rem;
+    }
+
+    [dir="ltr"] & {
+        @apply right-8;
+    }
+
+    [dir="rtl"] & {
+        @apply left-8;
+    }
+
+    &:hover {
+        animation: whatsapp-pulse 1s infinite;
+    }
+
+    .whatsapp-icon {
+        @apply w-6 h-6;
+    }
+}
+
+.scroll-button {
+    @apply fixed w-12 h-12 rounded-full bg-primary-light hover:bg-primary-dark text-white opacity-0 invisible
+           flex items-center justify-center cursor-pointer
+           transition-all duration-300 ease-in-out z-[9998]; // behind the whatsapp button
+
+    bottom: 2rem;
+
+    @media (max-width: 767px) {
+        bottom: 12rem; // above the whatsapp button to avoid overlap
+    }
+
+    [dir="ltr"] & {
+        @apply right-8;
+    }
+
+    [dir="rtl"] & {
+        @apply left-8;
+    }
+
+    &.show {
+        @apply opacity-100 visible;
+    }
+
+    .progress-ring {
+        @apply absolute;
+
+        [dir="ltr"] & {
+            @apply -rotate-90;
+        }
+
+        [dir="rtl"] & {
+            @apply rotate-90;
+        }
+
+        &__circle {
+            transform-origin: 50% 50%;
+            transition: stroke-dashoffset 0.1s;
+        }
+    }
+
+    i {
+        @apply relative z-[1];
+    }
+}
+
+@keyframes whatsapp-pulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}

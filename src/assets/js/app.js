@@ -25,6 +25,7 @@ class App extends AppHelpers {
     this.changeMenuDirection()
     initTootTip();
     this.loadModalImgOnclick();
+    this.iniScroll();
 
     salla.comment.event.onAdded(() => window.location.reload());
 
@@ -297,6 +298,45 @@ isElementLoaded(selector){
 
     salla.cart.event.onItemAdded((response, prodId) => {
       app.element('salla-cart-summary').animateToCart(app.element(`#product-${prodId} img`));
+    });
+  }
+
+  /**
+   * Scroll-to-top button with a circular progress ring that fills as the
+   * visitor scrolls. The button (#scroll-to-top) is rendered in master.twig
+   * only when the `is_scroll_enable` theme setting is on.
+   */
+  iniScroll() {
+    const scrollButton = document.getElementById('scroll-to-top');
+    const circle = document.querySelector('.progress-ring__circle');
+    if (!scrollButton || !circle) {
+      return;
+    }
+
+    const radius = circle.r.baseVal.value;
+    const circumference = radius * 2 * Math.PI;
+    circle.style.strokeDasharray = `${circumference} ${circumference}`;
+    circle.style.strokeDashoffset = circumference;
+
+    const setProgress = (percent) => {
+      circle.style.strokeDashoffset = circumference - (percent / 100 * circumference);
+    };
+
+    window.addEventListener('scroll', () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = window.scrollY;
+      const progress = scrollable > 0 ? Math.min((scrolled / scrollable) * 100, 100) : 0;
+
+      if (scrolled > 300) {
+        scrollButton.classList.add('show');
+        setProgress(progress);
+      } else {
+        scrollButton.classList.remove('show');
+      }
+    }, { passive: true });
+
+    scrollButton.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 }
