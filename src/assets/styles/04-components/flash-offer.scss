@@ -25,11 +25,14 @@
         salla-count-down{
             ul{
                 li{
-                     @apply dark:text-counter-bg-color bg-[var(--color-primary-5)]  ;
-                    border: 1px solid var(--color-primary) !important;
+
                     font-size: 1.5rem !important;
                     line-height: 2rem !important;
                     font-weight: 700 !important;
+
+                     @apply dark:text-counter-bg-color bg-[var(--color-primary-5)]  ;
+                    border: 1px solid var(--color-primary) !important;
+              
                     box-shadow: 2px 2px 8px 2px var(--color-primary-20);
                        
                     .s-count-down-item-label , .s-count-down-item-value{
@@ -111,17 +114,23 @@
 
         // Compact + white-on-dark countdown to suit the overlaid bar
         salla-count-down ul li {
-            background: rgba(255, 255, 255, 0.12) !important;
-            border: 1px solid rgba(255, 255, 255, 0.4) !important;
+      
             font-size: 1.1rem !important;
             line-height: 1.4rem !important;
             font-weight: 700 !important;
             box-shadow: none !important;
+            min-width: 3rem !important;
+            background-color: var(--color-primary-5) !important;
 
-            .s-count-down-item-label,
-            .s-count-down-item-value {
-                @apply text-white;
+            @apply dark:text-counter-bg-color bg-[var(--color-primary-5)]  ;
+            border: 1px solid var(--color-primary) !important;
+      
+            box-shadow: 2px 2px 8px 2px var(--color-primary-20);
+               
+            .s-count-down-item-label , .s-count-down-item-value{
+                @apply dynamic-text-color;
             }
+
         }
     }
 }
