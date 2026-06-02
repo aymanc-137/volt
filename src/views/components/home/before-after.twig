@@ -77,8 +77,8 @@
         align-items: center;
         gap: 3rem;
       }
-      #{{ uid }}-stage { flex: 1 1 55%; min-width: 0; width: auto; }
-      #{{ uid }}-body  { flex: 1 1 45%; margin: 0; text-align: start; max-width: none; }
+      #{{ uid }}-stage { flex: 1 1 auto; min-width: 0; width: auto; }
+      #{{ uid }}-body  { flex: 0 0 35%; min-width: 0; margin: 0; text-align: start; max-width: none; }
       #{{ uid }}-product-img { margin-inline: 0; }
     }
 
@@ -235,40 +235,20 @@
     {% endif %}
   {% endif %}
 
-  {% if title %}
-    <div class="mx-auto flex flex-col space-y-4 justify-center items-center mb-10 w-5/6 relative z-10">
-      <div class="flex flex-col items-center">
-        {% if component.enable_gradient_title %}
-          <h1 class="z-1 text-4xl font-alshohadaa mb-3 bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ title }}</h1>
-        {% elseif component.enable_gradient_word and component.gradient_word %}
-          <h1 id="{{ uid }}-title" class="text-4xl z-1 font-alshohadaa mb-3 dynamic-text-color">{{ title }}</h1>
-        {% else %}
-          <h1 class="z-1 text-4xl font-alshohadaa mb-3 dynamic-text-color">{{ title }}</h1>
-        {% endif %}
-        <span class="navbar-underline"></span>
-      </div>
-      {% if sub_title %}
-        <div class="z-1 text-center mx-auto text-base lg:text-lg dynamic-text-color">
-          {{ sub_title }}
-        </div>
-      {% endif %}
-    </div>
-
-    {% if component.enable_gradient_word and component.gradient_word %}
-      <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          var titleEl = document.getElementById('{{ uid }}-title');
-          if (titleEl) {
-            var word = '{{ component.gradient_word|e('js') }}';
-            var regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
-            titleEl.innerHTML = titleEl.innerHTML.replace(
-              regex,
-              '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
-            );
-          }
-        });
-      </script>
-    {% endif %}
+  {% if title and component.enable_gradient_word and component.gradient_word %}
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var titleEl = document.getElementById('{{ uid }}-title');
+        if (titleEl) {
+          var word = '{{ component.gradient_word|e('js') }}';
+          var regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+          titleEl.innerHTML = titleEl.innerHTML.replace(
+            regex,
+            '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
+          );
+        }
+      });
+    </script>
   {% endif %}
 
   <div id="{{ uid }}-wrap">
@@ -292,8 +272,18 @@
       ></button>
     </div>
 
-    {% if product_image or body_text or link_text %}
+    {% if title or sub_title or product_image or body_text or link_text %}
       <div id="{{ uid }}-body" class="dynamic-text-color">
+        {% if title %}
+          {% if component.enable_gradient_title %}
+            <h2 class="text-2xl md:text-3xl font-alshohadaa mb-2 bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ title }}</h2>
+          {% elseif component.enable_gradient_word and component.gradient_word %}
+            <h2 id="{{ uid }}-title" class="text-2xl md:text-3xl font-alshohadaa mb-2 dynamic-text-color">{{ title }}</h2>
+          {% else %}
+            <h2 class="text-2xl md:text-3xl font-alshohadaa mb-2 dynamic-text-color">{{ title }}</h2>
+          {% endif %}
+        {% endif %}
+        {% if sub_title %}<p class="text-sm lg:text-base mb-4 opacity-80 dynamic-text-color">{{ sub_title }}</p>{% endif %}
         {% if product_image %}
           <img id="{{ uid }}-product-img" src="{{ product_image }}" alt="" loading="lazy" />
         {% endif %}

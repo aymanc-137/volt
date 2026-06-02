@@ -28769,6 +28769,10 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
         font-size: 1.25rem;
         line-height: 1.75rem;
     }
+    .lg\:text-base{
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
     .lg\:shadow-default{
         --tw-shadow: 5px 10px 30px #2B2D340D;;
         --tw-shadow-colored: 5px 10px 30px var(--tw-shadow-color);
