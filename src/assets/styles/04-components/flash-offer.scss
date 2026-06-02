@@ -59,3 +59,69 @@
         box-shadow: 0 0 24px 8px var(--color-primary-40);
     }
 }
+
+// ── Category-page variant ────────────────────────────────────────────────────
+// Rendered by flash-offer.js only on category pages: a full-width, short bar
+// with a background image + black overlay, text on one side and the countdown
+// on the other. The home-page layout (.flash-offer-container above) is untouched.
+.flash-offer-cat {
+    @apply relative w-full overflow-hidden bg-cover bg-center;
+    background-color: var(--color-primary);
+
+    &__overlay {
+        @apply absolute inset-0 bg-black/60;
+    }
+
+    &__inner {
+        @apply relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-8 py-5 text-white;
+        min-height: 130px;
+    }
+
+    &__text {
+        @apply flex flex-col gap-1.5 text-center sm:text-start;
+    }
+
+    &__badge {
+        @apply inline-block w-fit mx-auto sm:mx-0 text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full;
+        background: var(--color-primary);
+        color: var(--color-primary-reverse);
+    }
+
+    &__title {
+        @apply text-lg md:text-2xl font-bold leading-tight text-white;
+    }
+
+    &__desc {
+        @apply hidden sm:block text-sm opacity-90 truncate max-w-[48ch];
+    }
+
+    &__btn {
+        @apply inline-block w-fit mx-auto sm:mx-0 mt-1 px-5 py-2 rounded-full text-sm font-bold transition-colors;
+        background: var(--color-primary);
+        color: var(--color-primary-reverse);
+
+        &:hover {
+            background: var(--color-primary-dark);
+            color: var(--color-primary-reverse);
+        }
+    }
+
+    &__timer {
+        @apply flex-shrink-0;
+
+        // Compact + white-on-dark countdown to suit the overlaid bar
+        salla-count-down ul li {
+            background: rgba(255, 255, 255, 0.12) !important;
+            border: 1px solid rgba(255, 255, 255, 0.4) !important;
+            font-size: 1.1rem !important;
+            line-height: 1.4rem !important;
+            font-weight: 700 !important;
+            box-shadow: none !important;
+
+            .s-count-down-item-label,
+            .s-count-down-item-value {
+                @apply text-white;
+            }
+        }
+    }
+}
