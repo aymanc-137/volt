@@ -20,20 +20,38 @@
 {% set marquee = component.marquee | default(false) %}
 {% set marqueetext = component.marqueetext | default(" سرعة /// أداء /// تحكم ") %}
 {% set enable_border = component.enable_border | default(false) %}
-{% set enable_glow = component.enable_glow | default(false) %}
 {% set marquee_text_position = component.marquee_text_position | default('both') %}
 {% set marquee_is_moving = component.marquee_is_moving %}
 {% set marquee_text_size = component.marquee_text_size | default('8') %}
 {% set slas_hbg_size = component.slas_hbg_size | default('20') %}
 {% set slas_hbg_use_primary_color = component.slas_hbg_use_primary_color %}
 {% set slas_hbg_color = component.slas_hbg_color~"1A" | default('#0000001A') %}
+{% set slas_hbg_type = component.slas_hbg_type | default('inclined') %}
+{% set slas_angle = slas_hbg_type == 'vertical' ? '90' : (slas_hbg_type == 'horizontal' ? '0' : '135') %}
+{% set glow_type = component.enable_glow | default('none') %}
+{% set glow_use_theme = component.glow_use_theme_colors ?? true %}
+{% set glow_c1 = glow_use_theme ? 'var(--color-primary)'  : (component.glow_color_1 ?? 'var(--color-primary)') %}
+{% set glow_c2 = glow_use_theme ? 'var(--color-scandary)' : (component.glow_color_2 ?? 'var(--color-scandary)') %}
 
 <section class="z-10 overflow-hidden {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} s-block--why-us relative {{ slashbg ? 'slash-bg-' ~ position ~ ' dynamic-bg-color' : ''}}">
-  {% if enable_glow %}
-  <!-- Glow balls -->
-  <div class="absolute -z-2 top-[15%] left-[25%] w-64 h-64 rounded-full blur-3xl opacity-60 pointer-events-none" style="background-color: var(--color-primary);"></div>
-  <div class="absolute -z-2 bottom-[15%] right-[25%] w-56 h-56 rounded-full blur-3xl opacity-60 pointer-events-none" style="background-color: var(--color-scandary);"></div>
-  <div class="absolute -z-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-52 h-52 rounded-full blur-3xl opacity-60 pointer-events-none" style="background-color: var(--color-primary);"></div>
+  {% if glow_type == 'circles' %}
+    <div class="absolute top-[15%] left-[25%] w-64 h-64 rounded-full blur-3xl opacity-60 pointer-events-none" style="z-index:-1; background-color:{{ glow_c1 }};"></div>
+    <div class="absolute bottom-[15%] right-[25%] w-56 h-56 rounded-full blur-3xl opacity-60 pointer-events-none" style="z-index:-1; background-color:{{ glow_c2 }};"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-52 h-52 rounded-full blur-3xl opacity-60 pointer-events-none" style="z-index:-1; background-color:{{ glow_c1 }};"></div>
+  {% elseif glow_type == 'sides' %}
+    <div class="absolute inset-y-0 left-0 pointer-events-none" style="z-index:-1; width:40%; background:linear-gradient(to right, {{ glow_c1 }}, transparent); opacity:0.22;"></div>
+    <div class="absolute inset-y-0 right-0 pointer-events-none" style="z-index:-1; width:40%; background:linear-gradient(to left, {{ glow_c2 }}, transparent); opacity:0.22;"></div>
+  {% elseif glow_type == 'top_bottom' %}
+    <div class="absolute inset-x-0 top-0 pointer-events-none" style="z-index:-1; height:45%; background:linear-gradient(to bottom, {{ glow_c1 }}, transparent); opacity:0.22;"></div>
+    <div class="absolute inset-x-0 bottom-0 pointer-events-none" style="z-index:-1; height:45%; background:linear-gradient(to top, {{ glow_c2 }}, transparent); opacity:0.22;"></div>
+  {% elseif glow_type == 'left' %}
+    <div class="absolute inset-y-0 left-0 pointer-events-none" style="z-index:-1; width:40%; background:linear-gradient(to right, {{ glow_c1 }}, transparent); opacity:0.25;"></div>
+  {% elseif glow_type == 'right' %}
+    <div class="absolute inset-y-0 right-0 pointer-events-none" style="z-index:-1; width:40%; background:linear-gradient(to left, {{ glow_c1 }}, transparent); opacity:0.25;"></div>
+  {% elseif glow_type == 'top' %}
+    <div class="absolute inset-x-0 top-0 pointer-events-none" style="z-index:-1; height:45%; background:linear-gradient(to bottom, {{ glow_c1 }}, transparent); opacity:0.25;"></div>
+  {% elseif glow_type == 'bottom' %}
+    <div class="absolute inset-x-0 bottom-0 pointer-events-none" style="z-index:-1; height:45%; background:linear-gradient(to top, {{ glow_c1 }}, transparent); opacity:0.25;"></div>
   {% endif %}
   {% if marquee %}
 
@@ -134,15 +152,15 @@
 <style>
 {% if slas_hbg_use_primary_color %}
 .slash-bg-{{position}} {
-   background: linear-gradient(135deg, var(--color-primary-10) 25%, rgba(0, 0, 0, 0)  
-   25%, rgba(0, 0, 0, 0)  50%, var(--color-primary-10)  50%, 
+   background: linear-gradient({{ slas_angle }}deg, var(--color-primary-10) 25%, rgba(0, 0, 0, 0)
+   25%, rgba(0, 0, 0, 0)  50%, var(--color-primary-10)  50%,
                                 var(--color-primary-10) 75%, rgba(0, 0, 0, 0) 75%);
   background-size: {{slas_hbg_size}}px {{slas_hbg_size}}px;
 }
 {% else %}
 .slash-bg-{{position}} {
-   background: linear-gradient(135deg, {{slas_hbg_color}} 25%, rgba(0, 0, 0, 0)  
-   25%, rgba(0, 0, 0, 0)  50%, {{slas_hbg_color}}  50%, 
+   background: linear-gradient({{ slas_angle }}deg, {{slas_hbg_color}} 25%, rgba(0, 0, 0, 0)
+   25%, rgba(0, 0, 0, 0)  50%, {{slas_hbg_color}}  50%,
                                 {{slas_hbg_color}} 75%, rgba(0, 0, 0, 0) 75%);
   background-size: {{slas_hbg_size}}px {{slas_hbg_size}}px;
 }
