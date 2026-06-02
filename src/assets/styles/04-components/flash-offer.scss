@@ -68,7 +68,7 @@
 // with a background image + black overlay, text on one side and the countdown
 // on the other. The home-page layout (.flash-offer-container above) is untouched.
 .flash-offer-cat {
-    @apply relative w-full overflow-hidden bg-cover bg-center;
+    @apply relative w-full overflow-hidden bg-cover bg-center border-primary border-b;
     background-color: var(--color-primary);
 
     &__overlay {
@@ -81,7 +81,7 @@
     }
 
     &__text {
-        @apply flex flex-col gap-1.5 text-center sm:text-start;
+        @apply flex flex-col gap-1.5  ;
     }
 
     &__badge {
@@ -95,7 +95,7 @@
     }
 
     &__desc {
-        @apply hidden sm:block text-sm opacity-90 truncate max-w-[48ch];
+        @apply hidden sm:block text-sm opacity-90   max-w-[48ch];
     }
 
     &__btn {
@@ -112,18 +112,15 @@
     &__timer {
         @apply flex-shrink-0;
 
-        s-count-down-item {
-            background-color: var(--color-primary-5) !important;
-        }
+       
         // Compact + white-on-dark countdown to suit the overlaid bar
         salla-count-down ul li {
-      
+            background-color: transparent !important;
             font-size: 1.1rem !important;
             line-height: 1.4rem !important;
             font-weight: 700 !important;
             box-shadow: none !important;
             min-width: 3rem !important;
-            background-color: var(--color-primary-5) !important;
 
             @apply dark:text-counter-bg-color bg-[var(--color-primary-5)]  ;
             border: 1px solid var(--color-primary) !important;

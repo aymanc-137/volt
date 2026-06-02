@@ -23813,6 +23813,9 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
     position: relative;
     width: 100%;
     overflow: hidden;
+    border-bottom-width: 1px;
+    border-color: #414042;
+    border-color: var(--color-primary);
     background-size: cover;
     background-position: center;
   background-color: #414042;
@@ -23859,12 +23862,6 @@ input[type=radio].sr-only:checked ~ div.flash-offer-cat__overlay {
     display: flex;
     flex-direction: column;
     gap: 0.375rem;
-    text-align: center;
-}
-@media (min-width: 640px){
-    .flash-offer-cat__text{
-        text-align: left;
-    }
 }
 .flash-offer-cat__badge{
     margin-left: auto;
@@ -23913,9 +23910,6 @@ input[type=radio].sr-only:checked ~ div.flash-offer-cat__overlay {
 .flash-offer-cat__desc{
     display: none;
     max-width: 48ch;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     font-size: 0.875rem;
     line-height: 1.25rem;
     opacity: 0.9;
@@ -23967,10 +23961,8 @@ input[type=radio].sr-only:checked ~ div.flash-offer-cat__overlay {
 .flash-offer-cat__timer{
     flex-shrink: 0;
 }
-.flash-offer-cat__timer s-count-down-item {
-  background-color: var(--color-primary-5) !important;
-}
 .flash-offer-cat__timer salla-count-down ul li {
+  background-color: transparent !important;
   font-size: 1.1rem !important;
   line-height: 1.4rem !important;
   font-weight: 700 !important;
