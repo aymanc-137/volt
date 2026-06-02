@@ -23967,6 +23967,9 @@ input[type=radio].sr-only:checked ~ div.flash-offer-cat__overlay {
 .flash-offer-cat__timer{
     flex-shrink: 0;
 }
+.flash-offer-cat__timer s-count-down-item {
+  background-color: var(--color-primary-5) !important;
+}
 .flash-offer-cat__timer salla-count-down ul li {
   font-size: 1.1rem !important;
   line-height: 1.4rem !important;

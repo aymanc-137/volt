@@ -112,6 +112,9 @@
     &__timer {
         @apply flex-shrink-0;
 
+        s-count-down-item {
+            background-color: var(--color-primary-5) !important;
+        }
         // Compact + white-on-dark countdown to suit the overlaid bar
         salla-count-down ul li {
       
