@@ -1579,6 +1579,7 @@
             "title": "صور متحركة - فولت",
             "icon": "sicon-store",
             "path": "home.enhanced-image-carousel",
+            "image": "https://cdn.lamsaweb.com/cdnVolt/components/enhanced-image-carousel.png",
             "fields": [
                 {
                     "id": "animation_type",
@@ -1909,6 +1910,7 @@
             },
             "icon": "sicon-store",
             "path": "home.category-list",
+            "image": "https://cdn.lamsaweb.com/cdnVolt/components/category-list.png",
             "fields": [
                 {
                     "type": "static",
@@ -2459,6 +2461,7 @@
             "title": "لماذا تختارنا",
             "icon": "sicon-store",
             "path": "home.why-us",
+            "image": "https://cdn.lamsaweb.com/cdnVolt/components/why-us.png",
             "fields": [
                 {
                     "type": "static",
@@ -2969,6 +2972,7 @@
             "title": "الماركات التجارية - فولت",
             "icon": "sicon-store",
             "path": "home.brands-volt",
+            "image": "https://cdn.lamsaweb.com/cdnVolt/components/brands-volt.png",
             "fields": [
                 {
                     "type": "static",
@@ -3500,6 +3504,7 @@
             "title": "الأسئلة الأكثر شيوعا",
             "icon": "sicon-lang",
             "path": "home.faq",
+            "image": "https://cdn.lamsaweb.com/cdnVolt/components/faq.png",
             "fields": [
                 {
                     "type": "static",
@@ -3610,6 +3615,7 @@
             "title": "عرض مؤقت - فولت",
             "icon": "sicon-lightning",
             "path": "home.flash-offer",
+            "image": "https://cdn.lamsaweb.com/cdnVolt/components/flash-offer.png",
             "fields": [
                 {
                     "type": "static",
@@ -4120,6 +4126,7 @@
             "title": "فيديو بنر - فولت",
             "icon": "sicon-store",
             "path": "home.video-banner",
+            "image": "https://cdn.lamsaweb.com/cdnVolt/components/video-banner.png",
             "fields": [
                 {
                     "type": "static",
@@ -4448,6 +4455,7 @@
             "title": "منتجات قسم - فولت",
             "icon": "sicon-store",
             "path": "home.category-products",
+            "image": "https://cdn.lamsaweb.com/cdnVolt/components/category-products.png",
             "fields": [
                 {
                     "type": "static",
@@ -5008,6 +5016,7 @@
             },
             "icon": "sicon-store",
             "path": "home.car-search-tree",
+            "image": "https://cdn.lamsaweb.com/cdnVolt/components/car-search-tree.png",
             "fields": [
                 {
                     "id": "category",
@@ -5100,6 +5109,7 @@
             "title": "عرض تفصيلي لمنتج - فولت",
             "icon": "sicon-store",
             "path": "home.tap-preview",
+            "image": "https://cdn.lamsaweb.com/cdnVolt/components/tap-preview.png",
             "fields": [
                 {
                     "type": "static",
@@ -5699,7 +5709,7 @@
             "title": "خلفية على صفحات الاقسام - حرير",
             "icon": "sicon-store",
             "path": "home.category-ads",
-            "image": "https://cdn.lamsaweb.com/cdnHarir/image10.png",
+            "image": "https://cdn.lamsaweb.com/cdnVolt/components/category-ads.png",
             "fields": [
                 {
                     "type": "static",
@@ -5778,6 +5788,7 @@
             "title": "صور أقسام كبيرة",
             "icon": "sicon-image",
             "path": "home.larage-category-image",
+            "image": "https://cdn.lamsaweb.com/cdnVolt/components/larage-category-image.png",
             "fields": [
                 {
                     "type": "static",
@@ -6308,6 +6319,7 @@
             "title": "عروض تنتهي قريبا - حرير",
             "icon": "sicon-gift-card",
             "path": "home.flash-discount",
+            "image": "https://cdn.lamsaweb.com/cdnVolt/components/flash-discoun.png",
             "fields": [
                 {
                     "type": "static",
@@ -6778,7 +6790,7 @@
             "title": "المواقع وبيانات التواصل",
             "icon": "sicon-map-marker-alt",
             "path": "home.location",
-            "image": "https://cdn.salla.sa/mQgZlG/kvFhVeuUyjK4nHUovBQBZ632Hb6gKV2BXZwid40e.png",
+            "image": "https://cdn.lamsaweb.com/cdnVolt/components/location.png",
             "fields": [
                 {
                     "type": "static",
@@ -6955,7 +6967,7 @@
             "title": "عرض المنتجات المميزة",
             "icon": "sicon-layers",
             "path": "home.product-showcase",
-            "image": "https://cdn.salla.sa/mQgZlG/kvFhVeuUyjK4nHUovBQBZ632Hb6gKV2BXZwid40e.png",
+            "image": "https://cdn.lamsaweb.com/cdnVolt/components/product-showcase.png",
             "fields": [
                 {
                     "type": "static",
@@ -7450,6 +7462,7 @@
             "title": "مقارنة قبل وبعد",
             "icon": "sicon-image",
             "path": "home.before-after",
+            "image": "https://cdn.lamsaweb.com/cdnVolt/components/before-after.png",
             "fields": [
                 {
                     "type": "static",
@@ -7873,6 +7886,7 @@
             "title": "صورة تفاعلية بنقاط منتجات",
             "icon": "sicon-image",
             "path": "home.hotspot-image",
+            "image": "https://cdn.lamsaweb.com/cdnVolt/components/hotspot-image.png",
             "fields": [
                 {
                     "type": "static",
@@ -7984,6 +7998,7 @@
             "title": "تبويبات المنتجات",
             "icon": "sicon-list",
             "path": "home.product-tabs",
+            "image": "https://cdn.lamsaweb.com/cdnVolt/components/product-tabs.png",
             "fields": [
                 {
                     "type": "static",
