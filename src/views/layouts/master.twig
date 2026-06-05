@@ -318,5 +318,9 @@ overflow-x-hidden {% hook 'body:classes' %}
   </button>
   {% endif %}
 </div>
+
+{% if store.scope %}
+    <salla-scopes selection="{{ store.scope.display_as == 'popup' ? 'mandatory' : 'optional' }}"></salla-scopes>
+{% endif %}
 </body>
 </html>
