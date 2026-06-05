@@ -379,7 +379,7 @@
             "type": "static",
             "format": "title",
             "id": "static-label2",
-            "value": "خيارات أعلى الصفحة",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أعلى الصفحة</h6></div>",
             "variant": "h6"
         },
         {
@@ -597,7 +597,7 @@
             "type": "static",
             "format": "title",
             "id": "static-label4",
-            "value": "خيارات أسفل الصفحة",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أسفل الصفحة</h6></div>",
             "variant": "h6"
         },
         {
@@ -636,7 +636,11 @@
             "minLength": 0,
             "maxLength": 30,
             "conditions": [
-                { "id": "footer_bg_text_enabled", "operation": "=", "value": true }
+                {
+                    "id": "footer_bg_text_enabled",
+                    "operation": "=",
+                    "value": true
+                }
             ]
         },
         {
@@ -650,7 +654,11 @@
             "value": true,
             "selected": true,
             "conditions": [
-                { "id": "footer_bg_text_enabled", "operation": "=", "value": true }
+                {
+                    "id": "footer_bg_text_enabled",
+                    "operation": "=",
+                    "value": true
+                }
             ]
         },
         {
@@ -662,8 +670,16 @@
             "value": "#7c3aed",
             "required": false,
             "conditions": [
-                { "id": "footer_bg_text_use_theme_colors", "operation": "=", "value": false },
-                { "id": "footer_bg_text_enabled", "operation": "=", "value": true }
+                {
+                    "id": "footer_bg_text_use_theme_colors",
+                    "operation": "=",
+                    "value": false
+                },
+                {
+                    "id": "footer_bg_text_enabled",
+                    "operation": "=",
+                    "value": true
+                }
             ]
         },
         {
@@ -675,8 +691,16 @@
             "value": "#06b6d4",
             "required": false,
             "conditions": [
-                { "id": "footer_bg_text_use_theme_colors", "operation": "=", "value": false },
-                { "id": "footer_bg_text_enabled", "operation": "=", "value": true }
+                {
+                    "id": "footer_bg_text_use_theme_colors",
+                    "operation": "=",
+                    "value": false
+                },
+                {
+                    "id": "footer_bg_text_enabled",
+                    "operation": "=",
+                    "value": true
+                }
             ]
         },
         {
@@ -688,8 +712,30 @@
             "type": "static",
             "format": "title",
             "id": "static-label6",
-            "value": "خيارات صفحة المنتج",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات صفحة المنتج</h6></div>",
             "variant": "h6"
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "إظهار مسار التنقل في صفحة المنتج",
+            "description": null,
+            "id": "product_show_breadcrumbs",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "إظهار مسار التنقل في صفحة قائمة المنتجات",
+            "description": null,
+            "id": "product_index_show_breadcrumbs",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
         },
         {
             "type": "boolean",
@@ -700,7 +746,18 @@
             "format": "switch",
             "required": false,
             "value": true,
-            "selected": false
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "إظهار زر \"أعلمني عند التوفر\" في بطاقة المنتج",
+            "description": "يظهر زر إشعار التوفر في بطاقات المنتجات التي نفذت كميتها",
+            "id": "notify_when_available_in_card",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
         },
         {
             "type": "boolean",
@@ -791,23 +848,25 @@
     "components": [
         {
             "key": "186b3f4f-25cf-4d3c-abca-cef7eed6f0ab",
-            "title": "صور متحركة (محسنة)",
+            "title": {
+                "en": "Enhances Animated Images",
+                "ar": " صور متحركة (محسنة)"
+            },
             "icon": "sicon-image-carousel",
-            "image": "https://cdn.salla.sa/mQgZlG/K36XDnXG3odwQs7Xzy68IpM2wNuJ7uTImfBInlQ8.png",
             "path": "home.enhanced-slider",
-            "is_default": true,
+            "image": "https://cdn.salla.network/images/themes/raed/preview-images/images-slider-enhancement.png?v=1.1",
             "fields": [
                 {
                     "type": "static",
                     "format": "description",
                     "id": "static-desc",
-                    "value": "<div style='margin: -24px -20px 20px'><img class='w-full' src='https://cdn.salla.network/images/themes/raed/preview-images/images-slider-enhancement.png?v=1.1'></div>"
+                    "value": "<div ><img class='w-full' src='https://cdn.salla.network/images/themes/raed/preview-images/images-slider-enhancement.png?v=1.1'></div>"
                 },
                 {
                     "type": "static",
                     "format": "description",
                     "id": "enhance-slider-note",
-                    "value": "<div style='background-color: #ddedff;color: #0a5a90;padding: 16px 20px;font-size: 14px;border-radius: 4px; margin: 0 0 30px;'>هذا العنصر غير مناسب لعرض البنرات، يمكنك استخدام عنصر <strong>صور متحركة</strong> بدلاً منه لتظهر صورة البنر بشكل كامل</div>"
+                    "value": "<div >هذا العنصر غير مناسب لعرض البنرات، يمكنك استخدام عنصر <strong>صور متحركة</strong> بدلاً منه لتظهر صورة البنر بشكل كامل</div>"
                 },
                 {
                     "id": "slides",
@@ -822,12 +881,14 @@
                         {
                             "slides.image": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
                             "slides.title": "روِّج لمنتجاتك كصور متحركة",
-                            "slides.description": "اعرض المنتجات التي تود إبرازها لزوّار متجرك في هذه المساحة"
+                            "slides.description": "اعرض المنتجات التي تود إبرازها لزوّار متجرك في هذه المساحة",
+                            "slides.without_overlay": false
                         },
                         {
                             "slides.image": "https://cdn.salla.sa/ZrBEO/3gOhYSaIhaHxhH2IHWxJYDl9JHwxP6dGKiZFSq4K.jpg",
                             "slides.title": "شجّع زوار متجرك على الشراء عبر عروض خاصة",
-                            "slides.description": "اعرض المنتجات التي تود إبرازها لزوّار متجرك في هذه المساحة"
+                            "slides.description": "اعرض المنتجات التي تود إبرازها لزوّار متجرك في هذه المساحة",
+                            "slides.without_overlay": false
                         }
                     ],
                     "fields": [
@@ -870,6 +931,17 @@
                             "placeholder": "يمكنك إضافة تفاصيل إضافية هنا",
                             "minLength": 0,
                             "maxLength": 255
+                        },
+                        {
+                            "type": "boolean",
+                            "icon": "sicon-toggle-off",
+                            "label": "إزالة طبقة التعتم",
+                            "description": null,
+                            "id": "slides.without_overlay",
+                            "format": "switch",
+                            "required": false,
+                            "value": false,
+                            "selected": false
                         }
                     ]
                 }
@@ -877,17 +949,19 @@
         },
         {
             "key": "2b1b130b-5b37-422a-9683-e0fd367460c0",
-            "title": "روابط سريعة",
+            "title": {
+                "en": "Quick Links",
+                "ar": "روابط سريعة"
+            },
             "icon": "sicon-layout-grid-rearrange",
             "path": "home.main-links",
-            "image": "https://cdn.salla.sa/mQgZlG/c3AwZKb12ZRFFfK3vE0vaZYTePnFAUOiZA4dQBg1.png",
-            "is_default": true,
+            "image": "https://cdn.salla.network/images/themes/raed/main-links-with-bg.jpg?v=1.1",
             "fields": [
                 {
                     "type": "static",
                     "format": "description",
                     "id": "with-bg",
-                    "value": "<div style='margin: -24px -20px 20px'><img class='w-full' src='https://cdn.salla.network/images/themes/raed/main-links-with-bg.jpg?v=1.1'></div>",
+                    "value": "<div ><img class='w-full' src='https://cdn.salla.network/images/themes/raed/main-links-with-bg.jpg?v=1.1'></div>",
                     "conditions": [
                         {
                             "id": "merge_with_top_component",
@@ -900,7 +974,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "without-bg",
-                    "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.salla.network/images/themes/raed/preview-images/main-links.png?v=1.1'></div>",
+                    "value": "<div ><h6 >معاينة العنصر</h6><img class='w-full' src='https://cdn.salla.network/images/themes/raed/preview-images/main-links.png?v=1.1'></div>",
                     "conditions": [
                         {
                             "id": "merge_with_top_component",
@@ -938,13 +1012,13 @@
                     "type": "static",
                     "format": "description",
                     "id": "static-desc",
-                    "value": "<small style='margin: -36px 0 30px;display: block;'>* إزاحة كامل العنصر ومحتوياته مع العنصر السابق، وجعلهما يظهران كعنصر واحد متناسق، يكون ذا فائدة في حالة كان العنصر السابق هو (صور متحركة محسنة). </small>"
+                    "value": "<small >* إزاحة كامل العنصر ومحتوياته مع العنصر السابق، وجعلهما يظهران كعنصر واحد متناسق، يكون ذا فائدة في حالة كان العنصر السابق هو (صور متحركة محسنة). </small>"
                 },
                 {
                     "type": "boolean",
                     "icon": "sicon-toggle-off",
                     "label": "عرض أسهم التحرك",
-                    "description": "",
+                    "description": null,
                     "id": "show_controls",
                     "format": "switch",
                     "required": false,
@@ -990,7 +1064,7 @@
                     "required": true,
                     "minLength": 3,
                     "maxLength": 100,
-                    "item_label": "رابط ",
+                    "item_label": "رابط",
                     "value": [
                         {
                             "links.icon": "sicon-packed-box",
@@ -1071,6 +1145,11 @@
                                     "value": "products"
                                 },
                                 {
+                                    "label": "منتجات مع وسم",
+                                    "key": "products_tags",
+                                    "value": "products_tags"
+                                },
+                                {
                                     "label": "تصنيف",
                                     "key": "categories",
                                     "value": "categories"
@@ -1130,16 +1209,19 @@
         },
         {
             "key": "9a758d20-2ce4-4782-91fe-c04466464588",
-            "title": "منتجات متحركة مع خلفية",
+            "title": {
+                "en": "Animated products with a background",
+                "ar": "منتجات متحركة مع خلفية"
+            },
             "icon": "sicon-list-play",
             "path": "home.slider-products-with-header",
-            "image": "https://cdn.salla.sa/mQgZlG/3hhreht06MIPFWepyuz42rg3bHqGZIYmDVs1PjYc.png",
+            "image": "https://cdn.salla.network/images/themes/raed/preview-images/slider-products-with-bg.png?v=1.1",
             "fields": [
                 {
                     "type": "static",
                     "format": "description",
                     "id": "with-bg",
-                    "value": "<div style='margin: -24px -20px 20px'><img class='w-full' src='https://cdn.salla.network/images/themes/raed/preview-images/slider-products-with-bg.png?v=1.1'></div>"
+                    "value": "<div ><img class='w-full' src='https://cdn.salla.network/images/themes/raed/preview-images/slider-products-with-bg.png?v=1.1'></div>"
                 },
                 {
                     "type": "string",
@@ -1220,6 +1302,11 @@
                             "value": "products"
                         },
                         {
+                            "label": "منتجات مع وسم",
+                            "key": "products_tags",
+                            "value": "products_tags"
+                        },
+                        {
                             "label": "تصنيف",
                             "key": "categories",
                             "value": "categories"
@@ -1270,17 +1357,25 @@
         },
         {
             "key": "b89edc4a-ce0b-468f-8323-2da48147bb32",
-            "title": "صور مربعة (محسنة)",
+            "title": {
+                "en": "Enhanced square images",
+                "ar": "صور مربعة (محسنة)"
+            },
             "icon": "sicon-image",
             "path": "home.enhanced-square-banners",
-            "image": "https://cdn.salla.sa/mQgZlG/VSk26LArCczWj085xH8jxuusMiKzrcE1wsVC6pLm.png",
-            "is_default": true,
+            "image": "https://cdn.salla.network/images/themes/raed/preview-images/square-images.png?v=1.1",
             "fields": [
                 {
                     "type": "static",
                     "format": "description",
                     "id": "with-bg",
-                    "value": "<div style='margin: -24px -20px 20px'><img class='w-full' src='https://cdn.salla.network/images/themes/raed/preview-images/square-images.png?v=1.1'></div>"
+                    "value": "<div ><img class='w-full' src='https://cdn.salla.network/images/themes/raed/preview-images/square-images.png?v=1.1'></div>"
+                },
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "banners-note",
+                    "value": "<div style='background-color:#f5f5f5;border-radius:8px;padding:12px 16px;margin-bottom:16px;color:#333;font-size:14px;line-height:1.6;direction:inherit;text-align:inherit;'><strong style='color:#e53e3e;'>تنبيه:</strong> يتم اقتصاص الصور من الأطراف لتناسب مقاسات الشاشات، لذا يُرجى مراعاة الأجزاء المقتصّة طولاً وعرضاً عند التصميم لتظهر الصورة كاملة قدر الإمكان.</div>"
                 },
                 {
                     "id": "banners",
@@ -1290,35 +1385,35 @@
                     "minLength": 1,
                     "maxLength": 5,
                     "label": "قائمة الصور",
-                    "item_label": "صورة ",
+                    "item_label": "صورة",
                     "value": [
                         {
                             "banners.image": "https://cdn.salla.sa/mQgZlG/pzOCEw10wCfXeVSpKnL0Ifd1O9ZkTfnZ17RkE14R.jpg",
-                            "banners.url": "",
+                            "banners.url": null,
                             "banners.title": "تصفَّح حسب التصنيف",
                             "banners.description": "سهِّل تجربة التسوُّق والوصول لمنتجاتك"
                         },
                         {
                             "banners.image": "https://cdn.salla.sa/mQgZlG/lkyDjYwvWJNmAQoGnLALLcUkm66rCCDbTyVlSGdH.jpg",
-                            "banners.url": "",
+                            "banners.url": null,
                             "banners.title": "تصفَّح حسب التصنيف",
                             "banners.description": "سهِّل تجربة التسوُّق والوصول لمنتجاتك"
                         },
                         {
                             "banners.image": "https://cdn.salla.sa/mQgZlG/lkyDjYwvWJNmAQoGnLALLcUkm66rCCDbTyVlSGdH.jpg",
-                            "banners.url": "",
+                            "banners.url": null,
                             "banners.title": "تصفَّح حسب التصنيف",
                             "banners.description": "سهِّل تجربة التسوُّق والوصول لمنتجاتك"
                         },
                         {
                             "banners.image": "https://cdn.salla.sa/mQgZlG/lkyDjYwvWJNmAQoGnLALLcUkm66rCCDbTyVlSGdH.jpg",
-                            "banners.url": "",
+                            "banners.url": null,
                             "banners.title": "تصفَّح حسب التصنيف",
                             "banners.description": "سهِّل تجربة التسوُّق والوصول لمنتجاتك"
                         },
                         {
                             "banners.image": "https://cdn.salla.sa/mQgZlG/lkyDjYwvWJNmAQoGnLALLcUkm66rCCDbTyVlSGdH.jpg",
-                            "banners.url": "",
+                            "banners.url": null,
                             "banners.title": "تصفَّح حسب التصنيف",
                             "banners.description": "سهِّل تجربة التسوُّق والوصول لمنتجاتك"
                         }
@@ -1332,7 +1427,7 @@
                             "id": "banners.image",
                             "format": "image",
                             "required": true,
-                            "placeholder": "",
+                            "placeholder": null,
                             "description": "* المقاس المناسب للصورة هو 640×427 بكسل",
                             "settings": {
                                 "height": 427,
@@ -1345,7 +1440,7 @@
                             "label": "الرابط",
                             "id": "banners.url",
                             "value": null,
-                            "description": "",
+                            "description": null,
                             "required": false,
                             "format": "variable-list",
                             "searchable": true,
@@ -1355,6 +1450,11 @@
                                     "label": "منتج",
                                     "key": "products",
                                     "value": "products"
+                                },
+                                {
+                                    "label": "منتجات مع وسم",
+                                    "key": "products_tags",
+                                    "value": "products_tags"
                                 },
                                 {
                                     "label": "تصنيف",
@@ -1438,16 +1538,19 @@
         },
         {
             "key": "25f6cf26-a53f-4954-9b32-739b311b32c7",
-            "title": "الماركات التجارية",
+            "title": {
+                "en": "Brands",
+                "ar": "الماركات التجارية"
+            },
             "icon": "sicon-award-ribbon",
             "path": "home.brands",
-            "image": "https://cdn.salla.sa/mQgZlG/kvFhVeuUyjK4nHUovBQBZ632Hb6gKV2BXZwid40e.png",
+            "image": "https://cdn.salla.network/images/themes/raed/preview-images/brands.png?v=1.1",
             "fields": [
                 {
                     "type": "static",
                     "format": "description",
                     "id": "with-bg",
-                    "value": "<div style='margin: -24px -20px 20px'><img class='w-full' src='https://cdn.salla.network/images/themes/raed/preview-images/brands.png?v=1.1'></div>"
+                    "value": "<div ><img class='w-full' src='https://cdn.salla.network/images/themes/raed/preview-images/brands.png?v=1.1'></div>"
                 },
                 {
                     "type": "string",
@@ -1457,7 +1560,7 @@
                     "id": "title",
                     "required": false,
                     "format": "text",
-                    "description": "",
+                    "description": null,
                     "placeholder": "أدخل العنوان هنا...",
                     "minLength": 0,
                     "maxLength": 200,
@@ -1472,7 +1575,7 @@
                     "label": "الماركات التجارية",
                     "id": "brands",
                     "format": "dropdown-list",
-                    "description": "",
+                    "description": null,
                     "selected": [],
                     "options": [],
                     "required": true,
@@ -1484,17 +1587,19 @@
         },
         {
             "key": "541cc423-90c7-4230-8a33-a0342cfde4ad",
-            "title": "آراء عملاء مخصصة",
+            "title": {
+                "en": "Custom testimonials",
+                "ar": "آراء عملاء مخصصة"
+            },
             "icon": "sicon-chat-bubbles",
             "path": "home.custom-testimonials",
-            "image": "https://cdn.salla.sa/mQgZlG/JMJiEx1KVn7mzxo5FdtsVsAmpWPM8UJW0i0B93c0.png",
-            "is_default": true,
+            "image": "https://cdn.salla.network/images/themes/raed/preview-images/custom-testimonials.png?v=1.1",
             "fields": [
                 {
                     "type": "static",
                     "format": "description",
                     "id": "static-desc",
-                    "value": "<div style='margin: -24px -20px 20px'><img class='w-full' src='https://cdn.salla.network/images/themes/raed/preview-images/custom-testimonials.png?v=1.1'></div>"
+                    "value": "<div ><img class='w-full' src='https://cdn.salla.network/images/themes/raed/preview-images/custom-testimonials.png?v=1.1'></div>"
                 },
                 {
                     "id": "items",
@@ -1680,7 +1785,11 @@
                     "value": false,
                     "required": false,
                     "conditions": [
-                        { "id": "show_car_search", "operation": "=", "value": true }
+                        {
+                            "id": "show_car_search",
+                            "operation": "=",
+                            "value": true
+                        }
                     ]
                 },
                 {
@@ -1692,7 +1801,11 @@
                     "value": false,
                     "required": false,
                     "conditions": [
-                        { "id": "car_search_at_bottom", "operation": "=", "value": true }
+                        {
+                            "id": "car_search_at_bottom",
+                            "operation": "=",
+                            "value": true
+                        }
                     ]
                 },
                 {
@@ -7051,7 +7164,11 @@
                     "selected": false,
                     "required": false,
                     "conditions": [
-                        { "id": "enable_gradient_title", "operation": "=", "value": false }
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
                     ]
                 },
                 {
@@ -7067,8 +7184,16 @@
                     "minLength": 1,
                     "maxLength": 100,
                     "conditions": [
-                        { "id": "enable_gradient_word", "operation": "=", "value": true },
-                        { "id": "enable_gradient_title", "operation": "=", "value": false }
+                        {
+                            "id": "enable_gradient_word",
+                            "operation": "=",
+                            "value": true
+                        },
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
                     ]
                 },
                 {
@@ -7283,17 +7408,37 @@
                     "format": "dropdown-list",
                     "value": [],
                     "selected": [
-                        { "label": "مائلة (الوضع الافتراضي)", "value": "inclined", "key": "slas-type-inclined" }
+                        {
+                            "label": "مائلة (الوضع الافتراضي)",
+                            "value": "inclined",
+                            "key": "slas-type-inclined"
+                        }
                     ],
                     "source": "Manual",
                     "options": [
-                        { "label": "مائلة (الوضع الافتراضي)", "value": "inclined", "key": "slas-type-inclined" },
-                        { "label": "عمودية (من أعلى لأسفل)", "value": "vertical", "key": "slas-type-vertical" },
-                        { "label": "أفقية (من يسار ليمين)", "value": "horizontal", "key": "slas-type-horizontal" }
+                        {
+                            "label": "مائلة (الوضع الافتراضي)",
+                            "value": "inclined",
+                            "key": "slas-type-inclined"
+                        },
+                        {
+                            "label": "عمودية (من أعلى لأسفل)",
+                            "value": "vertical",
+                            "key": "slas-type-vertical"
+                        },
+                        {
+                            "label": "أفقية (من يسار ليمين)",
+                            "value": "horizontal",
+                            "key": "slas-type-horizontal"
+                        }
                     ],
                     "required": false,
                     "conditions": [
-                        { "id": "slas_hbg", "operation": "=", "value": true }
+                        {
+                            "id": "slas_hbg",
+                            "operation": "=",
+                            "value": true
+                        }
                     ]
                 },
                 {
@@ -7306,7 +7451,11 @@
                     "value": "20",
                     "required": false,
                     "conditions": [
-                        { "id": "slas_hbg", "operation": "=", "value": true }
+                        {
+                            "id": "slas_hbg",
+                            "operation": "=",
+                            "value": true
+                        }
                     ]
                 },
                 {
@@ -7319,7 +7468,11 @@
                     "value": false,
                     "required": false,
                     "conditions": [
-                        { "id": "slas_hbg", "operation": "=", "value": true }
+                        {
+                            "id": "slas_hbg",
+                            "operation": "=",
+                            "value": true
+                        }
                     ]
                 },
                 {
@@ -7332,8 +7485,16 @@
                     "value": "#000000",
                     "required": false,
                     "conditions": [
-                        { "id": "slas_hbg_use_primary_color", "operation": "=", "value": false },
-                        { "id": "slas_hbg", "operation": "=", "value": true }
+                        {
+                            "id": "slas_hbg_use_primary_color",
+                            "operation": "=",
+                            "value": false
+                        },
+                        {
+                            "id": "slas_hbg",
+                            "operation": "=",
+                            "value": true
+                        }
                     ]
                 },
                 {
@@ -7358,7 +7519,11 @@
                     "minLength": 3,
                     "maxLength": 300,
                     "conditions": [
-                        { "id": "marquee", "operation": "=", "value": true }
+                        {
+                            "id": "marquee",
+                            "operation": "=",
+                            "value": true
+                        }
                     ]
                 },
                 {
@@ -7371,7 +7536,11 @@
                     "value": "9",
                     "required": false,
                     "conditions": [
-                        { "id": "marquee", "operation": "=", "value": true }
+                        {
+                            "id": "marquee",
+                            "operation": "=",
+                            "value": true
+                        }
                     ]
                 },
                 {
@@ -7384,7 +7553,11 @@
                     "value": true,
                     "required": false,
                     "conditions": [
-                        { "id": "marquee", "operation": "=", "value": true }
+                        {
+                            "id": "marquee",
+                            "operation": "=",
+                            "value": true
+                        }
                     ]
                 },
                 {
@@ -7399,12 +7572,28 @@
                     "selected": [],
                     "source": "Manual",
                     "options": [
-                        { "label": "أعلى فقط", "value": "top", "key": "ps-mq-top" },
-                        { "label": "أسفل فقط", "value": "bottom", "key": "ps-mq-bottom" },
-                        { "label": "أعلى وأسفل", "value": "both", "key": "ps-mq-both" }
+                        {
+                            "label": "أعلى فقط",
+                            "value": "top",
+                            "key": "ps-mq-top"
+                        },
+                        {
+                            "label": "أسفل فقط",
+                            "value": "bottom",
+                            "key": "ps-mq-bottom"
+                        },
+                        {
+                            "label": "أعلى وأسفل",
+                            "value": "both",
+                            "key": "ps-mq-both"
+                        }
                     ],
                     "conditions": [
-                        { "id": "marquee", "operation": "=", "value": true }
+                        {
+                            "id": "marquee",
+                            "operation": "=",
+                            "value": true
+                        }
                     ]
                 },
                 {
@@ -7424,18 +7613,54 @@
                     "format": "dropdown-list",
                     "value": [],
                     "selected": [
-                        { "label": "بدون توهج", "value": "none", "key": "ps-glow-none" }
+                        {
+                            "label": "بدون توهج",
+                            "value": "none",
+                            "key": "ps-glow-none"
+                        }
                     ],
                     "source": "Manual",
                     "options": [
-                        { "label": "بدون توهج", "value": "none", "key": "ps-glow-none" },
-                        { "label": "كرات متوهجة (الكلاسيكي)", "value": "circles", "key": "ps-glow-circles" },
-                        { "label": "توهج من الجانبين", "value": "sides", "key": "ps-glow-sides" },
-                        { "label": "توهج من الأعلى والأسفل", "value": "top_bottom", "key": "ps-glow-top-bottom" },
-                        { "label": "توهج من اليسار فقط", "value": "left", "key": "ps-glow-left" },
-                        { "label": "توهج من اليمين فقط", "value": "right", "key": "ps-glow-right" },
-                        { "label": "توهج من الأعلى فقط", "value": "top", "key": "ps-glow-top" },
-                        { "label": "توهج من الأسفل فقط", "value": "bottom", "key": "ps-glow-bottom" }
+                        {
+                            "label": "بدون توهج",
+                            "value": "none",
+                            "key": "ps-glow-none"
+                        },
+                        {
+                            "label": "كرات متوهجة (الكلاسيكي)",
+                            "value": "circles",
+                            "key": "ps-glow-circles"
+                        },
+                        {
+                            "label": "توهج من الجانبين",
+                            "value": "sides",
+                            "key": "ps-glow-sides"
+                        },
+                        {
+                            "label": "توهج من الأعلى والأسفل",
+                            "value": "top_bottom",
+                            "key": "ps-glow-top-bottom"
+                        },
+                        {
+                            "label": "توهج من اليسار فقط",
+                            "value": "left",
+                            "key": "ps-glow-left"
+                        },
+                        {
+                            "label": "توهج من اليمين فقط",
+                            "value": "right",
+                            "key": "ps-glow-right"
+                        },
+                        {
+                            "label": "توهج من الأعلى فقط",
+                            "value": "top",
+                            "key": "ps-glow-top"
+                        },
+                        {
+                            "label": "توهج من الأسفل فقط",
+                            "value": "bottom",
+                            "key": "ps-glow-bottom"
+                        }
                     ],
                     "required": false
                 },
@@ -7448,7 +7673,11 @@
                     "value": true,
                     "required": false,
                     "conditions": [
-                        { "id": "enable_glow", "operation": "!=", "value": "none" }
+                        {
+                            "id": "enable_glow",
+                            "operation": "!=",
+                            "value": "none"
+                        }
                     ]
                 },
                 {
@@ -7460,8 +7689,16 @@
                     "value": "#7c3aed",
                     "required": false,
                     "conditions": [
-                        { "id": "glow_use_theme_colors", "operation": "=", "value": false },
-                        { "id": "enable_glow", "operation": "!=", "value": "none" }
+                        {
+                            "id": "glow_use_theme_colors",
+                            "operation": "=",
+                            "value": false
+                        },
+                        {
+                            "id": "enable_glow",
+                            "operation": "!=",
+                            "value": "none"
+                        }
                     ]
                 },
                 {
@@ -7473,8 +7710,16 @@
                     "value": "#06b6d4",
                     "required": false,
                     "conditions": [
-                        { "id": "glow_use_theme_colors", "operation": "=", "value": false },
-                        { "id": "enable_glow", "operation": "!=", "value": "none" }
+                        {
+                            "id": "glow_use_theme_colors",
+                            "operation": "=",
+                            "value": false
+                        },
+                        {
+                            "id": "enable_glow",
+                            "operation": "!=",
+                            "value": "none"
+                        }
                     ]
                 }
             ]
@@ -7546,7 +7791,11 @@
                     "selected": false,
                     "required": false,
                     "conditions": [
-                        { "id": "enable_gradient_title", "operation": "=", "value": false }
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
                     ]
                 },
                 {
@@ -7562,8 +7811,16 @@
                     "minLength": 1,
                     "maxLength": 100,
                     "conditions": [
-                        { "id": "enable_gradient_word", "operation": "=", "value": true },
-                        { "id": "enable_gradient_title", "operation": "=", "value": false }
+                        {
+                            "id": "enable_gradient_word",
+                            "operation": "=",
+                            "value": true
+                        },
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
                     ]
                 },
                 {
@@ -7661,12 +7918,36 @@
                     "type": "items",
                     "source": "custom",
                     "sources": [
-                        { "label": "منتج", "key": "products", "value": "products" },
-                        { "label": "تصنيف", "key": "categories", "value": "categories" },
-                        { "label": "ماركة تجارية", "key": "brands", "value": "brands" },
-                        { "label": "التخفيضات", "key": "offers_link", "value": "offers_link" },
-                        { "label": "الماركات التجارية", "key": "brands_link", "value": "brands_link" },
-                        { "label": "رابط خارجي", "key": "custom", "value": "custom" }
+                        {
+                            "label": "منتج",
+                            "key": "products",
+                            "value": "products"
+                        },
+                        {
+                            "label": "تصنيف",
+                            "key": "categories",
+                            "value": "categories"
+                        },
+                        {
+                            "label": "ماركة تجارية",
+                            "key": "brands",
+                            "value": "brands"
+                        },
+                        {
+                            "label": "التخفيضات",
+                            "key": "offers_link",
+                            "value": "offers_link"
+                        },
+                        {
+                            "label": "الماركات التجارية",
+                            "key": "brands_link",
+                            "value": "brands_link"
+                        },
+                        {
+                            "label": "رابط خارجي",
+                            "key": "custom",
+                            "value": "custom"
+                        }
                     ]
                 },
                 {
@@ -7707,17 +7988,37 @@
                     "format": "dropdown-list",
                     "value": [],
                     "selected": [
-                        { "label": "مائلة (الوضع الافتراضي)", "value": "inclined", "key": "ba-slas-inclined" }
+                        {
+                            "label": "مائلة (الوضع الافتراضي)",
+                            "value": "inclined",
+                            "key": "ba-slas-inclined"
+                        }
                     ],
                     "source": "Manual",
                     "options": [
-                        { "label": "مائلة (الوضع الافتراضي)", "value": "inclined", "key": "ba-slas-inclined" },
-                        { "label": "عمودية (من أعلى لأسفل)", "value": "vertical", "key": "ba-slas-vertical" },
-                        { "label": "أفقية (من يسار ليمين)", "value": "horizontal", "key": "ba-slas-horizontal" }
+                        {
+                            "label": "مائلة (الوضع الافتراضي)",
+                            "value": "inclined",
+                            "key": "ba-slas-inclined"
+                        },
+                        {
+                            "label": "عمودية (من أعلى لأسفل)",
+                            "value": "vertical",
+                            "key": "ba-slas-vertical"
+                        },
+                        {
+                            "label": "أفقية (من يسار ليمين)",
+                            "value": "horizontal",
+                            "key": "ba-slas-horizontal"
+                        }
                     ],
                     "required": false,
                     "conditions": [
-                        { "id": "slas_hbg", "operation": "=", "value": true }
+                        {
+                            "id": "slas_hbg",
+                            "operation": "=",
+                            "value": true
+                        }
                     ]
                 },
                 {
@@ -7730,7 +8031,11 @@
                     "value": "20",
                     "required": false,
                     "conditions": [
-                        { "id": "slas_hbg", "operation": "=", "value": true }
+                        {
+                            "id": "slas_hbg",
+                            "operation": "=",
+                            "value": true
+                        }
                     ]
                 },
                 {
@@ -7743,7 +8048,11 @@
                     "value": false,
                     "required": false,
                     "conditions": [
-                        { "id": "slas_hbg", "operation": "=", "value": true }
+                        {
+                            "id": "slas_hbg",
+                            "operation": "=",
+                            "value": true
+                        }
                     ]
                 },
                 {
@@ -7756,8 +8065,16 @@
                     "value": "#000000",
                     "required": false,
                     "conditions": [
-                        { "id": "slas_hbg_use_primary_color", "operation": "=", "value": false },
-                        { "id": "slas_hbg", "operation": "=", "value": true }
+                        {
+                            "id": "slas_hbg_use_primary_color",
+                            "operation": "=",
+                            "value": false
+                        },
+                        {
+                            "id": "slas_hbg",
+                            "operation": "=",
+                            "value": true
+                        }
                     ]
                 },
                 {
@@ -7782,7 +8099,11 @@
                     "minLength": 3,
                     "maxLength": 300,
                     "conditions": [
-                        { "id": "marquee", "operation": "=", "value": true }
+                        {
+                            "id": "marquee",
+                            "operation": "=",
+                            "value": true
+                        }
                     ]
                 },
                 {
@@ -7795,7 +8116,11 @@
                     "value": "8",
                     "required": false,
                     "conditions": [
-                        { "id": "marquee", "operation": "=", "value": true }
+                        {
+                            "id": "marquee",
+                            "operation": "=",
+                            "value": true
+                        }
                     ]
                 },
                 {
@@ -7808,7 +8133,11 @@
                     "value": true,
                     "required": false,
                     "conditions": [
-                        { "id": "marquee", "operation": "=", "value": true }
+                        {
+                            "id": "marquee",
+                            "operation": "=",
+                            "value": true
+                        }
                     ]
                 },
                 {
@@ -7823,12 +8152,28 @@
                     "selected": [],
                     "source": "Manual",
                     "options": [
-                        { "label": "أعلى فقط", "value": "top", "key": "ba-mq-top" },
-                        { "label": "أسفل فقط", "value": "bottom", "key": "ba-mq-bottom" },
-                        { "label": "أعلى وأسفل", "value": "both", "key": "ba-mq-both" }
+                        {
+                            "label": "أعلى فقط",
+                            "value": "top",
+                            "key": "ba-mq-top"
+                        },
+                        {
+                            "label": "أسفل فقط",
+                            "value": "bottom",
+                            "key": "ba-mq-bottom"
+                        },
+                        {
+                            "label": "أعلى وأسفل",
+                            "value": "both",
+                            "key": "ba-mq-both"
+                        }
                     ],
                     "conditions": [
-                        { "id": "marquee", "operation": "=", "value": true }
+                        {
+                            "id": "marquee",
+                            "operation": "=",
+                            "value": true
+                        }
                     ]
                 },
                 {
@@ -7848,18 +8193,54 @@
                     "format": "dropdown-list",
                     "value": [],
                     "selected": [
-                        { "label": "بدون توهج", "value": "none", "key": "ba-glow-none" }
+                        {
+                            "label": "بدون توهج",
+                            "value": "none",
+                            "key": "ba-glow-none"
+                        }
                     ],
                     "source": "Manual",
                     "options": [
-                        { "label": "بدون توهج", "value": "none", "key": "ba-glow-none" },
-                        { "label": "كرات متوهجة (الكلاسيكي)", "value": "circles", "key": "ba-glow-circles" },
-                        { "label": "توهج من الجانبين", "value": "sides", "key": "ba-glow-sides" },
-                        { "label": "توهج من الأعلى والأسفل", "value": "top_bottom", "key": "ba-glow-top-bottom" },
-                        { "label": "توهج من اليسار فقط", "value": "left", "key": "ba-glow-left" },
-                        { "label": "توهج من اليمين فقط", "value": "right", "key": "ba-glow-right" },
-                        { "label": "توهج من الأعلى فقط", "value": "top", "key": "ba-glow-top" },
-                        { "label": "توهج من الأسفل فقط", "value": "bottom", "key": "ba-glow-bottom" }
+                        {
+                            "label": "بدون توهج",
+                            "value": "none",
+                            "key": "ba-glow-none"
+                        },
+                        {
+                            "label": "كرات متوهجة (الكلاسيكي)",
+                            "value": "circles",
+                            "key": "ba-glow-circles"
+                        },
+                        {
+                            "label": "توهج من الجانبين",
+                            "value": "sides",
+                            "key": "ba-glow-sides"
+                        },
+                        {
+                            "label": "توهج من الأعلى والأسفل",
+                            "value": "top_bottom",
+                            "key": "ba-glow-top-bottom"
+                        },
+                        {
+                            "label": "توهج من اليسار فقط",
+                            "value": "left",
+                            "key": "ba-glow-left"
+                        },
+                        {
+                            "label": "توهج من اليمين فقط",
+                            "value": "right",
+                            "key": "ba-glow-right"
+                        },
+                        {
+                            "label": "توهج من الأعلى فقط",
+                            "value": "top",
+                            "key": "ba-glow-top"
+                        },
+                        {
+                            "label": "توهج من الأسفل فقط",
+                            "value": "bottom",
+                            "key": "ba-glow-bottom"
+                        }
                     ],
                     "required": false
                 },
@@ -7872,7 +8253,11 @@
                     "value": true,
                     "required": false,
                     "conditions": [
-                        { "id": "enable_glow", "operation": "!=", "value": "none" }
+                        {
+                            "id": "enable_glow",
+                            "operation": "!=",
+                            "value": "none"
+                        }
                     ]
                 },
                 {
@@ -7884,8 +8269,16 @@
                     "value": "#7c3aed",
                     "required": false,
                     "conditions": [
-                        { "id": "glow_use_theme_colors", "operation": "=", "value": false },
-                        { "id": "enable_glow", "operation": "!=", "value": "none" }
+                        {
+                            "id": "glow_use_theme_colors",
+                            "operation": "=",
+                            "value": false
+                        },
+                        {
+                            "id": "enable_glow",
+                            "operation": "!=",
+                            "value": "none"
+                        }
                     ]
                 },
                 {
@@ -7897,8 +8290,16 @@
                     "value": "#06b6d4",
                     "required": false,
                     "conditions": [
-                        { "id": "glow_use_theme_colors", "operation": "=", "value": false },
-                        { "id": "enable_glow", "operation": "!=", "value": "none" }
+                        {
+                            "id": "glow_use_theme_colors",
+                            "operation": "=",
+                            "value": false
+                        },
+                        {
+                            "id": "enable_glow",
+                            "operation": "!=",
+                            "value": "none"
+                        }
                     ]
                 }
             ]
