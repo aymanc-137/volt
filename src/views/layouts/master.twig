@@ -65,6 +65,7 @@ style=" overflow-y: scroll;"
 
     <script defer data-cfasync="false" src="{{ 'product-card.js'|asset }}"></script>
     <script defer src="{{ 'main-menu.js'|asset }}"></script>
+    <script defer src="{{ 'add-product-toast.js'|asset }}"></script>
 
     {% block head_scripts %}{% endblock %}
 
@@ -74,6 +75,7 @@ style=" overflow-y: scroll;"
         window.imageZoom = "{{theme.settings.get('imageZoom')}}"
         window.can_access_wallet = {{ user.can_access_wallet | json_encode }}
         window.enable_more_menu = "{{ theme.settings.get('enable_more_menu', true) }}"
+        window.enable_add_product_toast = "{{ theme.settings.get('enable_add_product_toast') }}"
     </script>
     
     {% hook 'head:start' %}
@@ -254,7 +256,7 @@ style=" overflow-y: scroll;"
 </head>
 
 {# bg-light-background dark:bg-dark-background  #}
-<body id="app" class=" 
+<body id="app" class=" theme-raed
 
 bg-light-background dark:bg-dark-background 
 overflow-x-hidden {% hook 'body:classes' %}
@@ -284,6 +286,9 @@ overflow-x-hidden {% hook 'body:classes' %}
     {% component 'footer.footer' %}
 </div>
 {% hook 'body:end' %}
+{% if theme.settings.get('enable_add_product_toast') %}
+    <salla-add-product-toast></salla-add-product-toast>
+{% endif %}
 <script defer src="{{ 'app.js' | asset }}"></script>
 
 {# Twilight Components #}
