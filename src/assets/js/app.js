@@ -22,7 +22,21 @@ class App extends AppHelpers {
     this.initiateModals();
     this.initiateCollapse();
     this.initAttachWishlistListeners();
-    this.changeMenuDirection()
+
+    // Apply the third-level direction fix to the menus present now, then re-apply
+    // once the "more" dropdown is injected (if any). Stop polling after a short
+    // window so it never loops forever when there is no overflow / more-menu.
+    this.changeMenuDirection();
+    let menuDirTries = 0;
+    const menuDirInterval = setInterval(() => {
+      if (document.querySelector('#more-menu-dropdown')) {
+        this.changeMenuDirection();
+        clearInterval(menuDirInterval);
+      } else if (++menuDirTries >= 50) { // ~5s safety cap
+        clearInterval(menuDirInterval);
+      }
+    }, 100);
+
     initTootTip();
     this.loadModalImgOnclick();
     this.iniScroll();
@@ -40,17 +54,23 @@ class App extends AppHelpers {
   }
 
     // fix Menu Direction at the third level >> The menu at the third level was popping off the page
-    changeMenuDirection(){
-      app.all('.root-level.has-children',item=>{
-        if(item.classList.contains('change-menu-dir')) return;
-        app.on('mouseover',item,()=>{
-          let submenu = item.querySelector('.sub-menu .sub-menu');
-          if(submenu){
-            let rect = submenu.getBoundingClientRect();
-            (rect.left < 10 || rect.right > window.innerWidth - 10) && app.addClass(item,'change-menu-dir')
-          }      
-        })
-      })
+    changeMenuDirection() {
+      setTimeout(() => {
+        app.all('.root-level.has-children', item => {
+          if (item.dataset.menuDirInit) return; // already wired — avoid duplicate listeners
+          item.dataset.menuDirInit = '1';
+          app.on('mouseover', item, () => {
+            let allSubMenus = item.querySelectorAll('.sub-menu');
+            allSubMenus.forEach((submenu, idx) => {
+              if (idx === 0) return;
+              let rect = submenu.getBoundingClientRect();
+              if (rect.left < 10 || rect.right > window.innerWidth - 10) {
+                app.addClass(item, 'change-menu-dir');
+              }
+            });
+          });
+        });
+      }, 1000);
     }
 
   loadModalImgOnclick(){
