@@ -198,10 +198,12 @@ class ProductCard extends HTMLElement {
                 ? 'contain'
                 : this.fitImageHeight
                 ? this.fitImageHeight
-                : 'cover'} lazy"
+                : 'cover'} "
               src="${this.placeholder}"
+               : 'cover'}"
+              src="${this.product?.image?.url || this.product?.thumbnail || this.placeholder || ''}"
               alt="${this.escapeHTML(this.product?.image?.alt || this.product.name)}"
-              data-src="${this.product?.image?.url || this.product?.thumbnail || ''}"
+              loading="lazy"
             />
             ${!this.fullImage && !this.minimal ? this.getProductBadge() : ''}
           </a>
@@ -323,11 +325,20 @@ class ProductCard extends HTMLElement {
         });
       })
 
-      document.lazyLoadInstance?.update(this.querySelectorAll('.lazy'));
 
       if (this.product?.quantity && this.isSpecial) {
         this.initCircleBar();
       }
+
+
+      // Optimistic & Per-card wishlist toggle
+      this.querySelectorAll('.s-product-card-wishlist-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const willBeAdded = !btn.classList.contains('s-product-card-wishlist-added');
+          app.toggleElementClassIf(btn, 's-product-card-wishlist-added', 'not-added', () => willBeAdded);
+          app.toggleElementClassIf(btn, 'pulse-anime', 'un-favorited', () => willBeAdded);
+        });
+      });
     }
 }
 

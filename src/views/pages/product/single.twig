@@ -72,7 +72,8 @@
                                              alt="{{ image.alt }}"/>
                                     {% else %}
                                         <img data-src="{{ image.url }}" src="{{ 'images/s-empty.png' | cdn }}"
-                                             class="lazy object-cover w-full h-full"
+                                             class="  object-cover w-full h-full"
+                                             loading="lazy"
                                              alt="{{ image.alt }}"/>
                                     {% endif %}
                                 </button>
@@ -135,9 +136,10 @@
                                                      alt="{{ image.alt }}"
                                                      class="h-full object-{{ theme.settings.get('slider_background_size') }} w-full {{ image.three_d_image_url ? 'model-poster' : '' }}">
                                             {% else %}
-                                                <img id="{{image.id}}" src="{{ 'images/s-empty.png' | cdn }}" data-src="{{ image.url }}"
+                                                <img id="{{image.id}}" src="{{ image.url }}"
+                                             loading="lazy"
                                                      alt="{{ image.alt }}"
-                                                     class="lazy h-full object-{{ theme.settings.get('slider_background_size') }} w-full {{ image.three_d_image_url ? 'model-poster' : '' }}">
+                                                     class="  h-full object-{{ theme.settings.get('slider_background_size') }} w-full {{ image.three_d_image_url ? 'model-poster' : '' }}">
                                             {% endif %}
                                         </a>
                                     {% endif %}
@@ -389,7 +391,7 @@
                                     {% if product.starting_price %}
                                         <span class="starting-price-title">{{ trans('pages.products.starting_price') }}</span>
                                     {% endif %}
-                                    <h2 class="total-price font-bold text-xl inline-block">{{product.starting_price ? product.starting_price|money : product.price|money }}</h2>
+                                    <p class="total-price font-bold text-xl inline-block">{{product.starting_price ? product.starting_price|money : product.price|money }}</p>
                                 </div>
                             </div>
 

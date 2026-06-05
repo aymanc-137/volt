@@ -21,8 +21,7 @@ class App extends AppHelpers {
     this.initiateDropdowns();
     this.initiateModals();
     this.initiateCollapse();
-    this.initAttachWishlistListeners();
-
+ 
     // Apply the third-level direction fix to the menus present now, then re-apply
     // once the "more" dropdown is injected (if any). Stop polling after a short
     // window so it never loops forever when there is no overflow / more-menu.
@@ -184,22 +183,7 @@ isElementLoaded(selector){
   });
 
   }
- initAttachWishlistListeners() {
-    let isListenerAttached = false;
   
-    function toggleFavoriteIcon(id, isAdded = true) {
-      document.querySelectorAll('.s-product-card-volt-wishlist-btn[data-id="' + id + '"]').forEach(btn => {
-        app.toggleElementClassIf(btn, 's-product-card-wishlist-added', 'not-added', () => isAdded);
-        app.toggleElementClassIf(btn, 'pulse-anime', 'un-favorited', () => isAdded);
-      });
-    }
-  
-    if (!isListenerAttached) {
-      salla.wishlist.event.onAdded((event, id) => toggleFavoriteIcon(id));
-      salla.wishlist.event.onRemoved((event, id) => toggleFavoriteIcon(id, false));
-      isListenerAttached = true; // Mark the listener as attached
-    }
-  }
 
   initiateStickyMenu() {
     let header = this.element('#mainnav'),
@@ -263,34 +247,20 @@ isElementLoaded(selector){
     document.querySelectorAll('.btn--collapse')
       .forEach((trigger) => {
         const content = document.querySelector('#' + trigger.dataset.show);
+
+        if (!content) return;
+
         const state = { isOpen: false }
 
-        const onOpen = () => anime({
-          targets: content,
-          duration: 225,
-          height: content.scrollHeight,
-          opacity: [0, 1],
-          easing: 'easeOutQuart',
-        });
-
-        const onClose = () => anime({
-          targets: content,
-          duration: 225,
-          height: 0,
-          opacity: [1, 0],
-          easing: 'easeOutQuart',
-        })
-
         const toggleState = (isOpen) => {
-          state.isOpen = !isOpen
+          state.isOpen = !isOpen;
           this.toggleElementClassIf([content, trigger], 'is-closed', 'is-opened', () => isOpen);
         }
 
         trigger.addEventListener('click', () => {
-          const { isOpen } = state
-          toggleState(isOpen)
-          isOpen ? onClose() : onOpen();
-        })
+          const { isOpen } = state;
+          toggleState(isOpen);
+        });
       });
   }
 
