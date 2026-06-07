@@ -1178,6 +1178,9 @@ input:where([type='file']):focus{
 .mr-2{
     margin-right: 0.5rem;
 }
+.mr-\[9px\]{
+    margin-right: 9px;
+}
 .mt-1{
     margin-top: 0.25rem;
 }
@@ -1210,9 +1213,6 @@ input:where([type='file']):focus{
 }
 .mt-8{
     margin-top: 2rem;
-}
-.mr-\[9px\]{
-    margin-right: 9px;
 }
 .line-clamp-1{
     overflow: hidden;
@@ -35681,6 +35681,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 .rtl\:ml-8:where([dir="rtl"], [dir="rtl"] *){
     margin-left: 2rem;
 }
+.rtl\:ml-\[9px\]:where([dir="rtl"], [dir="rtl"] *){
+    margin-left: 9px;
+}
 .rtl\:ml-\[unset\]:where([dir="rtl"], [dir="rtl"] *){
     margin-left: 0;
     margin-left: initial;
@@ -35696,9 +35699,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 }
 .rtl\:mr-4:where([dir="rtl"], [dir="rtl"] *){
     margin-right: 1rem;
-}
-.rtl\:ml-\[9px\]:where([dir="rtl"], [dir="rtl"] *){
-    margin-left: 9px;
 }
 .rtl\:mr-\[unset\]:where([dir="rtl"], [dir="rtl"] *){
     margin-right: 0;

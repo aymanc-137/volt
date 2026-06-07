@@ -199,8 +199,6 @@ class ProductCard extends HTMLElement {
                 : this.fitImageHeight
                 ? this.fitImageHeight
                 : 'cover'}"
-              src="${this.placeholder}"
-               : 'cover'}"
               src="${this.product?.image?.url || this.product?.thumbnail || this.placeholder || ''}"
               alt="${this.escapeHTML(this.product?.image?.alt || this.product.name)}"
               loading="lazy"
