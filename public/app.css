@@ -1211,6 +1211,9 @@ input:where([type='file']):focus{
 .mt-8{
     margin-top: 2rem;
 }
+.mr-\[9px\]{
+    margin-right: 9px;
+}
 .line-clamp-1{
     overflow: hidden;
     display: -webkit-box;
@@ -35693,6 +35696,13 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 }
 .rtl\:mr-4:where([dir="rtl"], [dir="rtl"] *){
     margin-right: 1rem;
+}
+.rtl\:ml-\[9px\]:where([dir="rtl"], [dir="rtl"] *){
+    margin-left: 9px;
+}
+.rtl\:mr-\[unset\]:where([dir="rtl"], [dir="rtl"] *){
+    margin-right: 0;
+    margin-right: initial;
 }
 .rtl\:rotate-180:where([dir="rtl"], [dir="rtl"] *){
     --tw-rotate: 180deg;
