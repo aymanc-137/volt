@@ -102,15 +102,15 @@
                         {% if layout == 'split' %}
                             {# Split layout: media fills the slide; two stacked chevron clip-paths form the angular arrow edge of the content panel #}
                             <div class="relative h-full w-full overflow-hidden">
-                                <div class="absolute inset-0">
+                                <div class="absolute top-0 bottom-0 right-0" style="width: 60%;">
                                     {{ slide_media|raw }}
                                 </div>
                                 {# colored arrow band (wider chevron) — uses the selected arrow color #}
                                 <div class="absolute inset-0" style="background: {{ arrow_color }}; clip-path: polygon(0 0, 70% 0, 52% 50%, 75% 100%, 0 100%);" aria-hidden="true"></div>
                                 {# content panel (narrower chevron) #}
                                 <div class="absolute inset-0 bg-light-background dark:bg-dark-background" style="clip-path: polygon(0 0, 60% 0, 42% 50%, 65% 100%, 0 100%);" aria-hidden="true"></div>
-                                {# text content on top of the panel #}
-                                <div dir="rtl" class="absolute top-0 bottom-0 left-0 z-10 flex items-center px-6 sm:px-12 md:px-16 lg:px-20" style="width: 52%;">
+                                {# text content on top of the panel — full width, same as the default layout #}
+                                <div dir="rtl" class="absolute inset-0 z-10 flex h-full w-full px-6 py-1 sm:px-12 sm:py-10 md:px-16 lg:px-20">
                                     {{ slide_content|raw }}
                                 </div>
                             </div>

@@ -1956,9 +1956,6 @@ input:where([type='file']):focus{
 .self-start{
     align-self: flex-start;
 }
-.self-stretch{
-    align-self: stretch;
-}
 .overflow-auto{
     overflow: auto;
 }
@@ -2502,10 +2499,6 @@ input:where([type='file']):focus{
 .py-5{
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
-}
-.py-6{
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
 }
 .py-8{
     padding-top: 2rem;
