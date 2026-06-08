@@ -2042,6 +2042,54 @@
                             "multichoice": false,
                             "searchable": true,
                             "required": false
+                        },
+                        {
+                            "id": "slides.layout",
+                            "type": "items",
+                            "format": "dropdown-list",
+                            "label": "تخطيط الشريحة",
+                            "description": "اختر طريقة عرض الشريحة",
+                            "labelHTML": null,
+                            "icon": "sicon-keyboard_arrow_down",
+                            "selected": [
+                                {
+                                    "label": "صورة/فيديو مع نص فوقها (الافتراضي)",
+                                    "value": "overlay",
+                                    "key": "slide-layout-overlay"
+                                }
+                            ],
+                            "options": [
+                                {
+                                    "label": "صورة/فيديو مع نص فوقها (الافتراضي)",
+                                    "value": "overlay",
+                                    "key": "slide-layout-overlay"
+                                },
+                                {
+                                    "label": "نص في جهة وصورة في جهة مفصولة بسهم",
+                                    "value": "split",
+                                    "key": "slide-layout-split"
+                                }
+                            ],
+                            "source": "Manual",
+                            "multichoice": false,
+                            "searchable": false,
+                            "required": false
+                        },
+                        {
+                            "id": "slides.arrow_color",
+                            "type": "string",
+                            "format": "color",
+                            "label": "لون السهم الفاصل",
+                            "description": null,
+                            "value": "#000000",
+                            "required": false,
+                            "conditions": [
+                                {
+                                    "id": "slides.layout",
+                                    "operation": "=",
+                                    "value": "split"
+                                }
+                            ]
                         }
                     ]
                 }

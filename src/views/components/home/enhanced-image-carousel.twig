@@ -39,28 +39,24 @@
         <div class="relative overflow-hidden h-full dark:bg-dark-box-background">
             <div class="{% if animation_type == 'fade' %}relative{% else %}flex transition-transform{% endif %} h-full duration-500 ease-in-out will-change-transform" data-carousel-track>
                 {% for slide in slides %}
-                {% set alignment = slide.content_alignment ?? 'center' %}
-                    
+                    {% set alignment = slide.content_alignment ?? 'center' %}
                     {% set alignment_class = {
                         'start': 'items-start text-left rtl:text-right',
                         'center': 'items-center text-center',
                         'end': 'items-end text-right rtl:text-left'
-                    } %} 
+                    } %}
+                    {% set layout = slide.layout[0] ?? 'overlay' %}
+                    {% set arrow_color = slide.arrow_color ?? 'var(--color-primary)' %}
+                    {% set media_type = slide.media_type[0] ?? 'image' %}
 
-              
-                    {# [alignment] ?? 'items-center text-center' #}
-                    <article class="{% if animation_type == 'fade' %}absolute inset-0 opacity-0 transition-opacity duration-500{% else %}relative w-full shrink-0{% endif %} h-full" data-carousel-slide>
-                        {% set media_type = slide.media_type[0] ?? 'image' %}
-
+                    {# Media (image/video) — shared by all layouts #}
+                    {% set slide_media %}
                         {% if media_type == 'video' and slide.video_url %}
                             <video
                                 class="h-full w-full object-cover"
                                 data-lazy-video="{{ slide.video_url }}"
                                 {% if slide.video_poster %}poster="{{ slide.video_poster }}"{% endif %}
-                                loop
-                                muted
-                                playsinline
-                                preload="none"
+                                loop muted playsinline preload="none"
                                 aria-label="{{ (slide.image_alt ?: 'carousel-video-' ~ loop.index)|e('html_attr') }}"
                             >
                                 <source data-src="{{ slide.video_url }}" type="video/mp4">
@@ -71,47 +67,58 @@
                                 class="h-full w-full object-cover"
                                 src="{{ slide.image }}"
                                 alt="{{ (slide.image_alt ?: slide.title ?: 'carousel-slide-' ~ loop.index)|e('html_attr') }}"
-                                loading="lazy"
-                                decoding="async"
+                                loading="lazy" decoding="async"
                             >
                         {% endif %}
-                        {# <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div> #}
-                        <div class="absolute inset-0">
-                            <div dir="rtl" class="
-                            bg-gradient-to-l dark:from-[var(--color-dark-page-background)] 
-                            from-[var(--color-light-page-background)] 
-                            to-transparent
-                            flex h-full w-full px-6 py-1 sm:px-12 sm:py-10 md:px-16 lg:px-20">
-                                <div class="flex {{ show_car_search ? 'mt-14 sm:mt-16 mb-auto' : 'my-auto' }} w-full max-w-2xl flex-col gap-2 sm:gap-4 dynamic-text-color {{alignment_class[alignment[0]] ?? 'items-center text-center'}}">
-                                    {% if slide.title_part1 or slide.title_gradient or slide.title_part3 %}
-                                        <h3 class="font-alshohadaa text-xl sm:text-2xl md:text-4xl lg:text-6xl md:leading-20 font-semibold opacity-0" data-carousel-text="title">
-                                            {% if slide.title_part1 %}
-                                                <span>{{ slide.title_part1 }}</span>
-                                            {% endif %}
-                                            {% if slide.title_gradient %}
-                                                <span class="bg-gradient-to-r  from-primary to-scandary bg-clip-text text-transparent">{{ slide.title_gradient }}</span>
-                                            {% endif %}
-                                            {% if slide.title_part3 %}
-                                                <span>{{ slide.title_part3 }}</span>
-                                            {% endif %}
-                                        </h3>
-                                    {% endif %}
-                                    {% if slide.description %}
-                                        <p class="text-sm sm:text-base md:text-lg lg:text-xl dynamic-text-color opacity-0" data-carousel-text="description">{{ slide.description }}</p>
-                                    {% endif %}
-                                    {% if slide.button_label and slide.button_url %}
-                                        <div class="pt-2 sm:pt-4 opacity-0" data-carousel-text="button">
-                                            <a class="hover-glow transition-all duration-300" href="{{ slide.button_url }}" >
-                                                <div class="inline-flex items-center gap-2 justify-center btn btn--primary px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 text-sm sm:text-base font-semibold uppercase tracking-wide hover:scale-110 cursor-pointer">
-                                                    {{ slide.button_label }}
-                                                    <i class="sicon-arrow-right rtl:rotate-180"></i>
-                                                </div>
-                                            </a>
+                    {% endset %}
+
+                    {# Text content — shared by all layouts #}
+                    {% set slide_content %}
+                        <div class="flex {{ show_car_search ? 'mt-14 sm:mt-16 mb-auto' : 'my-auto' }} w-full max-w-2xl flex-col gap-2 sm:gap-4 dynamic-text-color {{ alignment_class[alignment[0]] ?? 'items-center text-center' }}">
+                            {% if slide.title_part1 or slide.title_gradient or slide.title_part3 %}
+                                <h3 class="font-alshohadaa text-xl sm:text-2xl md:text-4xl lg:text-6xl md:leading-20 font-semibold opacity-0" data-carousel-text="title">
+                                    {% if slide.title_part1 %}<span>{{ slide.title_part1 }}</span>{% endif %}
+                                    {% if slide.title_gradient %}<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ slide.title_gradient }}</span>{% endif %}
+                                    {% if slide.title_part3 %}<span>{{ slide.title_part3 }}</span>{% endif %}
+                                </h3>
+                            {% endif %}
+                            {% if slide.description %}
+                                <p class="text-sm sm:text-base md:text-lg lg:text-xl dynamic-text-color opacity-0" data-carousel-text="description">{{ slide.description }}</p>
+                            {% endif %}
+                            {% if slide.button_label and slide.button_url %}
+                                <div class="pt-2 sm:pt-4 opacity-0" data-carousel-text="button">
+                                    <a class="hover-glow transition-all duration-300" href="{{ slide.button_url }}">
+                                        <div class="inline-flex items-center gap-2 justify-center btn btn--primary px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 text-sm sm:text-base font-semibold uppercase tracking-wide hover:scale-110 cursor-pointer">
+                                            {{ slide.button_label }}
+                                            <i class="sicon-arrow-right rtl:rotate-180"></i>
                                         </div>
-                                    {% endif %}
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endset %}
+
+                    <article class="{% if animation_type == 'fade' %}absolute inset-0 opacity-0 transition-opacity duration-500{% else %}relative w-full shrink-0{% endif %} h-full" data-carousel-slide>
+                        {% if layout == 'split' %}
+                            {# Split layout: text on one side, media on the other, separated by an arrow shape #}
+                            <div class="flex h-full w-full">
+                                <div dir="rtl" class="relative flex-1 min-w-0 flex items-center overflow-hidden bg-light-background dark:bg-dark-background px-6 py-6 sm:px-12 md:px-16 lg:px-20">
+                                    {{ slide_content|raw }}
+                                </div>
+                                <div class="shrink-0 self-stretch" style="width:5rem; background:{{ arrow_color }}; clip-path: polygon(0 0, 100% 50%, 0 100%);" aria-hidden="true"></div>
+                                <div class="relative flex-1 min-w-0 overflow-hidden">
+                                    {{ slide_media|raw }}
                                 </div>
                             </div>
-                        </div>
+                        {% else %}
+                            {# Overlay layout (default): media with text overlaid #}
+                            {{ slide_media|raw }}
+                            <div class="absolute inset-0">
+                                <div dir="rtl" class="bg-gradient-to-l dark:from-[var(--color-dark-page-background)] from-[var(--color-light-page-background)] to-transparent flex h-full w-full px-6 py-1 sm:px-12 sm:py-10 md:px-16 lg:px-20">
+                                    {{ slide_content|raw }}
+                                </div>
+                            </div>
+                        {% endif %}
                     </article>
                 {% endfor %}
             </div>
