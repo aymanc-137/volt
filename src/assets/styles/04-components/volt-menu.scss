@@ -2,9 +2,9 @@
  * Volt Drawer Menu — isolated styles for <volt-drawer-menu>.
  *
  * Everything is namespaced under `.volt-menu__*` so it can never collide with
- * the native menu (`.main-menu`, `.mm-spn`, `.sub-menu`, …). Open/closed state
- * is a class toggle (no media queries), so the drawer behaves the same at every
- * width.
+ * the native menu (`.main-menu`, `.mm-spn`, `.sub-menu`, …). All state is class
+ * driven (no media queries): the drawer slides in, and sub-menus are full-height
+ * panels that slide over their parent — the same depth at every screen width.
  */
 
 // The custom element itself adds no layout box — its trigger flows inline next
@@ -43,9 +43,9 @@ volt-drawer-menu {
   @apply opacity-100;
 }
 
-/* Sliding panel */
+/* Sliding panel — narrow on phones, progressively wider on larger screens */
 .volt-menu__panel {
-  @apply absolute top-0 h-full w-[300px] max-w-[85vw] flex flex-col shadow-2xl overflow-hidden transition-transform duration-300 ease-out;
+  @apply absolute top-0 h-full w-[300px] md:w-[380px] lg:w-[460px] xl:w-[540px] max-w-[85vw] flex flex-col shadow-2xl overflow-hidden transition-transform duration-300 ease-out;
 }
 
 .volt-menu__drawer--ltr .volt-menu__panel {
@@ -62,37 +62,71 @@ volt-drawer-menu {
   transform: translateX(0);
 }
 
-/* Panel header */
+/* Persistent header (menu title + close) */
 .volt-menu__head {
   @apply flex items-center justify-between px-5 py-4 border-b border-gray-400/20 shrink-0;
 }
 
 .volt-menu__title {
-  @apply font-bold text-base;
+  @apply font-bold text-lg;
 }
 
 .volt-menu__close {
-  @apply bg-transparent border-0 cursor-pointer text-xl leading-none p-1 transition-colors;
+  @apply bg-transparent border-0 cursor-pointer text-2xl leading-none p-1 transition-colors;
 
   &:hover {
     color: var(--color-primary);
   }
 }
 
-/* Scrollable nav body */
+/* Nav stage — holds the sliding panels */
 .volt-menu__nav {
-  @apply flex-1 overflow-y-auto overscroll-contain;
+  @apply relative flex-1 overflow-hidden;
 }
 
-.volt-menu__list,
-.volt-menu__submenu {
-  @apply list-none m-0 p-0;
+/* Each level is a full-size panel that slides over the previous one */
+.volt-menu__panel-view {
+  @apply absolute inset-0 flex flex-col overflow-hidden transition-transform duration-300 ease-out;
 }
 
-/* Links & accordion toggles */
+.volt-menu__drawer--ltr .volt-menu__panel-view {
+  transform: translateX(100%);
+}
+
+.volt-menu__drawer--rtl .volt-menu__panel-view {
+  transform: translateX(-100%);
+}
+
+.volt-menu__panel-view.is-active {
+  transform: translateX(0);
+}
+
+/* Sub-panel header with the back button */
+.volt-menu__subhead {
+  @apply shrink-0 border-b border-gray-400/20;
+}
+
+.volt-menu__back {
+  @apply flex items-center gap-3 w-full px-5 py-4 text-start text-base font-bold bg-transparent border-0 cursor-pointer transition-colors;
+
+  i {
+    @apply text-lg opacity-70;
+  }
+
+  &:hover {
+    color: var(--color-primary);
+  }
+}
+
+/* Scrollable list inside each panel */
+.volt-menu__list {
+  @apply flex-1 overflow-y-auto overscroll-contain list-none m-0 p-0;
+}
+
+/* Links & accordion toggles — bumped up to text-base */
 .volt-menu__link,
 .volt-menu__toggle {
-  @apply flex items-center gap-3 w-full px-5 py-3.5 text-start text-sm font-medium bg-transparent border-0 cursor-pointer transition-colors no-underline;
+  @apply flex items-center gap-3 w-full px-5 py-4 text-start text-base font-medium bg-transparent border-0 cursor-pointer transition-colors no-underline;
 
   &:hover {
     color: var(--color-primary);
@@ -116,40 +150,21 @@ volt-drawer-menu {
   @apply w-10 h-10 rounded-full object-cover bg-gray-100 shrink-0 pointer-events-none;
 }
 
-/* Chevron — reuse the theme's sallaicons glyph so it matches the native menu */
+/* Forward chevron — CSS-drawn so it's direction-aware without a font glyph */
 .volt-menu__chevron {
-  @apply shrink-0;
-
-  &::before {
-    font-family: 'sallaicons';
-    content: "\e96e";
-    @apply inline-block text-lg opacity-60 transition-transform duration-300;
-  }
+  @apply shrink-0 inline-block opacity-50;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
 }
 
-.volt-menu__item--parent.is-expanded > .volt-menu__toggle .volt-menu__chevron::before {
-  transform: scaleY(-1);
-  @apply opacity-100;
+.volt-menu__drawer--ltr .volt-menu__chevron {
+  transform: rotate(45deg); // points right (forward in LTR)
 }
 
-/* Accordion submenu */
-.volt-menu__submenu {
-  @apply overflow-hidden max-h-0 transition-[max-height] duration-300 ease-in-out;
-}
-
-.volt-menu__item--parent.is-expanded > .volt-menu__submenu {
-  @apply max-h-[2000px];
-}
-
-/* Progressive indentation per nesting level */
-.volt-menu__submenu .volt-menu__link,
-.volt-menu__submenu .volt-menu__toggle {
-  @apply rtl:pr-9 ltr:pl-9;
-}
-
-.volt-menu__submenu .volt-menu__submenu .volt-menu__link,
-.volt-menu__submenu .volt-menu__submenu .volt-menu__toggle {
-  @apply rtl:pr-12 ltr:pl-12;
+.volt-menu__drawer--rtl .volt-menu__chevron {
+  transform: rotate(-135deg); // points left (forward in RTL)
 }
 
 .volt-menu__link--all {

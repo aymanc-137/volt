@@ -1,16 +1,22 @@
 /**
- * Volt Drawer Menu — a fully self-contained off-canvas (drawer) navigation.
+ * Volt Drawer Menu — a fully self-contained off-canvas (drawer) navigation with
+ * sliding sub-panels (like mmenu-light's "slidingSubmenus", but dependency-free).
  *
- * This is intentionally isolated from the native `<custom-main-menu>` /
- * mmenu-light setup so the two never conflict:
+ * Kept isolated from the native `<custom-main-menu>` / mmenu-light setup so the
+ * two never conflict:
  *   - its own custom element (<volt-drawer-menu>)
  *   - its own JS (this file) and SCSS (04-components/volt-menu.scss)
  *   - its own DOM ids/classes (all prefixed `volt-menu__`)
- *   - visibility is driven by a class toggle, NOT a viewport media query,
- *     so the drawer works identically at every screen width.
+ *   - open/closed + active-panel state is class-driven (no media queries), so it
+ *     behaves identically at every screen width.
  *
- * Rendered (instead of the native menu) only when the `enable_drawer_menu`
- * theme setting is on — see header.twig.
+ * Every sub-menu is rendered as a flat, absolutely-positioned panel that is a
+ * direct child of the nav stage. Opening a parent slides its panel in over the
+ * current one; "back" slides it out. Flattening the panels (instead of nesting
+ * them) keeps positioning/scroll behaviour simple and predictable at any depth.
+ *
+ * Rendered (instead of the native menu) only when the `enable_drawer_menu` theme
+ * setting is on — see header.twig.
  */
 class VoltDrawerMenu extends HTMLElement {
     connectedCallback() {
@@ -20,7 +26,9 @@ class VoltDrawerMenu extends HTMLElement {
                 this.isRtl = !!salla.config.get('theme.is_rtl');
                 this.title = salla.lang.get('blocks.header.main_menu');
                 this.displayAllText = salla.lang.get('blocks.home.display_all');
-                this.closeText = salla.lang.get('common.elements.close') || 'Close';
+                this.backText = this.isRtl ? 'رجوع' : 'Back';
+                this.closeText = this.isRtl ? 'إغلاق' : 'Close';
+                this.backIcon = this.isRtl ? 'sicon-arrow-right' : 'sicon-arrow-left';
                 return salla.api.component.getMenus();
             })
             .then(({ data }) => {
@@ -40,11 +48,14 @@ class VoltDrawerMenu extends HTMLElement {
     }
 
     /**
-     * Render a single menu node (recurses for children as an accordion).
+     * Render one menu node.
+     * - Leaf nodes return a simple link `<li>`.
+     * - Parent nodes return a `<li>` whose button opens a dedicated sub-panel,
+     *   and the sub-panel itself is pushed onto `this.subPanels` (flat list).
      * @param {Object} menu
-     * @returns {String}
+     * @returns {String} the `<li>` markup for this node within its parent list
      */
-    renderItem(menu) {
+    renderNode(menu) {
         const image = menu.image
             ? `<img src="${menu.image}" class="volt-menu__img" width="40" height="40" alt="${menu.title || ''}" loading="lazy" />`
             : '';
@@ -58,22 +69,41 @@ class VoltDrawerMenu extends HTMLElement {
             </li>`;
         }
 
-        return `
-        <li class="volt-menu__item volt-menu__item--parent" ${menu.attrs || ''}>
-            <button type="button" class="volt-menu__toggle" aria-expanded="false">
-                <span class="volt-menu__toggle-label">${image}<span>${menu.title || ''}</span></span>
-                <i class="volt-menu__chevron" aria-hidden="true"></i>
-            </button>
-            <ul class="volt-menu__submenu">
+        const panelId = `volt-panel-${++this.panelSeq}`;
+        const childItems = menu.children.map((child) => this.renderNode(child)).join('');
+
+        this.subPanels.push(`
+        <div class="volt-menu__panel-view dynamic-bg-color dynamic-text-color" id="${panelId}" role="group" aria-label="${menu.title || ''}">
+            <div class="volt-menu__subhead">
+                <button type="button" class="volt-menu__back" data-volt-back aria-label="${this.backText}">
+                    <i class="${this.backIcon}" aria-hidden="true"></i>
+                    <span>${menu.title || ''}</span>
+                </button>
+            </div>
+            <ul class="volt-menu__list">
                 <li class="volt-menu__item">
                     <a class="volt-menu__link volt-menu__link--all" href="${menu.url}">${this.displayAllText}</a>
                 </li>
-                ${menu.children.map((child) => this.renderItem(child)).join('')}
+                ${childItems}
             </ul>
+        </div>`);
+
+        return `
+        <li class="volt-menu__item volt-menu__item--parent" ${menu.attrs || ''}>
+            <button type="button" class="volt-menu__toggle" data-volt-open="${panelId}" aria-haspopup="true">
+                <span class="volt-menu__toggle-label">${image}<span>${menu.title || ''}</span></span>
+                <i class="volt-menu__chevron" aria-hidden="true"></i>
+            </button>
         </li>`;
     }
 
     render() {
+        this.panelSeq = 0;
+        this.subPanels = [];
+        this.stack = [];
+
+        const rootItems = this.menus.map((menu) => this.renderNode(menu)).join('');
+
         this.innerHTML = `
         <button type="button" class="volt-menu__trigger" aria-label="${this.title}" aria-haspopup="true" aria-expanded="false">
             <i class="sicon-menu" aria-hidden="true"></i>
@@ -88,9 +118,10 @@ class VoltDrawerMenu extends HTMLElement {
                     </button>
                 </div>
                 <nav class="volt-menu__nav">
-                    <ul class="volt-menu__list">
-                        ${this.menus.map((menu) => this.renderItem(menu)).join('')}
-                    </ul>
+                    <div class="volt-menu__panel-view is-active" data-root>
+                        <ul class="volt-menu__list">${rootItems}</ul>
+                    </div>
+                    ${this.subPanels.join('')}
                 </nav>
             </aside>
         </div>`;
@@ -104,19 +135,35 @@ class VoltDrawerMenu extends HTMLElement {
         this.querySelectorAll('[data-volt-close]').forEach((el) =>
             el.addEventListener('click', () => this.close())
         );
-
-        // Accordion: expand/collapse a parent's submenu.
-        this.querySelectorAll('.volt-menu__toggle').forEach((btn) => {
-            btn.addEventListener('click', () => {
-                const item = btn.closest('.volt-menu__item--parent');
-                const expanded = item.classList.toggle('is-expanded');
-                btn.setAttribute('aria-expanded', String(expanded));
-            });
-        });
+        this.querySelectorAll('[data-volt-open]').forEach((btn) =>
+            btn.addEventListener('click', () => this.openPanel(btn.getAttribute('data-volt-open')))
+        );
+        this.querySelectorAll('[data-volt-back]').forEach((btn) =>
+            btn.addEventListener('click', () => this.back())
+        );
 
         document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && this.drawer.dataset.state === 'open') this.close();
+            if (event.key !== 'Escape' || this.drawer.dataset.state !== 'open') return;
+            // Escape backs out one level, then closes the drawer at the root.
+            this.stack.length ? this.back() : this.close();
         });
+    }
+
+    openPanel(id) {
+        const panel = this.querySelector(`#${id}`);
+        if (!panel) return;
+        this.stack.push(panel);
+        panel.style.zIndex = String(10 + this.stack.length);
+        panel.classList.add('is-active');
+        const list = panel.querySelector('.volt-menu__list');
+        if (list) list.scrollTop = 0;
+    }
+
+    back() {
+        const panel = this.stack.pop();
+        if (!panel) return;
+        panel.classList.remove('is-active');
+        panel.style.zIndex = '';
     }
 
     open() {
@@ -135,9 +182,11 @@ class VoltDrawerMenu extends HTMLElement {
         this.drawer.classList.remove('is-open');
         this.trigger.setAttribute('aria-expanded', 'false');
         document.body.classList.remove('volt-menu-open');
-        // Hide only after the slide-out transition has finished.
         setTimeout(() => {
-            if (this.drawer.dataset.state === 'closed') this.drawer.hidden = true;
+            if (this.drawer.dataset.state !== 'closed') return;
+            this.drawer.hidden = true;
+            // Reset back to the root panel for the next open.
+            while (this.stack.length) this.back();
         }, 350);
     }
 }

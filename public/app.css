@@ -27684,9 +27684,9 @@ input[type=radio].sr-only:checked ~ div.main-menu .sub-menu {
  * Volt Drawer Menu — isolated styles for <volt-drawer-menu>.
  *
  * Everything is namespaced under `.volt-menu__*` so it can never collide with
- * the native menu (`.main-menu`, `.mm-spn`, `.sub-menu`, …). Open/closed state
- * is a class toggle (no media queries), so the drawer behaves the same at every
- * width.
+ * the native menu (`.main-menu`, `.mm-spn`, `.sub-menu`, …). All state is class
+ * driven (no media queries): the drawer slides in, and sub-menus are full-height
+ * panels that slide over their parent — the same depth at every screen width.
  */
 volt-drawer-menu{
     display: contents;
@@ -27758,7 +27758,7 @@ input[type=radio].sr-only:checked ~ div.volt-menu__backdrop {
 .volt-menu__drawer.is-open .volt-menu__backdrop{
     opacity: 1;
 }
-/* Sliding panel */
+/* Sliding panel — narrow on phones, progressively wider on larger screens */
 .volt-menu__panel{
     position: absolute;
     top: 0px;
@@ -27783,6 +27783,21 @@ input[type=radio].sr-only div.volt-menu__panel {
 input[type=radio].sr-only:checked ~ div.volt-menu__panel {
   border-color: var(--color-main);
 }
+@media (min-width: 768px){
+    .volt-menu__panel{
+        width: 380px;
+    }
+}
+@media (min-width: 1024px){
+    .volt-menu__panel{
+        width: 460px;
+    }
+}
+@media (min-width: 1280px){
+    .volt-menu__panel{
+        width: 540px;
+    }
+}
 .volt-menu__drawer--ltr .volt-menu__panel {
   left: 0;
   transform: translateX(-100%);
@@ -27794,7 +27809,7 @@ input[type=radio].sr-only:checked ~ div.volt-menu__panel {
 .volt-menu__drawer.is-open .volt-menu__panel {
   transform: translateX(0);
 }
-/* Panel header */
+/* Persistent header (menu title + close) */
 .volt-menu__head{
     display: flex;
     flex-shrink: 0;
@@ -27808,8 +27823,8 @@ input[type=radio].sr-only:checked ~ div.volt-menu__panel {
     padding-bottom: 1rem;
 }
 .volt-menu__title{
-    font-size: 1rem;
-    line-height: 1.5rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
     font-weight: 700;
 }
 .volt-menu__close{
@@ -27817,8 +27832,8 @@ input[type=radio].sr-only:checked ~ div.volt-menu__panel {
     border-width: 0px;
     background-color: transparent;
     padding: 0.25rem;
-    font-size: 1.25rem;
-    line-height: 1.75rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
     line-height: 1;
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -27831,19 +27846,96 @@ input[type=radio].sr-only:checked ~ div.volt-menu__panel {
   color: #414042;
   color: var(--color-primary);
 }
-/* Scrollable nav body */
+/* Nav stage — holds the sliding panels */
 .volt-menu__nav{
+    position: relative;
     flex: 1 1 0%;
+    overflow: hidden;
+}
+/* Each level is a full-size panel that slides over the previous one */
+.volt-menu__panel-view{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+input[type=radio].sr-only div.volt-menu__panel-view {
+  transition: all 0.3s;
+}
+input[type=radio].sr-only:checked ~ div.volt-menu__panel-view {
+  border-color: var(--color-main);
+}
+.volt-menu__drawer--ltr .volt-menu__panel-view {
+  transform: translateX(100%);
+}
+.volt-menu__drawer--rtl .volt-menu__panel-view {
+  transform: translateX(-100%);
+}
+.volt-menu__panel-view.is-active {
+  transform: translateX(0);
+}
+/* Sub-panel header with the back button */
+.volt-menu__subhead{
+    flex-shrink: 0;
+    border-bottom-width: 1px;
+    border-color: rgba(156, 163, 175, 0.2);
+}
+.volt-menu__back{
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+    align-items: center;
+    gap: 0.75rem;
+    border-width: 0px;
+    background-color: transparent;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    text-align: left;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+.volt-menu__back * {
+  pointer-events: none;
+}
+.volt-menu__back:where([dir="ltr"], [dir="ltr"] *){
+    text-align: left;
+}
+.volt-menu__back:where([dir="rtl"], [dir="rtl"] *){
+    text-align: right;
+}
+.volt-menu__back i{
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    opacity: 0.7;
+}
+.volt-menu__back:hover {
+  color: #414042;
+  color: var(--color-primary);
+}
+/* Scrollable list inside each panel */
+.volt-menu__list{
+    margin: 0px;
+    flex: 1 1 0%;
+    list-style-type: none;
     overflow-y: auto;
     overscroll-behavior: contain;
-}
-.volt-menu__list,
-.volt-menu__submenu{
-    margin: 0px;
-    list-style-type: none;
     padding: 0px;
 }
-/* Links & accordion toggles */
+/* Links & accordion toggles — bumped up to text-base */
 .volt-menu__link,
 .volt-menu__toggle{
     display: flex;
@@ -27855,11 +27947,11 @@ input[type=radio].sr-only:checked ~ div.volt-menu__panel {
     background-color: transparent;
     padding-left: 1.25rem;
     padding-right: 1.25rem;
-    padding-top: 0.875rem;
-    padding-bottom: 0.875rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     text-align: left;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
     font-weight: 500;
     text-decoration-line: none;
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
@@ -27910,52 +28002,21 @@ input[type=radio].sr-only:checked ~ div.volt-menu__panel {
     -o-object-fit: cover;
        object-fit: cover;
 }
-/* Chevron — reuse the theme's sallaicons glyph so it matches the native menu */
+/* Forward chevron — CSS-drawn so it's direction-aware without a font glyph */
 .volt-menu__chevron{
+    display: inline-block;
     flex-shrink: 0;
+    opacity: 0.5;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
 }
-.volt-menu__chevron::before {
-  font-family: "sallaicons";
-  content: "\e96e";
-  display: inline-block;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  opacity: 0.6;
-  transition-property: transform;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+.volt-menu__drawer--ltr .volt-menu__chevron {
+  transform: rotate(45deg);
 }
-.volt-menu__item--parent.is-expanded > .volt-menu__toggle .volt-menu__chevron::before {
-  transform: scaleY(-1);
-  opacity: 1;
-}
-/* Accordion submenu */
-.volt-menu__submenu{
-    max-height: 0px;
-    overflow: hidden;
-    transition-property: max-height;
-    transition-duration: 300ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-.volt-menu__item--parent.is-expanded > .volt-menu__submenu{
-    max-height: 2000px;
-}
-/* Progressive indentation per nesting level */
-.volt-menu__submenu .volt-menu__link:where([dir="ltr"], [dir="ltr"] *),
-.volt-menu__submenu .volt-menu__toggle:where([dir="ltr"], [dir="ltr"] *){
-    padding-left: 2.25rem;
-}
-.volt-menu__submenu .volt-menu__link:where([dir="rtl"], [dir="rtl"] *),
-.volt-menu__submenu .volt-menu__toggle:where([dir="rtl"], [dir="rtl"] *){
-    padding-right: 2.25rem;
-}
-.volt-menu__submenu .volt-menu__submenu .volt-menu__link:where([dir="ltr"], [dir="ltr"] *),
-.volt-menu__submenu .volt-menu__submenu .volt-menu__toggle:where([dir="ltr"], [dir="ltr"] *){
-    padding-left: 3rem;
-}
-.volt-menu__submenu .volt-menu__submenu .volt-menu__link:where([dir="rtl"], [dir="rtl"] *),
-.volt-menu__submenu .volt-menu__submenu .volt-menu__toggle:where([dir="rtl"], [dir="rtl"] *){
-    padding-right: 3rem;
+.volt-menu__drawer--rtl .volt-menu__chevron {
+  transform: rotate(-135deg);
 }
 .volt-menu__link--all{
     font-style: italic;
