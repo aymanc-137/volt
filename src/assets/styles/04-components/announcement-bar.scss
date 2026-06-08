@@ -30,6 +30,14 @@
     position: relative;
     z-index: 40;
 
+    // When placed under the header, sit below the sticky header's dropdowns
+    // (the pinned header establishes a z-index:29 stacking context, so the
+    // mega-menu sub-menus would otherwise render behind the bar).
+    &--under_header,
+    &--under_carousel {
+        z-index: 20;
+    }
+
     &__track {
         display: flex;
         align-items: center;
