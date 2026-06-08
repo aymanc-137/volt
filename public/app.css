@@ -33637,8 +33637,8 @@ input[type=radio].sr-only:checked ~ div.ptab-media__video iframe,input[type=radi
   background: var(--ab-bg);
   color: #000;
   color: var(--ab-text);
-  border-bottom: 2px solid #414042;
-  border-bottom: 2px solid var(--color-primary);
+  border-bottom: 0.5px solid #414042;
+  border-bottom: 0.5px solid var(--color-primary);
   display: flex;
   align-items: center;
   overflow: hidden;
