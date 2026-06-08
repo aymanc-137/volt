@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Tournament Hero Section</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Importing fonts to better match the sporty, angular look */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;1,900&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .clip-dark {
+            /* Creates the chevron shape for the dark background pointing right */
+            clip-path: polygon(0 0, 60% 0, 42% 50%, 65% 100%, 0 100%);
+        }
+        
+        .clip-red {
+            /* Wider chevron shape behind the dark one to create the red band */
+            clip-path: polygon(0 0, 70% 0, 52% 50%, 75% 100%, 0 100%);
+        }
+
+        .clip-bottom-stats {
+            /* Slight slant for the bottom right stats container */
+            clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
+        }
+    </style>
+</head>
+<body class="bg-black m-0 p-0 overflow-x-hidden">
+
+    <div class="relative w-full h-screen min-h-[700px] text-white overflow-hidden flex flex-col">
+        
+        <!-- Layer 1: Background Car Image (Right Side) -->
+        <div class="absolute inset-0 z-0">
+            <!-- Using a high-quality placeholder car image -->
+            <img src="https://images.unsplash.com/photo-1614200187524-dc4b892acf16?q=80&w=2574&auto=format&fit=crop" 
+                 alt="Red Sports Car" 
+                 class="w-full h-full object-cover object-[70%_center]" />
+            <div class="absolute inset-0 bg-black/10"></div> <!-- Subtle darkening -->
+        </div>
+
+        <!-- Layer 2: The Thick Red Angular Band -->
+        <div class="absolute inset-0 bg-[#d90429] z-10 clip-red shadow-2xl drop-shadow-2xl"></div>
+
+        <!-- Layer 3: The Main Dark Gray Content Area -->
+        <div class="absolute inset-0 bg-[#1c1c1c] z-20 clip-dark shadow-xl"></div>
+
+        <!-- Layer 4: Content Container (Relative to stay on top) -->
+        <div class="relative z-30 w-full h-full flex flex-col pt-8 pb-16 px-8 md:px-16 lg:px-24">
+
+            <!-- Navbar -->
+            <header class="flex flex-col lg:flex-row items-center justify-between w-full mb-12 lg:mb-24 gap-6">
+                <!-- Logo Area -->
+                <div class="flex items-center space-x-3 bg-[#111]/80 px-6 py-3 rounded-full backdrop-blur-md border border-gray-800">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    <span class="text-xl font-black tracking-widest uppercase">Logo Here</span>
+                </div>
+                
+                <!-- Navigation Links -->
+                <nav class="flex flex-wrap justify-center gap-x-8 gap-y-4 text-xs font-semibold tracking-[0.15em] uppercase z-40">
+                    <a href="#" class="hover:text-[#d90429] transition-colors duration-300">Home</a>
+                    <a href="#" class="hover:text-[#d90429] transition-colors duration-300">About Us</a>
+                    <a href="#" class="hover:text-[#d90429] transition-colors duration-300">Destinations</a>
+                    <a href="#" class="hover:text-[#d90429] transition-colors duration-300">Gallery</a>
+                    <a href="#" class="hover:text-[#d90429] transition-colors duration-300">Blogs</a>
+                    <a href="#" class="hover:text-[#d90429] transition-colors duration-300">Reviews</a>
+                    <a href="#" class="hover:text-[#d90429] transition-colors duration-300">Contact Us</a>
+                </nav>
+            </header>
+
+            <!-- Main Hero Text & Call to Action -->
+            <main class="flex-1 flex flex-col justify-center max-w-[50%] z-40">
+                <h1 class="text-[3.5rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[7rem] font-black italic uppercase leading-[0.85] tracking-[-0.03em] mb-6 drop-shadow-xl text-white">
+                    Lets Start<br>
+                    <span class="text-white relative">
+                        Tournament
+                    </span><br>
+                    With Us
+                </h1>
+                
+                <p class="text-gray-400 text-sm md:text-base mb-10 max-w-lg leading-relaxed font-light">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas maecenas...
+                </p>
+                
+                <button class="bg-[#d90429] hover:bg-white hover:text-[#d90429] text-white font-bold py-4 px-10 rounded-full w-max transition-all duration-300 text-sm tracking-widest uppercase shadow-lg shadow-red-900/50">
+                    More Detail
+                </button>
+            </main>
+
+            <!-- Bottom Right Numbering / Stats Indicator -->
+            <div class="absolute bottom-8 right-0 bg-[#0a0a0a]/90 backdrop-blur-sm pl-16 pr-12 py-5 flex items-center gap-6 clip-bottom-stats z-40 border-t border-b border-gray-800/50">
+                <!-- Decorative Horizontal Line -->
+                <div class="h-[1px] bg-gradient-to-r from-transparent via-gray-400 to-gray-500 w-24"></div>
+                
+                <!-- Numbers -->
+                <div class="flex items-baseline space-x-5">
+                    <span class="text-4xl lg:text-5xl font-black italic text-white leading-none drop-shadow-md">02</span>
+                    <span class="text-2xl font-black italic text-gray-500 leading-none">01</span>
+                    <span class="text-2xl font-black italic text-gray-500 leading-none">03</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

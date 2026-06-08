@@ -100,14 +100,18 @@
 
                     <article class="{% if animation_type == 'fade' %}absolute inset-0 opacity-0 transition-opacity duration-500{% else %}relative w-full shrink-0{% endif %} h-full" data-carousel-slide>
                         {% if layout == 'split' %}
-                            {# Split layout: text on one side, media on the other, separated by an arrow shape #}
-                            <div class="flex h-full w-full">
-                                <div dir="rtl" class="relative flex-1 min-w-0 flex items-center overflow-hidden bg-light-background dark:bg-dark-background px-6 py-6 sm:px-12 md:px-16 lg:px-20">
-                                    {{ slide_content|raw }}
-                                </div>
-                                <div class="shrink-0 self-stretch" style="width:5rem; background:{{ arrow_color }}; clip-path: polygon(0 0, 100% 50%, 0 100%);" aria-hidden="true"></div>
-                                <div class="relative flex-1 min-w-0 overflow-hidden">
+                            {# Split layout: media fills the slide; two stacked chevron clip-paths form the angular arrow edge of the content panel #}
+                            <div class="relative h-full w-full overflow-hidden">
+                                <div class="absolute inset-0">
                                     {{ slide_media|raw }}
+                                </div>
+                                {# colored arrow band (wider chevron) — uses the selected arrow color #}
+                                <div class="absolute inset-0" style="background: {{ arrow_color }}; clip-path: polygon(0 0, 70% 0, 52% 50%, 75% 100%, 0 100%);" aria-hidden="true"></div>
+                                {# content panel (narrower chevron) #}
+                                <div class="absolute inset-0 bg-light-background dark:bg-dark-background" style="clip-path: polygon(0 0, 60% 0, 42% 50%, 65% 100%, 0 100%);" aria-hidden="true"></div>
+                                {# text content on top of the panel #}
+                                <div dir="rtl" class="absolute top-0 bottom-0 left-0 z-10 flex items-center px-6 sm:px-12 md:px-16 lg:px-20" style="width: 52%;">
+                                    {{ slide_content|raw }}
                                 </div>
                             </div>
                         {% else %}

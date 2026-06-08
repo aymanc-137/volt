@@ -969,6 +969,9 @@ input:where([type='file']):focus{
 .left-4{
     left: 1rem;
 }
+.left-6{
+    left: 1.5rem;
+}
 .left-\[25\%\]{
     left: 25%;
 }
@@ -1020,9 +1023,6 @@ input:where([type='file']):focus{
 .top-full{
     top: 100%;
 }
-.left-6{
-    left: 1.5rem;
-}
 .isolate{
     isolation: isolate;
 }
@@ -1058,9 +1058,6 @@ input:where([type='file']):focus{
 }
 .col-span-2{
     grid-column: span 2 / span 2;
-}
-.row-auto{
-    grid-row: auto;
 }
 .m-0{
     margin: 0px;
@@ -1959,6 +1956,9 @@ input:where([type='file']):focus{
 .self-start{
     align-self: flex-start;
 }
+.self-stretch{
+    align-self: stretch;
+}
 .overflow-auto{
     overflow: auto;
 }
@@ -2279,11 +2279,6 @@ input:where([type='file']):focus{
     --tw-gradient-to: rgba(0, 0, 0, 0) var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
-.from-black\/60{
-    --tw-gradient-from: rgba(0, 0, 0, 0.6) var(--tw-gradient-from-position);
-    --tw-gradient-to: rgba(0, 0, 0, 0) var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
 .from-black\/70{
     --tw-gradient-from: rgba(0, 0, 0, 0.7) var(--tw-gradient-from-position);
     --tw-gradient-to: rgba(0, 0, 0, 0) var(--tw-gradient-to-position);
@@ -2310,10 +2305,6 @@ input:where([type='file']):focus{
 .via-\[rgba\(var\(--color-primary\)\2c 0\.3\)\]{
     --tw-gradient-to: rgba(var(--color-primary), 0)  var(--tw-gradient-to-position);
     --tw-gradient-stops: var(--tw-gradient-from), rgba(var(--color-primary),0.3) var(--tw-gradient-via-position), var(--tw-gradient-to);
-}
-.via-black\/20{
-    --tw-gradient-to: rgba(0, 0, 0, 0)  var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-from), rgba(0, 0, 0, 0.2) var(--tw-gradient-via-position), var(--tw-gradient-to);
 }
 .via-black\/40{
     --tw-gradient-to: rgba(0, 0, 0, 0)  var(--tw-gradient-to-position);
@@ -2511,6 +2502,10 @@ input:where([type='file']):focus{
 .py-5{
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
+}
+.py-6{
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
 }
 .py-8{
     padding-top: 2rem;
@@ -34403,11 +34398,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 .last\:border-none:last-child{
     border-style: none;
 }
-.even\:border-gray-200:nth-child(even){
-    --tw-border-opacity: 1;
-    border-color: rgba(229, 231, 235, 1);
-    border-color: rgba(229, 231, 235, var(--tw-border-opacity, 1));
-}
 .target\:btn:target{
     display: inline-flex;
     flex: 1 1 0%;
@@ -34972,17 +34962,8 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .md\:max-h-\[32rem\]{
         max-height: 32rem;
     }
-    .md\:\!w-1\/2{
-        width: 50% !important;
-    }
     .md\:\!w-2\/4{
         width: 50% !important;
-    }
-    .md\:\!w-\[75\%\]{
-        width: 75% !important;
-    }
-    .md\:w-1\/4{
-        width: 25%;
     }
     .md\:w-2\/4{
         width: 50%;
