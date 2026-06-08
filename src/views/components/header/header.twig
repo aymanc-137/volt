@@ -46,29 +46,55 @@
 
   {# Main Nav #}
   <div id="mainnav" class="main-nav-container dynamic-bg-color !font-thin shadow-default ">
-      <div class="inner bg-inherit">
-          <div class=" mx-10">
-              <div class="flex items-stretch justify-between relative">
+      <div class="inner h-full bg-inherit">
+          <div class=" mx-10 h-full">
+              {% set header_layout = theme.settings.get('header_layout', 'centered_menu') %}
+              {% set is_drawer_layout = header_layout == 'centered_logo_drawer' %}
+              <div class="flex h-full items-stretch justify-between relative">
                   <div class="flex items-center">
-                      {% if theme.settings.get('enable_drawer_menu', false) %}
+                      {% if is_drawer_layout %}
+                        {# Layout 3: our custom drawer menu replaces the native mobile menu at all widths #}
                         <volt-drawer-menu></volt-drawer-menu>
                       {% else %}
+                        {# Layouts 1 & 2: native hamburger handles mobile, horizontal menu shows on desktop #}
                         <a class="lg:hidden mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4" href="#mobile-menu" aria-label="Open-menu">
                           <i class="hover:text-[var(--color-primary)] sicon-menu text-primary text-2xl"></i>
                         </a>
                       {% endif %}
-                      <a class="navbar-brand" href="{{ store.url }}">
-                          <img fetchpriority="high" width="100%" height="100%" loading="eager" src="{{ store.logo }}" alt="{{ store.name }} logo">
-                          {% if is_page('index') %}
-                            <h1 class="sr-only">{{ store.name }}</h1>
-                          {% else %}
-                            <h2 class="sr-only">{{ store.name }}</h2>
-                          {% endif %}
-                      </a>
+
+                      {# Logo — inline at the start for the horizontal-menu layouts #}
+                      {% if not is_drawer_layout %}
+                        <a class="navbar-brand" href="{{ store.url }}">
+                            <img fetchpriority="high" width="100%" height="100%" loading="eager" src="{{ store.logo }}" alt="{{ store.name }} logo">
+                            {% if is_page('index') %}
+                              <h1 class="sr-only">{{ store.name }}</h1>
+                            {% else %}
+                              <h2 class="sr-only">{{ store.name }}</h2>
+                            {% endif %}
+                        </a>
+                      {% endif %}
+
+                      {# Layout 2: horizontal menu sits right next to the logo #}
+                      {% if header_layout == 'menu_beside_logo' %}
+                        <custom-main-menu></custom-main-menu>
+                      {% endif %}
                   </div>
 
-                  {% if not theme.settings.get('enable_drawer_menu', false) %}
+                  {# Layout 1 (default): horizontal menu centered between logo and icons #}
+                  {% if header_layout == 'centered_menu' %}
                     <custom-main-menu></custom-main-menu>
+                  {% endif %}
+
+                  {# Layout 3: logo absolutely centered in the bar #}
+                  {% if is_drawer_layout %}
+                    <a class="navbar-brand absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" href="{{ store.url }}">
+                        <img fetchpriority="high" width="100%" height="100%" loading="eager" src="{{ store.logo }}" alt="{{ store.name }} logo">
+                        {% if is_page('index') %}
+                          <h1 class="sr-only">{{ store.name }}</h1>
+                        {% else %}
+                          <h2 class="sr-only">{{ store.name }}</h2>
+                        {% endif %}
+                    </a>
                   {% endif %}
 
                   <div class="flex items-center  justify-end">

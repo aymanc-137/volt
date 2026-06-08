@@ -15,8 +15,8 @@
  * current one; "back" slides it out. Flattening the panels (instead of nesting
  * them) keeps positioning/scroll behaviour simple and predictable at any depth.
  *
- * Rendered (instead of the native menu) only when the `enable_drawer_menu` theme
- * setting is on — see header.twig.
+ * Rendered (instead of the native menu) only for the "centered logo + drawer"
+ * header layout (header_layout = 'centered_logo_drawer') — see header.twig.
  */
 class VoltDrawerMenu extends HTMLElement {
     connectedCallback() {

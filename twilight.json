@@ -405,15 +405,39 @@
             "selected": true
         },
         {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "استخدام القائمة الجانبية المنسدلة (Drawer)",
-            "description": "عند تفعيلها، يتم استبدال القائمة الأفقية بقائمة جانبية منسدلة تعمل على جميع أحجام الشاشات",
-            "id": "enable_drawer_menu",
-            "format": "switch",
-            "required": false,
-            "value": false,
-            "selected": false
+            "id": "header_layout",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "تخطيط الهيدر (ترويسة المتجر)",
+            "description": "اختر طريقة ترتيب الشعار والقائمة والأيقونات في الهيدر",
+            "labelHTML": null,
+            "icon": "sicon-list",
+            "selected": [
+                {
+                    "label": "القائمة في المنتصف والشعار والأيقونات على الجانبين (افتراضي)",
+                    "value": "centered_menu",
+                    "key": "volt-header-centered-menu"
+                }
+            ],
+            "options": [
+                {
+                    "label": "القائمة في المنتصف والشعار والأيقونات على الجانبين (افتراضي)",
+                    "value": "centered_menu",
+                    "key": "volt-header-centered-menu"
+                },
+                {
+                    "label": "القائمة بجانب الشعار والأيقونات على الجانب الآخر",
+                    "value": "menu_beside_logo",
+                    "key": "volt-header-menu-beside-logo"
+                },
+                {
+                    "label": "الشعار في المنتصف مع القائمة الجانبية المنسدلة (Drawer)",
+                    "value": "centered_logo_drawer",
+                    "key": "volt-header-centered-logo-drawer"
+                }
+            ],
+            "source": "Manual",
+            "required": true
         },
         {
             "type": "boolean",
