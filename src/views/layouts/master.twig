@@ -66,6 +66,9 @@ style=" overflow-y: scroll;"
 
 <script defer data-cfasync="false" crossorigin="anonymous" src="{{ 'product-card.js'|asset }}"></script>
     <script defer src="{{ 'main-menu.js'|asset }}"></script>
+    {% if theme.settings.get('enable_drawer_menu', false) %}
+        <script defer src="{{ 'volt-menu.js'|asset }}"></script>
+    {% endif %}
 
 
     {% if theme.settings.get('enable_add_product_toast', true) %}
@@ -80,6 +83,7 @@ style=" overflow-y: scroll;"
         window.imageZoom = "{{theme.settings.get('imageZoom')}}"
         window.can_access_wallet = {{ user.can_access_wallet | json_encode }}
         window.enable_more_menu = "{{ theme.settings.get('enable_more_menu', true) }}"
+        window.enable_drawer_menu = "{{ theme.settings.get('enable_drawer_menu', false) }}"
         window.enable_add_product_toast = "{{ theme.settings.get('enable_add_product_toast', true) }}"
     </script>
     

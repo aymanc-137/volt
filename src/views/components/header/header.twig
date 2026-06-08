@@ -50,9 +50,13 @@
           <div class=" mx-10">
               <div class="flex items-stretch justify-between relative">
                   <div class="flex items-center">
-                      <a class="lg:hidden mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4" href="#mobile-menu" aria-label="Open-menu">
-                        <i class="hover:text-[var(--color-primary)] sicon-menu text-primary text-2xl"></i>
-                      </a>
+                      {% if theme.settings.get('enable_drawer_menu', false) %}
+                        <volt-drawer-menu></volt-drawer-menu>
+                      {% else %}
+                        <a class="lg:hidden mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4" href="#mobile-menu" aria-label="Open-menu">
+                          <i class="hover:text-[var(--color-primary)] sicon-menu text-primary text-2xl"></i>
+                        </a>
+                      {% endif %}
                       <a class="navbar-brand" href="{{ store.url }}">
                           <img fetchpriority="high" width="100%" height="100%" loading="eager" src="{{ store.logo }}" alt="{{ store.name }} logo">
                           {% if is_page('index') %}
@@ -63,7 +67,9 @@
                       </a>
                   </div>
 
-                  <custom-main-menu></custom-main-menu>
+                  {% if not theme.settings.get('enable_drawer_menu', false) %}
+                    <custom-main-menu></custom-main-menu>
+                  {% endif %}
 
                   <div class="flex items-center  justify-end">
 

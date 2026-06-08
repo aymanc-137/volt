@@ -407,6 +407,17 @@
         {
             "type": "boolean",
             "icon": "sicon-toggle-off",
+            "label": "استخدام القائمة الجانبية المنسدلة (Drawer)",
+            "description": "عند تفعيلها، يتم استبدال القائمة الأفقية بقائمة جانبية منسدلة تعمل على جميع أحجام الشاشات",
+            "id": "enable_drawer_menu",
+            "format": "switch",
+            "required": false,
+            "value": false,
+            "selected": false
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
             "label": "شريط علوي داكن",
             "description": null,
             "id": "topnav_is_dark",

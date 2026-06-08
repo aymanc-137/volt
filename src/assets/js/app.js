@@ -161,6 +161,10 @@ isElementLoaded(selector){
 
   initiateMobileMenu() {
 
+  // The Volt drawer menu (<volt-drawer-menu>) fully replaces the native mobile
+  // menu when enabled, so there is no #mobile-menu to wire up here.
+  if (window.enable_drawer_menu) return;
+
   this.isElementLoaded('#mobile-menu').then((menu) => {
 
  

@@ -1,0 +1,162 @@
+/**
+ * Volt Drawer Menu — isolated styles for <volt-drawer-menu>.
+ *
+ * Everything is namespaced under `.volt-menu__*` so it can never collide with
+ * the native menu (`.main-menu`, `.mm-spn`, `.sub-menu`, …). Open/closed state
+ * is a class toggle (no media queries), so the drawer behaves the same at every
+ * width.
+ */
+
+// The custom element itself adds no layout box — its trigger flows inline next
+// to the logo, and the drawer is position:fixed (out of flow).
+volt-drawer-menu {
+  @apply contents;
+}
+
+/* Hamburger trigger */
+.volt-menu__trigger {
+  @apply inline-flex items-center justify-center leading-none bg-transparent border-0 cursor-pointer p-0 rtl:ml-4 ltr:mr-4;
+
+  i {
+    @apply text-primary text-2xl transition-colors;
+  }
+
+  &:hover i {
+    color: var(--color-primary);
+  }
+}
+
+/* Drawer overlay (backdrop + panel) */
+.volt-menu__drawer {
+  @apply fixed inset-0 z-[9999];
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.volt-menu__backdrop {
+  @apply absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300 ease-out;
+}
+
+.volt-menu__drawer.is-open .volt-menu__backdrop {
+  @apply opacity-100;
+}
+
+/* Sliding panel */
+.volt-menu__panel {
+  @apply absolute top-0 h-full w-[300px] max-w-[85vw] flex flex-col shadow-2xl overflow-hidden transition-transform duration-300 ease-out;
+}
+
+.volt-menu__drawer--ltr .volt-menu__panel {
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.volt-menu__drawer--rtl .volt-menu__panel {
+  right: 0;
+  transform: translateX(100%);
+}
+
+.volt-menu__drawer.is-open .volt-menu__panel {
+  transform: translateX(0);
+}
+
+/* Panel header */
+.volt-menu__head {
+  @apply flex items-center justify-between px-5 py-4 border-b border-gray-400/20 shrink-0;
+}
+
+.volt-menu__title {
+  @apply font-bold text-base;
+}
+
+.volt-menu__close {
+  @apply bg-transparent border-0 cursor-pointer text-xl leading-none p-1 transition-colors;
+
+  &:hover {
+    color: var(--color-primary);
+  }
+}
+
+/* Scrollable nav body */
+.volt-menu__nav {
+  @apply flex-1 overflow-y-auto overscroll-contain;
+}
+
+.volt-menu__list,
+.volt-menu__submenu {
+  @apply list-none m-0 p-0;
+}
+
+/* Links & accordion toggles */
+.volt-menu__link,
+.volt-menu__toggle {
+  @apply flex items-center gap-3 w-full px-5 py-3.5 text-start text-sm font-medium bg-transparent border-0 cursor-pointer transition-colors no-underline;
+
+  &:hover {
+    color: var(--color-primary);
+    @apply bg-gray-500/5;
+  }
+}
+
+.volt-menu__toggle {
+  @apply justify-between;
+}
+
+.volt-menu__toggle-label {
+  @apply flex items-center gap-3 min-w-0;
+
+  > span {
+    @apply truncate;
+  }
+}
+
+.volt-menu__img {
+  @apply w-10 h-10 rounded-full object-cover bg-gray-100 shrink-0 pointer-events-none;
+}
+
+/* Chevron — reuse the theme's sallaicons glyph so it matches the native menu */
+.volt-menu__chevron {
+  @apply shrink-0;
+
+  &::before {
+    font-family: 'sallaicons';
+    content: "\e96e";
+    @apply inline-block text-lg opacity-60 transition-transform duration-300;
+  }
+}
+
+.volt-menu__item--parent.is-expanded > .volt-menu__toggle .volt-menu__chevron::before {
+  transform: scaleY(-1);
+  @apply opacity-100;
+}
+
+/* Accordion submenu */
+.volt-menu__submenu {
+  @apply overflow-hidden max-h-0 transition-[max-height] duration-300 ease-in-out;
+}
+
+.volt-menu__item--parent.is-expanded > .volt-menu__submenu {
+  @apply max-h-[2000px];
+}
+
+/* Progressive indentation per nesting level */
+.volt-menu__submenu .volt-menu__link,
+.volt-menu__submenu .volt-menu__toggle {
+  @apply rtl:pr-9 ltr:pl-9;
+}
+
+.volt-menu__submenu .volt-menu__submenu .volt-menu__link,
+.volt-menu__submenu .volt-menu__submenu .volt-menu__toggle {
+  @apply rtl:pr-12 ltr:pl-12;
+}
+
+.volt-menu__link--all {
+  @apply text-primary opacity-80 italic;
+}
+
+/* Lock body scroll while the drawer is open */
+body.volt-menu-open {
+  @apply overflow-hidden;
+}

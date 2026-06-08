@@ -27680,6 +27680,293 @@ input[type=radio].sr-only:checked ~ div.main-menu .sub-menu {
 .s-user-menu-trigger{
     background-color: transparent;
 }
+/**
+ * Volt Drawer Menu — isolated styles for <volt-drawer-menu>.
+ *
+ * Everything is namespaced under `.volt-menu__*` so it can never collide with
+ * the native menu (`.main-menu`, `.mm-spn`, `.sub-menu`, …). Open/closed state
+ * is a class toggle (no media queries), so the drawer behaves the same at every
+ * width.
+ */
+volt-drawer-menu{
+    display: contents;
+}
+/* Hamburger trigger */
+.volt-menu__trigger{
+    display: inline-flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-width: 0px;
+    background-color: transparent;
+    padding: 0px;
+    line-height: 1;
+}
+.volt-menu__trigger * {
+  pointer-events: none;
+}
+.volt-menu__trigger:where([dir="ltr"], [dir="ltr"] *){
+    margin-right: 1rem;
+}
+.volt-menu__trigger:where([dir="rtl"], [dir="rtl"] *){
+    margin-left: 1rem;
+}
+.volt-menu__trigger i{
+    font-size: 1.5rem;
+    line-height: 2rem;
+    color: #414042;
+    color: var(--color-primary);
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+.volt-menu__trigger:hover i {
+  color: #414042;
+  color: var(--color-primary);
+}
+/* Drawer overlay (backdrop + panel) */
+.volt-menu__drawer{
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: 9999;
+}
+.volt-menu__drawer[hidden] {
+  display: none;
+}
+.volt-menu__backdrop{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+input[type=radio].sr-only div.volt-menu__backdrop {
+  transition: all 0.3s;
+}
+input[type=radio].sr-only:checked ~ div.volt-menu__backdrop {
+  border-color: var(--color-main);
+}
+.volt-menu__drawer.is-open .volt-menu__backdrop{
+    opacity: 1;
+}
+/* Sliding panel */
+.volt-menu__panel{
+    position: absolute;
+    top: 0px;
+    display: flex;
+    height: 100%;
+    width: 300px;
+    max-width: 85vw;
+    flex-direction: column;
+    overflow: hidden;
+    --tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+    box-shadow: 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0), 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0,0,0,0)), var(--tw-ring-shadow, 0 0 rgba(0,0,0,0)), var(--tw-shadow);
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+input[type=radio].sr-only div.volt-menu__panel {
+  transition: all 0.3s;
+}
+input[type=radio].sr-only:checked ~ div.volt-menu__panel {
+  border-color: var(--color-main);
+}
+.volt-menu__drawer--ltr .volt-menu__panel {
+  left: 0;
+  transform: translateX(-100%);
+}
+.volt-menu__drawer--rtl .volt-menu__panel {
+  right: 0;
+  transform: translateX(100%);
+}
+.volt-menu__drawer.is-open .volt-menu__panel {
+  transform: translateX(0);
+}
+/* Panel header */
+.volt-menu__head{
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom-width: 1px;
+    border-color: rgba(156, 163, 175, 0.2);
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.volt-menu__title{
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+}
+.volt-menu__close{
+    cursor: pointer;
+    border-width: 0px;
+    background-color: transparent;
+    padding: 0.25rem;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    line-height: 1;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+.volt-menu__close * {
+  pointer-events: none;
+}
+.volt-menu__close:hover {
+  color: #414042;
+  color: var(--color-primary);
+}
+/* Scrollable nav body */
+.volt-menu__nav{
+    flex: 1 1 0%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+.volt-menu__list,
+.volt-menu__submenu{
+    margin: 0px;
+    list-style-type: none;
+    padding: 0px;
+}
+/* Links & accordion toggles */
+.volt-menu__link,
+.volt-menu__toggle{
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+    align-items: center;
+    gap: 0.75rem;
+    border-width: 0px;
+    background-color: transparent;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-top: 0.875rem;
+    padding-bottom: 0.875rem;
+    text-align: left;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    text-decoration-line: none;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+.volt-menu__link *,
+.volt-menu__toggle * {
+  pointer-events: none;
+}
+.volt-menu__link:where([dir="ltr"], [dir="ltr"] *),
+.volt-menu__toggle:where([dir="ltr"], [dir="ltr"] *){
+    text-align: left;
+}
+.volt-menu__link:where([dir="rtl"], [dir="rtl"] *),
+.volt-menu__toggle:where([dir="rtl"], [dir="rtl"] *){
+    text-align: right;
+}
+.volt-menu__link:hover,
+.volt-menu__toggle:hover {
+  color: #414042;
+  color: var(--color-primary);
+  background-color: rgba(107, 114, 128, 0.05);
+}
+.volt-menu__toggle{
+    justify-content: space-between;
+}
+.volt-menu__toggle-label{
+    display: flex;
+    min-width: 0px;
+    align-items: center;
+    gap: 0.75rem;
+}
+.volt-menu__toggle-label > span{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.volt-menu__img{
+    pointer-events: none;
+    height: 2.5rem;
+    width: 2.5rem;
+    flex-shrink: 0;
+    border-radius: 9999px;
+    --tw-bg-opacity: 1;
+    background-color: rgba(243, 244, 246, 1);
+    background-color: rgba(243, 244, 246, var(--tw-bg-opacity, 1));
+    -o-object-fit: cover;
+       object-fit: cover;
+}
+/* Chevron — reuse the theme's sallaicons glyph so it matches the native menu */
+.volt-menu__chevron{
+    flex-shrink: 0;
+}
+.volt-menu__chevron::before {
+  font-family: "sallaicons";
+  content: "\e96e";
+  display: inline-block;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  opacity: 0.6;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+.volt-menu__item--parent.is-expanded > .volt-menu__toggle .volt-menu__chevron::before {
+  transform: scaleY(-1);
+  opacity: 1;
+}
+/* Accordion submenu */
+.volt-menu__submenu{
+    max-height: 0px;
+    overflow: hidden;
+    transition-property: max-height;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.volt-menu__item--parent.is-expanded > .volt-menu__submenu{
+    max-height: 2000px;
+}
+/* Progressive indentation per nesting level */
+.volt-menu__submenu .volt-menu__link:where([dir="ltr"], [dir="ltr"] *),
+.volt-menu__submenu .volt-menu__toggle:where([dir="ltr"], [dir="ltr"] *){
+    padding-left: 2.25rem;
+}
+.volt-menu__submenu .volt-menu__link:where([dir="rtl"], [dir="rtl"] *),
+.volt-menu__submenu .volt-menu__toggle:where([dir="rtl"], [dir="rtl"] *){
+    padding-right: 2.25rem;
+}
+.volt-menu__submenu .volt-menu__submenu .volt-menu__link:where([dir="ltr"], [dir="ltr"] *),
+.volt-menu__submenu .volt-menu__submenu .volt-menu__toggle:where([dir="ltr"], [dir="ltr"] *){
+    padding-left: 3rem;
+}
+.volt-menu__submenu .volt-menu__submenu .volt-menu__link:where([dir="rtl"], [dir="rtl"] *),
+.volt-menu__submenu .volt-menu__submenu .volt-menu__toggle:where([dir="rtl"], [dir="rtl"] *){
+    padding-right: 3rem;
+}
+.volt-menu__link--all{
+    font-style: italic;
+    color: #414042;
+    color: var(--color-primary);
+    opacity: 0.8;
+}
+/* Lock body scroll while the drawer is open */
+body.volt-menu-open{
+    overflow: hidden;
+}
 .dropdown__trigger{
     height: 2.5rem;
     width: 2.5rem;
