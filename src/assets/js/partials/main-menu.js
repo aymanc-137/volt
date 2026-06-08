@@ -4,6 +4,9 @@ class NavigationMenu extends HTMLElement {
             .then(() => salla.lang.onLoaded())
             .then(() => {
                 this.menus = [];
+                // When true, only the drawer (mobile) menu is rendered and it is
+                // used at every screen width. Set from theme settings in master.twig.
+                this.drawerEverywhere = !!window.enable_drawer_menu;
                 this.displayAllText = salla.lang.get('blocks.home.display_all');
                 this.moreText = salla.lang.get('common.titles.more');
                 this.visibleMenus = [];
@@ -58,7 +61,7 @@ class NavigationMenu extends HTMLElement {
         const menuImage = menu.image ? `<img src="${menu.image}" class="rounded-full" width="48" height="48" alt="${menu.title}" />` : '';
 
         return `
-        <li class="lg:hidden text-sm font-bold" ${menu.attrs}>
+        <li class="${this.drawerEverywhere ? '' : 'lg:hidden'} text-sm font-bold" ${menu.attrs}>
             ${!this.hasChildren(menu) ? `
                 <a href="${menu.url}" aria-label="${menu.title || 'category'}" class="text-gray-500 ${menu.image ? '!py-3' : ''}" ${menu.link_attrs}>
                     ${menuImage}
@@ -110,6 +113,12 @@ class NavigationMenu extends HTMLElement {
     * @returns {String}
     */
     getMenus() {
+        // Drawer-everywhere: render only the off-canvas (mobile) menu — the
+        // horizontal desktop menu and its mega-menu/overflow are not used.
+        if (this.drawerEverywhere) {
+            return this.menus.map((menu) => this.getMobileMenu(menu, this.displayAllText)).join('\n');
+        }
+
         return this.menus.map((menu) => `
             ${this.getMobileMenu(menu, this.displayAllText)}
             ${this.getDesktopMenu(menu, true)}
@@ -140,6 +149,7 @@ class NavigationMenu extends HTMLElement {
     * Initialize responsive menu functionality
     */
     initializeResponsiveMenu() {
+        if (this.drawerEverywhere) return; // No horizontal menu to measure/overflow
         if (window.innerWidth < 1024) return; // Only for desktop
 
         const mainMenu = this.querySelector('.main-menu');

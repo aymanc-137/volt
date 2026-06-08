@@ -7,6 +7,8 @@
   @apply text-red-800
 }
 
+// Horizontal desktop menu — disabled when the drawer-menu setting is on.
+body:not(.drawer-everywhere) {
 @media only screen and (min-width: 1024px) {
   .main-menu {
     @apply hidden lg:flex flex-wrap items-center mx-6 pt-8 pb-0;
@@ -156,13 +158,11 @@
     border: none;
   }
 }
-// Mobile Slide Menu
-@media only screen and (max-width: 1024px) {
-  .filters-opened{
-    .close-filters{
-      display: block !important;
-    }
-  } 
+} // end body:not(.drawer-everywhere)
+
+// Mobile Slide (drawer) Menu — shared styles, used at mobile widths and, when the
+// drawer-menu setting is on, at every width via body.drawer-everywhere.
+@mixin drawer-menu-styles {
   .menu-opened{
     .btn--close-sm.close-mobile-menu{
       display: block !important;
@@ -199,7 +199,7 @@
 
   .mm-spn {
     ul.main-menu li:before{
-      @apply w-2 h-2; 
+      @apply w-2 h-2;
     }
 
     &.mm-spn--navbar{
@@ -258,6 +258,20 @@
       }
     }
   }
+}
+
+@media only screen and (max-width: 1024px) {
+  .filters-opened{
+    .close-filters{
+      display: block !important;
+    }
+  }
+  @include drawer-menu-styles;
+}
+
+// Drawer-everywhere: apply the drawer styling at all viewport widths.
+body.drawer-everywhere {
+  @include drawer-menu-styles;
 }
 
 

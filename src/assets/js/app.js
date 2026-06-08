@@ -25,16 +25,19 @@ class App extends AppHelpers {
     // Apply the third-level direction fix to the menus present now, then re-apply
     // once the "more" dropdown is injected (if any). Stop polling after a short
     // window so it never loops forever when there is no overflow / more-menu.
-    this.changeMenuDirection();
-    let menuDirTries = 0;
-    const menuDirInterval = setInterval(() => {
-      if (document.querySelector('#more-menu-dropdown')) {
-        this.changeMenuDirection();
-        clearInterval(menuDirInterval);
-      } else if (++menuDirTries >= 50) { // ~5s safety cap
-        clearInterval(menuDirInterval);
-      }
-    }, 100);
+    // Skipped entirely in drawer-everywhere mode: there is no horizontal fly-out.
+    if (!window.enable_drawer_menu) {
+      this.changeMenuDirection();
+      let menuDirTries = 0;
+      const menuDirInterval = setInterval(() => {
+        if (document.querySelector('#more-menu-dropdown')) {
+          this.changeMenuDirection();
+          clearInterval(menuDirInterval);
+        } else if (++menuDirTries >= 50) { // ~5s safety cap
+          clearInterval(menuDirInterval);
+        }
+      }, 100);
+    }
 
     initTootTip();
     this.loadModalImgOnclick();
@@ -163,8 +166,10 @@ isElementLoaded(selector){
 
   this.isElementLoaded('#mobile-menu').then((menu) => {
 
- 
-  const mobileMenu = new MobileMenu(menu, "(max-width: 1024px)", "( slidingSubmenus: false)");
+  // When the drawer-menu setting is on, keep mmenu active at every width ("all")
+  // so the off-canvas drawer replaces the horizontal menu on desktop too.
+  const drawerMediaQuery = window.enable_drawer_menu ? "all" : "(max-width: 1024px)";
+  const mobileMenu = new MobileMenu(menu, drawerMediaQuery, "( slidingSubmenus: false)");
 
   salla.lang.onLoaded(() => {
     mobileMenu.navigation({ title: salla.lang.get('blocks.header.main_menu') });
