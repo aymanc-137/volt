@@ -1020,6 +1020,9 @@ input:where([type='file']):focus{
 .top-full{
     top: 100%;
 }
+.left-6{
+    left: 1.5rem;
+}
 .isolate{
     isolation: isolate;
 }

@@ -1768,6 +1768,16 @@
                     ]
                 },
                 {
+                    "id": "show_nav_buttons",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "إظهار أزرار التنقل (السابق/التالي)",
+                    "description": "إظهار أو إخفاء أسهم التنقل بين الشرائح",
+                    "icon": "sicon-toggle-off",
+                    "value": true,
+                    "required": false
+                },
+                {
                     "id": "show_car_search",
                     "label": "عرض محرك بحث السيارات على الكاروسيل",
                     "description": "يضيف مربع بحث السيارات على الجانب الآخر من النص في السلايدر — يتم تحميله من إعدادات مكوّن شجرة البحث",

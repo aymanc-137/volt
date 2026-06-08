@@ -24,6 +24,7 @@
 {% set show_car_search = component.show_car_search | default(false) %}
 {% set car_search_at_bottom = component.car_search_at_bottom ?? false %}
 {% set car_search_horizontal = component.car_search_horizontal_dropdowns ?? false %}
+{% set show_nav_buttons = component.show_nav_buttons ?? true %}
 
 {% set block_id = 'enhanced-image-carousel-' ~ position %}
  <section dir="ltr" class="h-[58dvh] md:h-[65dvh] lg:h-[80dvh] xl:h-[100dvh] w-full relative" id="{{ block_id }}">
@@ -116,6 +117,7 @@
             </div>
             {% if slides|length > 1 %}
                 {# Navigation Buttons #}
+                {% if show_nav_buttons %}
                 <button
                     type="button"
                     class="group absolute top-1/2 left-4 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-primary shadow-lg transition-all opacity-0 group-hover/carousel:opacity-100 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:flex"
@@ -134,9 +136,10 @@
                     <span class="sr-only">التالي</span>
                     <i class="sicon-arrow-right text-xl transition group-hover:translate-x-1"></i>
                 </button>
+                {% endif %}
 
-                {# Indicator Dots - Positioned at bottom center #}
-                <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center justify-center gap-2 z-10" data-carousel-dots>
+                {# Indicator Dots - bottom center, or bottom-left when the search box sits at the bottom #}
+                <div class="absolute bottom-6 {{ (show_car_search and car_search_at_bottom) ? 'left-6' : 'left-1/2 -translate-x-1/2' }} flex items-center justify-center gap-2 z-10" data-carousel-dots>
                     {% for slide in slides %}
                         <button
                             type="button"
