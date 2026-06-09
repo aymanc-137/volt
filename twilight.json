@@ -8526,7 +8526,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "product-tabs-note",
-                    "value": "<div style='background-color:#ddedff;color:#0a5a90;padding:16px 20px;font-size:14px;border-radius:4px;margin:0 0 18px;'>هذا العنصر لا يظهر في الصفحة الرئيسية. أضفه مرة واحدة، وسيتم استدعاؤه تلقائياً في صفحات المنتجات لعرض التبويبات. لكل منتج: اختر المنتج ثم الصق بيانات التبويبات (JSON) المصدّرة من أداة «منشئ التبويبات».</div>"
+                    "value": "<div style='background-color:#ddedff;color:#0a5a90;padding:16px 20px;font-size:14px;border-radius:4px;margin:0 0 18px;'>هذا العنصر لا يظهر في الصفحة الرئيسية. أضفه مرة واحدة، وسيتم استدعاؤه تلقائياً في صفحات المنتجات لعرض التبويبات. لكل منتج: اختر المنتج ثم الصق بيانات التبويبات (JSON) المصدّرة من أداة «منشئ التبويبات».<br><br>لإنشاء بيانات التبويبات (JSON) استخدم التطبيق التالي: <a href='https://volt-category.lamsaweb.com/' target='_blank' rel='noopener' style='color:#0a5a90;text-decoration:underline;font-weight:bold'>volt-category.lamsaweb.com</a></div>"
                 },
                 {
                     "id": "tabs_data",
