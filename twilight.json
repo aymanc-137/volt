@@ -5934,7 +5934,7 @@
         },
         {
             "key": "956fdb38-b727-4610-a915-c7fdc7becd83",
-            "title": "خلفية على صفحات الاقسام - حرير",
+            "title": "خلفية على صفحات الاقسام - فولت",
             "icon": "sicon-store",
             "path": "home.category-ads",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/category-ads.png",
@@ -6538,7 +6538,7 @@
         },
         {
             "key": "25e5ae98-f706-4cab-b1f0-885be7a7ad6a",
-            "title": "عروض تنتهي قريبا - حرير",
+            "title": "عروض تنتهي قريبا - فولت",
             "icon": "sicon-gift-card",
             "path": "home.flash-discount",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/flash-discoun.png",
@@ -6547,7 +6547,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "static-desc",
-                    "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnHarir/image1.png'></div>"
+                    "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/flash-discoun.png'></div>"
                 },
                 {
                     "type": "static",
