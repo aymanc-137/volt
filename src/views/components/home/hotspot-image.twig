@@ -5,6 +5,8 @@
 | component.sub_title               | ?string  | Subtitle                                                       |
 | component.show_title              | bool     | Show the title/subtitle overlay on the image (default true)    |
 | component.enable_gradient_title   | bool     | Gradient across full title                                     |
+| component.enable_gradient_word    | bool     | Gradient on a single chosen word (if full gradient is off)     |
+| component.gradient_word           | ?string  | The word/phrase in the title to color with the gradient        |
 | component.image                   | string   | Background image URL                                           |
 | component.image_alt               | ?string  | Alt text for the image                                         |
 | component.hotspots_json           | string   | JSON array of {x, y, pid, label} from the Hotspot Builder      |
@@ -17,6 +19,8 @@
 {% set sub_title = component.sub_title | default('') %}
 {% set show_title = component.show_title ?? true %}
 {% set enable_gradient_title = component.enable_gradient_title ?? false %}
+{% set enable_gradient_word = component.enable_gradient_word ?? false %}
+{% set gradient_word = component.gradient_word | default('') %}
 {% set image = component.image | default('') %}
 {% set image_alt = component.image_alt | default(title) %}
 {% set hotspots_raw = component.hotspots_json | default('[]') %}
@@ -148,7 +152,13 @@
     {# Title overlay inside the image (toggle via show_title) #}
     {% if show_title and (title or sub_title) %}
     <div class="hi-title {{ enable_gradient_title ? 'is-gradient' : '' }}">
-      {% if title %}<h2>{{ title }}</h2>{% endif %}
+      {% if title %}
+        {% if enable_gradient_word and gradient_word and not enable_gradient_title %}
+          <h2 id="{{ uid }}-title" class="font-alshohadaa">{{ title }}</h2>
+        {% else %}
+          <h2 class="font-alshohadaa">{{ title }}</h2>
+        {% endif %}
+      {% endif %}
       {% if sub_title %}<p>{{ sub_title }}</p>{% endif %}
     </div>
     {% endif %}
@@ -312,4 +322,20 @@
     }
   })();
 </script>
+
+{# Wrap the chosen word in a gradient span (same approach as category-list) #}
+{% if show_title and enable_gradient_word and gradient_word and not enable_gradient_title %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var titleEl = document.getElementById('{{ uid }}-title');
+    if (!titleEl) return;
+    var word = '{{ gradient_word }}';
+    var regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    titleEl.innerHTML = titleEl.innerHTML.replace(
+      regex,
+      '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
+    );
+  });
+</script>
+{% endif %}
 {% endif %}
