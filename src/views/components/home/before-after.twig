@@ -70,6 +70,11 @@
       flex-direction: column;
       align-items: center;
       gap: 2.5rem;
+      /* Sit above the decorative glow overlays (z-index:0). Without this the
+         glow paints over the "before" image (z-index:auto) while the "after"
+         image (z-index:2) stays on top — an inconsistent stack. */
+      position: relative;
+      z-index: 1;
     }
     @media (min-width: 768px) {
       #{{ uid }}-wrap {
