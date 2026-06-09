@@ -128,17 +128,23 @@ class VoltDrawerMenu extends HTMLElement {
     }
 
     bindEvents() {
-        this.drawer = this.querySelector('.volt-menu__drawer');
         this.trigger = this.querySelector('.volt-menu__trigger');
+        this.drawer = this.querySelector('.volt-menu__drawer');
+
+        // Portal the drawer to <body> so its position:fixed overlay is relative to
+        // the viewport. The sticky header animates `.inner` with a CSS transform,
+        // and a transformed ancestor becomes the containing block for fixed
+        // descendants — which would otherwise trap/clip the drawer inside the header.
+        document.body.appendChild(this.drawer);
 
         this.trigger.addEventListener('click', () => this.open());
-        this.querySelectorAll('[data-volt-close]').forEach((el) =>
+        this.drawer.querySelectorAll('[data-volt-close]').forEach((el) =>
             el.addEventListener('click', () => this.close())
         );
-        this.querySelectorAll('[data-volt-open]').forEach((btn) =>
+        this.drawer.querySelectorAll('[data-volt-open]').forEach((btn) =>
             btn.addEventListener('click', () => this.openPanel(btn.getAttribute('data-volt-open')))
         );
-        this.querySelectorAll('[data-volt-back]').forEach((btn) =>
+        this.drawer.querySelectorAll('[data-volt-back]').forEach((btn) =>
             btn.addEventListener('click', () => this.back())
         );
 
@@ -149,8 +155,16 @@ class VoltDrawerMenu extends HTMLElement {
         });
     }
 
+    disconnectedCallback() {
+        // The drawer was portaled to <body>; remove it so it doesn't linger if the
+        // header re-renders and this element is torn down.
+        if (this.drawer && this.drawer.parentNode) {
+            this.drawer.parentNode.removeChild(this.drawer);
+        }
+    }
+
     openPanel(id) {
-        const panel = this.querySelector(`#${id}`);
+        const panel = this.drawer.querySelector(`#${id}`);
         if (!panel) return;
         this.stack.push(panel);
         panel.style.zIndex = String(10 + this.stack.length);
