@@ -8523,6 +8523,12 @@
                     "value": "<div style='background-color:#ddedff;color:#0a5a90;padding:16px 20px;font-size:14px;border-radius:4px;margin:0 0 18px;'>هذا العنصر لا يظهر في الصفحة الرئيسية. أضفه مرة واحدة، وسيتم استدعاؤه تلقائياً في صفحات المنتجات لعرض التبويبات. لكل منتج: اختر المنتج ثم الصق بيانات التبويبات (JSON) المصدّرة من أداة «منشئ التبويبات».</div>"
                 },
                 {
+                    "type": "static",
+                    "format": "image",
+                    "id": "product-tabs-image",
+                    "value": "https://cdn.lamsaweb.com/cdnVolt/components/product-tabs.png"
+                },
+                {
                     "id": "tabs_data",
                     "type": "collection",
                     "format": "collection",
