@@ -2626,7 +2626,7 @@
                 },
                 {
                     "id": "glow_use_theme_colors",
-                    "label": "استخدام ألوان السمة للتوهج",
+                    "label": "استخدام ألوان الثيم للتوهج",
                     "description": "عند التفعيل يستخدم اللون الأساسي والثانوي للسمة",
                     "type": "boolean",
                     "format": "switch",
@@ -3137,7 +3137,7 @@
                 },
                 {
                     "id": "glow_use_theme_colors",
-                    "label": "استخدام ألوان السمة للتوهج",
+                    "label": "استخدام ألوان الثيم للتوهج",
                     "description": "عند التفعيل يستخدم اللون الأساسي والثانوي للسمة",
                     "type": "boolean",
                     "format": "switch",
@@ -3669,7 +3669,7 @@
                 },
                 {
                     "id": "glow_use_theme_colors",
-                    "label": "استخدام ألوان السمة للتوهج",
+                    "label": "استخدام ألوان الثيم للتوهج",
                     "description": "عند التفعيل يستخدم اللون الأساسي والثانوي للسمة",
                     "type": "boolean",
                     "format": "switch",
@@ -4265,7 +4265,7 @@
                 },
                 {
                     "id": "glow_use_theme_colors",
-                    "label": "استخدام ألوان السمة للتوهج",
+                    "label": "استخدام ألوان الثيم للتوهج",
                     "description": "عند التفعيل يستخدم اللون الأساسي والثانوي للسمة",
                     "type": "boolean",
                     "format": "switch",
@@ -5178,7 +5178,7 @@
                 },
                 {
                     "id": "glow_use_theme_colors",
-                    "label": "استخدام ألوان السمة للتوهج",
+                    "label": "استخدام ألوان الثيم للتوهج",
                     "description": "عند التفعيل يستخدم اللون الأساسي والثانوي للسمة",
                     "type": "boolean",
                     "format": "switch",
@@ -5874,7 +5874,7 @@
                 },
                 {
                     "id": "glow_use_theme_colors",
-                    "label": "استخدام ألوان السمة للتوهج",
+                    "label": "استخدام ألوان الثيم للتوهج",
                     "description": "عند التفعيل يستخدم اللون الأساسي والثانوي للسمة",
                     "type": "boolean",
                     "format": "switch",
@@ -5944,12 +5944,6 @@
                     "format": "description",
                     "id": "static-desc",
                     "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnHarir/image10.png'></div>"
-                },
-                {
-                    "type": "static",
-                    "format": "description",
-                    "id": "static-note",
-                    "value": "<h4 style='color: #2377CD;font-size: 14px;margin:1rem 0px;background: #E9F0FD;padding: 10px 15px;border-radius: 4px;'>لتحصل على الشكل اعلاه اتبع  <a style='text-decoration: underline;' href='https://lamsaweb.com/harir' target='_blank' > دليل العنصر </a></h4>"
                 },
                 {
                     "id": "category_ads",
@@ -6484,7 +6478,7 @@
                 },
                 {
                     "id": "glow_use_theme_colors",
-                    "label": "استخدام ألوان السمة للتوهج",
+                    "label": "استخدام ألوان الثيم للتوهج",
                     "description": "عند التفعيل يستخدم اللون الأساسي والثانوي للسمة",
                     "type": "boolean",
                     "format": "switch",
@@ -6554,12 +6548,6 @@
                     "format": "description",
                     "id": "static-desc",
                     "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnHarir/image1.png'></div>"
-                },
-                {
-                    "type": "static",
-                    "format": "description",
-                    "id": "static-note",
-                    "value": "<h4 style='color: #2377CD;font-size: 14px;margin:1rem 0px;background: #E9F0FD;padding: 10px 15px;border-radius: 4px;'>لتحصل على الشكل اعلاه اتبع  <a style='text-decoration: underline;' href='https://lamsaweb.com/harir' target='_blank' > دليل العنصر </a></h4>"
                 },
                 {
                     "type": "static",
@@ -6955,7 +6943,7 @@
                 },
                 {
                     "id": "glow_use_theme_colors",
-                    "label": "استخدام ألوان السمة للتوهج",
+                    "label": "استخدام ألوان الثيم للتوهج",
                     "description": "عند التفعيل يستخدم اللون الأساسي والثانوي للسمة",
                     "type": "boolean",
                     "format": "switch",
@@ -7020,6 +7008,12 @@
             "path": "home.location",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/location.png",
             "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "location-preview",
+                    "value": "<div style='padding-top:10px;margin-bottom:15px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/location.png'></div>"
+                },
                 {
                     "type": "static",
                     "format": "description",
@@ -7765,7 +7759,7 @@
                 },
                 {
                     "id": "glow_use_theme_colors",
-                    "label": "استخدام ألوان السمة للتوهج",
+                    "label": "استخدام ألوان الثيم للتوهج",
                     "description": "عند التفعيل يستخدم اللون الأساسي والثانوي للسمة",
                     "type": "boolean",
                     "format": "switch",
@@ -8351,7 +8345,7 @@
                 },
                 {
                     "id": "glow_use_theme_colors",
-                    "label": "استخدام ألوان السمة للتوهج",
+                    "label": "استخدام ألوان الثيم للتوهج",
                     "description": "عند التفعيل يستخدم اللون الأساسي والثانوي للسمة",
                     "type": "boolean",
                     "format": "switch",
