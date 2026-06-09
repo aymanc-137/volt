@@ -1400,6 +1400,9 @@ input:where([type='file']):focus{
 .min-h-\[34px\]{
     min-height: 34px;
 }
+.min-h-\[68px\]{
+    min-height: 68px;
+}
 .min-h-full{
     min-height: 100%;
 }
@@ -35597,6 +35600,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .lg\:min-h-\[528px\]{
         min-height: 528px;
+    }
+    .lg\:min-h-\[84px\]{
+        min-height: 84px;
     }
     .lg\:w-1\/2{
         width: 50%;

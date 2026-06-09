@@ -45,12 +45,12 @@
   {% endif %}
 
   {# Main Nav #}
-  <div id="mainnav" class="main-nav-container dynamic-bg-color !font-thin shadow-default ">
-      <div class="inner h-full bg-inherit">
-          <div class=" mx-10 h-full">
+  <div id="mainnav" class="main-nav-container   dynamic-bg-color !font-thin shadow-default ">
+      <div class="inner   bg-inherit">
+          <div class=" mx-10 header-content">
               {% set header_layout = theme.settings.get('header_layout', 'centered_menu') %}
               {% set is_drawer_layout = header_layout == 'centered_logo_drawer' %}
-              <div class="flex h-full items-stretch justify-between relative">
+              <div class="flex items-stretch justify-between relative {{ is_drawer_layout ? 'min-h-[68px] lg:min-h-[84px]' : '' }}">
                   <div class="flex items-center">
                       {% if is_drawer_layout %}
                         {# Layout 3: our custom drawer menu replaces the native mobile menu at all widths #}
