@@ -8433,7 +8433,14 @@
                     "multilanguage": true,
                     "required": false,
                     "minLength": 0,
-                    "maxLength": 300
+                    "maxLength": 300,
+                    "conditions": [
+                        {
+                            "id": "show_title",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
                 },
                 {
                     "id": "sub_title",
@@ -8446,7 +8453,14 @@
                     "multilanguage": true,
                     "required": false,
                     "minLength": 0,
-                    "maxLength": 300
+                    "maxLength": 300,
+                    "conditions": [
+                        {
+                            "id": "show_title",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
                 },
                 {
                     "id": "enable_gradient_title",
@@ -8457,7 +8471,14 @@
                     "icon": "sicon-format-fill",
                     "value": false,
                     "selected": false,
-                    "required": false
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "show_title",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
                 },
                 {
                     "type": "static",
