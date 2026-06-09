@@ -3,6 +3,7 @@
 |-----------------------------------|----------|----------------------------------------------------------------|
 | component.title                   | ?string  | Main title                                                     |
 | component.sub_title               | ?string  | Subtitle                                                       |
+| component.show_title              | bool     | Show the title/subtitle overlay on the image (default true)    |
 | component.enable_gradient_title   | bool     | Gradient across full title                                     |
 | component.image                   | string   | Background image URL                                           |
 | component.image_alt               | ?string  | Alt text for the image                                         |
@@ -14,6 +15,8 @@
 {% set uid = 'hi-' ~ (position | default(random())) %}
 {% set title = component.title | default('') %}
 {% set sub_title = component.sub_title | default('') %}
+{% set show_title = component.show_title ?? true %}
+{% set enable_gradient_title = component.enable_gradient_title ?? false %}
 {% set image = component.image | default('') %}
 {% set image_alt = component.image_alt | default(title) %}
 {% set hotspots_raw = component.hotspots_json | default('[]') %}
@@ -37,6 +40,34 @@
       width: 100%;
       height: auto;
       -webkit-user-drag: none;
+    }
+    #{{ uid }}-stage .hi-title {
+      position: absolute;
+      top: 0;
+      inset-inline: 0;
+      z-index: 3;
+      padding: clamp(1rem, 3vw, 2rem);
+      background: linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,0));
+      pointer-events: none;
+    }
+    #{{ uid }}-stage .hi-title h2 {
+      margin: 0;
+      font-size: clamp(1.1rem, 2.6vw, 2.2rem);
+      font-weight: 800;
+      line-height: 1.2;
+      color: #fff;
+    }
+    #{{ uid }}-stage .hi-title p {
+      margin: .4rem 0 0;
+      font-size: clamp(.8rem, 1.5vw, 1.05rem);
+      color: rgba(255,255,255,.92);
+    }
+    #{{ uid }}-stage .hi-title.is-gradient h2 {
+      background: linear-gradient(90deg, var(--color-primary), var(--color-scandary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
     }
     #{{ uid }}-stage .hi-dot {
       position: absolute;
@@ -113,6 +144,14 @@
 
   <div id="{{ uid }}-stage" data-hotspots='{{ hotspots_raw | e('html_attr') }}'>
     <img src="{{ image }}" alt="{{ image_alt | default('') }}" loading="lazy" />
+
+    {# Title overlay inside the image (toggle via show_title) #}
+    {% if show_title and (title or sub_title) %}
+    <div class="hi-title {{ enable_gradient_title ? 'is-gradient' : '' }}">
+      {% if title %}<h2>{{ title }}</h2>{% endif %}
+      {% if sub_title %}<p>{{ sub_title }}</p>{% endif %}
+    </div>
+    {% endif %}
 
     {# Floating product card overlay — click outside to close #}
     <div id="{{ uid }}-card" role="dialog" aria-hidden="true">
