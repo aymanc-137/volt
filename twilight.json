@@ -2150,7 +2150,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-title-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>⚙️ إعدادات العنوان</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات العنوان</strong></div>"
                 },
                 {
                     "id": "title",
@@ -2242,7 +2242,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-items-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>📋 إعدادات العناصر</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات العناصر</strong></div>"
                 },
                 {
                     "id": "links",
@@ -2347,7 +2347,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-background-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🎨 إعدادات الخلفية</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات الخلفية</strong></div>"
                 },
                 {
                     "id": "slas_hbg",
@@ -2695,7 +2695,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-title-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>⚙️ إعدادات العنوان</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات العنوان</strong></div>"
                 },
                 {
                     "id": "title",
@@ -2746,7 +2746,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-image-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🖼️ إعدادات الصورة</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات الصورة</strong></div>"
                 },
                 {
                     "type": "string",
@@ -2783,7 +2783,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-items-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>📋 إعدادات العناصر</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات العناصر</strong></div>"
                 },
                 {
                     "id": "features",
@@ -2858,7 +2858,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-background-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🎨 إعدادات الخلفية</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات الخلفية</strong></div>"
                 },
                 {
                     "id": "slas_hbg",
@@ -3206,7 +3206,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-title-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>⚙️ إعدادات العنوان</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات العنوان</strong></div>"
                 },
                 {
                     "id": "super_title",
@@ -3257,7 +3257,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-items-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>📋 إعدادات العناصر</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات العناصر</strong></div>"
                 },
                 {
                     "id": "brands",
@@ -3390,7 +3390,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-background-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🎨 إعدادات الخلفية</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات الخلفية</strong></div>"
                 },
                 {
                     "id": "slas_hbg",
@@ -3855,7 +3855,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-title-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>⚙️ إعدادات العنوان</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات العنوان</strong></div>"
                 },
                 {
                     "type": "string",
@@ -3946,7 +3946,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-image-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🖼️ إعدادات الصورة</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات الصورة</strong></div>"
                 },
                 {
                     "id": "image",
@@ -3964,7 +3964,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-items-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>📋 إعدادات المنتج</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات المنتج</strong></div>"
                 },
                 {
                     "id": "product",
@@ -3986,7 +3986,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-background-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🎨 إعدادات الخلفية</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات الخلفية</strong></div>"
                 },
                 {
                     "id": "slas_hbg",
@@ -4695,7 +4695,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-title-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>⚙️ إعدادات العنوان</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات العنوان</strong></div>"
                 },
                 {
                     "id": "category_url",
@@ -4832,7 +4832,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-image-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🖼️ إعدادات الصورة والفيديو</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات الصورة والفيديو</strong></div>"
                 },
                 {
                     "id": "background",
@@ -4877,7 +4877,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-items-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>📋 إعدادات المنتجات</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات المنتجات</strong></div>"
                 },
                 {
                     "id": "products",
@@ -4899,7 +4899,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-background-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🎨 إعدادات الخلفية</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات الخلفية</strong></div>"
                 },
                 {
                     "id": "slas_hbg",
@@ -5349,7 +5349,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-title-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>⚙️ إعدادات العنوان</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات العنوان</strong></div>"
                 },
                 {
                     "type": "string",
@@ -5366,7 +5366,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-aside-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🖼️ إعدادات الصورة الجانبية</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات الصورة الجانبية</strong></div>"
                 },
                 {
                     "id": "aside_image",
@@ -5490,7 +5490,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-tabs-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>📋 إعدادات التبويبات</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات التبويبات</strong></div>"
                 },
                 {
                     "id": "tabs",
@@ -5595,7 +5595,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-background-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🎨 إعدادات الخلفية</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات الخلفية</strong></div>"
                 },
                 {
                     "id": "slas_hbg",
@@ -6022,7 +6022,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-title-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>⚙️ إعدادات العنوان</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات العنوان</strong></div>"
                 },
                 {
                     "id": "title",
@@ -6123,7 +6123,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-items-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>📋 إعدادات الأقسام</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات الأقسام</strong></div>"
                 },
                 {
                     "id": "categories",
@@ -6205,7 +6205,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-background-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🎨 إعدادات الخلفية</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات الخلفية</strong></div>"
                 },
                 {
                     "id": "slas_hbg",
@@ -6565,7 +6565,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-title-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>⚙️ إعدادات العنوان</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات العنوان</strong></div>"
                 },
                 {
                     "id": "title",
@@ -6642,7 +6642,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-items-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>📋 إعدادات المنتجات</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات المنتجات</strong></div>"
                 },
                 {
                     "id": "show_quantity",
@@ -6676,7 +6676,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-background-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🎨 إعدادات الخلفية</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات الخلفية</strong></div>"
                 },
                 {
                     "id": "slas_hbg",
@@ -7200,8 +7200,14 @@
                 {
                     "type": "static",
                     "format": "description",
+                    "id": "product-showcase-preview",
+                    "value": "<div style='padding-top:10px;margin-bottom:15px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/product-showcase.png'></div>"
+                },
+                {
+                    "type": "static",
+                    "format": "description",
                     "id": "group-title-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>⚙️ إعدادات العنوان</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات العنوان</strong></div>"
                 },
                 {
                     "id": "title",
@@ -7293,7 +7299,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-slider-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🎞️ إعدادات السلايدر</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات السلايدر</strong></div>"
                 },
                 {
                     "type": "string",
@@ -7480,7 +7486,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-background-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🎨 إعدادات الخلفية</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات الخلفية</strong></div>"
                 },
                 {
                     "id": "slas_hbg",
@@ -7834,7 +7840,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-title-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>⚙️ إعدادات العنوان</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات العنوان</strong></div>"
                 },
                 {
                     "id": "title",
@@ -7926,7 +7932,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-images-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🖼️ صور المقارنة</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>صور المقارنة</strong></div>"
                 },
                 {
                     "id": "before_image",
@@ -7978,7 +7984,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-cta-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>📝 النص والرابط</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>النص والرابط</strong></div>"
                 },
                 {
                     "id": "product_image",
@@ -8066,7 +8072,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-background-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🎨 إعدادات الخلفية</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات الخلفية</strong></div>"
                 },
                 {
                     "id": "slas_hbg",
@@ -8426,7 +8432,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-title-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>⚙️ إعدادات العنوان</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات العنوان</strong></div>"
                 },
                 {
                     "id": "show_title",
@@ -8555,7 +8561,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "group-image-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>🖼️ الصورة والنقاط</strong></div>"
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>الصورة والنقاط</strong></div>"
                 },
                 {
                     "id": "image",
