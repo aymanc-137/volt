@@ -8519,14 +8519,14 @@
                 {
                     "type": "static",
                     "format": "description",
-                    "id": "product-tabs-note",
-                    "value": "<div style='background-color:#ddedff;color:#0a5a90;padding:16px 20px;font-size:14px;border-radius:4px;margin:0 0 18px;'>هذا العنصر لا يظهر في الصفحة الرئيسية. أضفه مرة واحدة، وسيتم استدعاؤه تلقائياً في صفحات المنتجات لعرض التبويبات. لكل منتج: اختر المنتج ثم الصق بيانات التبويبات (JSON) المصدّرة من أداة «منشئ التبويبات».</div>"
+                    "id": "product-tabs-image",
+                    "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/product-tabs.png'></div>"
                 },
                 {
                     "type": "static",
                     "format": "description",
-                    "id": "product-tabs-image",
-                    "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/product-tabs.png'></div>"
+                    "id": "product-tabs-note",
+                    "value": "<div style='background-color:#ddedff;color:#0a5a90;padding:16px 20px;font-size:14px;border-radius:4px;margin:0 0 18px;'>هذا العنصر لا يظهر في الصفحة الرئيسية. أضفه مرة واحدة، وسيتم استدعاؤه تلقائياً في صفحات المنتجات لعرض التبويبات. لكل منتج: اختر المنتج ثم الصق بيانات التبويبات (JSON) المصدّرة من أداة «منشئ التبويبات».</div>"
                 },
                 {
                     "id": "tabs_data",
