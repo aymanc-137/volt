@@ -5266,7 +5266,14 @@
                     "multichoice": true,
                     "searchable": true,
                     "required": true,
-                    "value": []
+                    "value": [],
+                    "conditions": [
+                        {
+                            "id": "use_custom_json",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
                 },
                 {
                     "id": "hide_brand_labels",
@@ -5322,7 +5329,14 @@
                     "multichoice": false,
                     "searchable": true,
                     "required": false,
-                    "value": []
+                    "value": [],
+                    "conditions": [
+                        {
+                            "id": "show_in_category_page",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
                 },
                 {
                     "id": "custom_json_data",
@@ -5334,7 +5348,14 @@
                     "placeholder": "body { color: green; }",
                     "icon": "sicon-browser-code",
                     "value": null,
-                    "required": false
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "use_custom_json",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
                 }
             ]
         },
