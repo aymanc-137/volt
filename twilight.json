@@ -4359,6 +4359,12 @@
                 {
                     "type": "static",
                     "format": "description",
+                    "id": "video-banner-preview",
+                    "value": "<div style='padding-top:10px;margin-bottom:15px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/video-banner.png'></div>"
+                },
+                {
+                    "type": "static",
+                    "format": "description",
                     "id": "video-banner-desc",
                     "value": "<div><strong>مكون فيديو البنر</strong><br/>اعرض مقطع فيديو بخلفية كاملة مع أزرار دعوة لاتخاذ إجراء وإحصائيات مميزة.</div>"
                 },
