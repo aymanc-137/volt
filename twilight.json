@@ -1744,6 +1744,12 @@
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/enhanced-image-carousel.png",
             "fields": [
                 {
+                    "type": "static",
+                    "format": "description",
+                    "id": "enhanced-image-carousel-preview",
+                    "value": "<div style='padding-top:10px;margin-bottom:15px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/enhanced-image-carousel.png'></div>"
+                },
+                {
                     "id": "animation_type",
                     "type": "items",
                     "format": "dropdown-list",
@@ -2144,7 +2150,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "static-desc",
-                    "value": "<div  ><h6  >معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnEinaya/category-list.png'></div>"
+                    "value": "<div style='padding-top:10px;margin-bottom:15px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/category-list.png'></div>"
                 },
                 {
                     "type": "static",
