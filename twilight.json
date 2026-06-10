@@ -5253,10 +5253,20 @@
                     "value": "<div style='padding-top:10px;margin-bottom:15px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/car-search-tree.png'></div>"
                 },
                 {
+                    "id": "use_custom_json",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "استخدام بيانات مخصصة بدلاً من تصنيفات المتجر",
+                    "description": "عند التفعيل سيتم استخدام JSON المُدخل من تطبيق مدير التصنيفات بدلاً من تصنيفات المتجر.",
+                    "icon": "sicon-settings",
+                    "value": false,
+                    "required": false
+                },
+                {
                     "id": "category",
                     "type": "items",
                     "format": "dropdown-list",
-                    "label": "category",
+                    "label": "التصنيفات الأساسية",
                     "description": null,
                     "labelHTML": null,
                     "icon": "sicon-keyboard_arrow_down",
@@ -5292,16 +5302,6 @@
                     "label": "عرض القوائم المنسدلة للاختيار",
                     "description": "استبدال شبكة البطاقات بقوائم منسدلة للماركة ثم الموديل ثم السنة.",
                     "icon": "sicon-list",
-                    "value": false,
-                    "required": false
-                },
-                {
-                    "id": "use_custom_json",
-                    "type": "boolean",
-                    "format": "switch",
-                    "label": "استخدام بيانات مخصصة بدلاً من تصنيفات المتجر",
-                    "description": "عند التفعيل سيتم استخدام JSON المُدخل من تطبيق مدير التصنيفات بدلاً من تصنيفات المتجر.",
-                    "icon": "sicon-settings",
                     "value": false,
                     "required": false
                 },
