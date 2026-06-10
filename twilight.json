@@ -5402,13 +5402,13 @@
             "title": "عرض تفصيلي لمنتج - فولت",
             "icon": "sicon-store",
             "path": "home.tap-preview",
-            "image": "https://cdn.lamsaweb.com/cdnVolt/components/product-tap-page.png",
+            "image": "https://cdn.lamsaweb.com/cdnVolt/components/tap-preview.png",
             "fields": [
                 {
                     "type": "static",
                     "format": "description",
                     "id": "tap-preview-preview",
-                    "value": "<div style='padding-top:10px;margin-bottom:15px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/product-tap-page.png'></div>"
+                    "value": "<div style='padding-top:10px;margin-bottom:15px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/tap-preview.png'></div>"
                 },
                 {
                     "type": "static",
@@ -8694,13 +8694,13 @@
             "title": "تبويبات المنتجات",
             "icon": "sicon-list",
             "path": "home.product-tabs",
-            "image": "https://cdn.lamsaweb.com/cdnVolt/components/product-tabs.png",
+            "image": "https://cdn.lamsaweb.com/cdnVolt/components/product-tap-page.png",
             "fields": [
                 {
                     "type": "static",
                     "format": "description",
                     "id": "product-tabs-image",
-                    "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/product-tabs.png'></div>"
+                    "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/product-tap-page.png'></div>"
                 },
                 {
                     "type": "static",
