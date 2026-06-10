@@ -5247,6 +5247,12 @@
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/car-search-tree.png",
             "fields": [
                 {
+                    "type": "static",
+                    "format": "description",
+                    "id": "car-search-tree-preview",
+                    "value": "<div style='padding-top:10px;margin-bottom:15px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/car-search-tree.png'></div>"
+                },
+                {
                     "id": "category",
                     "type": "items",
                     "format": "dropdown-list",
@@ -5339,6 +5345,12 @@
             "path": "home.tap-preview",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/tap-preview.png",
             "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "tap-preview-preview",
+                    "value": "<div style='padding-top:10px;margin-bottom:15px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/tap-preview.png'></div>"
+                },
                 {
                     "type": "static",
                     "format": "description",
@@ -5943,7 +5955,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "static-desc",
-                    "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnHarir/image10.png'></div>"
+                    "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/category-ads.png'></div>"
                 },
                 {
                     "id": "category_ads",
