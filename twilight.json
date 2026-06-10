@@ -5267,7 +5267,7 @@
                     "type": "items",
                     "format": "dropdown-list",
                     "label": "التصنيفات الأساسية",
-                    "description": null,
+                    "description": "سيتم عرض باقي التصنيفات الفرعية بناء على التصنيفات الأساسية المختارة",
                     "labelHTML": null,
                     "icon": "sicon-keyboard_arrow_down",
                     "selected": [],
