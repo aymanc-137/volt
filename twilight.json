@@ -3845,16 +3845,7 @@
             "path": "home.flash-offer",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/flash-discoun.png",
             "fields": [
-                {
-                    "id": "show_in_category_page",
-                    "type": "boolean",
-                    "format": "switch",
-                    "label": "عرض في صفحة التصنيف",
-                    "description": "عند التفعيل سيتم عرض المكون في صفحة التصنيف المحدد.",
-                    "icon": "sicon-store",
-                    "value": false,
-                    "required": false
-                },
+
                 {
                     "type": "static",
                     "format": "description",
@@ -3880,6 +3871,16 @@
                             "value": true
                         }
                     ]
+                },
+                {
+                    "id": "show_in_category_page",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "عرض في صفحة التصنيف",
+                    "description": "عند التفعيل سيتم عرض المكون في صفحة التصنيف المحدد.",
+                    "icon": "sicon-store",
+                    "value": false,
+                    "required": false
                 },
                 {
                     "type": "static",
