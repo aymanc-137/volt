@@ -3846,10 +3846,40 @@
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/flash-discoun.png",
             "fields": [
                 {
+                    "id": "show_in_category_page",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "عرض في صفحة التصنيف",
+                    "description": "عند التفعيل سيتم عرض المكون في صفحة التصنيف المحدد.",
+                    "icon": "sicon-store",
+                    "value": false,
+                    "required": false
+                },
+                {
                     "type": "static",
                     "format": "description",
                     "id": "flash-offer-preview",
-                    "value": "<div style='padding-top:10px;margin-bottom:15px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/flash-discoun.png'></div>"
+                    "value": "<div style='padding-top:10px;margin-bottom:15px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/flash-discoun.png'></div>",
+                    "conditions": [
+                        {
+                            "id": "show_in_category_page",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "flash-offer-preview-category",
+                    "value": "<div style='padding-top:10px;margin-bottom:15px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر (صفحة التصنيف)</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/flash-discoun.png'></div>",
+                    "conditions": [
+                        {
+                            "id": "show_in_category_page",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
                 },
                 {
                     "type": "static",
@@ -4326,16 +4356,6 @@
                             "value": "none"
                         }
                     ]
-                },
-                {
-                    "id": "show_in_category_page",
-                    "type": "boolean",
-                    "format": "switch",
-                    "label": "عرض في صفحة التصنيف",
-                    "description": "عند التفعيل سيتم عرض المكون في صفحة التصنيف المحدد.",
-                    "icon": "sicon-store",
-                    "value": false,
-                    "required": false
                 },
                 {
                     "id": "target_category",
