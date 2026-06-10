@@ -2194,7 +2194,7 @@
                     "labelHTML": null,
                     "placeholder": "Placeholder text ..",
                     "icon": "sicon-format-text-alt",
-                    "value": "أقسامنا الطبية... رعاية متخصصة تحت سقف واحد",
+                    "value": "كل ما تحتاجه لسيارتك في مكان واحد",
                     "multilanguage": true,
                     "required": false,
                     "minLength": 3,
@@ -2209,7 +2209,7 @@
                     "labelHTML": null,
                     "placeholder": "Placeholder text ..",
                     "icon": "sicon-format-text-alt",
-                    "value": "نقدم خدمات شاملة تغطي مختلف التخصصات الطبية لتلبية احتياجاتكم الصحية بكل دقة وعناية",
+                    "value": "أقسامنا مصممة لتناسب كل أنواع السيارات الرياضية",
                     "multilanguage": true,
                     "required": false,
                     "minLength": 3,
@@ -2235,8 +2235,8 @@
                     "description": "عند التفعيل، يمكنك اختيار كلمة معينة من العنوان لتطبيق تدرج لوني عليها",
                     "labelHTML": null,
                     "icon": "sicon-magic-wand",
-                    "value": false,
-                    "selected": false,
+                    "value": true,
+                    "selected": true,
                     "required": false,
                     "conditions": [
                         {
@@ -2254,7 +2254,7 @@
                     "description": "أدخل الكلمة أو العبارة التي تريد تطبيق التدرج اللوني عليها",
                     "icon": "sicon-format-text-alt",
                     "placeholder": "مثال: متخصصة",
-                    "value": null,
+                    "value": "لسيارتك",
                     "required": false,
                     "minLength": 1,
                     "maxLength": 100,
@@ -2372,7 +2372,29 @@
                             "required": false
                         }
                     ],
-                    "value": [],
+                    "value": [
+                        {
+                            "links.image": "https://cdn.salla.sa/form-builder/qW50idkdyFt903YqWXn7aNl2oOO3VWwpfUwSD04n.png",
+                            "links.url": "https://salla.design/dev-pbdsq67yexku5kq3/-/c69936655",
+                            "links.url__type": "custom",
+                            "links.text": "جنوط",
+                            "links.color": "#fb3c3c"
+                        },
+                        {
+                            "links.image": "https://cdn.salla.sa/form-builder/r44v7gOkItIfUYI5uo8FT2E6EXk8VZnCv5e1kpDg.png",
+                            "links.url": "https://salla.design/dev-pbdsq67yexku5kq3/-/c243587340",
+                            "links.url__type": "custom",
+                            "links.text": "مساعدات رياضية",
+                            "links.color": "#7875ff"
+                        },
+                        {
+                            "links.image": "https://cdn.salla.sa/form-builder/kquFhL2CD1ZTDf067rq8kRtQ1RV3CuDGS8x7xYNJ.png",
+                            "links.url": "https://salla.design/dev-pbdsq67yexku5kq3/-/c1967275527",
+                            "links.url__type": "custom",
+                            "links.text": "عوادم",
+                            "links.color": "#57e6ff"
+                        }
+                    ],
                     "minLength": 1,
                     "maxLength": 15
                 },
