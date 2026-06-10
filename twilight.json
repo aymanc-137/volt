@@ -1758,9 +1758,9 @@
                     "icon": "sicon-animation",
                     "selected": [
                         {
-                            "label": "انزلاق (Slide)",
-                            "value": "slide",
-                            "key": "anim-slide"
+                            "label": "تلاشي (Fade)",
+                            "value": "fade",
+                            "key": "anim-fade"
                         }
                     ],
                     "options": [
@@ -1786,7 +1786,7 @@
                     "label": "تشغيل تلقائي",
                     "description": "تفعيل الانتقال التلقائي بين الشرائح",
                     "icon": "sicon-toggle-off",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
@@ -1796,7 +1796,7 @@
                     "label": "مدة التأخير (بالثواني)",
                     "description": "المدة الزمنية بين كل شريحة والأخرى",
                     "icon": "sicon-clock",
-                    "value": 5,
+                    "value": 15,
                     "required": false,
                     "minimum": 2,
                     "maximum": 15,
@@ -1868,7 +1868,34 @@
                     "required": true,
                     "minLength": 1,
                     "maxLength": 8,
-                    "value": [],
+                    "value": [
+                        {
+                            "slides.media_type": ["image"],
+                            "slides.image": "https://cdn.salla.sa/form-builder/9pH3YvuH7yUFP34C3O0jzsAnb81pcsjDDLMwb3ne.webp",
+                            "slides.image_alt": "سيارة رياضية",
+                            "slides.title_part1": "اطلق",
+                            "slides.title_gradient": "الوحش",
+                            "slides.title_part3": "ودع الأدرينالين يتدفق في عروقك!",
+                            "slides.description": "اكتشف مجموعة مختارة من المستلزمات الرياضية المصممة لعشاق السرعة — جودة، أداء، وتصميم يرفع الأدرينالين في كل تفصيل.",
+                            "slides.button_label": "تسوق الأن",
+                            "slides.button_url": "https://salla.design/dev-pbdsq67yexku5kq3/-/c123897364",
+                            "slides.button_url__type": "custom",
+                            "slides.content_alignment": ["start"],
+                            "slides.layout": ["split"],
+                            "slides.arrow_color": "#ba261c"
+                        },
+                        {
+                            "slides.media_type": ["video"],
+                            "slides.video_url": "https://cdn.lamsaweb.com/cdnVolt/background_video_car.mp4",
+                            "slides.image_alt": "عطر سيارة",
+                            "slides.title_part1": "جميع مستلزمات",
+                            "slides.title_gradient": "السيارات الرياضية",
+                            "slides.title_part3": "و مركبات الأداء العالي",
+                            "slides.description": "كل ما تحتاجه لتجعل سيارتك جاهزة للحلبة",
+                            "slides.content_alignment": ["start"],
+                            "slides.layout": ["overlay"]
+                        }
+                    ],
                     "fields": [
                         {
                             "id": "slides.media_type",
