@@ -1065,6 +1065,9 @@ input:where([type='file']):focus{
 .m-3{
     margin: 0.75rem;
 }
+.m-4{
+    margin: 1rem;
+}
 .m-8{
     margin: 2rem;
 }
@@ -35183,6 +35186,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 @media (min-width: 768px){
     .md\:sticky{
         position: sticky;
+    }
+    .md\:m-6{
+        margin: 1.5rem;
     }
     .md\:-mb-2{
         margin-bottom: -0.5rem;

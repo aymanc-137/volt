@@ -3205,6 +3205,12 @@
                 {
                     "type": "static",
                     "format": "description",
+                    "id": "brands-volt-preview",
+                    "value": "<div style='padding-top:10px;margin-bottom:15px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/brands-volt.png'></div>"
+                },
+                {
+                    "type": "static",
+                    "format": "description",
                     "id": "group-title-settings",
                     "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات العنوان</strong></div>"
                 },
@@ -3734,6 +3740,12 @@
             "path": "home.faq",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/faq.png",
             "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "faq-preview",
+                    "value": "<div style='padding-top:10px;margin-bottom:15px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/faq.png'></div>"
+                },
                 {
                     "type": "static",
                     "format": "description",
