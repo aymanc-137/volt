@@ -4698,22 +4698,6 @@
                     "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات العنوان</strong></div>"
                 },
                 {
-                    "id": "category_url",
-                    "format": "dropdown-list",
-                    "type": "items",
-                    "label": "رابط القسم",
-                    "description": "اختر القسم الخاص بالصورة",
-                    "labelHTML": null,
-                    "icon": "sicon-keyboard_arrow_down",
-                    "selected": [],
-                    "options": [],
-                    "source": "categories",
-                    "multichoice": false,
-                    "searchable": true,
-                    "required": true,
-                    "value": []
-                },
-                {
                     "id": "title_inside_image",
                     "type": "boolean",
                     "format": "switch",
@@ -4878,6 +4862,22 @@
                     "format": "description",
                     "id": "group-items-settings",
                     "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات المنتجات</strong></div>"
+                },
+                {
+                    "id": "category_url",
+                    "format": "dropdown-list",
+                    "type": "items",
+                    "label": "رابط القسم",
+                    "description": "اختر القسم الخاص بالصورة",
+                    "labelHTML": null,
+                    "icon": "sicon-keyboard_arrow_down",
+                    "selected": [],
+                    "options": [],
+                    "source": "categories",
+                    "multichoice": false,
+                    "searchable": true,
+                    "required": true,
+                    "value": []
                 },
                 {
                     "id": "products",
