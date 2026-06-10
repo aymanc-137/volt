@@ -1065,9 +1065,6 @@ input:where([type='file']):focus{
 .m-3{
     margin: 0.75rem;
 }
-.m-4{
-    margin: 1rem;
-}
 .m-8{
     margin: 2rem;
 }
@@ -3961,6 +3958,11 @@ textarea.s-input{
         padding-left: 0.625rem;
         padding-right: 0.625rem;
     }
+}
+@media (min-width: 1280px) {
+  .s-block--why-us .s-advertisement-content {
+    max-width: 1450px;
+  }
 }
 .s-advertisement-content-main{
     flex: 1 1 0%;
@@ -31069,6 +31071,11 @@ model-viewer.product-tabs[style*=width]:before {
         padding-right: 0.625rem;
     }
 }
+@media (min-width: 1280px) {
+  .s-block--why-us .s-comments-product .s-comments-container {
+    max-width: 1450px;
+  }
+}
 .share-btns-list{
     position: absolute;
     top: 3rem;
@@ -33329,7 +33336,12 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
 }
 @media (min-width: 1024px) {
   .s-block--why-us .why-us-grid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  }
+}
+@media (min-width: 1280px) {
+  .s-block--why-us .container {
+    max-width: 1450px;
   }
 }
 .s-block--why-us .why-us-media {
@@ -35186,9 +35198,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 @media (min-width: 768px){
     .md\:sticky{
         position: sticky;
-    }
-    .md\:m-6{
-        margin: 1.5rem;
     }
     .md\:-mb-2{
         margin-bottom: -0.5rem;

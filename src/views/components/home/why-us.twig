@@ -33,7 +33,7 @@
 {% set glow_c1 = glow_use_theme ? 'var(--color-primary)'  : (component.glow_color_1 ?? 'var(--color-primary)') %}
 {% set glow_c2 = glow_use_theme ? 'var(--color-scandary)' : (component.glow_color_2 ?? 'var(--color-scandary)') %}
 
-<section class="z-10 overflow-hidden rounded-custom border border-primary m-4 md:m-6 {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} s-block--why-us relative {{ slashbg ? 'slash-bg-' ~ position ~ ' dynamic-bg-color' : ''}}">
+<section class="z-10 overflow-hidden {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} s-block--why-us relative {{ slashbg ? 'slash-bg-' ~ position ~ ' dynamic-bg-color' : ''}}">
   {% if glow_type == 'circles' %}
     <div class="absolute top-[15%] left-[25%] w-64 h-64 rounded-full blur-3xl opacity-60 pointer-events-none" style="z-index:-1; background-color:{{ glow_c1 }};"></div>
     <div class="absolute bottom-[15%] right-[25%] w-56 h-56 rounded-full blur-3xl opacity-60 pointer-events-none" style="z-index:-1; background-color:{{ glow_c2 }};"></div>
@@ -89,7 +89,7 @@
   <div class="container">
     <div class="why-us-grid">
       <!-- Media/Image Section -->
-      <div class="why-us-media">
+      <div class="why-us-media rounded-custom border border-primary">
         <img
           src="{{ component.image }}"
           alt="{{ component.image_alt | default('Why us image') }}"

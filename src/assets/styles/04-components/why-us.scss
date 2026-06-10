@@ -10,7 +10,14 @@
     align-items: center;
 
     @media (min-width: 1024px) {
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    }
+  }
+
+  // Widen the container for this section only (default caps at 1280px)
+  .container {
+    @media (min-width: 1280px) {
+      max-width: 1450px;
     }
   }
 
