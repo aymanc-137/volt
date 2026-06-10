@@ -4858,17 +4858,11 @@
                     "maxLength": 400
                 },
                 {
-                    "type": "static",
-                    "format": "description",
-                    "id": "group-items-settings",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات المنتجات</strong></div>"
-                },
-                {
                     "id": "category_url",
                     "format": "dropdown-list",
                     "type": "items",
                     "label": "رابط القسم",
-                    "description": "اختر القسم الخاص بالصورة",
+                    "description": "اختر القسم الذي تفتحه الصورة أو الفيديو عند الضغط",
                     "labelHTML": null,
                     "icon": "sicon-keyboard_arrow_down",
                     "selected": [],
@@ -4878,6 +4872,12 @@
                     "searchable": true,
                     "required": true,
                     "value": []
+                },
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "group-items-settings",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات المنتجات</strong></div>"
                 },
                 {
                     "id": "products",
