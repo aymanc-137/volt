@@ -8,7 +8,6 @@
 | tabs[].video_url               | ?string  | Optional background video URL for the tab (MP4/WebM)        |
 | tabs[].image                   | ?string  | Used as poster/fallback when a video is provided            |
 #}
-
 {% set accordion_id = 'tap-preview-' ~ (position|default(0)) %}
 {% set tabs = component.tabs is iterable ? component.tabs : [] %}
 {% set accordion_label = component.accordion_label|default('عناصر العروض') %}

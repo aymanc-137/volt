@@ -1,55 +1,66 @@
 {
-    "ar": {
-      "title": "العنوان",
-      "sub_title": "العنوان الجانبي"
-    },
-    "key": "01dbcfa2-5e33-40f6-ac2f-89979591f8af",
-    "marquee": true,
-    "slas_hbg": true,
-    "categories": [
-      {
-        "ar": {
-          "title": "قطع سيارات السرعة"
-        },
-        "link": "https://salla.design/dev-pbdsq67yexku5kq3/-/c1967275527",
-        "image": "https://cdn.files.salla.network/homepage/1573552885/12896eba-0f7b-423c-b05e-9e848cf1a544.webp",
-        "title": "قطع سيارات السرعة"
+  "ar": {
+    "aside_title": "GARRETT",
+    "aside_subtitle": "تيربو",
+    "accordion_label": "عناصر العروض",
+    "aside_image_alt": "GARRETT Turbo",
+    "aside_button_label": "اكتشف المزيد"
+  },
+  "key": "76b7b54c-e8c2-4618-bafd-e7cf431c6d94",
+  "tabs": [
+    {
+      "ar": {
+        "title": "القوة تبدأ من أول ضغطة بنزين!",
+        "description": "حسّن استجابة محركك مع تيربو GARRETT المصمّم لعشّاق الأداء. مواد عالية الجودة، تحمّل حراري ممتاز، وتسارع فوري من أول لمسة دواسة."
       },
-      {
-        "ar": {
-          "title": "كفرات"
-        },
-        "link": "https://salla.design/dev-pbdsq67yexku5kq3/-/p1958852814",
-        "image": "https://cdn.files.salla.network/homepage/1573552885/e40cf31c-113a-4572-82f1-cee5f237368d.webp",
-        "title": "كفرات"
-      },
-      {
-        "ar": {
-          "title": "ختر لون سيارتك"
-        },
-        "link": "https://salla.design/dev-pbdsq67yexku5kq3/-/p1958852814",
-        "image": "https://cdn.files.salla.network/homepage/1573552885/10589b0a-3e53-4b52-b8fa-304f80ba6a22.webp",
-        "title": "ختر لون سيارتك"
-      }
-    ],
-    "enable_glow": false,
-    "marqueetext": "سرعة /// أداء /// تحكم",
-    "enable_border": true,
-    "slas_hbg_size": "80",
-    "slas_hbg_color": "#000000",
-    "target_category": {
-      "value": [
-        1967275527
-      ],
-      "source": "categories"
+      "image": "https://cdn.salla.sa/form-builder/bsOfBj0S0j0I1DDzGigkqeiWQA1NX6q0m0RuINkU.jpg",
+      "video_url": "https://cdn.lamsaweb.com/cdnVolt/carlight.mp4",
+      "gradient_word": "ضغطة",
+      "enable_gradient_word": true,
+      "title": "القوة تبدأ من أول ضغطة بنزين!",
+      "description": "حسّن استجابة محركك مع تيربو GARRETT المصمّم لعشّاق الأداء. مواد عالية الجودة، تحمّل حراري ممتاز، وتسارع فوري من أول لمسة دواسة."
     },
-    "marquee_is_moving": true,
-    "marquee_text_size": "15",
-    "enable_gradient_word": false,
-    "enable_gradient_title": false,
-    "marquee_text_position": "top",
-    "show_in_category_page": true,
-    "slas_hbg_use_primary_color": false,
-    "title": "العنوان",
-    "sub_title": "العنوان الجانبي"
-  }
+    {
+      "ar": {
+        "title": "ضمّ ليمنحك تفوّق السباق على الطريق.",
+        "description": "شاحن توربيني مطوّر لتدفق هواء أعلى وضغط ثابت عند جميع الدورات، يمنحك عزمًا أقوى واستجابة أسرع مع استهلاك وقود مثالي."
+      },
+      "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop",
+      "video_url": "",
+      "gradient_word": "السباق",
+      "enable_gradient_word": true,
+      "title": "ضمّ ليمنحك تفوّق السباق على الطريق.",
+      "description": "شاحن توربيني مطوّر لتدفق هواء أعلى وضغط ثابت عند جميع الدورات، يمنحك عزمًا أقوى واستجابة أسرع مع استهلاك وقود مثالي."
+    },
+    {
+      "ar": {
+        "title": "أداء عالٍ يبدأ من أول ضغطة بنزين.",
+        "description": "تجربة قيادة ممتعة لسيارتك الرياضية: قطع مضمونة، دقة تصنيع، وضمان أداء ثابت بتصميم انسيابي يقلّل الحرارة ويحافظ على الكفاءة."
+      },
+      "image": "https://cdn.salla.sa/form-builder/3YbXmHcpxeF8Rmv7WWTAK8W3uAhh6FSVJ8GQAuB4.jpg",
+      "video_url": "",
+      "gradient_word": "عالٍ",
+      "enable_gradient_word": true,
+      "title": "أداء عالٍ يبدأ من أول ضغطة بنزين.",
+      "description": "تجربة قيادة ممتعة لسيارتك الرياضية: قطع مضمونة، دقة تصنيع، وضمان أداء ثابت بتصميم انسيابي يقلّل الحرارة ويحافظ على الكفاءة."
+    }
+  ],
+  "marquee": true,
+  "slas_hbg": true,
+  "aside_image": "https://cdn.files.salla.network/homepage/1573552885/bc93f710-82c6-4fe2-92d9-419d6d0aa1b9.webp",
+  "enable_glow": true,
+  "marqueetext": "سرعة /// أداء /// تحكم",
+  "enable_border": true,
+  "slas_hbg_size": "20",
+  "slas_hbg_color": "#000000",
+  "aside_button_url": "https://salla.design/dev-pbdsq67yexku5kq3/-/p1958852814",
+  "marquee_is_moving": true,
+  "marquee_text_size": "9",
+  "marquee_text_position": "both",
+  "slas_hbg_use_primary_color": false,
+  "aside_title": "GARRETT",
+  "aside_subtitle": "تيربو",
+  "accordion_label": "عناصر العروض",
+  "aside_image_alt": "GARRETT Turbo",
+  "aside_button_label": "اكتشف المزيد"
+}
