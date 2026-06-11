@@ -25,6 +25,7 @@
 | component.glow_color_2             | string   | Custom second glow color (hex)                                               |
 | position                           | int      | Component position in the page                                               |
 #}
+
 {% set products = component.products | default([]) %}
 {% set title = component.title | default('') %}
 {% set sub_title = component.sub_title | default('') %}

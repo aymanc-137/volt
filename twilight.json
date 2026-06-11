@@ -6131,7 +6131,7 @@
                     "description": null,
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
@@ -6268,7 +6268,26 @@
                             "maxLength": 10
                         }
                     ],
-                    "value": [],
+                    "value": [
+                        {
+                            "categories.image": "https://cdn.files.salla.network/homepage/1573552885/12896eba-0f7b-423c-b05e-9e848cf1a544.webp",
+                            "categories.title": "قطع سيارات السرعة",
+                            "categories.link": "https://salla.design/dev-pbdsq67yexku5kq3/-/c1967275527",
+                            "categories.link__type": "custom"
+                        },
+                        {
+                            "categories.image": "https://cdn.files.salla.network/homepage/1573552885/e40cf31c-113a-4572-82f1-cee5f237368d.webp",
+                            "categories.title": "كفرات",
+                            "categories.link": "https://salla.design/dev-pbdsq67yexku5kq3/-/p1958852814",
+                            "categories.link__type": "custom"
+                        },
+                        {
+                            "categories.image": "https://cdn.files.salla.network/homepage/1573552885/10589b0a-3e53-4b52-b8fa-304f80ba6a22.webp",
+                            "categories.title": "ختر لون سيارتك",
+                            "categories.link": "https://salla.design/dev-pbdsq67yexku5kq3/-/p1958852814",
+                            "categories.link__type": "custom"
+                        }
+                    ],
                     "minLength": 1,
                     "maxLength": 5
                 },
@@ -6285,7 +6304,7 @@
                     "label": "تفعيل خلفية مموجة",
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
@@ -6337,7 +6356,7 @@
                     "label": "حجم الخطوط",
                     "type": "string",
                     "format": "text",
-                    "value": "20",
+                    "value": "80",
                     "required": false,
                     "conditions": [
                         {
@@ -6393,7 +6412,7 @@
                     "label": "نصوص متحركة",
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
@@ -6422,7 +6441,7 @@
                     "label": "حجم نص متحرك",
                     "type": "string",
                     "format": "text",
-                    "value": "9",
+                    "value": "15",
                     "required": false,
                     "conditions": [
                         {
@@ -6456,9 +6475,9 @@
                     "label": "موقع النص",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": [],
+                    "value": ["top"],
                     "required": false,
-                    "selected": [],
+                    "selected": [{"label": "أعلى فقط", "value": "top", "key": "larage-category-image-top"}],
                     "source": "Manual",
                     "options": [
                         {
@@ -6667,8 +6686,8 @@
                     "description": "عند التفعيل، يمكنك اختيار كلمة معينة من العنوان لتطبيق تدرج لوني عليها",
                     "labelHTML": null,
                     "icon": "sicon-magic-wand",
-                    "value": false,
-                    "selected": false,
+                    "value": true,
+                    "selected": true,
                     "required": false,
                     "conditions": [
                         {
@@ -6686,7 +6705,7 @@
                     "description": "أدخل الكلمة أو العبارة التي تريد تطبيق التدرج اللوني عليها",
                     "icon": "sicon-format-text-alt",
                     "placeholder": "مثال: متخصصة",
-                    "value": "",
+                    "value": "تنتهي",
                     "required": false,
                     "minLength": 1,
                     "maxLength": 100,
@@ -6750,7 +6769,7 @@
                     "label": "تفعيل خلفية مموجة",
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
@@ -6802,7 +6821,7 @@
                     "label": "حجم الخطوط",
                     "type": "string",
                     "format": "text",
-                    "value": "20",
+                    "value": "80",
                     "required": false,
                     "conditions": [
                         {
@@ -6858,7 +6877,7 @@
                     "label": "نصوص متحركة",
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
@@ -6921,9 +6940,9 @@
                     "label": "موقع النص",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": [],
+                    "value": ["bottom"],
                     "required": false,
-                    "selected": [],
+                    "selected": [{"label": "أسفل فقط", "value": "bottom", "key": "flash-discount-bottom"}],
                     "source": "Manual",
                     "options": [
                         {
@@ -6956,7 +6975,7 @@
                     "description": null,
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
@@ -7158,7 +7177,17 @@
                             "locations.phone": "+966 11 123 4567",
                             "locations.email": "info@example.com",
                             "locations.working_hours": "السبت - الخميس: 9 صباحاً - 10 مساءً",
-                            "locations.map_embed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.674698098988!2d46.6752957!3d24.7135517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDQyJzQ4LjgiTiA0NsKwNDAnMzEuMSJF!5e0!3m2!1sen!2ssa!4v1234567890"
+                            "locations.map_embed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d280.89134397995593!2d39.77842588766944!3d21.37473302018079!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c21b0500d747c1%3A0x5efad34a95844894!2sSalla%20HQ!5e1!3m2!1sen!2seg!4v1736921128997!5m2!1sen!2seg",
+                            "locations.image": ""
+                        },
+                        {
+                            "locations.name": "خميس مشيط",
+                            "locations.address": "طريق المدينة العسكرية - الشارع العام",
+                            "locations.phone": "+966 536576138",
+                            "locations.email": "weshaa@gmail.com",
+                            "locations.working_hours": "من الأحد الى الخميس من 5:00ص ا",
+                            "locations.map_embed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d280.89134397995593!2d39.77842588766944!3d21.37473302018079!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c21b0500d747c1%3A0x5efad34a95844894!2sSalla%20HQ!5e1!3m2!1sen!2seg!4v1736921128997!5m2!1sen!2seg",
+                            "locations.image": ""
                         }
                     ],
                     "fields": [
@@ -7330,8 +7359,8 @@
                     "description": "عند التفعيل، يمكنك اختيار كلمة معينة من العنوان لتطبيق تدرج لوني عليها",
                     "labelHTML": null,
                     "icon": "sicon-magic-wand",
-                    "value": false,
-                    "selected": false,
+                    "value": true,
+                    "selected": true,
                     "required": false,
                     "conditions": [
                         {
@@ -7377,7 +7406,7 @@
                     "icon": "sicon-timer",
                     "label": "مدة التبديل التلقائي (ميلي ثانية)",
                     "id": "autoplay_interval",
-                    "value": "5000",
+                    "value": "4000",
                     "required": false,
                     "format": "text",
                     "description": "المدة بالميلي ثانية بين كل منتج (افتراضي: 5000)",
@@ -7566,7 +7595,7 @@
                     "label": "تفعيل خلفية الخطوط",
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
@@ -7618,7 +7647,7 @@
                     "label": "حجم الخطوط",
                     "type": "string",
                     "format": "text",
-                    "value": "20",
+                    "value": "100",
                     "required": false,
                     "conditions": [
                         {
@@ -7635,7 +7664,7 @@
                     "label": "استخدام اللون الرئيسي في الخطوط المموجة",
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false,
                     "conditions": [
                         {
@@ -7772,7 +7801,7 @@
                     "description": null,
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
@@ -7781,12 +7810,12 @@
                     "description": "اختر نوع التوهج في الخلفية",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": [],
+                    "value": ["top_bottom"],
                     "selected": [
                         {
-                            "label": "بدون توهج",
-                            "value": "none",
-                            "key": "ps-glow-none"
+                            "label": "توهج من الأعلى والأسفل",
+                            "value": "top_bottom",
+                            "key": "ps-glow-top-bottom"
                         }
                     ],
                     "source": "Manual",
@@ -7840,7 +7869,7 @@
                     "description": "عند التفعيل يستخدم اللون الأساسي والثانوي للسمة",
                     "type": "boolean",
                     "format": "switch",
-                    "value": true,
+                    "value": false,
                     "required": false,
                     "conditions": [
                         {
@@ -7963,8 +7992,8 @@
                     "description": "عند التفعيل، يمكنك اختيار كلمة معينة من العنوان لتطبيق تدرج لوني عليها",
                     "labelHTML": null,
                     "icon": "sicon-magic-wand",
-                    "value": false,
-                    "selected": false,
+                    "value": true,
+                    "selected": true,
                     "required": false,
                     "conditions": [
                         {
@@ -7982,7 +8011,7 @@
                     "description": null,
                     "icon": "sicon-format-text-alt",
                     "placeholder": "مثال: الفرق",
-                    "value": null,
+                    "value": "تليق",
                     "required": false,
                     "minLength": 1,
                     "maxLength": 100,
@@ -8064,7 +8093,7 @@
                     "label": "صورة المنتج",
                     "description": "صورة المنتج التي تظهر فوق النص التعريفي",
                     "icon": "sicon-image",
-                    "value": "",
+                    "value": "https://cdn.files.salla.network/homepage/1573552885/65746487-9542-4941-8e5a-3e009fafa138.webp",
                     "required": false
                 },
                 {
@@ -8152,7 +8181,7 @@
                     "label": "تفعيل خلفية الخطوط",
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
@@ -8204,7 +8233,7 @@
                     "label": "حجم الخطوط",
                     "type": "string",
                     "format": "text",
-                    "value": "20",
+                    "value": "10",
                     "required": false,
                     "conditions": [
                         {
@@ -8358,7 +8387,7 @@
                     "description": null,
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
@@ -8367,12 +8396,12 @@
                     "description": "اختر نوع التوهج في الخلفية",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": [],
+                    "value": ["top_bottom"],
                     "selected": [
                         {
-                            "label": "بدون توهج",
-                            "value": "none",
-                            "key": "ba-glow-none"
+                            "label": "توهج من الأعلى والأسفل",
+                            "value": "top_bottom",
+                            "key": "ba-glow-top-bottom"
                         }
                     ],
                     "source": "Manual",
@@ -8426,7 +8455,7 @@
                     "description": "عند التفعيل يستخدم اللون الأساسي والثانوي للسمة",
                     "type": "boolean",
                     "format": "switch",
-                    "value": true,
+                    "value": false,
                     "required": false,
                     "conditions": [
                         {
@@ -8582,8 +8611,8 @@
                     "label": "تفعيل لون متدرج لكلمة معينة في العنوان",
                     "description": "عند التفعيل، يمكنك اختيار كلمة معينة من العنوان لتطبيق تدرج لوني عليها",
                     "icon": "sicon-magic-wand",
-                    "value": false,
-                    "selected": false,
+                    "value": true,
+                    "selected": true,
                     "required": false,
                     "conditions": [
                         {
@@ -8606,7 +8635,7 @@
                     "description": "أدخل الكلمة أو العبارة التي تريد تطبيق التدرج اللوني عليها",
                     "icon": "sicon-format-text-alt",
                     "placeholder": "مثال: المنتجات",
-                    "value": null,
+                    "value": "المنتجات",
                     "required": false,
                     "minLength": 1,
                     "maxLength": 100,
@@ -8641,7 +8670,7 @@
                     "label": "صورة الخلفية",
                     "description": "ارفع صورة عالية الجودة (يُفضل بنسبة 16:9 أو 4:3)",
                     "icon": "sicon-image",
-                    "value": "",
+                    "value": "https://cdn.files.salla.network/homepage/1573552885/50b4504e-766d-4e14-984b-c98034e5409a.webp",
                     "required": true
                 },
                 {
@@ -8664,7 +8693,7 @@
                     "description": "افتح أداة Hotspot Builder، ارفع نفس الصورة، حدد النقاط، ثم انسخ JSON والصقه هنا",
                     "icon": "sicon-browser-code",
                     "placeholder": "[{\"x\":45,\"y\":60,\"pid\":1234567,\"label\":\"\"}]",
-                    "value": "[]",
+                    "value": "[{\"x\":44.5,\"y\":69,\"pid\":1179540904},{\"x\":40.3,\"y\":49.4,\"pid\":2124133729},{\"x\":50,\"y\":32.2,\"pid\":587579797}]",
                     "required": false,
                     "minLength": 0,
                     "maxLength": 5000
