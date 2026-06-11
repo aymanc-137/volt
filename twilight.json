@@ -2798,7 +2798,7 @@
                     "labelHTML": null,
                     "placeholder": "أدخل وصفاً موجزاً للقسم",
                     "icon": "sicon-typography",
-                    "value": "نظام تأجير سيارات متكامل الأداء لمختلف الشركات والمتاجر الإلكترونية.",
+                    "value": "نوفّر منتجات أصلية مضمونة من أفضل الماركات العالمية، مع تجربة تسوق سعودية سريعة، دعم فني مخصص، وتوصيل إلى جميع مناطق المملكة والخليج.",
                     "multilanguage": true,
                     "required": false,
                     "minLength": 0,
@@ -2817,7 +2817,7 @@
                     "description": "الصورة الرئيسية التي تظهر داخل القسم",
                     "id": "image",
                     "format": "image",
-                    "value": "https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=1600&auto=format&fit=crop",
+                    "value": "https://cdn.salla.sa/form-builder/LdLnmQzyFVfl5bTlAoXw5xWKmC5bqAK08XycDG0B.jpg",
                     "required": false,
                     "placeholder": null,
                     "settings": {
@@ -2856,19 +2856,24 @@
                     "maxLength": 6,
                     "value": [
                         {
-                            "features.icon": "sicon-support",
-                            "features.title": "دعم فني على مدار الساعة",
-                            "features.description": "فريق دعم متخصص متوفر دائماً لحل أي مشكلة تواجهكم بسرعة."
+                            "features.icon": "sicon-pencil-ruler",
+                            "features.title": "جودة أصلية مضمونة",
+                            "features.description": "منتجات معتمدة من الشركات العالمية المتخصصة بالأداء الرياضي"
                         },
                         {
-                            "features.icon": "sicon-tag-percent",
+                            "features.icon": "sicon-cash-payment",
                             "features.title": "أفضل أسعار مضمونة",
                             "features.description": "خيارات واسعة تناسب مختلف الميزانيات دون التنازل عن الجودة."
                         },
                         {
-                            "features.icon": "sicon-navigation",
+                            "features.icon": "sicon-shipping-fast",
                             "features.title": "شبكة فروع واسعة",
                             "features.description": "توصيل سريع أينما كنتم لتستمتعوا بتجربة خالية من التعطيل."
+                        },
+                        {
+                            "features.icon": "sicon-quote",
+                            "features.title": "أداء يفوق التوقعات",
+                            "features.description": "قطع معدّلة لرفع كفاءة السيارة وتسارعها بشكل ملحوظ"
                         }
                     ],
                     "fields": [
@@ -2929,7 +2934,7 @@
                     "label": "تفعيل خلفية مموجة",
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
@@ -2939,14 +2944,8 @@
                     "label": "نوع الخطوط",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": [],
-                    "selected": [
-                        {
-                            "label": "مائلة (الوضع الافتراضي)",
-                            "value": "inclined",
-                            "key": "slas-type-inclined"
-                        }
-                    ],
+                    "value": ["vertical"],
+                    "selected": [{"label": "عمودية (من أعلى لأسفل)", "value": "vertical", "key": "slas-type-vertical"}],
                     "source": "Manual",
                     "options": [
                         {
@@ -2981,7 +2980,7 @@
                     "label": "حجم الخطوط",
                     "type": "string",
                     "format": "text",
-                    "value": "20",
+                    "value": "10",
                     "required": false,
                     "conditions": [
                         {
@@ -2998,7 +2997,7 @@
                     "label": "استخدام اللون الرئيسي في الخطوط المموجة",
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false,
                     "conditions": [
                         {
@@ -3037,7 +3036,7 @@
                     "label": "نصوص متحركة",
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
@@ -3100,9 +3099,9 @@
                     "label": "موقع النص",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": [],
+                    "value": ["both"],
                     "required": false,
-                    "selected": [],
+                    "selected": [{"label": "أعلى وأسفل", "value": "both", "key": "why-us-both"}],
                     "source": "Manual",
                     "options": [
                         {
@@ -3135,7 +3134,7 @@
                     "description": null,
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
@@ -3144,14 +3143,8 @@
                     "description": "اختر نوع التوهج في الخلفية",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": [],
-                    "selected": [
-                        {
-                            "label": "بدون توهج",
-                            "value": "none",
-                            "key": "glow-none"
-                        }
-                    ],
+                    "value": ["top_bottom"],
+                    "selected": [{"label": "توهج من الأعلى والأسفل", "value": "top_bottom", "key": "glow-top-bottom"}],
                     "source": "Manual",
                     "options": [
                         {
@@ -3203,7 +3196,7 @@
                     "description": "عند التفعيل يستخدم اللون الأساسي والثانوي للسمة",
                     "type": "boolean",
                     "format": "switch",
-                    "value": true,
+                    "value": false,
                     "required": false,
                     "conditions": [
                         {
@@ -3339,29 +3332,39 @@
                     "maxLength": 12,
                     "value": [
                         {
-                            "brands.logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Toyota_logo.png/512px-Toyota_logo.png",
+                            "brands.logo": "https://cdn.salla.sa/form-builder/BkpL47zHkrTzhJLyGBorwgRxr7RUCSPLARwhU6dx.png",
                             "brands.name": "TOYOTA",
-                            "brands.alt": "شعار شركة تويوتا"
+                            "brands.alt": "شعار شركة تويوتا",
+                            "brands.url": "https://salla.design/dev-pbdsq67yexku5kq3/-/c1967275527",
+                            "brands.url__type": "custom"
                         },
                         {
-                            "brands.logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Tesla_logo.png/512px-Tesla_logo.png",
+                            "brands.logo": "https://cdn.files.salla.network/homepage/1573552885/d74b6f73-b61a-48bc-8c9f-713e623a5eed.webp",
                             "brands.name": "TESLA",
-                            "brands.alt": "شعار شركة تسلا"
+                            "brands.alt": "شعار شركة تسلا",
+                            "brands.url": "https://salla.design/dev-pbdsq67yexku5kq3/-/c1657969410",
+                            "brands.url__type": "custom"
                         },
                         {
-                            "brands.logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/512px-Mercedes-Logo.svg.png",
+                            "brands.logo": "https://cdn.files.salla.network/homepage/1573552885/a95783e4-02ce-4469-b191-cbc927dfde23.webp",
                             "brands.name": "Mercedes-Benz",
-                            "brands.alt": "شعار شركة مرسيدس بنز"
+                            "brands.alt": "شعار شركة مرسيدس بنز",
+                            "brands.url": "https://salla.design/dev-pbdsq67yexku5kq3/offers",
+                            "brands.url__type": "custom"
                         },
                         {
-                            "brands.logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Ford_logo_flat.svg/512px-Ford_logo_flat.svg.png",
+                            "brands.logo": "https://cdn.files.salla.network/homepage/1573552885/be69701d-c765-4752-9a90-ff74c77354f4.webp",
                             "brands.name": "FORD",
-                            "brands.alt": "شعار شركة فورد"
+                            "brands.alt": "شعار شركة فورد",
+                            "brands.url": "https://salla.design/dev-pbdsq67yexku5kq3/-/p1743785712",
+                            "brands.url__type": "custom"
                         },
                         {
-                            "brands.logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Volkswagen_logo_2019.svg/512px-Volkswagen_logo_2019.svg.png",
+                            "brands.logo": "https://cdn.salla.sa/form-builder/dtjrOCWbGEKvzccjmXSk5KWoTpgo7E1CUBOezrgh.png",
                             "brands.name": "Volkswagen",
-                            "brands.alt": "شعار شركة فولكس فاجن"
+                            "brands.alt": "شعار شركة فولكس فاجن",
+                            "brands.url": "https://salla.design/dev-pbdsq67yexku5kq3/offers",
+                            "brands.url__type": "custom"
                         }
                     ],
                     "fields": [
@@ -3467,7 +3470,7 @@
                     "label": "تفعيل خلفية مموجة",
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
@@ -3536,7 +3539,7 @@
                     "label": "استخدام اللون الرئيسي في الخطوط المموجة",
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false,
                     "conditions": [
                         {
@@ -3575,7 +3578,7 @@
                     "label": "نصوص متحركة",
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
@@ -3673,7 +3676,7 @@
                     "description": null,
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
