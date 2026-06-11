@@ -80,14 +80,14 @@
 
     <!-- Decorative Top Heading -->
     {% if component.title %}
-        <div class="mx-auto flex flex-col space-y-6 justify-center items-center my-6 md:my-12 w-5/6">
+        <div class="mx-auto flex flex-col   justify-center items-center my-6 md:my-12 w-5/6">
             <div class="flex flex-col items-center">
                 {% if component.enable_gradient_title %}
-                    <h1 class="z-1 text-xl md:text-4xl font-alshohadaa mb-5 bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ component.title }}</h1>
+                    <h1 class="z-1 text-xl md:text-sm font-alshohadaa mb-5 bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ component.title }}</h1>
                 {% elseif component.enable_gradient_word and component.gradient_word %}
-                    <h1 id="category-list-title-{{ position }}" class="text-xl md:text-4xl z-1 font-alshohadaa mb-5 dynamic-text-color">{{ component.title }}</h1>
+                    <h1 id="category-list-title-{{ position }}" class="text-xl md:text-sm z-1 font-alshohadaa mb-5 dynamic-text-color">{{ component.title }}</h1>
                 {% else %}
-                    <h1 class="z-1 text-xl md:text-4xl font-alshohadaa mb-5 dynamic-text-color">{{ component.title }}</h1>
+                    <h1 class="z-1 text-xl md:text-sm font-alshohadaa mb-5 dynamic-text-color">{{ component.title }}</h1>
                 {% endif %}
                 <span class="navbar-underline"></span>
             </div>
