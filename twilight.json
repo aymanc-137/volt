@@ -4485,7 +4485,7 @@
                     "icon": "sicon-video",
                     "placeholder": "https://domain.com/path/video.mp4",
                     "required": true,
-                    "value": "/videos/banner-video.mp4"
+                    "value": "https://cdn.lamsaweb.com/cdnVolt/background_video_car.mp4"
                 },
                 {
                     "id": "poster_image",
@@ -4529,8 +4529,8 @@
                     "id": "enable_gradient_word",
                     "format": "switch",
                     "required": false,
-                    "value": false,
-                    "selected": false
+                    "value": true,
+                    "selected": true
                 },
                 {
                     "type": "string",
@@ -4538,7 +4538,7 @@
                     "label": "الكلمة المراد تلوينها",
                     "multilanguage": false,
                     "id": "gradient_word",
-                    "value": "",
+                    "value": "القيادة",
                     "required": false,
                     "format": "text",
                     "description": "الكلمة التي سيتم تطبيق التدرج اللوني عليها (يجب أن تكون مطابقة للنص في العنوان)",
@@ -4756,7 +4756,7 @@
                     "labelHTML": null,
                     "placeholder": "Placeholder text ..",
                     "icon": "sicon-format-text-alt",
-                    "value": "منتجات مختارة",
+                    "value": "أشعل الشارع بإضاءة ملكية",
                     "multilanguage": true,
                     "required": false,
                     "minLength": 3,
@@ -4771,7 +4771,7 @@
                     "labelHTML": null,
                     "placeholder": "Placeholder text ..",
                     "icon": "sicon-format-text-alt",
-                    "value": "عبايات خليجية",
+                    "value": "أضواء خلفية معدّلة",
                     "multilanguage": true,
                     "required": false,
                     "minLength": 3,
@@ -4797,8 +4797,8 @@
                     "description": "اختر كلمة من العنوان ليتم تلوينها بتدرج لوني.",
                     "labelHTML": null,
                     "icon": "sicon-magic-wand",
-                    "value": false,
-                    "selected": false,
+                    "value": true,
+                    "selected": true,
                     "required": false,
                     "conditions": [
                         {
@@ -4817,7 +4817,7 @@
                     "labelHTML": null,
                     "icon": "sicon-format-text-alt",
                     "placeholder": "مثال: عروضنا",
-                    "value": "",
+                    "value": "بإضاءة",
                     "multilanguage": true,
                     "required": false,
                     "minLength": 1,
@@ -4844,7 +4844,7 @@
                     "labelHTML": null,
                     "placeholder": "Placeholder text ..",
                     "icon": "sicon-format-text-alt",
-                    "value": "اخر التصاميم",
+                    "value": "لمسة واحدة من مكبحك تخلي سيارتك تُشعّ وكأنها تسير على سجادة ضوئية",
                     "multilanguage": true,
                     "required": false,
                     "minLength": 3,
@@ -4865,7 +4865,7 @@
                     "labelHTML": null,
                     "placeholder": "e.g. https://hostname.com/image.png",
                     "icon": "sicon-image",
-                    "value": "https://cdn.lamsaweb.com/cdnWeshaah/image-hero.webp",
+                    "value": "https://cdn.salla.sa/form-builder/fQjJX1vu5NlGHuto2ifcF8neNJsg2swZnRc2Mn51.jpg",
                     "required": true
                 },
                 {
@@ -4876,8 +4876,8 @@
                     "description": null,
                     "labelHTML": null,
                     "icon": "sicon-toggle-off",
-                    "value": false,
-                    "selected": false,
+                    "value": true,
+                    "selected": true,
                     "required": false
                 },
                 {
@@ -4890,7 +4890,7 @@
                     "labelHTML": null,
                     "placeholder": "e.g. https://salla.sa",
                     "icon": "sicon-link",
-                    "value": "https://videos.pexels.com/video-files/5137638/5137638-uhd_1440_2560_30fps.mp4",
+                    "value": "https://cdn.lamsaweb.com/cdnVolt/carlight.mp4",
                     "required": false,
                     "minLength": 3,
                     "maxLength": 400
@@ -4946,7 +4946,7 @@
                     "label": "تفعيل خلفية مموجة",
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
@@ -4956,14 +4956,8 @@
                     "label": "نوع الخطوط",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": [],
-                    "selected": [
-                        {
-                            "label": "مائلة (الوضع الافتراضي)",
-                            "value": "inclined",
-                            "key": "slas-type-inclined"
-                        }
-                    ],
+                    "value": ["vertical"],
+                    "selected": [{"label": "عمودية (من أعلى لأسفل)", "value": "vertical", "key": "slas-type-vertical"}],
                     "source": "Manual",
                     "options": [
                         {
@@ -4998,7 +4992,7 @@
                     "label": "حجم الخطوط",
                     "type": "string",
                     "format": "text",
-                    "value": "20",
+                    "value": "18",
                     "required": false,
                     "conditions": [
                         {
@@ -5015,7 +5009,7 @@
                     "label": "استخدام اللون الرئيسي في الخطوط المموجة",
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false,
                     "conditions": [
                         {
@@ -5054,7 +5048,7 @@
                     "label": "نصوص متحركة",
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
@@ -5083,7 +5077,7 @@
                     "label": "حجم نص متحرك",
                     "type": "string",
                     "format": "text",
-                    "value": "9",
+                    "value": "8",
                     "required": false,
                     "conditions": [
                         {
@@ -5100,7 +5094,7 @@
                     "label": "تحريك النص",
                     "type": "boolean",
                     "format": "switch",
-                    "value": true,
+                    "value": false,
                     "required": false,
                     "conditions": [
                         {
@@ -5117,9 +5111,9 @@
                     "label": "موقع النص",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": [],
+                    "value": ["both"],
                     "required": false,
-                    "selected": [],
+                    "selected": [{"label": "أعلى وأسفل", "value": "both", "key": "category-products-both"}],
                     "source": "Manual",
                     "options": [
                         {
@@ -5152,7 +5146,7 @@
                     "description": null,
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
@@ -5161,14 +5155,8 @@
                     "description": "اختر نوع التوهج في الخلفية",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": [],
-                    "selected": [
-                        {
-                            "label": "بدون توهج",
-                            "value": "none",
-                            "key": "glow-none"
-                        }
-                    ],
+                    "value": ["top_bottom"],
+                    "selected": [{"label": "توهج من الأعلى والأسفل", "value": "top_bottom", "key": "glow-top-bottom"}],
                     "source": "Manual",
                     "options": [
                         {
@@ -5220,7 +5208,7 @@
                     "description": "عند التفعيل يستخدم اللون الأساسي والثانوي للسمة",
                     "type": "boolean",
                     "format": "switch",
-                    "value": true,
+                    "value": false,
                     "required": false,
                     "conditions": [
                         {
@@ -5236,7 +5224,7 @@
                     "description": "اللون الرئيسي للتوهج (الجانب الأيسر / الأعلى / الكرة الأولى)",
                     "type": "string",
                     "format": "color",
-                    "value": "#7c3aed",
+                    "value": "#67ff14",
                     "required": false,
                     "conditions": [
                         {
@@ -5257,7 +5245,7 @@
                     "description": "اللون الثانوي للتوهج (الجانب الأيمن / الأسفل / الكرة الثانية) — يُستخدم فقط في الأنواع المزدوجة",
                     "type": "string",
                     "format": "color",
-                    "value": "#06b6d4",
+                    "value": "#2942ff",
                     "required": false,
                     "conditions": [
                         {

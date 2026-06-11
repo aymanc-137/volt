@@ -1,66 +1,51 @@
 {
   "ar": {
-    "aside_title": "GARRETT",
-    "aside_subtitle": "تيربو",
-    "accordion_label": "عناصر العروض",
-    "aside_image_alt": "GARRETT Turbo",
-    "aside_button_label": "اكتشف المزيد"
+    "title": "اكتشف تجربة القيادة القصوى",
+    "subtitle": "أداء لا يُقارن",
+    "badge_text": "عرض خاص",
+    "description": "تقنيات متطورة وتصميم رياضي يمنحانك قوة إضافية على الطريق.",
+    "primary_cta_text": "شاهد الفيديو",
+    "secondary_cta_text": "تعرّف على المزيد"
   },
-  "key": "76b7b54c-e8c2-4618-bafd-e7cf431c6d94",
-  "tabs": [
+  "key": "d1b2297e-d50c-4ccb-8e7d-3613ca530fd2",
+  "stats": [
     {
       "ar": {
-        "title": "القوة تبدأ من أول ضغطة بنزين!",
-        "description": "حسّن استجابة محركك مع تيربو GARRETT المصمّم لعشّاق الأداء. مواد عالية الجودة، تحمّل حراري ممتاز، وتسارع فوري من أول لمسة دواسة."
+        "label": "طراز متاح"
       },
-      "image": "https://cdn.salla.sa/form-builder/bsOfBj0S0j0I1DDzGigkqeiWQA1NX6q0m0RuINkU.jpg",
-      "video_url": "https://cdn.lamsaweb.com/cdnVolt/carlight.mp4",
-      "gradient_word": "ضغطة",
-      "enable_gradient_word": true,
-      "title": "القوة تبدأ من أول ضغطة بنزين!",
-      "description": "حسّن استجابة محركك مع تيربو GARRETT المصمّم لعشّاق الأداء. مواد عالية الجودة، تحمّل حراري ممتاز، وتسارع فوري من أول لمسة دواسة."
+      "value": "500+",
+      "label": "طراز متاح"
     },
     {
       "ar": {
-        "title": "ضمّ ليمنحك تفوّق السباق على الطريق.",
-        "description": "شاحن توربيني مطوّر لتدفق هواء أعلى وضغط ثابت عند جميع الدورات، يمنحك عزمًا أقوى واستجابة أسرع مع استهلاك وقود مثالي."
+        "label": "عملاء راضون"
       },
-      "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop",
-      "video_url": "",
-      "gradient_word": "السباق",
-      "enable_gradient_word": true,
-      "title": "ضمّ ليمنحك تفوّق السباق على الطريق.",
-      "description": "شاحن توربيني مطوّر لتدفق هواء أعلى وضغط ثابت عند جميع الدورات، يمنحك عزمًا أقوى واستجابة أسرع مع استهلاك وقود مثالي."
+      "value": "50K+",
+      "label": "عملاء راضون"
     },
     {
       "ar": {
-        "title": "أداء عالٍ يبدأ من أول ضغطة بنزين.",
-        "description": "تجربة قيادة ممتعة لسيارتك الرياضية: قطع مضمونة، دقة تصنيع، وضمان أداء ثابت بتصميم انسيابي يقلّل الحرارة ويحافظ على الكفاءة."
+        "label": "رضا العملاء"
       },
-      "image": "https://cdn.salla.sa/form-builder/3YbXmHcpxeF8Rmv7WWTAK8W3uAhh6FSVJ8GQAuB4.jpg",
-      "video_url": "",
-      "gradient_word": "عالٍ",
-      "enable_gradient_word": true,
-      "title": "أداء عالٍ يبدأ من أول ضغطة بنزين.",
-      "description": "تجربة قيادة ممتعة لسيارتك الرياضية: قطع مضمونة، دقة تصنيع، وضمان أداء ثابت بتصميم انسيابي يقلّل الحرارة ويحافظ على الكفاءة."
+      "value": "99%",
+      "label": "رضا العملاء"
     }
   ],
-  "marquee": true,
-  "slas_hbg": true,
-  "aside_image": "https://cdn.files.salla.network/homepage/1573552885/bc93f710-82c6-4fe2-92d9-419d6d0aa1b9.webp",
-  "enable_glow": true,
-  "marqueetext": "سرعة /// أداء /// تحكم",
-  "enable_border": true,
-  "slas_hbg_size": "20",
-  "slas_hbg_color": "#000000",
-  "aside_button_url": "https://salla.design/dev-pbdsq67yexku5kq3/-/p1958852814",
-  "marquee_is_moving": true,
-  "marquee_text_size": "9",
-  "marquee_text_position": "both",
-  "slas_hbg_use_primary_color": false,
-  "aside_title": "GARRETT",
-  "aside_subtitle": "تيربو",
-  "accordion_label": "عناصر العروض",
-  "aside_image_alt": "GARRETT Turbo",
-  "aside_button_label": "اكتشف المزيد"
+  "video_url": "https://cdn.lamsaweb.com/cdnVolt/background_video_car.mp4",
+  "start_muted": true,
+  "poster_image": "/src/assets/hero-car.jpg",
+  "gradient_word": "القيادة",
+  "primary_cta_url": "https://salla.design/dev-pbdsq67yexku5kq3/-/c284457985",
+  "secondary_cta_url": {
+    "label": "اسلاك بواجي كورولا 1991-2000 ياباني",
+    "value": 1958852814,
+    "source": "products"
+  },
+  "enable_gradient_word": true,
+  "title": "اكتشف تجربة القيادة القصوى",
+  "subtitle": "أداء لا يُقارن",
+  "badge_text": "عرض خاص",
+  "description": "تقنيات متطورة وتصميم رياضي يمنحانك قوة إضافية على الطريق.",
+  "primary_cta_text": "شاهد الفيديو",
+  "secondary_cta_text": "تعرّف على المزيد"
 }
