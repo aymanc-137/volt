@@ -2399,6 +2399,16 @@
                     "maxLength": 15
                 },
                 {
+                    "id": "hide_controls",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "إخفاء أسهم التنقل",
+                    "description": "عند التفعيل يتم إخفاء أسهم التحكم في السلايدر",
+                    "icon": "sicon-visibility-off",
+                    "value": false,
+                    "required": false
+                },
+                {
                     "type": "static",
                     "format": "description",
                     "id": "group-background-settings",
