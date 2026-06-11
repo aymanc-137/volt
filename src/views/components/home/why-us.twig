@@ -15,8 +15,7 @@
 | enable_glow           | bool   | Enable background glow effect                      |
 | marquee               | bool   | Enable marquee text                                |
 #}
-{{ component|json_encode }}
-
+ 
 {% set slashbg = component.slas_hbg | default(false) %}
 {% set marquee = component.marquee | default(false) %}
 {% set marqueetext = component.marqueetext | default(" سرعة /// أداء /// تحكم ") %}
