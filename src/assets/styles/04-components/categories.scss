@@ -13,7 +13,9 @@
   }
   &:hover{
     img{
-      @apply scale-125 mb-10 transition-all duration-300 ease-in-out;
+      // On small screens just scale in place — there's no room above, so the
+      // upward push (mb-10) is applied from md and up only.
+      @apply scale-125 md:mb-10 transition-all duration-300 ease-in-out;
     }
    @apply border-[var(--color-primary)] scale-105;
           //transition: opacity 0.3s ease;

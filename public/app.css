@@ -32682,7 +32682,6 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     color: var(--light-text-color);
 }
 .category-card:hover img{
-    margin-bottom: 2.5rem;
     --tw-scale-x: 1.25;
     --tw-scale-y: 1.25;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(1.25) scaleY(1.25);
@@ -32690,6 +32689,11 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     transition-property: all;
     transition-duration: 300ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+@media (min-width: 768px){
+    .category-card:hover img{
+        margin-bottom: 2.5rem;
+    }
 }
 .category-card:hover{
     --tw-scale-x: 1.05;
