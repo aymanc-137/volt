@@ -165,13 +165,6 @@
     </div>
 
     {% if show_car_search %}
-    {% if not car_search_at_bottom %}
-        <style>
-            @media (max-width: 1023px) {
-                #{{ block_id }} + * { padding-top: 10rem; }
-            }
-        </style>
-    {% endif %}
     {# Single car-search box overlaid on the carousel — JS populates via salla.api #}
     {% if car_search_at_bottom %}
         <div class="flex absolute
@@ -185,7 +178,7 @@
         </div>
     {% else %}
         <div class="flex absolute
-                    bottom-0 translate-y-1/2 left-0 right-0 w-full rounded-none
+                    bottom-0 left-0 right-0 w-full rounded-none
                     lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0 lg:left-6 lg:right-auto xl:left-10 lg:w-2/5 lg:rounded-2xl
                     z-20 max-h-[80%] flex-col overflow-y-auto
                     shadow-2xl
