@@ -30313,10 +30313,9 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
     width: 100%;
 }
 .flash-offer .flash-offer-container{
-    margin: 8rem;
+    margin: 0.75rem;
     display: flex;
-    max-height: 30rem;
-    min-height: 30rem;
+    min-height: 24rem;
     flex-direction: column;
     overflow: hidden;
     border-width: 1px;
@@ -30328,9 +30327,27 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
 .flash-offer .flash-offer-container:is(.dark *){
     background-color: var(--color-dark-box-background);
 }
+@media (min-width: 640px){
+    .flash-offer .flash-offer-container{
+        margin: 1.5rem;
+    }
+}
 @media (min-width: 768px){
     .flash-offer .flash-offer-container{
+        margin: 3rem;
+        max-height: 30rem;
+        min-height: 30rem;
         flex-direction: row;
+    }
+}
+@media (min-width: 1024px){
+    .flash-offer .flash-offer-container{
+        margin: 5rem;
+    }
+}
+@media (min-width: 1280px){
+    .flash-offer .flash-offer-container{
+        margin: 8rem;
     }
 }
 .flash-offer .flash-offer-container.shadow-pulse {
@@ -30339,8 +30356,21 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
   will-change: box-shadow;
 }
 .flash-offer .flash-offer-container img{
-    width: 50%;
-    background-size: contain;
+    height: 14rem;
+    width: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+}
+@media (min-width: 640px){
+    .flash-offer .flash-offer-container img{
+        height: 18rem;
+    }
+}
+@media (min-width: 768px){
+    .flash-offer .flash-offer-container img{
+        height: 100%;
+        width: 50%;
+    }
 }
 .flash-offer .flash-offer-container .flash-offer-badge{
     padding-left: 1rem;
@@ -30353,8 +30383,8 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
     color: var(--color-primary);
 }
 .flash-offer .flash-offer-container .flash-offer-count-down salla-count-down ul li {
-  font-size: 1.5rem !important;
-  line-height: 2rem !important;
+  font-size: max(1rem, min(4vw, 1.5rem)) !important;
+  line-height: 1.4 !important;
   font-weight: 700 !important;
 }
 .flash-offer .flash-offer-container .flash-offer-count-down salla-count-down ul li {
@@ -35267,6 +35297,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .md\:\!w-2\/4{
         width: 50% !important;
     }
+    .md\:w-1\/2{
+        width: 50%;
+    }
     .md\:w-2\/4{
         width: 50%;
     }
@@ -35335,6 +35368,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .md\:items-stretch{
         align-items: stretch;
+    }
+    .md\:gap-0{
+        gap: 0px;
     }
     .md\:gap-10{
         gap: 2.5rem;

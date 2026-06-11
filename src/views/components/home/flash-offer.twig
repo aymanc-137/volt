@@ -75,8 +75,9 @@
     <img src="{{ component.image }}" alt="{{ component.title }}"  >
         {% set has_gradient_word = component.enable_gradient_word|default(false) and component.gradient_word is not empty %}
         {% set flash_offer_title_id = has_gradient_word ? 'flash-offer-title-' ~ (position|default(0)) : null %}
-        <div class="flash-offer-content w-1/2
-        p-5 flex flex-col justify-evenly 
+        <div class="flash-offer-content w-full md:w-1/2
+        p-5 md:p-8 flex flex-col justify-evenly gap-3 md:gap-0
+        md:overflow-y-auto
         ">
         <p class="flash-offer-badge">{{ component.badge_text }}</p>
             <h2 class="flash-offer-title font-alshohadaa text-2xl dynamic-text-color"{% if has_gradient_word %} id="{{ flash_offer_title_id }}"{% endif %}>{{ component.title }}</h2>
