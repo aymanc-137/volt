@@ -14,6 +14,9 @@
 | marquee                      | bool   | Enable marquee text                                      |
 #}
 
+{{ component|json_encode }}
+
+
 {% set super_title = component.super_title is defined ? component.super_title : 'أداء ممتاز' %}
 {% set title_text = component.title is defined ? component.title : 'ندعم جميع شركات السيارات' %}
 {% set highlight_word = component.highlighted_word is defined ? component.highlighted_word : 'السيارات' %}

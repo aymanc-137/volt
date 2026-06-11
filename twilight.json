@@ -3974,7 +3974,7 @@
                     "label": "نص الشارة",
                     "multilanguage": true,
                     "id": "badge_text",
-                    "value": "عرض محدود الوقت",
+                    "value": "لا تفوّت أقوى عرض لهذا الشهر!",
                     "required": false,
                     "format": "text",
                     "description": "النص المعروض في الشارة في أعلى المكون",
@@ -3988,7 +3988,7 @@
                     "label": "العنوان الرئيسي",
                     "multilanguage": true,
                     "id": "title",
-                    "value": "عرض حصري",
+                    "value": "خصم ضخم على المنتج الأكثر طلبًا",
                     "required": true,
                     "format": "text",
                     "description": "العنوان الرئيسي للعرض",
@@ -4004,8 +4004,8 @@
                     "description": "حدد كلمة من العنوان لتظهر بتدرج من اللون الأساسي إلى الثانوي",
                     "labelHTML": null,
                     "icon": "sicon-magic-wand",
-                    "value": false,
-                    "selected": false,
+                    "value": true,
+                    "selected": true,
                     "required": false
                 },
                 {
@@ -4016,7 +4016,7 @@
                     "description": "أدخل الكلمة أو العبارة التي تريد تلوينها داخل العنوان",
                     "icon": "sicon-format-text-alt",
                     "placeholder": "مثال: حصري",
-                    "value": "",
+                    "value": "المنتج",
                     "required": false,
                     "minLength": 1,
                     "maxLength": 100,
@@ -4034,7 +4034,7 @@
                     "label": "الوصف",
                     "multilanguage": true,
                     "id": "description",
-                    "value": "احصل على أفضل العروض اليوم فقط",
+                    "value": "احصل الآن على [اسم المنتج] بخصم يصل إلى 40٪ لفترة محدودة فقط!\nطوّر أداء سيارتك واستمتع بقوة واستجابة أعلى مع منتج أصلي ومضمون. العرض ساري حتى نفاد الكمية — سارع قبل انتهاء الوقت!",
                     "required": false,
                     "format": "textarea",
                     "description": "وصف قصير تحت العنوان",
@@ -4068,7 +4068,7 @@
                     "labelHTML": null,
                     "placeholder": "e.g. https://hostname.com/image.png",
                     "icon": "sicon-image",
-                    "value": null,
+                    "value": "https://cdn.salla.sa/form-builder/PevSLCTZ0N79PBKBuNrRfu0XAMo4WZiSz1OBRRIh.jpg",
                     "required": false
                 },
                 {
@@ -4106,7 +4106,7 @@
                     "label": "تفعيل خلفية مموجة",
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
@@ -4158,7 +4158,7 @@
                     "label": "حجم الخطوط",
                     "type": "string",
                     "format": "text",
-                    "value": "20",
+                    "value": "50",
                     "required": false,
                     "conditions": [
                         {
@@ -4175,7 +4175,7 @@
                     "label": "استخدام اللون الرئيسي في الخطوط المموجة",
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false,
                     "conditions": [
                         {
@@ -4214,7 +4214,7 @@
                     "label": "نصوص متحركة",
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
@@ -4277,9 +4277,9 @@
                     "label": "موقع النص",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": [],
+                    "value": ["bottom"],
                     "required": false,
-                    "selected": [],
+                    "selected": [{"label": "أسفل فقط", "value": "bottom", "key": "flash-offer-bottom"}],
                     "source": "Manual",
                     "options": [
                         {
@@ -4312,7 +4312,7 @@
                     "description": null,
                     "type": "boolean",
                     "format": "switch",
-                    "value": false,
+                    "value": true,
                     "required": false
                 },
                 {
