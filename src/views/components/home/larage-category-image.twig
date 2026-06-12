@@ -86,7 +86,7 @@
 				<p class="mx-auto my-5 text-center text-xl dynamic-text-color">{{component.sub_title}}</p>
 			{% endif %}
 		</div>
-		<div class="grid grid-cols-1 md:grid-cols-2 {{ component.categories|length == 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4' }} gap-4 h-[600px]">
+		<div class="grid grid-cols-1 md:grid-cols-2 {{ component.categories|length == 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4' }} gap-4 auto-rows-[22rem] md:auto-rows-fr md:h-[600px]">
 			{% for item in component.categories %}
 				<!-- Category Card {{ loop.index }} -->
 				<div class="relative group -skew-x-3 hover:border-r-8 overflow-hidden h-full border-r-4 border-b border-[var(--color-scandary)] cursor-pointer">
