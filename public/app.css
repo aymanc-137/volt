@@ -1111,10 +1111,6 @@ input:where([type='file']):focus{
     margin-top: 1.25rem;
     margin-bottom: 1.25rem;
 }
-.my-6{
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-}
 .my-auto{
     margin-top: auto;
     margin-bottom: auto;
@@ -2483,6 +2479,9 @@ input:where([type='file']):focus{
 .pb-16{
     padding-bottom: 4rem;
 }
+.pb-24{
+    padding-bottom: 6rem;
+}
 .pb-32{
     padding-bottom: 8rem;
 }
@@ -2542,9 +2541,6 @@ input:where([type='file']):focus{
 }
 .pt-8{
     padding-top: 2rem;
-}
-.pb-24{
-    padding-bottom: 6rem;
 }
 .text-left{
     text-align: left;
@@ -35238,10 +35234,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .md\:sticky{
         position: sticky;
     }
-    .md\:my-12{
-        margin-top: 3rem;
-        margin-bottom: 3rem;
-    }
     .md\:my-9{
         margin-top: 2.25rem;
         margin-bottom: 2.25rem;
@@ -35458,10 +35450,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .md\:py-16{
         padding-top: 4rem;
         padding-bottom: 4rem;
-    }
-    .md\:py-20{
-        padding-top: 5rem;
-        padding-bottom: 5rem;
     }
     .md\:py-4{
         padding-top: 1rem;
