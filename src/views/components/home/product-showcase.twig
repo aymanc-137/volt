@@ -113,11 +113,10 @@
     #{{ uid }} .ps-stage-img  { height: 48vh; }
 
     /* On small screens the top/bottom info cards were overlapping the product
-       image — give the stage more height and shrink the image so they clear it. */
+       image. Keep the image at full size and just give the stage more height so
+       the cards sit clear above/below it. */
     @media (max-width: 767px) {
-      #{{ uid }} .ps-stage-main { height: 82vh; }
-      #{{ uid }} .ps-stage-img  { height: 34vh; }
-      #{{ uid }} .ps-slide img  { max-height: 52%; max-width: 82%; }
+      #{{ uid }} .ps-stage-main { height: 88vh; }
     }
 
     #{{ uid }} .ps-glow {
@@ -270,11 +269,11 @@
     <div class="mx-auto flex flex-col space-y-6 justify-center items-center my-12 w-5/6 relative z-10">
       <div class="flex flex-col items-center">
         {% if component.enable_gradient_title %}
-          <h1 class="z-1 text-4xl font-alshohadaa mb-5 bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ title }}</h1>
+          <h1 class="z-1 text-2xl md:text-3xl font-alshohadaa mb-5 bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ title }}</h1>
         {% elseif component.enable_gradient_word and component.gradient_word %}
-          <h1 id="{{ uid }}-title" class="text-4xl z-1 font-alshohadaa mb-5 dynamic-text-color">{{ title }}</h1>
+          <h1 id="{{ uid }}-title" class="text-2xl md:text-3xl z-1 font-alshohadaa mb-5 dynamic-text-color">{{ title }}</h1>
         {% else %}
-          <h1 class="z-1 text-4xl font-alshohadaa mb-5 dynamic-text-color">{{ title }}</h1>
+          <h1 class="z-1 text-2xl md:text-3xl font-alshohadaa mb-5 dynamic-text-color">{{ title }}</h1>
         {% endif %}
         <span class="navbar-underline"></span>
       </div>
