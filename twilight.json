@@ -5294,165 +5294,6 @@
                 {
                     "type": "static",
                     "format": "description",
-                    "id": "car-search-tree-text-group",
-                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات النصوص</strong></div>"
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "icon": "sicon-format-text-alt",
-                    "label": "النص التمهيدي (الشارة)",
-                    "multilanguage": true,
-                    "id": "badge",
-                    "value": "اكتشف ملاءمة القطع",
-                    "required": false
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "icon": "sicon-format-text-alt",
-                    "label": "العنوان الرئيسي",
-                    "multilanguage": true,
-                    "id": "title",
-                    "value": "ابحث عن سيارتك",
-                    "required": false
-                },
-                {
-                    "type": "string",
-                    "format": "textarea",
-                    "icon": "sicon-format-text-alt",
-                    "label": "الوصف",
-                    "multilanguage": true,
-                    "id": "description",
-                    "value": "اختر الماركة ثم الموديل والسنة (إن وُجدت) لإظهار المنتجات المتوافقة.",
-                    "required": false
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "icon": "sicon-format-text-alt",
-                    "label": "نص (اختيارك الحالي)",
-                    "multilanguage": true,
-                    "id": "selection_label",
-                    "value": "اختيارك الحالي:",
-                    "required": false
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "icon": "sicon-format-text-alt",
-                    "label": "نص اختيار الماركة",
-                    "description": "يُستخدم كعنوان وكنص افتراضي في القوائم المنسدلة للماركة.",
-                    "multilanguage": true,
-                    "id": "brand_label",
-                    "value": "اختر الماركة",
-                    "required": false
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "icon": "sicon-format-text-alt",
-                    "label": "نص اختيار الموديل",
-                    "description": "يُستخدم كعنوان وكنص افتراضي في القوائم المنسدلة للموديل.",
-                    "multilanguage": true,
-                    "id": "model_label",
-                    "value": "اختر الموديل",
-                    "required": false
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "icon": "sicon-format-text-alt",
-                    "label": "نص اختيار السنة",
-                    "description": "يُستخدم كعنوان وكنص افتراضي في القوائم المنسدلة للسنة.",
-                    "multilanguage": true,
-                    "id": "year_label",
-                    "value": "اختر السنة",
-                    "required": false
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "icon": "sicon-format-text-alt",
-                    "label": "عنوان قسم المنتجات",
-                    "multilanguage": true,
-                    "id": "products_title",
-                    "value": "المنتجات المتوافقة",
-                    "required": false
-                },
-                {
-                    "type": "string",
-                    "format": "textarea",
-                    "icon": "sicon-format-text-alt",
-                    "label": "وصف قسم المنتجات",
-                    "multilanguage": true,
-                    "id": "products_subtitle",
-                    "value": "سيتم تحميل المنتجات تلقائياً بعد إتمام الاختيار.",
-                    "required": false
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "icon": "sicon-format-text-alt",
-                    "label": "نص عدم اختيار فئة بعد",
-                    "multilanguage": true,
-                    "id": "products_empty_text",
-                    "value": "لم يتم اختيار فئة بعد.",
-                    "required": false
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "icon": "sicon-format-text-alt",
-                    "label": "نص (اختر الموديل لإظهار المنتجات)",
-                    "multilanguage": true,
-                    "id": "hint_select_model",
-                    "value": "اختر الموديل لإظهار المنتجات.",
-                    "required": false
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "icon": "sicon-format-text-alt",
-                    "label": "نص عدم توفر منتجات",
-                    "multilanguage": true,
-                    "id": "hint_no_products",
-                    "value": "لا توجد منتجات متاحة لهذا الاختيار حالياً.",
-                    "required": false
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "icon": "sicon-format-text-alt",
-                    "label": "نص رسالة الخطأ",
-                    "multilanguage": true,
-                    "id": "error_text",
-                    "value": "حدث خطأ أثناء تحميل المنتجات، حاول مجدداً لاحقاً.",
-                    "required": false
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "icon": "sicon-format-text-alt",
-                    "label": "عنوان حالة عدم وجود بيانات",
-                    "multilanguage": true,
-                    "id": "empty_title",
-                    "value": "لا توجد بيانات للعرض.",
-                    "required": false
-                },
-                {
-                    "type": "string",
-                    "format": "textarea",
-                    "icon": "sicon-format-text-alt",
-                    "label": "وصف حالة عدم وجود بيانات",
-                    "multilanguage": true,
-                    "id": "empty_description",
-                    "value": "أضف تصنيفات السيارات من إعدادات المكوّن لبدء استخدام شجرة البحث.",
-                    "required": false
-                },
-                {
-                    "type": "static",
-                    "format": "description",
                     "id": "car-search-tree-behavior-group",
                     "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات العرض والبيانات</strong></div>"
                 },
@@ -5556,6 +5397,280 @@
                     "conditions": [
                         {
                             "id": "use_custom_json",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "car-search-tree-text-group",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات النصوص</strong></div>"
+                },
+                {
+                    "id": "show_text_settings",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "تخصيص نصوص المكوّن",
+                    "description": "فعّل لإظهار حقول تعديل النصوص. تعمل النصوص الافتراضية بدون الحاجة للتفعيل.",
+                    "icon": "sicon-format-text-alt",
+                    "value": false,
+                    "required": false
+                },
+                {
+                    "type": "string",
+                    "format": "text",
+                    "icon": "sicon-format-text-alt",
+                    "label": "النص التمهيدي (الشارة)",
+                    "multilanguage": true,
+                    "id": "badge",
+                    "value": "اكتشف ملاءمة القطع",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "show_text_settings",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "type": "string",
+                    "format": "text",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان الرئيسي",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": "ابحث عن سيارتك",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "show_text_settings",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "type": "string",
+                    "format": "textarea",
+                    "icon": "sicon-format-text-alt",
+                    "label": "الوصف",
+                    "multilanguage": true,
+                    "id": "description",
+                    "value": "اختر الماركة ثم الموديل والسنة (إن وُجدت) لإظهار المنتجات المتوافقة.",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "show_text_settings",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "type": "string",
+                    "format": "text",
+                    "icon": "sicon-format-text-alt",
+                    "label": "نص (اختيارك الحالي)",
+                    "multilanguage": true,
+                    "id": "selection_label",
+                    "value": "اختيارك الحالي:",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "show_text_settings",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "type": "string",
+                    "format": "text",
+                    "icon": "sicon-format-text-alt",
+                    "label": "نص اختيار الماركة",
+                    "description": "يُستخدم كعنوان وكنص افتراضي في القوائم المنسدلة للماركة.",
+                    "multilanguage": true,
+                    "id": "brand_label",
+                    "value": "اختر الماركة",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "show_text_settings",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "type": "string",
+                    "format": "text",
+                    "icon": "sicon-format-text-alt",
+                    "label": "نص اختيار الموديل",
+                    "description": "يُستخدم كعنوان وكنص افتراضي في القوائم المنسدلة للموديل.",
+                    "multilanguage": true,
+                    "id": "model_label",
+                    "value": "اختر الموديل",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "show_text_settings",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "type": "string",
+                    "format": "text",
+                    "icon": "sicon-format-text-alt",
+                    "label": "نص اختيار السنة",
+                    "description": "يُستخدم كعنوان وكنص افتراضي في القوائم المنسدلة للسنة.",
+                    "multilanguage": true,
+                    "id": "year_label",
+                    "value": "اختر السنة",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "show_text_settings",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "type": "string",
+                    "format": "text",
+                    "icon": "sicon-format-text-alt",
+                    "label": "عنوان قسم المنتجات",
+                    "multilanguage": true,
+                    "id": "products_title",
+                    "value": "المنتجات المتوافقة",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "show_text_settings",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "type": "string",
+                    "format": "textarea",
+                    "icon": "sicon-format-text-alt",
+                    "label": "وصف قسم المنتجات",
+                    "multilanguage": true,
+                    "id": "products_subtitle",
+                    "value": "سيتم تحميل المنتجات تلقائياً بعد إتمام الاختيار.",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "show_text_settings",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "type": "string",
+                    "format": "text",
+                    "icon": "sicon-format-text-alt",
+                    "label": "نص عدم اختيار فئة بعد",
+                    "multilanguage": true,
+                    "id": "products_empty_text",
+                    "value": "لم يتم اختيار فئة بعد.",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "show_text_settings",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "type": "string",
+                    "format": "text",
+                    "icon": "sicon-format-text-alt",
+                    "label": "نص (اختر الموديل لإظهار المنتجات)",
+                    "multilanguage": true,
+                    "id": "hint_select_model",
+                    "value": "اختر الموديل لإظهار المنتجات.",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "show_text_settings",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "type": "string",
+                    "format": "text",
+                    "icon": "sicon-format-text-alt",
+                    "label": "نص عدم توفر منتجات",
+                    "multilanguage": true,
+                    "id": "hint_no_products",
+                    "value": "لا توجد منتجات متاحة لهذا الاختيار حالياً.",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "show_text_settings",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "type": "string",
+                    "format": "text",
+                    "icon": "sicon-format-text-alt",
+                    "label": "نص رسالة الخطأ",
+                    "multilanguage": true,
+                    "id": "error_text",
+                    "value": "حدث خطأ أثناء تحميل المنتجات، حاول مجدداً لاحقاً.",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "show_text_settings",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "type": "string",
+                    "format": "text",
+                    "icon": "sicon-format-text-alt",
+                    "label": "عنوان حالة عدم وجود بيانات",
+                    "multilanguage": true,
+                    "id": "empty_title",
+                    "value": "لا توجد بيانات للعرض.",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "show_text_settings",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "type": "string",
+                    "format": "textarea",
+                    "icon": "sicon-format-text-alt",
+                    "label": "وصف حالة عدم وجود بيانات",
+                    "multilanguage": true,
+                    "id": "empty_description",
+                    "value": "أضف تصنيفات السيارات من إعدادات المكوّن لبدء استخدام شجرة البحث.",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "show_text_settings",
                             "operation": "=",
                             "value": true
                         }
