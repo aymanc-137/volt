@@ -1091,6 +1091,10 @@ input:where([type='file']):focus{
     margin-left: auto;
     margin-right: auto;
 }
+.my-1{
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+}
 .my-10{
     margin-top: 2.5rem;
     margin-bottom: 2.5rem;
@@ -1103,9 +1107,9 @@ input:where([type='file']):focus{
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
-.my-32{
-    margin-top: 8rem;
-    margin-bottom: 8rem;
+.my-3{
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
 }
 .my-5{
     margin-top: 1.25rem;
@@ -1283,9 +1287,6 @@ input:where([type='file']):focus{
 .h-2\.5{
     height: 0.625rem;
 }
-.h-2\/6{
-    height: 33.333333%;
-}
 .h-20{
     height: 5rem;
 }
@@ -1329,9 +1330,6 @@ input:where([type='file']):focus{
     height: 20rem;
 }
 .h-96{
-    height: 24rem;
-}
-.h-\[24rem\]{
     height: 24rem;
 }
 .h-\[2px\]{
@@ -1430,6 +1428,9 @@ input:where([type='file']):focus{
 .w-10{
     width: 2.5rem;
 }
+.w-11\/12{
+    width: 91.666667%;
+}
 .w-12{
     width: 3rem;
 }
@@ -1490,17 +1491,14 @@ input:where([type='file']):focus{
 .w-80{
     width: 20rem;
 }
-.w-\[20rem\]{
-    width: 20rem;
-}
-.w-\[85\%\]{
-    width: 85%;
-}
 .w-\[90\%\]{
     width: 90%;
 }
 .w-\[90\]{
     width: 90;
+}
+.w-\[92\%\]{
+    width: 92%;
 }
 .w-\[95\%\]{
     width: 95%;
@@ -2010,6 +2008,10 @@ input:where([type='file']):focus{
     border-left-width: 1px;
     border-right-width: 1px;
 }
+.border-x-0{
+    border-left-width: 0px;
+    border-right-width: 0px;
+}
 .border-y{
     border-top-width: 1px;
     border-bottom-width: 1px;
@@ -2364,6 +2366,10 @@ input:where([type='file']):focus{
 .\!py-3{
     padding-top: 0.75rem !important;
     padding-bottom: 0.75rem !important;
+}
+.px-0{
+    padding-left: 0px;
+    padding-right: 0px;
 }
 .px-1{
     padding-left: 0.25rem;
@@ -35060,6 +35066,14 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .sm\:row-span-2{
         grid-row: span 2 / span 2;
     }
+    .sm\:my-16{
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+    }
+    .sm\:my-5{
+        margin-top: 1.25rem;
+        margin-bottom: 1.25rem;
+    }
     .sm\:mb-0{
         margin-bottom: 0px;
     }
@@ -35099,9 +35113,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .sm\:h-6{
         height: 1.5rem;
     }
-    .sm\:h-\[28rem\]{
-        height: 28rem;
-    }
     .sm\:h-auto{
         height: auto;
     }
@@ -35117,8 +35128,8 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .sm\:w-96{
         width: 24rem;
     }
-    .sm\:w-\[24rem\]{
-        width: 24rem;
+    .sm\:w-\[85\%\]{
+        width: 85%;
     }
     .sm\:grow-0{
         flex-grow: 0;
@@ -35161,6 +35172,13 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .sm\:gap-8{
         gap: 2rem;
     }
+    .sm\:rounded-lg{
+        border-radius: 0.5rem;
+    }
+    .sm\:border-x-2{
+        border-left-width: 2px;
+        border-right-width: 2px;
+    }
     .sm\:p-1{
         padding: 0.25rem;
     }
@@ -35178,6 +35196,10 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .sm\:px-6{
         padding-left: 1.5rem;
         padding-right: 1.5rem;
+    }
+    .sm\:px-8{
+        padding-left: 2rem;
+        padding-right: 2rem;
     }
     .sm\:py-10{
         padding-top: 2.5rem;
@@ -35229,10 +35251,22 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
         font-size: 1.125rem;
         line-height: 1.75rem;
     }
+    .sm\:text-xl{
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+    }
 }
 @media (min-width: 768px){
     .md\:sticky{
         position: sticky;
+    }
+    .md\:my-2{
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .md\:my-24{
+        margin-top: 6rem;
+        margin-bottom: 6rem;
     }
     .md\:my-9{
         margin-top: 2.25rem;
@@ -35262,6 +35296,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .md\:mt-0{
         margin-top: 0px;
     }
+    .md\:mt-5{
+        margin-top: 1.25rem;
+    }
     .md\:flex{
         display: flex;
     }
@@ -35273,6 +35310,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .md\:h-16{
         height: 4rem;
+    }
+    .md\:h-2\/6{
+        height: 33.333333%;
     }
     .md\:h-20{
         height: 5rem;
@@ -35426,6 +35466,10 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .md\:p-8{
         padding: 2rem;
+    }
+    .md\:px-12{
+        padding-left: 3rem;
+        padding-right: 3rem;
     }
     .md\:px-16{
         padding-left: 4rem;
@@ -35792,6 +35836,10 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 @media (min-width: 1280px){
     .xl\:left-10{
         left: 2.5rem;
+    }
+    .xl\:my-32{
+        margin-top: 8rem;
+        margin-bottom: 8rem;
     }
     .xl\:h-64{
         height: 16rem;

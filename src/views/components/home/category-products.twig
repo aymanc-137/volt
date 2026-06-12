@@ -72,7 +72,7 @@
     {% endif %}
 
     {% endif %}
-    <div class="relative w-full my-32">
+    <div class="relative w-full my-10 sm:my-16 md:my-24 xl:my-32">
                    {% if not component.title_inside_image %}
                                             <div class=" my-5 flex flex-col items-center justify-center w-full" >
                                             <div>
@@ -91,7 +91,7 @@
                                             </div>
                     {% endif %}
         <!-- Relative Wrapper for Content to ensure it's above the SVG -->
-        <div class="relative z-10 px-8 sm:px-12">
+        <div class="relative z-10 px-0 sm:px-8 md:px-12">
             <!-- Main Content -->
             <div class="flex flex-col md:flex-row items-center  ">
                 <!-- Right Section: Text Content -->
@@ -105,10 +105,10 @@
                  aspect-[7/8]
                  justify-center flex">
                                 <a href="{{ component.category_url.url }}" class="transition-all duration-200  !w-full  !h-full
-                                       rounded-lg
+                                       rounded-none sm:rounded-lg
                                        bg-center
-                                       border-2
-                                       border-primary 
+                                       border-2 border-x-0 sm:border-x-2
+                                       border-primary
                                       flex justify-center relative overflow-hidden">
 
                                     {# Conditional background: Video or Image #}
@@ -138,25 +138,25 @@
 
                                        style="{{ component.is_video ? 'z-index:100;' : '' }}"
                                       
-                                      class="w-[85%]  place-self-end my-5 bg-gradient-to-tr
-                                       from-[var(--color-primary-30)] 
+                                      class="w-[92%] sm:w-[85%]  place-self-end my-3 sm:my-5 bg-gradient-to-tr
+                                       from-[var(--color-primary-30)]
                                        via-white/30
-                                       to-[var(--color-primary-30)] 
-                                       h-2/6 backdrop-blur-sm rounded-custom justify-center flex">
-                                            <div class="  flex flex-col items-center justify-center rounded-custom border border-primary w-full" >
+                                       to-[var(--color-primary-30)]
+                                       h-auto md:h-2/6 backdrop-blur-sm rounded-custom justify-center flex">
+                                            <div class="  flex flex-col items-center justify-center rounded-custom border border-primary w-full py-3 md:py-0" >
                                             {% if component.enable_gradient_title %}
-                                                <h5 class="text-2xl font-alshohadaa font-semibold bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ component.title }}</h5>
+                                                <h5 class="text-lg sm:text-xl md:text-2xl font-alshohadaa font-semibold bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ component.title }}</h5>
                                             {% elseif gradient_word_active %}
-                                                <h5 id="{{ title_element_id }}" class="text-2xl font-alshohadaa font-semibold dynamic-text-color">{{ component.title }}</h5>
+                                                <h5 id="{{ title_element_id }}" class="text-lg sm:text-xl md:text-2xl font-alshohadaa font-semibold dynamic-text-color">{{ component.title }}</h5>
                                             {% else %}
-                                                <h5 class="text-2xl font-alshohadaa font-semibold text-[var(--color-primary)]">{{ component.title }}</h5>
+                                                <h5 class="text-lg sm:text-xl md:text-2xl font-alshohadaa font-semibold text-[var(--color-primary)]">{{ component.title }}</h5>
                                             {% endif %}
-                                                <h3 class=" xl:text-2xl text-xl text-[var(--color-tertiary)]" >{{ component.sub_title }} </h3>
-                                        
-                                                    <div class="hide-the-title  flex items-center w-1/2 my-2 justify-center"> 
+                                                <h3 class="text-base sm:text-lg xl:text-2xl text-[var(--color-tertiary)]" >{{ component.sub_title }} </h3>
+
+                                                    <div class="hide-the-title  flex items-center w-1/2 my-1 md:my-2 justify-center">
                                                             <span class="navbar-underline"></span>
                                                     </div>
-                                                <p class="text-xl w-5/6 mt-5">{{ component.text }}</p>
+                                                <p class="text-sm sm:text-base md:text-xl w-11/12 md:w-5/6 mt-2 md:mt-5">{{ component.text }}</p>
                                             </div>
                                         </div>
                                     {% endif %}
