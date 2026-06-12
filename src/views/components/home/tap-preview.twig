@@ -164,7 +164,7 @@
                 class="relative z-[2] accordion-content grid transition-[grid-template-rows,padding] duration-300 ease-in-out px-4 sm:px-6 bg-gradient-to-b  {{ is_open ? 'grid-rows-[1fr] py-4' : 'grid-rows-[0fr] py-0' }}"
                 {% if not is_open %}hidden{% endif %}
               >
-                <div class="overflow-hidden transition-opacity w-1/2 duration-300 ease-in-out {{ is_open ? 'opacity-100' : 'opacity-0' }}">
+                <div class="overflow-hidden transition-opacity w-full md:w-1/2 duration-300 ease-in-out {{ is_open ? 'opacity-100' : 'opacity-0' }}">
                   <p class="dynamic-text-color  text-xl">
                     {{ tab.description }}
                   </p>
