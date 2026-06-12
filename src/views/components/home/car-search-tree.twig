@@ -4,6 +4,19 @@
 {% set categories_payload = component.category|default([])|json_encode %}
 {% set heading = component.title|default('ابحث عن سيارتك') %}
 {% set description = component.description|default('اختر الماركة ثم الموديل والسنة (إن وُجدت) لإظهار المنتجات المتوافقة.') %}
+{% set badge_text = component.badge|default('اكتشف ملاءمة القطع') %}
+{% set selection_label = component.selection_label|default('اختيارك الحالي:') %}
+{% set empty_title = component.empty_title|default('لا توجد بيانات للعرض.') %}
+{% set empty_description = component.empty_description|default('أضف تصنيفات السيارات من إعدادات المكوّن لبدء استخدام شجرة البحث.') %}
+{% set brand_label = component.brand_label|default('اختر الماركة') %}
+{% set model_label = component.model_label|default('اختر الموديل') %}
+{% set year_label = component.year_label|default('اختر السنة') %}
+{% set products_title = component.products_title|default('المنتجات المتوافقة') %}
+{% set products_subtitle = component.products_subtitle|default('سيتم تحميل المنتجات تلقائياً بعد إتمام الاختيار.') %}
+{% set products_empty_text = component.products_empty_text|default('لم يتم اختيار فئة بعد.') %}
+{% set hint_select_model = component.hint_select_model|default('اختر الموديل لإظهار المنتجات.') %}
+{% set hint_no_products = component.hint_no_products|default('لا توجد منتجات متاحة لهذا الاختيار حالياً.') %}
+{% set error_text = component.error_text|default('حدث خطأ أثناء تحميل المنتجات، حاول مجدداً لاحقاً.') %}
 {% set brand_select_id = tree_component_id ~ '-brand-select' %}
 {% set model_select_id = tree_component_id ~ '-model-select' %}
 {% set year_select_id = tree_component_id ~ '-year-select' %}
@@ -13,17 +26,23 @@
          data-custom-mode="{{ component.use_custom_json ? 'true' : 'false' }}"
          data-custom-json='{{ component.custom_json_data|default('')|e('html_attr') }}'
          data-hide-brand-labels="{{ component.hide_brand_labels ? 'true' : 'false' }}"
-         data-display-mode="{{ component.use_dropdown_layout ? 'dropdown' : 'tiles' }}">
+         data-display-mode="{{ component.use_dropdown_layout ? 'dropdown' : 'tiles' }}"
+         data-text-brand="{{ brand_label|e('html_attr') }}"
+         data-text-model="{{ model_label|e('html_attr') }}"
+         data-text-year="{{ year_label|e('html_attr') }}"
+         data-text-hint-select-model="{{ hint_select_model|e('html_attr') }}"
+         data-text-no-products="{{ hint_no_products|e('html_attr') }}"
+         data-text-error="{{ error_text|e('html_attr') }}">
 
     <div class="car-search-tree container {{ component.use_dropdown_layout ? 'car-search-tree--dropdown' : '' }}">
         <div class="car-search-tree__header">
             <div>
-                <p class="car-search-tree__eyebrow">{{ component.badge|default('اكتشف ملاءمة القطع') }}</p>
+                <p class="car-search-tree__eyebrow">{{ badge_text }}</p>
                 <h2 class="car-search-tree__title">{{ heading }}</h2>
                 <p class="car-search-tree__subtitle">{{ description }}</p>
             </div>
             <div class="car-search-tree__selection">
-                <span class="car-search-tree__selection-label">اختيارك الحالي:</span>
+                <span class="car-search-tree__selection-label">{{ selection_label }}</span>
                 <span class="car-search-tree__selection-value" data-selected-path>—</span>
             </div>
         </div>
@@ -31,8 +50,8 @@
 
         <div class="car-search-tree__empty hidden" data-empty>
             <div>
-                <strong>لا توجد بيانات للعرض.</strong>
-                <p>أضف تصنيفات السيارات من إعدادات المكوّن لبدء استخدام شجرة البحث.</p>
+                <strong>{{ empty_title }}</strong>
+                <p>{{ empty_description }}</p>
             </div>
         </div>
 
@@ -57,21 +76,21 @@
         style="{{ component.use_dropdown_layout ? '' : 'display:none;' }}"
         data-selects>
             <div class="car-search-tree__select" data-select-wrapper="brand">
-                <label for="{{ brand_select_id }}">اختر الماركة</label>
+                <label for="{{ brand_select_id }}">{{ brand_label }}</label>
                 <select id="{{ brand_select_id }}" data-select="brand">
-                    <option value="" disabled selected>اختر الماركة</option>
+                    <option value="" disabled selected>{{ brand_label }}</option>
                 </select>
             </div>
             <div class="car-search-tree__select" data-select-wrapper="model">
-                <label for="{{ model_select_id }}">اختر الموديل</label>
+                <label for="{{ model_select_id }}">{{ model_label }}</label>
                 <select id="{{ model_select_id }}" data-select="model" disabled>
-                    <option value="" disabled selected>اختر الموديل</option>
+                    <option value="" disabled selected>{{ model_label }}</option>
                 </select>
             </div>
             <div class="car-search-tree__select" data-select-wrapper="year">
-                <label for="{{ year_select_id }}">اختر السنة</label>
+                <label for="{{ year_select_id }}">{{ year_label }}</label>
                 <select id="{{ year_select_id }}" data-select="year" disabled>
-                    <option value="" disabled selected>اختر السنة</option>
+                    <option value="" disabled selected>{{ year_label }}</option>
                 </select>
             </div>
         </div>
@@ -79,20 +98,19 @@
         <div class="car-search-tree__products">
 
             <div class="car-search-tree__products-header">
-                <h3>المنتجات المتوافقة</h3>
-                <p>سيتم تحميل المنتجات تلقائياً بعد إتمام الاختيار.</p>
+                <h3>{{ products_title }}</h3>
+                <p>{{ products_subtitle }}</p>
             </div>
 
                 <div class="hidden" data-products-loading>
                     <div class="car-search-tree__products-state">
                         <salla-loading size="32"></salla-loading>
-                        <p>جاري تحميل المنتجات...</p>
                     </div>
                 </div>
 
                 <div data-products-empty>
                     <div class="car-search-tree__products-state" >
-                        <p>لم يتم اختيار فئة بعد.</p>
+                        <p>{{ products_empty_text }}</p>
                     </div>
                 </div>
             <div class="car-search-tree__products-grid hidden" data-row="products"></div>
@@ -141,6 +159,15 @@
         const hideBrandLabels = root.dataset.hideBrandLabels === 'true';
         const displayMode = root.dataset.displayMode || 'tiles';
         const isDropdownMode = displayMode === 'dropdown';
+
+        const texts = {
+            brand: root.dataset.textBrand || 'اختر الماركة',
+            model: root.dataset.textModel || 'اختر الموديل',
+            year: root.dataset.textYear || 'اختر السنة',
+            selectModel: root.dataset.textHintSelectModel || 'اختر الموديل لإظهار المنتجات.',
+            noProducts: root.dataset.textNoProducts || 'لا توجد منتجات متاحة لهذا الاختيار حالياً.',
+            error: root.dataset.textError || 'حدث خطأ أثناء تحميل المنتجات، حاول مجدداً لاحقاً.',
+        };
 
         const state = {
             brand: null,
@@ -221,7 +248,7 @@
             updateSelectionPath();
 
             if (hasChildren(brand)) {
-                 showProductsHint('اختر الموديل لإظهار المنتجات.');
+                 showProductsHint(texts.selectModel);
             } else {
                  fetchProducts(brand);
             }
@@ -260,7 +287,7 @@
         function fetchProducts(category, options = {}) {
             const { includeDescendants = false } = options;
             if (!category?.id || typeof window.salla?.product?.fetch !== 'function') {
-                showProductsHint('تعذر الاتصال بواجهة المنتجات. تأكد من تحميل منصة سلة.');
+                showProductsHint(texts.error);
                 return;
             }
 
@@ -271,7 +298,7 @@
                     ? collectProductIds(category)
                     : (Array.isArray(category.products) ? category.products : []);
                 if (!productIds.length) {
-                    showProductsHint('لا توجد منتجات مرتبطة بهذا الاختيار.');
+                    showProductsHint(texts.noProducts);
                     return;
                 }
                 requestSignature = productIds.join(',') + ':products';
@@ -280,7 +307,7 @@
                 const ids = (includeDescendants ? collectCategoryIds(category) : [Number(category.id)])
                     .filter((value) => typeof value === 'number' && !Number.isNaN(value));
                 if (!ids.length) {
-                    showProductsHint('لا توجد فئات متاحة لتحميل المنتجات.');
+                    showProductsHint(texts.noProducts);
                     return;
                 }
                 requestSignature = `${ids.join(',')}:${includeDescendants ? 'deep' : 'single'}`;
@@ -298,13 +325,13 @@
                     if (state.lastRequestSignature !== requestSignature) return;
                     const products = extractProducts(response);
                     if (!products.length) {
-                        showProductsHint('لا توجد منتجات متاحة لهذا الاختيار حالياً.');
+                        showProductsHint(texts.noProducts);
                         return;
                     }
                     renderProducts(products);
                 })
                 .catch(() => {
-                    showProductsHint('حدث خطأ أثناء تحميل المنتجات، حاول مجدداً لاحقاً.');
+                    showProductsHint(texts.error);
                 })
                 .finally(hideLoading);
         }
@@ -447,9 +474,9 @@
         }
 
         function getSelectPlaceholder(level) {
-            if (level === 'brand') return 'اختر الماركة';
-            if (level === 'model') return 'اختر الموديل';
-            if (level === 'year') return 'اختر السنة';
+            if (level === 'brand') return texts.brand;
+            if (level === 'model') return texts.model;
+            if (level === 'year') return texts.year;
             return 'اختر الخيار';
         }
 
