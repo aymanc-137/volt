@@ -108,6 +108,18 @@
       filter: drop-shadow(0 25px 35px rgba(0,0,0,0.5));
     }
 
+    /* Stage heights (moved off inline styles so they can respond to screen size) */
+    #{{ uid }} .ps-stage-main { height: 60vh; }
+    #{{ uid }} .ps-stage-img  { height: 48vh; }
+
+    /* On small screens the top/bottom info cards were overlapping the product
+       image — give the stage more height and shrink the image so they clear it. */
+    @media (max-width: 767px) {
+      #{{ uid }} .ps-stage-main { height: 82vh; }
+      #{{ uid }} .ps-stage-img  { height: 34vh; }
+      #{{ uid }} .ps-slide img  { max-height: 52%; max-width: 82%; }
+    }
+
     #{{ uid }} .ps-glow {
       position: absolute;
       width: 55%;
@@ -295,7 +307,7 @@
     <div class="ps-grid"></div>
 
     <!-- main stage -->
-    <div style="position:relative; z-index:10; display:flex; align-items:center; justify-content:center; height:60vh; max-width:90rem; margin:0 auto; padding:0 1.5rem;">
+    <div class="ps-stage-main" style="position:relative; z-index:10; display:flex; align-items:center; justify-content:center; max-width:90rem; margin:0 auto; padding:0 1.5rem;">
 
       <!-- top-right info card -->
       <div class="ps-info ps-card" id="{{ uid }}-top"
@@ -307,7 +319,7 @@
       </div>
 
       <!-- center image stage -->
-      <div style="position:relative; height:48vh; width:100%; max-width:48rem;">
+      <div class="ps-stage-img" style="position:relative; width:100%; max-width:48rem;">
         <div class="ps-glow" id="{{ uid }}-glow"></div>
         <div id="{{ uid }}-stage" style="position:relative; height:100%; width:100%;">
           {% for item in products %}
