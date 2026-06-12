@@ -1519,8 +1519,8 @@ input:where([type='file']):focus{
 .min-w-0{
     min-width: 0px;
 }
-.min-w-\[220px\]{
-    min-width: 220px;
+.min-w-\[160px\]{
+    min-width: 160px;
 }
 .min-w-full{
     min-width: 100%;
@@ -2378,10 +2378,6 @@ input:where([type='file']):focus{
     padding-left: 0.25rem;
     padding-right: 0.25rem;
 }
-.px-10{
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
-}
 .px-2{
     padding-left: 0.5rem;
     padding-right: 0.5rem;
@@ -2589,6 +2585,9 @@ input:where([type='file']):focus{
     font-size: 4.5rem;
     line-height: 1;
 }
+.text-\[0\.625rem\]{
+    font-size: 0.625rem;
+}
 .text-base{
     font-size: 1rem;
     line-height: 1.5rem;
@@ -2672,8 +2671,8 @@ input:where([type='file']):focus{
 .leading-tight{
     line-height: 1.25;
 }
-.tracking-\[0\.25em\]{
-    letter-spacing: 0.25em;
+.tracking-\[0\.08em\]{
+    letter-spacing: 0.08em;
 }
 .tracking-\[0\.2em\]{
     letter-spacing: 0.2em;
@@ -35134,6 +35133,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .sm\:w-\[85\%\]{
         width: 85%;
     }
+    .sm\:min-w-\[220px\]{
+        min-width: 220px;
+    }
     .sm\:grow-0{
         flex-grow: 0;
     }
@@ -35195,6 +35197,10 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .sm\:px-12{
         padding-left: 3rem;
         padding-right: 3rem;
+    }
+    .sm\:px-4{
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
     .sm\:px-6{
         padding-left: 1.5rem;
@@ -35258,6 +35264,13 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
         font-size: 1.25rem;
         line-height: 1.75rem;
     }
+    .sm\:text-xs{
+        font-size: 0.75rem;
+        line-height: 1rem;
+    }
+    .sm\:tracking-\[0\.25em\]{
+        letter-spacing: 0.25em;
+    }
 }
 @media (min-width: 768px){
     .md\:sticky{
@@ -35289,6 +35302,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .md\:mb-20{
         margin-bottom: 5rem;
+    }
+    .md\:mb-6{
+        margin-bottom: 1.5rem;
     }
     .md\:mb-8{
         margin-bottom: 2rem;
