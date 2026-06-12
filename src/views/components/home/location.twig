@@ -90,7 +90,7 @@
                                     <i class="sicon-location text-xl text-[var(--color-primary)] group-hover:text-white transition-colors"></i>
                                 </div>
                                 <div class="flex-1">
-                                    <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">{{ 'العنوان' }}</span>
+                                    <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">{{ trans('blocks.home.volt.location.address') }}</span>
                                     <p class="dynamic-text-color text-base md:text-lg mt-1">{{ location.address }}</p>
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
                                     <i class="sicon-phone text-xl text-[var(--color-primary)] group-hover:text-white transition-colors"></i>
                                 </div>
                                 <div class="flex-1">
-                                    <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">{{ 'الهاتف' }}</span>
+                                    <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">{{ trans('blocks.home.volt.location.phone') }}</span>
                                     <a href="tel:{{ location.phone }}" class="block dynamic-text-color text-base md:text-lg mt-1 hover:text-[var(--color-primary)] transition-colors" dir="ltr">
                                         {{ location.phone }}
                                     </a>
@@ -118,7 +118,7 @@
                                     <i class="sicon-mail text-xl text-[var(--color-primary)] group-hover:text-white transition-colors"></i>
                                 </div>
                                 <div class="flex-1">
-                                    <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">{{ 'البريد الإلكتروني' }}</span>
+                                    <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">{{ trans('blocks.home.volt.location.email') }}</span>
                                     <a href="mailto:{{ location.email }}" class="block dynamic-text-color text-base md:text-lg mt-1 hover:text-[var(--color-primary)] transition-colors break-all">
                                         {{ location.email }}
                                     </a>
@@ -133,7 +133,7 @@
                                     <i class="sicon-clock text-xl text-[var(--color-primary)] group-hover:text-white transition-colors"></i>
                                 </div>
                                 <div class="flex-1">
-                                    <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">{{ 'ساعات العمل' }}</span>
+                                    <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">{{ trans('blocks.home.volt.location.working_hours') }}</span>
                                     <p class="dynamic-text-color text-base md:text-lg mt-1">{{ location.working_hours }}</p>
                                 </div>
                             </div>
@@ -146,7 +146,7 @@
                             <a href="tel:{{ location.phone }}" 
                                class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-custom bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-scandary)] text-white font-medium text-base hover:opacity-90 hover:shadow-lg transition-all">
                                 <i class="sicon-phone"></i>
-                                {{ 'اتصل بنا' }}
+                                {{ trans('blocks.home.volt.location.contact_us') }}
                             </a>
                             {% endif %}
                             {% if location.map_embed or location.address %}
@@ -155,7 +155,7 @@
                                rel="noopener noreferrer"
                                class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-custom border-2 border-[var(--color-primary)] text-[var(--color-primary)] font-medium text-base hover:bg-[var(--color-primary)] hover:text-white transition-all">
                                 <i class="sicon-directions"></i>
-                                {{ 'الاتجاهات' }}
+                                {{ trans('blocks.home.volt.location.directions') }}
                             </a>
                             {% endif %}
                         </div>
@@ -190,7 +190,7 @@
                         <div class="location-map h-[300px] md:h-[400px] lg:h-[500px] relative bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-scandary)]/10 flex items-center justify-center">
                             <div class="text-center">
                                 <i class="sicon-map text-6xl text-[var(--color-primary)]/30 mb-3"></i>
-                                <p class="text-gray-400 text-sm">{{ 'لا توجد خريطة متاحة' }}</p>
+                                <p class="text-gray-400 text-sm">{{ trans('blocks.home.volt.location.no_map') }}</p>
                             </div>
                         </div>
                         {% endif %}
@@ -208,7 +208,7 @@
             <div class="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-[var(--color-primary)]/20 to-[var(--color-scandary)]/20 flex items-center justify-center">
                 <i class="sicon-map-marker-alt text-4xl text-[var(--color-primary)]"></i>
             </div>
-            <p class="text-gray-500 dark:text-gray-400 text-lg">{{ 'لا توجد مواقع متاحة حالياً' }}</p>
+            <p class="text-gray-500 dark:text-gray-400 text-lg">{{ trans('blocks.home.volt.location.no_locations') }}</p>
         </div>
         {% endif %}
     </div>

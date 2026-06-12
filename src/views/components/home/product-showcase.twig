@@ -346,9 +346,9 @@
 
     <!-- controls -->
     <div style="position:relative; z-index:20; display:flex; align-items:center; justify-content:center; gap:.75rem; padding-bottom:2rem;">
-      <button class="ps-nav-btn" id="{{ uid }}-prev" aria-label="السابق">&#8249;</button>
+      <button class="ps-nav-btn" id="{{ uid }}-prev" aria-label="{{ trans('blocks.home.volt.product_showcase.previous')|e('html_attr') }}">&#8249;</button>
       <div id="{{ uid }}-dots" style="display:flex; align-items:center; gap:.5rem;"></div>
-      <button class="ps-nav-btn" id="{{ uid }}-next" aria-label="التالي">&#8250;</button>
+      <button class="ps-nav-btn" id="{{ uid }}-next" aria-label="{{ trans('blocks.home.volt.product_showcase.next')|e('html_attr') }}">&#8250;</button>
     </div>
   </div>
 
@@ -468,7 +468,7 @@
         var dots = products.map(function (_, i) {
           var btn = document.createElement('button');
           btn.className = 'ps-dot-btn';
-          btn.setAttribute('aria-label', 'انتقل للمنتج ' + (i + 1));
+          btn.setAttribute('aria-label', {{ trans('blocks.home.volt.product_showcase.go_to_product')|json_encode|raw }} + ' ' + (i + 1));
           btn.addEventListener('click', function () { show(i); restart(); });
           refs.dotsWrap.appendChild(btn);
           return btn;
@@ -532,7 +532,7 @@
                   ? specs.split(',').map(function (s) { return '<span class="ps-spec">' + s.trim() + '</span>'; }).join('')
                   : '';
 
-                refs.elLinkTop.innerHTML = link ? '<a href="' + link + '" class="ps-link">عرض المنتج ›</a>' : '';
+                refs.elLinkTop.innerHTML = link ? '<a href="' + link + '" class="ps-link">' + {{ trans('blocks.home.volt.product_showcase.view_product')|json_encode|raw }} + ' ›</a>' : '';
                 refs.elLinkBot.innerHTML = '';
 
                 refs.topBox.classList.remove('fading');

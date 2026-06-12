@@ -94,16 +94,16 @@
         <!-- Additional Info -->
         <div class="hidden faq-component__footer mt-12 sm:mt-16 text-center">
           <p class="text-sm sm:text-base dynamic-text-color">
-            هل لديك المزيد من الأسئلة؟
+            {{ trans('blocks.home.volt.faq.more_questions') }}
             <a href="#contact" class="text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] dark:hover:text-[var(--color-primary-light)] transition-colors duration-200 font-medium">
-              اتصل بنا
+              {{ trans('blocks.home.volt.faq.contact_us') }}
             </a>
           </p>
         </div>
       {% else %}
         <div class="faq-component__empty-state py-12 text-center">
           <p class="text-base sm:text-lg dynamic-text-color">
-            لم يتم إضافة أسئلة شائعة بعد. أضف الأسئلة عبر إعدادات المكون.
+            {{ trans('blocks.home.volt.faq.empty') }}
           </p>
         </div>
       {% endif %}

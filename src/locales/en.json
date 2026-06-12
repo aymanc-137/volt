@@ -8,6 +8,53 @@
     },
     "appBanner": {
       "download_now": "download now"
+    },
+    "home": {
+      "volt": {
+        "location": {
+          "address": "Address",
+          "phone": "Phone",
+          "email": "Email",
+          "working_hours": "Working Hours",
+          "contact_us": "Contact Us",
+          "directions": "Directions",
+          "no_map": "No map available",
+          "no_locations": "No locations available at the moment"
+        },
+        "faq": {
+          "more_questions": "Do you have more questions?",
+          "contact_us": "Contact Us",
+          "empty": "No FAQs added yet. Add questions from the component settings."
+        },
+        "carousel": {
+          "video_unsupported": "Your browser does not support video playback",
+          "previous": "Previous",
+          "next": "Next",
+          "go_to_slide": "Go to slide"
+        },
+        "product_showcase": {
+          "previous": "Previous",
+          "next": "Next",
+          "view_product": "View product",
+          "go_to_product": "Go to product"
+        },
+        "hotspot": {
+          "product": "Product",
+          "connection_error": "Failed to connect to the products service.",
+          "not_found": "Product not found.",
+          "load_error": "An error occurred while loading the product."
+        },
+        "brands": {
+          "empty": "No logos added yet. Add logos from the component settings."
+        },
+        "testimonials": {
+          "default_name": "Our customer",
+          "empty": "Add reviews from the component settings to display content here."
+        },
+        "before_after": {
+          "drag_hint": "Drag to compare"
+        }
+      }
     }
   },
   "pages": {

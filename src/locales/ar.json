@@ -8,6 +8,53 @@
     },
     "appBanner": {
       "download_now": "حمله الان"
+    },
+    "home": {
+      "volt": {
+        "location": {
+          "address": "العنوان",
+          "phone": "الهاتف",
+          "email": "البريد الإلكتروني",
+          "working_hours": "ساعات العمل",
+          "contact_us": "اتصل بنا",
+          "directions": "الاتجاهات",
+          "no_map": "لا توجد خريطة متاحة",
+          "no_locations": "لا توجد مواقع متاحة حالياً"
+        },
+        "faq": {
+          "more_questions": "هل لديك المزيد من الأسئلة؟",
+          "contact_us": "اتصل بنا",
+          "empty": "لم يتم إضافة أسئلة شائعة بعد. أضف الأسئلة عبر إعدادات المكون."
+        },
+        "carousel": {
+          "video_unsupported": "متصفحك لا يدعم تشغيل الفيديو",
+          "previous": "السابق",
+          "next": "التالي",
+          "go_to_slide": "انتقال إلى الشريحة"
+        },
+        "product_showcase": {
+          "previous": "السابق",
+          "next": "التالي",
+          "view_product": "عرض المنتج",
+          "go_to_product": "انتقل للمنتج"
+        },
+        "hotspot": {
+          "product": "المنتج",
+          "connection_error": "تعذر الاتصال بواجهة المنتجات.",
+          "not_found": "لم يتم العثور على المنتج.",
+          "load_error": "حدث خطأ أثناء تحميل المنتج."
+        },
+        "brands": {
+          "empty": "لم يتم إضافة شعارات بعد. أضف الشعارات عبر إعدادات المكون."
+        },
+        "testimonials": {
+          "default_name": "عميل متجرنا",
+          "empty": "أضف تقييمات من إعدادات المكون ليظهر المحتوى هنا."
+        },
+        "before_after": {
+          "drag_hint": "اسحب لرؤية المقارنة"
+        }
+      }
     }
   },
   "pages": {

@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="text-center   bg-[var(--color-primary-5)]  p-5 ">
-                  <h3 class="dynamic-text-color text-xl font-semibold mb-3">{{ item.name|default('عميل متجرنا') }}</h3>
+                  <h3 class="dynamic-text-color text-xl font-semibold mb-3">{{ item.name|default(trans('blocks.home.volt.testimonials.default_name')) }}</h3>
                   <div class="flex justify-center gap-1" aria-label="{{ total_stars }} / 5">
                     {% for star in 1..5 %}
                       {% set is_filled = star <= total_stars %}
@@ -81,7 +81,7 @@
       </salla-slider>
     {% else %}
       <div class="text-center text-neutral-500 border border-dashed border-neutral-400 rounded-custom p-10">
-        أضف تقييمات من إعدادات المكون ليظهر المحتوى هنا.
+        {{ trans('blocks.home.volt.testimonials.empty') }}
       </div>
     {% endif %}
   </div>

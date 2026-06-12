@@ -212,7 +212,7 @@
         dot.className = 'hi-dot';
         dot.style.left = h.x + '%';
         dot.style.top  = h.y + '%';
-        dot.setAttribute('aria-label', h.label || ('المنتج ' + (i + 1)));
+        dot.setAttribute('aria-label', h.label || ({{ trans('blocks.home.volt.hotspot.product')|json_encode|raw }} + ' ' + (i + 1)));
         dot.dataset.pid = String(h.pid);
         dot.dataset.x = String(h.x);
         dot.dataset.y = String(h.y);
@@ -268,7 +268,7 @@
         cardBody.innerHTML = '<div class="hi-loading"><salla-loading size="32"></salla-loading></div>';
 
         if (!window.salla || typeof window.salla.product?.fetch !== 'function') {
-          cardBody.innerHTML = '<div class="hi-error">تعذر الاتصال بواجهة المنتجات.</div>';
+          cardBody.innerHTML = '<div class="hi-error">' + {{ trans('blocks.home.volt.hotspot.connection_error')|json_encode|raw }} + '</div>';
           return;
         }
 
@@ -280,7 +280,7 @@
             var products = res?.data?.products || res?.data?.items || res?.data || res?.products || [];
             var product = Array.isArray(products) ? products[0] : products;
             if (!product) {
-              cardBody.innerHTML = '<div class="hi-error">لم يتم العثور على المنتج.</div>';
+              cardBody.innerHTML = '<div class="hi-error">' + {{ trans('blocks.home.volt.hotspot.not_found')|json_encode|raw }} + '</div>';
               return;
             }
             productCache[pid] = product;
@@ -289,7 +289,7 @@
           })
           .catch(function (err) {
             console.error(LOG, 'product fetch failed', err);
-            cardBody.innerHTML = '<div class="hi-error">حدث خطأ أثناء تحميل المنتج.</div>';
+            cardBody.innerHTML = '<div class="hi-error">' + {{ trans('blocks.home.volt.hotspot.load_error')|json_encode|raw }} + '</div>';
           });
       }
 

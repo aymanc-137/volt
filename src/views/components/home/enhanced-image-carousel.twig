@@ -60,7 +60,7 @@
                                 aria-label="{{ (slide.image_alt ?: 'carousel-video-' ~ loop.index)|e('html_attr') }}"
                             >
                                 <source data-src="{{ slide.video_url }}" type="video/mp4">
-                                متصفحك لا يدعم تشغيل الفيديو
+                                {{ trans('blocks.home.volt.carousel.video_unsupported') }}
                             </video>
                         {% else %}
                             <img
@@ -133,18 +133,18 @@
                     type="button"
                     class="group absolute top-1/2 left-4 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-primary shadow-lg transition-all opacity-0 group-hover/carousel:opacity-100 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:flex"
                     data-carousel-prev
-                    aria-label="السابق"
+                    aria-label="{{ trans('blocks.home.volt.carousel.previous')|e('html_attr') }}"
                 >
-                    <span class="sr-only">السابق</span>
+                    <span class="sr-only">{{ trans('blocks.home.volt.carousel.previous') }}</span>
                     <i class="sicon-arrow-left text-xl transition group-hover:-translate-x-1"></i>
                 </button>
                 <button
                     type="button"
                     class="group absolute top-1/2 right-4 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-primary shadow-lg transition-all opacity-0 group-hover/carousel:opacity-100 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 md:flex"
                     data-carousel-next
-                    aria-label="التالي"
+                    aria-label="{{ trans('blocks.home.volt.carousel.next')|e('html_attr') }}"
                 >
-                    <span class="sr-only">التالي</span>
+                    <span class="sr-only">{{ trans('blocks.home.volt.carousel.next') }}</span>
                     <i class="sicon-arrow-right text-xl transition group-hover:translate-x-1"></i>
                 </button>
                 {% endif %}
@@ -156,7 +156,7 @@
                             type="button"
                             class="h-2.5 w-2.5 rounded-full bg-white/40 transition hover:bg-white/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
                             data-carousel-dot="{{ loop.index0 }}"
-                            aria-label="انتقال إلى الشريحة {{ loop.index }}"
+                            aria-label="{{ trans('blocks.home.volt.carousel.go_to_slide')|e('html_attr') }} {{ loop.index }}"
                         ></button>
                     {% endfor %}
                 </div>
