@@ -27,7 +27,7 @@
 {% set show_nav_buttons = component.show_nav_buttons ?? true %}
 
 {% set block_id = 'enhanced-image-carousel-' ~ position %}
- <section dir="ltr" class="h-[58dvh] md:h-[65dvh] lg:h-[80dvh] xl:h-[100dvh] w-full relative" id="{{ block_id }}">
+ <section dir="ltr" class="min-h-[20rem] h-[50dvh] sm:h-[58dvh] md:h-[65dvh] lg:h-[80dvh] xl:h-[100dvh] w-full relative" id="{{ block_id }}">
     <div
         class="enhanced-carousel h-full  relative group/carousel"
         data-enhanced-carousel
@@ -101,14 +101,14 @@
                     <article class="{% if animation_type == 'fade' %}absolute inset-0 opacity-0 transition-opacity duration-500{% else %}relative w-full shrink-0{% endif %} h-full" data-carousel-slide>
                         {% if layout == 'split' %}
                             {# Split layout: media fills the slide; two stacked chevron clip-paths form the angular arrow edge of the content panel #}
-                            <div class="relative h-full w-full overflow-hidden">
-                                <div class="absolute top-0 bottom-0 left-0" style="width: 60%;">
+                            <div class="relative h-full w-full overflow-hidden eic-split">
+                                <div class="absolute top-0 bottom-0 left-0 eic-split-media">
                                     {{ slide_media|raw }}
                                 </div>
                                 {# colored arrow band (wider chevron, mirrored) — uses the selected arrow color #}
-                                <div class="absolute inset-0" style="background: {{ arrow_color }}; clip-path: polygon(100% 0, 30% 0, 48% 50%, 25% 100%, 100% 100%);" aria-hidden="true"></div>
+                                <div class="absolute inset-0 eic-split-band" style="background: {{ arrow_color }};" aria-hidden="true"></div>
                                 {# content panel (narrower chevron, mirrored) #}
-                                <div class="absolute inset-0 bg-light-background dark:bg-dark-background" style="clip-path: polygon(100% 0, 40% 0, 58% 50%, 35% 100%, 100% 100%);" aria-hidden="true"></div>
+                                <div class="absolute inset-0 bg-light-background dark:bg-dark-background eic-split-panel" aria-hidden="true"></div>
                                 {# text content on top of the panel — full width, same as the default layout #}
                                 <div dir="rtl" class="absolute inset-0 z-10 flex h-full w-full px-6 py-1 sm:px-12 sm:py-10 md:px-16 lg:px-20">
                                     {{ slide_content|raw }}
@@ -187,6 +187,30 @@
              data-home-car-search="{{ position }}">
         </div>
     {% endif %}
+    {% endif %}
+
+    {# Split (arrow) layout sizing — rendered once per page. Defaults match the
+       original desktop look; on small screens the chevron flattens (smaller arrow)
+       and the image fills the full width. #}
+    {% if not theme.settings.get('_eic_split_styles_rendered') %}
+        {{ theme.settings.set('_eic_split_styles_rendered', true) }}
+        <style>
+            .eic-split {
+                --eic-media-w: 60%;
+                --eic-band: polygon(100% 0, 30% 0, 48% 50%, 25% 100%, 100% 100%);
+                --eic-panel: polygon(100% 0, 40% 0, 58% 50%, 35% 100%, 100% 100%);
+            }
+            .eic-split .eic-split-media { width: var(--eic-media-w); }
+            .eic-split .eic-split-band  { clip-path: var(--eic-band); }
+            .eic-split .eic-split-panel { clip-path: var(--eic-panel); }
+            @media (max-width: 640px) {
+                .eic-split {
+                    --eic-media-w: 100%;
+                    --eic-band: polygon(100% 0, 54% 0, 60% 50%, 52% 100%, 100% 100%);
+                    --eic-panel: polygon(100% 0, 60% 0, 66% 50%, 58% 100%, 100% 100%);
+                }
+            }
+        </style>
     {% endif %}
 </section>
 

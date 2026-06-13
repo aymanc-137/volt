@@ -249,6 +249,37 @@
     }
 }
 
+// Phones: compact the hero search even further (smaller padding, selects and
+// title) so the bar doesn't eat up the shorter mobile slide.
+@media (max-width: 640px) {
+    [data-home-car-search] {
+        .car-search-tree {
+            padding: 0.625rem !important;
+            @apply space-y-2;
+        }
+
+        .car-search-tree__title {
+            @apply text-base;
+        }
+
+        .car-search-tree__selects {
+            @apply gap-2;
+        }
+
+        .car-search-tree__select {
+            @apply gap-1;
+
+            label {
+                @apply text-[10px] tracking-normal;
+            }
+
+            select {
+                @apply px-3 py-2 text-xs rounded-xl;
+            }
+        }
+    }
+}
+
 // Horizontal-dropdowns variant for the bottom-pinned bar: keep selects side-by-side on lg+
 [data-home-car-search].home-car-search--horizontal {
     @media (min-width: 1024px) {
