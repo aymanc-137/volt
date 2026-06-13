@@ -3947,6 +3947,29 @@
                     ]
                 },
                 {
+                    "id": "target_category",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "التصنيف المستهدف",
+                    "description": "اختر التصنيف الذي سيظهر فيه هذا المكون",
+                    "labelHTML": null,
+                    "icon": "sicon-keyboard_arrow_down",
+                    "selected": [],
+                    "options": [],
+                    "source": "categories",
+                    "multichoice": false,
+                    "searchable": true,
+                    "required": false,
+                    "value": [],
+                    "conditions": [
+                        {
+                            "id": "show_in_category_page",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
                     "type": "static",
                     "format": "description",
                     "id": "flash-offer-preview-category",
@@ -4442,29 +4465,6 @@
                             "id": "enable_glow",
                             "operation": "!=",
                             "value": "none"
-                        }
-                    ]
-                },
-                {
-                    "id": "target_category",
-                    "type": "items",
-                    "format": "dropdown-list",
-                    "label": "التصنيف المستهدف",
-                    "description": "اختر التصنيف الذي سيظهر فيه هذا المكون",
-                    "labelHTML": null,
-                    "icon": "sicon-keyboard_arrow_down",
-                    "selected": [],
-                    "options": [],
-                    "source": "categories",
-                    "multichoice": false,
-                    "searchable": true,
-                    "required": false,
-                    "value": [],
-                    "conditions": [
-                        {
-                            "id": "show_in_category_page",
-                            "operation": "=",
-                            "value": true
                         }
                     ]
                 }
