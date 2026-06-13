@@ -23,7 +23,6 @@
 {% set autoplay_delay = component.autoplay_delay ?? 5 %}
 {% set show_car_search = component.show_car_search | default(false) %}
 {% set car_search_at_bottom = component.car_search_at_bottom ?? false %}
-{% set car_search_horizontal = component.car_search_horizontal_dropdowns ?? false %}
 {% set show_nav_buttons = component.show_nav_buttons ?? true %}
 
 {% set block_id = 'enhanced-image-carousel-' ~ position %}
@@ -172,7 +171,7 @@
                     lg:left-1/2 lg:right-auto lg:-translate-x-1/2 lg:w-auto lg:max-w-5xl lg:rounded-2xl lg:mb-4
                     z-20 max-h-[85%] lg:max-h-[50%] xl:max-h-[35%] flex-col overflow-hidden
                     shadow-2xl
-                    dark:bg-dark-foreground/50 backdrop-blur-md{% if car_search_horizontal %} home-car-search--horizontal{% endif %}"
+                    dark:bg-dark-foreground/50 backdrop-blur-md home-car-search--horizontal"
              dir="rtl"
              data-home-car-search="{{ position }}">
         </div>
