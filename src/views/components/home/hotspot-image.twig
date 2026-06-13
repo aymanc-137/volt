@@ -38,6 +38,7 @@
       position: relative;
       width: 100%;
       user-select: none;
+      container-type: inline-size;
     }
     #{{ uid }}-stage > img {
       display: block;
@@ -74,11 +75,13 @@
       color: transparent;
     }
     #{{ uid }}-stage .hi-dot {
+      /* Scales with the image width so dots shrink on small screens and don't overlap */
+      --hi-dot-size: clamp(0.85rem, 4.5cqw, 1.75rem);
       position: absolute;
-      width: 1.75rem;
-      height: 1.75rem;
-      margin-left: -0.875rem;
-      margin-top: -0.875rem;
+      width: var(--hi-dot-size);
+      height: var(--hi-dot-size);
+      margin-left: calc(var(--hi-dot-size) / -2);
+      margin-top: calc(var(--hi-dot-size) / -2);
       border-radius: 9999px;
       background: {{ dot_color }};
       border: 2px solid {{ dot_accent }};
@@ -96,7 +99,7 @@
     #{{ uid }}-stage .hi-dot::before {
       content: '';
       position: absolute;
-      inset: -0.5rem;
+      inset: calc(var(--hi-dot-size) * -0.28);
       border-radius: 9999px;
       background: {{ dot_accent }};
       opacity: .5;
@@ -107,7 +110,7 @@
       content: '+';
       color: {{ dot_accent }};
       font-weight: 900;
-      font-size: 1.1rem;
+      font-size: calc(var(--hi-dot-size) * 0.62);
       line-height: 1;
     }
     @keyframes hi-pulse-{{ position }} {

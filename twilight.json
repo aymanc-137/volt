@@ -7552,15 +7552,15 @@
                         {
                             "type": "string",
                             "icon": "sicon-map",
-                            "label": "رابط خريطة جوجل (Embed)",
+                            "label": "خريطة جوجل (كود التضمين أو العنوان)",
                             "id": "locations.map_embed",
                             "value": null,
                             "required": false,
-                            "format": "text",
-                            "description": "رابط تضمين خريطة جوجل - يمكنك الحصول عليه من Google Maps > مشاركة > تضمين خريطة",
-                            "placeholder": "https://www.google.com/maps/embed?pb=...",
+                            "format": "textarea",
+                            "description": "ألصق كود التضمين Embed من خرائط جوجل (مشاركة > تضمين خريطة > نسخ HTML)، أو رابط التضمين، أو حتى العنوان أو الإحداثيات (خط العرض، خط الطول) وسنحوّله تلقائياً. ملاحظة: رابط المشاركة المختصر (goo.gl / maps.app.goo.gl) لا يعمل داخل الخريطة.",
+                            "placeholder": "ألصق كود <iframe ...> أو العنوان أو: 21.3747, 39.7784",
                             "minLength": 0,
-                            "maxLength": 1000
+                            "maxLength": 3000
                         },
                         {
                             "type": "string",

@@ -164,14 +164,14 @@
                     <!-- Map Section  -->
                     <div class="lg:w-1/2 xl:w-3/5 lg:self-stretch">
                         {% if location.map_embed %}
-                        <div class="location-map h-[300px] md:h-[400px] lg:h-[500px] relative">
-                            <iframe 
-                                src="{{ location.map_embed }}"
-                                width="100%" 
-                                height="100%" 
-                                style="border:0;" 
-                                allowfullscreen="" 
-                                loading="lazy" 
+                        <div class="location-map h-[300px] md:h-[400px] lg:h-[500px] relative" data-map-fallback="{{ trans('blocks.home.volt.location.no_map')|e('html_attr') }}">
+                            <iframe
+                                data-map-embed="{{ location.map_embed|e('html_attr') }}"
+                                width="100%"
+                                height="100%"
+                                style="border:0;"
+                                allowfullscreen=""
+                                loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade"
                                 class="w-full h-full absolute inset-0"
                             ></iframe>
@@ -326,12 +326,12 @@ document.addEventListener('DOMContentLoaded', function() {
     tabs.forEach(tab => {
         tab.addEventListener('click', function() {
             const tabIndex = this.getAttribute('data-tab');
-            
+
             // Remove active from all tabs
             tabs.forEach(t => t.classList.remove('active'));
             // Add active to clicked tab
             this.classList.add('active');
-            
+
             // Hide all panels
             panels.forEach(p => p.classList.remove('active'));
             // Show target panel
@@ -340,6 +340,54 @@ document.addEventListener('DOMContentLoaded', function() {
                 targetPanel.classList.add('active');
             }
         });
+    });
+
+    // ---- Google Maps embed normalizer ----
+    // Accepts whatever the merchant pasted (a full <iframe> embed snippet, a
+    // /maps/embed?pb= URL, a place URL with coordinates, plain "lat,lng", or an
+    // address) and turns it into a URL that actually renders inside an iframe.
+    function decodeEntities(str) {
+        const el = document.createElement('textarea');
+        el.innerHTML = str;
+        return el.value;
+    }
+    function normalizeMapSrc(raw) {
+        if (!raw) return '';
+        raw = decodeEntities(String(raw).trim());
+        // 1) Full <iframe ...> snippet → pull out the src
+        const iframeMatch = raw.match(/<iframe[^>]*\ssrc=["']([^"']+)["']/i);
+        if (iframeMatch) raw = decodeEntities(iframeMatch[1].trim());
+        // 2) Already an embeddable URL
+        if (/\/maps\/embed/i.test(raw) || /[?&]output=embed/i.test(raw)) return raw;
+        // 3) A maps URL containing coordinates → keyless embed
+        const coords = raw.match(/@(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/)
+            || raw.match(/!3d(-?\d+(?:\.\d+)?)!4d(-?\d+(?:\.\d+)?)/)
+            || raw.match(/[?&]q(?:uery)?=(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/);
+        if (coords) return 'https://maps.google.com/maps?q=' + coords[1] + ',' + coords[2] + '&z=15&output=embed';
+        // 4) Plain "lat,lng"
+        if (/^-?\d+(?:\.\d+)?\s*,\s*-?\d+(?:\.\d+)?$/.test(raw)) {
+            return 'https://maps.google.com/maps?q=' + encodeURIComponent(raw.replace(/\s+/g, '')) + '&z=15&output=embed';
+        }
+        // 5) Short links / any other maps URL we can't resolve client-side → unusable
+        if (/^https?:\/\//i.test(raw)) return '';
+        // 6) Treat anything else as a plain address / place name
+        return 'https://maps.google.com/maps?q=' + encodeURIComponent(raw) + '&output=embed';
+    }
+    component.querySelectorAll('iframe[data-map-embed]').forEach(function(frame) {
+        const src = normalizeMapSrc(frame.getAttribute('data-map-embed'));
+        if (src) {
+            frame.setAttribute('src', src);
+            return;
+        }
+        // Couldn't build an embeddable map → swap in a friendly placeholder
+        const box = frame.closest('.location-map');
+        if (!box) return;
+        box.innerHTML = '<div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br '
+            + 'from-[var(--color-primary)]/10 to-[var(--color-scandary)]/10">'
+            + '<div class="text-center px-4"><i class="sicon-map text-5xl text-[var(--color-primary)]/30"></i>'
+            + '<p class="text-gray-400 text-sm mt-2"></p></div></div>';
+        const msg = box.querySelector('p');
+        if (msg) msg.textContent = box.getAttribute('data-map-fallback') || '';
     });
 });
 </script>
