@@ -7,7 +7,7 @@
     @apply rounded-custom overflow-hidden
    border-primary border
    m-3 sm:m-6 md:m-12 lg:m-20 xl:m-32
-   min-h-[24rem] md:min-h-[30rem] md:max-h-[30rem]
+   min-h-[24rem] md:h-[30rem]
    flex flex-col md:flex-row
     bg-[var(--color-light-box-background)]
     dark:bg-[var(--color-dark-box-background)];

@@ -72,9 +72,9 @@
     {% endif %}
 
     {% endif %}
-    <div class="relative w-full my-10 sm:my-16 md:my-24 xl:my-32">
+    <div class="relative w-full my-6 sm:my-8 md:my-12 xl:my-16">
                    {% if not component.title_inside_image %}
-                                            <div class=" my-5 flex flex-col items-center justify-center w-full" >
+                                            <div class=" my-3 flex flex-col items-center justify-center w-full" >
                                             <div>
                                                 {% if component.enable_gradient_title %}
                                                     <h5 class="text-2xl font-alshohadaa font-semibold bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ component.title }}</h5>
@@ -91,7 +91,7 @@
                                             </div>
                     {% endif %}
         <!-- Relative Wrapper for Content to ensure it's above the SVG -->
-        <div class="relative z-10 px-0 sm:px-8 md:px-12">
+        <div class="relative z-10 px-0 sm:px-4 md:px-6">
             <!-- Main Content -->
             <div class="flex flex-col md:flex-row items-center  ">
                 <!-- Right Section: Text Content -->
@@ -167,7 +167,7 @@
                 {# <div class="  xl:rotate-0 rotate-90 w-px bg-[var(--color-primary)] xl:h-64"></div> #}
 
                 <!-- Left Section: Stats Cards -->
-                <div class=" justify-center xl:w-[80%] lg:w-[70%] md:w-[60%] w-full md:p-10 p-3">
+                <div class=" justify-center xl:w-[80%] lg:w-[70%] md:w-[60%] w-full md:p-4 p-2">
                     <salla-products-slider autoplay source="selected" {# product-card-component="custom-salla-product-card-harir" #} source-value="[{{ component.products|map((product) => product.id)|join(',') }}]"></salla-products-slider>
                 </div>
             </div>
