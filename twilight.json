@@ -6322,7 +6322,7 @@
                             "labelHTML": null,
                             "placeholder": "نص عن القسم",
                             "icon": "sicon-format-text-alt",
-                            "value": "احمى بشرتك مع تشكيلة متنوعة من واقي الشمس",
+                            "value": "احمي سيارتك مع يايات رياضية",
                             "multilanguage": true,
                             "required": false,
                             "minLength": 6,
@@ -6337,7 +6337,7 @@
                             "labelHTML": null,
                             "placeholder": "e.g. https://hostname.com/image.png",
                             "icon": "sicon-image",
-                            "value": "https://cdn.salla.sa/form-builder/4UT1YgWC3mx7GNld1v0Gp3U8wHVHAje4i7ofJ11a.jpg",
+                            "value": "https://cdn.lamsaweb.com/cdnVolt/dune-bashing-2_edited.jpg",
                             "required": true
                         },
                         {
