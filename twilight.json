@@ -26,6 +26,13 @@
     ],
     "settings": [
         {
+            "type": "static",
+            "format": "title",
+            "id": "group-home",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات الصفحة الرئيسية</h6></div>",
+            "variant": "h6"
+        },
+        {
             "id": "squar_photo_bg_image_size",
             "type": "items",
             "format": "dropdown-list",
@@ -73,11 +80,97 @@
             "format": "switch"
         },
         {
+            "type": "static",
+            "format": "title",
+            "id": "group-header",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أعلى الصفحة (الهيدر والقائمة)</h6></div>",
+            "variant": "h6"
+        },
+        {
+            "id": "header_is_sticky",
+            "label": "تثبت القائمة الرئيسية أعلى الصفحة عند التمرير لأسفل",
+            "description": "يُنصح بالغاء تفعيلها في حالة وجود عناصر كثيرة في القائمة المنسدلة",
             "type": "boolean",
             "icon": "sicon-toggle-off",
-            "id": "product_card_border_animation",
-            "label": "تفعيل حركة الإطار المتحرك عند تمرير المؤشر على بطاقة المنتج",
-            "description": "حركة الإطار التي تبدأ من الزاوية عند مرور المؤشر فوق بطاقة المنتج",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "تفعيل قائمة المزيد في القائمة الرئيسية",
+            "description": "عند تفعيلها، ستظهر الروابط الإضافية في قائمة منسدلة تسمى 'المزيد' عند عدم وجود مساحة كافية",
+            "id": "enable_more_menu",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "id": "header_layout",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "تخطيط الهيدر (ترويسة المتجر)",
+            "description": "اختر طريقة ترتيب الشعار والقائمة والأيقونات في الهيدر",
+            "labelHTML": null,
+            "icon": "sicon-list",
+            "selected": [
+                {
+                    "label": "القائمة في المنتصف والشعار والأيقونات على الجانبين (افتراضي)",
+                    "value": "centered_menu",
+                    "key": "volt-header-centered-menu"
+                }
+            ],
+            "options": [
+                {
+                    "label": "القائمة في المنتصف والشعار والأيقونات على الجانبين (افتراضي)",
+                    "value": "centered_menu",
+                    "key": "volt-header-centered-menu"
+                },
+                {
+                    "label": "القائمة بجانب الشعار والأيقونات على الجانب الآخر",
+                    "value": "menu_beside_logo",
+                    "key": "volt-header-menu-beside-logo"
+                },
+                {
+                    "label": "الشعار في المنتصف مع القائمة الجانبية المنسدلة (Drawer)",
+                    "value": "centered_logo_drawer",
+                    "key": "volt-header-centered-logo-drawer"
+                }
+            ],
+            "source": "Manual",
+            "required": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "شريط علوي داكن",
+            "description": null,
+            "id": "topnav_is_dark",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": false
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "إظهار الشريط العلوي",
+            "description": null,
+            "id": "show_topnav",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "عرض روابط الصفحات الهامة في الشريط العلوي",
+            "description": "مثل صفحة الهبوط ، المدونة ،الصفحات التعريفية",
+            "id": "important_links",
             "format": "switch",
             "required": false,
             "value": true,
@@ -85,69 +178,9 @@
         },
         {
             "type": "static",
-            "format": "line",
-            "id": "fixed-buttons-line"
-        },
-        {
-            "type": "static",
             "format": "title",
-            "id": "fixed-buttons-title",
-            "value": "الأزرار العائمة",
-            "variant": "h6"
-        },
-        {
-            "id": "is_scroll_enable",
-            "type": "boolean",
-            "format": "switch",
-            "label": "تفعيل زر الرجوع للأعلى",
-            "description": null,
-            "icon": "sicon-toggle-off",
-            "value": true,
-            "selected": false,
-            "required": false
-        },
-        {
-            "id": "is_whatsapp_enable",
-            "type": "boolean",
-            "format": "switch",
-            "label": "تفعيل زر الواتساب",
-            "description": null,
-            "icon": "sicon-toggle-off",
-            "value": true,
-            "selected": false,
-            "required": false
-        },
-        {
-            "id": "whatsapp_number",
-            "type": "string",
-            "format": "text",
-            "label": "رقم الواتساب",
-            "description": null,
-            "placeholder": "+966512345678",
-            "icon": "sicon-format-text-alt",
-            "value": null,
-            "multilanguage": false,
-            "required": false,
-            "minLength": 3,
-            "maxLength": 30,
-            "conditions": [
-                {
-                    "id": "is_whatsapp_enable",
-                    "operation": "=",
-                    "value": true
-                }
-            ]
-        },
-        {
-            "type": "static",
-            "format": "line",
-            "id": "announcement-bar-line"
-        },
-        {
-            "type": "static",
-            "format": "title",
-            "id": "announcement-bar-title",
-            "value": "شريط الإعلانات المتحرك",
+            "id": "group-announcement",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> شريط الإعلانات المتحرك</h6></div>",
             "variant": "h6"
         },
         {
@@ -372,110 +405,10 @@
         },
         {
             "type": "static",
-            "id": "static-line1",
-            "format": "line"
-        },
-        {
-            "type": "static",
             "format": "title",
-            "id": "static-label2",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أعلى الصفحة</h6></div>",
+            "id": "group-appearance",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> المظهر والألوان</h6></div>",
             "variant": "h6"
-        },
-        {
-            "id": "header_is_sticky",
-            "label": "تثبت القائمة الرئيسية أعلى الصفحة عند التمرير لأسفل",
-            "description": "يُنصح بالغاء تفعيلها في حالة وجود عناصر كثيرة في القائمة المنسدلة",
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "تفعيل قائمة المزيد في القائمة الرئيسية",
-            "description": "عند تفعيلها، ستظهر الروابط الإضافية في قائمة منسدلة تسمى 'المزيد' عند عدم وجود مساحة كافية",
-            "id": "enable_more_menu",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": true
-        },
-        {
-            "id": "header_layout",
-            "type": "items",
-            "format": "dropdown-list",
-            "label": "تخطيط الهيدر (ترويسة المتجر)",
-            "description": "اختر طريقة ترتيب الشعار والقائمة والأيقونات في الهيدر",
-            "labelHTML": null,
-            "icon": "sicon-list",
-            "selected": [
-                {
-                    "label": "القائمة في المنتصف والشعار والأيقونات على الجانبين (افتراضي)",
-                    "value": "centered_menu",
-                    "key": "volt-header-centered-menu"
-                }
-            ],
-            "options": [
-                {
-                    "label": "القائمة في المنتصف والشعار والأيقونات على الجانبين (افتراضي)",
-                    "value": "centered_menu",
-                    "key": "volt-header-centered-menu"
-                },
-                {
-                    "label": "القائمة بجانب الشعار والأيقونات على الجانب الآخر",
-                    "value": "menu_beside_logo",
-                    "key": "volt-header-menu-beside-logo"
-                },
-                {
-                    "label": "الشعار في المنتصف مع القائمة الجانبية المنسدلة (Drawer)",
-                    "value": "centered_logo_drawer",
-                    "key": "volt-header-centered-logo-drawer"
-                }
-            ],
-            "source": "Manual",
-            "required": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "شريط علوي داكن",
-            "description": null,
-            "id": "topnav_is_dark",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": false
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "إظهار الشريط العلوي",
-            "description": null,
-            "id": "show_topnav",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "عرض روابط الصفحات الهامة في الشريط العلوي",
-            "description": "مثل صفحة الهبوط ، المدونة ،الصفحات التعريفية",
-            "id": "important_links",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": true
-        },
-        {
-            "type": "static",
-            "id": "static-line3",
-            "format": "line"
         },
         {
             "type": "boolean",
@@ -487,18 +420,6 @@
             "required": false,
             "value": true,
             "selected": true
-        },
-        {
-            "type": "static",
-            "id": "static-line-colors",
-            "format": "line"
-        },
-        {
-            "type": "static",
-            "format": "title",
-            "id": "static-colors-title",
-            "value": "خيارات الألوان",
-            "variant": "h6"
         },
         {
             "type": "string",
@@ -629,10 +550,21 @@
             ]
         },
         {
+            "type": "string",
+            "icon": "sicon-pencil-ruler",
+            "label": "نصف قطر الحدود",
+            "description": "التحكم في درجة استدارة الحدود (border-radius) بالبكسل",
+            "id": "border_radius",
+            "format": "text",
+            "required": false,
+            "value": "0.375rem",
+            "placeholder": "مثال: 0.375rem أو 8px"
+        },
+        {
             "type": "static",
             "format": "title",
-            "id": "static-label4",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أسفل الصفحة</h6></div>",
+            "id": "group-footer",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أسفل الصفحة (الفوتر)</h6></div>",
             "variant": "h6"
         },
         {
@@ -740,15 +672,21 @@
         },
         {
             "type": "static",
-            "id": "static-line5",
-            "format": "line"
+            "format": "title",
+            "id": "group-product",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات صفحة المنتج وبطاقة المنتج</h6></div>",
+            "variant": "h6"
         },
         {
-            "type": "static",
-            "format": "title",
-            "id": "static-label6",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات صفحة المنتج</h6></div>",
-            "variant": "h6"
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "id": "product_card_border_animation",
+            "label": "تفعيل حركة الإطار المتحرك عند تمرير المؤشر على بطاقة المنتج",
+            "description": "حركة الإطار التي تبدأ من الزاوية عند مرور المؤشر فوق بطاقة المنتج",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
         },
         {
             "type": "boolean",
@@ -869,15 +807,54 @@
             "selected": false
         },
         {
+            "type": "static",
+            "format": "title",
+            "id": "group-floating",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> الأزرار العائمة</h6></div>",
+            "variant": "h6"
+        },
+        {
+            "id": "is_scroll_enable",
+            "type": "boolean",
+            "format": "switch",
+            "label": "تفعيل زر الرجوع للأعلى",
+            "description": null,
+            "icon": "sicon-toggle-off",
+            "value": true,
+            "selected": false,
+            "required": false
+        },
+        {
+            "id": "is_whatsapp_enable",
+            "type": "boolean",
+            "format": "switch",
+            "label": "تفعيل زر الواتساب",
+            "description": null,
+            "icon": "sicon-toggle-off",
+            "value": true,
+            "selected": false,
+            "required": false
+        },
+        {
+            "id": "whatsapp_number",
             "type": "string",
-            "icon": "sicon-pencil-ruler",
-            "label": "نصف قطر الحدود",
-            "description": "التحكم في درجة استدارة الحدود (border-radius) بالبكسل",
-            "id": "border_radius",
             "format": "text",
+            "label": "رقم الواتساب",
+            "description": null,
+            "placeholder": "+966512345678",
+            "icon": "sicon-format-text-alt",
+            "value": null,
+            "multilanguage": false,
             "required": false,
-            "value": "0.375rem",
-            "placeholder": "مثال: 0.375rem أو 8px"
+            "minLength": 3,
+            "maxLength": 30,
+            "conditions": [
+                {
+                    "id": "is_whatsapp_enable",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
         }
     ],
     "components": [

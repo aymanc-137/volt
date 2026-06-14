@@ -32,6 +32,11 @@ calling-component-example.js
 volt-style-main/
 older.md
 
+# Standalone docs site (deployed separately to Cloudflare Pages)
+docs-site/
+# Source screenshots used to build the docs site
+volt-images/
+
 review-card.html
 
 text.html
