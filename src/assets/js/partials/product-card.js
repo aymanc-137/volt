@@ -398,15 +398,17 @@ class ProductCard extends HTMLElement {
         });
       });
 
-      // Hover image: fetch the product's second image on the FIRST mouse hover
-      // only (per card), so the page isn't slowed down up front. Fade is pure CSS.
-      const hoverImg = this.querySelector('.s-product-card-image-hover');
-      if (hoverImg && !hoverImg.getAttribute('src') && !this._hoverImageChecked) {
-        let started = false;
-        this.querySelector('.s-product-card-image')?.addEventListener('pointerenter', (e) => {
-          if (e.pointerType === 'touch' || started || this._hoverImageChecked) return;
-          started = true;
-          this.loadHoverImage(hoverImg);
+      // Hover image: fetch the product's second image on the first card hover
+      // (mouse), once. Bound to the CARD element — which persists across this
+      // component's re-renders — and guarded, so it fires wherever the pointer
+      // enters the card (matching the card-level CSS hover that fades it in) and
+      // never double-binds. The actual request still happens only on hover.
+      if (!this._hoverFetchBound) {
+        this._hoverFetchBound = true;
+        this.addEventListener('pointerenter', (e) => {
+          if (e.pointerType === 'touch' || this._hoverImageChecked) return;
+          const hoverImg = this.querySelector('.s-product-card-image-hover');
+          if (hoverImg && !hoverImg.getAttribute('src')) this.loadHoverImage(hoverImg);
         });
       }
     }
