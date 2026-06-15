@@ -185,6 +185,19 @@ class ProductCard extends HTMLElement {
     this.shadowOnHover?  this.classList.add('s-product-card-shadow') : '';
     this.product?.is_out_of_stock?  this.classList.add('s-product-card-out-of-stock') : '';
     this.isInWishlist = !salla.config.isGuest() && salla.storage.get('salla::wishlist', []).includes(Number(this.product.id));
+
+    // Hover image: the product's second image (if any) fades in over the main
+    // one while the pointer is on the card. It is loaded lazily on first hover
+    // (see the pointerenter hook below) so listings stay light.
+    const mainImageUrl  = this.product?.image?.url || this.product?.thumbnail || this.placeholder || '';
+    const imageFitClass = `s-product-card-image-${salla.url.is_placeholder(this.product?.image?.url) ? 'contain' : (this.fitImageHeight || 'cover')}`;
+    const secondImage   = this.product?.images?.[1];
+    const hoverImageUrl = secondImage?.url || (typeof secondImage === 'string' ? secondImage : '');
+    // Gated by the "product_card_hover_image" theme setting (on by default), and
+    // skipped on full-image cards (text is overlaid on the image there).
+    const hoverImageEnabled = (typeof window === 'undefined') || window.product_card_hover_image !== 'false';
+    const hasHoverImage = hoverImageEnabled && !!hoverImageUrl && hoverImageUrl !== mainImageUrl && !this.fullImage;
+
     this.innerHTML = `
         <!-- Animated border and glow elements -->
         <div class="product-card-volt__bottom-border"></div>
@@ -193,16 +206,20 @@ class ProductCard extends HTMLElement {
 
         <div class="${!this.fullImage ? 's-product-card-image' : 's-product-card-image-full'} ">
           <a href="${this.product?.url}" aria-label="${this.escapeHTML(this.product?.image?.alt || this.product.name)}">
-           <img 
-              class="s-product-card-image-${salla.url.is_placeholder(this.product?.image?.url)
-                ? 'contain'
-                : this.fitImageHeight
-                ? this.fitImageHeight
-                : 'cover'}"
-              src="${this.product?.image?.url || this.product?.thumbnail || this.placeholder || ''}"
+           <img
+              class="${imageFitClass}"
+              src="${mainImageUrl}"
               alt="${this.escapeHTML(this.product?.image?.alt || this.product.name)}"
               loading="lazy"
             />
+            ${hasHoverImage ? `<img
+              class="s-product-card-image-hover"
+              data-src="${hoverImageUrl}"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
+            />` : ''}
             ${!this.fullImage && !this.minimal ? this.getProductBadge() : ''}
           </a>
           ${this.fullImage ? `<a href="${this.product?.url}" aria-label=${this.product.name} class="s-product-card-overlay"></a>`:''}
@@ -337,6 +354,19 @@ class ProductCard extends HTMLElement {
           app.toggleElementClassIf(btn, 'pulse-anime', 'un-favorited', () => willBeAdded);
         });
       });
+
+      // Fetch the hover image only on the first real (mouse) hover, so cards that
+      // are never hovered — and touch sessions — don't pay for the extra request.
+      // The fade in/out itself is pure CSS. The listener lives on a per-render
+      // element, so re-renders don't leak.
+      const hoverImg = this.querySelector('.s-product-card-image-hover');
+      if (hoverImg && hoverImg.dataset.src) {
+        this.querySelector('.s-product-card-image')?.addEventListener('pointerenter', (e) => {
+          if (e.pointerType === 'touch' || !hoverImg.dataset.src) return;
+          hoverImg.src = hoverImg.dataset.src;
+          hoverImg.removeAttribute('data-src');
+        });
+      }
     }
 }
 

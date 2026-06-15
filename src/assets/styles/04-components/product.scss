@@ -426,6 +426,29 @@ salla-quantity-input[max='1']{
   }
 }
 
+// ── Hover image ──────────────────────────────────────────────────────────────
+// A second product image that cross-fades in over the main one while the card
+// is hovered. The image is loaded lazily by product-card.js on first hover; the
+// fade itself is pure CSS (cheap, GPU-composited opacity transition).
+.s-product-card-image {
+  position: relative;
+
+  .s-product-card-image-hover {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity .5s ease;
+    pointer-events: none;
+  }
+
+  &:hover .s-product-card-image-hover {
+    opacity: 1;
+  }
+}
+
 .product-card-volt{
 
   @apply bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)]

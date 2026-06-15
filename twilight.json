@@ -855,6 +855,17 @@
         },
         {
             "type": "boolean",
+            "icon": "sicon-image",
+            "id": "product_card_hover_image",
+            "label": "إظهار صورة ثانية للمنتج عند تمرير المؤشر على بطاقة المنتج",
+            "description": "عند مرور المؤشر فوق صورة المنتج تظهر الصورة الثانية للمنتج تدريجياً (إن وُجدت). تُحمّل الصورة عند أول تمرير فقط حفاظاً على الأداء.",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
             "icon": "sicon-toggle-off",
             "label": "إظهار زر \"أعلمني عند التوفر\" في بطاقة المنتج",
             "description": "يظهر زر إشعار التوفر في بطاقات المنتجات التي نفذت كميتها",

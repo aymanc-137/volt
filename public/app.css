@@ -31718,6 +31718,26 @@ salla-quantity-input[max="1"] input{
 salla-quantity-input[max="1"] .s-quantity-input-button{
     cursor: not-allowed;
 }
+.s-product-card-image {
+  position: relative;
+}
+.s-product-card-image .s-product-card-image-hover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.s-product-card-image:hover .s-product-card-image-hover {
+  opacity: 1;
+}
 .product-card-volt{
     position: relative;
     overflow: hidden;
