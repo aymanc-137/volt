@@ -34102,7 +34102,7 @@ input[type=radio].sr-only:checked ~ div.ptab-media__video iframe,input[type=radi
   opacity: 0.75;
 }
 .announcement-bar__item img {
-  height: calc(var(--ab-height) * 0.6);
+  height: calc(var(--ab-height) * 0.78);
   width: auto;
   -o-object-fit: contain;
      object-fit: contain;
