@@ -29,14 +29,14 @@
             "type": "static",
             "format": "title",
             "id": "group-home",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات الصفحة الرئيسية</h6></div>",
+            "value": "<div class='rounded-lg' ><h6 > خيارات الصفحة الرئيسية</h6></div>",
             "variant": "h6"
         },
         {
             "id": "squar_photo_bg_image_size",
             "type": "items",
             "format": "dropdown-list",
-            "label": "طريقة عرض الصور في قسم قائمة عناصر ",
+            "label": "طريقة عرض الصور في قسم قائمة عناصر",
             "description": null,
             "labelHTML": null,
             "icon": "sicon-list",
@@ -83,7 +83,7 @@
             "type": "static",
             "format": "title",
             "id": "group-header",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أعلى الصفحة (الهيدر والقائمة)</h6></div>",
+            "value": "<div class='rounded-lg' ><h6 > خيارات أعلى الصفحة (الهيدر والقائمة)</h6></div>",
             "variant": "h6"
         },
         {
@@ -180,7 +180,7 @@
             "type": "static",
             "format": "title",
             "id": "group-announcement",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> شريط الإعلانات المتحرك</h6></div>",
+            "value": "<div class='rounded-lg' ><h6 > شريط الإعلانات المتحرك</h6></div>",
             "variant": "h6"
         },
         {
@@ -407,7 +407,7 @@
             "type": "static",
             "format": "title",
             "id": "group-appearance",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> المظهر والألوان</h6></div>",
+            "value": "<div class='rounded-lg' ><h6 > المظهر والألوان</h6></div>",
             "variant": "h6"
         },
         {
@@ -525,7 +525,7 @@
         {
             "type": "string",
             "icon": "sicon-palette",
-            "label": "لون النص ",
+            "label": "لون النص",
             "description": null,
             "id": "main-text-color",
             "format": "color",
@@ -561,10 +561,25 @@
             "placeholder": "مثال: 0.375rem أو 8px"
         },
         {
+            "id": "slider",
+            "type": "number",
+            "format": "slider",
+            "inputType": "range",
+            "label": "Slider",
+            "description": null,
+            "labelHTML": null,
+            "icon": "sicon-pin",
+            "value": 0,
+            "required": false,
+            "step": 2.5,
+            "minimum": -50,
+            "maximum": 50
+        },
+        {
             "type": "static",
             "format": "title",
             "id": "group-footer",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أسفل الصفحة (الفوتر)</h6></div>",
+            "value": "<div class='rounded-lg' ><h6 > خيارات أسفل الصفحة (الفوتر)</h6></div>",
             "variant": "h6"
         },
         {
@@ -674,7 +689,7 @@
             "type": "static",
             "format": "title",
             "id": "group-product",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات صفحة المنتج وبطاقة المنتج</h6></div>",
+            "value": "<div class='rounded-lg' ><h6 > خيارات صفحة المنتج وبطاقة المنتج</h6></div>",
             "variant": "h6"
         },
         {
@@ -810,7 +825,7 @@
             "type": "static",
             "format": "title",
             "id": "group-floating",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> الأزرار العائمة</h6></div>",
+            "value": "<div class='rounded-lg' ><h6 > الأزرار العائمة</h6></div>",
             "variant": "h6"
         },
         {
@@ -1831,7 +1846,9 @@
                     "maxLength": 8,
                     "value": [
                         {
-                            "slides.media_type": ["image"],
+                            "slides.media_type": [
+                                "image"
+                            ],
                             "slides.image": "https://cdn.salla.sa/form-builder/9pH3YvuH7yUFP34C3O0jzsAnb81pcsjDDLMwb3ne.webp",
                             "slides.image_alt": "سيارة رياضية",
                             "slides.title_part1": "اطلق",
@@ -1841,20 +1858,30 @@
                             "slides.button_label": "تسوق الأن",
                             "slides.button_url": "https://salla.design/dev-pbdsq67yexku5kq3/-/c123897364",
                             "slides.button_url__type": "custom",
-                            "slides.content_alignment": ["start"],
-                            "slides.layout": ["split"],
+                            "slides.content_alignment": [
+                                "start"
+                            ],
+                            "slides.layout": [
+                                "split"
+                            ],
                             "slides.arrow_color": "#ba261c"
                         },
                         {
-                            "slides.media_type": ["video"],
+                            "slides.media_type": [
+                                "video"
+                            ],
                             "slides.video_url": "https://cdn.lamsaweb.com/cdnVolt/background_video_car.mp4",
                             "slides.image_alt": "عطر سيارة",
                             "slides.title_part1": "جميع مستلزمات",
                             "slides.title_gradient": "السيارات الرياضية",
                             "slides.title_part3": "و مركبات الأداء العالي",
                             "slides.description": "كل ما تحتاجه لتجعل سيارتك جاهزة للحلبة",
-                            "slides.content_alignment": ["start"],
-                            "slides.layout": ["overlay"]
+                            "slides.content_alignment": [
+                                "start"
+                            ],
+                            "slides.layout": [
+                                "overlay"
+                            ]
                         }
                     ],
                     "fields": [
@@ -2598,7 +2625,9 @@
                     "description": "اختر نوع التوهج في الخلفية",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": ["left"],
+                    "value": [
+                        "left"
+                    ],
                     "selected": [
                         {
                             "label": "توهج من اليسار فقط",
@@ -2915,8 +2944,16 @@
                     "label": "نوع الخطوط",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": ["vertical"],
-                    "selected": [{"label": "عمودية (من أعلى لأسفل)", "value": "vertical", "key": "slas-type-vertical"}],
+                    "value": [
+                        "vertical"
+                    ],
+                    "selected": [
+                        {
+                            "label": "عمودية (من أعلى لأسفل)",
+                            "value": "vertical",
+                            "key": "slas-type-vertical"
+                        }
+                    ],
                     "source": "Manual",
                     "options": [
                         {
@@ -3070,9 +3107,17 @@
                     "label": "موقع النص",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": ["both"],
+                    "value": [
+                        "both"
+                    ],
                     "required": false,
-                    "selected": [{"label": "أعلى وأسفل", "value": "both", "key": "why-us-both"}],
+                    "selected": [
+                        {
+                            "label": "أعلى وأسفل",
+                            "value": "both",
+                            "key": "why-us-both"
+                        }
+                    ],
                     "source": "Manual",
                     "options": [
                         {
@@ -3114,8 +3159,16 @@
                     "description": "اختر نوع التوهج في الخلفية",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": ["top_bottom"],
-                    "selected": [{"label": "توهج من الأعلى والأسفل", "value": "top_bottom", "key": "glow-top-bottom"}],
+                    "value": [
+                        "top_bottom"
+                    ],
+                    "selected": [
+                        {
+                            "label": "توهج من الأعلى والأسفل",
+                            "value": "top_bottom",
+                            "key": "glow-top-bottom"
+                        }
+                    ],
                     "source": "Manual",
                     "options": [
                         {
@@ -3893,7 +3946,6 @@
             "path": "home.flash-offer",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/flash-discoun.png",
             "fields": [
-
                 {
                     "type": "static",
                     "format": "description",
@@ -4274,9 +4326,17 @@
                     "label": "موقع النص",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": ["bottom"],
+                    "value": [
+                        "bottom"
+                    ],
                     "required": false,
-                    "selected": [{"label": "أسفل فقط", "value": "bottom", "key": "flash-offer-bottom"}],
+                    "selected": [
+                        {
+                            "label": "أسفل فقط",
+                            "value": "bottom",
+                            "key": "flash-offer-bottom"
+                        }
+                    ],
                     "source": "Manual",
                     "options": [
                         {
@@ -4930,8 +4990,16 @@
                     "label": "نوع الخطوط",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": ["vertical"],
-                    "selected": [{"label": "عمودية (من أعلى لأسفل)", "value": "vertical", "key": "slas-type-vertical"}],
+                    "value": [
+                        "vertical"
+                    ],
+                    "selected": [
+                        {
+                            "label": "عمودية (من أعلى لأسفل)",
+                            "value": "vertical",
+                            "key": "slas-type-vertical"
+                        }
+                    ],
                     "source": "Manual",
                     "options": [
                         {
@@ -5085,9 +5153,17 @@
                     "label": "موقع النص",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": ["both"],
+                    "value": [
+                        "both"
+                    ],
                     "required": false,
-                    "selected": [{"label": "أعلى وأسفل", "value": "both", "key": "category-products-both"}],
+                    "selected": [
+                        {
+                            "label": "أعلى وأسفل",
+                            "value": "both",
+                            "key": "category-products-both"
+                        }
+                    ],
                     "source": "Manual",
                     "options": [
                         {
@@ -5129,8 +5205,16 @@
                     "description": "اختر نوع التوهج في الخلفية",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": ["top_bottom"],
-                    "selected": [{"label": "توهج من الأعلى والأسفل", "value": "top_bottom", "key": "glow-top-bottom"}],
+                    "value": [
+                        "top_bottom"
+                    ],
+                    "selected": [
+                        {
+                            "label": "توهج من الأعلى والأسفل",
+                            "value": "top_bottom",
+                            "key": "glow-top-bottom"
+                        }
+                    ],
                     "source": "Manual",
                     "options": [
                         {
@@ -6110,9 +6194,17 @@
                     "label": "موقع النص",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": ["both"],
+                    "value": [
+                        "both"
+                    ],
                     "required": false,
-                    "selected": [{"label": "أعلى وأسفل", "value": "both", "key": "tap-preview-both"}],
+                    "selected": [
+                        {
+                            "label": "أعلى وأسفل",
+                            "value": "both",
+                            "key": "tap-preview-both"
+                        }
+                    ],
                     "source": "Manual",
                     "options": [
                         {
@@ -6739,9 +6831,17 @@
                     "label": "موقع النص",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": ["top"],
+                    "value": [
+                        "top"
+                    ],
                     "required": false,
-                    "selected": [{"label": "أعلى فقط", "value": "top", "key": "larage-category-image-top"}],
+                    "selected": [
+                        {
+                            "label": "أعلى فقط",
+                            "value": "top",
+                            "key": "larage-category-image-top"
+                        }
+                    ],
                     "source": "Manual",
                     "options": [
                         {
@@ -7204,9 +7304,17 @@
                     "label": "موقع النص",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": ["bottom"],
+                    "value": [
+                        "bottom"
+                    ],
                     "required": false,
-                    "selected": [{"label": "أسفل فقط", "value": "bottom", "key": "flash-discount-bottom"}],
+                    "selected": [
+                        {
+                            "label": "أسفل فقط",
+                            "value": "bottom",
+                            "key": "flash-discount-bottom"
+                        }
+                    ],
                     "source": "Manual",
                     "options": [
                         {
@@ -8074,7 +8182,9 @@
                     "description": "اختر نوع التوهج في الخلفية",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": ["top_bottom"],
+                    "value": [
+                        "top_bottom"
+                    ],
                     "selected": [
                         {
                             "label": "توهج من الأعلى والأسفل",
@@ -8660,7 +8770,9 @@
                     "description": "اختر نوع التوهج في الخلفية",
                     "type": "items",
                     "format": "dropdown-list",
-                    "value": ["top_bottom"],
+                    "value": [
+                        "top_bottom"
+                    ],
                     "selected": [
                         {
                             "label": "توهج من الأعلى والأسفل",
