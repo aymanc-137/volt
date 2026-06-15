@@ -171,9 +171,50 @@ class ProductCard extends HTMLElement {
     .replace(/>/g, "&gt;");
   }
 
+  // Fetch the product's full details (which include all its images) on demand and
+  // fade in the first image that differs from the main one. Called once per card,
+  // on the first hover. Results are cached on the element so re-renders reuse them.
+  loadHoverImage(hoverImg) {
+    this._hoverImageChecked = true;
+    const id      = this.product?.id;
+    const mainUrl = this.product?.image?.url || '';
+    const api     = window.salla?.product;
+    const req = (typeof api?.getDetails === 'function')
+      ? api.getDetails(id)
+      : (typeof api?.fetch === 'function' ? api.fetch({ source: 'selected', source_value: [id] }) : null);
+
+    if (!req || typeof req.then !== 'function') { hoverImg.remove(); return; }
+
+    req.then((res) => {
+      const data    = res?.data ?? res;
+      const product = Array.isArray(data) ? data[0] : (data?.products?.[0] ?? data);
+      const images  = product?.images || [];
+      let url = '';
+      for (const im of images) {
+        const u = im?.url || (typeof im === 'string' ? im : '');
+        if (u && u !== mainUrl) { url = u; break; }
+      }
+      if (!window.__pcHoverFetchLogged) {
+        window.__pcHoverFetchLogged = true;
+        console.log('[hover-image] details for', id, '→', images.length, 'images; using:', url || '(none)', res);
+      }
+      if (url) {
+        this._hoverImageUrl = url;     // cache for re-renders
+        hoverImg.src = url;
+      } else {
+        this._hoverImageNone = true;   // product has no distinct 2nd image
+        hoverImg.remove();
+      }
+    }).catch((err) => {
+      this._hoverImageNone = true;
+      console.warn('[hover-image] could not load product images', err);
+      hoverImg.remove();
+    });
+  }
+
   render(){
-    this.classList.add('s-product-card-entry'); 
-    this.classList.add('product-card-volt'); 
+    this.classList.add('s-product-card-entry');
+    this.classList.add('product-card-volt');
     this.setAttribute('id', this.product.id);
     !this.horizontal && !this.fullImage && !this.minimal? this.classList.add('s-product-card-vertical') : '';
     this.horizontal && !this.fullImage && !this.minimal? this.classList.add('s-product-card-horizontal') : '';
@@ -186,27 +227,17 @@ class ProductCard extends HTMLElement {
     this.product?.is_out_of_stock?  this.classList.add('s-product-card-out-of-stock') : '';
     this.isInWishlist = !salla.config.isGuest() && salla.storage.get('salla::wishlist', []).includes(Number(this.product.id));
 
-    // Hover image: the product's second image (if any) fades in over the main
-    // one while the pointer is on the card. It is loaded lazily on first hover
-    // (see the pointerenter hook below) so listings stay light.
+    // Hover image: a second product image fades in over the main one on hover.
+    // Listing payloads usually carry only the main image, so the second image is
+    // fetched lazily on the first hover (see loadHoverImage) — no upfront cost.
+    // Gated by the product_card_hover_image setting; skipped on full-image cards.
     const mainImageUrl  = this.product?.image?.url || this.product?.thumbnail || this.placeholder || '';
     const imageFitClass = `s-product-card-image-${salla.url.is_placeholder(this.product?.image?.url) ? 'contain' : (this.fitImageHeight || 'cover')}`;
-    // ── TEMP DEBUG: inspect the product image data once (remove after) ──
-    if (!window.__pcHoverImgDebugged) {
-      window.__pcHoverImgDebugged = true;
-      console.log('[hover-image] full product:', this.product);
-      console.log('[hover-image] image:', this.product?.image,
-                  '| images:', this.product?.images,
-                  '| images is array?', Array.isArray(this.product?.images),
-                  '| length:', this.product?.images?.length);
-    }
-
-    const secondImage   = this.product?.images?.[1];
-    const hoverImageUrl = secondImage?.url || (typeof secondImage === 'string' ? secondImage : '');
-    // Gated by the "product_card_hover_image" theme setting (on by default), and
-    // skipped on full-image cards (text is overlaid on the image there).
     const hoverImageEnabled = (typeof window === 'undefined') || window.product_card_hover_image !== 'false';
-    const hasHoverImage = hoverImageEnabled && !!hoverImageUrl && hoverImageUrl !== mainImageUrl && !this.fullImage;
+    const presetHoverUrl    = this._hoverImageUrl
+      || this.product?.images?.[1]?.url
+      || (typeof this.product?.images?.[1] === 'string' ? this.product.images[1] : '');
+    const showHoverImage    = hoverImageEnabled && !this.fullImage && !!this.product?.id && !this._hoverImageNone;
 
     this.innerHTML = `
         <!-- Animated border and glow elements -->
@@ -222,9 +253,9 @@ class ProductCard extends HTMLElement {
               alt="${this.escapeHTML(this.product?.image?.alt || this.product.name)}"
               loading="lazy"
             />
-            ${hasHoverImage ? `<img
+            ${showHoverImage ? `<img
               class="s-product-card-image-hover"
-              data-src="${hoverImageUrl}"
+              ${presetHoverUrl && presetHoverUrl !== mainImageUrl ? `src="${presetHoverUrl}"` : ''}
               alt=""
               aria-hidden="true"
               loading="lazy"
@@ -365,16 +396,15 @@ class ProductCard extends HTMLElement {
         });
       });
 
-      // Fetch the hover image only on the first real (mouse) hover, so cards that
-      // are never hovered — and touch sessions — don't pay for the extra request.
-      // The fade in/out itself is pure CSS. The listener lives on a per-render
-      // element, so re-renders don't leak.
+      // Hover image: fetch the product's second image on the FIRST mouse hover
+      // only (per card), so the page isn't slowed down up front. Fade is pure CSS.
       const hoverImg = this.querySelector('.s-product-card-image-hover');
-      if (hoverImg && hoverImg.dataset.src) {
+      if (hoverImg && !hoverImg.getAttribute('src') && !this._hoverImageChecked) {
+        let started = false;
         this.querySelector('.s-product-card-image')?.addEventListener('pointerenter', (e) => {
-          if (e.pointerType === 'touch' || !hoverImg.dataset.src) return;
-          hoverImg.src = hoverImg.dataset.src;
-          hoverImg.removeAttribute('data-src');
+          if (e.pointerType === 'touch' || started || this._hoverImageChecked) return;
+          started = true;
+          this.loadHoverImage(hoverImg);
         });
       }
     }
