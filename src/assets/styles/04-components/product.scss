@@ -450,19 +450,20 @@ salla-quantity-input[max='1']{
     transition: opacity .5s ease, transform .5s ease;
     pointer-events: none;
   }
+}
 
-  &:hover .s-product-card-image-hover {
-    opacity: 1;
-  }
-
-  // Zoom both the main and the hover image together on hover.
-  &:hover img {
-    transform: scale(1.06);
-  }
+// Trigger on the WHOLE card hover, not just the image area — on some pages an
+// overlay sits over the image and would swallow an image-only :hover, so the
+// fade/zoom never fired there. The card-level hover is robust everywhere.
+.product-card-volt:hover .s-product-card-image-hover {
+  opacity: 1;
+}
+.product-card-volt:hover .s-product-card-image img {
+  transform: scale(1.06);
 }
 
 // Disabled via theme setting (product_card_image_zoom)
-.no-card-image-zoom .s-product-card-image:hover img {
+.no-card-image-zoom .product-card-volt:hover .s-product-card-image img {
   transform: none;
 }
 
