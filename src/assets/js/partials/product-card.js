@@ -191,6 +191,16 @@ class ProductCard extends HTMLElement {
     // (see the pointerenter hook below) so listings stay light.
     const mainImageUrl  = this.product?.image?.url || this.product?.thumbnail || this.placeholder || '';
     const imageFitClass = `s-product-card-image-${salla.url.is_placeholder(this.product?.image?.url) ? 'contain' : (this.fitImageHeight || 'cover')}`;
+    // ── TEMP DEBUG: inspect the product image data once (remove after) ──
+    if (!window.__pcHoverImgDebugged) {
+      window.__pcHoverImgDebugged = true;
+      console.log('[hover-image] full product:', this.product);
+      console.log('[hover-image] image:', this.product?.image,
+                  '| images:', this.product?.images,
+                  '| images is array?', Array.isArray(this.product?.images),
+                  '| length:', this.product?.images?.length);
+    }
+
     const secondImage   = this.product?.images?.[1];
     const hoverImageUrl = secondImage?.url || (typeof secondImage === 'string' ? secondImage : '');
     // Gated by the "product_card_hover_image" theme setting (on by default), and
