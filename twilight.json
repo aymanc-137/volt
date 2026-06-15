@@ -29,8 +29,8 @@
             "type": "static",
             "format": "title",
             "id": "group-home",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات الصفحة الرئيسية</h6></div>",
-            "variant": "h6"
+            "variant": "h6",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات الصفحة الرئيسية</h6></div>"
         },
         {
             "id": "squar_photo_bg_image_size",
@@ -83,8 +83,8 @@
             "type": "static",
             "format": "title",
             "id": "group-header",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أعلى الصفحة (الهيدر والقائمة)</h6></div>",
-            "variant": "h6"
+            "variant": "h6",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أعلى الصفحة (الهيدر والقائمة)</h6></div>"
         },
         {
             "id": "header_is_sticky",
@@ -180,8 +180,8 @@
             "type": "static",
             "format": "title",
             "id": "group-announcement",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> شريط الإعلانات المتحرك</h6></div>",
-            "variant": "h6"
+            "variant": "h6",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> شريط الإعلانات المتحرك</h6></div>"
         },
         {
             "type": "boolean",
@@ -466,8 +466,8 @@
             "type": "static",
             "format": "title",
             "id": "group-appearance",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> المظهر والألوان</h6></div>",
-            "variant": "h6"
+            "variant": "h6",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> المظهر والألوان</h6></div>"
         },
         {
             "type": "boolean",
@@ -626,8 +626,8 @@
             "type": "static",
             "format": "title",
             "id": "group-footer",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أسفل الصفحة (الفوتر)</h6></div>",
-            "variant": "h6"
+            "variant": "h6",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أسفل الصفحة (الفوتر)</h6></div>"
         },
         {
             "type": "boolean",
@@ -735,20 +735,9 @@
         {
             "type": "static",
             "format": "title",
-            "id": "group-product",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات صفحة المنتج وبطاقة المنتج</h6></div>",
-            "variant": "h6"
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "id": "product_card_border_animation",
-            "label": "تفعيل حركة الإطار المتحرك عند تمرير المؤشر على بطاقة المنتج",
-            "description": "حركة الإطار التي تبدأ من الزاوية عند مرور المؤشر فوق بطاقة المنتج",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": true
+            "id": "group-product-page",
+            "variant": "h6",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات صفحة المنتج</h6></div>"
         },
         {
             "type": "boolean",
@@ -767,28 +756,6 @@
             "label": "إظهار مسار التنقل في صفحة قائمة المنتجات",
             "description": null,
             "id": "product_index_show_breadcrumbs",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "تفعيل إشعار الإضافة للسلة المحسن",
-            "description": null,
-            "id": "enable_add_product_toast",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "إظهار زر \"أعلمني عند التوفر\" في بطاقة المنتج",
-            "description": "يظهر زر إشعار التوفر في بطاقات المنتجات التي نفذت كميتها",
-            "id": "notify_when_available_in_card",
             "format": "switch",
             "required": false,
             "value": true,
@@ -871,9 +838,49 @@
         {
             "type": "static",
             "format": "title",
+            "id": "group-product-card",
+            "variant": "h6",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات بطاقة المنتج</h6></div>"
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "id": "product_card_border_animation",
+            "label": "تفعيل حركة الإطار المتحرك عند تمرير المؤشر على بطاقة المنتج",
+            "description": "حركة الإطار التي تبدأ من الزاوية عند مرور المؤشر فوق بطاقة المنتج",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "إظهار زر \"أعلمني عند التوفر\" في بطاقة المنتج",
+            "description": "يظهر زر إشعار التوفر في بطاقات المنتجات التي نفذت كميتها",
+            "id": "notify_when_available_in_card",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "تفعيل إشعار الإضافة للسلة المحسن",
+            "description": null,
+            "id": "enable_add_product_toast",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "static",
+            "format": "title",
             "id": "group-floating",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> الأزرار العائمة</h6></div>",
-            "variant": "h6"
+            "variant": "h6",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> الأزرار العائمة</h6></div>"
         },
         {
             "id": "is_scroll_enable",
