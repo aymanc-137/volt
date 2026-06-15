@@ -179,8 +179,10 @@ class ProductCard extends HTMLElement {
     const id      = this.product?.id;
     const mainUrl = this.product?.image?.url || '';
     const api     = window.salla?.product;
+    // NOTE: getDetails needs the fields arg ["images"] to include the images
+    // relation — without it the response has no images (the original bug).
     const req = (typeof api?.getDetails === 'function')
-      ? api.getDetails(id)
+      ? api.getDetails(id, ['images'])
       : (typeof api?.fetch === 'function' ? api.fetch({ source: 'selected', source_value: [id] }) : null);
 
     if (!req || typeof req.then !== 'function') { hoverImg.remove(); return; }
@@ -188,7 +190,7 @@ class ProductCard extends HTMLElement {
     req.then((res) => {
       const data    = res?.data ?? res;
       const product = Array.isArray(data) ? data[0] : (data?.products?.[0] ?? data);
-      const images  = product?.images || [];
+      const images  = product?.images || data?.images || [];
       let url = '';
       for (const im of images) {
         const u = im?.url || (typeof im === 'string' ? im : '');
