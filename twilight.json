@@ -29,7 +29,7 @@
             "type": "static",
             "format": "title",
             "id": "group-home",
-            "value": "<div class='rounded-lg' ><h6 > خيارات الصفحة الرئيسية</h6></div>",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات الصفحة الرئيسية</h6></div>",
             "variant": "h6"
         },
         {
@@ -83,7 +83,7 @@
             "type": "static",
             "format": "title",
             "id": "group-header",
-            "value": "<div class='rounded-lg' ><h6 > خيارات أعلى الصفحة (الهيدر والقائمة)</h6></div>",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أعلى الصفحة (الهيدر والقائمة)</h6></div>",
             "variant": "h6"
         },
         {
@@ -180,7 +180,7 @@
             "type": "static",
             "format": "title",
             "id": "group-announcement",
-            "value": "<div class='rounded-lg' ><h6 > شريط الإعلانات المتحرك</h6></div>",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> شريط الإعلانات المتحرك</h6></div>",
             "variant": "h6"
         },
         {
@@ -407,7 +407,7 @@
             "type": "static",
             "format": "title",
             "id": "group-appearance",
-            "value": "<div class='rounded-lg' ><h6 > المظهر والألوان</h6></div>",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> المظهر والألوان</h6></div>",
             "variant": "h6"
         },
         {
@@ -567,7 +567,7 @@
             "type": "static",
             "format": "title",
             "id": "group-footer",
-            "value": "<div class='rounded-lg' ><h6 > خيارات أسفل الصفحة (الفوتر)</h6></div>",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أسفل الصفحة (الفوتر)</h6></div>",
             "variant": "h6"
         },
         {
@@ -677,7 +677,7 @@
             "type": "static",
             "format": "title",
             "id": "group-product",
-            "value": "<div class='rounded-lg' ><h6 > خيارات صفحة المنتج وبطاقة المنتج</h6></div>",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات صفحة المنتج وبطاقة المنتج</h6></div>",
             "variant": "h6"
         },
         {
@@ -813,7 +813,7 @@
             "type": "static",
             "format": "title",
             "id": "group-floating",
-            "value": "<div class='rounded-lg' ><h6 > الأزرار العائمة</h6></div>",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> الأزرار العائمة</h6></div>",
             "variant": "h6"
         },
         {
