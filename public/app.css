@@ -31720,6 +31720,10 @@ salla-quantity-input[max="1"] .s-quantity-input-button{
 }
 .s-product-card-image {
   position: relative;
+  overflow: hidden;
+}
+.s-product-card-image img {
+  transition: transform 0.5s ease;
 }
 .s-product-card-image .s-product-card-image-hover {
   position: absolute;
@@ -31732,11 +31736,17 @@ salla-quantity-input[max="1"] .s-quantity-input-button{
   -o-object-fit: cover;
      object-fit: cover;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;
   pointer-events: none;
 }
 .s-product-card-image:hover .s-product-card-image-hover {
   opacity: 1;
+}
+.s-product-card-image:hover img {
+  transform: scale(1.06);
+}
+.no-card-image-zoom .s-product-card-image:hover img {
+  transform: none;
 }
 .product-card-volt{
     position: relative;

@@ -866,6 +866,17 @@
         },
         {
             "type": "boolean",
+            "icon": "sicon-search-zoom-in",
+            "id": "product_card_image_zoom",
+            "label": "تكبير صورة المنتج قليلاً عند تمرير المؤشر على بطاقة المنتج",
+            "description": "تأثير تكبير بسيط لصورة المنتج عند مرور المؤشر فوق البطاقة.",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
             "icon": "sicon-toggle-off",
             "label": "إظهار زر \"أعلمني عند التوفر\" في بطاقة المنتج",
             "description": "يظهر زر إشعار التوفر في بطاقات المنتجات التي نفذت كميتها",

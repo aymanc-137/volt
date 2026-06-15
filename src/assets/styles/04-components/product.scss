@@ -426,12 +426,19 @@ salla-quantity-input[max='1']{
   }
 }
 
-// ── Hover image ──────────────────────────────────────────────────────────────
-// A second product image that cross-fades in over the main one while the card
-// is hovered. The image is loaded lazily by product-card.js on first hover; the
-// fade itself is pure CSS (cheap, GPU-composited opacity transition).
+// ── Hover image + zoom ───────────────────────────────────────────────────────
+// Two hover effects on the product image, each gated by a theme setting:
+//  • Hover image: a second product image cross-fades in over the main one
+//    (loaded lazily by product-card.js on first hover). Pure-CSS opacity fade.
+//  • Zoom: the image scales up a little on hover. Pure-CSS transform; the
+//    wrapper clips so the growth stays inside the image area.
 .s-product-card-image {
   position: relative;
+  overflow: hidden;
+
+  img {
+    transition: transform .5s ease;
+  }
 
   .s-product-card-image-hover {
     position: absolute;
@@ -440,13 +447,23 @@ salla-quantity-input[max='1']{
     height: 100%;
     object-fit: cover;
     opacity: 0;
-    transition: opacity .5s ease;
+    transition: opacity .5s ease, transform .5s ease;
     pointer-events: none;
   }
 
   &:hover .s-product-card-image-hover {
     opacity: 1;
   }
+
+  // Zoom both the main and the hover image together on hover.
+  &:hover img {
+    transform: scale(1.06);
+  }
+}
+
+// Disabled via theme setting (product_card_image_zoom)
+.no-card-image-zoom .s-product-card-image:hover img {
+  transform: none;
 }
 
 .product-card-volt{
