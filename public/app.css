@@ -33009,7 +33009,6 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    border-radius: 9999px;
     background-color: #414042;
     background-color: var(--color-primary);
     padding-left: 2rem;
@@ -33031,6 +33030,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 200ms;
+  border-radius: var(--border-radius);
 }
 .car-search-tree__submit-btn:hover{
     --tw-scale-x: 1.05;

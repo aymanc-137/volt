@@ -555,10 +555,10 @@
             "format": "slider",
             "inputType": "range",
             "icon": "sicon-pencil-ruler",
-            "label": "نصف قطر الحدود",
-            "description": "التحكم في درجة استدارة الحدود (border-radius) بالبكسل",
+            "label": "نصف قطر الحدود (بالبكسل px)",
+            "description": "التحكم في درجة استدارة الحدود (border-radius). القيمة بالبكسل (px).",
             "required": false,
-            "value": 6,
+            "value": 14,
             "step": 1,
             "minimum": 0,
             "maximum": 50
