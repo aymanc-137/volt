@@ -4,3 +4,47 @@
   justify-content: $justify;
   flex-direction: $direction;
 }
+
+// Animated border that draws itself around the element on hover — the same
+// effect used on the product card (.product-card-volt): a gradient border
+// traces top → right → bottom → left with staggered timing. Implemented with
+// the ::before/::after pseudo-elements so it needs no extra markup. Pair it
+// with removing any hover:scale on the target so the two don't fight.
+@mixin border-trace-hover($c1: var(--color-primary), $c2: var(--color-scandary), $w: 2px, $step: .28s) {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    z-index: 1;
+    border-radius: var(--border-radius);
+  }
+
+  // top edge first, then the right edge
+  &::before {
+    top: 0;
+    left: 0;
+    border-top: $w solid $c1;
+    border-right: $w solid $c2;
+    transition: width $step ease, height $step ease $step;
+  }
+
+  // bottom edge, then the left edge — completes the loop
+  &::after {
+    bottom: 0;
+    right: 0;
+    border-bottom: $w solid $c2;
+    border-left: $w solid $c1;
+    transition: width $step ease ($step * 2), height $step ease ($step * 3);
+  }
+
+  &:hover::before,
+  &:hover::after {
+    width: 100%;
+    height: 100%;
+  }
+}

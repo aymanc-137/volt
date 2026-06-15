@@ -53,9 +53,8 @@
     cursor: pointer;
     flex-shrink: 0;
 
-    &:hover {
-        border-color: var(--color-primary);
-    }
+    // Animated gradient border on hover (same as the product card)
+    @include border-trace-hover;
 
     &.is-active {
         background: var(--color-primary);
