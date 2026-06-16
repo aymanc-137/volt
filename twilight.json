@@ -855,6 +855,28 @@
         },
         {
             "type": "boolean",
+            "icon": "sicon-zoom-in",
+            "id": "product_card_image_zoom",
+            "label": "تكبير صورة المنتج عند تمرير المؤشر",
+            "description": "تكبير صورة بطاقة المنتج تدريجياً عند مرور المؤشر فوقها",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-light",
+            "id": "product_card_glow",
+            "label": "تفعيل تأثير التوهج عند تمرير المؤشر على بطاقة المنتج",
+            "description": "توهج خفيف حول بطاقة المنتج عند مرور المؤشر فوقها",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
             "icon": "sicon-toggle-off",
             "label": "إظهار زر \"أعلمني عند التوفر\" في بطاقة المنتج",
             "description": "يظهر زر إشعار التوفر في بطاقات المنتجات التي نفذت كميتها",

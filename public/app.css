@@ -31869,6 +31869,19 @@ salla-quantity-input[max="1"] .s-quantity-input-button{
 .no-card-border-animation .product-card-volt__left-border {
   display: none;
 }
+.card-image-zoom-hover .product-card-volt .s-product-card-image-container > a > img {
+  transition: opacity 0.5s ease, transform 0.6s ease;
+}
+.card-image-zoom-hover .product-card-volt .s-product-card-image-container .s-product-card-slideshow-img {
+  transition: opacity 0.3s ease, transform 0.6s ease;
+}
+.card-image-zoom-hover .product-card-volt:hover .s-product-card-image-container > a > img,
+.card-image-zoom-hover .product-card-volt:hover .s-product-card-image-container .s-product-card-slideshow-img {
+  transform: scale(1.08);
+}
+.no-card-glow .product-card-volt__glow {
+  display: none;
+}
 .s-product-card-volt-wishlist-btn:hover{
     --tw-scale-x: 1.1;
     --tw-scale-y: 1.1;
