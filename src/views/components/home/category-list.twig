@@ -48,8 +48,11 @@
 {% set slas_angle = slas_hbg_type == 'vertical' ? '90' : (slas_hbg_type == 'horizontal' ? '0' : '135') %}
 
 {# ---- Title controls ---- #}
+{# Sliders use minimum:0 (Salla editor requirement), so treat 0/empty as "use default" #}
 {% set title_size = component.title_size | default(36) %}
+{% set title_size = title_size > 0 ? title_size : 36 %}
 {% set sub_title_size = component.sub_title_size | default(18) %}
+{% set sub_title_size = sub_title_size > 0 ? sub_title_size : 18 %}
 {% set enable_title_underline = component.enable_title_underline ?? true %}
 {% set title_color_type = component.title_color_type | default('default') %}
 {% set title_color = component.title_color | default('#2C3E50') %}
