@@ -8,6 +8,13 @@
 | component.enable_gradient_title    | bool     | Enable gradient color for title (primary to secondary color)                 |
 | component.enable_gradient_word     | bool     | Enable gradient color for specific word in title                             |
 | component.gradient_word            | ?string  | The word to apply gradient color to                                          |
+| component.title_size               | ?int     | Title font size in px (desktop). Scales down on mobile. Default 36           |
+| component.sub_title_size           | ?int     | Subtitle font size in px (desktop). Scales down on mobile. Default 18        |
+| component.enable_title_underline   | bool     | Show the decorative underline below the title. Default true                  |
+| component.title_color_type         | ?string  | 'default' (theme) / 'primary' / 'custom'                                     |
+| component.title_color              | ?string  | Custom title color (hex) when title_color_type = 'custom'                    |
+| component.highlight_word_color_type| ?string  | 'gradient' (default) / 'primary' / 'custom' — color of the highlighted word  |
+| component.highlight_word_color     | ?string  | Custom highlighted-word color (hex) when highlight_word_color_type='custom'  |
 | component.links                    | object[] | list of links                                                                |
 | component.links[].icon             | string   |                                                                              |
 | component.links[].title            | string   |                                                                              |
@@ -39,6 +46,36 @@
 {% set slas_hbg_color = component.slas_hbg_color ~ "1A" | default('#0000001A') %}
 {% set slas_hbg_type = component.slas_hbg_type | default('inclined') %}
 {% set slas_angle = slas_hbg_type == 'vertical' ? '90' : (slas_hbg_type == 'horizontal' ? '0' : '135') %}
+
+{# ---- Title controls ---- #}
+{% set title_size = component.title_size | default(36) %}
+{% set sub_title_size = component.sub_title_size | default(18) %}
+{% set enable_title_underline = component.enable_title_underline ?? true %}
+{% set title_color_type = component.title_color_type | default('default') %}
+{% set title_color = component.title_color | default('#2C3E50') %}
+{% set highlight_word_color_type = component.highlight_word_color_type | default('gradient') %}
+{% set highlight_word_color = component.highlight_word_color | default('#FF3B3B') %}
+
+{# Resolved solid-color style/class for the title (gradient title overrides this) #}
+{% if title_color_type == 'primary' %}
+    {% set title_color_style = 'color: var(--color-primary);' %}
+    {% set title_color_class = '' %}
+{% elseif title_color_type == 'custom' %}
+    {% set title_color_style = 'color: ' ~ title_color ~ ';' %}
+    {% set title_color_class = '' %}
+{% else %}
+    {% set title_color_style = '' %}
+    {% set title_color_class = 'dynamic-text-color' %}
+{% endif %}
+
+{# Wrapper attributes for the highlighted word inside the title #}
+{% if highlight_word_color_type == 'primary' %}
+    {% set hl_attr = 'style="color: var(--color-primary)"' %}
+{% elseif highlight_word_color_type == 'custom' %}
+    {% set hl_attr = 'style="color: ' ~ highlight_word_color ~ '"' %}
+{% else %}
+    {% set hl_attr = 'class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent"' %}
+{% endif %}
 
 {# <span class="navbar-underline"></span> #}
 <section
@@ -83,30 +120,37 @@
         <div class="mx-auto flex flex-col  justify-center items-center my-5 md:my-9 w-5/6">
             <div class="flex flex-col text-center items-center">
                 {% if component.enable_gradient_title %}
-                    <h1 class="z-1 text-xl md:text-4xl font-alshohadaa mb-5 bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ component.title }}</h1>
-                {% elseif component.enable_gradient_word and component.gradient_word %}
-                    <h1 id="category-list-title-{{ position }}" class="text-xl md:text-4xl z-1 font-alshohadaa mb-5 dynamic-text-color">{{ component.title }}</h1>
+                    <h1 id="cat-list-title-{{ position }}"
+                        class="z-1 font-alshohadaa mb-5 bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent"
+                        style="font-size: clamp({{ (title_size * 0.6)|round }}px, 6vw, {{ title_size }}px);">{{ component.title }}</h1>
                 {% else %}
-                    <h1 class="z-1 text-xl md:text-4xl font-alshohadaa mb-5 dynamic-text-color">{{ component.title }}</h1>
+                    <h1 id="cat-list-title-{{ position }}"
+                        class="z-1 font-alshohadaa mb-5 {{ title_color_class }}"
+                        style="font-size: clamp({{ (title_size * 0.6)|round }}px, 6vw, {{ title_size }}px); {{ title_color_style }}">{{ component.title }}</h1>
                 {% endif %}
-                <span class="navbar-underline"></span>
+                {% if enable_title_underline %}
+                    <span class="navbar-underline"></span>
+                {% endif %}
             </div>
 
-            <div class="z-1 text-center mx-auto text-base lg:text-lg dynamic-text-color">
-                {{ component.sub_title }}
-            </div>
+            {% if component.sub_title %}
+                <div class="z-1 text-center mx-auto dynamic-text-color"
+                     style="font-size: clamp({{ (sub_title_size * 0.8)|round }}px, 2.5vw, {{ sub_title_size }}px);">
+                    {{ component.sub_title }}
+                </div>
+            {% endif %}
         </div>
 
-        {% if component.enable_gradient_word and component.gradient_word %}
+        {% if component.enable_gradient_word and component.gradient_word and not component.enable_gradient_title %}
             <script>
                 document.addEventListener('DOMContentLoaded', function () {
-                    const titleEl = document.getElementById('category-list-title-{{ position }}');
+                    const titleEl = document.getElementById('cat-list-title-{{ position }}');
                     if (titleEl) {
                         const word = '{{ component.gradient_word }}';
                         const regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
                         titleEl.innerHTML = titleEl.innerHTML.replace(
                             regex,
-                            '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
+                            '<span {{ hl_attr|raw }}>$1</span>'
                         );
                     }
                 });
