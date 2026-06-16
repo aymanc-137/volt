@@ -2357,7 +2357,7 @@
                     "required": false,
                     "value": 36,
                     "step": 1,
-                    "minimum": 16,
+                    "minimum": 0,
                     "maximum": 80
                 },
                 {
@@ -2371,7 +2371,7 @@
                     "required": false,
                     "value": 18,
                     "step": 1,
-                    "minimum": 12,
+                    "minimum": 0,
                     "maximum": 48
                 },
                 {
