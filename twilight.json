@@ -876,6 +876,17 @@
             "selected": true
         },
         {
+            "type": "boolean",
+            "icon": "sicon-image",
+            "label": "تفعيل عرض صور المنتج عند التمرير",
+            "description": "عند التمرير فوق صورة بطاقة المنتج يتم عرض باقي صور المنتج بالتتابع",
+            "id": "enable_image_slideshow",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
             "type": "static",
             "format": "title",
             "id": "group-floating",

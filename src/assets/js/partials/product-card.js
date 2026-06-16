@@ -15,6 +15,156 @@ class ProductCard extends HTMLElement {
     }
   }
 
+  disconnectedCallback(){
+    clearInterval(this._slideshowInterval);
+  }
+
+  // ---- Image slideshow on hover ----
+  // On hover over the card image, fetch the product's other images and cross-fade
+  // through them. Images are fetched/preloaded up-front so the first hover feels
+  // instant. Controlled by the `enable_image_slideshow` theme setting.
+
+  initSlideshow() {
+    if (!window.enable_image_slideshow) return;
+    if (this.horizontal || this.minimal || this.fullImage) return;
+
+    this._slideshowEls = null;
+    this._slideshowInterval = null;
+    this._slideshowIndex = 0;
+
+    const container = this.querySelector('.s-product-card-image-container');
+    if (!container) return;
+
+    this._slideshowContainer = container;
+    container.addEventListener('mouseenter', () => this._onImageHover());
+    container.addEventListener('mouseleave', () => this._onImageLeave());
+
+    // Prefetch images on card load so first hover feels instant
+    this._prefetchImages();
+  }
+
+  _prefetchImages() {
+    this._slideshowImages = false; // mark as fetching
+    salla.product.getDetails(this.product.id, ["images"])
+      .then(response => {
+        const images = response.data.images || [];
+        if (images.length <= 1) {
+          this._slideshowImages = null;
+          this._slideshowContainer?.classList.remove('slideshow-loading');
+          return;
+        }
+        this._slideshowImages = images;
+
+        // Preload the first extra image so it's cached before hover
+        const firstExtra = images.find(img => img.url !== this.product?.image?.url);
+        if (firstExtra) {
+          const preloader = new Image();
+          preloader.src = firstExtra.url;
+        }
+      })
+      .catch(() => {
+        this._slideshowImages = null;
+        this._slideshowContainer?.classList.remove('slideshow-loading');
+      });
+  }
+
+  _onImageHover() {
+    // null = only 1 image, skip
+    if (this._slideshowImages === null) return;
+
+    // false = fetch in progress, show loading cursor
+    if (this._slideshowImages === false) {
+      if (!this._slideshowFirstShown) {
+        this._slideshowContainer?.classList.add('slideshow-loading');
+      }
+      return;
+    }
+
+    // Array = fetched but not yet injected into DOM
+    if (Array.isArray(this._slideshowImages) && !this._slideshowEls?.length) {
+      if (!this._slideshowFirstShown) {
+        this._slideshowContainer?.classList.add('slideshow-loading');
+      }
+      this._preloadAndInject();
+      return;
+    }
+
+    // Ready, start cycling
+    if (this._slideshowEls?.length) {
+      this._startCycling();
+    }
+  }
+
+  _onImageLeave() {
+    clearTimeout(this._hoverDebounce);
+    clearInterval(this._slideshowInterval);
+    this._slideshowInterval = null;
+
+    if (this._slideshowContainer) {
+      this._slideshowContainer.classList.remove('slideshow-active');
+    }
+    if (this._slideshowEls) {
+      this._slideshowEls.forEach(el => el.classList.remove('is-active'));
+    }
+  }
+
+  _preloadAndInject() {
+    const images = this._slideshowImages;
+    const container = this._slideshowContainer;
+    if (!container) return;
+
+    const anchor = container.querySelector('a');
+    if (!anchor) return;
+
+    this._slideshowReady = [];
+
+    // Load images one by one — each is added to the slideshow as soon as it loads
+    images.forEach(img => {
+      const el = document.createElement('img');
+      el.className = 's-product-card-slideshow-img';
+      el.alt = img.alt || this.product.name;
+      el.setAttribute('aria-hidden', 'true');
+
+      el.onload = () => {
+        this._slideshowReady.push(el);
+        this._slideshowEls = this._slideshowReady;
+
+        // Start cycling as soon as the first image is ready and still hovering
+        if (this._slideshowReady.length === 1 && container.matches(':hover')) {
+          this._startCycling();
+        }
+      };
+
+      el.src = img.url;
+      anchor.appendChild(el);
+    });
+  }
+
+  _startCycling() {
+    if (this._slideshowInterval || !this._slideshowEls?.length) return;
+
+    const container = this._slideshowContainer;
+    this._slideshowIndex = 0;
+    container.classList.add('slideshow-active');
+
+    // Remove loading cursor after first image shows
+    if (!this._slideshowFirstShown) {
+      this._slideshowFirstShown = true;
+      container.classList.remove('slideshow-loading');
+    }
+
+    // Show first image immediately
+    this._slideshowEls[0].classList.add('is-active');
+
+    this._slideshowInterval = setInterval(() => {
+      this._slideshowEls[this._slideshowIndex].classList.remove('is-active');
+      this._slideshowIndex = (this._slideshowIndex + 1) % this._slideshowEls.length;
+      this._slideshowEls[this._slideshowIndex].classList.add('is-active');
+    }, 1800);
+  }
+
+  // ---- End slideshow ----
+
   onReady(){
       this.fitImageHeight = salla.config.get('store.settings.product.fit_type');
       this.placeholder = salla.url.asset(salla.config.get('theme.settings.placeholder'));
@@ -37,9 +187,11 @@ class ProductCard extends HTMLElement {
 
         // re-render to update translations
         this.render();
+        this.initSlideshow();
       })
-      
+
       this.render()
+      this.initSlideshow();
   }
 
   initCircleBar() {
@@ -191,7 +343,7 @@ class ProductCard extends HTMLElement {
         <div class="product-card-volt__left-border"></div>
         <div class="product-card-volt__glow"></div>
 
-        <div class="${!this.fullImage ? 's-product-card-image' : 's-product-card-image-full'} ">
+        <div class="${!this.fullImage ? 's-product-card-image' : 's-product-card-image-full'} s-product-card-image-container">
           <a href="${this.product?.url}" aria-label="${this.escapeHTML(this.product?.image?.alt || this.product.name)}">
            <img 
               class="s-product-card-image-${salla.url.is_placeholder(this.product?.image?.url)

@@ -483,6 +483,45 @@ salla-quantity-input[max='1']{
     border-top-right-radius: var(--border-radius) !important;
   }
 
+  // ---- Hover image slideshow ----
+  .s-product-card-image-container {
+    @apply relative overflow-hidden;
+
+    // Slideshow images stacked behind the main image
+    .s-product-card-slideshow-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 0;
+
+      &.is-active {
+        opacity: 1;
+      }
+    }
+
+    // Main image sits above the slideshow by default
+    > a > img {
+      position: relative;
+      z-index: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    // When the slideshow is running, fade out the main image
+    &.slideshow-active > a > img {
+      opacity: 0;
+    }
+
+    // Loading cursor while waiting for the first slideshow image
+    &.slideshow-loading {
+      cursor: wait;
+    }
+  }
+
   .s-product-card-content{
     @apply dynamic-text-color;
 
