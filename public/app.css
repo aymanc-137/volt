@@ -35951,20 +35951,12 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
         font-size: 3rem;
         line-height: 1;
     }
-    .lg\:text-6xl{
-        font-size: 3.75rem;
-        line-height: 1;
-    }
     .lg\:text-7xl{
         font-size: 4.5rem;
         line-height: 1;
     }
     .lg\:text-title-size{
         font-size: 42px;
-    }
-    .lg\:text-xl{
-        font-size: 1.25rem;
-        line-height: 1.75rem;
     }
     .lg\:shadow-default{
         --tw-shadow: 5px 10px 30px #2B2D340D;;

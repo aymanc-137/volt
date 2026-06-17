@@ -26,6 +26,25 @@
 {% set show_nav_buttons = component.show_nav_buttons ?? true %}
 
 {% set block_id = 'enhanced-image-carousel-' ~ position %}
+
+{# ---- Slide title controls (component-level; apply to every slide) ---- #}
+{% set tc_size = component.title_size | default(60) %}
+{% set tc_size = tc_size > 0 ? tc_size : 60 %}
+{% set tc_sub = component.sub_title_size | default(20) %}
+{% set tc_sub = tc_sub > 0 ? tc_sub : 20 %}
+{% set tc_underline = component.enable_title_underline ?? false %}
+{% set tc_font = (component.title_use_decorative_font ?? true) ? 'font-alshohadaa' : '' %}
+{% set tc_color_type = component.title_color_type | default('default') %}
+{% if tc_color_type == 'primary' %}{% set tc_color_style = 'color: var(--color-primary);' %}
+{% elseif tc_color_type == 'custom' %}{% set tc_color_style = 'color: ' ~ (component.title_color | default('#2C3E50')) ~ ';' %}
+{% else %}{% set tc_color_style = '' %}{% endif %}
+{% set tc_size_style = 'font-size: clamp(' ~ (tc_size * 0.6)|round ~ 'px, 6vw, ' ~ tc_size ~ 'px);' %}
+{% set tc_sub_style = 'font-size: clamp(' ~ (tc_sub * 0.8)|round ~ 'px, 2.5vw, ' ~ tc_sub ~ 'px);' %}
+{% set tc_hl_type = component.highlight_word_color_type | default('gradient') %}
+{% if tc_hl_type == 'primary' %}{% set tc_hl_attr = 'style="color: var(--color-primary)"' %}
+{% elseif tc_hl_type == 'custom' %}{% set tc_hl_attr = 'style="color: ' ~ (component.highlight_word_color | default('#FF3B3B')) ~ '"' %}
+{% else %}{% set tc_hl_attr = 'class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent"' %}{% endif %}
+
  <section dir="ltr" class="min-h-[20rem] h-[50dvh] sm:h-[58dvh] md:h-[65dvh] lg:h-[80dvh] xl:h-[100dvh] w-full relative" id="{{ block_id }}">
     <div
         class="enhanced-carousel h-full  relative group/carousel"
@@ -75,14 +94,15 @@
                     {% set slide_content %}
                         <div class="flex {{ show_car_search ? 'mt-14 sm:mt-16 mb-auto' : 'my-auto' }} w-full max-w-2xl flex-col gap-2 sm:gap-4 dynamic-text-color {{ alignment_class[alignment[0]] ?? 'items-center text-center' }}">
                             {% if slide.title_part1 or slide.title_gradient or slide.title_part3 %}
-                                <h3 class="font-alshohadaa text-xl sm:text-2xl md:text-4xl lg:text-6xl md:leading-20 font-semibold opacity-0" data-carousel-text="title">
+                                <h3 class="{{ tc_font }} md:leading-20 font-semibold opacity-0" data-carousel-text="title" style="{{ tc_size_style }} {{ tc_color_style }}">
                                     {% if slide.title_part1 %}<span>{{ slide.title_part1 }}</span>{% endif %}
-                                    {% if slide.title_gradient %}<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ slide.title_gradient }}</span>{% endif %}
+                                    {% if slide.title_gradient %}<span {{ tc_hl_attr|raw }}>{{ slide.title_gradient }}</span>{% endif %}
                                     {% if slide.title_part3 %}<span>{{ slide.title_part3 }}</span>{% endif %}
                                 </h3>
+                                {% if tc_underline %}<span class="navbar-underline"></span>{% endif %}
                             {% endif %}
                             {% if slide.description %}
-                                <p class="text-sm sm:text-base md:text-lg lg:text-xl dynamic-text-color opacity-0" data-carousel-text="description">{{ slide.description }}</p>
+                                <p class="dynamic-text-color opacity-0" data-carousel-text="description" style="{{ tc_sub_style }}">{{ slide.description }}</p>
                             {% endif %}
                             {% if slide.button_label and slide.button_url %}
                                 <div class="pt-2 sm:pt-4 opacity-0" data-carousel-text="button">
