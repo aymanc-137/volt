@@ -33,6 +33,32 @@
 {% set glow_c1 = glow_use_theme ? 'var(--color-primary)'  : (component.glow_color_1 ?? 'var(--color-primary)') %}
 {% set glow_c2 = glow_use_theme ? 'var(--color-scandary)' : (component.glow_color_2 ?? 'var(--color-scandary)') %}
 
+{# ---- Title controls (inline-applied; .why-us-title applies font-alshohadaa via SCSS, so the font toggle overrides font-family instead of a class) ---- #}
+{% set tc_size = component.title_size | default(36) %}
+{% set tc_size = tc_size > 0 ? tc_size : 36 %}
+{% set tc_sub = component.sub_title_size | default(18) %}
+{% set tc_sub = tc_sub > 0 ? tc_sub : 18 %}
+{% set tc_underline = component.enable_title_underline ?? false %}
+{% set tc_font_style = (component.title_use_decorative_font ?? true) ? '' : 'font-family: inherit;' %}
+{% set tc_color_type = component.title_color_type | default('default') %}
+{% if tc_color_type == 'primary' %}
+    {% set tc_color_style = 'color: var(--color-primary);' %}
+{% elseif tc_color_type == 'custom' %}
+    {% set tc_color_style = 'color: ' ~ (component.title_color | default('#2C3E50')) ~ ';' %}
+{% else %}
+    {% set tc_color_style = '' %}
+{% endif %}
+{% set tc_size_style = 'font-size: clamp(' ~ (tc_size * 0.6)|round ~ 'px, 6vw, ' ~ tc_size ~ 'px);' %}
+{% set tc_sub_style = 'font-size: clamp(' ~ (tc_sub * 0.8)|round ~ 'px, 2.5vw, ' ~ tc_sub ~ 'px);' %}
+{% set tc_hl_type = component.highlight_word_color_type | default('gradient') %}
+{% if tc_hl_type == 'primary' %}
+    {% set tc_hl_attr = 'style="color: var(--color-primary)"' %}
+{% elseif tc_hl_type == 'custom' %}
+    {% set tc_hl_attr = 'style="color: ' ~ (component.highlight_word_color | default('#FF3B3B')) ~ '"' %}
+{% else %}
+    {% set tc_hl_attr = 'class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent"' %}
+{% endif %}
+
 <section class="z-10 overflow-hidden {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} s-block--why-us relative {{ slashbg ? 'slash-bg-' ~ position ~ ' dynamic-bg-color' : ''}}">
   {% if glow_type == 'circles' %}
     <div class="absolute top-[15%] left-[25%] w-64 h-64 rounded-full blur-3xl opacity-60 pointer-events-none" style="z-index:-1; background-color:{{ glow_c1 }};"></div>
@@ -102,14 +128,15 @@
       <div class="why-us-content">
         <!-- Title -->
         {% if component.title %}
-          <h2 id="why-us-title-{{ position }}" class="why-us-title dynamic-text-color">
+          <h2 id="why-us-title-{{ position }}" class="why-us-title dynamic-text-color" style="{{ tc_size_style }} {{ tc_color_style }} {{ tc_font_style }}">
             {{ component.title }}
           </h2>
+          {% if tc_underline %}<span class="navbar-underline"></span>{% endif %}
         {% endif %}
 
         <!-- Description -->
         {% if component.description %}
-          <p class="why-us-description">{{ component.description }}</p>
+          <p class="why-us-description" style="{{ tc_sub_style }}">{{ component.description }}</p>
         {% endif %}
 
         <!-- Features Grid -->
@@ -142,7 +169,7 @@
         const regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
         titleEl.innerHTML = titleEl.innerHTML.replace(
           regex,
-          '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
+          '<span {{ tc_hl_attr|raw }}>$1</span>'
         );
       }
     });
