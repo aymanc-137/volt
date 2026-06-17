@@ -139,7 +139,7 @@ class CarSearchTree extends BasePage {
                          data-selects>
                         <div class="car-search-tree__select" data-select-wrapper="brand">
                             <label for="${brand_select_id}">اختر الماركة</label>
-                            <select id="${brand_select_id}" data-select="brand">
+                            <select class="rounded-custom" id="${brand_select_id}" data-select="brand">
                                 <option value="" disabled selected>اختر الماركة</option>
                             </select>
                         </div>
