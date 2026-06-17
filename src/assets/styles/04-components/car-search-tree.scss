@@ -62,7 +62,7 @@
         @apply text-xs font-semibold uppercase tracking-wide text-[color:var(--color-text-muted,#6B7280)];
     }
     select {
-        @apply w-full rounded-2xl border dynamic-border-color bg-white/80 dark:bg-gray-900/40 px-4 py-3 text-sm font-medium dynamic-text-color
+        @apply w-full rounded-custom border dynamic-border-color bg-white/80 dark:bg-gray-900/40 px-4 py-3 text-sm font-medium dynamic-text-color
         focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] appearance-none;
         option {
             @apply text-[color:var(--color-text,#111827)];

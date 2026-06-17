@@ -32990,7 +32990,6 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     -webkit-appearance: none;
        -moz-appearance: none;
             appearance: none;
-    border-radius: 1rem;
     border-width: 1px;
     background-color: rgba(255, 255, 255, 0.8);
     padding-left: 1rem;
@@ -33000,8 +32999,9 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     font-size: 0.875rem;
     line-height: 1.25rem;
     font-weight: 500;
-    color: #2C3E50;
-    color: var(--main-text-color);
+  border-radius: var(--border-radius);
+  color: #2C3E50;
+  color: var(--main-text-color);
 }
 .car-search-tree__select select:is(.dark *){
     color: var(--light-text-color);
