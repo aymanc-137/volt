@@ -2347,46 +2347,6 @@
                     ]
                 },
                 {
-                    "id": "title_size",
-                    "type": "number",
-                    "format": "slider",
-                    "inputType": "range",
-                    "icon": "sicon-font-size",
-                    "label": "حجم العنوان (بكسل)",
-                    "description": "التحكم في حجم خط العنوان الرئيسي. يصغر تلقائياً على شاشات الجوال.",
-                    "required": false,
-                    "value": 36,
-                    "step": 1,
-                    "minimum": 0,
-                    "maximum": 80
-                },
-                {
-                    "id": "sub_title_size",
-                    "type": "number",
-                    "format": "slider",
-                    "inputType": "range",
-                    "icon": "sicon-font-size",
-                    "label": "حجم العنوان الجانبي (بكسل)",
-                    "description": "التحكم في حجم خط العنوان الجانبي. يصغر تلقائياً على شاشات الجوال.",
-                    "required": false,
-                    "value": 18,
-                    "step": 1,
-                    "minimum": 0,
-                    "maximum": 48
-                },
-                {
-                    "id": "enable_title_underline",
-                    "type": "boolean",
-                    "format": "switch",
-                    "label": "إظهار الخط أسفل العنوان",
-                    "description": "إظهار أو إخفاء الخط الزخرفي تحت العنوان",
-                    "labelHTML": null,
-                    "icon": "sicon-minus",
-                    "value": true,
-                    "selected": true,
-                    "required": false
-                },
-                {
                     "id": "title_color_type",
                     "description": "تحديد لون العنوان: حسب القالب، أو اللون الأساسي، أو لون مخصص",
                     "labelHTML": null,
@@ -2520,6 +2480,46 @@
                             "value": true
                         }
                     ]
+                },
+                {
+                    "id": "title_size",
+                    "type": "number",
+                    "format": "slider",
+                    "inputType": "range",
+                    "icon": "sicon-font-size",
+                    "label": "حجم العنوان (بكسل)",
+                    "description": "التحكم في حجم خط العنوان الرئيسي. يصغر تلقائياً على شاشات الجوال.",
+                    "required": false,
+                    "value": 36,
+                    "step": 1,
+                    "minimum": 0,
+                    "maximum": 80
+                },
+                {
+                    "id": "sub_title_size",
+                    "type": "number",
+                    "format": "slider",
+                    "inputType": "range",
+                    "icon": "sicon-font-size",
+                    "label": "حجم العنوان الجانبي (بكسل)",
+                    "description": "التحكم في حجم خط العنوان الجانبي. يصغر تلقائياً على شاشات الجوال.",
+                    "required": false,
+                    "value": 18,
+                    "step": 1,
+                    "minimum": 0,
+                    "maximum": 48
+                },
+                {
+                    "id": "enable_title_underline",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "إظهار الخط أسفل العنوان",
+                    "description": "إظهار أو إخفاء الخط الزخرفي تحت العنوان",
+                    "labelHTML": null,
+                    "icon": "sicon-minus",
+                    "value": true,
+                    "selected": true,
+                    "required": false
                 },
                 {
                     "type": "static",
