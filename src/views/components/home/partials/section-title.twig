@@ -1,0 +1,90 @@
+{#
+  Reusable section title block with full typography controls.
+
+  Expects (inherited from the including component's context):
+  | Variable  | Type   | Description                                  |
+  |-----------|--------|----------------------------------------------|
+  | component | object | The component settings from twilight.json    |
+  | position  | int    | Unique sort index, used for element ids       |
+
+  Reads these optional component fields (all have safe defaults):
+    title, sub_title, title_size, sub_title_size,
+    enable_title_underline, title_use_decorative_font,
+    title_color_type, title_color,
+    enable_gradient_title, enable_gradient_word, gradient_word,
+    highlight_word_color_type, highlight_word_color
+#}
+{% if component.title %}
+    {# Sliders use minimum:0 (Salla editor requirement), so treat 0/empty as "use default" #}
+    {% set title_size = component.title_size | default(36) %}
+    {% set title_size = title_size > 0 ? title_size : 36 %}
+    {% set sub_title_size = component.sub_title_size | default(18) %}
+    {% set sub_title_size = sub_title_size > 0 ? sub_title_size : 18 %}
+    {% set enable_title_underline = component.enable_title_underline ?? true %}
+    {% set title_font_class = (component.title_use_decorative_font ?? true) ? 'font-alshohadaa' : '' %}
+    {% set title_color_type = component.title_color_type | default('default') %}
+    {% set title_color = component.title_color | default('#2C3E50') %}
+    {% set highlight_word_color_type = component.highlight_word_color_type | default('gradient') %}
+    {% set highlight_word_color = component.highlight_word_color | default('#FF3B3B') %}
+
+    {# Resolved solid-color style/class for the title (gradient title overrides this) #}
+    {% if title_color_type == 'primary' %}
+        {% set title_color_style = 'color: var(--color-primary);' %}
+        {% set title_color_class = '' %}
+    {% elseif title_color_type == 'custom' %}
+        {% set title_color_style = 'color: ' ~ title_color ~ ';' %}
+        {% set title_color_class = '' %}
+    {% else %}
+        {% set title_color_style = '' %}
+        {% set title_color_class = 'dynamic-text-color' %}
+    {% endif %}
+
+    {# Wrapper attributes for the highlighted word inside the title #}
+    {% if highlight_word_color_type == 'primary' %}
+        {% set hl_attr = 'style="color: var(--color-primary)"' %}
+    {% elseif highlight_word_color_type == 'custom' %}
+        {% set hl_attr = 'style="color: ' ~ highlight_word_color ~ '"' %}
+    {% else %}
+        {% set hl_attr = 'class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent"' %}
+    {% endif %}
+
+    <div class="mx-auto flex flex-col justify-center items-center my-5 md:my-9 w-5/6">
+        <div class="flex flex-col text-center items-center">
+            {% if component.enable_gradient_title %}
+                <h1 id="section-title-{{ position }}"
+                    class="z-1 {{ title_font_class }} mb-5 bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent"
+                    style="font-size: clamp({{ (title_size * 0.6)|round }}px, 6vw, {{ title_size }}px);">{{ component.title }}</h1>
+            {% else %}
+                <h1 id="section-title-{{ position }}"
+                    class="z-1 {{ title_font_class }} mb-5 {{ title_color_class }}"
+                    style="font-size: clamp({{ (title_size * 0.6)|round }}px, 6vw, {{ title_size }}px); {{ title_color_style }}">{{ component.title }}</h1>
+            {% endif %}
+            {% if enable_title_underline %}
+                <span class="navbar-underline"></span>
+            {% endif %}
+        </div>
+
+        {% if component.sub_title %}
+            <div class="z-1 text-center mx-auto dynamic-text-color"
+                 style="font-size: clamp({{ (sub_title_size * 0.8)|round }}px, 2.5vw, {{ sub_title_size }}px);">
+                {{ component.sub_title }}
+            </div>
+        {% endif %}
+    </div>
+
+    {% if component.enable_gradient_word and component.gradient_word and not component.enable_gradient_title %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const titleEl = document.getElementById('section-title-{{ position }}');
+                if (titleEl) {
+                    const word = '{{ component.gradient_word }}';
+                    const regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+                    titleEl.innerHTML = titleEl.innerHTML.replace(
+                        regex,
+                        '<span {{ hl_attr|raw }}>$1</span>'
+                    );
+                }
+            });
+        </script>
+    {% endif %}
+{% endif %}

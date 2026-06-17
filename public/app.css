@@ -35980,10 +35980,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
         font-size: 4.5rem;
         line-height: 1;
     }
-    .lg\:text-base{
-        font-size: 1rem;
-        line-height: 1.5rem;
-    }
     .lg\:text-lg{
         font-size: 1.125rem;
         line-height: 1.75rem;
@@ -36048,10 +36044,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .xl\:px-0{
         padding-left: 0px;
         padding-right: 0px;
-    }
-    .xl\:text-2xl{
-        font-size: 1.5rem;
-        line-height: 2rem;
     }
 }
 @media (min-width: 1536px){

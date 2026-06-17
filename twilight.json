@@ -5144,6 +5144,193 @@
                     ]
                 },
                 {
+                    "id": "title_size",
+                    "type": "number",
+                    "format": "slider",
+                    "inputType": "range",
+                    "icon": "sicon-font-size",
+                    "label": "حجم العنوان (بكسل)",
+                    "description": "التحكم في حجم خط العنوان الرئيسي. يصغر تلقائياً على شاشات الجوال.",
+                    "required": false,
+                    "value": 24,
+                    "step": 1,
+                    "minimum": 0,
+                    "maximum": 80
+                },
+                {
+                    "id": "sub_title_size",
+                    "type": "number",
+                    "format": "slider",
+                    "inputType": "range",
+                    "icon": "sicon-font-size",
+                    "label": "حجم العنوان الجانبي (بكسل)",
+                    "description": "التحكم في حجم خط العنوان الجانبي. يصغر تلقائياً على شاشات الجوال.",
+                    "required": false,
+                    "value": 20,
+                    "step": 1,
+                    "minimum": 0,
+                    "maximum": 48
+                },
+                {
+                    "id": "enable_title_underline",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "إظهار الخط أسفل العنوان",
+                    "description": "إظهار أو إخفاء الخط الزخرفي تحت العنوان",
+                    "labelHTML": null,
+                    "icon": "sicon-minus",
+                    "value": true,
+                    "selected": true,
+                    "required": false
+                },
+                {
+                    "id": "title_use_decorative_font",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "استخدام الخط الزخرفي للعنوان (Alshohadaa)",
+                    "description": "عند التفعيل يُستخدم خط الشهداء الزخرفي للعنوان، وعند التعطيل يُستخدم خط القالب الافتراضي",
+                    "labelHTML": null,
+                    "icon": "sicon-font",
+                    "value": true,
+                    "selected": true,
+                    "required": false
+                },
+                {
+                    "id": "title_color_type",
+                    "description": "تحديد لون العنوان: حسب القالب، أو اللون الأساسي، أو لون مخصص",
+                    "labelHTML": null,
+                    "label": "لون العنوان",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "icon": "sicon-color-palette",
+                    "value": [],
+                    "selected": [
+                        {
+                            "label": "افتراضي (حسب القالب)",
+                            "value": "default",
+                            "key": "title-color-default"
+                        }
+                    ],
+                    "source": "Manual",
+                    "options": [
+                        {
+                            "label": "افتراضي (حسب القالب)",
+                            "value": "default",
+                            "key": "title-color-default"
+                        },
+                        {
+                            "label": "اللون الأساسي للسمة",
+                            "value": "primary",
+                            "key": "title-color-primary"
+                        },
+                        {
+                            "label": "لون مخصص",
+                            "value": "custom",
+                            "key": "title-color-custom"
+                        }
+                    ],
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "title_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "لون العنوان المخصص",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#2C3E50",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "title_color_type",
+                            "operation": "=",
+                            "value": "custom"
+                        },
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "highlight_word_color_type",
+                    "description": "لون الكلمة المميزة داخل العنوان",
+                    "labelHTML": null,
+                    "label": "لون الكلمة المميزة",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "icon": "sicon-color-palette",
+                    "value": [],
+                    "selected": [
+                        {
+                            "label": "تدرّج لوني (أساسي ← ثانوي)",
+                            "value": "gradient",
+                            "key": "hl-color-gradient"
+                        }
+                    ],
+                    "source": "Manual",
+                    "options": [
+                        {
+                            "label": "تدرّج لوني (أساسي ← ثانوي)",
+                            "value": "gradient",
+                            "key": "hl-color-gradient"
+                        },
+                        {
+                            "label": "اللون الأساسي للسمة",
+                            "value": "primary",
+                            "key": "hl-color-primary"
+                        },
+                        {
+                            "label": "لون مخصص",
+                            "value": "custom",
+                            "key": "hl-color-custom"
+                        }
+                    ],
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_word",
+                            "operation": "=",
+                            "value": true
+                        },
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "highlight_word_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "لون الكلمة المميزة المخصص",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#FF3B3B",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "highlight_word_color_type",
+                            "operation": "=",
+                            "value": "custom"
+                        },
+                        {
+                            "id": "enable_gradient_word",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
                     "id": "text",
                     "type": "string",
                     "format": "text",
@@ -6821,6 +7008,193 @@
                     ]
                 },
                 {
+                    "id": "title_size",
+                    "type": "number",
+                    "format": "slider",
+                    "inputType": "range",
+                    "icon": "sicon-font-size",
+                    "label": "حجم العنوان (بكسل)",
+                    "description": "التحكم في حجم خط العنوان الرئيسي. يصغر تلقائياً على شاشات الجوال.",
+                    "required": false,
+                    "value": 48,
+                    "step": 1,
+                    "minimum": 0,
+                    "maximum": 80
+                },
+                {
+                    "id": "sub_title_size",
+                    "type": "number",
+                    "format": "slider",
+                    "inputType": "range",
+                    "icon": "sicon-font-size",
+                    "label": "حجم العنوان الجانبي (بكسل)",
+                    "description": "التحكم في حجم خط العنوان الجانبي. يصغر تلقائياً على شاشات الجوال.",
+                    "required": false,
+                    "value": 20,
+                    "step": 1,
+                    "minimum": 0,
+                    "maximum": 48
+                },
+                {
+                    "id": "enable_title_underline",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "إظهار الخط أسفل العنوان",
+                    "description": "إظهار أو إخفاء الخط الزخرفي تحت العنوان",
+                    "labelHTML": null,
+                    "icon": "sicon-minus",
+                    "value": false,
+                    "selected": false,
+                    "required": false
+                },
+                {
+                    "id": "title_use_decorative_font",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "استخدام الخط الزخرفي للعنوان (Alshohadaa)",
+                    "description": "عند التفعيل يُستخدم خط الشهداء الزخرفي للعنوان، وعند التعطيل يُستخدم خط القالب الافتراضي",
+                    "labelHTML": null,
+                    "icon": "sicon-font",
+                    "value": true,
+                    "selected": true,
+                    "required": false
+                },
+                {
+                    "id": "title_color_type",
+                    "description": "تحديد لون العنوان: حسب القالب، أو اللون الأساسي، أو لون مخصص",
+                    "labelHTML": null,
+                    "label": "لون العنوان",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "icon": "sicon-color-palette",
+                    "value": [],
+                    "selected": [
+                        {
+                            "label": "افتراضي (حسب القالب)",
+                            "value": "default",
+                            "key": "title-color-default"
+                        }
+                    ],
+                    "source": "Manual",
+                    "options": [
+                        {
+                            "label": "افتراضي (حسب القالب)",
+                            "value": "default",
+                            "key": "title-color-default"
+                        },
+                        {
+                            "label": "اللون الأساسي للسمة",
+                            "value": "primary",
+                            "key": "title-color-primary"
+                        },
+                        {
+                            "label": "لون مخصص",
+                            "value": "custom",
+                            "key": "title-color-custom"
+                        }
+                    ],
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "title_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "لون العنوان المخصص",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#2C3E50",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "title_color_type",
+                            "operation": "=",
+                            "value": "custom"
+                        },
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "highlight_word_color_type",
+                    "description": "لون الكلمة المميزة داخل العنوان",
+                    "labelHTML": null,
+                    "label": "لون الكلمة المميزة",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "icon": "sicon-color-palette",
+                    "value": [],
+                    "selected": [
+                        {
+                            "label": "اللون الأساسي للسمة",
+                            "value": "primary",
+                            "key": "hl-color-primary"
+                        }
+                    ],
+                    "source": "Manual",
+                    "options": [
+                        {
+                            "label": "تدرّج لوني (أساسي ← ثانوي)",
+                            "value": "gradient",
+                            "key": "hl-color-gradient"
+                        },
+                        {
+                            "label": "اللون الأساسي للسمة",
+                            "value": "primary",
+                            "key": "hl-color-primary"
+                        },
+                        {
+                            "label": "لون مخصص",
+                            "value": "custom",
+                            "key": "hl-color-custom"
+                        }
+                    ],
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_word",
+                            "operation": "=",
+                            "value": true
+                        },
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "highlight_word_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "لون الكلمة المميزة المخصص",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#FF3B3B",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "highlight_word_color_type",
+                            "operation": "=",
+                            "value": "custom"
+                        },
+                        {
+                            "id": "enable_gradient_word",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
                     "type": "static",
                     "format": "description",
                     "id": "group-items-settings",
@@ -8042,6 +8416,193 @@
                     ]
                 },
                 {
+                    "id": "title_size",
+                    "type": "number",
+                    "format": "slider",
+                    "inputType": "range",
+                    "icon": "sicon-font-size",
+                    "label": "حجم العنوان (بكسل)",
+                    "description": "التحكم في حجم خط العنوان الرئيسي. يصغر تلقائياً على شاشات الجوال.",
+                    "required": false,
+                    "value": 30,
+                    "step": 1,
+                    "minimum": 0,
+                    "maximum": 80
+                },
+                {
+                    "id": "sub_title_size",
+                    "type": "number",
+                    "format": "slider",
+                    "inputType": "range",
+                    "icon": "sicon-font-size",
+                    "label": "حجم العنوان الجانبي (بكسل)",
+                    "description": "التحكم في حجم خط العنوان الجانبي. يصغر تلقائياً على شاشات الجوال.",
+                    "required": false,
+                    "value": 18,
+                    "step": 1,
+                    "minimum": 0,
+                    "maximum": 48
+                },
+                {
+                    "id": "enable_title_underline",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "إظهار الخط أسفل العنوان",
+                    "description": "إظهار أو إخفاء الخط الزخرفي تحت العنوان",
+                    "labelHTML": null,
+                    "icon": "sicon-minus",
+                    "value": true,
+                    "selected": true,
+                    "required": false
+                },
+                {
+                    "id": "title_use_decorative_font",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "استخدام الخط الزخرفي للعنوان (Alshohadaa)",
+                    "description": "عند التفعيل يُستخدم خط الشهداء الزخرفي للعنوان، وعند التعطيل يُستخدم خط القالب الافتراضي",
+                    "labelHTML": null,
+                    "icon": "sicon-font",
+                    "value": true,
+                    "selected": true,
+                    "required": false
+                },
+                {
+                    "id": "title_color_type",
+                    "description": "تحديد لون العنوان: حسب القالب، أو اللون الأساسي، أو لون مخصص",
+                    "labelHTML": null,
+                    "label": "لون العنوان",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "icon": "sicon-color-palette",
+                    "value": [],
+                    "selected": [
+                        {
+                            "label": "افتراضي (حسب القالب)",
+                            "value": "default",
+                            "key": "title-color-default"
+                        }
+                    ],
+                    "source": "Manual",
+                    "options": [
+                        {
+                            "label": "افتراضي (حسب القالب)",
+                            "value": "default",
+                            "key": "title-color-default"
+                        },
+                        {
+                            "label": "اللون الأساسي للسمة",
+                            "value": "primary",
+                            "key": "title-color-primary"
+                        },
+                        {
+                            "label": "لون مخصص",
+                            "value": "custom",
+                            "key": "title-color-custom"
+                        }
+                    ],
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "title_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "لون العنوان المخصص",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#2C3E50",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "title_color_type",
+                            "operation": "=",
+                            "value": "custom"
+                        },
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "highlight_word_color_type",
+                    "description": "لون الكلمة المميزة داخل العنوان",
+                    "labelHTML": null,
+                    "label": "لون الكلمة المميزة",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "icon": "sicon-color-palette",
+                    "value": [],
+                    "selected": [
+                        {
+                            "label": "تدرّج لوني (أساسي ← ثانوي)",
+                            "value": "gradient",
+                            "key": "hl-color-gradient"
+                        }
+                    ],
+                    "source": "Manual",
+                    "options": [
+                        {
+                            "label": "تدرّج لوني (أساسي ← ثانوي)",
+                            "value": "gradient",
+                            "key": "hl-color-gradient"
+                        },
+                        {
+                            "label": "اللون الأساسي للسمة",
+                            "value": "primary",
+                            "key": "hl-color-primary"
+                        },
+                        {
+                            "label": "لون مخصص",
+                            "value": "custom",
+                            "key": "hl-color-custom"
+                        }
+                    ],
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_word",
+                            "operation": "=",
+                            "value": true
+                        },
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "highlight_word_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "لون الكلمة المميزة المخصص",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#FF3B3B",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "highlight_word_color_type",
+                            "operation": "=",
+                            "value": "custom"
+                        },
+                        {
+                            "id": "enable_gradient_word",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
                     "type": "static",
                     "format": "description",
                     "id": "group-slider-settings",
@@ -8677,6 +9238,193 @@
                     ]
                 },
                 {
+                    "id": "title_size",
+                    "type": "number",
+                    "format": "slider",
+                    "inputType": "range",
+                    "icon": "sicon-font-size",
+                    "label": "حجم العنوان (بكسل)",
+                    "description": "التحكم في حجم خط العنوان الرئيسي. يصغر تلقائياً على شاشات الجوال.",
+                    "required": false,
+                    "value": 30,
+                    "step": 1,
+                    "minimum": 0,
+                    "maximum": 80
+                },
+                {
+                    "id": "sub_title_size",
+                    "type": "number",
+                    "format": "slider",
+                    "inputType": "range",
+                    "icon": "sicon-font-size",
+                    "label": "حجم العنوان الجانبي (بكسل)",
+                    "description": "التحكم في حجم خط العنوان الجانبي. يصغر تلقائياً على شاشات الجوال.",
+                    "required": false,
+                    "value": 16,
+                    "step": 1,
+                    "minimum": 0,
+                    "maximum": 48
+                },
+                {
+                    "id": "enable_title_underline",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "إظهار الخط أسفل العنوان",
+                    "description": "إظهار أو إخفاء الخط الزخرفي تحت العنوان",
+                    "labelHTML": null,
+                    "icon": "sicon-minus",
+                    "value": false,
+                    "selected": false,
+                    "required": false
+                },
+                {
+                    "id": "title_use_decorative_font",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "استخدام الخط الزخرفي للعنوان (Alshohadaa)",
+                    "description": "عند التفعيل يُستخدم خط الشهداء الزخرفي للعنوان، وعند التعطيل يُستخدم خط القالب الافتراضي",
+                    "labelHTML": null,
+                    "icon": "sicon-font",
+                    "value": true,
+                    "selected": true,
+                    "required": false
+                },
+                {
+                    "id": "title_color_type",
+                    "description": "تحديد لون العنوان: حسب القالب، أو اللون الأساسي، أو لون مخصص",
+                    "labelHTML": null,
+                    "label": "لون العنوان",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "icon": "sicon-color-palette",
+                    "value": [],
+                    "selected": [
+                        {
+                            "label": "افتراضي (حسب القالب)",
+                            "value": "default",
+                            "key": "title-color-default"
+                        }
+                    ],
+                    "source": "Manual",
+                    "options": [
+                        {
+                            "label": "افتراضي (حسب القالب)",
+                            "value": "default",
+                            "key": "title-color-default"
+                        },
+                        {
+                            "label": "اللون الأساسي للسمة",
+                            "value": "primary",
+                            "key": "title-color-primary"
+                        },
+                        {
+                            "label": "لون مخصص",
+                            "value": "custom",
+                            "key": "title-color-custom"
+                        }
+                    ],
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "title_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "لون العنوان المخصص",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#2C3E50",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "title_color_type",
+                            "operation": "=",
+                            "value": "custom"
+                        },
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "highlight_word_color_type",
+                    "description": "لون الكلمة المميزة داخل العنوان",
+                    "labelHTML": null,
+                    "label": "لون الكلمة المميزة",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "icon": "sicon-color-palette",
+                    "value": [],
+                    "selected": [
+                        {
+                            "label": "تدرّج لوني (أساسي ← ثانوي)",
+                            "value": "gradient",
+                            "key": "hl-color-gradient"
+                        }
+                    ],
+                    "source": "Manual",
+                    "options": [
+                        {
+                            "label": "تدرّج لوني (أساسي ← ثانوي)",
+                            "value": "gradient",
+                            "key": "hl-color-gradient"
+                        },
+                        {
+                            "label": "اللون الأساسي للسمة",
+                            "value": "primary",
+                            "key": "hl-color-primary"
+                        },
+                        {
+                            "label": "لون مخصص",
+                            "value": "custom",
+                            "key": "hl-color-custom"
+                        }
+                    ],
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_word",
+                            "operation": "=",
+                            "value": true
+                        },
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "highlight_word_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "لون الكلمة المميزة المخصص",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#FF3B3B",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "highlight_word_color_type",
+                            "operation": "=",
+                            "value": "custom"
+                        },
+                        {
+                            "id": "enable_gradient_word",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
                     "type": "static",
                     "format": "description",
                     "id": "group-images-settings",
@@ -9304,6 +10052,193 @@
                             "id": "enable_gradient_title",
                             "operation": "=",
                             "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "title_size",
+                    "type": "number",
+                    "format": "slider",
+                    "inputType": "range",
+                    "icon": "sicon-font-size",
+                    "label": "حجم العنوان (بكسل)",
+                    "description": "التحكم في حجم خط العنوان الرئيسي. يصغر تلقائياً على شاشات الجوال.",
+                    "required": false,
+                    "value": 35,
+                    "step": 1,
+                    "minimum": 0,
+                    "maximum": 80
+                },
+                {
+                    "id": "sub_title_size",
+                    "type": "number",
+                    "format": "slider",
+                    "inputType": "range",
+                    "icon": "sicon-font-size",
+                    "label": "حجم العنوان الجانبي (بكسل)",
+                    "description": "التحكم في حجم خط العنوان الجانبي. يصغر تلقائياً على شاشات الجوال.",
+                    "required": false,
+                    "value": 17,
+                    "step": 1,
+                    "minimum": 0,
+                    "maximum": 48
+                },
+                {
+                    "id": "enable_title_underline",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "إظهار الخط أسفل العنوان",
+                    "description": "إظهار أو إخفاء الخط الزخرفي تحت العنوان",
+                    "labelHTML": null,
+                    "icon": "sicon-minus",
+                    "value": false,
+                    "selected": false,
+                    "required": false
+                },
+                {
+                    "id": "title_use_decorative_font",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "استخدام الخط الزخرفي للعنوان (Alshohadaa)",
+                    "description": "عند التفعيل يُستخدم خط الشهداء الزخرفي للعنوان، وعند التعطيل يُستخدم خط القالب الافتراضي",
+                    "labelHTML": null,
+                    "icon": "sicon-font",
+                    "value": true,
+                    "selected": true,
+                    "required": false
+                },
+                {
+                    "id": "title_color_type",
+                    "description": "تحديد لون العنوان: حسب القالب، أو اللون الأساسي، أو لون مخصص",
+                    "labelHTML": null,
+                    "label": "لون العنوان",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "icon": "sicon-color-palette",
+                    "value": [],
+                    "selected": [
+                        {
+                            "label": "افتراضي (حسب القالب)",
+                            "value": "default",
+                            "key": "title-color-default"
+                        }
+                    ],
+                    "source": "Manual",
+                    "options": [
+                        {
+                            "label": "افتراضي (حسب القالب)",
+                            "value": "default",
+                            "key": "title-color-default"
+                        },
+                        {
+                            "label": "اللون الأساسي للسمة",
+                            "value": "primary",
+                            "key": "title-color-primary"
+                        },
+                        {
+                            "label": "لون مخصص",
+                            "value": "custom",
+                            "key": "title-color-custom"
+                        }
+                    ],
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "title_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "لون العنوان المخصص",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#2C3E50",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "title_color_type",
+                            "operation": "=",
+                            "value": "custom"
+                        },
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "highlight_word_color_type",
+                    "description": "لون الكلمة المميزة داخل العنوان",
+                    "labelHTML": null,
+                    "label": "لون الكلمة المميزة",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "icon": "sicon-color-palette",
+                    "value": [],
+                    "selected": [
+                        {
+                            "label": "تدرّج لوني (أساسي ← ثانوي)",
+                            "value": "gradient",
+                            "key": "hl-color-gradient"
+                        }
+                    ],
+                    "source": "Manual",
+                    "options": [
+                        {
+                            "label": "تدرّج لوني (أساسي ← ثانوي)",
+                            "value": "gradient",
+                            "key": "hl-color-gradient"
+                        },
+                        {
+                            "label": "اللون الأساسي للسمة",
+                            "value": "primary",
+                            "key": "hl-color-primary"
+                        },
+                        {
+                            "label": "لون مخصص",
+                            "value": "custom",
+                            "key": "hl-color-custom"
+                        }
+                    ],
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_word",
+                            "operation": "=",
+                            "value": true
+                        },
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "highlight_word_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "لون الكلمة المميزة المخصص",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#FF3B3B",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "highlight_word_color_type",
+                            "operation": "=",
+                            "value": "custom"
+                        },
+                        {
+                            "id": "enable_gradient_word",
+                            "operation": "=",
+                            "value": true
                         }
                     ]
                 },

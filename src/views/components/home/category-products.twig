@@ -1,6 +1,32 @@
 {% set title_element_id = 'category-products-title-' ~ (position|default(0)) %}
 {% set gradient_word_active = component.enable_gradient_word and component.gradient_word %}
 
+{# ---- Title controls (inline-applied to preserve this component's layout) ---- #}
+{% set tc_size = component.title_size | default(36) %}
+{% set tc_size = tc_size > 0 ? tc_size : 36 %}
+{% set tc_sub = component.sub_title_size | default(18) %}
+{% set tc_sub = tc_sub > 0 ? tc_sub : 18 %}
+{% set tc_underline = component.enable_title_underline ?? true %}
+{% set tc_font = (component.title_use_decorative_font ?? true) ? 'font-alshohadaa' : '' %}
+{% set tc_color_type = component.title_color_type | default('default') %}
+{% if tc_color_type == 'primary' %}
+    {% set tc_color_style = 'color: var(--color-primary);' %}
+{% elseif tc_color_type == 'custom' %}
+    {% set tc_color_style = 'color: ' ~ (component.title_color | default('#2C3E50')) ~ ';' %}
+{% else %}
+    {% set tc_color_style = '' %}
+{% endif %}
+{% set tc_size_style = 'font-size: clamp(' ~ (tc_size * 0.6)|round ~ 'px, 6vw, ' ~ tc_size ~ 'px);' %}
+{% set tc_sub_style = 'font-size: clamp(' ~ (tc_sub * 0.8)|round ~ 'px, 2.5vw, ' ~ tc_sub ~ 'px);' %}
+{% set tc_hl_type = component.highlight_word_color_type | default('gradient') %}
+{% if tc_hl_type == 'primary' %}
+    {% set tc_hl_attr = 'style="color: var(--color-primary)"' %}
+{% elseif tc_hl_type == 'custom' %}
+    {% set tc_hl_attr = 'style="color: ' ~ (component.highlight_word_color | default('#FF3B3B')) ~ '"' %}
+{% else %}
+    {% set tc_hl_attr = 'class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent"' %}
+{% endif %}
+
 {% set slashbg = component.slas_hbg | default(false) %}
 {% set marquee = component.marquee | default(false) %}
 {% set marqueetext = component.marqueetext | default(" سرعة /// أداء /// تحكم ") %}
@@ -77,16 +103,16 @@
                                             <div class=" my-3 flex flex-col items-center justify-center w-full" >
                                             <div>
                                                 {% if component.enable_gradient_title %}
-                                                    <h5 class="text-2xl font-alshohadaa font-semibold bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ component.title }}</h5>
+                                                    <h5 class="{{ tc_font }} font-semibold bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent" style="{{ tc_size_style }}">{{ component.title }}</h5>
                                                 {% elseif gradient_word_active %}
-                                                    <h5 id="{{ title_element_id }}" class="text-2xl font-alshohadaa font-semibold dynamic-text-color">{{ component.title }}</h5>
+                                                    <h5 id="{{ title_element_id }}" class="{{ tc_font }} font-semibold dynamic-text-color" style="{{ tc_size_style }} {{ tc_color_style }}">{{ component.title }}</h5>
                                                 {% else %}
-                                                    <h5 class="text-2xl font-alshohadaa font-semibold text-[var(--color-primary)]">{{ component.title }}</h5>
+                                                    <h5 class="{{ tc_font }} font-semibold text-[var(--color-primary)]" style="{{ tc_size_style }} {{ tc_color_style }}">{{ component.title }}</h5>
                                                 {% endif %}
-                                                <span class="navbar-underline"></span>
+                                                {% if tc_underline %}<span class="navbar-underline"></span>{% endif %}
                                             </div>
 
-                                                <h3 class=" xl:text-2xl text-xl text-[var(--color-tertiary)]" >{{ component.sub_title }} </h3>
+                                                {% if component.sub_title %}<h3 class="text-[var(--color-tertiary)]" style="{{ tc_sub_style }}" >{{ component.sub_title }} </h3>{% endif %}
                                          
                                             </div>
                     {% endif %}
@@ -145,17 +171,19 @@
                                        h-auto md:h-2/6 backdrop-blur-sm rounded-custom justify-center flex">
                                             <div class="  flex flex-col items-center justify-center rounded-custom border border-primary w-full py-3 md:py-0" >
                                             {% if component.enable_gradient_title %}
-                                                <h5 class="text-lg sm:text-xl md:text-2xl font-alshohadaa font-semibold bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">{{ component.title }}</h5>
+                                                <h5 class="{{ tc_font }} font-semibold bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent" style="{{ tc_size_style }}">{{ component.title }}</h5>
                                             {% elseif gradient_word_active %}
-                                                <h5 id="{{ title_element_id }}" class="text-lg sm:text-xl md:text-2xl font-alshohadaa font-semibold dynamic-text-color">{{ component.title }}</h5>
+                                                <h5 id="{{ title_element_id }}" class="{{ tc_font }} font-semibold dynamic-text-color" style="{{ tc_size_style }} {{ tc_color_style }}">{{ component.title }}</h5>
                                             {% else %}
-                                                <h5 class="text-lg sm:text-xl md:text-2xl font-alshohadaa font-semibold text-[var(--color-primary)]">{{ component.title }}</h5>
+                                                <h5 class="{{ tc_font }} font-semibold text-[var(--color-primary)]" style="{{ tc_size_style }} {{ tc_color_style }}">{{ component.title }}</h5>
                                             {% endif %}
-                                                <h3 class="text-base sm:text-lg xl:text-2xl text-[var(--color-tertiary)]" >{{ component.sub_title }} </h3>
+                                                {% if component.sub_title %}<h3 class="text-[var(--color-tertiary)]" style="{{ tc_sub_style }}" >{{ component.sub_title }} </h3>{% endif %}
 
+                                                {% if tc_underline %}
                                                     <div class="hide-the-title  flex items-center w-1/2 my-1 md:my-2 justify-center">
                                                             <span class="navbar-underline"></span>
                                                     </div>
+                                                {% endif %}
                                                 <p class="text-sm sm:text-base md:text-xl w-11/12 md:w-5/6 mt-2 md:mt-5">{{ component.text }}</p>
                                             </div>
                                         </div>
@@ -188,7 +216,7 @@
             const regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
             titleEl.innerHTML = titleEl.innerHTML.replace(
                 regex,
-                '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
+                '<span {{ tc_hl_attr|raw }}>$1</span>'
             );
         });
     </script>

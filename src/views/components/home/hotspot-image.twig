@@ -21,6 +21,32 @@
 {% set enable_gradient_title = component.enable_gradient_title ?? false %}
 {% set enable_gradient_word = component.enable_gradient_word ?? false %}
 {% set gradient_word = component.gradient_word | default('') %}
+
+{# ---- Title controls (inline-applied to preserve this overlay's design; color 'default' keeps the white CSS color) ---- #}
+{% set tc_size = component.title_size | default(36) %}
+{% set tc_size = tc_size > 0 ? tc_size : 36 %}
+{% set tc_sub = component.sub_title_size | default(18) %}
+{% set tc_sub = tc_sub > 0 ? tc_sub : 18 %}
+{% set tc_underline = component.enable_title_underline ?? true %}
+{% set tc_font = (component.title_use_decorative_font ?? true) ? 'font-alshohadaa' : '' %}
+{% set tc_color_type = component.title_color_type | default('default') %}
+{% if tc_color_type == 'primary' %}
+    {% set tc_color_style = 'color: var(--color-primary);' %}
+{% elseif tc_color_type == 'custom' %}
+    {% set tc_color_style = 'color: ' ~ (component.title_color | default('#2C3E50')) ~ ';' %}
+{% else %}
+    {% set tc_color_style = '' %}
+{% endif %}
+{% set tc_size_style = 'font-size: clamp(' ~ (tc_size * 0.6)|round ~ 'px, 6vw, ' ~ tc_size ~ 'px);' %}
+{% set tc_sub_style = 'font-size: clamp(' ~ (tc_sub * 0.8)|round ~ 'px, 2.5vw, ' ~ tc_sub ~ 'px);' %}
+{% set tc_hl_type = component.highlight_word_color_type | default('gradient') %}
+{% if tc_hl_type == 'primary' %}
+    {% set tc_hl_attr = 'style="color: var(--color-primary)"' %}
+{% elseif tc_hl_type == 'custom' %}
+    {% set tc_hl_attr = 'style="color: ' ~ (component.highlight_word_color | default('#FF3B3B')) ~ '"' %}
+{% else %}
+    {% set tc_hl_attr = 'class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent"' %}
+{% endif %}
 {% set image = component.image | default('') %}
 {% set image_alt = component.image_alt | default(title) %}
 {% set hotspots_raw = component.hotspots_json | default('[]') %}
@@ -157,12 +183,13 @@
     <div class="hi-title {{ enable_gradient_title ? 'is-gradient' : '' }}">
       {% if title %}
         {% if enable_gradient_word and gradient_word and not enable_gradient_title %}
-          <h2 id="{{ uid }}-title" class="font-alshohadaa">{{ title }}</h2>
+          <h2 id="{{ uid }}-title" class="{{ tc_font }}" style="{{ tc_size_style }} {{ tc_color_style }}">{{ title }}</h2>
         {% else %}
-          <h2 class="font-alshohadaa">{{ title }}</h2>
+          <h2 class="{{ tc_font }}" style="{{ tc_size_style }} {{ tc_color_style }}">{{ title }}</h2>
         {% endif %}
+        {% if tc_underline %}<span class="navbar-underline"></span>{% endif %}
       {% endif %}
-      {% if sub_title %}<p>{{ sub_title }}</p>{% endif %}
+      {% if sub_title %}<p style="{{ tc_sub_style }}">{{ sub_title }}</p>{% endif %}
     </div>
     {% endif %}
 
@@ -336,7 +363,7 @@
     var regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
     titleEl.innerHTML = titleEl.innerHTML.replace(
       regex,
-      '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
+      '<span {{ tc_hl_attr|raw }}>$1</span>'
     );
   });
 </script>
