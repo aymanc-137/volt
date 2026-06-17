@@ -1890,15 +1890,6 @@ input:where([type='file']):focus{
     margin-bottom: calc(1.25rem * 0);
     margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
 }
-.space-y-6 > :not([hidden]) ~ :not([hidden]){
-    --tw-space-y-reverse: 0;
-    margin-top: calc(1.5rem * (1 - 0));
-    margin-top: calc(1.5rem * (1 - var(--tw-space-y-reverse)));
-    margin-top: calc(1.5rem * calc(1 - 0));
-    margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
-    margin-bottom: calc(1.5rem * 0);
-    margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
-}
 .space-y-8 > :not([hidden]) ~ :not([hidden]){
     --tw-space-y-reverse: 0;
     margin-top: calc(2rem * (1 - 0));
@@ -35686,10 +35677,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
         font-size: 2.25rem;
         line-height: 2.5rem;
     }
-    .md\:text-5xl{
-        font-size: 3rem;
-        line-height: 1;
-    }
     .md\:text-6xl{
         font-size: 3.75rem;
         line-height: 1;
@@ -35956,17 +35943,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .lg\:pt-8{
         padding-top: 2rem;
     }
-    .lg\:text-2xl{
-        font-size: 1.5rem;
-        line-height: 2rem;
-    }
     .lg\:text-3xl{
         font-size: 1.875rem;
         line-height: 2.25rem;
-    }
-    .lg\:text-4xl{
-        font-size: 2.25rem;
-        line-height: 2.5rem;
     }
     .lg\:text-5xl{
         font-size: 3rem;
@@ -35979,10 +35958,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .lg\:text-7xl{
         font-size: 4.5rem;
         line-height: 1;
-    }
-    .lg\:text-lg{
-        font-size: 1.125rem;
-        line-height: 1.75rem;
     }
     .lg\:text-title-size{
         font-size: 42px;

@@ -8,14 +8,28 @@
 | component.products    | Product[] *Collection | @see views/pages/product.twig                                                |
 | position              | int                   | Sorting number start from zero                                               |
 #}
+{# ---- Title controls (inline) ---- #}
+{% set tc_size = component.title_size | default(36) %}
+{% set tc_size = tc_size > 0 ? tc_size : 36 %}
+{% set tc_sub = component.sub_title_size | default(18) %}
+{% set tc_sub = tc_sub > 0 ? tc_sub : 18 %}
+{% set tc_underline = component.enable_title_underline ?? false %}
+{% set tc_font = (component.title_use_decorative_font ?? false) ? 'font-alshohadaa' : '' %}
+{% set tc_color_type = component.title_color_type | default('default') %}
+{% if tc_color_type == 'primary' %}{% set tc_color_style = 'color: var(--color-primary);' %}
+{% elseif tc_color_type == 'custom' %}{% set tc_color_style = 'color: ' ~ (component.title_color | default('#2C3E50')) ~ ';' %}
+{% else %}{% set tc_color_style = '' %}{% endif %}
+{% set tc_size_style = 'font-size: clamp(' ~ (tc_size * 0.6)|round ~ 'px, 6vw, ' ~ tc_size ~ 'px);' %}
+{% set tc_sub_style = 'font-size: clamp(' ~ (tc_sub * 0.8)|round ~ 'px, 2.5vw, ' ~ tc_sub ~ 'px);' %}
 <section class="s-block s-block--slider-with-bg s-block--full-bg">
     <div class="slider-bg" style="background-image: url('{{ component.background }}');">
         <div class="container pt-8 sm:pt-20 relative">
             <div>
-                <h3 class="text-lg font-bold leading-12">
+                <h3 class="{{ tc_font }} font-bold leading-12" style="{{ tc_size_style }} {{ tc_color_style }}">
                     {{ component.title }}
                 </h3>
-                <p class="text-sm mb-8 line-clamp-2 max-w-lg">
+                {% if tc_underline %}<span class="navbar-underline"></span>{% endif %}
+                <p class="mb-8 line-clamp-2 max-w-lg" style="{{ tc_sub_style }}">
                     {{ component.description }}
                 </p>
             </div>

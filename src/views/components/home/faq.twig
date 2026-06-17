@@ -17,6 +17,24 @@
 {% set highlight_word = component.highlighted_word is defined ? component.highlighted_word : 'شيوعا' %}
 {% set faqs = component.faqs|default([]) %}
 
+{# ---- Title controls (inline) ---- #}
+{% set tc_size = component.title_size | default(36) %}
+{% set tc_size = tc_size > 0 ? tc_size : 36 %}
+{% set tc_sub = component.sub_title_size | default(18) %}
+{% set tc_sub = tc_sub > 0 ? tc_sub : 18 %}
+{% set tc_underline = component.enable_title_underline ?? true %}
+{% set tc_font = (component.title_use_decorative_font ?? true) ? 'font-alshohadaa' : '' %}
+{% set tc_color_type = component.title_color_type | default('default') %}
+{% if tc_color_type == 'primary' %}{% set tc_color_style = 'color: var(--color-primary);' %}
+{% elseif tc_color_type == 'custom' %}{% set tc_color_style = 'color: ' ~ (component.title_color | default('#2C3E50')) ~ ';' %}
+{% else %}{% set tc_color_style = '' %}{% endif %}
+{% set tc_size_style = 'font-size: clamp(' ~ (tc_size * 0.6)|round ~ 'px, 6vw, ' ~ tc_size ~ 'px);' %}
+{% set tc_sub_style = 'font-size: clamp(' ~ (tc_sub * 0.8)|round ~ 'px, 2.5vw, ' ~ tc_sub ~ 'px);' %}
+{% set tc_hl_type = component.highlight_word_color_type | default('gradient') %}
+{% if tc_hl_type == 'primary' %}{% set tc_hl_attr = 'style="color: var(--color-primary)"' %}
+{% elseif tc_hl_type == 'custom' %}{% set tc_hl_attr = 'style="color: ' ~ (component.highlight_word_color | default('#FF3B3B')) ~ '"' %}
+{% else %}{% set tc_hl_attr = 'class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent"' %}{% endif %}
+
 <section class=" faq-component">
   <div class="container">
     <div class="faq-component__wrapper">
@@ -24,16 +42,16 @@
       <div class="faq-component__header">
           
             <div class="flex flex-col items-center">
-                    <h2 id="faq-title-{{ position }}" class="  font-alshohadaa faq-component__title text-2xl sm:text-3xl lg:text-4xl font-bold leading-snug mb-4">
+                    <h2 id="faq-title-{{ position }}" class="{{ tc_font }} faq-component__title font-bold leading-snug mb-4" style="{{ tc_size_style }} {{ tc_color_style }}">
                       {{ title_text }}
 
                     </h2>
-                    <span class="navbar-underline"></span>
+                    {% if tc_underline %}<span class="navbar-underline"></span>{% endif %}
             </div>
-          
+
 
         {% if description %}
-          <p class="faq-component__description text-base sm:text-lg dynamic-text-color max-w-2xl">
+          <p class="faq-component__description dynamic-text-color max-w-2xl" style="{{ tc_sub_style }}">
             {{ description }}
           </p>
         {% endif %}
@@ -124,7 +142,7 @@
       const regex = new RegExp('(' + escapeRegex + ')', 'gi');
       titleEl.innerHTML = titleEl.textContent.replace(
         regex,
-        '<span class="faq-component__highlight bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
+        '<span {{ tc_hl_attr|raw }}>$1</span>'
       );
     });
   </script>

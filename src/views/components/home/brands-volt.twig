@@ -20,6 +20,21 @@
 {% set title_text = component.title is defined ? component.title : 'ندعم جميع شركات السيارات' %}
 {% set highlight_word = component.highlighted_word is defined ? component.highlighted_word : 'السيارات' %}
 
+{# ---- Title controls (inline; font-alshohadaa is on a parent wrapper) ---- #}
+{% set tc_size = component.title_size | default(36) %}
+{% set tc_size = tc_size > 0 ? tc_size : 36 %}
+{% set tc_underline = component.enable_title_underline ?? true %}
+{% set tc_font_style = (component.title_use_decorative_font ?? true) ? '' : 'font-family: inherit;' %}
+{% set tc_color_type = component.title_color_type | default('default') %}
+{% if tc_color_type == 'primary' %}{% set tc_color_style = 'color: var(--color-primary);' %}
+{% elseif tc_color_type == 'custom' %}{% set tc_color_style = 'color: ' ~ (component.title_color | default('#2C3E50')) ~ ';' %}
+{% else %}{% set tc_color_style = '' %}{% endif %}
+{% set tc_size_style = 'font-size: clamp(' ~ (tc_size * 0.6)|round ~ 'px, 6vw, ' ~ tc_size ~ 'px);' %}
+{% set tc_hl_type = component.highlight_word_color_type | default('gradient') %}
+{% if tc_hl_type == 'primary' %}{% set tc_hl_attr = 'style="color: var(--color-primary)"' %}
+{% elseif tc_hl_type == 'custom' %}{% set tc_hl_attr = 'style="color: ' ~ (component.highlight_word_color | default('#FF3B3B')) ~ '"' %}
+{% else %}{% set tc_hl_attr = 'class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent"' %}{% endif %}
+
 {% set slashbg = component.slas_hbg | default(false) %}
 {% set marquee = component.marquee | default(false) %}
 {% set marqueetext = component.marqueetext | default(" سرعة /// أداء /// تحكم ") %}
@@ -105,11 +120,11 @@
           </span>
         {% endif %}
 
-        <h2 id="brands-volt-title-{{ position }}" class="text-2xl font-bold leading-snug dynamic-text-color sm:text-3xl">
+        <h2 id="brands-volt-title-{{ position }}" class="font-bold leading-snug dynamic-text-color" style="{{ tc_size_style }} {{ tc_color_style }} {{ tc_font_style }}">
           {{ title_text }}
         </h2>
 
-        <div class="mx-auto h-0.5 w-28 rounded-full bg-gradient-to-r from-primary to-scandary"></div>
+        {% if tc_underline %}<div class="mx-auto h-0.5 w-28 rounded-full bg-gradient-to-r from-primary to-scandary"></div>{% endif %}
       </div>
 
       {% if brands %}
@@ -169,7 +184,7 @@
       const regex = new RegExp('(' + escapeRegex + ')', 'gi');
       titleEl.innerHTML = titleEl.textContent.replace(
         regex,
-        '<span class="brands-volt__highlight bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
+        '<span {{ tc_hl_attr|raw }}>$1</span>'
       );
     });
   </script>

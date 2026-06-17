@@ -21,6 +21,20 @@
 {% set model_select_id = tree_component_id ~ '-model-select' %}
 {% set year_select_id = tree_component_id ~ '-year-select' %}
 
+{# ---- Title controls (inline; .car-search-tree__title applies font-alshohadaa via SCSS) ---- #}
+{% set tc_size = component.title_size | default(36) %}
+{% set tc_size = tc_size > 0 ? tc_size : 36 %}
+{% set tc_sub = component.sub_title_size | default(18) %}
+{% set tc_sub = tc_sub > 0 ? tc_sub : 18 %}
+{% set tc_underline = component.enable_title_underline ?? false %}
+{% set tc_font_style = (component.title_use_decorative_font ?? true) ? '' : 'font-family: inherit;' %}
+{% set tc_color_type = component.title_color_type | default('default') %}
+{% if tc_color_type == 'primary' %}{% set tc_color_style = 'color: var(--color-primary);' %}
+{% elseif tc_color_type == 'custom' %}{% set tc_color_style = 'color: ' ~ (component.title_color | default('#2C3E50')) ~ ';' %}
+{% else %}{% set tc_color_style = '' %}{% endif %}
+{% set tc_size_style = 'font-size: clamp(' ~ (tc_size * 0.6)|round ~ 'px, 6vw, ' ~ tc_size ~ 'px);' %}
+{% set tc_sub_style = 'font-size: clamp(' ~ (tc_sub * 0.8)|round ~ 'px, 2.5vw, ' ~ tc_sub ~ 'px);' %}
+
 <section class="car-search-tree-block  border-y dynamic-border-color  " id="{{ tree_component_id }}"
          data-categories='{{ categories_payload|e('html_attr') }}'
          data-custom-mode="{{ component.use_custom_json ? 'true' : 'false' }}"
@@ -38,8 +52,9 @@
         <div class="car-search-tree__header">
             <div>
                 <p class="car-search-tree__eyebrow">{{ badge_text }}</p>
-                <h2 class="car-search-tree__title">{{ heading }}</h2>
-                <p class="car-search-tree__subtitle">{{ description }}</p>
+                <h2 class="car-search-tree__title" style="{{ tc_size_style }} {{ tc_color_style }} {{ tc_font_style }}">{{ heading }}</h2>
+                {% if tc_underline %}<span class="navbar-underline"></span>{% endif %}
+                <p class="car-search-tree__subtitle" style="{{ tc_sub_style }}">{{ description }}</p>
             </div>
             <div class="car-search-tree__selection">
                 <span class="car-search-tree__selection-label">{{ selection_label }}</span>

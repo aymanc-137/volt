@@ -42,9 +42,26 @@
         </div>
         {% endif %}
 
+        {# ---- Title controls (inline; title keeps its racing display font) ---- #}
+        {% set tc_size = component.title_size | default(36) %}
+        {% set tc_size = tc_size > 0 ? tc_size : 36 %}
+        {% set tc_sub = component.sub_title_size | default(18) %}
+        {% set tc_sub = tc_sub > 0 ? tc_sub : 18 %}
+        {% set tc_font = (component.title_use_decorative_font ?? true) ? 'font-alshohadaa' : '' %}
+        {% set tc_color_type = component.title_color_type | default('default') %}
+        {% if tc_color_type == 'primary' %}{% set tc_color_style = 'color: var(--color-primary);' %}
+        {% elseif tc_color_type == 'custom' %}{% set tc_color_style = 'color: ' ~ (component.title_color | default('#2C3E50')) ~ ';' %}
+        {% else %}{% set tc_color_style = '' %}{% endif %}
+        {% set tc_size_style = 'font-size: clamp(' ~ (tc_size * 0.6)|round ~ 'px, 6vw, ' ~ tc_size ~ 'px);' %}
+        {% set tc_sub_style = 'font-size: clamp(' ~ (tc_sub * 0.8)|round ~ 'px, 2.5vw, ' ~ tc_sub ~ 'px);' %}
+        {% set tc_hl_type = component.highlight_word_color_type | default('gradient') %}
+        {% if tc_hl_type == 'primary' %}{% set tc_hl_attr = 'style="color: var(--color-primary)"' %}
+        {% elseif tc_hl_type == 'custom' %}{% set tc_hl_attr = 'style="color: ' ~ (component.highlight_word_color | default('#FF3B3B')) ~ '"' %}
+        {% else %}{% set tc_hl_attr = 'class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent"' %}{% endif %}
+
         {# Title with Racing Typography #}
         {% if component.title %}
-        <h2 class="text-2xl sm:text-3xl font-alshohadaa md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 font-racing dynamic-text-color animate-slide-in-up leading-tight tracking-tight">
+        <h2 class="{{ tc_font }} font-bold mb-4 md:mb-6 font-racing dynamic-text-color animate-slide-in-up leading-tight tracking-tight" style="{{ tc_size_style }} {{ tc_color_style }}">
             {% if component.enable_gradient_word and component.gradient_word %}
                 <span id="video-banner-title-{{ position }}" class="inline-block transform hover:scale-105 transition-transform duration-300">
                     {{ component.title }}
@@ -65,7 +82,7 @@
                   const regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
                   titleEl.innerHTML = titleEl.innerHTML.replace(
                     regex,
-                    '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
+                    '<span {{ tc_hl_attr|raw }}>$1</span>'
                   );
                 }
               });
@@ -84,7 +101,7 @@
 
         {# Description with Modern Typography #}
         {% if component.description %}
-        <p class="text-base md:text-xl lg:text-2xl mb-12 max-w-4xl mx-auto font-orbitron dynamic-text-color opacity-80 animate-fade-in-up delay-200 leading-relaxed px-6 relative">
+        <p class="mb-12 max-w-4xl mx-auto font-orbitron dynamic-text-color opacity-80 animate-fade-in-up delay-200 leading-relaxed px-6 relative" style="{{ tc_sub_style }}">
             <span class="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-[color:var(--color-primary)] to-[color:var(--color-scandary)]"></span>
             {{ component.description }}
         </p>

@@ -17,6 +17,24 @@
 {% set glow_c1 = glow_use_theme ? 'var(--color-primary)'  : (component.glow_color_1 ?? 'var(--color-primary)') %}
 {% set glow_c2 = glow_use_theme ? 'var(--color-scandary)' : (component.glow_color_2 ?? 'var(--color-scandary)') %}
 
+{# ---- Title controls (inline) ---- #}
+{% set tc_size = component.title_size | default(36) %}
+{% set tc_size = tc_size > 0 ? tc_size : 36 %}
+{% set tc_sub = component.sub_title_size | default(18) %}
+{% set tc_sub = tc_sub > 0 ? tc_sub : 18 %}
+{% set tc_underline = component.enable_title_underline ?? false %}
+{% set tc_font = (component.title_use_decorative_font ?? true) ? 'font-alshohadaa' : '' %}
+{% set tc_color_type = component.title_color_type | default('default') %}
+{% if tc_color_type == 'primary' %}{% set tc_color_style = 'color: var(--color-primary);' %}
+{% elseif tc_color_type == 'custom' %}{% set tc_color_style = 'color: ' ~ (component.title_color | default('#2C3E50')) ~ ';' %}
+{% else %}{% set tc_color_style = '' %}{% endif %}
+{% set tc_size_style = 'font-size: clamp(' ~ (tc_size * 0.6)|round ~ 'px, 6vw, ' ~ tc_size ~ 'px);' %}
+{% set tc_sub_style = 'font-size: clamp(' ~ (tc_sub * 0.8)|round ~ 'px, 2.5vw, ' ~ tc_sub ~ 'px);' %}
+{% set tc_hl_type = component.highlight_word_color_type | default('gradient') %}
+{% if tc_hl_type == 'primary' %}{% set tc_hl_attr = 'style="color: var(--color-primary)"' %}
+{% elseif tc_hl_type == 'custom' %}{% set tc_hl_attr = 'style="color: ' ~ (component.highlight_word_color | default('#FF3B3B')) ~ '"' %}
+{% else %}{% set tc_hl_attr = 'class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent"' %}{% endif %}
+
 <section class="flash-offer z-10 overflow-hidden relative {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} {{ slashbg ? 'slash-bg-' ~ position ~ ' dynamic-bg-color' : ''}}">
     {% if glow_type == 'circles' %}
     <div class="absolute top-[15%] left-[25%] w-64 h-64 rounded-full blur-3xl opacity-60 pointer-events-none" style="z-index:-1; background-color:{{ glow_c1 }};"></div>
@@ -80,7 +98,8 @@
         md:overflow-y-auto
         ">
         <p class="flash-offer-badge">{{ component.badge_text }}</p>
-            <h2 class="flash-offer-title font-alshohadaa text-2xl dynamic-text-color"{% if has_gradient_word %} id="{{ flash_offer_title_id }}"{% endif %}>{{ component.title }}</h2>
+            <h2 class="flash-offer-title {{ tc_font }} dynamic-text-color" style="{{ tc_size_style }} {{ tc_color_style }}"{% if has_gradient_word %} id="{{ flash_offer_title_id }}"{% endif %}>{{ component.title }}</h2>
+            {% if tc_underline %}<span class="navbar-underline"></span>{% endif %}
 
               <div class="w-full mx-auto  flash-offer-count-down">
                     <salla-count-down
@@ -93,7 +112,7 @@
 
             <p class="flash-offer-description dynamic-text-color">{{ component.badge_text }}</p>
 
-                <p class="flash-offer-description dynamic-text-color">{{ component.description }}</p>
+                <p class="flash-offer-description dynamic-text-color" style="{{ tc_sub_style }}">{{ component.description }}</p>
                     <salla-button class="volt" href="{{component.product[0].url }}" color="primary" class="btn--rounded-full !text-white">
                         {{component.url}}
                     </salla-button>
@@ -112,7 +131,7 @@
         const regex = new RegExp('(' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
         titleEl.innerHTML = titleEl.innerHTML.replace(
           regex,
-          '<span class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent">$1</span>'
+          '<span {{ tc_hl_attr|raw }}>$1</span>'
         );
         titleEl.dataset.gradientApplied = 'true';
       }

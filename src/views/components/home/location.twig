@@ -21,20 +21,35 @@
 {% set locations = component.locations | default([]) %}
 {% set component_id = 'location-' ~ position | default(random()) %}
 
+{# ---- Title controls (inline) ---- #}
+{% set tc_size = component.title_size | default(36) %}
+{% set tc_size = tc_size > 0 ? tc_size : 36 %}
+{% set tc_sub = component.sub_title_size | default(18) %}
+{% set tc_sub = tc_sub > 0 ? tc_sub : 18 %}
+{% set tc_underline = component.enable_title_underline ?? false %}
+{% set tc_font = (component.title_use_decorative_font ?? true) ? 'font-alshohadaa' : '' %}
+{% set tc_color_type = component.title_color_type | default('default') %}
+{% if tc_color_type == 'primary' %}{% set tc_color_style = 'color: var(--color-primary);' %}
+{% elseif tc_color_type == 'custom' %}{% set tc_color_style = 'color: ' ~ (component.title_color | default('#2C3E50')) ~ ';' %}
+{% else %}{% set tc_color_style = '' %}{% endif %}
+{% set tc_size_style = 'font-size: clamp(' ~ (tc_size * 0.6)|round ~ 'px, 6vw, ' ~ tc_size ~ 'px);' %}
+{% set tc_sub_style = 'font-size: clamp(' ~ (tc_sub * 0.8)|round ~ 'px, 2.5vw, ' ~ tc_sub ~ 'px);' %}
+
 <section class="s-block s-block--locations py-12 md:py-16 {{ enable_border ? 'border-y border-[var(--color-primary)]' : '' }}">
     <div class="container">
         <!-- Section Header -->
         {% if title or description %}
         <div class="text-center mb-8 md:mb-12">
             {% if title %}
-            <h2 class="text-2xl md:text-4xl font-bold mb-4 dynamic-text-color">
-                <span class="  dynamic-text-color font-alshohadaa">
+            <h2 class="font-bold mb-4 dynamic-text-color" style="{{ tc_size_style }} {{ tc_color_style }}">
+                <span class="dynamic-text-color {{ tc_font }}">
                     {{ title }}
                 </span>
             </h2>
+            {% if tc_underline %}<span class="navbar-underline"></span>{% endif %}
             {% endif %}
             {% if description %}
-            <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-sm md:text-base">
+            <p class="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto" style="{{ tc_sub_style }}">
                 {{ description }}
             </p>
             {% endif %}

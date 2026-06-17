@@ -6,14 +6,25 @@
 | position                       | int     | Sorting number start from zero                                               |
 #}
 {% set display_all_url = theme.settings.get('is_more_button_enabled') %}
+{# ---- Title controls (inline) ---- #}
+{% set tc_size = component.title_size | default(36) %}
+{% set tc_size = tc_size > 0 ? tc_size : 36 %}
+{% set tc_underline = component.enable_title_underline ?? false %}
+{% set tc_font = (component.title_use_decorative_font ?? false) ? 'font-alshohadaa' : '' %}
+{% set tc_color_type = component.title_color_type | default('default') %}
+{% if tc_color_type == 'primary' %}{% set tc_color_style = 'color: var(--color-primary);' %}
+{% elseif tc_color_type == 'custom' %}{% set tc_color_style = 'color: ' ~ (component.title_color | default('#2C3E50')) ~ ';' %}
+{% else %}{% set tc_color_style = '' %}{% endif %}
+{% set tc_size_style = 'font-size: clamp(' ~ (tc_size * 0.6)|round ~ 'px, 6vw, ' ~ tc_size ~ 'px);' %}
 <section class="s-block s-block--logos-slider s-block--full-bg bg-gray-100 pt-8 sm:pt-12 pb-8 sm:pb-20">
     <div class="container">
-    
+
         {% if component.title or component.show_all %}
           <div class="s-block__title">
             {% if component.title %}
               <div class="right-side">
-                <h2>{{ component.title }}</h2>
+                <h2 class="{{ tc_font }}" style="{{ tc_size_style }} {{ tc_color_style }}">{{ component.title }}</h2>
+                {% if tc_underline %}<span class="navbar-underline"></span>{% endif %}
                 {# <p>عنوان فرعي توصيفي صغير</p> #}
               </div>
             {% endif %}
