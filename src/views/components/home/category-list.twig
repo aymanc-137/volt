@@ -11,6 +11,7 @@
 | component.title_size               | ?int     | Title font size in px (desktop). Scales down on mobile. Default 36           |
 | component.sub_title_size           | ?int     | Subtitle font size in px (desktop). Scales down on mobile. Default 18        |
 | component.enable_title_underline   | bool     | Show the decorative underline below the title. Default true                  |
+| component.title_use_decorative_font| bool     | Use Alshohadaa decorative font for the title; off = theme font. Default true |
 | component.title_color_type         | ?string  | 'default' (theme) / 'primary' / 'custom'                                     |
 | component.title_color              | ?string  | Custom title color (hex) when title_color_type = 'custom'                    |
 | component.highlight_word_color_type| ?string  | 'gradient' (default) / 'primary' / 'custom' — color of the highlighted word  |
@@ -54,6 +55,7 @@
 {% set sub_title_size = component.sub_title_size | default(18) %}
 {% set sub_title_size = sub_title_size > 0 ? sub_title_size : 18 %}
 {% set enable_title_underline = component.enable_title_underline ?? true %}
+{% set title_font_class = (component.title_use_decorative_font ?? true) ? 'font-alshohadaa' : '' %}
 {% set title_color_type = component.title_color_type | default('default') %}
 {% set title_color = component.title_color | default('#2C3E50') %}
 {% set highlight_word_color_type = component.highlight_word_color_type | default('gradient') %}
@@ -124,11 +126,11 @@
             <div class="flex flex-col text-center items-center">
                 {% if component.enable_gradient_title %}
                     <h1 id="cat-list-title-{{ position }}"
-                        class="z-1 font-alshohadaa mb-5 bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent"
+                        class="z-1 {{ title_font_class }} mb-5 bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent"
                         style="font-size: clamp({{ (title_size * 0.6)|round }}px, 6vw, {{ title_size }}px);">{{ component.title }}</h1>
                 {% else %}
                     <h1 id="cat-list-title-{{ position }}"
-                        class="z-1 font-alshohadaa mb-5 {{ title_color_class }}"
+                        class="z-1 {{ title_font_class }} mb-5 {{ title_color_class }}"
                         style="font-size: clamp({{ (title_size * 0.6)|round }}px, 6vw, {{ title_size }}px); {{ title_color_style }}">{{ component.title }}</h1>
                 {% endif %}
                 {% if enable_title_underline %}

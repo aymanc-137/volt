@@ -2522,6 +2522,18 @@
                     "required": false
                 },
                 {
+                    "id": "title_use_decorative_font",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "استخدام الخط الزخرفي للعنوان (Alshohadaa)",
+                    "description": "عند التفعيل يُستخدم خط الشهداء الزخرفي للعنوان، وعند التعطيل يُستخدم خط القالب الافتراضي",
+                    "labelHTML": null,
+                    "icon": "sicon-font",
+                    "value": true,
+                    "selected": true,
+                    "required": false
+                },
+                {
                     "type": "static",
                     "format": "description",
                     "id": "group-items-settings",
