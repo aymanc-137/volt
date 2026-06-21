@@ -13,9 +13,6 @@ class CatListCarSearch extends BasePage {
         const containers = document.querySelectorAll('[data-home-car-search]');
         if (!containers.length) return;
 
-        // Wait for translations so the rendered widget uses store-language strings.
-        await salla.lang.onLoaded();
-
         try {
             const res = await salla.api.request('component/list', {
                 params: { paths: ['home.car-search-tree'] },

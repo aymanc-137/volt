@@ -14,11 +14,6 @@ class CarSearchTree extends BasePage {
             return;
         }
 
-        // Ensure translations are loaded before we build the markup, otherwise
-        // salla.lang.get() falls back to the inline defaults instead of the
-        // store-language strings.
-        await salla.lang.onLoaded();
-
         const cat_id = container.dataset.catid;
         console.log(LOG, 'current category id:', cat_id);
 
@@ -79,8 +74,24 @@ class CarSearchTree extends BasePage {
         const use_custom_json = component.use_custom_json || false;
         const custom_json_raw = typeof component.custom_json_data === 'string' ? component.custom_json_data : '';
         const show_search_button = options.showSearchButton === true;
-        // Translation helper: store-language text with an Arabic resilience fallback
-        const t = (key, fallback) => salla.lang.get('blocks.home.volt.car_search.' + key, fallback);
+        // Pull display text from the component's own settings (merchant-editable,
+        // language-aware via Salla). Falls back to the inline default only when a
+        // setting has no value. Stored on `this` so the async methods below reuse it.
+        this._component = component;
+        const t = (key, fallback) => {
+            const fromComponent = {
+                selection_label: component.selection_label,
+                empty_title: component.empty_title,
+                empty_desc: component.empty_description,
+                brand: component.brand_label,
+                model: component.model_label,
+                year: component.year_label,
+                products_title: component.products_title,
+                products_subtitle: component.products_subtitle,
+                no_selection: component.products_empty_text,
+            }[key];
+            return fromComponent || fallback;
+        };
         // Grab target category url for the "Go to results" button
         const targetField = component.target_category;
         const targetCat = Array.isArray(targetField) ? targetField[0] : targetField;
@@ -401,7 +412,7 @@ class CarSearchTree extends BasePage {
         this.updateSelectionPath(state, selectionEl);
 
         if (this.hasChildren(brand)) {
-            this.showProductsHint(salla.lang.get('blocks.home.volt.car_search.hint_select_model', 'اختر الموديل لإظهار المنتجات.'), productsEmptyEl, rows);
+            this.showProductsHint(this._component?.hint_select_model || 'اختر الموديل لإظهار المنتجات.', productsEmptyEl, rows);
         } else {
             this.fetchProducts(brand, {}, state, rows, productsEmptyEl, loadingEl);
         }
@@ -438,7 +449,7 @@ class CarSearchTree extends BasePage {
     fetchProducts(category, options = {}, state, rows, productsEmptyEl, loadingEl) {
         const { includeDescendants = false } = options;
         if (!category?.id || typeof window.salla?.product?.fetch !== 'function') {
-            this.showProductsHint(salla.lang.get('blocks.home.volt.car_search.connection_error', 'تعذر الاتصال بواجهة المنتجات. تأكد من تحميل منصة سلة.'), productsEmptyEl, rows);
+            this.showProductsHint(this._component?.error_text || 'تعذر الاتصال بواجهة المنتجات. تأكد من تحميل منصة سلة.', productsEmptyEl, rows);
             return;
         }
 
@@ -449,7 +460,7 @@ class CarSearchTree extends BasePage {
                 ? this.collectProductIds(category)
                 : (Array.isArray(category.products) ? category.products : []);
             if (!productIds.length) {
-                this.showProductsHint(salla.lang.get('blocks.home.volt.car_search.no_linked_products', 'لا توجد منتجات مرتبطة بهذا الاختيار.'), productsEmptyEl, rows);
+                this.showProductsHint(this._component?.hint_no_products || 'لا توجد منتجات مرتبطة بهذا الاختيار.', productsEmptyEl, rows);
                 return;
             }
             requestSignature = productIds.join(',') + ':products';
@@ -461,7 +472,7 @@ class CarSearchTree extends BasePage {
             const ids = (includeDescendants ? this.collectCategoryIds(category) : [Number(category.id)])
                 .filter((value) => typeof value === 'number' && !Number.isNaN(value));
             if (!ids.length) {
-                this.showProductsHint(salla.lang.get('blocks.home.volt.car_search.no_categories', 'لا توجد فئات متاحة لتحميل المنتجات.'), productsEmptyEl, rows);
+                this.showProductsHint(this._component?.error_text || 'لا توجد فئات متاحة لتحميل المنتجات.', productsEmptyEl, rows);
                 return;
             }
             requestSignature = `${ids.join(',')}:${includeDescendants ? 'deep' : 'single'}`;
@@ -482,13 +493,13 @@ class CarSearchTree extends BasePage {
                 if (state.lastRequestSignature !== requestSignature) return;
                 const products = this.extractProducts(response);
                 if (!products.length) {
-                    this.showProductsHint(salla.lang.get('blocks.home.volt.car_search.no_products', 'لا توجد منتجات متاحة لهذا الاختيار حالياً.'), productsEmptyEl, rows);
+                    this.showProductsHint(this._component?.hint_no_products || 'لا توجد منتجات متاحة لهذا الاختيار حالياً.', productsEmptyEl, rows);
                     return;
                 }
                 this.renderProducts(products, rows, productsEmptyEl);
             })
             .catch(() => {
-                this.showProductsHint(salla.lang.get('blocks.home.volt.car_search.load_error', 'حدث خطأ أثناء تحميل المنتجات، حاول مجدداً لاحقاً.'), productsEmptyEl, rows);
+                this.showProductsHint(this._component?.error_text || 'حدث خطأ أثناء تحميل المنتجات، حاول مجدداً لاحقاً.', productsEmptyEl, rows);
             })
             .finally(() => this.hideLoading(loadingEl));
     }
@@ -633,11 +644,11 @@ class CarSearchTree extends BasePage {
     }
 
     getSelectPlaceholder(level) {
-        const t = (key, fallback) => salla.lang.get('blocks.home.volt.car_search.' + key, fallback);
-        if (level === 'brand') return t('brand', 'اختر الماركة');
-        if (level === 'model') return t('model', 'اختر الموديل');
-        if (level === 'year') return t('year', 'اختر السنة');
-        return t('option', 'اختر الخيار');
+        const c = this._component || {};
+        if (level === 'brand') return c.brand_label || 'اختر الماركة';
+        if (level === 'model') return c.model_label || 'اختر الموديل';
+        if (level === 'year') return c.year_label || 'اختر السنة';
+        return 'اختر الخيار';
     }
 
     attachSelectListeners(selects, state, rows, wrappers, selectionEl, loadingEl, productsEmptyEl, defaultProductsEmptyContent, categories, hideBrandLabels, isDropdownMode, selectWrappers) {
