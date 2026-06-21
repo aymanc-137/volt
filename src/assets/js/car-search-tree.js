@@ -14,6 +14,11 @@ class CarSearchTree extends BasePage {
             return;
         }
 
+        // Ensure translations are loaded before we build the markup, otherwise
+        // salla.lang.get() falls back to the inline defaults instead of the
+        // store-language strings.
+        await salla.lang.onLoaded();
+
         const cat_id = container.dataset.catid;
         console.log(LOG, 'current category id:', cat_id);
 

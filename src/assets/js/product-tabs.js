@@ -18,6 +18,9 @@ class ProductTabs extends BasePage {
         if (!mount) { return; }
         if (!salla.url.is_page('product.single')) { return; }
 
+        // Ensure translations are loaded before rendering (default tab titles use salla.lang.get).
+        await salla.lang.onLoaded();
+
         const productId = mount.dataset.productId;
         console.log(LOG, 'product id:', productId);
 
