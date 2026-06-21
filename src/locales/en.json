@@ -54,39 +54,8 @@
         "before_after": {
           "drag_hint": "Drag to compare"
         },
-        "car_search": {
-          "selection_label": "Your selection:",
-          "empty_title": "No data to display.",
-          "empty_desc": "Add car categories from the component settings to start using the search tree.",
-          "brand": "Select make",
-          "model": "Select model",
-          "year": "Select year",
-          "option": "Select option",
-          "show_results": "Show results",
-          "products_title": "Compatible products",
-          "products_subtitle": "Products will load automatically once your selection is complete.",
-          "loading": "Loading products...",
-          "no_selection": "No category selected yet.",
-          "hint_select_model": "Select a model to show products.",
-          "connection_error": "Could not reach the products service. Make sure the Salla platform is loaded.",
-          "no_linked_products": "No products are linked to this selection.",
-          "no_categories": "No categories available to load products.",
-          "no_products": "No products are available for this selection right now.",
-          "load_error": "An error occurred while loading products. Please try again later."
-        },
-        "product_tabs": {
-          "about": "About the product",
-          "faq": "FAQ",
-          "specs": "Specifications",
-          "media": "Customer reviews",
-          "howto": "How to use"
-        },
         "tap_preview": {
           "empty": "Add items from the component settings to display the preview content."
-        },
-        "menu": {
-          "back": "Back",
-          "close": "Close"
         }
       }
     }

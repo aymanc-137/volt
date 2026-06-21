@@ -1,10 +1,11 @@
 
 .category-card {
-  background: radial-gradient(var(--color-dark-box-background), var(--color-light-box-background));
+  @apply dynamic-bg-color;
+  // background: radial-gradient(var(--color-dark-box-background), var(--color-light-box-background));
 
-  .dark & {
-    background: radial-gradient(var(--color-light-box-background), var(--color-dark-box-background));
-  }
+  // .dark & {
+  //   background: radial-gradient(var(--color-light-box-background), var(--color-dark-box-background));
+  // }
 
   @apply border-2 dynamic-border-color transition-all duration-300 rounded-custom hover-glow-sm;
   // background-color:  var(--color-dark-page-backgroun);

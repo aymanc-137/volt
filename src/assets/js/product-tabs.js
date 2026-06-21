@@ -18,9 +18,6 @@ class ProductTabs extends BasePage {
         if (!mount) { return; }
         if (!salla.url.is_page('product.single')) { return; }
 
-        // Ensure translations are loaded before rendering (default tab titles use salla.lang.get).
-        await salla.lang.onLoaded();
-
         const productId = mount.dataset.productId;
         console.log(LOG, 'product id:', productId);
 
@@ -336,13 +333,12 @@ class ProductTabs extends BasePage {
     }
 
     defaultTitle(type) {
-        const t = (key, fallback) => salla.lang.get('blocks.home.volt.product_tabs.' + key, fallback);
         return {
-            about: t('about', 'عن المنتج'),
-            faq: t('faq', 'الأسئلة الشائعة'),
-            specs: t('specs', 'المواصفات'),
-            media: t('media', 'آراء العملاء'),
-            howto: t('howto', 'طريقة الاستخدام'),
+            about: 'عن المنتج',
+            faq: 'الأسئلة الشائعة',
+            specs: 'المواصفات',
+            media: 'آراء العملاء',
+            howto: 'طريقة الاستخدام',
         }[type] || '';
     }
 

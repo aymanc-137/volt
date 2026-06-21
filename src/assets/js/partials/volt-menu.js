@@ -26,8 +26,8 @@ class VoltDrawerMenu extends HTMLElement {
                 this.isRtl = !!salla.config.get('theme.is_rtl');
                 this.title = salla.lang.get('blocks.header.main_menu');
                 this.displayAllText = salla.lang.get('blocks.home.display_all');
-                this.backText = salla.lang.get('blocks.home.volt.menu.back', 'رجوع');
-                this.closeText = salla.lang.get('blocks.home.volt.menu.close', 'إغلاق');
+                this.backText = this.isRtl ? 'رجوع' : 'Back';
+                this.closeText = this.isRtl ? 'إغلاق' : 'Close';
                 this.backIcon = this.isRtl ? 'sicon-arrow-right' : 'sicon-arrow-left';
                 return salla.api.component.getMenus();
             })

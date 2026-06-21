@@ -33903,11 +33903,11 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
 .landing-page .s-product-card-wishlist-btn {
   display: hidden;
 }
-.category-card {
-  background: radial-gradient(var(--color-dark-box-background), var(--color-light-box-background));
+.category-card{
+    background-color: var(--color-light-box-background);
 }
-.dark .category-card {
-  background: radial-gradient(var(--color-light-box-background), var(--color-dark-box-background));
+.dark *.category-card{
+    background-color: var(--color-dark-box-background);
 }
 .category-card{
     border-width: 2px;

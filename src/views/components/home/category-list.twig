@@ -103,7 +103,12 @@
                         <div class="w-32 h-32 md:w-56 md:h-56 overflow-visible md:overflow-hidden category-card category-card-bg-{{ index }}">
                             <h3 class="z-1 text-center my-2 category-name text-lg md:text-2xl font-extrabold place-self-center">{{ item.text }}</h3>
 
-     
+                            <style>
+                                .category-card-bg-{{ index }}:hover {
+                                    background: linear-gradient(to bottom, {{ item.color }}4D, {{ item.color }}66);
+                                }
+                            </style>
+
                             <a href="{{ item.url }}" class="w-full h-full flex flex-col items-center justify-evenly">
                                 <img
                                     class="w-32 h-32 bg-contain bg-center border-none bg-no-repeat"
