@@ -38,8 +38,9 @@
 {% if tc_color_type == 'primary' %}{% set tc_color_style = 'color: var(--color-primary);' %}
 {% elseif tc_color_type == 'custom' %}{% set tc_color_style = 'color: ' ~ (component.title_color | default('#2C3E50')) ~ ';' %}
 {% else %}{% set tc_color_style = '' %}{% endif %}
-{% set tc_size_style = 'font-size: clamp(' ~ (tc_size * 0.6)|round ~ 'px, 6vw, ' ~ tc_size ~ 'px);' %}
-{% set tc_sub_style = 'font-size: clamp(' ~ (tc_sub * 0.8)|round ~ 'px, 2.5vw, ' ~ tc_sub ~ 'px);' %}
+{# Hero title scales down hard on small screens: low floor + steeper vw, same desktop max #}
+{% set tc_size_style = 'font-size: clamp(' ~ (tc_size * 0.32)|round ~ 'px, 5.5vw, ' ~ tc_size ~ 'px);' %}
+{% set tc_sub_style = 'font-size: clamp(' ~ (tc_sub * 0.7)|round ~ 'px, 2.5vw, ' ~ tc_sub ~ 'px);' %}
 {% set tc_hl_type = component.highlight_word_color_type | default('gradient') %}
 {% if tc_hl_type == 'primary' %}{% set tc_hl_attr = 'style="color: var(--color-primary)"' %}
 {% elseif tc_hl_type == 'custom' %}{% set tc_hl_attr = 'style="color: ' ~ (component.highlight_word_color | default('#FF3B3B')) ~ '"' %}

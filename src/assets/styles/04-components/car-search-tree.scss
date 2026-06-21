@@ -281,7 +281,7 @@
             }
 
             select {
-                @apply px-3 py-2 text-xs rounded-xl;
+                @apply px-3 py-2 text-xs  ;
             }
         }
     }
@@ -293,5 +293,26 @@
         .car-search-tree__selects {
             grid-template-columns: repeat(3, 1fr);
         }
+    }
+}
+
+// Image (tiles) mode: shrink the brand/model logos on small screens so more
+// fit per row and the widget stays compact. Only affects tiles mode — the
+// carousel overlay renders in dropdown mode, so it is untouched.
+@media (max-width: 640px) {
+    .car-search-tree__row {
+        @apply gap-2 py-2;
+    }
+    .car-search-tree__option {
+        @apply min-w-[4.5rem] max-w-[6rem] px-2 py-3 gap-2;
+    }
+    .car-search-tree__option-label {
+        @apply text-xs;
+    }
+}
+
+@media (max-width: 400px) {
+    .car-search-tree__option {
+        @apply min-w-[3.75rem] max-w-[5rem] px-1.5 py-2;
     }
 }

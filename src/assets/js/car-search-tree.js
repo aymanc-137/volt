@@ -74,6 +74,8 @@ class CarSearchTree extends BasePage {
         const use_custom_json = component.use_custom_json || false;
         const custom_json_raw = typeof component.custom_json_data === 'string' ? component.custom_json_data : '';
         const show_search_button = options.showSearchButton === true;
+        // Translation helper: store-language text with an Arabic resilience fallback
+        const t = (key, fallback) => salla.lang.get('blocks.home.volt.car_search.' + key, fallback);
         // Grab target category url for the "Go to results" button
         const targetField = component.target_category;
         const targetCat = Array.isArray(targetField) ? targetField[0] : targetField;
@@ -108,15 +110,15 @@ class CarSearchTree extends BasePage {
                             <p class="car-search-tree__subtitle">${description}</p>
                         </div>
                         <div class="car-search-tree__selection">
-                            <span class="car-search-tree__selection-label">اختيارك الحالي:</span>
+                            <span class="car-search-tree__selection-label">${t('selection_label', 'اختيارك الحالي:')}</span>
                             <span class="car-search-tree__selection-value" data-selected-path>—</span>
                         </div>
                     </div>
 
                     <div class="car-search-tree__empty hidden" data-empty>
                         <div>
-                            <strong>لا توجد بيانات للعرض.</strong>
-                            <p>أضف تصنيفات السيارات من إعدادات المكوّن لبدء استخدام شجرة البحث.</p>
+                            <strong>${t('empty_title', 'لا توجد بيانات للعرض.')}</strong>
+                            <p>${t('empty_desc', 'أضف تصنيفات السيارات من إعدادات المكوّن لبدء استخدام شجرة البحث.')}</p>
                         </div>
                     </div>
 
@@ -138,21 +140,21 @@ class CarSearchTree extends BasePage {
                          style="${use_dropdown_layout ? '' : 'display:none;'}"
                          data-selects>
                         <div class="car-search-tree__select" data-select-wrapper="brand">
-                            <label for="${brand_select_id}">اختر الماركة</label>
-                            <select id="${brand_select_id}" data-select="brand">
-                                <option value="" disabled selected>اختر الماركة</option>
+                            <label for="${brand_select_id}">${t('brand', 'اختر الماركة')}</label>
+                            <select class="rounded-custom" id="${brand_select_id}" data-select="brand">
+                                <option value="" disabled selected>${t('brand', 'اختر الماركة')}</option>
                             </select>
                         </div>
                         <div class="car-search-tree__select" data-select-wrapper="model">
-                            <label for="${model_select_id}">اختر الموديل</label>
-                            <select id="${model_select_id}" data-select="model" disabled>
-                                <option value="" disabled selected>اختر الموديل</option>
+                            <label for="${model_select_id}">${t('model', 'اختر الموديل')}</label>
+                            <select class="rounded-custom" id="${model_select_id}" data-select="model" disabled>
+                                <option value="" disabled selected>${t('model', 'اختر الموديل')}</option>
                             </select>
                         </div>
                         <div class="car-search-tree__select" data-select-wrapper="year">
-                            <label for="${year_select_id}">اختر السنة</label>
-                            <select id="${year_select_id}" data-select="year" disabled>
-                                <option value="" disabled selected>اختر السنة</option>
+                            <label for="${year_select_id}">${t('year', 'اختر السنة')}</label>
+                            <select class="rounded-custom" id="${year_select_id}" data-select="year" disabled>
+                                <option value="" disabled selected>${t('year', 'اختر السنة')}</option>
                             </select>
                         </div>
                     </div>
@@ -161,27 +163,27 @@ class CarSearchTree extends BasePage {
                         <div class="car-search-tree__submit" data-submit-wrapper>
                             <button type="button" class="car-search-tree__submit-btn" data-submit-btn disabled>
                                 <i class="sicon-search"></i>
-                                <span>اعرض النتائج</span>
+                                <span>${t('show_results', 'اعرض النتائج')}</span>
                             </button>
                         </div>
                     ` : ''}
 
                     <div class="car-search-tree__products${show_search_button ? ' hidden' : ''}">
                         <div class="car-search-tree__products-header">
-                            <h3>المنتجات المتوافقة</h3>
-                            <p>سيتم تحميل المنتجات تلقائياً بعد إتمام الاختيار.</p>
+                            <h3>${t('products_title', 'المنتجات المتوافقة')}</h3>
+                            <p>${t('products_subtitle', 'سيتم تحميل المنتجات تلقائياً بعد إتمام الاختيار.')}</p>
                         </div>
 
                         <div class="hidden" data-products-loading>
                             <div class="car-search-tree__products-state">
                                 <salla-loading size="32"></salla-loading>
-                                <p>جاري تحميل المنتجات...</p>
+                                <p>${t('loading', 'جاري تحميل المنتجات...')}</p>
                             </div>
                         </div>
 
                         <div data-products-empty>
                             <div class="car-search-tree__products-state">
-                                <p>لم يتم اختيار فئة بعد.</p>
+                                <p>${t('no_selection', 'لم يتم اختيار فئة بعد.')}</p>
                             </div>
                         </div>
                         <div class="car-search-tree__products-grid hidden" data-row="products"></div>
@@ -394,7 +396,7 @@ class CarSearchTree extends BasePage {
         this.updateSelectionPath(state, selectionEl);
 
         if (this.hasChildren(brand)) {
-            this.showProductsHint('اختر الموديل لإظهار المنتجات.', productsEmptyEl, rows);
+            this.showProductsHint(salla.lang.get('blocks.home.volt.car_search.hint_select_model', 'اختر الموديل لإظهار المنتجات.'), productsEmptyEl, rows);
         } else {
             this.fetchProducts(brand, {}, state, rows, productsEmptyEl, loadingEl);
         }
@@ -431,7 +433,7 @@ class CarSearchTree extends BasePage {
     fetchProducts(category, options = {}, state, rows, productsEmptyEl, loadingEl) {
         const { includeDescendants = false } = options;
         if (!category?.id || typeof window.salla?.product?.fetch !== 'function') {
-            this.showProductsHint('تعذر الاتصال بواجهة المنتجات. تأكد من تحميل منصة سلة.', productsEmptyEl, rows);
+            this.showProductsHint(salla.lang.get('blocks.home.volt.car_search.connection_error', 'تعذر الاتصال بواجهة المنتجات. تأكد من تحميل منصة سلة.'), productsEmptyEl, rows);
             return;
         }
 
@@ -442,7 +444,7 @@ class CarSearchTree extends BasePage {
                 ? this.collectProductIds(category)
                 : (Array.isArray(category.products) ? category.products : []);
             if (!productIds.length) {
-                this.showProductsHint('لا توجد منتجات مرتبطة بهذا الاختيار.', productsEmptyEl, rows);
+                this.showProductsHint(salla.lang.get('blocks.home.volt.car_search.no_linked_products', 'لا توجد منتجات مرتبطة بهذا الاختيار.'), productsEmptyEl, rows);
                 return;
             }
             requestSignature = productIds.join(',') + ':products';
@@ -454,7 +456,7 @@ class CarSearchTree extends BasePage {
             const ids = (includeDescendants ? this.collectCategoryIds(category) : [Number(category.id)])
                 .filter((value) => typeof value === 'number' && !Number.isNaN(value));
             if (!ids.length) {
-                this.showProductsHint('لا توجد فئات متاحة لتحميل المنتجات.', productsEmptyEl, rows);
+                this.showProductsHint(salla.lang.get('blocks.home.volt.car_search.no_categories', 'لا توجد فئات متاحة لتحميل المنتجات.'), productsEmptyEl, rows);
                 return;
             }
             requestSignature = `${ids.join(',')}:${includeDescendants ? 'deep' : 'single'}`;
@@ -475,13 +477,13 @@ class CarSearchTree extends BasePage {
                 if (state.lastRequestSignature !== requestSignature) return;
                 const products = this.extractProducts(response);
                 if (!products.length) {
-                    this.showProductsHint('لا توجد منتجات متاحة لهذا الاختيار حالياً.', productsEmptyEl, rows);
+                    this.showProductsHint(salla.lang.get('blocks.home.volt.car_search.no_products', 'لا توجد منتجات متاحة لهذا الاختيار حالياً.'), productsEmptyEl, rows);
                     return;
                 }
                 this.renderProducts(products, rows, productsEmptyEl);
             })
             .catch(() => {
-                this.showProductsHint('حدث خطأ أثناء تحميل المنتجات، حاول مجدداً لاحقاً.', productsEmptyEl, rows);
+                this.showProductsHint(salla.lang.get('blocks.home.volt.car_search.load_error', 'حدث خطأ أثناء تحميل المنتجات، حاول مجدداً لاحقاً.'), productsEmptyEl, rows);
             })
             .finally(() => this.hideLoading(loadingEl));
     }
@@ -626,10 +628,11 @@ class CarSearchTree extends BasePage {
     }
 
     getSelectPlaceholder(level) {
-        if (level === 'brand') return 'اختر الماركة';
-        if (level === 'model') return 'اختر الموديل';
-        if (level === 'year') return 'اختر السنة';
-        return 'اختر الخيار';
+        const t = (key, fallback) => salla.lang.get('blocks.home.volt.car_search.' + key, fallback);
+        if (level === 'brand') return t('brand', 'اختر الماركة');
+        if (level === 'model') return t('model', 'اختر الموديل');
+        if (level === 'year') return t('year', 'اختر السنة');
+        return t('option', 'اختر الخيار');
     }
 
     attachSelectListeners(selects, state, rows, wrappers, selectionEl, loadingEl, productsEmptyEl, defaultProductsEmptyContent, categories, hideBrandLabels, isDropdownMode, selectWrappers) {
