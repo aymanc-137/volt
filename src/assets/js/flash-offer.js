@@ -1,4 +1,5 @@
 import BasePage from './base-page';
+import { log, warn } from './debug';
 
 class FlashOffer extends BasePage {
     async onReady() {
@@ -6,37 +7,37 @@ class FlashOffer extends BasePage {
         const container = document.querySelector('#flash-offer');
 
         if (!container) {
-            console.log(LOG, 'no #flash-offer placeholder on page, skipping');
+            log(LOG, 'no #flash-offer placeholder on page, skipping');
             return;
         }
         if (!salla.url.is_page('product.index')) {
-            console.log(LOG, 'not on product.index page, skipping');
+            log(LOG, 'not on product.index page, skipping');
             return;
         }
 
         const cat_id = container.dataset.catid;
-        console.log(LOG, 'current category id:', cat_id);
+        log(LOG, 'current category id:', cat_id);
 
         try {
             const res = await salla.api.request('component/list', { params: { paths: ['home.flash-offer'] } });
             const components = res.data;
 
-            console.log(LOG, 'API response:', components);
+            log(LOG, 'API response:', components);
 
             if (!Array.isArray(components) || !components.length) {
-                console.warn(LOG, 'no flash-offer components returned');
+                warn(LOG, 'no flash-offer components returned');
                 return;
             }
 
             components.forEach((item, idx) => {
                 const component = item.component;
                 if (!component) {
-                    console.warn(LOG, `item[${idx}] has no .component`, item);
+                    warn(LOG, `item[${idx}] has no .component`, item);
                     return;
                 }
 
                 if (!component.show_in_category_page) {
-                    console.log(LOG, `item[${idx}] show_in_category_page is off, skipping`);
+                    log(LOG, `item[${idx}] show_in_category_page is off, skipping`);
                     return;
                 }
 
@@ -46,18 +47,18 @@ class FlashOffer extends BasePage {
                 const targetCat = Array.isArray(targetField) ? targetField[0] : targetField;
                 const targetCatId = targetCat?.id ?? targetCat?.value ?? targetCat;
 
-                console.log(LOG, `item[${idx}] target:`, { targetCatId, cat_id });
+                log(LOG, `item[${idx}] target:`, { targetCatId, cat_id });
 
                 if (!targetCatId) {
-                    console.warn(LOG, `item[${idx}] has no target_category set, skipping`);
+                    warn(LOG, `item[${idx}] has no target_category set, skipping`);
                     return;
                 }
                 if (String(targetCatId) !== String(cat_id)) {
-                    console.log(LOG, `item[${idx}] target ${targetCatId} ≠ current ${cat_id}, skipping`);
+                    log(LOG, `item[${idx}] target ${targetCatId} ≠ current ${cat_id}, skipping`);
                     return;
                 }
 
-                console.log(LOG, `item[${idx}] matched — rendering`);
+                log(LOG, `item[${idx}] matched — rendering`);
                 container.classList.remove('hidden');
                 this.renderComponent(container, component, item.position);
             });

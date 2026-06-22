@@ -1,4 +1,5 @@
 import BasePage from './base-page';
+import { log, warn } from './debug';
 
 class CarSearchTree extends BasePage {
     async onReady() {
@@ -6,37 +7,37 @@ class CarSearchTree extends BasePage {
         const container = document.querySelector('#car-search-tree');
 
         if (!container) {
-            console.log(LOG, 'no #car-search-tree placeholder on page, skipping');
+            log(LOG, 'no #car-search-tree placeholder on page, skipping');
             return;
         }
         if (!salla.url.is_page('product.index')) {
-            console.log(LOG, 'not on product.index page, skipping');
+            log(LOG, 'not on product.index page, skipping');
             return;
         }
 
         const cat_id = container.dataset.catid;
-        console.log(LOG, 'current category id:', cat_id);
+        log(LOG, 'current category id:', cat_id);
 
         try {
             const res = await salla.api.request('component/list', { params: { paths: ['home.car-search-tree'] } });
             const components = res.data;
 
-            console.log(LOG, 'API response:', components);
+            log(LOG, 'API response:', components);
 
             if (!Array.isArray(components) || !components.length) {
-                console.warn(LOG, 'no car-search-tree components returned');
+                warn(LOG, 'no car-search-tree components returned');
                 return;
             }
 
             components.forEach((item, idx) => {
                 const component = item.component;
                 if (!component) {
-                    console.warn(LOG, `item[${idx}] has no .component`, item);
+                    warn(LOG, `item[${idx}] has no .component`, item);
                     return;
                 }
 
                 if (!component.show_in_category_page) {
-                    console.log(LOG, `item[${idx}] show_in_category_page is off, skipping`);
+                    log(LOG, `item[${idx}] show_in_category_page is off, skipping`);
                     return;
                 }
 
@@ -46,18 +47,18 @@ class CarSearchTree extends BasePage {
                 const targetCat = Array.isArray(targetField) ? targetField[0] : targetField;
                 const targetCatId = targetCat?.id ?? targetCat?.value ?? targetCat;
 
-                console.log(LOG, `item[${idx}] target:`, { targetField, targetCat, targetCatId, cat_id });
+                log(LOG, `item[${idx}] target:`, { targetField, targetCat, targetCatId, cat_id });
 
                 if (!targetCatId) {
-                    console.warn(LOG, `item[${idx}] has no target_category set, skipping`);
+                    warn(LOG, `item[${idx}] has no target_category set, skipping`);
                     return;
                 }
                 if (String(targetCatId) !== String(cat_id)) {
-                    console.log(LOG, `item[${idx}] target ${targetCatId} ≠ current ${cat_id}, skipping`);
+                    log(LOG, `item[${idx}] target ${targetCatId} ≠ current ${cat_id}, skipping`);
                     return;
                 }
 
-                console.log(LOG, `item[${idx}] matched — rendering`);
+                log(LOG, `item[${idx}] matched — rendering`);
                 container.classList.remove('hidden');
                 this.renderComponent(container, component, item.position, cat_id);
             });
@@ -317,7 +318,7 @@ class CarSearchTree extends BasePage {
         const yearId  = params.get('volt_year');
         if (!brandId) return;
 
-        console.log('[CarSearchTree] URL preselection', { brandId, modelId, yearId });
+        log('[CarSearchTree] URL preselection', { brandId, modelId, yearId });
 
         // Cascade selections; each step needs DOM updates to settle before the next click
         setTimeout(() => {
@@ -364,7 +365,7 @@ class CarSearchTree extends BasePage {
         if (level === 'brand' && currentCategoryId) {
             const matchingBrand = items.find(item => item.id == currentCategoryId);
             if (matchingBrand) {
-                console.log('Auto-selecting current category:', matchingBrand.name);
+                log('Auto-selecting current category:', matchingBrand.name);
                 // Trigger selection after a short delay to ensure DOM is ready
                 setTimeout(() => {
                     this.handleSelection('brand', matchingBrand.id, state, rows, wrappers, selectionEl, loadingEl, productsEmptyEl, defaultProductsEmptyContent, items, hideBrandLabels, isDropdownMode, selects, selectWrappers);
@@ -374,9 +375,9 @@ class CarSearchTree extends BasePage {
     }
 
     handleSelection(level, id, state, rows, wrappers, selectionEl, loadingEl, productsEmptyEl, defaultProductsEmptyContent, categories, hideBrandLabels, isDropdownMode, selects, selectWrappers) {
-        console.log('[CarSearchTree] handleSelection', { level, id, useCustomJson: state.useCustomJson });
+        log('[CarSearchTree] handleSelection', { level, id, useCustomJson: state.useCustomJson });
         if (!id) {
-            console.warn('[CarSearchTree] empty id, aborting');
+            warn('[CarSearchTree] empty id, aborting');
             return;
         }
 
@@ -391,14 +392,14 @@ class CarSearchTree extends BasePage {
 
     selectBrand(id, state, rows, wrappers, selectionEl, loadingEl, productsEmptyEl, defaultProductsEmptyContent, categories, hideBrandLabels, isDropdownMode, selects, selectWrappers) {
         const brand = this.findById(categories, id);
-        console.log('[CarSearchTree] selectBrand', {
+        log('[CarSearchTree] selectBrand', {
             id,
             brand,
             categoriesCount: categories?.length,
             subCategoriesCount: brand?.sub_categories?.length,
         });
         if (!brand) {
-            console.warn('[CarSearchTree] brand not found in categories', { id, categories });
+            warn('[CarSearchTree] brand not found in categories', { id, categories });
             return;
         }
         state.brand = brand;
@@ -707,7 +708,7 @@ class CarSearchTree extends BasePage {
         try {
             return JSON.parse(payload || '[]');
         } catch (error) {
-            console.warn('car-search-tree::unable to parse categories payload', error);
+            warn('car-search-tree::unable to parse categories payload', error);
             return [];
         }
     }

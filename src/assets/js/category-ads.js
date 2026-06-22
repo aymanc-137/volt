@@ -1,4 +1,5 @@
 import BasePage from './base-page';
+import { log } from './debug';
 
 class CategoryAds extends BasePage {
   async  onReady() {
@@ -13,7 +14,7 @@ const cat_id = CatElement.dataset.catid;
     try {
         await salla.api.request('component/list', { params: { paths: ['home.category-ads'] } })
         .then((res) => {
-              console.log(res);
+              log(res);
              const catArray = res.data[0].component.category_ads;
 
             catArray.forEach(element => {

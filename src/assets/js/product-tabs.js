@@ -1,4 +1,5 @@
 import BasePage from './base-page';
+import { log, warn } from './debug';
 
 /**
  * Product Tabs
@@ -19,20 +20,20 @@ class ProductTabs extends BasePage {
         if (!salla.url.is_page('product.single')) { return; }
 
         const productId = mount.dataset.productId;
-        console.log(LOG, 'product id:', productId);
+        log(LOG, 'product id:', productId);
 
         try {
             const res = await salla.api.request('component/list', { params: { paths: ['home.product-tabs'] } });
             const components = res.data;
             if (!Array.isArray(components) || !components.length) {
-                console.warn(LOG, 'no product-tabs component returned');
+                warn(LOG, 'no product-tabs component returned');
                 return;
             }
 
             const component = components[0].component;
             const collection = component?.tabs_data || component?.['tabs_data'] || [];
             if (!Array.isArray(collection) || !collection.length) {
-                console.warn(LOG, 'component has no tabs_data items');
+                warn(LOG, 'component has no tabs_data items');
                 return;
             }
 
@@ -45,7 +46,7 @@ class ProductTabs extends BasePage {
             });
 
             if (!match) {
-                console.log(LOG, 'no tabs configured for this product');
+                log(LOG, 'no tabs configured for this product');
                 return;
             }
 
@@ -61,7 +62,7 @@ class ProductTabs extends BasePage {
             const tabs = (parsed && Array.isArray(parsed.tabs)) ? parsed.tabs : [];
             const renderable = tabs.filter(t => t && t.type && this.hasContent(t));
             if (!renderable.length) {
-                console.warn(LOG, 'no renderable tabs');
+                warn(LOG, 'no renderable tabs');
                 return;
             }
 
@@ -69,7 +70,7 @@ class ProductTabs extends BasePage {
             // real layout (a display:none element reports zero rects).
             mount.classList.remove('hidden');
             this.render(mount, renderable, productId);
-            console.log(LOG, 'rendered', renderable.length, 'tabs');
+            log(LOG, 'rendered', renderable.length, 'tabs');
         } catch (e) {
             console.error(LOG, 'onReady threw:', e);
             salla.logger.error(e);
