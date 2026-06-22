@@ -369,7 +369,7 @@
 </style>
 
 <script>
-  console.log('[PS] script tag reached');
+  //console.log('[PS] script tag reached');
 
   (function () {
     var LOG = '[PS]';
@@ -378,19 +378,19 @@
       var uid = {{ uid | json_encode | raw }};
       var interval = {{ autoplay_interval }};
       var products = {{ products | json_encode | raw }};
-      console.log(LOG, 'twig vars OK -> uid:', uid, '| interval:', interval, '| products count:', (products && products.length));
-      console.log(LOG, 'products payload:', products);
+      //console.log(LOG, 'twig vars OK -> uid:', uid, '| interval:', interval, '| products count:', (products && products.length));
+      //console.log(LOG, 'products payload:', products);
     } catch (e) {
       console.error(LOG, 'FAILED to parse twig-injected vars:', e);
       return;
     }
 
     function init() {
-      console.log(LOG, 'init() running. readyState=', document.readyState);
+      //console.log(LOG, 'init() running. readyState=', document.readyState);
 
       try {
         var root = document.getElementById(uid);
-        console.log(LOG, 'root element:', root);
+        //console.log(LOG, 'root element:', root);
         if (!root) {
           console.error(LOG, 'root #' + uid + ' NOT FOUND in DOM. All elements with id starting ps-:',
             Array.prototype.slice.call(document.querySelectorAll('[id^="ps-"]')).map(function (e) { return e.id; }));
@@ -421,10 +421,10 @@
           console.error(LOG, 'missing DOM refs:', missing, 'refs map:', refs);
           return;
         }
-        console.log(LOG, 'all DOM refs OK');
+        //console.log(LOG, 'all DOM refs OK');
 
         var slides = Array.prototype.slice.call(refs.stage.querySelectorAll('.ps-slide'));
-        console.log(LOG, 'slides found:', slides.length);
+        //console.log(LOG, 'slides found:', slides.length);
         if (!slides.length) { console.error(LOG, 'no .ps-slide elements inside stage'); return; }
 
         var current = 0;
@@ -438,7 +438,7 @@
           refs.dotsWrap.appendChild(btn);
           return btn;
         });
-        console.log(LOG, 'dots built:', dots.length);
+        //console.log(LOG, 'dots built:', dots.length);
 
         function show(index, immediate) {
           try {
@@ -446,7 +446,7 @@
             if (!immediate && next === current) return;
             var prev = current;
             current = next;
-            console.log(LOG, 'show()', { from: prev, to: next, immediate: !!immediate });
+          //  //console.log(LOG, 'show()', { from: prev, to: next, immediate: !!immediate });
 
             slides.forEach(function (el, i) {
               if (i === next) {
@@ -486,7 +486,7 @@
                 } else if (rawLink && typeof rawLink === 'object') {
                   link = rawLink.url || rawLink.value || rawLink.link || '';
                 }
-                console.log('[PS] swapInfo fields:', { name: name, image: p.image, link: link, raw: p });
+              //  //console.log('[PS] swapInfo fields:', { name: name, image: p.image, link: link, raw: p });
 
                 refs.elTagline.textContent = tagline ? '— ' + tagline : '';
                 refs.elName.textContent    = name;
@@ -510,7 +510,7 @@
         function start() {
           clearInterval(timer);
           timer = setInterval(function () { show(current + 1); }, interval);
-          console.log(LOG, 'autoplay started, interval=', interval);
+         // //console.log(LOG, 'autoplay started, interval=', interval);
         }
         function restart() { if (timer) start(); }
 
@@ -522,17 +522,17 @@
 
         show(0, true);
         start();
-        console.log(LOG, 'init() complete');
+        //console.log(LOG, 'init() complete');
       } catch (e) {
         console.error(LOG, 'init() threw:', e);
       }
     }
 
     if (document.readyState === 'loading') {
-      console.log(LOG, 'doc still loading, deferring init to DOMContentLoaded');
+      //console.log(LOG, 'doc still loading, deferring init to DOMContentLoaded');
       document.addEventListener('DOMContentLoaded', init);
     } else {
-      console.log(LOG, 'doc ready, init now (readyState=' + document.readyState + ')');
+      //console.log(LOG, 'doc ready, init now (readyState=' + document.readyState + ')');
       init();
     }
   })();
