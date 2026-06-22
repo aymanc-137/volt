@@ -1348,9 +1348,6 @@ input:where([type='file']):focus{
 .h-\[34px\]{
     height: 34px;
 }
-.h-\[50dvh\]{
-    height: 50dvh;
-}
 .h-\[600px\]{
     height: 600px;
 }
@@ -1395,9 +1392,6 @@ input:where([type='file']):focus{
 }
 .min-h-7{
     min-height: 1.75rem;
-}
-.min-h-\[20rem\]{
-    min-height: 20rem;
 }
 .min-h-\[300px\]{
     min-height: 300px;
@@ -36444,9 +36438,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .sm\:h-6{
         height: 1.5rem;
     }
-    .sm\:h-\[58dvh\]{
-        height: 58dvh;
-    }
     .sm\:h-auto{
         height: auto;
     }
@@ -36681,9 +36672,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .md\:h-\[600px\]{
         height: 600px;
-    }
-    .md\:h-\[65dvh\]{
-        height: 65dvh;
     }
     .md\:h-\[700px\]{
         height: 700px;
@@ -36979,9 +36967,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .lg\:h-\[800px\]{
         height: 800px;
     }
-    .lg\:h-\[80dvh\]{
-        height: 80dvh;
-    }
     .lg\:max-h-\[50\%\]{
         max-height: 50%;
     }
@@ -37173,9 +37158,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .xl\:h-72{
         height: 18rem;
-    }
-    .xl\:h-\[100dvh\]{
-        height: 100dvh;
     }
     .xl\:h-\[40rem\]{
         height: 40rem;
