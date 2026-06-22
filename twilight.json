@@ -2014,7 +2014,10 @@
         },
         {
             "key": "2b8bd090-f933-4ade-a4fd-89288e9fc0ab",
-            "title": "صور متحركة - فولت",
+            "title": {
+                "ar": "صور متحركة - فولت",
+                "en": "Animated Images - Volt"
+            },
             "icon": "sicon-store",
             "path": "home.enhanced-image-carousel",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/enhanced-image-carousel.png",
@@ -2623,7 +2626,7 @@
             "key": "9d83a6e2-8933-4d1c-ab63-5a711805249c",
             "title": {
                 "ar": "قائمة عناصر - فولت",
-                "en": null
+                "en": "Items List - Volt"
             },
             "icon": "sicon-store",
             "path": "home.category-list",
@@ -3397,7 +3400,10 @@
         },
         {
             "key": "4d07d77b-1dde-4840-9826-581a82b4462f",
-            "title": "لماذا تختارنا",
+            "title": {
+                "ar": "لماذا تختارنا",
+                "en": "Why Choose Us"
+            },
             "icon": "sicon-store",
             "path": "home.why-us",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/why-us.png",
@@ -4089,7 +4095,10 @@
         },
         {
             "key": "da09f886-2f8f-430c-b0f0-cd76ebc087ff",
-            "title": "الماركات التجارية - فولت",
+            "title": {
+                "ar": "الماركات التجارية - فولت",
+                "en": "Brands - Volt"
+            },
             "icon": "sicon-store",
             "path": "home.brands-volt",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/brands-volt.png",
@@ -4781,7 +4790,10 @@
         },
         {
             "key": "e2552a86-a41e-4b7e-8acd-4b30167ddb38",
-            "title": "الأسئلة الأكثر شيوعا",
+            "title": {
+                "ar": "الأسئلة الأكثر شيوعا",
+                "en": "FAQ"
+            },
             "icon": "sicon-lang",
             "path": "home.faq",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/faq.png",
@@ -5056,7 +5068,10 @@
         },
         {
             "key": "5b0f0805-0f41-444f-a50d-610796cbdb9f",
-            "title": "عرض مؤقت - فولت",
+            "title": {
+                "ar": "عرض مؤقت - فولت",
+                "en": "Limited-Time Offer - Volt"
+            },
             "icon": "sicon-lightning",
             "path": "home.flash-offer",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/flash-discoun.png",
@@ -5778,7 +5793,10 @@
         },
         {
             "key": "d1b2297e-d50c-4ccb-8e7d-3613ca530fd2",
-            "title": "فيديو بنر - فولت",
+            "title": {
+                "ar": "فيديو بنر - فولت",
+                "en": "Video Banner - Volt"
+            },
             "icon": "sicon-store",
             "path": "home.video-banner",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/video-banner.png",
@@ -6207,7 +6225,10 @@
         },
         {
             "key": "1f4ec58d-6726-47ec-ae11-a7446be052a8",
-            "title": "منتجات قسم - فولت",
+            "title": {
+                "ar": "منتجات قسم - فولت",
+                "en": "Category Products - Volt"
+            },
             "icon": "sicon-store",
             "path": "home.category-products",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/category-products.png",
@@ -6966,7 +6987,7 @@
             "key": "716e33df-97f4-4808-97a8-c8784d339916",
             "title": {
                 "ar": "قائمة بحث المركبات",
-                "en": null
+                "en": "Vehicle Search List"
             },
             "icon": "sicon-store",
             "path": "home.car-search-tree",
@@ -7485,7 +7506,10 @@
         },
         {
             "key": "76b7b54c-e8c2-4618-bafd-e7cf431c6d94",
-            "title": "عرض تفصيلي لمنتج - فولت",
+            "title": {
+                "ar": "عرض تفصيلي لمنتج - فولت",
+                "en": "Product Detailed Preview - Volt"
+            },
             "icon": "sicon-store",
             "path": "home.tap-preview",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/tap-preview.png",
@@ -8108,7 +8132,10 @@
         },
         {
             "key": "956fdb38-b727-4610-a915-c7fdc7becd83",
-            "title": "خلفية على صفحات الاقسام - فولت",
+            "title": {
+                "ar": "خلفية على صفحات الاقسام - فولت",
+                "en": "Category Pages Background - Volt"
+            },
             "icon": "sicon-store",
             "path": "home.category-ads",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/category-ads.png",
@@ -8181,7 +8208,10 @@
         },
         {
             "key": "01dbcfa2-5e33-40f6-ac2f-89979591f8af",
-            "title": "صور أقسام كبيرة",
+            "title": {
+                "ar": "صور أقسام كبيرة",
+                "en": "Large Category Images"
+            },
             "icon": "sicon-image",
             "path": "home.larage-category-image",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/larage-category-image.png",
@@ -8932,7 +8962,10 @@
         },
         {
             "key": "25e5ae98-f706-4cab-b1f0-885be7a7ad6a",
-            "title": "عروض تنتهي قريبا - فولت",
+            "title": {
+                "ar": "عروض تنتهي قريبا - فولت",
+                "en": "Ending-Soon Offers - Volt"
+            },
             "icon": "sicon-gift-card",
             "path": "home.flash-discount",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/flash-discount.png",
@@ -9578,7 +9611,10 @@
         },
         {
             "key": "fdc6ca00-3f9c-4853-b99e-21256640f29d",
-            "title": "المواقع وبيانات التواصل",
+            "title": {
+                "ar": "المواقع وبيانات التواصل",
+                "en": "Locations & Contact Info"
+            },
             "icon": "sicon-map-marker-alt",
             "path": "home.location",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/location.png",
@@ -9876,7 +9912,10 @@
         },
         {
             "key": "a3f1c2d4-8e5b-4a7f-9c6d-2b0e3f1a4d87",
-            "title": "عرض المنتجات المميزة",
+            "title": {
+                "ar": "عرض المنتجات المميزة",
+                "en": "Featured Products Showcase"
+            },
             "icon": "sicon-layers",
             "path": "home.product-showcase",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/product-showcase.png",
@@ -10698,7 +10737,10 @@
         },
         {
             "key": "b8e2d3c5-9f6c-4b8a-a7d8-3c1f4e2b5d98",
-            "title": "مقارنة قبل وبعد",
+            "title": {
+                "ar": "مقارنة قبل وبعد",
+                "en": "Before / After Comparison"
+            },
             "icon": "sicon-image",
             "path": "home.before-after",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/before-after.png",
@@ -11473,7 +11515,10 @@
         },
         {
             "key": "c9a4f1d8-3e5b-4c7a-b9d2-6f1c8e3a5d72",
-            "title": "صورة تفاعلية بنقاط منتجات",
+            "title": {
+                "ar": "صورة تفاعلية بنقاط منتجات",
+                "en": "Interactive Hotspot Image"
+            },
             "icon": "sicon-image",
             "path": "home.hotspot-image",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/hotspot-image.png",
@@ -11869,7 +11914,10 @@
         },
         {
             "key": "e7b3a9c1-4d2f-4e8b-9a6c-1f3d5b7e2a48",
-            "title": "تبويبات المنتجات",
+            "title": {
+                "ar": "تبويبات المنتجات",
+                "en": "Product Tabs"
+            },
             "icon": "sicon-list",
             "path": "home.product-tabs",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/product-tap-page.png",
