@@ -104,7 +104,7 @@
     }
 
     &__btn {
-        @apply inline-block w-fit mx-auto sm:mx-0 mt-1 px-5 py-2 rounded-full text-sm font-bold transition-colors;
+        @apply inline-block w-fit mx-auto sm:mx-0 mt-1 px-5 py-2 rounded-custom text-sm font-bold transition-colors;
         background: var(--color-primary);
         color: var(--color-primary-reverse);
 

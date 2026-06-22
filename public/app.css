@@ -31725,7 +31725,6 @@ input[type=radio].sr-only:checked ~ div.flash-offer-cat__overlay {
     display: inline-block;
     width: -moz-fit-content;
     width: fit-content;
-    border-radius: 9999px;
     padding-left: 1.25rem;
     padding-right: 1.25rem;
     padding-top: 0.5rem;
@@ -31736,6 +31735,7 @@ input[type=radio].sr-only:checked ~ div.flash-offer-cat__overlay {
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
+  border-radius: var(--border-radius);
 }
 @media (min-width: 640px){
     .flash-offer-cat__btn{

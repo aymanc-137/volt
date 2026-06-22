@@ -27,6 +27,17 @@
 
 {% set block_id = 'enhanced-image-carousel-' ~ position %}
 
+{# ---- Component height control (merchant-set; scales down proportionally on
+   smaller screens, with a min-height floor so it stays usable everywhere).
+   `carousel_height` is the desktop (xl) height as a % of the viewport height;
+   0/empty falls back to the default full-height look. #}
+{% set c_h = component.carousel_height | default(100) %}
+{% set c_h = c_h > 0 ? c_h : 100 %}
+{% set c_h_base = (c_h * 0.50)|round %}
+{% set c_h_sm   = (c_h * 0.58)|round %}
+{% set c_h_md   = (c_h * 0.65)|round %}
+{% set c_h_lg   = (c_h * 0.80)|round %}
+
 {# ---- Slide title controls (component-level; apply to every slide) ---- #}
 {% set tc_size = component.title_size | default(60) %}
 {% set tc_size = tc_size > 0 ? tc_size : 60 %}
@@ -46,7 +57,17 @@
 {% elseif tc_hl_type == 'custom' %}{% set tc_hl_attr = 'style="color: ' ~ (component.highlight_word_color | default('#FF3B3B')) ~ '"' %}
 {% else %}{% set tc_hl_attr = 'class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent"' %}{% endif %}
 
- <section dir="ltr" class="min-h-[20rem] h-[50dvh] sm:h-[58dvh] md:h-[65dvh] lg:h-[80dvh] xl:h-[100dvh] w-full relative" id="{{ block_id }}">
+ <section dir="ltr" class="w-full relative" id="{{ block_id }}">
+    {# Responsive height driven by the merchant `carousel_height` setting.
+       Rendered per-instance (each carousel may use a different height); the
+       #id selector overrides defaults and keeps the layout responsive. #}
+    <style>
+        #{{ block_id }} { min-height: 20rem; height: {{ c_h_base }}dvh; }
+        @media (min-width: 640px)  { #{{ block_id }} { height: {{ c_h_sm }}dvh; } }
+        @media (min-width: 768px)  { #{{ block_id }} { height: {{ c_h_md }}dvh; } }
+        @media (min-width: 1024px) { #{{ block_id }} { height: {{ c_h_lg }}dvh; } }
+        @media (min-width: 1280px) { #{{ block_id }} { height: {{ c_h }}dvh; } }
+    </style>
     <div
         class="enhanced-carousel h-full  relative group/carousel"
         data-enhanced-carousel

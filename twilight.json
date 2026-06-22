@@ -2122,6 +2122,26 @@
                 {
                     "type": "static",
                     "format": "description",
+                    "id": "group-carousel-size-settings",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات حجم العنصر</strong></div>"
+                },
+                {
+                    "id": "carousel_height",
+                    "type": "number",
+                    "format": "slider",
+                    "inputType": "range",
+                    "icon": "sicon-pencil-ruler",
+                    "label": "ارتفاع السلايدر (٪ من ارتفاع الشاشة)",
+                    "description": "يتحكم بارتفاع السلايدر على الشاشات الكبيرة، ويتقلّص تلقائياً على الشاشات الأصغر مع الحفاظ على حد أدنى مناسب. القيمة 0 تعني الارتفاع الافتراضي (كامل الشاشة).",
+                    "required": false,
+                    "value": 100,
+                    "step": 5,
+                    "minimum": 0,
+                    "maximum": 100
+                },
+                {
+                    "type": "static",
+                    "format": "description",
                     "id": "group-slide-title-settings",
                     "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات عناوين الشرائح</strong></div>"
                 },
