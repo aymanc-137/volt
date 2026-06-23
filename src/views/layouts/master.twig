@@ -337,5 +337,83 @@ overflow-x-hidden {% hook 'body:classes' %}
 {% if store.scope %}
     <salla-scopes selection="{{ store.scope.display_as == 'popup' ? 'mandatory' : 'optional' }}"></salla-scopes>
 {% endif %}
+
+{# ===== TEMP: image-size capture (REMOVE after collecting sizes) =====
+   Logs the rendered size of every image to the console so you can pick a
+   suitable upload size for each component's image field. Runs only in the
+   theme preview/editor, or on any page with ?imgsizes=1 in the URL.
+   After loading a page, copy the printed block and paste it back. You can
+   also re-run it any time (e.g. after scrolling) by calling window.imgSizes()
+   in the console. #}
+<script>
+(function () {
+  var FORCE   = location.search.indexOf('imgsizes') !== -1;
+  var PREVIEW = {{ (theme.mode == 'preview') ? 'true' : 'false' }};
+  if (!FORCE && !PREVIEW) return;
+
+  function file(src) {
+    try { return new URL(src, location.href).pathname.split('/').pop() || src; }
+    catch (e) { return src; }
+  }
+  // Closest identifying ancestor (component id or section classes)
+  function ctx(el) {
+    var node = el;
+    for (var i = 0; i < 10 && node; i++) {
+      node = node.parentElement;
+      if (!node) break;
+      if (node.id) return '#' + node.id;
+      if (node.tagName === 'SECTION') {
+        var cls = (node.className || '').toString().trim().split(/\s+/).filter(Boolean).slice(0, 3).join('.');
+        return cls ? 'section.' + cls : 'section';
+      }
+    }
+    return '(page)';
+  }
+  function collect() {
+    var rows = [];
+    // <img> elements
+    Array.prototype.forEach.call(document.querySelectorAll('img'), function (img) {
+      var r = img.getBoundingClientRect();
+      if (r.width < 3 || r.height < 3) return;
+      rows.push({
+        kind: 'img', context: ctx(img),
+        rendered: Math.round(r.width) + '×' + Math.round(r.height),
+        natural: (img.naturalWidth || 0) + '×' + (img.naturalHeight || 0),
+        alt: img.alt || '', file: file(img.currentSrc || img.src)
+      });
+    });
+    // CSS background images
+    Array.prototype.forEach.call(document.querySelectorAll('*'), function (el) {
+      var bg = getComputedStyle(el).backgroundImage;
+      if (!bg || bg.indexOf('url(') === -1) return;
+      var r = el.getBoundingClientRect();
+      if (r.width < 8 || r.height < 8) return;
+      var m = bg.match(/url\(["']?(.*?)["']?\)/);
+      rows.push({
+        kind: 'bg', context: ctx(el),
+        rendered: Math.round(r.width) + '×' + Math.round(r.height),
+        natural: '-', alt: '', file: m ? file(m[1]) : ''
+      });
+    });
+    return rows;
+  }
+  function report() {
+    var rows = collect();
+    console.log('%c[IMG SIZES] ' + rows.length + ' images @ viewport ' + window.innerWidth + '×' + window.innerHeight,
+      'font-weight:bold;font-size:13px;color:#e63946');
+    if (console.table) console.table(rows);
+    var text = rows.map(function (r) {
+      return '[' + r.kind + '] ' + r.context + '  rendered=' + r.rendered + '  natural=' + r.natural +
+             (r.alt ? '  alt="' + r.alt + '"' : '') + '  ' + r.file;
+    }).join('\n');
+    console.log('%c--- copy everything from the next line ---', 'color:#888');
+    console.log(text);
+    return text;
+  }
+  window.imgSizes = report;
+  window.addEventListener('load', function () { setTimeout(report, 1500); });
+})();
+</script>
+{# ===== END TEMP image-size capture ===== #}
 </body>
 </html>
