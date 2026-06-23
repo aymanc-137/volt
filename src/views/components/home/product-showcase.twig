@@ -288,11 +288,11 @@
         <div id="{{ uid }}-stage" style="position:relative; height:100%; width:100%;">
           {% for item in products %}
           {% set img = item.image | default(item['products.image']) | default('') %}
-          {% set itemName = item.name | default(item['products.name']) | default('') %}
+          {% set item_name = item.name | default(item['products.name']) | default('') %}
           <div class="ps-slide" data-index="{{ loop.index0 }}">
             <img
               src="{{ img ?: 'https://via.placeholder.com/600x600/1e293b/64748b?text=No+Image' }}"
-              alt="{{ itemName }}"
+              alt="{{ item_name }}"
               loading="{{ loop.first ? 'eager' : 'lazy' }}"
             />
           </div>
