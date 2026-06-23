@@ -1,0 +1,24 @@
+[
+    {
+      "url": {
+        "label": "",
+        "value": "https://s.salla.sa/",
+        "source": "custom"
+      },
+      "text": {
+        "ar": "نيسان فتك تيربو"
+      },
+      "image": "https://cdn.files.salla.network/homepage/1573552885/67314370-3176-4503-956c-67c89b3043cd.webp"
+    },
+    {
+      "url": {
+        "label": "",
+        "value": "https://s.salla.sa/",
+        "source": "custom"
+      },
+      "text": {
+        "ar": "مساعدات رياضية"
+      },
+      "image": "https://cdn.files.salla.network/homepage/1573552885/5d508f8e-8167-4182-9af0-55ea7fd6b010.webp"
+    }
+  ]

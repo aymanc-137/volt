@@ -356,10 +356,26 @@
             "maxLength": 20,
             "value": [
                 {
-                    "announcement_items.text": "PERFOMANCE"
+                    "announcement_items.image": "https://cdn.files.salla.network/homepage/1573552885/67314370-3176-4503-956c-67c89b3043cd.webp",
+                    "announcement_items.text": {
+                        "ar": "نيسان فتك تيربو"
+                    },
+                    "announcement_items.url": {
+                        "label": "",
+                        "value": "https://s.salla.sa/",
+                        "source": "custom"
+                    }
                 },
                 {
-                    "announcement_items.text": "KITSUNE"
+                    "announcement_items.image": "https://cdn.files.salla.network/homepage/1573552885/5d508f8e-8167-4182-9af0-55ea7fd6b010.webp",
+                    "announcement_items.text": {
+                        "ar": "مساعدات رياضية"
+                    },
+                    "announcement_items.url": {
+                        "label": "",
+                        "value": "https://s.salla.sa/",
+                        "source": "custom"
+                    }
                 }
             ],
             "fields": [
@@ -2938,7 +2954,7 @@
                             "type": "string",
                             "format": "image",
                             "label": "صورة الخلفية",
-                            "description": "* المقاس المناسب للصورة هو 250 × 280 بكسل .",
+                            "description": "* المقاس المناسب للصورة هو 250 × 280 بكسل . ويُفضّل أن تكون الصورة بصيغة PNG وبخلفية شفافة (بدون خلفية).",
                             "labelHTML": null,
                             "placeholder": "e.g. https://hostname.com/image.png",
                             "icon": "sicon-image",
@@ -7095,7 +7111,7 @@
                     "type": "static",
                     "format": "description",
                     "id": "custom_json_help",
-                    "value": "<div style='background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:12px;margin:6px 0;'><strong style='display:block;margin-bottom:6px;color:#1e40af;font-size:14px;'>كيفية توليد بيانات JSON للتصنيفات</strong><span style='color:#374151;font-size:13px;line-height:1.6;'>استخدم الأداة التالية لبناء شجرة التصنيفات (الماركات ثم الموديلات ثم السنوات) وربط المنتجات، ثم انسخ كود JSON الناتج والصقه في الحقل أدناه:</span><br><a href='https://volt-category.lamsaweb.com/' target='_blank' rel='noopener' style='display:inline-block;margin-top:8px;color:#2563eb;font-weight:600;text-decoration:underline;'>افتح أداة توليد التصنيفات ↗</a></div>",
+                    "value": "<div style='background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:12px;margin:6px 0;'><strong style='display:block;margin-bottom:6px;color:#1e40af;font-size:14px;'>كيفية توليد بيانات JSON للتصنيفات</strong><span style='color:#374151;font-size:13px;line-height:1.6;'>استخدم الأداة التالية لبناء شجرة التصنيفات (الماركات ثم الموديلات ثم السنوات) وربط المنتجات، ثم انسخ كود JSON الناتج والصقه في الحقل أدناه:</span><br><a href='https://volt-category.lamsaweb.com/' target='_blank' rel='noopener' style='display:inline-block;margin-top:8px;color:#2563eb;font-weight:600;text-decoration:underline;'>افتح أداة توليد التصنيفات ↗</a><br><span style='color:#374151;font-size:13px;line-height:1.6;display:block;margin-top:10px;'>ملاحظة: يُفضّل أن تكون صور الماركات وصور السيارات بصيغة PNG وبخلفية شفافة (بدون خلفية) للحصول على أفضل ظهور.</span></div>",
                     "conditions": [
                         {
                             "id": "use_custom_json",
@@ -7554,7 +7570,7 @@
                     "type": "string",
                     "format": "image",
                     "label": "صورة المنتج الجانبية",
-                    "description": "صورة يتم عرضها في العمود الأيمن للمكون.",
+                    "description": "صورة يتم عرضها في العمود الأيمن للمكون. يُفضّل أن تكون صورة المنتج بصيغة PNG وبخلفية شفافة (بدون خلفية).",
                     "icon": "sicon-image",
                     "value": "https://cdn.files.salla.network/homepage/1573552885/bc93f710-82c6-4fe2-92d9-419d6d0aa1b9.webp",
                     "required": false
@@ -10278,7 +10294,7 @@
                             "value": null,
                             "required": true,
                             "format": "image",
-                            "description": "صورة المنتج التي تظهر في منتصف السلايدر"
+                            "description": "صورة المنتج التي تظهر في منتصف السلايدر. يُفضّل أن تكون بصيغة PNG وبخلفية شفافة (بدون خلفية)."
                         },
                         {
                             "type": "string",
