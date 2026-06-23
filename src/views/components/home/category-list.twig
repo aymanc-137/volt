@@ -49,7 +49,7 @@
 {% set slas_angle = slas_hbg_type == 'vertical' ? '90' : (slas_hbg_type == 'horizontal' ? '0' : '135') %}
 
 {# Title typography/color controls are handled by the shared section-title partial #}
-<section
+<section data-volt-component="home.category-list"
     class="z-10 s-block--categories py-8 md:py-16 relative overflow-hidden pb-24 {{ enable_border ? 'border-y border-[var(--color-primary)]' : '' }} {{ slashbg ? 'slash-bg-' ~ position ~ ' dynamic-bg-color' : '' }}"
 >
     {% if marquee %}

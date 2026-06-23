@@ -54,7 +54,7 @@
 
 {% set brands = component.brands|default([]) %}
 
-<section class="brands-volt relative z-10 overflow-hidden
+<section data-volt-component="home.brands-volt" class="brands-volt relative z-10 overflow-hidden
  {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} 
   {{ slashbg ? 'slash-bg-' ~ position ~ ' dynamic-bg-color' : ''}}">
     {% if glow_type == 'circles' %}

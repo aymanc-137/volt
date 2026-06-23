@@ -35,7 +35,7 @@
 {% elseif tc_hl_type == 'custom' %}{% set tc_hl_attr = 'style="color: ' ~ (component.highlight_word_color | default('#FF3B3B')) ~ '"' %}
 {% else %}{% set tc_hl_attr = 'class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent"' %}{% endif %}
 
-<section class=" faq-component">
+<section data-volt-component="home.faq" class=" faq-component">
   <div class="container">
     <div class="faq-component__wrapper">
       <!-- Header Section -->

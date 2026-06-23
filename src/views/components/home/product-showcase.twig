@@ -50,7 +50,7 @@
 {% set slas_angle = slas_hbg_type == 'vertical' ? '90' : (slas_hbg_type == 'horizontal' ? '0' : '135') %}
 
 {% if products | length %}
-<section
+<section data-volt-component="home.product-showcase"
   class="s-block s-block--product-showcase relative overflow-hidden {{ enable_border ? 'border-y border-[var(--color-primary)]' : '' }} {{ slashbg ? 'slash-bg-' ~ position ~ ' dynamic-bg-color' : '' }}"
   id="{{ uid }}-section"
 >

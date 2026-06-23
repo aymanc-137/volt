@@ -77,7 +77,7 @@
 {% set slas_angle = slas_hbg_type == 'vertical' ? '90' : (slas_hbg_type == 'horizontal' ? '0' : '135') %}
 
 {% if before_image and after_image %}
-<section
+<section data-volt-component="home.before-after"
   id="{{ uid }}-section"
   class="s-block s-block--before-after {{ enable_border ? 'border-y border-[var(--color-primary)]' : '' }} {{ slashbg ? 'slash-bg-' ~ position ~ ' dynamic-bg-color' : '' }}"
 >

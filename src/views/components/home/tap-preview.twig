@@ -35,7 +35,7 @@
 {% set glow_c1 = glow_use_theme ? 'var(--color-primary)'  : (component.glow_color_1 ?? 'var(--color-primary)') %}
 {% set glow_c2 = glow_use_theme ? 'var(--color-scandary)' : (component.glow_color_2 ?? 'var(--color-scandary)') %}
 
-<section class="z-10 tap-preview-component overflow-hidden relative {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} {{ slashbg ? 'slash-bg-' ~ position ~ ' dynamic-bg-color' : ''}}  " dir="rtl">
+<section data-volt-component="home.tap-preview" class="z-10 tap-preview-component overflow-hidden relative {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} {{ slashbg ? 'slash-bg-' ~ position ~ ' dynamic-bg-color' : ''}}  " dir="rtl">
 
       {% if glow_type == 'circles' %}
     <div class="absolute top-[15%] left-[25%] w-64 h-64 rounded-full blur-3xl opacity-60 pointer-events-none" style="z-index:-1; background-color:{{ glow_c1 }};"></div>

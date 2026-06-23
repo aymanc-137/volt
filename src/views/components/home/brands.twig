@@ -16,7 +16,7 @@
 {% elseif tc_color_type == 'custom' %}{% set tc_color_style = 'color: ' ~ (component.title_color | default('#2C3E50')) ~ ';' %}
 {% else %}{% set tc_color_style = '' %}{% endif %}
 {% set tc_size_style = 'font-size: clamp(' ~ (tc_size * 0.6)|round ~ 'px, 6vw, ' ~ tc_size ~ 'px);' %}
-<section class="s-block s-block--logos-slider s-block--full-bg bg-gray-100 pt-8 sm:pt-12 pb-8 sm:pb-20">
+<section data-volt-component="home.brands" class="s-block s-block--logos-slider s-block--full-bg bg-gray-100 pt-8 sm:pt-12 pb-8 sm:pb-20">
     <div class="container">
 
         {% if component.title or component.show_all %}

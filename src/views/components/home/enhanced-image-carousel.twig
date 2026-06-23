@@ -57,7 +57,7 @@
 {% elseif tc_hl_type == 'custom' %}{% set tc_hl_attr = 'style="color: ' ~ (component.highlight_word_color | default('#FF3B3B')) ~ '"' %}
 {% else %}{% set tc_hl_attr = 'class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent"' %}{% endif %}
 
- <section dir="ltr" class="w-full relative" id="{{ block_id }}">
+ <section data-volt-component="home.enhanced-image-carousel" dir="ltr" class="w-full relative" id="{{ block_id }}">
     {# Responsive height driven by the merchant `carousel_height` setting.
        Rendered per-instance (each carousel may use a different height); the
        #id selector overrides defaults and keeps the layout responsive. #}

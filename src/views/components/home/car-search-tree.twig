@@ -35,7 +35,7 @@
 {% set tc_size_style = 'font-size: clamp(' ~ (tc_size * 0.6)|round ~ 'px, 6vw, ' ~ tc_size ~ 'px);' %}
 {% set tc_sub_style = 'font-size: clamp(' ~ (tc_sub * 0.8)|round ~ 'px, 2.5vw, ' ~ tc_sub ~ 'px);' %}
 
-<section class="car-search-tree-block  border-y dynamic-border-color  " id="{{ tree_component_id }}"
+<section data-volt-component="home.car-search-tree" class="car-search-tree-block  border-y dynamic-border-color  " id="{{ tree_component_id }}"
          data-categories='{{ categories_payload|e('html_attr') }}'
          data-custom-mode="{{ component.use_custom_json ? 'true' : 'false' }}"
          data-custom-json='{{ component.custom_json_data|default('')|e('html_attr') }}'

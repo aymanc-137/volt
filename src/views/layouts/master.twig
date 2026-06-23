@@ -347,18 +347,23 @@ overflow-x-hidden {% hook 'body:classes' %}
    in the console. #}
 <script>
 (function () {
-  var FORCE   = location.search.indexOf('imgsizes') !== -1;
-  var PREVIEW = {{ (theme.mode == 'preview') ? 'true' : 'false' }};
-  if (!FORCE && !PREVIEW) return;
-
   function file(src) {
     try { return new URL(src, location.href).pathname.split('/').pop() || src; }
     catch (e) { return src; }
   }
-  // Closest identifying ancestor (component id or section classes)
+  // Identify the owning component: prefer the data-component attribute, then
+  // fall back to the nearest element id or <section> classes.
   function ctx(el) {
     var node = el;
-    for (var i = 0; i < 10 && node; i++) {
+    for (var i = 0; i < 14 && node; i++) {
+      if (node.getAttribute) {
+        var dc = node.getAttribute('data-volt-component');
+        if (dc) return dc;
+      }
+      node = node.parentElement;
+    }
+    node = el;
+    for (var j = 0; j < 14 && node; j++) {
       node = node.parentElement;
       if (!node) break;
       if (node.id) return '#' + node.id;

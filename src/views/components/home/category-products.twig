@@ -45,7 +45,7 @@
 {% set glow_c2 = glow_use_theme ? 'var(--color-scandary)' : (component.glow_color_2 ?? 'var(--color-scandary)') %}
 
 <!-- The class "p-4" was changed to "py-4" to remove horizontal padding -->
-<section class=" z-10 flex items-center overflow-hidden relative justify-center {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} {{ slashbg ? 'slash-bg-' ~ position ~ ' dynamic-bg-color' : ''}}">
+<section data-volt-component="home.category-products" class=" z-10 flex items-center overflow-hidden relative justify-center {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} {{ slashbg ? 'slash-bg-' ~ position ~ ' dynamic-bg-color' : ''}}">
     {% if glow_type == 'circles' %}
     <div class="absolute top-[15%] left-[25%] w-64 h-64 rounded-full blur-3xl opacity-60 pointer-events-none" style="z-index:-1; background-color:{{ glow_c1 }};"></div>
     <div class="absolute bottom-[15%] right-[25%] w-56 h-56 rounded-full blur-3xl opacity-60 pointer-events-none" style="z-index:-1; background-color:{{ glow_c2 }};"></div>

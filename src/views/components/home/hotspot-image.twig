@@ -54,7 +54,7 @@
 {% set dot_accent = component.dot_accent_color ?? '#a855f7' %}
 
 {% if image %}
-<section id="{{ uid }}-section" class="s-block s-block--hotspot-image">
+<section data-volt-component="home.hotspot-image" id="{{ uid }}-section" class="s-block s-block--hotspot-image">
 
   <style>
     #{{ uid }}-section {
@@ -219,10 +219,10 @@
       try {
         hotspots = JSON.parse(stage.dataset.hotspots || '[]');
       } catch (e) {
-        console.error(LOG, 'failed to parse hotspots JSON:', e);
+      //  console.error(LOG, 'failed to parse hotspots JSON:', e);
         return;
       }
-      console.log(LOG, 'hotspots:', hotspots);
+     // console.log(LOG, 'hotspots:', hotspots);
 
       if (!Array.isArray(hotspots) || !hotspots.length) {
         console.warn(LOG, 'no hotspots configured');

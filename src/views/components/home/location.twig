@@ -35,7 +35,7 @@
 {% set tc_size_style = 'font-size: clamp(' ~ (tc_size * 0.6)|round ~ 'px, 6vw, ' ~ tc_size ~ 'px);' %}
 {% set tc_sub_style = 'font-size: clamp(' ~ (tc_sub * 0.8)|round ~ 'px, 2.5vw, ' ~ tc_sub ~ 'px);' %}
 
-<section class="s-block s-block--locations py-12 md:py-16 {{ enable_border ? 'border-y border-[var(--color-primary)]' : '' }}">
+<section data-volt-component="home.location" class="s-block s-block--locations py-12 md:py-16 {{ enable_border ? 'border-y border-[var(--color-primary)]' : '' }}">
     <div class="container">
         <!-- Section Header -->
         {% if title or description %}

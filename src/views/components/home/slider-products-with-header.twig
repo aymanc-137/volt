@@ -21,7 +21,7 @@
 {% else %}{% set tc_color_style = '' %}{% endif %}
 {% set tc_size_style = 'font-size: clamp(' ~ (tc_size * 0.6)|round ~ 'px, 6vw, ' ~ tc_size ~ 'px);' %}
 {% set tc_sub_style = 'font-size: clamp(' ~ (tc_sub * 0.8)|round ~ 'px, 2.5vw, ' ~ tc_sub ~ 'px);' %}
-<section class="s-block s-block--slider-with-bg s-block--full-bg">
+<section data-volt-component="home.slider-products-with-header" class="s-block s-block--slider-with-bg s-block--full-bg">
     <div class="slider-bg" style="background-image: url('{{ component.background }}');">
         <div class="container pt-8 sm:pt-20 relative">
             <div>

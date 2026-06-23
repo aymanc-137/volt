@@ -43,7 +43,7 @@
 {% endif %}
 
  
-<section class="z-10 overflow-hidden {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} py-20 relative {{ slashbg ? 'slash-bg-' ~ position ~ ' dynamic-bg-color' : ''}} pb-32">
+<section data-volt-component="home.larage-category-image" class="z-10 overflow-hidden {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} py-20 relative {{ slashbg ? 'slash-bg-' ~ position ~ ' dynamic-bg-color' : ''}} pb-32">
 	{% if glow_type == 'circles' %}
 	<div class="absolute top-[15%] left-[25%] w-64 h-64 rounded-full blur-3xl opacity-60 pointer-events-none" style="z-index:-1; background-color:{{ glow_c1 }};"></div>
 	<div class="absolute bottom-[15%] right-[25%] w-56 h-56 rounded-full blur-3xl opacity-60 pointer-events-none" style="z-index:-1; background-color:{{ glow_c2 }};"></div>
