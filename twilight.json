@@ -2954,7 +2954,7 @@
                             "type": "string",
                             "format": "image",
                             "label": "صورة الخلفية",
-                            "description": "* المقاس المناسب للصورة هو 250 × 280 بكسل . ويُفضّل أن تكون الصورة بصيغة PNG وبخلفية شفافة (بدون خلفية).",
+                            "description": "* المقاس المناسب للصورة هو 300 × 300 بكسل . ويُفضّل أن تكون الصورة بصيغة PNG وبخلفية شفافة (بدون خلفية).",
                             "labelHTML": null,
                             "placeholder": "e.g. https://hostname.com/image.png",
                             "icon": "sicon-image",
@@ -10294,7 +10294,7 @@
                             "value": null,
                             "required": true,
                             "format": "image",
-                            "description": "صورة المنتج التي تظهر في منتصف السلايدر. يُفضّل أن تكون بصيغة PNG وبخلفية شفافة (بدون خلفية)."
+                            "description": "صورة المنتج التي تظهر في منتصف السلايدر. يُفضّل أن تكون بصيغة PNG وبخلفية شفافة (بدون خلفية). * المقاس المناسب للصورة هو 600×600 بكسل."
                         },
                         {
                             "type": "string",
@@ -11057,7 +11057,7 @@
                     "type": "string",
                     "format": "image",
                     "label": "صورة (قبل)",
-                    "description": "الصورة التي تظهر على يمين الفاصل",
+                    "description": "الصورة التي تظهر على يمين الفاصل. * المقاس المناسب للصورة هو 1280×800 بكسل",
                     "icon": "sicon-image",
                     "value": "https://cdn.lamsaweb.com/cdnVolt/before.jpg",
                     "required": true
@@ -11067,7 +11067,7 @@
                     "type": "string",
                     "format": "image",
                     "label": "صورة (بعد)",
-                    "description": "الصورة التي تظهر على يسار الفاصل",
+                    "description": "الصورة التي تظهر على يسار الفاصل. * المقاس المناسب للصورة هو 1280×800 بكسل",
                     "icon": "sicon-image",
                     "value": "https://cdn.lamsaweb.com/cdnVolt/after.jpg",
                     "required": true
