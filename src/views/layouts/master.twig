@@ -156,14 +156,15 @@ style=" overflow-y: scroll;"
 
         }
 
-.main-bg-testing {
-    background-image: linear-gradient(145deg,#000000, #00123A, #023061 , #00123A ,#000000 );
-    background-size: 100% 100%;
-    background-attachment: fixed;    /* KEY: fixes background to viewport */
-    background-position: center;
-    background-repeat: no-repeat;
-}
+        .main-bg-testing {
+            background-image: linear-gradient(145deg,#000000, #00123A, #023061 , #00123A ,#000000 );
+            background-size: 100% 100%;
+            background-attachment: fixed;    /* KEY: fixes background to viewport */
+            background-position: center;
+            background-repeat: no-repeat;
+        }
     </style>
+    
     <script>
         (function () {
             var STORAGE_KEY = 'theme-mode';
@@ -277,7 +278,16 @@ overflow-x-hidden {% hook 'body:classes' %}
   {{ theme.settings.get('product_card_image_zoom', true) ? ' card-image-zoom-hover' : '' }}
   {{ theme.settings.get('product_card_glow', true) ? '' : ' no-card-glow' }}
   ">
-  <div class="loader-init"></div>
+  {% set loading_show_logo = theme.settings.get('loading_show_logo', true) and store.logo %}
+  {% set loading_bg_type = theme.settings.get('loading_background_type', 'color') %}
+  {% set loading_bg_color = theme.settings.get('loading_background_color', '#ffffff') %}
+  {% set loading_logo_anim = theme.settings.get('loading_logo_animation', 'pulse') %}
+  <div class="loader-init {{ loading_show_logo ? 'loader-init--has-logo' : '' }}" style="background: {{ loading_bg_color }};">
+    {% if loading_bg_type == 'blur' %}<div class="loader-blur-bg" aria-hidden="true"></div>{% endif %}
+    {% if loading_show_logo %}
+      <img src="{{ store.logo }}" alt="{{ store.name }}" class="loader-logo {{ loading_logo_anim != 'none' ? 'animate-' ~ loading_logo_anim : '' }}">
+    {% endif %}
+  </div>
 <noscript>
     To get full functionality of this site you need to enable JavaScript. Here is how
     <a href="https://www.enable-javascript.com/" rel="noreferrer"

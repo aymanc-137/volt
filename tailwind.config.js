@@ -1,5 +1,13 @@
 module.exports = {
     important: false,
+    // Loading-screen logo animations are chosen at runtime (animate-{{ setting }}),
+    // so safelist them to survive JIT purge.
+    safelist: [
+        'animate-pulse',
+        'animate-bounce',
+        'animate-spin',
+        'animate-ping',
+    ],
     content: [
         "src/views/**/*.twig",
         "src/assets/js/**/*.js",

@@ -482,6 +482,116 @@
         {
             "type": "static",
             "format": "title",
+            "id": "group-loading-screen",
+            "variant": "h6",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> شاشة التحميل</h6></div>"
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-image",
+            "label": "إظهار الشعار في شاشة التحميل",
+            "description": "عرض شعار المتجر أثناء تحميل الصفحة بدلاً من مؤشر التحميل الدائري",
+            "id": "loading_show_logo",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "id": "loading_logo_animation",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "حركة الشعار",
+            "description": "نوع حركة الشعار في شاشة التحميل",
+            "icon": "sicon-animation",
+            "source": "Manual",
+            "multichoice": false,
+            "required": false,
+            "selected": [
+                {
+                    "label": "نبض (Pulse)",
+                    "value": "pulse",
+                    "key": "loadanim-pulse"
+                }
+            ],
+            "options": [
+                {
+                    "label": "بدون حركة",
+                    "value": "none",
+                    "key": "loadanim-none"
+                },
+                {
+                    "label": "نبض (Pulse)",
+                    "value": "pulse",
+                    "key": "loadanim-pulse"
+                },
+                {
+                    "label": "قفز (Bounce)",
+                    "value": "bounce",
+                    "key": "loadanim-bounce"
+                },
+                {
+                    "label": "دوران (Spin)",
+                    "value": "spin",
+                    "key": "loadanim-spin"
+                },
+                {
+                    "label": "نبض متوسّع (Ping)",
+                    "value": "ping",
+                    "key": "loadanim-ping"
+                }
+            ],
+            "conditions": [
+                {
+                    "id": "loading_show_logo",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "loading_background_type",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "نوع خلفية شاشة التحميل",
+            "description": "خلفية بلون صلب أو خلفية ضبابية بتوهّج ناعم من ألوان المتجر",
+            "icon": "sicon-color-palette",
+            "source": "Manual",
+            "multichoice": false,
+            "required": false,
+            "selected": [
+                {
+                    "label": "لون صلب",
+                    "value": "color",
+                    "key": "loadbg-color"
+                }
+            ],
+            "options": [
+                {
+                    "label": "لون صلب",
+                    "value": "color",
+                    "key": "loadbg-color"
+                },
+                {
+                    "label": "ضبابية (توهّج ناعم)",
+                    "value": "blur",
+                    "key": "loadbg-blur"
+                }
+            ]
+        },
+        {
+            "type": "string",
+            "icon": "sicon-palette",
+            "label": "لون خلفية شاشة التحميل",
+            "description": "لون الخلفية، أو اللون الأساسي أسفل التوهّج عند اختيار الخلفية الضبابية",
+            "id": "loading_background_color",
+            "format": "color",
+            "required": false,
+            "value": "#ffffff"
+        },
+        {
+            "type": "static",
+            "format": "title",
             "id": "group-appearance",
             "variant": "h6",
             "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> المظهر والألوان</h6></div>"

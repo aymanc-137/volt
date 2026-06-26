@@ -13,6 +13,7 @@
       background: white;
       transition: opacity 0.75s, visibility 0.75s;
       z-index: 9999;
+      overflow: hidden;
   }
 
   .loader-init--hidden {
@@ -20,6 +21,7 @@
       visibility: hidden;
   }
 
+  /* Default spinner — shown when no logo is configured */
   .loader-init::after {
       content: "";
       width: 36px;
@@ -28,6 +30,49 @@
       border-top-color: #5bd5c4;
       border-radius: 50%;
       animation: loading 0.75s ease infinite;
+      position: relative;
+      z-index: 1;
+  }
+  /* Hide the spinner when a logo is shown instead */
+  .loader-init--has-logo::after { content: none; }
+
+  /* Store logo */
+  .loader-logo {
+      width: auto;
+      height: auto;
+      max-width: 140px;
+      max-height: 140px;
+      object-fit: contain;
+      position: relative;
+      z-index: 1;
+  }
+
+  /* Blurred background: soft glowing blobs using the store's theme colors */
+  .loader-blur-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+  }
+  .loader-blur-bg::before,
+  .loader-blur-bg::after {
+      content: "";
+      position: absolute;
+      width: 45vmax;
+      height: 45vmax;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.55;
+  }
+  .loader-blur-bg::before {
+      background: var(--color-primary, #5bd5c4);
+      top: -12%;
+      inset-inline-start: -12%;
+  }
+  .loader-blur-bg::after {
+      background: var(--color-scandary, #FF3B3B);
+      bottom: -12%;
+      inset-inline-end: -12%;
   }
 
   @keyframes loading {
