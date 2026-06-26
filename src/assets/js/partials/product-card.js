@@ -337,6 +337,9 @@ class ProductCard extends HTMLElement {
     this.shadowOnHover?  this.classList.add('s-product-card-shadow') : '';
     this.product?.is_out_of_stock?  this.classList.add('s-product-card-out-of-stock') : '';
     this.isInWishlist = !salla.config.isGuest() && salla.storage.get('salla::wishlist', []).includes(Number(this.product.id));
+    this.effectiveStatus = (this.product.is_out_of_stock && window.notify_when_available_in_card && !['donating', 'financial_support'].includes(this.product?.type))
+      ? 'out-and-notify'
+      : this.product.status;
     this.innerHTML = `
         <!-- Animated border and glow elements -->
         <div class="product-card-volt__bottom-border"></div>
@@ -432,7 +435,7 @@ class ProductCard extends HTMLElement {
             `<div class="s-product-card-content-footer border-t border-primary pt-2 ">
               <salla-add-product-button    width="wide" class="volt"
                 product-id="${this.product.id}"
-                product-status="${this.product.status}"
+                product-status="${this.effectiveStatus}"
                 product-type="${this.product.type}">
                 ${this.product.status == 'sale' ? 
                     `<i class="text-base sicon-${ this.product.type == 'booking' ? 'calendar-time' : 'shopping-bag'}"></i>` : ``

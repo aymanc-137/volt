@@ -1095,6 +1095,7 @@
             },
             "icon": "sicon-image-carousel",
             "path": "home.enhanced-slider",
+            "is_default": true,
             "image": "https://cdn.salla.network/images/themes/raed/preview-images/images-slider-enhancement.png?v=1.1",
             "fields": [
                 {
@@ -1196,6 +1197,7 @@
             },
             "icon": "sicon-layout-grid-rearrange",
             "path": "home.main-links",
+            "is_default": true,
             "image": "https://cdn.salla.network/images/themes/raed/main-links-with-bg.jpg?v=1.1",
             "fields": [
                 {
@@ -1709,6 +1711,7 @@
             },
             "icon": "sicon-image",
             "path": "home.enhanced-square-banners",
+            "is_default": true,
             "image": "https://cdn.salla.network/images/themes/raed/preview-images/square-images.png?v=1.1",
             "fields": [
                 {
@@ -1890,6 +1893,7 @@
             },
             "icon": "sicon-award-ribbon",
             "path": "home.brands",
+            "is_default": true,
             "image": "https://cdn.salla.network/images/themes/raed/preview-images/brands.png?v=1.1",
             "fields": [
                 {
@@ -2030,6 +2034,7 @@
             },
             "icon": "sicon-chat-bubbles",
             "path": "home.custom-testimonials",
+            "is_default": true,
             "image": "https://cdn.salla.network/images/themes/raed/preview-images/custom-testimonials.png?v=1.1",
             "fields": [
                 {
