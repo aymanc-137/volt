@@ -3567,6 +3567,17 @@
                     "maxLength": 200
                 },
                 {
+                    "id": "enable_colored_word",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "تمييز كلمة داخل العنوان بلون",
+                    "description": "عند التفعيل يمكنك اختيار كلمة من العنوان وتلوينها بلون مميّز أو تدرّج",
+                    "icon": "sicon-magic-wand",
+                    "value": true,
+                    "selected": true,
+                    "required": false
+                },
+                {
                     "id": "colored_word",
                     "type": "string",
                     "format": "text",
@@ -3579,7 +3590,14 @@
                     "multilanguage": true,
                     "required": false,
                     "minLength": 0,
-                    "maxLength": 100
+                    "maxLength": 100,
+                    "conditions": [
+                        {
+                            "id": "enable_colored_word",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
                 },
                 {
                     "id": "description",
@@ -3735,7 +3753,14 @@
                             "key": "hl-color-custom"
                         }
                     ],
-                    "required": false
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "enable_colored_word",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
                 },
                 {
                     "id": "highlight_word_color",
@@ -3751,6 +3776,11 @@
                             "id": "highlight_word_color_type",
                             "operation": "=",
                             "value": "custom"
+                        },
+                        {
+                            "id": "enable_colored_word",
+                            "operation": "=",
+                            "value": true
                         }
                     ]
                 },

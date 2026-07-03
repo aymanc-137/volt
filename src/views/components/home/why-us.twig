@@ -160,7 +160,7 @@
   </div>
 </section>
 
-{% if component.colored_word %}
+{% if component.enable_colored_word and component.colored_word %}
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const titleEl = document.getElementById('why-us-title-{{ position }}');
