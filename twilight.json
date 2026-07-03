@@ -136,7 +136,7 @@
                     "key": "volt-header-menu-beside-logo"
                 },
                 {
-                    "label": "الشعار في المنتصف مع القائمة الجانبية المنسدلة (Drawer)",
+                    "label": "الشعار في المنتصف مع القائمة الجانبية المنسدلة ",
                     "value": "centered_logo_drawer",
                     "key": "volt-header-centered-logo-drawer"
                 }
@@ -2230,7 +2230,7 @@
                 },
                 {
                     "id": "show_car_search",
-                    "label": "عرض محرك بحث السيارات على الكاروسيل",
+                    "label": "عرض محرك بحث السيارات  داخل المكون",
                     "description": "يضيف مربع بحث السيارات على الجانب الآخر من النص في السلايدر — يتم تحميله من إعدادات مكوّن شجرة البحث",
                     "type": "boolean",
                     "format": "switch",
