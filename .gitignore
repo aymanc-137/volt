@@ -6,6 +6,8 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+CLAUDE.md
+MARKETING.md
 worker/
 
 # Dependency directories
