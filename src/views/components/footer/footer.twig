@@ -87,18 +87,18 @@
 
 	{# Email subscription bar — top of the footer #}
 	{% if email_list_active %}
-		<div class="footer-email-top container py-6 dynamic-text-color">
-			<div class="max-w-2xl mx-auto text-center">
-				<h3 class="m-0">{{ email_list_title }}</h3>
+		<div class="footer-email-top container py-4">
+			<div class="max-w-xl mx-auto text-center dynamic-bg-color-40 backdrop-blur-sm border dynamic-border-color dynamic-text-color rounded-custom px-5 py-4">
+				<h3 class="m-0 leading-tight">{{ email_list_title }}</h3>
 				{% if email_list_desc %}
-					<p class="text-sm mt-2 opacity-70 leading-6">{{ email_list_desc }}</p>
+					<p class="text-sm mt-1 opacity-70 leading-snug">{{ email_list_desc }}</p>
 				{% endif %}
-				<form action="{{ email_list_url }}" method="get" target="_blank" rel="noopener" class="flex flex-col sm:flex-row gap-3 mt-4 max-w-md mx-auto">
+				<form action="{{ email_list_url }}" method="get" target="_blank" rel="noopener" class="flex flex-row items-stretch gap-2 mt-3">
 					<input type="email" name="email" required
 						placeholder="{{ email_list_placeholder|e('html_attr') }}"
 						aria-label="{{ email_list_placeholder|e('html_attr') }}"
-						class="form-input flex-1 dynamic-bg-color dynamic-border-color rounded-custom">
-					<button type="submit" class="btn btn--primary whitespace-nowrap">{{ email_list_button }}</button>
+						class="form-input flex-1 min-w-0 dynamic-bg-color dynamic-border-color rounded-custom">
+					<button type="submit" class="btn btn--primary !flex-none !px-5 whitespace-nowrap">{{ email_list_button }}</button>
 				</form>
 			</div>
 		</div>
