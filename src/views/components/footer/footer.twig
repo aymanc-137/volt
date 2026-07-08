@@ -88,10 +88,12 @@
 	{# Email subscription bar — top of the footer #}
 	{% if email_list_active %}
 		<div class="footer-email-top container py-4">
-			<div class="max-w-xl mx-auto text-center dynamic-bg-color-40 backdrop-blur-sm border dynamic-border-color dynamic-text-color rounded-custom px-5 py-4">
+			<div class=" w-full dynamic-bg-color-40
+       backdrop-blur-sm border dynamic-border-color
+       dynamic-text-color   ">
 				<h3 class="m-0 leading-tight">{{ email_list_title }}</h3>
 				{% if email_list_desc %}
-					<p class="text-sm mt-1 opacity-70 leading-snug">{{ email_list_desc }}</p>
+					<p class="text-sm     ">{{ email_list_desc }}</p>
 				{% endif %}
 				<form action="{{ email_list_url }}" method="get" target="_blank" rel="noopener" class="flex flex-row items-stretch gap-2 mt-3">
 					<input type="email" name="email" required
