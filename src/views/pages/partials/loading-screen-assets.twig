@@ -47,34 +47,6 @@
       z-index: 1;
   }
 
-  /* Blurred background: soft glowing blobs using the store's theme colors */
-  .loader-blur-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-  }
-  .loader-blur-bg::before,
-  .loader-blur-bg::after {
-      content: "";
-      position: absolute;
-      width: 45vmax;
-      height: 45vmax;
-      border-radius: 50%;
-      filter: blur(90px);
-      opacity: 0.55;
-  }
-  .loader-blur-bg::before {
-      background: var(--color-primary, #5bd5c4);
-      top: -12%;
-      inset-inline-start: -12%;
-  }
-  .loader-blur-bg::after {
-      background: var(--color-scandary, #FF3B3B);
-      bottom: -12%;
-      inset-inline-end: -12%;
-  }
-
   @keyframes loading {
       from {
         transform: rotate(0turn);
