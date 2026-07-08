@@ -56,13 +56,13 @@
         </nav>
         <h1 class="sr-only">{{ trans('blocks.header.cart') }}</h1>
         <salla-conditional-offer></salla-conditional-offer>
-        <div class="pt-5 flex flex-col items-start lg:flex-row pb-6 lg:pb-20">
+        <div class="pt-5 flex flex-col items-start lg:flex-row pb-32 lg:pb-20">
             <div class="main-content w-full lg:w-[calc(100%-384px)]">
                 {% hook 'cart:items.start' %}
 
                 {% for item in cart.items %}
                     <form onchange="salla.form.onChange('cart.updateItem', event)" id="item-{{ item.id }}">
-                        <section class="cart-item dynamic-bg-color dynamic-text-color p-5 xs:p-7 rounded-md mb-5 relative">
+                        <section class="cart-item bg-white p-5 xs:p-7 rounded-md mb-5 relative">
                             <input type="hidden" name="id" value="{{ item.id }}">
                                 <!-- product -->
                                 <div class="md:flex rtl:space-x-reverse md:space-x-12 items-start justify-between mb-8 last:mb-0">
@@ -88,7 +88,7 @@
                                             
                                         </a>
                                         <div class="space-y-1">
-                                            <h1 class="dynamic-text-color leading-6 text-lg">
+                                            <h1 class="text-gray-900 leading-6 text-lg">
                                                 <a href="{{ item.url }}" class="text-base">{{ item.product_name }}</a>
                                             </h1>
 
@@ -114,7 +114,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="border-t border-b dynamic-border-color py-3 md:p-0 md:border-none mt-5 md:mt-0 flex gap-8 justify-between items-center md:items-start">
+                                    <div class="border-t border-b border-gray-200 py-3 md:p-0 md:border-none mt-5 md:mt-0 flex gap-8 justify-between items-center md:items-start">
                                         {% if item.type == 'donating' %}
                                             <span></span>
                                         {% elseif item.is_hidden_quantity %}
@@ -175,7 +175,7 @@
             <!-- sidebar -->
             {% if cart.items|length %}
                 <div class="sticky top-24 w-full lg:w-96 rtl:lg:mr-8 ltr:lg:ml-8">
-                    <div class="shadow-default dynamic-bg-color dynamic-text-color p-5 xs:p-7 rounded-md mb-5 relative {{ cart.free_shipping_bar ? '' : 'hidden' }}" id="free-shipping">
+                    <div class="shadow-default bg-white p-5 xs:p-7 rounded-md mb-5 relative {{ cart.free_shipping_bar ? '' : 'hidden' }}" id="free-shipping">
                         <div class="flex rtl:space-x-reverse space-x-3 items-center">
                             <i class="bg-primary text-white rounded-icon sicon-shipping-fast {{ theme.is_rtl ? 'flip-x':'' }}"></i>
                             {% set is_free=cart.free_shipping_bar.has_free_shipping %}
@@ -197,26 +197,25 @@
                             </div>
                         </div>
                     </div>
-                   {% if loyalty %}
+                    {% if loyalty %}
                         <salla-loyalty-panel
                             prize-points='{{ loyalty.prize.points }}'
                             prize-title='{{ loyalty.prize.title }}'>
                         </salla-loyalty-panel>
                     {% endif %}
 
-                    <div id="cart-gifting" class="shadow-default dynamic-bg-color dynamic-text-color xs:p-2 rounded-md mb-5 relative  {{gift.enabled ? '' : 'hidden' }}">
+                    <div id="cart-gifting" class="shadow-default bg-white xs:p-2 rounded-md mb-5 relative  {{gift.enabled ? '' : 'hidden' }}">
                         <salla-gifting id="salla-gifting" class="mt-5" widget-title="{{ trans("pages.cart.gift_widget_title") }}"  widget-subtitle="{{ gift.text }}" class="mt-5" {{gift.type}}-products  vertical></salla-gifting>
                     </div>
 
                     {% if store.settings.cart.apply_coupon_enabled %}
-                        <div class="shadow-default dynamic-bg-color dynamic-text-color px-5 xs:px-7 rounded-md mt-5 lg:mt-0 mb-5 relative">
+                        <div class="shadow-default bg-white px-5 xs:px-7 rounded-md mt-5 lg:mt-0 mb-5 relative">
                             {% hook 'cart:coupon.start' %}
                             <salla-cart-coupons></salla-cart-coupons>
                             {% hook 'cart:coupon.end' %}
                         </div>
                     {% endif %}
 
-                    {# Cart totals + checkout button — rendered and kept in sync by Salla #}
                     {% hook 'cart:summary-card.start' %}
                     <salla-cart-summary-card></salla-cart-summary-card>
                     {% hook 'cart:summary-card.end' %}
@@ -228,8 +227,4 @@
             {% endif %}
         </div>
     </div>
-{% endblock %}
-
-{% block scripts %}
-    <script defer src="{{ 'checkout.js' | asset }}"></script>
 {% endblock %}

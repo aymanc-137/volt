@@ -6,11 +6,7 @@ class Cart extends BasePage {
         salla.event.cart.onUpdated(data => this.updateCartPageInfo(data));
 
         app.watchElements({
-            subTotal: '#sub-total',
-            orderOptionsTotal: '#cart-options-total',
-            totalDiscount: '#total-discount',
-            taxAmount: '#tax-amount',
-            shippingCost: '#shipping-cost',
+            // Cart totals are rendered by <salla-cart-summary-card>, which self-updates.
             freeShipping: '#free-shipping',
             freeShippingBar: '#free-shipping-bar',
             freeShippingMsg: '#free-shipping-msg',
@@ -101,17 +97,9 @@ class Cart extends BasePage {
         // update each item data
         cartData.items?.forEach(item => this.updateItemInfo(item));
 
-        app.subTotal.innerHTML = salla.money(cartData.sub_total);
-        if(app.taxAmount) 
-          app.taxAmount.innerHTML = salla.money(cartData.tax_amount);
-        if (app.orderOptionsTotal) app.orderOptionsTotal.innerHTML = salla.money(cartData.options_total);
-        
-        app.toggleElementClassIf(app.totalDiscount, 'discounted', 'hidden', () => !!cartData.total_discount)
-            .toggleElementClassIf(app.shippingCost, 'has_shipping', 'hidden', () => !!cartData.real_shipping_cost && !cartData.free_shipping_bar?.has_free_shipping) 
-            .toggleElementClassIf(app.freeShipping, 'has_free', 'hidden', () => !!cartData.free_shipping_bar);
-
-        app.totalDiscount.querySelector('b').innerHTML = '- ' + salla.money(cartData.total_discount);
-        app.shippingCost.querySelector('b').innerHTML = salla.money(cartData.real_shipping_cost);
+        // Totals (sub-total, discount, tax, shipping, final) + the checkout button are now
+        // rendered by <salla-cart-summary-card>, which keeps itself in sync — no manual DOM updates.
+        app.toggleElementClassIf(app.freeShipping, 'has_free', 'hidden', () => !!cartData.free_shipping_bar);
 
         if (!cartData.free_shipping_bar) {
             return;
