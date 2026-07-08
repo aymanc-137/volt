@@ -30149,12 +30149,11 @@ input[type=radio].sr-only:checked ~ div.dropdown__menu {
   }
 }
 }
-.s-user-menu-trigger-avatar-only .s-user-menu-trigger-avatar {
+.s-user-menu-trigger-avatar-only .s-user-menu-trigger-avatar{
+    border-width: 1px;
+    border-color: var(--color-primary-dark);
+    padding: 0.25rem;
   border-radius: var(--border-radius);
-  border-color: var(--color-border);
-}
-.s-user-menu-trigger-avatar-only .s-user-menu-trigger-avatar:is(.dark *){
-    border-color: var(--color-border-dark);
 }
 @media (max-width: 768px) {
   .single-order-header-item{
