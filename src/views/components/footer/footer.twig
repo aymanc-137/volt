@@ -88,9 +88,10 @@
 	{# Email subscription bar — top of the footer #}
 	{% if email_list_active %}
 		<div class="footer-email-top w-full  ">
-			<div class=" md:w-1/2 mx-auto p-1 w-full dynamic-bg-color-40
+			<div class="  mx-auto    dynamic-bg-color-40
        backdrop-blur-sm border dynamic-border-color
        dynamic-text-color   ">
+       <div class="p-4 container">
 				<h3 class="m-0 leading-tight">{{ email_list_title }}</h3>
 				{% if email_list_desc %}
 					<p class="text-sm     ">{{ email_list_desc }}</p>
@@ -102,6 +103,7 @@
 						class="form-input flex-1 min-w-0 dynamic-bg-color dynamic-border-color rounded-custom">
 					<button type="submit" class="btn btn--primary !flex-none !px-5 whitespace-nowrap">{{ email_list_button }}</button>
 				</form>
+        </div>
 			</div>
 		</div>
 	{% endif %}
