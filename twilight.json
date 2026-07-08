@@ -1018,6 +1018,117 @@
         },
         {
             "type": "static",
+            "format": "description",
+            "id": "group-footer-email",
+            "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>قائمة النشرة البريدية</strong></div>"
+        },
+        {
+            "id": "footer_email_list_enabled",
+            "type": "boolean",
+            "format": "switch",
+            "icon": "sicon-mail",
+            "label": "تفعيل قسم الاشتراك بالبريد في الفوتر",
+            "description": "يضيف عموداً إضافياً في الفوتر يحتوي على نموذج إدخال البريد الإلكتروني",
+            "value": false,
+            "selected": false,
+            "required": false
+        },
+        {
+            "id": "footer_email_list_url",
+            "type": "string",
+            "format": "text",
+            "icon": "sicon-link",
+            "label": "رابط الاشتراك (URL)",
+            "description": "الرابط الذي يُوجّه إليه الزائر عند إدخال بريده والضغط على زر الاشتراك (يُمرّر البريد كمعامل email)",
+            "placeholder": "https://example.com/subscribe",
+            "value": null,
+            "required": false,
+            "conditions": [
+                {
+                    "id": "footer_email_list_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "footer_email_list_title",
+            "type": "string",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "label": "عنوان القسم",
+            "description": null,
+            "placeholder": "النشرة البريدية",
+            "value": "النشرة البريدية",
+            "multilanguage": true,
+            "required": false,
+            "conditions": [
+                {
+                    "id": "footer_email_list_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "footer_email_list_desc",
+            "type": "string",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "label": "وصف مختصر (اختياري)",
+            "description": null,
+            "placeholder": "اشترك ليصلك كل جديد",
+            "value": null,
+            "multilanguage": true,
+            "required": false,
+            "conditions": [
+                {
+                    "id": "footer_email_list_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "footer_email_list_placeholder",
+            "type": "string",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "label": "النص التلميحي لحقل البريد",
+            "description": null,
+            "placeholder": "أدخل بريدك الإلكتروني",
+            "value": "أدخل بريدك الإلكتروني",
+            "multilanguage": true,
+            "required": false,
+            "conditions": [
+                {
+                    "id": "footer_email_list_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "footer_email_list_button",
+            "type": "string",
+            "format": "text",
+            "icon": "sicon-format-text-alt",
+            "label": "نص زر الاشتراك",
+            "description": null,
+            "placeholder": "اشتراك",
+            "value": "اشتراك",
+            "multilanguage": true,
+            "required": false,
+            "conditions": [
+                {
+                    "id": "footer_email_list_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "type": "static",
             "format": "title",
             "id": "group-product-page",
             "variant": "h6",

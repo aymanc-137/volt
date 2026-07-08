@@ -12,6 +12,15 @@
 {% set footer_slas_type = theme.settings.get('footer_slash_bg_type') | default('inclined') %}
 {% set footer_slas_angle = footer_slas_type == 'vertical' ? '90' : (footer_slas_type == 'horizontal' ? '0' : '135') %}
 
+{# ---- Footer email-list (newsletter) column — posts email to a merchant URL ---- #}
+{% set email_list_enabled = theme.settings.get('footer_email_list_enabled') ?? false %}
+{% set email_list_url = theme.settings.get('footer_email_list_url') | default('') %}
+{% set email_list_active = email_list_enabled and email_list_url %}
+{% set email_list_title = theme.settings.get('footer_email_list_title') | default('النشرة البريدية') %}
+{% set email_list_desc = theme.settings.get('footer_email_list_desc') | default('') %}
+{% set email_list_placeholder = theme.settings.get('footer_email_list_placeholder') | default('أدخل بريدك الإلكتروني') %}
+{% set email_list_button = theme.settings.get('footer_email_list_button') | default('اشتراك') %}
+
 <style>
   .store-footer__bg-text-wrap {
     position: absolute;
@@ -66,7 +75,7 @@
 		</div>
 	{% endif %}
 	<hr class="w-full border-t dynamic-border-color " >
-		<div class="container dynamic-bg-color-40 backdrop-blur-sm border-x   dynamic-border-color  grid grid-col-1 lg:grid-cols-4 gap-0">
+		<div class="container dynamic-bg-color-40 backdrop-blur-sm border-x   dynamic-border-color  grid grid-col-1 {{ email_list_active ? 'lg:grid-cols-5' : 'lg:grid-cols-4' }} gap-0">
 			<div class="lg:col-span-2 rtl:lg:pl-20 ltr:lg:pr-20
 					border-l
 					dynamic-border-color
@@ -137,6 +146,25 @@
 					<salla-social></salla-social>
 				</div>
 			</div>
+
+			{% if email_list_active %}
+			<div class="border-l border-r
+			dynamic-border-color
+			dynamic-text-color
+			 p-8">
+				<h3>{{ email_list_title }}</h3>
+				{% if email_list_desc %}
+					<p class="text-sm mt-2 mb-4 opacity-70 leading-6">{{ email_list_desc }}</p>
+				{% endif %}
+				<form action="{{ email_list_url }}" method="get" target="_blank" rel="noopener" class="flex flex-col gap-3 mt-4">
+					<input type="email" name="email" required
+						placeholder="{{ email_list_placeholder|e('html_attr') }}"
+						aria-label="{{ email_list_placeholder|e('html_attr') }}"
+						class="form-input w-full dynamic-bg-color dynamic-border-color rounded-custom">
+					<button type="submit" class="btn btn--primary w-full">{{ email_list_button }}</button>
+				</form>
+			</div>
+			{% endif %}
 
 		</div>
  
