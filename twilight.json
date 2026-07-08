@@ -1128,15 +1128,39 @@
             ]
         },
         {
-            "id": "footer_apps_in_column",
-            "type": "boolean",
-            "format": "switch",
+            "id": "footer_apps_position",
+            "type": "items",
+            "format": "dropdown-list",
             "icon": "sicon-mobile",
-            "label": "عرض أيقونات تطبيقات المتجر في عمود مستقل",
-            "description": "عند التفعيل تظهر أيقونات تطبيقات المتجر في عمود منفصل بالفوتر، وعند التعطيل تظهر أسفل الشعار وأيقونات التواصل",
-            "value": false,
-            "selected": false,
-            "required": false
+            "label": "موضع أيقونات تطبيقات المتجر",
+            "description": "اختر مكان ظهور أيقونات تحميل التطبيق في الفوتر. خيار «بجانب النشرة» يعمل فقط عند تفعيل قسم النشرة البريدية.",
+            "source": "Manual",
+            "multichoice": false,
+            "required": false,
+            "selected": [
+                {
+                    "label": "أسفل الشعار وأيقونات التواصل",
+                    "value": "under",
+                    "key": "apps-pos-under"
+                }
+            ],
+            "options": [
+                {
+                    "label": "أسفل الشعار وأيقونات التواصل",
+                    "value": "under",
+                    "key": "apps-pos-under"
+                },
+                {
+                    "label": "بجانب نموذج النشرة البريدية (في الأعلى)",
+                    "value": "email",
+                    "key": "apps-pos-email"
+                },
+                {
+                    "label": "في عمود مستقل بالفوتر",
+                    "value": "column",
+                    "key": "apps-pos-column"
+                }
+            ]
         },
         {
             "type": "static",

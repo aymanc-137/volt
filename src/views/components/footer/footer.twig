@@ -21,8 +21,10 @@
 {% set email_list_placeholder = theme.settings.get('footer_email_list_placeholder') | default('أدخل بريدك الإلكتروني') %}
 {% set email_list_button = theme.settings.get('footer_email_list_button') | default('اشتراك') %}
 
-{# ---- Store-app icons position: under the logo/social box, or a separate column ---- #}
-{% set footer_apps_in_column = theme.settings.get('footer_apps_in_column') ?? false %}
+{# ---- Store-app icons position: under the logo/social box, next to the email bar, or a separate column ---- #}
+{% set apps_pos = theme.settings.get('footer_apps_position') | default('under') %}
+{# 'email' position only applies when the email bar is shown; otherwise fall back to 'under' #}
+{% if apps_pos == 'email' and not email_list_active %}{% set apps_pos = 'under' %}{% endif %}
 
 <style>
   .store-footer__bg-text-wrap {
@@ -92,7 +94,7 @@
        backdrop-blur-sm border dynamic-border-color
        dynamic-text-color   ">
 
-       <div class="p-4 flex justify-between container">
+       <div class="p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4 container">
                <div class="flex-1">
 
 				<span class="color-primary font-alshohadaa">{{ email_list_title }}</span>
@@ -107,8 +109,12 @@
 					<button type="submit" class="btn btn--primary !flex-none !px-5 whitespace-nowrap">{{ email_list_button }}</button>
 				</form>
 </div>
-        <div class="flex-1">
+        {% if apps_pos == 'email' %}
+        <div class="flex-1 flex flex-col items-center justify-center gap-2">
+          <span class="color-primary font-alshohadaa">{{ trans('blocks.footer.download_app') }}</span>
+          <salla-apps-icons class="block"></salla-apps-icons>
         </div>
+        {% endif %}
 
 
         </div>
@@ -120,7 +126,7 @@
 		<div class="container dynamic-bg-color-40
      backdrop-blur-sm border-x
         dynamic-border-color
-         grid grid-col-1 {{ footer_apps_in_column ? 'lg:grid-cols-5' : 'lg:grid-cols-4' }} gap-0">
+         grid grid-col-1 {{ apps_pos == 'column' ? 'lg:grid-cols-5' : 'lg:grid-cols-4' }} gap-0">
 			<div class="lg:col-span-2 
    
 					border-l
@@ -143,7 +149,7 @@
 					<salla-social class="block mb-6"></salla-social>
 				</div>
 
-				{% if not footer_apps_in_column %}
+				{% if apps_pos == 'under' %}
 					<salla-apps-icons class="block mt-4"></salla-apps-icons>
 				{% endif %}
 
@@ -195,7 +201,7 @@
 				</div>
 			</div>
 
-			{% if footer_apps_in_column %}
+			{% if apps_pos == 'column' %}
 			<div class="border-l border-r
 			dynamic-border-color
 			dynamic-text-color
