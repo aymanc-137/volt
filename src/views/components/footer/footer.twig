@@ -50,9 +50,13 @@
   }
   .store-footer__inner { position: relative; padding-top: 3rem; }
   .store-footer__inner > .container,
-  .store-footer__bottom { position: relative; z-index: 1; }
+  .store-footer__bottom { position: relative; z-index: 2; }
   {% if footer_slashbg %}
   .footer-slash-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
     background: linear-gradient(
       {{ footer_slas_angle }}deg,
       {{ footer_slas_use_primary ? 'var(--color-primary-10)' : footer_slas_color }} 25%,
@@ -68,11 +72,14 @@
 </style>
 
 <footer class="store-footer ">
-	<div aria-label="footer" class="store-footer__inner {{ footer_slashbg ? 'footer-slash-bg' : '' }} !pb-0 ">
+	<div aria-label="footer" class="store-footer__inner !pb-0 ">
 	{% if bg_text_enabled and bg_text %}
 		<div class="store-footer__bg-text-wrap" aria-hidden="true">
 			<span class="store-footer__bg-text">{{ bg_text }}</span>
 		</div>
+	{% endif %}
+	{% if footer_slashbg %}
+		<div class="footer-slash-bg" aria-hidden="true"></div>
 	{% endif %}
 	<hr class="w-full border-t dynamic-border-color " >
 		<div class="container dynamic-bg-color-40 backdrop-blur-sm border-x   dynamic-border-color  grid grid-col-1 {{ email_list_active ? 'lg:grid-cols-5' : 'lg:grid-cols-4' }} gap-0">
@@ -97,7 +104,6 @@
 					<salla-social class="block mb-6"></salla-social>
 				</div>
 
-				<salla-apps-icons class="block mt-4"></salla-apps-icons>
 
           {# trust badges #}
           <salla-trust-badges {% if theme.settings.get('footer_is_dark') %} dark {% endif %}></salla-trust-badges>
@@ -163,6 +169,9 @@
 						class="form-input w-full dynamic-bg-color dynamic-border-color rounded-custom">
 					<button type="submit" class="btn btn--primary w-full">{{ email_list_button }}</button>
 				</form>
+
+        				<salla-apps-icons class="block mt-4"></salla-apps-icons>
+
 			</div>
 			{% endif %}
 
