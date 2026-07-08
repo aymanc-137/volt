@@ -60,6 +60,6 @@
 
 .s-user-menu-trigger-avatar-only {
   .s-user-menu-trigger-avatar {
-    @apply  rounded-custom border p-1 border-primary-d;
+    @apply  rounded-custom border p-1 border-[var(--color-primary-50)];
   }
 }
