@@ -37562,11 +37562,11 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .md\:max-h-\[32rem\]{
         max-height: 32rem;
     }
-    .md\:\!w-1\/5{
-        width: 20% !important;
-    }
     .md\:\!w-2\/4{
         width: 50% !important;
+    }
+    .md\:\!w-2\/5{
+        width: 40% !important;
     }
     .md\:w-1\/2{
         width: 50%;
