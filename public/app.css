@@ -38200,8 +38200,8 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .ltr\:lg\:pl-10:where([dir="ltr"], [dir="ltr"] *){
         padding-left: 2.5rem;
     }
-    .ltr\:lg\:pr-20:where([dir="ltr"], [dir="ltr"] *){
-        padding-right: 5rem;
+    .ltr\:lg\:pr-16:where([dir="ltr"], [dir="ltr"] *){
+        padding-right: 4rem;
     }
 }
 @media (min-width: 480px){
@@ -38348,8 +38348,8 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .rtl\:lg\:mr-8:where([dir="rtl"], [dir="rtl"] *){
         margin-right: 2rem;
     }
-    .rtl\:lg\:pl-20:where([dir="rtl"], [dir="rtl"] *){
-        padding-left: 5rem;
+    .rtl\:lg\:pl-16:where([dir="rtl"], [dir="rtl"] *){
+        padding-left: 4rem;
     }
     .rtl\:lg\:pr-10:where([dir="rtl"], [dir="rtl"] *){
         padding-right: 2.5rem;
