@@ -81,6 +81,49 @@
             "format": "switch"
         },
         {
+            "id": "is_scroll_enable",
+            "type": "boolean",
+            "format": "switch",
+            "label": "تفعيل زر الرجوع للأعلى",
+            "description": null,
+            "icon": "sicon-toggle-off",
+            "value": true,
+            "selected": false,
+            "required": false
+        },
+        {
+            "id": "is_whatsapp_enable",
+            "type": "boolean",
+            "format": "switch",
+            "label": "تفعيل زر الواتساب",
+            "description": null,
+            "icon": "sicon-toggle-off",
+            "value": true,
+            "selected": false,
+            "required": false
+        },
+        {
+            "id": "whatsapp_number",
+            "type": "string",
+            "format": "text",
+            "label": "رقم الواتساب",
+            "description": null,
+            "placeholder": "+966512345678",
+            "icon": "sicon-format-text-alt",
+            "value": null,
+            "multilanguage": false,
+            "required": false,
+            "minLength": 3,
+            "maxLength": 30,
+            "conditions": [
+                {
+                    "id": "is_whatsapp_enable",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
             "type": "static",
             "format": "title",
             "id": "group-header",
@@ -863,7 +906,7 @@
             "type": "static",
             "format": "description",
             "id": "group-footer-slash",
-            "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>خلفية الخطوط في الفوتر</strong></div>"
+            "value": "<div style='border-bottom: 1px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 10px; color: #374151;'>خلفية الخطوط في الفوتر</strong></div>"
         },
         {
             "id": "footer_slash_bg",
@@ -1148,56 +1191,6 @@
             "required": false,
             "value": true,
             "selected": true
-        },
-        {
-            "type": "static",
-            "format": "title",
-            "id": "group-floating",
-            "variant": "h6",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> الأزرار العائمة</h6></div>"
-        },
-        {
-            "id": "is_scroll_enable",
-            "type": "boolean",
-            "format": "switch",
-            "label": "تفعيل زر الرجوع للأعلى",
-            "description": null,
-            "icon": "sicon-toggle-off",
-            "value": true,
-            "selected": false,
-            "required": false
-        },
-        {
-            "id": "is_whatsapp_enable",
-            "type": "boolean",
-            "format": "switch",
-            "label": "تفعيل زر الواتساب",
-            "description": null,
-            "icon": "sicon-toggle-off",
-            "value": true,
-            "selected": false,
-            "required": false
-        },
-        {
-            "id": "whatsapp_number",
-            "type": "string",
-            "format": "text",
-            "label": "رقم الواتساب",
-            "description": null,
-            "placeholder": "+966512345678",
-            "icon": "sicon-format-text-alt",
-            "value": null,
-            "multilanguage": false,
-            "required": false,
-            "minLength": 3,
-            "maxLength": 30,
-            "conditions": [
-                {
-                    "id": "is_whatsapp_enable",
-                    "operation": "=",
-                    "value": true
-                }
-            ]
         }
     ],
     "components": [
