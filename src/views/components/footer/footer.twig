@@ -21,6 +21,9 @@
 {% set email_list_placeholder = theme.settings.get('footer_email_list_placeholder') | default('أدخل بريدك الإلكتروني') %}
 {% set email_list_button = theme.settings.get('footer_email_list_button') | default('اشتراك') %}
 
+{# ---- Store-app icons position: under the logo/social box, or a separate column ---- #}
+{% set footer_apps_in_column = theme.settings.get('footer_apps_in_column') ?? false %}
+
 <style>
   .store-footer__bg-text-wrap {
     position: absolute;
@@ -81,11 +84,31 @@
 	{% if footer_slashbg %}
 		<div class="footer-slash-bg" aria-hidden="true"></div>
 	{% endif %}
+
+	{# Email subscription bar — top of the footer #}
+	{% if email_list_active %}
+		<div class="footer-email-top container py-6 dynamic-text-color">
+			<div class="max-w-2xl mx-auto text-center">
+				<h3 class="m-0">{{ email_list_title }}</h3>
+				{% if email_list_desc %}
+					<p class="text-sm mt-2 opacity-70 leading-6">{{ email_list_desc }}</p>
+				{% endif %}
+				<form action="{{ email_list_url }}" method="get" target="_blank" rel="noopener" class="flex flex-col sm:flex-row gap-3 mt-4 max-w-md mx-auto">
+					<input type="email" name="email" required
+						placeholder="{{ email_list_placeholder|e('html_attr') }}"
+						aria-label="{{ email_list_placeholder|e('html_attr') }}"
+						class="form-input flex-1 dynamic-bg-color dynamic-border-color rounded-custom">
+					<button type="submit" class="btn btn--primary whitespace-nowrap">{{ email_list_button }}</button>
+				</form>
+			</div>
+		</div>
+	{% endif %}
+
 	<hr class="w-full border-t dynamic-border-color " >
 		<div class="container dynamic-bg-color-40
      backdrop-blur-sm border-x
-        dynamic-border-color 
-         grid grid-col-1 {{ email_list_active ? 'lg:grid-cols-5' : 'lg:grid-cols-4' }} gap-0">
+        dynamic-border-color
+         grid grid-col-1 {{ footer_apps_in_column ? 'lg:grid-cols-5' : 'lg:grid-cols-4' }} gap-0">
 			<div class="lg:col-span-2 
    
 					border-l
@@ -108,6 +131,9 @@
 					<salla-social class="block mb-6"></salla-social>
 				</div>
 
+				{% if not footer_apps_in_column %}
+					<salla-apps-icons class="block mt-4"></salla-apps-icons>
+				{% endif %}
 
           {# trust badges #}
           <salla-trust-badges {% if theme.settings.get('footer_is_dark') %} dark {% endif %}></salla-trust-badges>
@@ -157,25 +183,13 @@
 				</div>
 			</div>
 
-			{% if email_list_active %}
+			{% if footer_apps_in_column %}
 			<div class="border-l border-r
 			dynamic-border-color
 			dynamic-text-color
 			 p-8">
-				<h3>{{ email_list_title }}</h3>
-				{% if email_list_desc %}
-					<p class="text-sm mt-2 mb-4 opacity-70 leading-6">{{ email_list_desc }}</p>
-				{% endif %}
-				<form action="{{ email_list_url }}" method="get" target="_blank" rel="noopener" class="flex flex-col gap-3 mt-4">
-					<input type="email" name="email" required
-						placeholder="{{ email_list_placeholder|e('html_attr') }}"
-						aria-label="{{ email_list_placeholder|e('html_attr') }}"
-						class="form-input w-full dynamic-bg-color dynamic-border-color rounded-custom">
-					<button type="submit" class="btn btn--primary w-full">{{ email_list_button }}</button>
-				</form>
-
-        				<salla-apps-icons class="block mt-4"></salla-apps-icons>
-
+				<h3>{{ trans('blocks.footer.download_app') }}</h3>
+				<salla-apps-icons class="block mt-4"></salla-apps-icons>
 			</div>
 			{% endif %}
 

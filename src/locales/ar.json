@@ -1,7 +1,8 @@
 {
   "blocks": {
     "footer": {
-      "search": "بحث"
+      "search": "بحث",
+      "download_app": "تطبيق المتجر"
     },
     "header": {
       "cart": "السلة"

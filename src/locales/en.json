@@ -1,7 +1,8 @@
 {
   "blocks": {
     "footer": {
-      "search": "Search"
+      "search": "Search",
+      "download_app": "Our App"
     },
     "header": {
       "cart": "Cart"

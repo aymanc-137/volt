@@ -1128,6 +1128,17 @@
             ]
         },
         {
+            "id": "footer_apps_in_column",
+            "type": "boolean",
+            "format": "switch",
+            "icon": "sicon-mobile",
+            "label": "عرض أيقونات تطبيقات المتجر في عمود مستقل",
+            "description": "عند التفعيل تظهر أيقونات تطبيقات المتجر في عمود منفصل بالفوتر، وعند التعطيل تظهر أسفل الشعار وأيقونات التواصل",
+            "value": false,
+            "selected": false,
+            "required": false
+        },
+        {
             "type": "static",
             "format": "title",
             "id": "group-product-page",
