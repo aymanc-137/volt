@@ -91,7 +91,10 @@
 			<div class="  mx-auto    dynamic-bg-color-40
        backdrop-blur-sm border dynamic-border-color
        dynamic-text-color   ">
-       <div class="p-4 container">
+
+       <div class="p-4 flex justify-between container">
+               <div class="flex-1">
+
 				<span class="color-primary font-alshohadaa">{{ email_list_title }}</span>
 				{% if email_list_desc %}
 					<p class="text-sm     ">{{ email_list_desc }}</p>
@@ -100,9 +103,14 @@
 					<input type="email" name="email" required
 						placeholder="{{ email_list_placeholder|e('html_attr') }}"
 						aria-label="{{ email_list_placeholder|e('html_attr') }}"
-						class="form-input w-full md:w-1/5 min-w-0 dynamic-bg-color dynamic-border-color rounded-custom">
+						class="form-input   min-w-0 dynamic-bg-color dynamic-border-color rounded-custom">
 					<button type="submit" class="btn btn--primary !flex-none !px-5 whitespace-nowrap">{{ email_list_button }}</button>
 				</form>
+</div>
+        <div class="flex-1">
+        </div>
+
+
         </div>
 			</div>
 		</div>

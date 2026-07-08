@@ -37568,6 +37568,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     .md\:w-1\/2{
         width: 50%;
     }
+    .md\:w-1\/5{
+        width: 20%;
+    }
     .md\:w-2\/4{
         width: 50%;
     }
