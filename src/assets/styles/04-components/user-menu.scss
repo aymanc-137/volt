@@ -56,3 +56,10 @@
     }
   }
 }
+
+
+.s-user-menu-trigger-avatar-only {
+  .s-user-menu-trigger-avatar {
+    @apply  rounded-custom  dynamic-border-color;
+  }
+}

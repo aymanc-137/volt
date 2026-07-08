@@ -30149,6 +30149,13 @@ input[type=radio].sr-only:checked ~ div.dropdown__menu {
   }
 }
 }
+.s-user-menu-trigger-avatar-only .s-user-menu-trigger-avatar {
+  border-radius: var(--border-radius);
+  border-color: var(--color-border);
+}
+.s-user-menu-trigger-avatar-only .s-user-menu-trigger-avatar:is(.dark *){
+    border-color: var(--color-border-dark);
+}
 @media (max-width: 768px) {
   .single-order-header-item{
         display: flex;
