@@ -4,6 +4,14 @@
 {% set bg_stroke = bg_use_theme ? 'var(--color-primary)'  : (theme.settings.get('footer_bg_text_stroke_color') ?? 'var(--color-primary)') %}
 {% set bg_fill   = bg_use_theme ? 'var(--color-scandary)' : (theme.settings.get('footer_bg_text_fill_color')   ?? 'transparent') %}
 
+{# ---- Footer line-pattern background (same configuration as home.category-list) ---- #}
+{% set footer_slashbg = theme.settings.get('footer_slash_bg') ?? true %}
+{% set footer_slas_size = theme.settings.get('footer_slash_bg_size') | default('20') %}
+{% set footer_slas_use_primary = theme.settings.get('footer_slash_bg_use_primary_color') ?? true %}
+{% set footer_slas_color = (theme.settings.get('footer_slash_bg_color') | default('#000000')) ~ '1A' %}
+{% set footer_slas_type = theme.settings.get('footer_slash_bg_type') | default('inclined') %}
+{% set footer_slas_angle = footer_slas_type == 'vertical' ? '90' : (footer_slas_type == 'horizontal' ? '0' : '135') %}
+
 <style>
   .store-footer__bg-text-wrap {
     position: absolute;
@@ -34,13 +42,24 @@
   .store-footer__inner { position: relative; padding-top: 3rem; }
   .store-footer__inner > .container,
   .store-footer__bottom { position: relative; z-index: 1; }
+  {% if footer_slashbg %}
+  .footer-slash-bg {
+    background: linear-gradient(
+      {{ footer_slas_angle }}deg,
+      {{ footer_slas_use_primary ? 'var(--color-primary-10)' : footer_slas_color }} 25%,
+      rgba(0, 0, 0, 0) 25%,
+      rgba(0, 0, 0, 0) 50%,
+      {{ footer_slas_use_primary ? 'var(--color-primary-10)' : footer_slas_color }} 50%,
+      {{ footer_slas_use_primary ? 'var(--color-primary-10)' : footer_slas_color }} 75%,
+      rgba(0, 0, 0, 0) 75%
+    );
+    background-size: {{ footer_slas_size }}px {{ footer_slas_size }}px;
+  }
+  {% endif %}
 </style>
 
 <footer class="store-footer ">
-	<div aria-label="footer" class="store-footer__inner slash-bg
-
-
-	 !pb-0 ">
+	<div aria-label="footer" class="store-footer__inner {{ footer_slashbg ? 'footer-slash-bg' : '' }} !pb-0 ">
 	{% if bg_text_enabled and bg_text %}
 		<div class="store-footer__bg-text-wrap" aria-hidden="true">
 			<span class="store-footer__bg-text">{{ bg_text }}</span>

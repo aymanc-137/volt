@@ -861,6 +861,120 @@
         },
         {
             "type": "static",
+            "format": "description",
+            "id": "group-footer-slash",
+            "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>خلفية الخطوط في الفوتر</strong></div>"
+        },
+        {
+            "id": "footer_slash_bg",
+            "description": "اختر نوع الخطوط من الإعداد التالي بعد التفعيل",
+            "labelHTML": null,
+            "label": "تفعيل خلفية الخطوط في الفوتر",
+            "type": "boolean",
+            "format": "switch",
+            "value": true,
+            "required": false
+        },
+        {
+            "id": "footer_slash_bg_type",
+            "description": "اختر اتجاه الخطوط في خلفية الفوتر",
+            "labelHTML": null,
+            "label": "نوع الخطوط",
+            "type": "items",
+            "format": "dropdown-list",
+            "value": [],
+            "selected": [
+                {
+                    "label": "مائلة (الوضع الافتراضي)",
+                    "value": "inclined",
+                    "key": "footer-slas-type-inclined"
+                }
+            ],
+            "source": "Manual",
+            "options": [
+                {
+                    "label": "مائلة (الوضع الافتراضي)",
+                    "value": "inclined",
+                    "key": "footer-slas-type-inclined"
+                },
+                {
+                    "label": "عمودية (من أعلى لأسفل)",
+                    "value": "vertical",
+                    "key": "footer-slas-type-vertical"
+                },
+                {
+                    "label": "أفقية (من يسار ليمين)",
+                    "value": "horizontal",
+                    "key": "footer-slas-type-horizontal"
+                }
+            ],
+            "required": false,
+            "conditions": [
+                {
+                    "id": "footer_slash_bg",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "footer_slash_bg_size",
+            "description": null,
+            "labelHTML": null,
+            "label": "حجم الخطوط",
+            "type": "string",
+            "format": "text",
+            "value": "20",
+            "required": false,
+            "conditions": [
+                {
+                    "id": "footer_slash_bg",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "footer_slash_bg_use_primary_color",
+            "description": null,
+            "labelHTML": null,
+            "label": "استخدام اللون الرئيسي في خطوط الفوتر",
+            "type": "boolean",
+            "format": "switch",
+            "value": true,
+            "required": false,
+            "conditions": [
+                {
+                    "id": "footer_slash_bg",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "id": "footer_slash_bg_color",
+            "description": null,
+            "labelHTML": null,
+            "label": "لون الخطوط",
+            "type": "string",
+            "format": "color",
+            "value": "#000000",
+            "required": false,
+            "conditions": [
+                {
+                    "id": "footer_slash_bg_use_primary_color",
+                    "operation": "=",
+                    "value": false
+                },
+                {
+                    "id": "footer_slash_bg",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "type": "static",
             "format": "title",
             "id": "group-product-page",
             "variant": "h6",
