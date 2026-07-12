@@ -36,30 +36,40 @@
   /* Hide the spinner when a logo is shown instead */
   .loader-init--has-logo::after { content: none; }
 
-  /* Blurred background: a soft diagonal wash of the theme colours over the chosen
-     background colour. No hard shapes — it stays a smooth gradient, and the logo
-     (or spinner) sits above it on the frosted veil. */
+  /* Blurred background: soft colour blobs from the theme palette, slowly drifting.
+     They're what the frosted veil above actually blurs — a flat gradient would give
+     backdrop-filter nothing to work on and the blur would be invisible. */
   .loader-blur-bg {
       position: absolute;
-      inset: -20%;
+      inset: -35%;
       z-index: 0;
-      background-image: linear-gradient(135deg,
-          var(--color-primary, #5bd5c4) 0%,
-          var(--color-scandary, #FF3B3B) 55%,
-          var(--color-primary-light, var(--color-primary, #5bd5c4)) 100%);
-      filter: blur(80px) saturate(140%);
-      opacity: .45;
+      background-color: transparent;
+      background-image:
+          radial-gradient(80% 90% at 18% 22%, var(--color-primary, #5bd5c4) 0%, transparent 100%),
+          radial-gradient(85% 95% at 82% 30%, var(--color-scandary, #FF3B3B) 0%, transparent 100%),
+          radial-gradient(90% 95% at 45% 90%, var(--color-primary-light, #5bd5c4) 0%, transparent 100%);
+      filter: blur(90px) saturate(130%);
+      opacity: .7;
+      animation: loader-blur-drift 9s ease-in-out infinite alternate;
   }
-  /* Frosted glass layer: pulls the wash back toward the chosen background colour
-     so the logo stays crisp and readable on top of it. */
+  /* Frosted glass layer over the blobs. `opacity` is set inline from the
+     `loading_blur_veil_opacity` setting — lower it to reveal more of the blur. */
   .loader-blur-veil {
       position: absolute;
       inset: 0;
       z-index: 0;
       background: inherit;
-      opacity: .45;
-      -webkit-backdrop-filter: blur(20px);
-              backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(60px) saturate(130%);
+              backdrop-filter: blur(60px) saturate(130%);
+  }
+
+  @keyframes loader-blur-drift {
+      from { transform: scale(1) translate3d(0, 0, 0); }
+      to   { transform: scale(1.15) translate3d(2%, -2%, 0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+      .loader-blur-bg { animation: none; }
   }
 
   /* Store logo */
