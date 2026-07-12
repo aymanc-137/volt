@@ -222,5 +222,5 @@ model-viewer[style*="width"]:before{
 // and every slide would go full width. The extra element selector outranks it — this is
 // the same trick Salla uses for its built-in `salla-slider .slide--one-sixth`.
 salla-slider .slide-one-one{
-  @apply h-auto w-[40%] md:w-1/3 lg:w-1/4;
+  @apply h-auto w-[40%] md:w-1/3 lg:w-1/3;
 }
