@@ -95,10 +95,51 @@ style=" overflow-y: scroll;"
     <link rel="stylesheet" href="{{ 'app.css' | asset }}">
     <link rel="stylesheet" href="{{ theme.font.path|cdn }}"/>
     <link rel="stylesheet" href="{{ 'fonts/sallaicons.css'|cdn }}"/>
-    
+
+    {# Titles font: powers the `font-alshohadaa` class used for headings across all components #}
+    {% set titles_font = theme.settings.get('titles_font', 'alshohadaa') %}
+    {% set google_title_fonts = {
+        'cairo':     {'family': 'Cairo',            'query': 'Cairo:wght@400;500;700'},
+        'tajawal':   {'family': 'Tajawal',          'query': 'Tajawal:wght@400;500;700'},
+        'almarai':   {'family': 'Almarai',          'query': 'Almarai:wght@400;700'},
+        'changa':    {'family': 'Changa',           'query': 'Changa:wght@400;600;700'},
+        'noto-kufi': {'family': 'Noto Kufi Arabic', 'query': 'Noto+Kufi+Arabic:wght@400;600;700'}
+    } %}
+    {% set custom_font_url = theme.settings.get('titles_font_custom_url') %}
+    {% set custom_font_name = theme.settings.get('titles_font_custom_name') ?: 'VoltTitlesFont' %}
+    {% if google_title_fonts[titles_font] is defined %}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family={{ google_title_fonts[titles_font].query }}&display=swap">
+    {% elseif titles_font == 'custom' and custom_font_url %}
+        {% if custom_font_url ends with '.ttf' or custom_font_url ends with '.otf' or custom_font_url ends with '.woff' or custom_font_url ends with '.woff2' %}
+            <style>
+                @font-face {
+                    font-family: '{{ custom_font_name }}';
+                    src: url('{{ custom_font_url }}') format('{{ custom_font_url ends with '.woff2' ? 'woff2' : (custom_font_url ends with '.woff' ? 'woff' : (custom_font_url ends with '.otf' ? 'opentype' : 'truetype')) }}');
+                    font-weight: 400;
+                    font-style: normal;
+                    font-display: swap;
+                }
+            </style>
+        {% else %}
+            {# A stylesheet URL (e.g. Google Fonts CSS link); the family name comes from the setting #}
+            <link rel="stylesheet" href="{{ custom_font_url }}">
+        {% endif %}
+    {% endif %}
+
     <style>
         :root {
             --font-main: '{{theme.font.name}}';
+            {% if google_title_fonts[titles_font] is defined -%}
+            --font-titles: '{{ google_title_fonts[titles_font].family }}';
+            {%- elseif titles_font == 'custom' and custom_font_url -%}
+            --font-titles: '{{ custom_font_name }}';
+            {%- elseif titles_font == 'theme' -%}
+            --font-titles: var(--font-main);
+            {%- else -%}
+            --font-titles: 'Alshohadaa';
+            {%- endif %}
             --color-primary: {{ theme.color.primary }};
 
             --color-primary-5: {{ theme.color.primary }}0D;

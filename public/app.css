@@ -26768,6 +26768,7 @@ input[type=radio].sr-only:checked ~ div.s-wallet-table-tbody-tr a {
 }
 .font-alshohadaa {
   font-family: "Alshohadaa", sans-serif;
+  font-family: var(--font-titles, "Alshohadaa"), sans-serif;
 }
 :root {
   --infinte-color: #c9c9c9;
@@ -29235,6 +29236,7 @@ salla-menu[topnav]:not(.hydrated)::after {
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 300ms;
   font-family: "Alshohadaa", sans-serif;
+  font-family: var(--font-titles, "Alshohadaa"), sans-serif;
     }
   .main-menu li > a:hover{
         color: #414042;
@@ -34879,6 +34881,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     line-height: 2rem;
     font-weight: 700;
   font-family: "Alshohadaa", sans-serif;
+  font-family: var(--font-titles, "Alshohadaa"), sans-serif;
   color: #2C3E50;
   color: var(--main-text-color);
 }
@@ -35590,6 +35593,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     line-height: 2.25rem;
     line-height: 1.25;
   font-family: "Alshohadaa", sans-serif;
+  font-family: var(--font-titles, "Alshohadaa"), sans-serif;
 }
 @media (min-width: 768px){
     .s-block--why-us .why-us-title{
@@ -35798,6 +35802,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
   font-family: "Alshohadaa", sans-serif;
+  font-family: var(--font-titles, "Alshohadaa"), sans-serif;
   border-radius: var(--border-radius);
   color: #2C3E50;
   color: var(--main-text-color);
@@ -35881,6 +35886,7 @@ input[type=radio].sr-only:checked ~ div.landing-page > header:before {
     line-height: 1.75rem;
     font-weight: 700;
   font-family: "Alshohadaa", sans-serif;
+  font-family: var(--font-titles, "Alshohadaa"), sans-serif;
   color: #2C3E50;
   color: var(--main-text-color);
 }
@@ -36160,6 +36166,7 @@ input[type=radio].sr-only:checked ~ div.ptab-media__video iframe,input[type=radi
     line-height: 1.5rem;
     font-weight: 700;
   font-family: "Alshohadaa", sans-serif;
+  font-family: var(--font-titles, "Alshohadaa"), sans-serif;
   color: #2C3E50;
   color: var(--main-text-color);
 }

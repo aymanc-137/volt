@@ -9,6 +9,8 @@ src: url('https://cdn.lamsaweb.com/cdnVolt/fonts/alshohadaa_extra_thin.ttf') for
 //src: url('https://cdn.lamsaweb.com/cdnVolt/fonts/alshohadaa_thinner.ttf') format('truetype');
 }
 
+// Merchant-selectable via the `titles_font` setting: master.twig sets --font-titles
+// to Alshohadaa (default), the main theme font, a Google font, or a custom font URL.
 .font-alshohadaa {
-  font-family: 'Alshohadaa', sans-serif;
+  font-family: var(--font-titles, 'Alshohadaa'), sans-serif;
 }

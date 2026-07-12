@@ -795,6 +795,111 @@
         {
             "type": "static",
             "format": "title",
+            "id": "group-titles-font",
+            "variant": "h6",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خط العناوين</h6></div>"
+        },
+        {
+            "id": "titles_font",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "خط العناوين",
+            "description": "الخط المستخدم لعناوين الأقسام والمكونات في كامل المتجر",
+            "icon": "sicon-font",
+            "source": "Manual",
+            "multichoice": false,
+            "required": false,
+            "selected": [
+                {
+                    "label": "خط شهداء (الافتراضي)",
+                    "value": "alshohadaa",
+                    "key": "tfont-alshohadaa"
+                }
+            ],
+            "options": [
+                {
+                    "label": "خط شهداء (الافتراضي)",
+                    "value": "alshohadaa",
+                    "key": "tfont-alshohadaa"
+                },
+                {
+                    "label": "خط القالب الرئيسي",
+                    "value": "theme",
+                    "key": "tfont-theme"
+                },
+                {
+                    "label": "خط القاهرة (Cairo)",
+                    "value": "cairo",
+                    "key": "tfont-cairo"
+                },
+                {
+                    "label": "خط تجوّل (Tajawal)",
+                    "value": "tajawal",
+                    "key": "tfont-tajawal"
+                },
+                {
+                    "label": "خط المراعي (Almarai)",
+                    "value": "almarai",
+                    "key": "tfont-almarai"
+                },
+                {
+                    "label": "خط تشانجا (Changa)",
+                    "value": "changa",
+                    "key": "tfont-changa"
+                },
+                {
+                    "label": "خط نوتو كوفي (Noto Kufi Arabic)",
+                    "value": "noto-kufi",
+                    "key": "tfont-noto-kufi"
+                },
+                {
+                    "label": "خط مخصص (رابط)",
+                    "value": "custom",
+                    "key": "tfont-custom"
+                }
+            ]
+        },
+        {
+            "id": "titles_font_custom_url",
+            "type": "string",
+            "format": "text",
+            "label": "رابط الخط المخصص",
+            "description": "رابط ملف خط (ttf / otf / woff / woff2) أو رابط ملف CSS مثل روابط Google Fonts",
+            "placeholder": "https://example.com/fonts/my-font.woff2",
+            "icon": "sicon-link",
+            "value": null,
+            "multilanguage": false,
+            "required": false,
+            "conditions": [
+                {
+                    "id": "titles_font",
+                    "operation": "=",
+                    "value": "custom"
+                }
+            ]
+        },
+        {
+            "id": "titles_font_custom_name",
+            "type": "string",
+            "format": "text",
+            "label": "اسم الخط المخصص (Font Family)",
+            "description": "مطلوب عند استخدام رابط CSS، واختياري عند استخدام رابط ملف خط مباشر",
+            "placeholder": "My Font Name",
+            "icon": "sicon-format-text-alt",
+            "value": null,
+            "multilanguage": false,
+            "required": false,
+            "conditions": [
+                {
+                    "id": "titles_font",
+                    "operation": "=",
+                    "value": "custom"
+                }
+            ]
+        },
+        {
+            "type": "static",
+            "format": "title",
             "id": "group-footer",
             "variant": "h6",
             "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أسفل الصفحة (الفوتر)</h6></div>"
