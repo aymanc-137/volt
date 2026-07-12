@@ -597,7 +597,7 @@
             "type": "items",
             "format": "dropdown-list",
             "label": "نوع خلفية شاشة التحميل",
-            "description": "خلفية بلون صلب أو خلفية ضبابية بتوهّج ناعم من ألوان المتجر",
+            "description": "لون صلب، أو خلفية ضبابية ناعمة بألوان المتجر، أو خلفية ضبابية بدون ألوان",
             "icon": "sicon-color-palette",
             "source": "Manual",
             "multichoice": false,
@@ -616,9 +616,14 @@
                     "key": "loadbg-color"
                 },
                 {
-                    "label": "ضبابية (توهّج ناعم)",
+                    "label": "ضبابية بألوان المتجر",
                     "value": "blur",
                     "key": "loadbg-blur"
+                },
+                {
+                    "label": "ضبابية بدون ألوان",
+                    "value": "blur-plain",
+                    "key": "loadbg-blur-plain"
                 }
             ]
         },
@@ -626,32 +631,11 @@
             "type": "string",
             "icon": "sicon-palette",
             "label": "لون خلفية شاشة التحميل",
-            "description": "لون الخلفية، أو اللون الأساسي أسفل التوهّج عند اختيار الخلفية الضبابية",
+            "description": "لون الخلفية الأساسي، وتُرسم فوقه الخلفية الضبابية عند اختيارها",
             "id": "loading_background_color",
             "format": "color",
             "required": false,
             "value": "#ffffff"
-        },
-        {
-            "id": "loading_blur_veil_opacity",
-            "type": "number",
-            "format": "slider",
-            "inputType": "range",
-            "icon": "sicon-eye",
-            "label": "شفافية طبقة اللون فوق الخلفية الضبابية",
-            "description": "كلما قلّت القيمة ظهرت الخلفية الضبابية وألوانها بوضوح أكبر، وكلما زادت غطّاها لون الخلفية المختار. القيمة بالنسبة المئوية (%).",
-            "required": false,
-            "value": 45,
-            "step": 5,
-            "minimum": 0,
-            "maximum": 100,
-            "conditions": [
-                {
-                    "id": "loading_background_type",
-                    "operation": "=",
-                    "value": "blur"
-                }
-            ]
         },
         {
             "type": "static",

@@ -36,9 +36,8 @@
   /* Hide the spinner when a logo is shown instead */
   .loader-init--has-logo::after { content: none; }
 
-  /* Blurred background: soft colour blobs from the theme palette, slowly drifting.
-     They're what the frosted veil above actually blurs — a flat gradient would give
-     backdrop-filter nothing to work on and the blur would be invisible. */
+  /* Blurred background: large, heavily blurred fields that drift slowly, drawn over
+     the chosen background colour. Sits under the logo/spinner. */
   .loader-blur-bg {
       position: absolute;
       inset: -35%;
@@ -52,15 +51,16 @@
       opacity: .7;
       animation: loader-blur-drift 9s ease-in-out infinite alternate;
   }
-  /* Frosted glass layer over the blobs. `opacity` is set inline from the
-     `loading_blur_veil_opacity` setting — lower it to reveal more of the blur. */
-  .loader-blur-veil {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background: inherit;
-      -webkit-backdrop-filter: blur(60px) saturate(130%);
-              backdrop-filter: blur(60px) saturate(130%);
+
+  /* Colourless variant: the same soft depth with no hue at all — neutral light and
+     shadow only, so it frosts whatever background colour the merchant picked. */
+  .loader-blur-bg--plain {
+      background-image:
+          radial-gradient(80% 90% at 18% 22%, rgba(255, 255, 255, .22) 0%, transparent 100%),
+          radial-gradient(85% 95% at 82% 30%, rgba(0, 0, 0, .20) 0%, transparent 100%),
+          radial-gradient(90% 95% at 45% 90%, rgba(255, 255, 255, .16) 0%, transparent 100%);
+      filter: blur(90px) grayscale(1);
+      opacity: 1;
   }
 
   @keyframes loader-blur-drift {

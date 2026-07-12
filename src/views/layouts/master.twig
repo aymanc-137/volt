@@ -325,12 +325,9 @@ overflow-x-hidden {% hook 'body:classes' %}
   {% set loading_bg_color = theme.settings.get('loading_background_color', '#ffffff') %}
   {% set loading_logo_anim = theme.settings.get('loading_logo_animation', 'pulse') %}
   <div class="loader-init {{ loading_show_logo ? 'loader-init--has-logo' : '' }}" style="background: {{ loading_bg_color }};">
-    {% if loading_bg_type == 'blur' %}
-      {# Soft blurred colour blobs, with a frosted veil over them. The veil's opacity is
-         merchant-controlled: the lower it is, the more of the blur shows through. #}
-      {% set loading_veil_opacity = theme.settings.get('loading_blur_veil_opacity', 45) %}
-      <div class="loader-blur-bg" aria-hidden="true"></div>
-      <div class="loader-blur-veil" aria-hidden="true" style="opacity: {{ loading_veil_opacity / 100 }};"></div>
+    {% if loading_bg_type starts with 'blur' %}
+      {# Soft blurred wash: either in the store's colours, or colourless (neutral frosted glass) #}
+      <div class="loader-blur-bg {{ loading_bg_type == 'blur-plain' ? 'loader-blur-bg--plain' : '' }}" aria-hidden="true"></div>
     {% endif %}
     {% if loading_show_logo %}
       <img src="{{ store.logo }}" alt="{{ store.name }}" class="loader-logo {{ loading_logo_anim != 'none' ? 'animate-' ~ loading_logo_anim : '' }}">
