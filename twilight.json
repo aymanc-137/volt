@@ -639,13 +639,8 @@
             "conditions": [
                 {
                     "id": "loading_background_type",
-                    "operation": "!=",
-                    "value": "blur-plain"
-                },
-                {
-                    "id": "loading_background_type",
-                    "operation": "!=",
-                    "value": "loadbg-blur"
+                    "operation": "=",
+                    "value": "color"
                 }
             ]
         },
