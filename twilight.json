@@ -829,7 +829,7 @@
             "id": "footer_bg_text",
             "format": "text",
             "required": false,
-            "value": "VOLT",
+            "value": "فولت سرعة و اتقان و تحدي",
             "placeholder": "VOLT",
             "multilanguage": true,
             "minLength": 0,
