@@ -1977,9 +1977,6 @@ input:where([type='file']):focus{
 .self-start{
     align-self: flex-start;
 }
-.justify-self-center{
-    justify-self: center;
-}
 .overflow-auto{
     overflow: auto;
 }
@@ -33037,17 +33034,17 @@ model-viewer.product-tabs[style*=width]:before {
     align-items: center;
     justify-content: center;
 }
-.slide-one-one{
+salla-slider .slide-one-one{
     height: auto;
     width: 40%;
 }
 @media (min-width: 768px){
-    .slide-one-one{
+    salla-slider .slide-one-one{
         width: 33.333333%;
     }
 }
 @media (min-width: 1024px){
-    .slide-one-one{
+    salla-slider .slide-one-one{
         width: 25%;
     }
 }
