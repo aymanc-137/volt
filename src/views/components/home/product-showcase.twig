@@ -132,9 +132,39 @@
       transform: translate(-50%, -50%);
     }
 
+    /* Light/dark aware palette. The card text/surfaces used to be hard-coded for a
+       dark background (white text on white glass), so they went invisible in light
+       mode. These flip with the theme's `.dark` class on <html>. */
+    #{{ uid }} {
+      --ps-text:        var(--main-text-color, #2C3E50);
+      --ps-text-muted:  rgba(0,0,0,.65);
+      --ps-card-bg:     rgba(0,0,0,.04);
+      --ps-card-border: rgba(0,0,0,.12);
+      --ps-card-shadow: rgba(0,0,0,.12);
+      --ps-chip-bg:     rgba(0,0,0,.05);
+      --ps-chip-border: rgba(0,0,0,.12);
+      --ps-dot:         rgba(0,0,0,.25);
+      --ps-dot-active:  var(--main-text-color, #2C3E50);
+      --ps-btn-border:  rgba(0,0,0,.2);
+      --ps-btn-hover:   rgba(0,0,0,.06);
+    }
+    .dark #{{ uid }} {
+      --ps-text:        var(--light-text-color, #e5e7eb);
+      --ps-text-muted:  rgba(255,255,255,.75);
+      --ps-card-bg:     rgba(255,255,255,.05);
+      --ps-card-border: rgba(255,255,255,.1);
+      --ps-card-shadow: rgba(0,0,0,.3);
+      --ps-chip-bg:     rgba(255,255,255,.06);
+      --ps-chip-border: rgba(255,255,255,.15);
+      --ps-dot:         rgba(255,255,255,.3);
+      --ps-dot-active:  #fff;
+      --ps-btn-border:  rgba(255,255,255,.2);
+      --ps-btn-hover:   rgba(255,255,255,.1);
+    }
+
     #{{ uid }} .ps-info {
       transition: opacity .5s ease, transform .5s ease;
-      color: var(--color-dark-page-foreground, #fff);
+      color: var(--ps-text);
     }
     #{{ uid }} .ps-info.fading {
       opacity: 0;
@@ -142,12 +172,12 @@
     }
 
     #{{ uid }} .ps-card {
-      border: 1px solid rgba(255,255,255,.1);
-      background: rgba(255,255,255,.05);
+      border: 1px solid var(--ps-card-border);
+      background: var(--ps-card-bg);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
        padding: 1.5rem;
-      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+      box-shadow: 0 20px 60px var(--ps-card-shadow);
     }
 
     #{{ uid }} .ps-tagline {
@@ -162,7 +192,7 @@
       font-weight: 700;
       line-height: 1.2;
       margin-bottom: .5rem;
-      color: var(--color-dark-page-foreground, #fff);
+      color: var(--ps-text);
     }
     #{{ uid }} .ps-price {
       font-size: 1.1rem;
@@ -172,24 +202,24 @@
     #{{ uid }} .ps-desc {
       font-size: .875rem;
       line-height: 1.6;
-      color: rgba(255,255,255,.75);
+      color: var(--ps-text-muted);
       margin-bottom: 1rem;
     }
     #{{ uid }} .ps-spec {
       display: inline-block;
-      border: 1px solid rgba(255,255,255,.15);
-      background: rgba(255,255,255,.06);
+      border: 1px solid var(--ps-chip-border);
+      background: var(--ps-chip-bg);
       border-radius: 9999px;
       padding: .25rem .75rem;
       font-size: .75rem;
-      color: rgba(255,255,255,.8);
+      color: var(--ps-text-muted);
       margin: .2rem;
     }
 
     #{{ uid }} .ps-dot-btn {
       height: 8px;
       border-radius: 9999px;
-      background: rgba(255,255,255,.3);
+      background: var(--ps-dot);
       transition: width .5s ease, background .5s ease;
       width: 8px;
       border: none;
@@ -197,23 +227,23 @@
     }
     #{{ uid }} .ps-dot-btn.active {
       width: 28px;
-      background: #fff;
+      background: var(--ps-dot-active);
     }
 
     #{{ uid }} .ps-nav-btn {
       width: 2.5rem;
       height: 2.5rem;
       border-radius: 9999px;
-      border: 1px solid rgba(255,255,255,.2);
+      border: 1px solid var(--ps-btn-border);
       background: transparent;
-      color: rgba(255,255,255,.8);
+      color: var(--ps-text-muted);
       font-size: 1.25rem;
       display: grid;
       place-items: center;
       cursor: pointer;
       transition: background .2s;
     }
-    #{{ uid }} .ps-nav-btn:hover { background: rgba(255,255,255,.1); }
+    #{{ uid }} .ps-nav-btn:hover { background: var(--ps-btn-hover); }
 
     #{{ uid }} .ps-link {
       display: inline-block;
