@@ -1974,6 +1974,9 @@ input:where([type='file']):focus{
 .self-start{
     align-self: flex-start;
 }
+.justify-self-center{
+    justify-self: center;
+}
 .overflow-auto{
     overflow: auto;
 }
