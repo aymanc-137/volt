@@ -889,6 +889,9 @@ input:where([type='file']):focus{
 .visible{
     visibility: visible;
 }
+.invisible{
+    visibility: hidden;
+}
 .static{
     position: static;
 }
