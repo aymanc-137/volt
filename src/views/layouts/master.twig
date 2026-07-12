@@ -329,9 +329,10 @@ overflow-x-hidden {% hook 'body:classes' %}
      that follows dark mode, so no inline colour is applied to it. #}
   <div class="loader-init {{ loading_show_logo ? 'loader-init--has-logo' : '' }} {{ loading_is_plain ? 'loader-init--plain' : '' }}"
        {% if not loading_is_plain %}style="background: {{ loading_bg_color }};"{% endif %}>
-    {% if loading_bg_type starts with 'blur' %}
-      {# Soft blurred wash: either in the store's colours, or colourless (neutral frosted glass) #}
-      <div class="loader-blur-bg {{ loading_is_plain ? 'loader-blur-bg--plain' : '' }}" aria-hidden="true"></div>
+    {% if loading_bg_type == 'blur' %}
+      {# Soft blurred wash in the store's colours. The colourless mode needs no layer at
+         all — `.loader-init--plain` blurs the page behind it directly. #}
+      <div class="loader-blur-bg" aria-hidden="true"></div>
     {% endif %}
     {% if loading_show_logo %}
       <img src="{{ store.logo }}" alt="{{ store.name }}" class="loader-logo {{ loading_logo_anim != 'none' ? 'animate-' ~ loading_logo_anim : '' }}">

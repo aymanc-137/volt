@@ -597,7 +597,7 @@
             "type": "items",
             "format": "dropdown-list",
             "label": "نوع خلفية شاشة التحميل",
-            "description": "لون صلب، أو خلفية ضبابية ناعمة بألوان المتجر، أو خلفية ضبابية بدون ألوان",
+            "description": "لون صلب، أو خلفية ضبابية بألوان المتجر، أو ضبابية بدون ألوان تُظهر محتوى الصفحة خلفها مموّهاً (زجاج ضبابي)",
             "icon": "sicon-color-palette",
             "source": "Manual",
             "multichoice": false,
@@ -621,7 +621,7 @@
                     "key": "loadbg-blur"
                 },
                 {
-                    "label": "ضبابية بدون ألوان",
+                    "label": "ضبابية بدون ألوان (تمويه محتوى الصفحة)",
                     "value": "blur-plain",
                     "key": "loadbg-blur-plain"
                 }
