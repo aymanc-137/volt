@@ -631,11 +631,18 @@
             "type": "string",
             "icon": "sicon-palette",
             "label": "لون خلفية شاشة التحميل",
-            "description": "لون الخلفية الأساسي، وتُرسم فوقه الخلفية الضبابية عند اختيارها",
+            "description": "لون خلفية شاشة التحميل، وتُرسم فوقه الخلفية الضبابية عند اختيارها",
             "id": "loading_background_color",
             "format": "color",
             "required": false,
-            "value": "#ffffff"
+            "value": "#ffffff",
+            "conditions": [
+                {
+                    "id": "loading_background_type",
+                    "operation": "!=",
+                    "value": "blur-plain"
+                }
+            ]
         },
         {
             "type": "static",

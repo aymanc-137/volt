@@ -52,8 +52,13 @@
       animation: loader-blur-drift 9s ease-in-out infinite alternate;
   }
 
+  /* Colourless blur has no background-colour setting: it uses a neutral base that
+     follows the dark-mode class (already set on <html> by the head script). */
+  .loader-init--plain { background: #f2f3f5; }
+  html.dark .loader-init--plain { background: #171717; }
+
   /* Colourless variant: the same soft depth with no hue at all — neutral light and
-     shadow only, so it frosts whatever background colour the merchant picked. */
+     shadow only, so it frosts the neutral base above. */
   .loader-blur-bg--plain {
       background-image:
           radial-gradient(80% 90% at 18% 22%, rgba(255, 255, 255, .22) 0%, transparent 100%),
