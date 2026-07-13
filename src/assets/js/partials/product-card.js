@@ -20,140 +20,70 @@ class ProductCard extends HTMLElement {
   }
 
   // ---- Image slideshow on hover ----
-  // On hover over the card image, fetch the product's other images and cross-fade
-  // through them. Images are fetched/preloaded up-front so the first hover feels
-  // instant. Controlled by the `enable_image_slideshow` theme setting.
+  // Cross-fades through the product's images on hover.
+  //
+  // The card never requests extra product data. Fetching per card would add one API
+  // request for every card on the page, which slows down category and search pages.
+  // We only use the images that already came with the product in the listing payload;
+  // when the payload has a single image, the card simply has no slideshow.
 
   initSlideshow() {
     if (!window.enable_image_slideshow) return;
     if (this.horizontal || this.minimal || this.fullImage) return;
 
-    this._slideshowEls = null;
-    this._slideshowInterval = null;
-    this._slideshowIndex = 0;
+    const images = (this.product?.images || []).filter(img => img?.url);
+    if (images.length <= 1) return;
 
     const container = this.querySelector('.s-product-card-image-container');
     if (!container) return;
 
+    this._slideshowImages = images;
     this._slideshowContainer = container;
+    this._slideshowEls = null;
+    this._slideshowInterval = null;
+    this._slideshowIndex = 0;
+
     container.addEventListener('mouseenter', () => this._onImageHover());
     container.addEventListener('mouseleave', () => this._onImageLeave());
-
-    // Prefetch images on card load so first hover feels instant
-    this._prefetchImages();
-  }
-
-  _prefetchImages() {
-    this._slideshowImages = false; // mark as fetching
-    salla.product.getDetails(this.product.id, ["images"])
-      .then(response => {
-        const images = response.data.images || [];
-        if (images.length <= 1) {
-          this._slideshowImages = null;
-          this._slideshowContainer?.classList.remove('slideshow-loading');
-          return;
-        }
-        this._slideshowImages = images;
-
-        // Preload the first extra image so it's cached before hover
-        const firstExtra = images.find(img => img.url !== this.product?.image?.url);
-        if (firstExtra) {
-          const preloader = new Image();
-          preloader.src = firstExtra.url;
-        }
-      })
-      .catch(() => {
-        this._slideshowImages = null;
-        this._slideshowContainer?.classList.remove('slideshow-loading');
-      });
   }
 
   _onImageHover() {
-    // null = only 1 image, skip
-    if (this._slideshowImages === null) return;
-
-    // false = fetch in progress, show loading cursor
-    if (this._slideshowImages === false) {
-      if (!this._slideshowFirstShown) {
-        this._slideshowContainer?.classList.add('slideshow-loading');
-      }
-      return;
+    // Inject on first hover so the extra <img> tags cost nothing until they're wanted
+    if (!this._slideshowEls) {
+      this._injectImages();
     }
-
-    // Array = fetched but not yet injected into DOM
-    if (Array.isArray(this._slideshowImages) && !this._slideshowEls?.length) {
-      if (!this._slideshowFirstShown) {
-        this._slideshowContainer?.classList.add('slideshow-loading');
-      }
-      this._preloadAndInject();
-      return;
-    }
-
-    // Ready, start cycling
-    if (this._slideshowEls?.length) {
-      this._startCycling();
-    }
+    this._startCycling();
   }
 
   _onImageLeave() {
-    clearTimeout(this._hoverDebounce);
     clearInterval(this._slideshowInterval);
     this._slideshowInterval = null;
 
-    if (this._slideshowContainer) {
-      this._slideshowContainer.classList.remove('slideshow-active');
-    }
-    if (this._slideshowEls) {
-      this._slideshowEls.forEach(el => el.classList.remove('is-active'));
-    }
+    this._slideshowContainer?.classList.remove('slideshow-active');
+    this._slideshowEls?.forEach(el => el.classList.remove('is-active'));
   }
 
-  _preloadAndInject() {
-    const images = this._slideshowImages;
-    const container = this._slideshowContainer;
-    if (!container) return;
-
-    const anchor = container.querySelector('a');
+  _injectImages() {
+    const anchor = this._slideshowContainer?.querySelector('a');
     if (!anchor) return;
 
-    this._slideshowReady = [];
-
-    // Load images one by one — each is added to the slideshow as soon as it loads
-    images.forEach(img => {
+    this._slideshowEls = this._slideshowImages.map(img => {
       const el = document.createElement('img');
       el.className = 's-product-card-slideshow-img';
       el.alt = img.alt || this.product.name;
       el.setAttribute('aria-hidden', 'true');
-
-      el.onload = () => {
-        this._slideshowReady.push(el);
-        this._slideshowEls = this._slideshowReady;
-
-        // Start cycling as soon as the first image is ready and still hovering
-        if (this._slideshowReady.length === 1 && container.matches(':hover')) {
-          this._startCycling();
-        }
-      };
-
+      el.loading = 'lazy';
       el.src = img.url;
       anchor.appendChild(el);
+      return el;
     });
   }
 
   _startCycling() {
     if (this._slideshowInterval || !this._slideshowEls?.length) return;
 
-    const container = this._slideshowContainer;
     this._slideshowIndex = 0;
-    container.classList.add('slideshow-active');
-
-    // Remove loading cursor after first image shows
-    if (!this._slideshowFirstShown) {
-      this._slideshowFirstShown = true;
-      container.classList.remove('slideshow-loading');
-    }
-
-    // Show first image immediately
+    this._slideshowContainer.classList.add('slideshow-active');
     this._slideshowEls[0].classList.add('is-active');
 
     this._slideshowInterval = setInterval(() => {

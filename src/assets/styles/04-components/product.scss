@@ -538,11 +538,6 @@ salla-quantity-input[max='1']{
     &.slideshow-active > a > img {
       opacity: 0;
     }
-
-    // Loading cursor while waiting for the first slideshow image
-    &.slideshow-loading {
-      cursor: wait;
-    }
   }
 
   .s-product-card-content{
