@@ -86,7 +86,6 @@ style=" overflow-y: scroll;"
         window.header_layout = "{{ theme.settings.get('header_layout', 'centered_menu') }}"
         window.enable_add_product_toast = "{{ theme.settings.get('enable_add_product_toast', true) }}"
         window.notify_when_available_in_card = "{{ theme.settings.get('notify_when_available_in_card', true) }}"
-        window.enable_image_slideshow = {{ theme.settings.get('enable_image_slideshow', true) | json_encode }}
     </script>
     
     {% hook 'head:start' %}

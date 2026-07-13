@@ -506,38 +506,9 @@ salla-quantity-input[max='1']{
     border-top-right-radius: var(--border-radius) !important;
   }
 
-  // ---- Hover image slideshow ----
+  // Clips the image on hover zoom (see .card-image-zoom-hover)
   .s-product-card-image-container {
     @apply relative overflow-hidden;
-
-    // Slideshow images stacked behind the main image
-    .s-product-card-slideshow-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-      z-index: 0;
-
-      &.is-active {
-        opacity: 1;
-      }
-    }
-
-    // Main image sits above the slideshow by default
-    > a > img {
-      position: relative;
-      z-index: 1;
-      transition: opacity 0.5s ease;
-    }
-
-    // When the slideshow is running, fade out the main image
-    &.slideshow-active > a > img {
-      opacity: 0;
-    }
   }
 
   .s-product-card-content{
@@ -621,24 +592,14 @@ salla-quantity-input[max='1']{
 }
 
 // Enabled via theme setting (product_card_image_zoom): gently scale the product
-// image (and any slideshow images) on hover. Scoped so it never clobbers the
-// opacity transitions the hover slideshow relies on.
+// image on hover.
 .card-image-zoom-hover {
-  .product-card-volt .s-product-card-image-container {
-    > a > img {
-      transition: opacity 0.5s ease, transform 0.6s ease;
-    }
-
-    .s-product-card-slideshow-img {
-      transition: opacity 0.3s ease, transform 0.6s ease;
-    }
+  .product-card-volt .s-product-card-image-container > a > img {
+    transition: transform 0.6s ease;
   }
 
-  .product-card-volt:hover .s-product-card-image-container {
-    > a > img,
-    .s-product-card-slideshow-img {
-      transform: scale(1.08);
-    }
+  .product-card-volt:hover .s-product-card-image-container > a > img {
+    transform: scale(1.08);
   }
 }
 

@@ -15,86 +15,6 @@ class ProductCard extends HTMLElement {
     }
   }
 
-  disconnectedCallback(){
-    clearInterval(this._slideshowInterval);
-  }
-
-  // ---- Image slideshow on hover ----
-  // Cross-fades through the product's images on hover.
-  //
-  // The card never requests extra product data. Fetching per card would add one API
-  // request for every card on the page, which slows down category and search pages.
-  // We only use the images that already came with the product in the listing payload;
-  // when the payload has a single image, the card simply has no slideshow.
-
-  initSlideshow() {
-    if (!window.enable_image_slideshow) return;
-    if (this.horizontal || this.minimal || this.fullImage) return;
-
-    const images = (this.product?.images || []).filter(img => img?.url);
-    if (images.length <= 1) return;
-
-    const container = this.querySelector('.s-product-card-image-container');
-    if (!container) return;
-
-    this._slideshowImages = images;
-    this._slideshowContainer = container;
-    this._slideshowEls = null;
-    this._slideshowInterval = null;
-    this._slideshowIndex = 0;
-
-    container.addEventListener('mouseenter', () => this._onImageHover());
-    container.addEventListener('mouseleave', () => this._onImageLeave());
-  }
-
-  _onImageHover() {
-    // Inject on first hover so the extra <img> tags cost nothing until they're wanted
-    if (!this._slideshowEls) {
-      this._injectImages();
-    }
-    this._startCycling();
-  }
-
-  _onImageLeave() {
-    clearInterval(this._slideshowInterval);
-    this._slideshowInterval = null;
-
-    this._slideshowContainer?.classList.remove('slideshow-active');
-    this._slideshowEls?.forEach(el => el.classList.remove('is-active'));
-  }
-
-  _injectImages() {
-    const anchor = this._slideshowContainer?.querySelector('a');
-    if (!anchor) return;
-
-    this._slideshowEls = this._slideshowImages.map(img => {
-      const el = document.createElement('img');
-      el.className = 's-product-card-slideshow-img';
-      el.alt = img.alt || this.product.name;
-      el.setAttribute('aria-hidden', 'true');
-      el.loading = 'lazy';
-      el.src = img.url;
-      anchor.appendChild(el);
-      return el;
-    });
-  }
-
-  _startCycling() {
-    if (this._slideshowInterval || !this._slideshowEls?.length) return;
-
-    this._slideshowIndex = 0;
-    this._slideshowContainer.classList.add('slideshow-active');
-    this._slideshowEls[0].classList.add('is-active');
-
-    this._slideshowInterval = setInterval(() => {
-      this._slideshowEls[this._slideshowIndex].classList.remove('is-active');
-      this._slideshowIndex = (this._slideshowIndex + 1) % this._slideshowEls.length;
-      this._slideshowEls[this._slideshowIndex].classList.add('is-active');
-    }, 1800);
-  }
-
-  // ---- End slideshow ----
-
   onReady(){
       this.fitImageHeight = salla.config.get('store.settings.product.fit_type');
       this.placeholder = salla.url.asset(salla.config.get('theme.settings.placeholder'));
@@ -117,11 +37,9 @@ class ProductCard extends HTMLElement {
 
         // re-render to update translations
         this.render();
-        this.initSlideshow();
       })
 
       this.render()
-      this.initSlideshow();
   }
 
   initCircleBar() {
