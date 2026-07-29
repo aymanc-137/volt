@@ -33,9 +33,16 @@
               </button>
           {% endif %}
 
-          {# Search bar #}
+          {# Search bar — a trigger for the global <salla-search> in master.twig rather than
+             its own instance, styled to match the inline search field it replaces. #}
           <div class="header-search flex-1">
-            <salla-search inline height="36"></salla-search>
+            <button type="button"
+                    class="relative flex items-center w-full min-w-[220px] h-9 rounded-md bg-white border border-gray-100 text-sm text-gray-500 transition-colors hover:border-gray-200 rtl:pr-10 rtl:pl-3 ltr:pl-10 ltr:pr-3"
+                    aria-label="{{ trans('blocks.footer.search') }}"
+                    onclick="salla.event.dispatch('search::open')">
+              <i class="sicon-search absolute rtl:right-3 ltr:left-3 text-base text-gray-400"></i>
+              <span>{{ trans('blocks.footer.search') }}</span>
+            </button>
           </div>
       </div>
 
@@ -123,14 +130,13 @@
                       {% endif %}
 
 
-                            <button class="   dynamic-text-color" 
+                            {# Opens the global <salla-search> in master.twig, so search also works
+                               inside the Salla mobile app (which hides the theme header/footer). #}
+                            <button class="   dynamic-text-color"
                               id="search-btn"
                               type="button"
-                              data-modal-id="search-modal-volt"
-                              aria-label="user-icon" 
-                              onclick="(function(){event.preventDefault();
-                                document.querySelector('#search-modal-volt').open();
-                                return false;})();">
+                              aria-label="{{ trans('blocks.footer.search') }}"
+                              onclick="salla.event.dispatch('search::open')">
                             <i class="hover:text-[var(--color-primary)] header-btn__icon sicon-search dynamic-text-color"></i>
                           </button>
 
@@ -149,11 +155,5 @@
   <span class="navbar-underline"></span>
 </header>
 
-
-  <salla-modal has-skeleton="true" position="top" class="custom-salla-volt-modal" id="search-modal-volt">
-    <h4>{{ trans('blocks.footer.search') }}</h4>
-		<hr>
-      <div class="m-3 flex-1 md:h-10 h-96">
-        <salla-search inline height="36"></salla-search>
-    </div>
-   </salla-modal>
+{# The theme's own search modal was removed: the global <salla-search> in master.twig
+   provides its own modal, opened via salla.event.dispatch('search::open'). #}
