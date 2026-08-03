@@ -448,7 +448,7 @@
                     "type": "items",
                     "icon": "sicon-link",
                     "label": "الرابط (اختياري)",
-                    "id": "announcement_items.url",
+                    "id": "announcement_items.item_url",
                     "value": null,
                     "description": null,
                     "required": false,
