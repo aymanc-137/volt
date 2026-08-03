@@ -12,7 +12,7 @@
 | announcement_items                    | object[] | repeatable items: .image (?), .text (?), .url (?)        |
 |   .image                              | string   | plain image URL                                          |
 |   .text                               | object   | multilanguage map, e.g. {ar: "..."}                      |
-|   .url                                | object   | link picker: {label, value, source} — the href is .value |
+|   .url                                | mixed    | link picker; shape varies — see the resolution in the loop|
 
  Site-wide infinite marquee. The markup renders ONE sequence of items; the
  inline script clones it just enough to exceed the bar width and then the CSS
