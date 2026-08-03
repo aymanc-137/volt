@@ -50,7 +50,7 @@
                        Anything unrecognised ends as null, which renders the item unlinked
                        rather than breaking the view. #}
                     {% set url = item.url.value %}
-                   
+                   {{ item |json_encode }}
                     {% set img = item.image %}
                     {% if img is iterable %}{% set img = img[ab_lang] ?? (img|first) %}{% endif %}
                     {% if url %}
