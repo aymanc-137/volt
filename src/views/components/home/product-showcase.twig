@@ -143,9 +143,6 @@
       --ps-card-shadow: rgba(0,0,0,.12);
       --ps-chip-bg:     rgba(0,0,0,.05);
       --ps-chip-border: rgba(0,0,0,.12);
-      --ps-dot:         rgba(0,0,0,.25);
-      --ps-dot-active:  var(--main-text-color, #2C3E50);
-      --ps-btn-border:  rgba(0,0,0,.2);
       --ps-btn-hover:   rgba(0,0,0,.06);
     }
     .dark #{{ uid }} {
@@ -156,9 +153,6 @@
       --ps-card-shadow: rgba(0,0,0,.3);
       --ps-chip-bg:     rgba(255,255,255,.06);
       --ps-chip-border: rgba(255,255,255,.15);
-      --ps-dot:         rgba(255,255,255,.3);
-      --ps-dot-active:  #fff;
-      --ps-btn-border:  rgba(255,255,255,.2);
       --ps-btn-hover:   rgba(255,255,255,.1);
     }
 
@@ -216,34 +210,42 @@
       margin: .2rem;
     }
 
+    /* The controls are drawn in the store's accent colour rather than the black/white
+       palette above. The palette only flips when the `.dark` class is on <html>, so a
+       page that is dark without it — dark mode disabled but a dark background colour
+       chosen — left these black-on-black. The accent reads on any background, and it
+       already marks the tagline, price and CTA. Opacity carries the inactive state. */
     #{{ uid }} .ps-dot-btn {
       height: 8px;
       border-radius: 9999px;
-      background: var(--ps-dot);
-      transition: width .5s ease, background .5s ease;
+      background: var(--color-scandary, #a855f7);
+      opacity: .35;
+      transition: width .5s ease, opacity .3s ease;
       width: 8px;
       border: none;
       cursor: pointer;
     }
+    #{{ uid }} .ps-dot-btn:hover { opacity: .7; }
     #{{ uid }} .ps-dot-btn.active {
       width: 28px;
-      background: var(--ps-dot-active);
+      opacity: 1;
     }
 
     #{{ uid }} .ps-nav-btn {
       width: 2.5rem;
       height: 2.5rem;
       border-radius: 9999px;
-      border: 1px solid var(--ps-btn-border);
+      border: 1px solid var(--color-scandary, #a855f7);
       background: transparent;
-      color: var(--ps-text-muted);
+      color: var(--color-scandary, #a855f7);
+      opacity: .6;
       font-size: 1.25rem;
       display: grid;
       place-items: center;
       cursor: pointer;
-      transition: background .2s;
+      transition: background .2s, opacity .2s;
     }
-    #{{ uid }} .ps-nav-btn:hover { background: var(--ps-btn-hover); }
+    #{{ uid }} .ps-nav-btn:hover { background: var(--ps-btn-hover); opacity: 1; }
 
     #{{ uid }} .ps-link {
       display: inline-block;
