@@ -44,22 +44,10 @@
                     {# Multilanguage fields come back as a {lang: value} map here; resolve to the current language #}
                     {% set txt = item.text %}
                     {% if txt is iterable %}{% set txt = txt[ab_lang] ?? (txt|first) %}{% endif %}
-                    {# `url` is a variable-list (link picker): the chosen link is the first
-                       entry, read with a plain [0].
-
-                       Do NOT write this as `url[0] ?? something`. The ?? operator makes Twig
-                       test whether the index exists before reading it, that test comes back
-                       false for this value, and the expression silently falls through to the
-                       other key — which holds the store's base URL, not the chosen link. A
-                       direct index skips the check and returns the real link.
-
-                       A plain string is left alone (strings are not iterable here, which is
-                       why the same guard on `image` leaves image URLs intact), and anything
-                       still unresolved becomes null so the item renders unlinked rather than
-                       raising "Array to string conversion". #}
-                    {% set url = item.url %}
-                    {% if url is iterable %}{% set url = url[0] %}{% endif %}
-                    {% if url is iterable %}{% set url = null %}{% endif %}
+                    {# The link picker's value only yields the chosen link via a direct [0].
+                       Anything else — `?? `, an `is iterable` guard, or printing the value —
+                       gives the store's base URL instead. Leave this exactly as it is. #}
+                    {% set url = item.url[0] %}
                     {% set img = item.image %}
                     {% if img is iterable %}{% set img = img[ab_lang] ?? (img|first) %}{% endif %}
                     {% if url %}
