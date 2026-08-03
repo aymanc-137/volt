@@ -42,18 +42,31 @@
         <div class="announcement-bar__track">
             <div class="announcement-bar__seq">
                 {% for item in ab_items %}
-                    {# Multilanguage fields come back as a {lang: value} map here; resolve to the current language #}
+                    {# Multilanguage fields come back as a {lang: value} map here; resolve to the
+                       current language. The second guard is the same safety net used for the
+                       link below: whatever is left must be printable, or the whole view dies
+                       with "Array to string conversion". #}
                     {% set txt = item.text %}
                     {% if txt is iterable %}{% set txt = txt[ab_lang] ?? (txt|first) %}{% endif %}
+                    {% if txt is iterable %}{% set txt = null %}{% endif %}
                     {# `item_url` is a plain text field: the merchant pastes the link and it is
                        used verbatim. It was a variable-list picker, which never resolved
                        correctly here — a global setting keeps the picker as an array and the
                        shapes differ per link source, so no single access worked for every item.
                        Keep the name `item_url`: an item already carries its own `url`, and a
-                       field by that name is shadowed by it. #}
+                       field by that name is shadowed by it.
+
+                       Items saved while it was still a picker keep that old array value, and
+                       printing one raises "Array to string conversion" and takes down the whole
+                       view. So: pull the link out of a leftover value if we can, and drop it
+                       entirely if we cannot. A stale item then renders unlinked instead of
+                       breaking the page for the merchant's customers. #}
                     {% set url = item.item_url %}
+                    {% if url is iterable %}{% set url = url|first %}{% endif %}
+                    {% if url is iterable %}{% set url = null %}{% endif %}
                     {% set img = item.image %}
                     {% if img is iterable %}{% set img = img[ab_lang] ?? (img|first) %}{% endif %}
+                    {% if img is iterable %}{% set img = null %}{% endif %}
                     {% if url %}
                         <a class="announcement-bar__item" href="{{ url }}">
                     {% else %}
