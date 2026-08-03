@@ -47,17 +47,16 @@
                     {# The link picker's value only yields the chosen link via a direct [0].
                        Anything else — `?? `, an `is iterable` guard, or printing the value —
                        gives the store's base URL instead. Leave this exactly as it is. #}
-                    {% set url = item.url[0] %}
-                    {% set img = item.image %}
+                     {% set img = item.image %}
                     {% if img is iterable %}{% set img = img[ab_lang] ?? (img|first) %}{% endif %}
-                    {% if url %}
-                        <a class="announcement-bar__item" href="{{ url }}">
+                    {% if item.url[0] %}
+                        <a class="announcement-bar__item" href="{{ item.url[0] }}">
                     {% else %}
                         <span class="announcement-bar__item">
                     {% endif %}
                         {% if img %}<img src="{{ img }}" alt="{{ txt|default('')|e('html_attr') }}" loading="lazy">{% endif %}
                         {% if txt %}<span class="announcement-bar__text">{{ txt }}</span>{% endif %}
-                    {% if url %}</a>{% else %}</span>{% endif %}
+                    {% if item.url[0] %}</a>{% else %}</span>{% endif %}
                     <span class="announcement-bar__arrow" aria-hidden="true"></span>
                 {% endfor %}
             </div>
