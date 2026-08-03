@@ -267,6 +267,8 @@
     (function () {
       var uid   = {{ uid | json_encode | raw }};
       var limit = {{ limit }};
+      // Used to rebuild an article link when the API returns only a slug or id
+      var storeUrl = {{ store.url | json_encode | raw }};
       var opts  = {
         image:   {{ show_image   ? 'true' : 'false' }},
         date:    {{ show_date    ? 'true' : 'false' }},
@@ -294,6 +296,24 @@
         } catch (e) {
           return d.toISOString().slice(0, 10);
         }
+      }
+
+      /**
+       * Resolve the article's link. Returns '' (not '#') when nothing usable is
+       * found — an href of '#' navigates to the top of the current page, which
+       * reads as "the card scrolled me up" instead of opening the article.
+       */
+      function articleUrl(a) {
+        var direct = a.url || a.link || a.permalink || a.article_url || a.path || a.href;
+        if (typeof direct === 'string' && direct && direct !== '#') return direct;
+
+        // Only a slug/id came back: rebuild the link off the store's blog path
+        var slug = a.slug || a.id;
+        if (slug) {
+          var base = (storeUrl || '').replace(/\/+$/, '');
+          return base + '/blog/' + slug;
+        }
+        return '';
       }
 
       /**
@@ -327,7 +347,7 @@
 
         return {
           title:   a.title || a.name || a.heading || '',
-          url:     a.url || a.link || a.permalink || '#',
+          url:     articleUrl(a),
           image:   image,
           alt:     (a.image && a.image.alt) || a.title || a.name || '',
           date:    a.created_at || a.published_at || a.date || a.publish_date || '',
@@ -348,14 +368,29 @@
         } catch (e) {}
       }
 
+      var warnedUrl = false;
+      function warnUrl(raw) {
+        if (warnedUrl) return;
+        warnedUrl = true;
+        try {
+          console.warn('[latest-blogs] no article link found, so the card is not ' +
+            'clickable. Keys returned by the API were:', Object.keys(raw || {}));
+        } catch (e) {}
+      }
+
       function cardHTML(raw) {
         var a = normalize(raw);
         if (!a.title) warnShape(raw);
+        if (!a.url) warnUrl(raw);
 
         var url    = a.url;
         var img    = a.image;
         var author = a.author;
         var isPlaceholder = /placeholder/i.test(img);
+        // No usable link: render plain elements instead of anchors, so a click
+        // does nothing rather than jumping to the top of the home page.
+        var openTag  = url ? '<a href="' + esc(url) + '"' : '<span';
+        var closeTag = url ? '</a>' : '</span>';
 
         var meta = '';
         if (opts.date && a.date) {
@@ -370,16 +405,16 @@
         return '' +
           '<article class="lb-card">' +
             (opts.image && img
-              ? '<a class="lb-thumb" href="' + esc(url) + '" aria-label="' + esc(a.title) + '">' +
+              ? openTag + ' class="lb-thumb" aria-label="' + esc(a.title) + '">' +
                   '<img src="' + esc(img) + '" alt="' + esc(a.alt) + '" loading="lazy"' +
                   (isPlaceholder ? ' class="is-placeholder"' : '') + '>' +
-                '</a>'
+                closeTag
               : '') +
             '<div class="lb-body">' +
               (meta ? '<div class="lb-meta">' + meta + '</div>' : '') +
-              '<h3 class="lb-title"><a href="' + esc(url) + '">' + esc(a.title) + '</a></h3>' +
+              '<h3 class="lb-title">' + openTag + '>' + esc(a.title) + closeTag + '</h3>' +
               (opts.summary && a.summary ? '<p class="lb-summary">' + esc(a.summary) + '</p>' : '') +
-              '<a class="lb-more" href="' + esc(url) + '">' + esc(TXT.readMore) + ' ›</a>' +
+              (url ? '<a class="lb-more" href="' + esc(url) + '">' + esc(TXT.readMore) + ' ›</a>' : '') +
             '</div>' +
           '</article>';
       }
