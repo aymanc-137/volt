@@ -12517,6 +12517,560 @@
                     "required": false
                 }
             ]
+        },
+        {
+            "key": "b1c7f4a2-6d3e-4c58-9f10-7ae2b5d84c31",
+            "title": {
+                "ar": "أحدث المقالات",
+                "en": "Latest Blog Posts"
+            },
+            "icon": "sicon-newspaper",
+            "path": "home.latest-blogs",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "latest-blogs-title-group",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات العنوان</strong></div>"
+                },
+                {
+                    "id": "title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان",
+                    "description": null,
+                    "labelHTML": null,
+                    "placeholder": "Placeholder text ..",
+                    "icon": "sicon-format-text-alt",
+                    "value": "كل ما تحتاجه لسيارتك في مكان واحد",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 3,
+                    "maxLength": 300
+                },
+                {
+                    "id": "sub_title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان الجانبي",
+                    "description": null,
+                    "labelHTML": null,
+                    "placeholder": "Placeholder text ..",
+                    "icon": "sicon-format-text-alt",
+                    "value": "أقسامنا مصممة لتناسب كل أنواع السيارات الرياضية",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 3,
+                    "maxLength": 300
+                },
+                {
+                    "id": "enable_gradient_title",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "تفعيل لون متدرج للعنوان",
+                    "description": "عند التفعيل، سيظهر العنوان بتدرج لوني من اللون الأساسي إلى اللون الثانوي",
+                    "labelHTML": null,
+                    "icon": "sicon-format-fill",
+                    "value": false,
+                    "selected": false,
+                    "required": false
+                },
+                {
+                    "id": "enable_gradient_word",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "تفعيل لون متدرج لكلمة معينة في العنوان",
+                    "description": "عند التفعيل، يمكنك اختيار كلمة معينة من العنوان لتطبيق تدرج لوني عليها",
+                    "labelHTML": null,
+                    "icon": "sicon-magic-wand",
+                    "value": true,
+                    "selected": true,
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "gradient_word",
+                    "type": "string",
+                    "format": "text",
+                    "label": "الكلمة أو العبارة المراد تلوينها",
+                    "description": "أدخل الكلمة أو العبارة التي تريد تطبيق التدرج اللوني عليها",
+                    "icon": "sicon-format-text-alt",
+                    "placeholder": "مثال: متخصصة",
+                    "value": "لسيارتك",
+                    "required": false,
+                    "minLength": 1,
+                    "maxLength": 100,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_word",
+                            "operation": "=",
+                            "value": true
+                        },
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "title_color_type",
+                    "description": "تحديد لون العنوان: حسب القالب، أو اللون الأساسي، أو لون مخصص",
+                    "labelHTML": null,
+                    "label": "لون العنوان",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "icon": "sicon-art-palette",
+                    "value": [],
+                    "selected": [
+                        {
+                            "label": "افتراضي (حسب القالب)",
+                            "value": "default",
+                            "key": "title-color-default"
+                        }
+                    ],
+                    "source": "Manual",
+                    "options": [
+                        {
+                            "label": "افتراضي (حسب القالب)",
+                            "value": "default",
+                            "key": "title-color-default"
+                        },
+                        {
+                            "label": "اللون الأساسي للسمة",
+                            "value": "primary",
+                            "key": "title-color-primary"
+                        },
+                        {
+                            "label": "لون مخصص",
+                            "value": "custom",
+                            "key": "title-color-custom"
+                        }
+                    ],
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "title_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "لون العنوان المخصص",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#2C3E50",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "title_color_type",
+                            "operation": "=",
+                            "value": "custom"
+                        },
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "highlight_word_color_type",
+                    "description": "لون الكلمة المميزة داخل العنوان",
+                    "labelHTML": null,
+                    "label": "لون الكلمة المميزة",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "icon": "sicon-art-palette",
+                    "value": [],
+                    "selected": [
+                        {
+                            "label": "تدرّج لوني (أساسي ← ثانوي)",
+                            "value": "gradient",
+                            "key": "hl-color-gradient"
+                        }
+                    ],
+                    "source": "Manual",
+                    "options": [
+                        {
+                            "label": "تدرّج لوني (أساسي ← ثانوي)",
+                            "value": "gradient",
+                            "key": "hl-color-gradient"
+                        },
+                        {
+                            "label": "اللون الأساسي للسمة",
+                            "value": "primary",
+                            "key": "hl-color-primary"
+                        },
+                        {
+                            "label": "لون مخصص",
+                            "value": "custom",
+                            "key": "hl-color-custom"
+                        }
+                    ],
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "enable_gradient_word",
+                            "operation": "=",
+                            "value": true
+                        },
+                        {
+                            "id": "enable_gradient_title",
+                            "operation": "=",
+                            "value": false
+                        }
+                    ]
+                },
+                {
+                    "id": "highlight_word_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "لون الكلمة المميزة المخصص",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#FF3B3B",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "highlight_word_color_type",
+                            "operation": "=",
+                            "value": "custom"
+                        },
+                        {
+                            "id": "enable_gradient_word",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "title_size",
+                    "type": "number",
+                    "format": "slider",
+                    "inputType": "range",
+                    "icon": "sicon-format-size",
+                    "label": "حجم العنوان (بكسل)",
+                    "description": "التحكم في حجم خط العنوان الرئيسي. يصغر تلقائياً على شاشات الجوال.",
+                    "required": false,
+                    "value": 36,
+                    "step": 1,
+                    "minimum": 0,
+                    "maximum": 80
+                },
+                {
+                    "id": "sub_title_size",
+                    "type": "number",
+                    "format": "slider",
+                    "inputType": "range",
+                    "icon": "sicon-format-size",
+                    "label": "حجم العنوان الجانبي (بكسل)",
+                    "description": "التحكم في حجم خط العنوان الجانبي. يصغر تلقائياً على شاشات الجوال.",
+                    "required": false,
+                    "value": 18,
+                    "step": 1,
+                    "minimum": 0,
+                    "maximum": 48
+                },
+                {
+                    "id": "enable_title_underline",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "إظهار الخط أسفل العنوان",
+                    "description": "إظهار أو إخفاء الخط الزخرفي تحت العنوان",
+                    "labelHTML": null,
+                    "icon": "sicon-minus",
+                    "value": true,
+                    "selected": true,
+                    "required": false
+                },
+                {
+                    "id": "title_use_decorative_font",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "استخدام خط العناوين",
+                    "description": "عند التفعيل يُستخدم الخط المحدد في إعداد (خط العناوين) من إعدادات الثيم، وعند التعطيل يُستخدم خط القالب الافتراضي",
+                    "labelHTML": null,
+                    "icon": "sicon-typography",
+                    "value": true,
+                    "selected": true,
+                    "required": false
+                },
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "latest-blogs-items-group",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات المقالات</strong></div>"
+                },
+                {
+                    "id": "limit",
+                    "type": "number",
+                    "format": "slider",
+                    "inputType": "range",
+                    "icon": "sicon-list",
+                    "label": "عدد المقالات المعروضة",
+                    "description": "عدد أحدث المقالات التي ستظهر في القسم.",
+                    "required": false,
+                    "value": 3,
+                    "step": 1,
+                    "minimum": 0,
+                    "maximum": 12
+                },
+                {
+                    "id": "layout",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "طريقة العرض",
+                    "description": "شبكة ثابتة، أو شريط أفقي قابل للتمرير على الجوال.",
+                    "icon": "sicon-list",
+                    "source": "Manual",
+                    "multichoice": false,
+                    "required": false,
+                    "selected": [
+                        {
+                            "label": "شبكة",
+                            "value": "grid",
+                            "key": "lb-layout-grid"
+                        }
+                    ],
+                    "options": [
+                        {
+                            "label": "شبكة",
+                            "value": "grid",
+                            "key": "lb-layout-grid"
+                        },
+                        {
+                            "label": "شريط أفقي",
+                            "value": "slider",
+                            "key": "lb-layout-slider"
+                        }
+                    ]
+                },
+                {
+                    "id": "columns",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "عدد الأعمدة (شاشات كبيرة)",
+                    "description": "عدد المقالات في الصف على الشاشات الكبيرة. يتحول تلقائياً إلى عمود واحد على الجوال.",
+                    "icon": "sicon-keyboard_arrow_down",
+                    "source": "Manual",
+                    "multichoice": false,
+                    "required": false,
+                    "selected": [
+                        {
+                            "label": "3 أعمدة",
+                            "value": "3",
+                            "key": "lb-col-3"
+                        }
+                    ],
+                    "options": [
+                        {
+                            "label": "عمودان",
+                            "value": "2",
+                            "key": "lb-col-2"
+                        },
+                        {
+                            "label": "3 أعمدة",
+                            "value": "3",
+                            "key": "lb-col-3"
+                        },
+                        {
+                            "label": "4 أعمدة",
+                            "value": "4",
+                            "key": "lb-col-4"
+                        }
+                    ]
+                },
+                {
+                    "id": "show_image",
+                    "type": "boolean",
+                    "format": "switch",
+                    "icon": "sicon-image",
+                    "label": "إظهار صورة المقال",
+                    "description": null,
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "id": "show_date",
+                    "type": "boolean",
+                    "format": "switch",
+                    "icon": "sicon-calendar-date",
+                    "label": "إظهار تاريخ النشر",
+                    "description": null,
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "id": "show_author",
+                    "type": "boolean",
+                    "format": "switch",
+                    "icon": "sicon-user",
+                    "label": "إظهار اسم الكاتب",
+                    "description": null,
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "id": "show_summary",
+                    "type": "boolean",
+                    "format": "switch",
+                    "icon": "sicon-format-text-alt",
+                    "label": "إظهار ملخص المقال",
+                    "description": null,
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "id": "show_all_button",
+                    "type": "boolean",
+                    "format": "switch",
+                    "icon": "sicon-link",
+                    "label": "إظهار زر (كل المقالات)",
+                    "description": "زر أسفل القسم ينقل الزائر إلى صفحة المدونة.",
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "latest-blogs-background-group",
+                    "value": "<div style='border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; margin: 20px 0 15px;'><strong style='font-size: 16px; color: #374151;'>إعدادات الخلفية</strong></div>"
+                },
+                {
+                    "id": "slas_hbg",
+                    "description": "اختر نوع الخطوط من الإعداد التالي بعد التفعيل",
+                    "labelHTML": null,
+                    "label": "تفعيل خلفية الخطوط",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": true,
+                    "required": false
+                },
+                {
+                    "id": "slas_hbg_type",
+                    "description": "اختر اتجاه الخطوط في الخلفية",
+                    "labelHTML": null,
+                    "label": "نوع الخطوط",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "value": [],
+                    "selected": [
+                        {
+                            "label": "مائلة (الوضع الافتراضي)",
+                            "value": "inclined",
+                            "key": "slas-type-inclined"
+                        }
+                    ],
+                    "source": "Manual",
+                    "options": [
+                        {
+                            "label": "مائلة (الوضع الافتراضي)",
+                            "value": "inclined",
+                            "key": "slas-type-inclined"
+                        },
+                        {
+                            "label": "عمودية (من أعلى لأسفل)",
+                            "value": "vertical",
+                            "key": "slas-type-vertical"
+                        },
+                        {
+                            "label": "أفقية (من يسار ليمين)",
+                            "value": "horizontal",
+                            "key": "slas-type-horizontal"
+                        }
+                    ],
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "slas_hbg",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "slas_hbg_size",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "حجم الخطوط",
+                    "type": "string",
+                    "format": "text",
+                    "value": "20",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "slas_hbg",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "slas_hbg_use_primary_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "استخدام اللون الرئيسي في الخطوط المموجة",
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": false,
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "slas_hbg",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "slas_hbg_color",
+                    "description": null,
+                    "labelHTML": null,
+                    "label": "لون الخطوط",
+                    "type": "string",
+                    "format": "color",
+                    "value": "#000000",
+                    "required": false,
+                    "conditions": [
+                        {
+                            "id": "slas_hbg_use_primary_color",
+                            "operation": "=",
+                            "value": false
+                        },
+                        {
+                            "id": "slas_hbg",
+                            "operation": "=",
+                            "value": true
+                        }
+                    ]
+                },
+                {
+                    "id": "enable_border",
+                    "label": "تفعيل الحدود",
+                    "description": null,
+                    "type": "boolean",
+                    "format": "switch",
+                    "value": true,
+                    "selected": true,
+                    "required": false
+                }
+            ]
         }
     ],
     "support_url": "https://aymanc-137.github.io/",

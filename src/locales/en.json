@@ -57,6 +57,11 @@
         },
         "tap_preview": {
           "empty": "Add items from the component settings to display the preview content."
+        },
+        "latest_blogs": {
+          "view_all": "All articles",
+          "read_more": "Read more",
+          "empty": "No articles to show right now."
         }
       }
     }

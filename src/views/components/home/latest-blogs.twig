@@ -1,0 +1,383 @@
+{#
+| Variable                           | Type     | Description                                                                  |
+|------------------------------------|----------|------------------------------------------------------------------------------|
+| component.title                    | ?string  | Main title text                                                              |
+| component.sub_title                | ?string  | Subtitle/description text                                                    |
+| component.limit                    | ?int     | How many articles to show (default 3)                                        |
+| component.layout                   | ?string  | 'grid' (default) / 'slider'                                                  |
+| component.columns                  | ?string  | Desktop columns for the grid layout: '2' / '3' (default) / '4'               |
+| component.show_image               | bool     | Show the article thumbnail (default true)                                    |
+| component.show_date                | bool     | Show the publish date (default true)                                         |
+| component.show_author              | bool     | Show the author (default true)                                               |
+| component.show_summary             | bool     | Show the article summary (default true)                                      |
+| component.show_all_button          | bool     | Show the "all articles" button (default true)                                |
+| component.title_size               | ?int     | Title font size in px (desktop). Handled by the section-title partial        |
+| component.sub_title_size           | ?int     | Subtitle font size in px (desktop)                                           |
+| component.enable_title_underline   | bool     | Decorative underline below the title                                         |
+| component.title_use_decorative_font| bool     | Use the theme's titles font for the title                                    |
+| component.title_color_type         | ?string  | 'default' / 'primary' / 'custom'                                             |
+| component.title_color              | ?string  | Custom title color when title_color_type = 'custom'                          |
+| component.enable_gradient_title    | bool     | Gradient across the whole title                                              |
+| component.enable_gradient_word     | bool     | Gradient on one word of the title                                            |
+| component.gradient_word            | ?string  | The word to highlight                                                        |
+| component.enable_border            | bool     | Top/bottom borders on the section                                            |
+| component.slas_hbg                 | bool     | Diagonal-lines background                                                    |
+| component.slas_hbg_type            | string   | 'inclined' (default) / 'vertical' / 'horizontal'                             |
+| component.slas_hbg_size            | string   | Lines spacing in px                                                          |
+| component.slas_hbg_use_primary_color | bool   | Use the theme primary color for the lines                                    |
+| component.slas_hbg_color           | string   | Custom hex color for the lines                                               |
+| position                           | int      | Sorting number starting from zero                                            |
+
+  Articles are not exposed to the home page by Twig, so they are fetched at
+  runtime from Salla's `blog/articles` endpoint (the same API the theme already
+  uses for article likes) and rendered client-side.
+#}
+
+{% set uid = 'lb-' ~ (position | default(0)) %}
+{% set limit = component.limit | default(3) %}
+{% set limit = limit > 0 ? limit : 3 %}
+{% set layout = component.layout | default('grid') %}
+{% set columns = component.columns | default('3') %}
+{% set show_image = component.show_image ?? true %}
+{% set show_date = component.show_date ?? true %}
+{% set show_author = component.show_author ?? true %}
+{% set show_summary = component.show_summary ?? true %}
+{% set show_all_button = component.show_all_button ?? true %}
+{% set enable_border = component.enable_border | default(false) %}
+
+{% set slashbg = component.slas_hbg | default(false) %}
+{% set slas_hbg_size = component.slas_hbg_size | default('20') %}
+{% set slas_hbg_use_primary_color = component.slas_hbg_use_primary_color %}
+{% set slas_hbg_color = (component.slas_hbg_color | default('#000000')) ~ '1A' %}
+{% set slas_hbg_type = component.slas_hbg_type | default('inclined') %}
+{% set slas_angle = slas_hbg_type == 'vertical' ? '90' : (slas_hbg_type == 'horizontal' ? '0' : '135') %}
+
+<section data-volt-component="home.latest-blogs"
+  id="{{ uid }}-section"
+  class="s-block s-block--latest-blogs py-8 md:py-16 relative overflow-hidden {{ enable_border ? 'border-y border-[var(--color-primary)]' : '' }} {{ slashbg ? 'slash-bg-' ~ position ~ ' dynamic-bg-color' : '' }}">
+
+  <style>
+    /* Scoped to this instance so several copies of the component can coexist and
+       so the merchant's column choice survives Tailwind's purge (it is built from
+       a Twig value, which the JIT scanner never sees). */
+    #{{ uid }} .lb-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 640px) {
+      #{{ uid }} .lb-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1024px) {
+      #{{ uid }} .lb-grid { grid-template-columns: repeat({{ columns }}, minmax(0, 1fr)); }
+    }
+
+    #{{ uid }} .lb-card {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: var(--border-radius, 14px);
+      border: 1px solid var(--color-border, rgba(0,0,0,.12));
+      background: var(--color-light-box-background, #fff);
+      transition: transform .3s ease, box-shadow .3s ease;
+      height: 100%;
+    }
+    .dark #{{ uid }} .lb-card {
+      background: var(--color-dark-box-background, #171717);
+      border-color: var(--color-border-dark, rgba(255,255,255,.14));
+    }
+    #{{ uid }} .lb-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 34px rgba(0,0,0,.12);
+    }
+
+    #{{ uid }} .lb-thumb {
+      display: block;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: var(--color-primary-5, rgba(0,0,0,.04));
+    }
+    #{{ uid }} .lb-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s ease;
+    }
+    #{{ uid }} .lb-card:hover .lb-thumb img { transform: scale(1.06); }
+    #{{ uid }} .lb-thumb img.is-placeholder { object-fit: contain; opacity: .6; padding: 2rem; }
+
+    #{{ uid }} .lb-body { padding: 1.25rem; display: flex; flex-direction: column; gap: .625rem; flex: 1; }
+
+    #{{ uid }} .lb-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      font-size: .8125rem;
+      opacity: .7;
+    }
+    #{{ uid }} .lb-meta span { display: inline-flex; align-items: center; gap: .3rem; }
+    #{{ uid }} .lb-meta a { display: inline-flex; align-items: center; gap: .3rem; }
+    #{{ uid }} .lb-meta a:hover { color: var(--color-primary); }
+
+    #{{ uid }} .lb-title {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.5;
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    #{{ uid }} .lb-title a:hover { color: var(--color-primary); }
+
+    #{{ uid }} .lb-summary {
+      font-size: .875rem;
+      line-height: 1.7;
+      opacity: .75;
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    #{{ uid }} .lb-more {
+      margin-top: auto;
+      padding-top: .25rem;
+      font-size: .875rem;
+      font-weight: 600;
+      color: var(--color-scandary, #FF3B3B);
+      display: inline-flex;
+      align-items: center;
+      gap: .25rem;
+    }
+
+    /* Loading skeletons, shown until the fetch resolves */
+    #{{ uid }} .lb-skeleton .lb-thumb,
+    #{{ uid }} .lb-skeleton .lb-line {
+      background: linear-gradient(90deg, rgba(0,0,0,.06) 25%, rgba(0,0,0,.12) 37%, rgba(0,0,0,.06) 63%);
+      background-size: 400% 100%;
+      animation: lb-shimmer 1.4s ease infinite;
+    }
+    .dark #{{ uid }} .lb-skeleton .lb-thumb,
+    .dark #{{ uid }} .lb-skeleton .lb-line {
+      background: linear-gradient(90deg, rgba(255,255,255,.06) 25%, rgba(255,255,255,.13) 37%, rgba(255,255,255,.06) 63%);
+      background-size: 400% 100%;
+    }
+    #{{ uid }} .lb-line { height: .75rem; border-radius: 9999px; }
+    #{{ uid }} .lb-line.short { width: 55%; }
+    @keyframes lb-shimmer { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
+    @media (prefers-reduced-motion: reduce) {
+      #{{ uid }} .lb-skeleton .lb-thumb,
+      #{{ uid }} .lb-skeleton .lb-line { animation: none; }
+    }
+
+    /* Slider layout: horizontal scroll-snap rail, no JS carousel needed */
+    #{{ uid }} .lb-rail {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: .5rem;
+      scrollbar-width: thin;
+    }
+    #{{ uid }} .lb-rail > * {
+      flex: 0 0 85%;
+      scroll-snap-align: start;
+    }
+    @media (min-width: 640px) { #{{ uid }} .lb-rail > * { flex-basis: 45%; } }
+    @media (min-width: 1024px) { #{{ uid }} .lb-rail > * { flex-basis: calc((100% - {{ (columns - 1) * 1.5 }}rem) / {{ columns }}); } }
+    #{{ uid }} .lb-rail::-webkit-scrollbar { height: 6px; }
+    #{{ uid }} .lb-rail::-webkit-scrollbar-thumb { border-radius: 9999px; background: var(--color-primary-30, rgba(0,0,0,.2)); }
+
+    #{{ uid }} .lb-empty { text-align: center; padding: 2.5rem 1rem; opacity: .7; font-size: .9375rem; }
+
+    #{{ uid }} .lb-all {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      margin-top: 2rem;
+      padding: .7rem 1.75rem;
+      border-radius: var(--border-radius, 14px);
+      background: var(--color-scandary, #FF3B3B);
+      color: #fff;
+      font-weight: 600;
+      font-size: .9375rem;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    #{{ uid }} .lb-all:hover { opacity: .9; transform: translateY(-1px); color: #fff; }
+    /* An explicit `display` beats the UA stylesheet's [hidden] rule, so the button
+       would stay visible while loading and on the empty state without this. */
+    #{{ uid }} .lb-all[hidden] { display: none; }
+    /* The arrow points "forward", which is left in RTL and right in LTR. Done here
+       rather than with rtl:/ltr: utilities so the component needs no CSS rebuild. */
+    [dir="ltr"] #{{ uid }} .lb-all i { transform: scaleX(-1); }
+  </style>
+
+  {% include 'components.home.partials.section-title' %}
+
+  <div class="container dynamic-text-color" id="{{ uid }}">
+    <div class="{{ layout == 'slider' ? 'lb-rail' : 'lb-grid' }}" data-lb-list>
+      {# Skeletons keep the section from collapsing while the articles load #}
+      {% for i in 1..limit %}
+        <div class="lb-card lb-skeleton" aria-hidden="true">
+          {% if show_image %}<span class="lb-thumb"></span>{% endif %}
+          <div class="lb-body">
+            <div class="lb-line short"></div>
+            <div class="lb-line"></div>
+            <div class="lb-line"></div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if show_all_button %}
+      <div class="text-center">
+        <a href="{{ store.url }}/blog" class="lb-all" data-lb-all hidden>
+          <span>{{ trans('blocks.home.volt.latest_blogs.view_all') }}</span>
+          <i class="sicon-keyboard_arrow_left"></i>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+
+  {% if slashbg %}
+  <style>
+    {% if slas_hbg_use_primary_color %}
+      .slash-bg-{{ position }} {
+        background: linear-gradient({{ slas_angle }}deg,
+          var(--color-primary-10) 25%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 50%,
+          var(--color-primary-10) 50%, var(--color-primary-10) 75%, rgba(0,0,0,0) 75%);
+        background-size: {{ slas_hbg_size }}px {{ slas_hbg_size }}px;
+      }
+    {% else %}
+      .slash-bg-{{ position }} {
+        background: linear-gradient({{ slas_angle }}deg,
+          {{ slas_hbg_color }} 25%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 50%,
+          {{ slas_hbg_color }} 50%, {{ slas_hbg_color }} 75%, rgba(0,0,0,0) 75%);
+        background-size: {{ slas_hbg_size }}px {{ slas_hbg_size }}px;
+      }
+    {% endif %}
+  </style>
+  {% endif %}
+
+  <script>
+    (function () {
+      var uid   = {{ uid | json_encode | raw }};
+      var limit = {{ limit }};
+      var opts  = {
+        image:   {{ show_image   ? 'true' : 'false' }},
+        date:    {{ show_date    ? 'true' : 'false' }},
+        author:  {{ show_author  ? 'true' : 'false' }},
+        summary: {{ show_summary ? 'true' : 'false' }}
+      };
+      var TXT = {
+        empty:   {{ trans('blocks.home.volt.latest_blogs.empty')    | json_encode | raw }},
+        readMore:{{ trans('blocks.home.volt.latest_blogs.read_more')| json_encode | raw }}
+      };
+
+      function esc(v) {
+        return String(v == null ? '' : v)
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+      }
+
+      function formatDate(value) {
+        if (!value) return '';
+        var d = new Date(value);
+        if (isNaN(d.getTime())) return String(value);
+        try {
+          return d.toLocaleDateString(document.documentElement.lang || undefined,
+            { year: 'numeric', month: 'short', day: 'numeric' });
+        } catch (e) {
+          return d.toISOString().slice(0, 10);
+        }
+      }
+
+      function cardHTML(a) {
+        var url     = a.url || '#';
+        var img     = (a.image && (a.image.url || a.image.src)) || '';
+        var alt     = (a.image && a.image.alt) || a.title || '';
+        var author  = a.author || {};
+        var isPlaceholder = /placeholder/i.test(img);
+
+        var meta = '';
+        if (opts.date && a.created_at) {
+          meta += '<span><i class="sicon-calendar-date"></i>' + esc(formatDate(a.created_at)) + '</span>';
+        }
+        if (opts.author && author.name) {
+          meta += author.url
+            ? '<a href="' + esc(author.url) + '"><i class="sicon-user"></i>' + esc(author.name) + '</a>'
+            : '<span><i class="sicon-user"></i>' + esc(author.name) + '</span>';
+        }
+
+        return '' +
+          '<article class="lb-card">' +
+            (opts.image && img
+              ? '<a class="lb-thumb" href="' + esc(url) + '" aria-label="' + esc(a.title) + '">' +
+                  '<img src="' + esc(img) + '" alt="' + esc(alt) + '" loading="lazy"' +
+                  (isPlaceholder ? ' class="is-placeholder"' : '') + '>' +
+                '</a>'
+              : '') +
+            '<div class="lb-body">' +
+              (meta ? '<div class="lb-meta">' + meta + '</div>' : '') +
+              '<h3 class="lb-title"><a href="' + esc(url) + '">' + esc(a.title) + '</a></h3>' +
+              (opts.summary && a.summary ? '<p class="lb-summary">' + esc(a.summary) + '</p>' : '') +
+              '<a class="lb-more" href="' + esc(url) + '">' + esc(TXT.readMore) + ' ›</a>' +
+            '</div>' +
+          '</article>';
+      }
+
+      function render(articles) {
+        var root = document.getElementById(uid);
+        if (!root) return;
+        var list = root.querySelector('[data-lb-list]');
+        var all  = root.querySelector('[data-lb-all]');
+        if (!list) return;
+
+        if (!articles.length) {
+          list.className = '';
+          list.innerHTML = '<div class="lb-empty">' + esc(TXT.empty) + '</div>';
+          return;
+        }
+
+        list.innerHTML = articles.slice(0, limit).map(cardHTML).join('');
+        if (all) all.hidden = false;
+      }
+
+      function extract(res) {
+        var data = (res && res.data) || res || [];
+        if (Array.isArray(data)) return data;
+        if (Array.isArray(data.articles)) return data.articles;
+        if (Array.isArray(data.items)) return data.items;
+        return [];
+      }
+
+      function load() {
+        if (!window.salla || !salla.api || typeof salla.api.request !== 'function') {
+          render([]);
+          return;
+        }
+        salla.api.request('blog/articles', { params: { per_page: limit } })
+          .then(function (res) { render(extract(res)); })
+          .catch(function (e) {
+            if (window.salla && salla.logger) { salla.logger.error(e); }
+            render([]);
+          });
+      }
+
+      if (window.app && window.app.status === 'ready') {
+        load();
+      } else {
+        document.addEventListener('theme::ready', load);
+        // Fallback in case the theme event already fired or never does
+        if (document.readyState !== 'loading') { setTimeout(function () {
+          var root = document.getElementById(uid);
+          if (root && root.querySelector('.lb-skeleton')) load();
+        }, 2500); }
+      }
+    })();
+  </script>
+</section>
