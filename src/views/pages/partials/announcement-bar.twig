@@ -9,10 +9,12 @@
 | announcement_bar_height               | int      | bar height in px                                         |
 | announcement_bar_text_size            | int      | item text size in px                                     |
 | announcement_bar_speed                | int      | seconds for the strip to cross one screen width (lower = faster) |
-| announcement_items                    | object[] | repeatable items: .image (?), .text (?), .url (?)        |
-|   .image                              | string   | plain image URL                                          |
-|   .text                               | object   | multilanguage map, e.g. {ar: "..."}                      |
-|   .url                                | mixed    | link picker; shape varies — see the resolution in the loop|
+| announcement_items                    | object[] | repeatable items: .image (?), .text (?), .item_url (?)    |
+|   .image                              | string   | plain image URL                                           |
+|   .text                               | object   | multilanguage map, e.g. {ar: "..."}                       |
+|   .item_url                           | ?string  | link picker. Must NOT be named `url` — an item already has |
+|                                       |          | its own `url`, which shadows the field and returns the     |
+|                                       |          | store's base URL instead of the chosen link                |
 
  Site-wide infinite marquee. The markup renders ONE sequence of items; the
  inline script clones it just enough to exceed the bar width and then the CSS
@@ -44,14 +46,16 @@
                     {# Multilanguage fields come back as a {lang: value} map here; resolve to the current language #}
                     {% set txt = item.text %}
                     {% if txt is iterable %}{% set txt = txt[ab_lang] ?? (txt|first) %}{% endif %}
-                    {# The link picker's value only yields the chosen link via a direct [0].
-                       Anything else — `?? `, an `is iterable` guard, or printing the value —
-                       gives the store's base URL instead. Leave this exactly as it is. #}
-                     {% set img = item.image %}
-                      {% set url = true %}
-                       {% if img is iterable %}{% set img = img[ab_lang] ?? (img|first) %}{% endif %}
+                    {# The field is `item_url`, not `url`: a collection item already carries its
+                       own `url`, so a custom field by that name is shadowed by it and reading
+                       item.url returns the store's base URL instead of the chosen link. Under a
+                       non-colliding name the picker resolves to a plain string, exactly like
+                       `slides.button_url` in the enhanced-image-carousel. #}
+                    {% set url = item.item_url %}
+                    {% set img = item.image %}
+                    {% if img is iterable %}{% set img = img[ab_lang] ?? (img|first) %}{% endif %}
                     {% if url %}
-                        <a class="announcement-bar__item" href="{{  item.item_url[0] }}">
+                        <a class="announcement-bar__item" href="{{ url }}">
                     {% else %}
                         <span class="announcement-bar__item">
                     {% endif %}
