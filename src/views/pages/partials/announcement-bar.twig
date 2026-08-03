@@ -51,7 +51,7 @@
                      {% set url = item.url.value %}
                     {% if img is iterable %}{% set img = img[ab_lang] ?? (img|first) %}{% endif %}
                     {% if url %}
-                        <a class="announcement-bar__item" href="{{ item.url[0] }}">
+                        <a class="announcement-bar__item" href="{{ item.url.value }}">
                     {% else %}
                         <span class="announcement-bar__item">
                     {% endif %}
