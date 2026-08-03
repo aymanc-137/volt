@@ -49,15 +49,8 @@
                        grabs whichever key comes first (the type/label) — the malformed link.
                        Anything unrecognised ends as null, which renders the item unlinked
                        rather than breaking the view. #}
-                    {% set url = item.url %}
-                    {{ url|json_encode }}
-                    {% if url is iterable %}
-                        {% set url = url.url ?? url.value ?? url.link ?? url.href ?? (url|first) %}
-                    {% endif %}
-                    {% if url is iterable %}
-                        {% set url = url.url ?? url.value ?? url.link ?? url.href ?? null %}
-                    {% endif %}
-                    {% if url is iterable %}{% set url = null %}{% endif %}
+                    {% set url = item.url.value %}
+                   
                     {% set img = item.image %}
                     {% if img is iterable %}{% set img = img[ab_lang] ?? (img|first) %}{% endif %}
                     {% if url %}
