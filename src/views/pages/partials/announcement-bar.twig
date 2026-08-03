@@ -49,6 +49,7 @@
                        gives the store's base URL instead. Leave this exactly as it is. #}
                      {% set img = item.image %}
                      {% set url = item.url.value %}
+                     {{ url|json_encode }}
                     {% if img is iterable %}{% set img = img[ab_lang] ?? (img|first) %}{% endif %}
                     {% if url %}
                         <a class="announcement-bar__item" href="{{ item.url.value }}">
