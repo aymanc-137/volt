@@ -296,16 +296,70 @@
         }
       }
 
-      function cardHTML(a) {
-        var url     = a.url || '#';
-        var img     = (a.image && (a.image.url || a.image.src)) || '';
-        var alt     = (a.image && a.image.alt) || a.title || '';
-        var author  = a.author || {};
+      /**
+       * The API returns articles with different key names than the `article`
+       * object Twig hands to the blog pages, and the shape varies by field
+       * (image can be an object or a bare URL string, author an object or a
+       * name). Normalise everything to one shape here so the card markup stays
+       * simple and the component survives either payload.
+       */
+      function normalize(a) {
+        a = a || {};
+
+        var image = a.image;
+        if (image && typeof image === 'object') {
+          image = image.url || image.src || image.path || '';
+        }
+        if (typeof image !== 'string') image = '';
+        image = image || a.thumbnail || a.banner || a.cover || '';
+
+        var author = a.author;
+        if (author && typeof author === 'object') {
+          author = { name: author.name || author.full_name || '', url: author.url || '' };
+        } else {
+          author = { name: typeof author === 'string' ? author : (a.author_name || ''), url: '' };
+        }
+
+        var summary = a.summary || a.excerpt || a.brief || a.description || a.short_description || '';
+        if (!summary && typeof a.body === 'string') {
+          summary = a.body.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 180);
+        }
+
+        return {
+          title:   a.title || a.name || a.heading || '',
+          url:     a.url || a.link || a.permalink || '#',
+          image:   image,
+          alt:     (a.image && a.image.alt) || a.title || a.name || '',
+          date:    a.created_at || a.published_at || a.date || a.publish_date || '',
+          author:  author,
+          summary: summary
+        };
+      }
+
+      // Fires only when the mapping fails, so it stays quiet on a healthy payload
+      // but names the real keys if Salla changes the shape again.
+      var warnedShape = false;
+      function warnShape(raw) {
+        if (warnedShape) return;
+        warnedShape = true;
+        try {
+          console.warn('[latest-blogs] could not read the article title; ' +
+            'keys returned by the API were:', Object.keys(raw || {}));
+        } catch (e) {}
+      }
+
+      function cardHTML(raw) {
+        var a = normalize(raw);
+        if (!a.title) warnShape(raw);
+
+        var url    = a.url;
+        var img    = a.image;
+        var author = a.author;
         var isPlaceholder = /placeholder/i.test(img);
 
         var meta = '';
-        if (opts.date && a.created_at) {
-          meta += '<span><i class="sicon-calendar-date"></i>' + esc(formatDate(a.created_at)) + '</span>';
+        if (opts.date && a.date) {
+          meta += '<span><i class="sicon-calendar-date"></i>' + esc(formatDate(a.date)) + '</span>';
         }
         if (opts.author && author.name) {
           meta += author.url
@@ -317,7 +371,7 @@
           '<article class="lb-card">' +
             (opts.image && img
               ? '<a class="lb-thumb" href="' + esc(url) + '" aria-label="' + esc(a.title) + '">' +
-                  '<img src="' + esc(img) + '" alt="' + esc(alt) + '" loading="lazy"' +
+                  '<img src="' + esc(img) + '" alt="' + esc(a.alt) + '" loading="lazy"' +
                   (isPlaceholder ? ' class="is-placeholder"' : '') + '>' +
                 '</a>'
               : '') +
@@ -347,12 +401,24 @@
         if (all) all.hidden = false;
       }
 
+      /** Pull the article array out of whichever envelope the API used. */
       function extract(res) {
-        var data = (res && res.data) || res || [];
-        if (Array.isArray(data)) return data;
-        if (Array.isArray(data.articles)) return data.articles;
-        if (Array.isArray(data.items)) return data.items;
-        return [];
+        var seen = [];
+        function find(node, depth) {
+          if (!node || depth > 3) return null;
+          if (Array.isArray(node)) return node;
+          if (typeof node !== 'object' || seen.indexOf(node) > -1) return null;
+          seen.push(node);
+          var keys = ['articles', 'items', 'data', 'blogs', 'results', 'posts'];
+          for (var i = 0; i < keys.length; i++) {
+            if (node[keys[i]] != null) {
+              var found = find(node[keys[i]], depth + 1);
+              if (found) return found;
+            }
+          }
+          return null;
+        }
+        return find(res, 0) || [];
       }
 
       function load() {
