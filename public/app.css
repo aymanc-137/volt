@@ -4433,8 +4433,11 @@ input[type=radio].sr-only:checked ~ div.s-app-install-alert-cancel-button {
 }
 .s-basket-gap-card{
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 0.75rem;
+    -moz-column-gap: 0.75rem;
+         column-gap: 0.75rem;
+    row-gap: 0.625rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
@@ -4457,9 +4460,22 @@ input[type=radio].sr-only:checked ~ div.s-app-install-alert-cancel-button {
 }
 .s-basket-gap-card-info{
     display: flex;
+    min-width: 0px;
     flex: 1 1 0%;
     flex-direction: column;
     gap: 0.25rem;
+}
+.s-basket-gap-card-actions{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+@media (min-width: 640px){
+    .s-basket-gap-card-actions{
+        width: auto;
+    }
 }
 .s-basket-gap-card-name{
     font-size: 0.875rem;
@@ -4510,8 +4526,6 @@ input[type=radio].sr-only:checked ~ div.s-app-install-alert-cancel-button {
     color: rgba(156, 163, 175, var(--tw-text-opacity, 1));
 }
 .s-basket-gap-card-offer{
-    margin-left: 0.625rem;
-    margin-right: 0.625rem;
     display: flex;
     flex-shrink: 0;
     align-items: center;
@@ -4562,21 +4576,26 @@ input[type=radio].sr-only:checked ~ div.s-app-install-alert-cancel-button {
     display: inline-flex;
     flex-wrap: nowrap;
     align-items: center;
-    -moz-column-gap: 0.75rem;
-         column-gap: 0.75rem;
+    -moz-column-gap: 0px;
+         column-gap: 0px;
     --tw-numeric-spacing: tabular-nums;
     font-feature-settings: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) tabular-nums var(--tw-numeric-fraction);
     font-feature-settings: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
     font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) tabular-nums var(--tw-numeric-fraction);
     font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
-    --s-basket-gap-countdown-gap: 0.75rem;
+}
+.s-basket-gap-card-offer .s-count-down-list:where([dir="ltr"], [dir="ltr"] *){
+    flex-direction: row-reverse !important;
+}
+.s-basket-gap-card-offer .s-count-down-list:where([dir="rtl"], [dir="rtl"] *){
+    flex-direction: row !important;
 }
 .s-basket-gap-card-offer .s-count-down-item{
     position: relative !important;
     margin-left: 0px !important;
     margin-right: 0px !important;
     display: inline-flex !important;
-    width: 2ch !important;
+    width: auto !important;
     flex: none !important;
     flex-grow: 0 !important;
     flex-direction: row !important;
@@ -4594,7 +4613,9 @@ input[type=radio].sr-only:checked ~ div.s-app-install-alert-cancel-button {
     color: rgba(21, 128, 61, var(--tw-text-opacity, 1)) !important;
 }
 .s-basket-gap-card-offer .s-count-down-item-value{
-    width: 100% !important;
+    display: inline-block !important;
+    width: 2ch !important;
+    min-width: 2ch !important;
 }
 .s-basket-gap-card-offer .s-count-down-item-value{
     text-align: center;
@@ -4611,50 +4632,47 @@ input[type=radio].sr-only:checked ~ div.s-app-install-alert-cancel-button {
 .product-tabs.s-basket-gap-card-offer .s-count-down-item-label {
   display: none;
 }
-.s-basket-gap-card-offer .s-count-down-item::after{
+.s-basket-gap-entry .s-basket-gap-card-offer.s-basket-gap-card-offer .s-count-down-item::before{
     content: none !important;
 }
-.s-basket-gap-card-offer .s-count-down-item::before{
+.s-basket-gap-entry .s-basket-gap-card-offer.s-basket-gap-card-offer .s-count-down-item::after{
     content: none !important;
 }
-.s-basket-gap-card-offer .s-count-down-item:not(:first-child):not(:last-child)::after, .s-basket-gap-card-offer .s-count-down-item:nth-last-child(2)::before, [dir='rtl'] .s-basket-gap-card-offer .s-count-down-item:not(:last-child)::after{
+.s-basket-gap-entry .s-basket-gap-card-offer.s-basket-gap-card-offer .s-count-down-item::after{
+    position: static;
+    left: auto;
+    right: auto;
+    transform: none;
+}
+[dir='rtl'] .s-basket-gap-entry .s-basket-gap-card-offer.s-basket-gap-card-offer .s-count-down-item:not(:last-child)::after{
+    content: ':' !important;
+}
+[dir='rtl'] .s-basket-gap-entry .s-basket-gap-card-offer.s-basket-gap-card-offer .s-count-down-item:not(:last-child)::after{
+    position: static;
+    left: auto;
+    right: auto;
+    transform: none;
+    margin-left: 0.15rem;
+    margin-right: 0.15rem;
     color: #15803d;
     font-size: 12px;
     font-weight: 700;
     line-height: 1;
 }
-.s-basket-gap-card-offer .s-count-down-item:not(:first-child):not(:last-child)::after{
+[dir='ltr'] .s-basket-gap-entry .s-basket-gap-card-offer.s-basket-gap-card-offer .s-count-down-item:not(:first-child)::after{
     content: ':' !important;
 }
-.s-basket-gap-card-offer .s-count-down-item:not(:first-child):not(:last-child)::after{
-    position: absolute;
-    top: 50%;
-    left: calc(100% + 0.75rem / 2);
-    left: calc(100% + var(--s-basket-gap-countdown-gap, 0.75rem) / 2);
-    transform: translate(-50%, -50%);
-}
-.s-basket-gap-card-offer .s-count-down-item:nth-last-child(2)::before{
-    content: ':' !important;
-}
-.s-basket-gap-card-offer .s-count-down-item:nth-last-child(2)::before{
-    position: absolute;
-    top: 50%;
-    left: calc(0.75rem / -2);
-    left: calc(var(--s-basket-gap-countdown-gap, 0.75rem) / -2);
-    transform: translate(-50%, -50%);
-}
-[dir='rtl'] .s-basket-gap-card-offer .s-count-down-item:not(:first-child):not(:last-child)::after, [dir='rtl'] .s-basket-gap-card-offer .s-count-down-item:nth-last-child(2)::before{
-    content: none !important;
-}
-[dir='rtl'] .s-basket-gap-card-offer .s-count-down-item:not(:last-child)::after{
-    content: ':' !important;
-}
-[dir='rtl'] .s-basket-gap-card-offer .s-count-down-item:not(:last-child)::after{
-    position: absolute;
-    top: 50%;
-    left: calc(100% + 0.75rem / 2);
-    left: calc(100% + var(--s-basket-gap-countdown-gap, 0.75rem) / 2);
-    transform: translate(-50%, -50%);
+[dir='ltr'] .s-basket-gap-entry .s-basket-gap-card-offer.s-basket-gap-card-offer .s-count-down-item:not(:first-child)::after{
+    position: static;
+    left: auto;
+    right: auto;
+    transform: none;
+    margin-left: 0.15rem;
+    margin-right: 0.15rem;
+    color: #15803d;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
 }
 .s-basket-gap-card-btn{
     flex-shrink: 0;
@@ -17255,9 +17273,7 @@ input[type=radio].sr-only:checked ~ div.s-offer-bank-payment-discount-percent {
     color: var(--color-text-primary,#2b2d34);
 }
 .s-order-branch-address{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    word-wrap: break-word;
     font-size: 0.75rem;
     line-height: 1rem;
     line-height: 1.45;
