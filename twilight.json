@@ -12469,6 +12469,7 @@
             },
             "icon": "sicon-newspaper",
             "path": "home.latest-blogs",
+            "image": "https://cdn.lamsaweb.com/cdnVolt/components/latest_blog.png",
             "fields": [
                 {
                     "type": "static",
