@@ -25,8 +25,11 @@
               <salla-breadcrumb></salla-breadcrumb>
           </nav>
 
+          {# Rich-text pages often carry hard-coded colours that vanish on a dark
+             background, so `page_content_force_light` pins them to a white card. #}
+          {% set force_light = theme.settings.get('page_content_force_light', false) %}
           <div class="flex justify-center">
-              <div class="dynamic-text-color content content--single-page w-full lg:w-10/12  rounded p-6 lg:p-8 mt-4 lg:mt-12">
+              <div class="{{ force_light ? 'content--force-light' : 'dynamic-text-color' }} content content--single-page w-full lg:w-10/12  rounded p-6 lg:p-8 mt-4 lg:mt-12">
                   <h1 class="font-bold text-2xl mb-6">{{ page.title }}</h1>
                   <div class="content-entry">
                       {{ page.content|raw }}

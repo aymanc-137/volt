@@ -253,6 +253,20 @@ body {
   }
 }
 
+// Enabled via the `page_content_force_light` theme setting. Merchants write these
+// pages in a rich-text editor and often hard-code text colours, which disappear
+// against a dark background. This pins the card to a white surface with dark text
+// in both modes, so pasted colours always sit on the background they were picked
+// for. Only the default colour is set — inline colours from the editor still win.
+.content--force-light {
+  background-color: #ffffff;
+  color: #2c3e50;
+
+  // These would otherwise inherit the dark-mode heading/link colours
+  h1, h2, h3, h4, h5, h6 { color: inherit; }
+  a:not([class]) { color: var(--color-primary); }
+}
+
 /* Components Init*/
 
 salla-modal {

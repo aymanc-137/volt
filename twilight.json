@@ -791,6 +791,17 @@
             ]
         },
         {
+            "type": "boolean",
+            "icon": "sicon-format-text-alt",
+            "label": "خلفية بيضاء ثابتة لصفحات المحتوى",
+            "description": "لصفحات المحتوى التعريفية (من نحن، الشروط والأحكام…) التي يكتب فيها نص منسّق بألوان ثابتة: يُستخدم صندوق بخلفية بيضاء ونص داكن دائماً حتى في الوضع الداكن، حتى لا تختفي النصوص الملوّنة.",
+            "id": "page_content_force_light",
+            "format": "switch",
+            "required": false,
+            "value": false,
+            "selected": false
+        },
+        {
             "id": "border_radius",
             "type": "number",
             "format": "slider",

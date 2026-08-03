@@ -27556,6 +27556,17 @@ body.modal-open [id^=gb-widget] {
 .content .content-entry ol {
   list-style: auto !important;
 }
+.content--force-light {
+  background-color: #ffffff;
+  color: #2c3e50;
+}
+.content--force-light h1, .content--force-light h2, .content--force-light h3, .content--force-light h4, .content--force-light h5, .content--force-light h6 {
+  color: inherit;
+}
+.content--force-light a:not([class]) {
+  color: #414042;
+  color: var(--color-primary);
+}
 /* Components Init*/
 salla-modal:not(.hydrated) {
   display: none;
