@@ -405,7 +405,7 @@
                     },
                     "announcement_items.url": {
                         "label": "",
-                        "value": "https://s.salla.sa/",
+                        "value": "https://demostore.salla.sa/ar/dev-pbdsq67yexku5kq3/-/c1019197955",
                         "source": "custom"
                     }
                 },
@@ -452,7 +452,7 @@
                     "description": "الصق الرابط كاملاً، مثال: https://example.com/page",
                     "placeholder": "https://",
                     "icon": "sicon-link",
-                    "value": null,
+                    "value": "https://demostore.salla.sa/ar/dev-pbdsq67yexku5kq3/-/c1019197955",
                     "multilanguage": false,
                     "required": false
                 }
