@@ -12,8 +12,8 @@
 | announcement_items                    | object[] | repeatable items: .image (?), .text (?), .item_url (?)    |
 |   .image                              | string   | plain image URL                                           |
 |   .text                               | object   | multilanguage map, e.g. {ar: "..."}                       |
-|   .item_url                           | array    | link picker; read as item.item_url[0]. Must NOT be named   |
-|                                       |          | `url` — an item already has its own `url` that shadows it  |
+|   .item_url                           | ?string  | plain text field; the pasted link, used as-is. Must NOT be |
+|                                       |          | named `url` — an item has its own `url` that shadows it    |
 
  Site-wide infinite marquee. The markup renders ONE sequence of items; the
  inline script clones it just enough to exceed the bar width and then the CSS
@@ -45,24 +45,23 @@
                     {# Multilanguage fields come back as a {lang: value} map here; resolve to the current language #}
                     {% set txt = item.text %}
                     {% if txt is iterable %}{% set txt = txt[ab_lang] ?? (txt|first) %}{% endif %}
-                    {# The link must be read as `item.item_url[0]`, written out inline.
-                       Two separate reasons, both already learned the hard way:
-                         - the field is `item_url`, not `url`, because an item already carries
-                           its own `url` that would shadow it and yield the store's base URL;
-                         - in a global setting the picker stays an array, unlike a component
-                           field such as `slides.button_url` which arrives as a plain string,
-                           so printing it without [0] raises "Array to string conversion".
-                       Do not lift this into a {% set %} or wrap it in ?? / is iterable. #}
+                    {# `item_url` is a plain text field: the merchant pastes the link and it is
+                       used verbatim. It was a variable-list picker, which never resolved
+                       correctly here — a global setting keeps the picker as an array and the
+                       shapes differ per link source, so no single access worked for every item.
+                       Keep the name `item_url`: an item already carries its own `url`, and a
+                       field by that name is shadowed by it. #}
+                    {% set url = item.item_url %}
                     {% set img = item.image %}
                     {% if img is iterable %}{% set img = img[ab_lang] ?? (img|first) %}{% endif %}
-                    {% if item.item_url %}
-                        <a class="announcement-bar__item" href="{{ item.item_url[0] }}">
+                    {% if url %}
+                        <a class="announcement-bar__item" href="{{ url }}">
                     {% else %}
                         <span class="announcement-bar__item">
                     {% endif %}
                         {% if img %}<img src="{{ img }}" alt="{{ txt|default('')|e('html_attr') }}" loading="lazy">{% endif %}
                         {% if txt %}<span class="announcement-bar__text">{{ txt }}</span>{% endif %}
-                    {% if item.item_url %}</a>{% else %}</span>{% endif %}
+                    {% if url %}</a>{% else %}</span>{% endif %}
                     <span class="announcement-bar__arrow" aria-hidden="true"></span>
                 {% endfor %}
             </div>
