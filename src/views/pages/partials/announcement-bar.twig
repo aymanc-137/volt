@@ -49,11 +49,11 @@
                        A plain string passes straight through; anything else is dropped so the
                        item renders unlinked instead of raising "Array to string conversion". #}
                     {% set url = item.url.value ?? item.url %}
-                    
+                    {% if url is iterable %}{% set url = null %}{% endif %}
                     {% set img = item.image %}
                     {% if img is iterable %}{% set img = img[ab_lang] ?? (img|first) %}{% endif %}
                     {% if url %}
-                        <a class="announcement-bar__item" href="{{ url }}">
+                        <a class="announcement-bar__item" href="{{ item.url }}">
                     {% else %}
                         <span class="announcement-bar__item">
                     {% endif %}
