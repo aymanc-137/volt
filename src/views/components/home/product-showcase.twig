@@ -106,7 +106,22 @@
       max-width: 70%;
       object-fit: contain;
       filter: drop-shadow(0 25px 35px rgba(0,0,0,0.5));
+      -webkit-user-drag: none;
+      user-select: none;
     }
+
+    /* Drag to change slide. `pan-y` keeps vertical page scrolling native on touch
+       while we take over horizontal gestures. */
+    #{{ uid }} .ps-stage-img {
+      cursor: grab;
+      touch-action: pan-y;
+      -webkit-user-select: none;
+              user-select: none;
+    }
+    #{{ uid }} .ps-stage-img.is-dragging { cursor: grabbing; }
+    /* While dragging the slide follows the pointer, so the entry/exit transition
+       must not fight it. */
+    #{{ uid }} .ps-slide.is-dragging { transition: none; }
 
     /* Stage heights (moved off inline styles so they can respond to screen size) */
     #{{ uid }} .ps-stage-main { height: 60vh; }
@@ -550,6 +565,91 @@
 
         root.addEventListener('mouseenter', function () { clearInterval(timer); timer = null; });
         root.addEventListener('mouseleave', function () { start(); });
+
+        // ---- Drag / swipe to change slide -------------------------------------
+        // Pointer events cover mouse, touch and pen in one path. The active slide
+        // follows the pointer, then either advances or snaps back on release.
+        (function enableDrag() {
+          var dragArea = refs.stage.parentElement;   // .ps-stage-img wraps the stage
+          if (!dragArea) return;
+
+          var DRAG_THRESHOLD = 60;   // px needed to actually change slide
+          var TAP_SLOP       = 8;    // below this it stays a click, not a drag
+          var startX = 0, startY = 0, dx = 0;
+          var dragging = false, decided = false, horizontal = false;
+
+          function activeSlide() { return slides[current]; }
+
+          function onDown(e) {
+            if (e.button != null && e.button !== 0) return;      // left button / touch only
+            if (e.target.closest && e.target.closest('a, button')) return;  // let links work
+            dragging = true; decided = false; horizontal = false;
+            startX = e.clientX; startY = e.clientY; dx = 0;
+            clearInterval(timer); timer = null;                  // pause autoplay while held
+          }
+
+          function onMove(e) {
+            if (!dragging) return;
+            dx = e.clientX - startX;
+            var dy = e.clientY - startY;
+
+            // First meaningful movement decides whether this is a horizontal drag
+            // or a vertical scroll; if vertical, let the page have it.
+            if (!decided && (Math.abs(dx) > TAP_SLOP || Math.abs(dy) > TAP_SLOP)) {
+              decided = true;
+              horizontal = Math.abs(dx) > Math.abs(dy);
+              if (horizontal) {
+                dragArea.classList.add('is-dragging');
+                activeSlide().classList.add('is-dragging');
+                if (dragArea.setPointerCapture && e.pointerId != null) {
+                  try { dragArea.setPointerCapture(e.pointerId); } catch (err) {}
+                }
+              } else {
+                dragging = false;   // vertical scroll — bail out
+                return;
+              }
+            }
+            if (!horizontal) return;
+
+            e.preventDefault();
+            // Resist past the ends so the edges feel bounded rather than broken
+            var el = activeSlide();
+            el.style.transform = 'translateX(' + dx + 'px) scale(1)';
+            el.style.opacity = String(Math.max(0.4, 1 - Math.abs(dx) / 600));
+          }
+
+          function endDrag(e) {
+            if (!dragging) return;
+            dragging = false;
+
+            var el = activeSlide();
+            dragArea.classList.remove('is-dragging');
+
+            if (horizontal) {
+              if (e && e.pointerId != null && dragArea.releasePointerCapture) {
+                try { dragArea.releasePointerCapture(e.pointerId); } catch (err) {}
+              }
+              // Clear the inline transform first so the class transition takes over
+              el.style.transform = '';
+              el.style.opacity = '';
+              el.classList.remove('is-dragging');
+
+              if (Math.abs(dx) >= DRAG_THRESHOLD) {
+                // Dragging left pulls the next slide in from the right, matching
+                // the component's own entry animation in both LTR and RTL.
+                show(dx < 0 ? current + 1 : current - 1);
+              }
+            }
+            dx = 0;
+            start();                                            // resume autoplay
+          }
+
+          dragArea.addEventListener('pointerdown', onDown);
+          dragArea.addEventListener('pointermove', onMove);
+          dragArea.addEventListener('pointerup', endDrag);
+          dragArea.addEventListener('pointercancel', endDrag);
+          dragArea.addEventListener('dragstart', function (e) { e.preventDefault(); });
+        })();
 
         show(0, true);
         start();
