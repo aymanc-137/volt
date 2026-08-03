@@ -45,15 +45,24 @@
                     {% set txt = item.text %}
                     {% if txt is iterable %}{% set txt = txt[ab_lang] ?? (txt|first) %}{% endif %}
                     {# `url` is a variable-list (link picker), not a multilanguage map like
-                       `text`, and it arrives as {label, value, source} — the href is `value`.
-                       A plain string passes straight through; anything else is dropped so the
-                       item renders unlinked instead of raising "Array to string conversion". #}
-                    {% set url = item.url.value ?? item.url %}
+                       `text`, and its shape depends on how the link was chosen: a list whose
+                       first entry is the link, or a {label, value, source} object. Try the
+                       list entry first, then the named keys, resolving twice so a list of
+                       objects also lands on the link. A plain string passes straight through,
+                       and anything left unresolved becomes null so the item renders unlinked
+                       instead of raising "Array to string conversion". #}
+                    {% set url = item.url %}
+                    {% if url is iterable %}
+                        {% set url = url[0] ?? url.value ?? url.url ?? url.link ?? null %}
+                    {% endif %}
+                    {% if url is iterable %}
+                        {% set url = url.value ?? url.url ?? url.link ?? null %}
+                    {% endif %}
                     {% if url is iterable %}{% set url = null %}{% endif %}
                     {% set img = item.image %}
                     {% if img is iterable %}{% set img = img[ab_lang] ?? (img|first) %}{% endif %}
                     {% if url %}
-                        <a class="announcement-bar__item" href="{{ item.url[0] }}">
+                        <a class="announcement-bar__item" href="{{ url }}">
                     {% else %}
                         <span class="announcement-bar__item">
                     {% endif %}
