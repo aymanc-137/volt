@@ -48,6 +48,7 @@
                        Anything else — `?? `, an `is iterable` guard, or printing the value —
                        gives the store's base URL instead. Leave this exactly as it is. #}
                      {% set img = item.image %}
+                     {{ item|json_encode }}
                      {% set url = item.item_url[0] %}
                        {% if img is iterable %}{% set img = img[ab_lang] ?? (img|first) %}{% endif %}
                     {% if url %}
