@@ -42,9 +42,21 @@
                     {% set txt = item.text %}
                     {% if txt is iterable %}{% set txt = txt[ab_lang] ?? (txt|first) %}{% endif %}
                     {# `url` is a variable-list (link picker), not a multilanguage map like
-                       `text`, so it is used exactly as given — resolving it per language
-                       picked the wrong part of the value and produced a malformed link. #}
+                       `text`. Because announcement_items is a global setting rather than a
+                       component field, Salla hands over the picker's structure instead of a
+                       resolved string, so the link has to be read out of it: printing the
+                       structure raises "Array to string conversion", and taking |first alone
+                       grabs whichever key comes first (the type/label) — the malformed link.
+                       Anything unrecognised ends as null, which renders the item unlinked
+                       rather than breaking the view. #}
                     {% set url = item.url %}
+                    {% if url is iterable %}
+                        {% set url = url.url ?? url.value ?? url.link ?? url.href ?? (url|first) %}
+                    {% endif %}
+                    {% if url is iterable %}
+                        {% set url = url.url ?? url.value ?? url.link ?? url.href ?? null %}
+                    {% endif %}
+                    {% if url is iterable %}{% set url = null %}{% endif %}
                     {% set img = item.image %}
                     {% if img is iterable %}{% set img = img[ab_lang] ?? (img|first) %}{% endif %}
                     {% if url %}
