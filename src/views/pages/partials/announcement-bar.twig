@@ -41,8 +41,10 @@
                     {# Multilanguage fields come back as a {lang: value} map here; resolve to the current language #}
                     {% set txt = item.text %}
                     {% if txt is iterable %}{% set txt = txt[ab_lang] ?? (txt|first) %}{% endif %}
+                    {# `url` is a variable-list (link picker), not a multilanguage map like
+                       `text`, so it is used exactly as given — resolving it per language
+                       picked the wrong part of the value and produced a malformed link. #}
                     {% set url = item.url %}
-                    {% if url is iterable %}{% set url = url[ab_lang] ?? (url|first) %}{% endif %}
                     {% set img = item.image %}
                     {% if img is iterable %}{% set img = img[ab_lang] ?? (img|first) %}{% endif %}
                     {% if url %}
