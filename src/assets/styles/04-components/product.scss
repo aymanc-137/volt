@@ -237,7 +237,7 @@
     }
     .filepond--drop-label {
       min-height: 120px !important;
-      @apply bg-white cursor-pointer border-dashed rounded-md border border-gray-200;
+      @apply bg-white dark:bg-[var(--color-dark-box-background)] cursor-pointer border-dashed rounded-md border border-gray-200 dark:border-gray-700;
     }
     .product-option-uploader-placholder{
       @apply flex flex-col justify-center items-center;
@@ -245,7 +245,9 @@
         @apply mb-1;
         i {
           color: #7c8082;
-          @apply text-xl;
+          // the dark variant compiles with an extra `.dark`, so it outranks the
+          // plain colour above without needing !important
+          @apply text-xl dark:text-gray-400;
         }
       }
     }

@@ -17645,6 +17645,14 @@ salla-modal.s-order-cancel-modal .s-modal-title:where([dir="rtl"], [dir="rtl"] *
     border-color: rgba(229, 231, 235, 1);
     border-color: rgba(229, 231, 235, var(--tw-border-opacity, 1));
 }
+salla-product-options .s-order-cancel-textarea:is(.dark *){
+    --tw-border-opacity: 1;
+    border-color: rgba(75, 85, 99, 1);
+    border-color: rgba(75, 85, 99, var(--tw-border-opacity, 1));
+    background-color: var(--color-dark-box-background);
+    color: var(--light-text-color);
+  color-scheme: dark;
+}
 .s-order-cancel-counter{
     text-align: right;
     font-size: 0.75rem;
@@ -33971,6 +33979,12 @@ input[type=radio].sr-only:checked ~ div.model-viewer__poster {
 .product-option-uploader .s-file-upload-wrapper .filepond--drop-label * {
   pointer-events: none;
 }
+.product-option-uploader .s-file-upload-wrapper .filepond--drop-label:is(.dark *){
+    --tw-border-opacity: 1;
+    border-color: rgba(55, 65, 81, 1);
+    border-color: rgba(55, 65, 81, var(--tw-border-opacity, 1));
+    background-color: var(--color-dark-box-background);
+}
 .product-option-uploader .s-file-upload-wrapper .product-option-uploader-placholder{
     display: flex;
     flex-direction: column;
@@ -33984,6 +33998,11 @@ input[type=radio].sr-only:checked ~ div.model-viewer__poster {
   color: #7c8082;
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+.product-option-uploader .s-file-upload-wrapper .product-option-uploader-placholder-icon i:is(.dark *){
+    --tw-text-opacity: 1;
+    color: rgba(156, 163, 175, 1);
+    color: rgba(156, 163, 175, var(--tw-text-opacity, 1));
 }
 @media (max-width: 640px) {
   .s-offer-modal-slider-centered .s-offer-modal-slider-item {
@@ -34452,6 +34471,97 @@ salla-comments .s-comments-product .s-comments-container:has(.s-reviews-summary-
     color: var(--main-text-color);
 }
 .s-reviews-summary-header .s-reviews-summary-average:is(.dark *), .s-reviews-summary-header .s-reviews-summary-recommendation-percentage:is(.dark *){
+    color: var(--light-text-color);
+}
+/**
+ * Dark mode for the product-page blocks that Salla renders itself.
+ *
+ * `<salla-metadata>`, `<salla-product-options>` and `<salla-file-upload>` only
+ * appear on a live store — they need product metadata / options / an upload
+ * field that the local preview has no data for, so their markup never shows up
+ * while developing. Salla ships them with a light-only palette (white cards,
+ * gray-700 text), which leaves them unreadable once the page flips to dark.
+ *
+ * Light mode is deliberately left exactly as Salla renders it; only the dark
+ * half is added here.
+ *
+ * Everything below is a STRUCTURAL selector. The metadata fields and the
+ * product options are defined by the merchant, so their names, values, types
+ * and count differ per store and per product — no rule here may key off a
+ * particular field. The approach is the same in each block: put the dark text
+ * colour on the custom element and let it inherit, then repaint only the few
+ * descendants that hard-code a colour of their own.
+ *
+ * Scoping by the custom element (`salla-metadata .s-metadata-box`) also adds
+ * the one point of specificity needed to beat Salla's own `.s-metadata-box`
+ * rule, so none of this needs `!important`.
+ *
+ * One catch: the dark variant cannot be used on a bare *element* selector here.
+ * It resolves to `salla-metadata:is(.dark *)`, and postcss-preset-env then
+ * down-levels that `:is()` into `salla-metadata.dark *` — a selector that
+ * matches nothing. (Class selectors survive the transform untouched, which is
+ * why every rule further down can keep using `dark:`.) The inherited colour on
+ * each host is therefore written as a plain descendant of `.dark`, which is
+ * what `:is(.dark *)` means anyway and has nothing left to down-level.
+ */
+.dark salla-metadata {
+  color: var(--light-text-color);
+}
+salla-metadata .s-metadata-box:is(.dark *){
+    background-color: var(--color-dark-box-background);
+}
+salla-metadata .s-metadata-box-header:is(.dark *){
+    --tw-border-opacity: 1;
+    border-color: rgba(55, 65, 81, 1);
+    border-color: rgba(55, 65, 81, var(--tw-border-opacity, 1));
+}
+salla-metadata .s-metadata-row-name:is(.dark *){
+    --tw-text-opacity: 1;
+    color: rgba(209, 213, 219, 1);
+    color: rgba(209, 213, 219, var(--tw-text-opacity, 1));
+}
+.dark salla-product-options {
+  color: var(--light-text-color);
+}
+.dark salla-product-options.s-product-options-wrapper{
+    background-color: var(--color-dark-box-background);
+}
+salla-product-options .s-product-options-option-label:is(.dark *){
+    --tw-text-opacity: 1;
+    color: rgba(229, 231, 235, 1);
+    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+}
+salla-product-options .s-product-options-option-label small:is(.dark *){
+    --tw-text-opacity: 1;
+    color: rgba(156, 163, 175, 1);
+    color: rgba(156, 163, 175, var(--tw-text-opacity, 1));
+}
+salla-product-options .s-product-options-donation-message span:is(.dark *){
+    color: var(--light-text-color);
+}
+salla-product-options .s-product-options-colors-wrapper label div:is(.dark *),
+salla-product-options .s-product-options-colors-wrapper label div p:is(.dark *),
+salla-product-options .s-product-options-thumbnails-wrapper div p:is(.dark *){
+    --tw-text-opacity: 1;
+    color: rgba(229, 231, 235, 1);
+    color: rgba(229, 231, 235, var(--tw-text-opacity, 1));
+}
+salla-product-options .s-form-control:is(.dark *),
+salla-product-options .s-datetime-picker-input:is(.dark *){
+    --tw-border-opacity: 1;
+    border-color: rgba(75, 85, 99, 1);
+    border-color: rgba(75, 85, 99, var(--tw-border-opacity, 1));
+    background-color: var(--color-dark-box-background);
+    color: var(--light-text-color);
+  color-scheme: dark;
+}
+.dark salla-file-upload {
+  color: var(--light-text-color);
+}
+salla-file-upload .s-file-upload-wrapper .filepond--panel-root:is(.dark *){
+    background-color: var(--color-dark-page-background) !important;
+}
+salla-file-upload .s-file-upload-wrapper .filepond--drop-label:is(.dark *){
     color: var(--light-text-color);
 }
 .brands-nav{
@@ -37688,8 +37798,16 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(180deg) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
+.dark *.dark\:border-gray-700{
+    --tw-border-opacity: 1;
+    border-color: rgba(55, 65, 81, 1);
+    border-color: rgba(55, 65, 81, var(--tw-border-opacity, 1));
+}
 .dark *.dark\:bg-\[var\(--color-dark-box-background\)\]{
     background-color: var(--color-dark-box-background);
+}
+.dark *.dark\:bg-\[var\(--color-dark-page-background\)\]{
+    background-color: var(--color-dark-page-background);
 }
 .dark *.dark\:bg-dark-background{
     background-color: var(--color-dark-page-background);
@@ -37713,6 +37831,9 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 .dark *.dark\:to-\[var\(--color-dark-page-background\)\]{
     --tw-gradient-to: var(--color-dark-page-background) var(--tw-gradient-to-position);
 }
+.dark *.dark\:text-\[var\(--light-text-color\)\]{
+    color: var(--light-text-color);
+}
 .dark *.dark\:text-gray-400{
     --tw-text-opacity: 1;
     color: rgba(156, 163, 175, 1);
@@ -37723,6 +37844,16 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 }
 .dark *.dark\:text-white\/70{
     color: rgba(255, 255, 255, 0.7);
+}
+.dark .dark\:placeholder-gray-400::-moz-placeholder{
+    --tw-placeholder-opacity: 1;
+    color: rgba(156, 163, 175, 1);
+    color: rgba(156, 163, 175, var(--tw-placeholder-opacity, 1));
+}
+.dark .dark\:placeholder-gray-400::placeholder{
+    --tw-placeholder-opacity: 1;
+    color: rgba(156, 163, 175, 1);
+    color: rgba(156, 163, 175, var(--tw-placeholder-opacity, 1));
 }
 .dark *.dark\:shadow-none{
     --tw-shadow: 0 0 rgba(0,0,0,0);
