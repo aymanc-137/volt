@@ -2965,15 +2965,6 @@ input:where([type='file']):focus{
     box-shadow: /*!*/ /*!*/ 0 0 0 0px #fff, var(--tw-ring-shadow), 0 0 rgba(0,0,0,0);
     box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 rgba(0,0,0,0));
 }
-.ring-1{
-    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-    --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-    box-shadow: /*!*/ /*!*/ 0 0 0 0px #fff, /*!*/ /*!*/ 0 0 0 calc(1px + 0px) #2563eb, 0 0 rgba(0,0,0,0);
-    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 rgba(0,0,0,0));
-}
-.ring-\[rgba\(0\2c 0\2c 0\2c 0\.08\)\]{
-    --tw-ring-color: rgba(0,0,0,0.08);
-}
 .blur{
     --tw-blur: blur(8px);
     filter: blur(8px) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
@@ -38025,15 +38016,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     box-shadow: 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0), 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0,0,0,0)), var(--tw-ring-shadow, 0 0 rgba(0,0,0,0)), var(--tw-shadow);
 }
-.group:hover .group-hover\:ring-2{
-    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-    --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-    box-shadow: /*!*/ /*!*/ 0 0 0 0px #fff, /*!*/ /*!*/ 0 0 0 calc(2px + 2px) #2563eb, 0 0 rgba(0,0,0,0);
-    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 rgba(0,0,0,0));
-}
-.group:hover .group-hover\:ring-\[var\(--color-primary\)\]{
-    --tw-ring-color: var(--color-primary);
-}
 .group.is-active .group-\[\.is-active\]\:rotate-180{
     --tw-rotate: 180deg;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(180deg) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -38050,9 +38032,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 }
 .dark *.dark\:bg-dark-foreground{
     background-color: var(--color-dark-box-background);
-}
-.dark *.dark\:bg-white\/5{
-    background-color: rgba(255, 255, 255, 0.05);
 }
 .dark *.dark\:from-\[var\(--color-dark-page-background\)\]{
     --tw-gradient-from: var(--color-dark-page-background) var(--tw-gradient-from-position);
@@ -38084,9 +38063,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     box-shadow: 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0,0,0,0)), var(--tw-ring-shadow, 0 0 rgba(0,0,0,0)), var(--tw-shadow);
 }
-.dark *.dark\:ring-white\/10{
-    --tw-ring-color: rgba(255, 255, 255, 0.1);
-}
 .dark .dark\:hover\:bg-gray-700\/50:hover{
     background-color: rgba(55, 65, 81, 0.5);
 }
@@ -38105,9 +38081,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
 .dark .dark\:hover\:shadow-black\/20:hover{
     --tw-shadow-color: rgba(0, 0, 0, 0.2);
     --tw-shadow: var(--tw-shadow-colored);
-}
-.group:hover .dark\:group-hover\:ring-\[var\(--color-scandary\)\]:is(.dark *){
-    --tw-ring-color: var(--color-scandary);
 }
 @media (min-width: 640px){
     .sm\:col-span-2{
