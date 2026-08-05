@@ -626,9 +626,37 @@
             "value": "#FFFFFF"
         },
         {
+            "type": "static",
+            "format": "title",
+            "id": "group-colors-light",
+            "variant": "h6",
+            "value": "<div style='display: flex; align-items: center; gap: 10px; margin-top: 22px; margin-bottom: 12px !important;'><span style='height: 1px; background: #dde1e5; flex: 1;'></span><span style='color: #21636d; font-size: 13px; font-weight: bold; white-space: nowrap;'>ألوان الوضع الفاتح</span><span style='height: 1px; background: #dde1e5; flex: 1;'></span></div>",
+            "conditions": [
+                {
+                    "id": "dark_mode_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "type": "static",
+            "format": "title",
+            "id": "group-colors-only",
+            "variant": "h6",
+            "value": "<div style='display: flex; align-items: center; gap: 10px; margin-top: 22px; margin-bottom: 12px !important;'><span style='height: 1px; background: #dde1e5; flex: 1;'></span><span style='color: #21636d; font-size: 13px; font-weight: bold; white-space: nowrap;'>ألوان المتجر</span><span style='height: 1px; background: #dde1e5; flex: 1;'></span></div><p style='color: #6b7280; font-size: 12px; line-height: 1.7; margin-bottom: 14px !important;'>الوضع الداكن معطّل، لذلك هذه هي الألوان المستخدمة في المتجر كله. يمكن اختيار ألوان داكنة هنا للحصول على متجر داكن بلون واحد.</p>",
+            "conditions": [
+                {
+                    "id": "dark_mode_enabled",
+                    "operation": "=",
+                    "value": false
+                }
+            ]
+        },
+        {
             "type": "string",
             "icon": "sicon-palette",
-            "label": "لون خلفية الصفحة (وضع فاتح)",
+            "label": "لون خلفية الصفحة",
             "description": null,
             "id": "color_light_page_background",
             "format": "color",
@@ -638,7 +666,7 @@
         {
             "type": "string",
             "icon": "sicon-palette",
-            "label": "لون خلفية الصناديق (وضع فاتح)",
+            "label": "لون خلفية الصناديق",
             "description": null,
             "id": "color_light_box_background",
             "format": "color",
@@ -648,7 +676,41 @@
         {
             "type": "string",
             "icon": "sicon-palette",
-            "label": "لون خلفية الصفحة (وضع داكن)",
+            "label": "لون الحدود",
+            "description": null,
+            "id": "color_border",
+            "format": "color",
+            "required": false,
+            "value": "#121212"
+        },
+        {
+            "type": "string",
+            "icon": "sicon-palette",
+            "label": "لون النص",
+            "description": null,
+            "id": "main-text-color",
+            "format": "color",
+            "required": false,
+            "value": "#2C3E50"
+        },
+        {
+            "type": "static",
+            "format": "title",
+            "id": "group-colors-dark",
+            "variant": "h6",
+            "value": "<div style='display: flex; align-items: center; gap: 10px; margin-top: 22px; margin-bottom: 12px !important;'><span style='height: 1px; background: #dde1e5; flex: 1;'></span><span style='color: #21636d; font-size: 13px; font-weight: bold; white-space: nowrap;'>ألوان الوضع الداكن</span><span style='height: 1px; background: #dde1e5; flex: 1;'></span></div>",
+            "conditions": [
+                {
+                    "id": "dark_mode_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "type": "string",
+            "icon": "sicon-palette",
+            "label": "لون خلفية الصفحة (داكن)",
             "description": null,
             "id": "color_dark_page_background",
             "format": "color",
@@ -665,34 +727,7 @@
         {
             "type": "string",
             "icon": "sicon-palette",
-            "label": "لون الحدود",
-            "description": null,
-            "id": "color_border",
-            "format": "color",
-            "required": false,
-            "value": "#121212"
-        },
-        {
-            "type": "string",
-            "icon": "sicon-palette",
-            "label": "لون الحدود في الوضع الداكن",
-            "description": null,
-            "id": "color_border_dark",
-            "format": "color",
-            "required": false,
-            "value": "#121212",
-            "conditions": [
-                {
-                    "id": "dark_mode_enabled",
-                    "operation": "=",
-                    "value": true
-                }
-            ]
-        },
-        {
-            "type": "string",
-            "icon": "sicon-palette",
-            "label": "لون خلفية الصناديق (وضع داكن)",
+            "label": "لون خلفية الصناديق (داكن)",
             "description": null,
             "id": "color_dark_box_background",
             "format": "color",
@@ -709,17 +744,24 @@
         {
             "type": "string",
             "icon": "sicon-palette",
-            "label": "لون النص",
+            "label": "لون الحدود (داكن)",
             "description": null,
-            "id": "main-text-color",
+            "id": "color_border_dark",
             "format": "color",
             "required": false,
-            "value": "#2C3E50"
+            "value": "#121212",
+            "conditions": [
+                {
+                    "id": "dark_mode_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
         },
         {
             "type": "string",
             "icon": "sicon-palette",
-            "label": "لون النص في (وضع داكن)",
+            "label": "لون النص (داكن)",
             "description": null,
             "format": "color",
             "required": false,
@@ -732,6 +774,13 @@
                     "value": true
                 }
             ]
+        },
+        {
+            "type": "static",
+            "format": "title",
+            "id": "group-appearance-other",
+            "variant": "h6",
+            "value": "<div style='display: flex; align-items: center; gap: 10px; margin-top: 22px; margin-bottom: 12px !important;'><span style='height: 1px; background: #dde1e5; flex: 1;'></span><span style='color: #21636d; font-size: 13px; font-weight: bold; white-space: nowrap;'>خيارات أخرى</span><span style='height: 1px; background: #dde1e5; flex: 1;'></span></div>"
         },
         {
             "type": "boolean",
