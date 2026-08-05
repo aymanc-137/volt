@@ -237,17 +237,16 @@
     }
     .filepond--drop-label {
       min-height: 120px !important;
-      @apply bg-white dark:bg-[var(--color-dark-box-background)] cursor-pointer border-dashed rounded-md border border-gray-200 dark:border-gray-700;
+      // follows the merchant palette — a `dark:` variant would miss the stores
+      // that run a single dark palette with the dark-mode switch off
+      @apply dynamic-bg-color cursor-pointer border-dashed rounded-md border dynamic-border-color;
     }
     .product-option-uploader-placholder{
       @apply flex flex-col justify-center items-center;
       &-icon {
         @apply mb-1;
         i {
-          color: #7c8082;
-          // the dark variant compiles with an extra `.dark`, so it outranks the
-          // plain colour above without needing !important
-          @apply text-xl dark:text-gray-400;
+          @apply text-xl dynamic-text-color opacity-70;
         }
       }
     }

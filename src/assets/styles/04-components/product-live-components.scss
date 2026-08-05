@@ -1,62 +1,66 @@
 /**
- * Dark mode for the product-page blocks that Salla renders itself.
+ * Palette support for the product-page blocks that Salla renders itself.
  *
  * `<salla-metadata>`, `<salla-product-options>` and `<salla-file-upload>` only
  * appear on a live store — they need product metadata / options / an upload
  * field that the local preview has no data for, so their markup never shows up
- * while developing. Salla ships them with a light-only palette (white cards,
- * gray-700 text), which leaves them unreadable once the page flips to dark.
+ * while developing. Salla ships them hard-coded light: white cards, gray-700
+ * labels, gray-200 dividers.
  *
- * Light mode is deliberately left exactly as Salla renders it; only the dark
- * half is added here.
+ * They must follow the theme's own colours, NOT a `dark:` variant. `dark:` only
+ * fires when `.dark` is on <html>, and the theme only puts it there when the
+ * merchant turns `dark_mode_enabled` on. A store with that switch off still
+ * picks its own palette through the "light" settings, and that palette is very
+ * often a dark one — which is exactly the case these blocks were breaking in:
+ * white card, white heading, black body text, all at once.
+ *
+ * So everything here goes through `dynamic-bg-color` / `dynamic-text-color` /
+ * `dynamic-border-color`, the same utilities the rest of the theme uses. Those
+ * read `--color-light-*` / `--main-text-color` normally and swap to the
+ * `--color-dark-*` pair under `.dark`, so one rule covers both a single-palette
+ * store (dark or light) and a store with the toggle enabled.
  *
  * Everything below is a STRUCTURAL selector. The metadata fields and the
  * product options are defined by the merchant, so their names, values, types
  * and count differ per store and per product — no rule here may key off a
- * particular field. The approach is the same in each block: put the dark text
- * colour on the custom element and let it inherit, then repaint only the few
- * descendants that hard-code a colour of their own.
+ * particular field. Each block sets the colour on the custom element and lets
+ * it inherit, then repaints only the descendants that hard-code a colour.
  *
- * Scoping by the custom element (`salla-metadata .s-metadata-box`) also adds
- * the one point of specificity needed to beat Salla's own `.s-metadata-box`
- * rule, so none of this needs `!important`.
- *
- * One catch: the dark variant cannot be used on a bare *element* selector here.
- * It resolves to `salla-metadata:is(.dark *)`, and postcss-preset-env then
- * down-levels that `:is()` into `salla-metadata.dark *` — a selector that
- * matches nothing. (Class selectors survive the transform untouched, which is
- * why every rule further down can keep using `dark:`.) The inherited colour on
- * each host is therefore written as a plain descendant of `.dark`, which is
- * what `:is(.dark *)` means anyway and has nothing left to down-level.
+ * Two scoping notes:
+ *   - Scoping by the custom element (`salla-metadata .s-metadata-box`) adds the
+ *     one point of specificity needed to beat Salla's own `.s-metadata-box`
+ *     rule, so none of this needs `!important`.
+ *   - Each host is matched through the class the component adds at hydration
+ *     (`&.s-metadata-wrapper`), never as a bare element. A bare element selector
+ *     carrying a `dark:` utility resolves to `salla-metadata:is(.dark *)`, and
+ *     postcss-preset-env down-levels that into `salla-metadata.dark *`, which
+ *     matches nothing. Compound class selectors survive the transform intact.
  */
-
-// The inherited dark text colour every block below starts from. `.dark` lives
-// on <html>, so a descendant selector is enough.
-@mixin inherits-dark-text {
-  .dark & {
-    color: var(--light-text-color);
-  }
-}
 
 // ---------------------------------------------------------------------------
 // Product metadata — <salla-metadata>
 // ---------------------------------------------------------------------------
 salla-metadata {
-  @include inherits-dark-text;
+
+  &.s-metadata-wrapper {
+    @apply dynamic-text-color;
+  }
 
   .s-metadata-box {
-    @apply dark:bg-[var(--color-dark-box-background)];
+    @apply dynamic-bg-color dynamic-text-color;
   }
 
   .s-metadata-box-header {
-    @apply dark:border-gray-700;
+    @apply dynamic-border-color;
   }
 
-  // The only descendant with a colour of its own. The row *value* is merchant
-  // HTML and may carry its own styling (file links render as `.text-primary`),
-  // so it is left to inherit rather than being forced to a colour.
+  // Salla greys the field name to separate it from the value. On a merchant
+  // palette there is no fixed grey that stays readable, so the two are told
+  // apart by weight instead — the name is already bold, the value is not.
+  // The value is merchant HTML and may carry its own styling (file links render
+  // as `.text-primary`), so it is left to inherit.
   .s-metadata-row-name {
-    @apply dark:text-gray-300;
+    @apply dynamic-text-color;
   }
 }
 
@@ -65,53 +69,59 @@ salla-metadata {
 // ---------------------------------------------------------------------------
 // The inherited colour on the host covers the option types that do not paint
 // their own text — splitters, notes, plain single-option lists, and any type
-// Salla adds later. The three that do paint their own are repainted below.
+// Salla adds later. The ones that do paint their own are repainted below.
 salla-product-options {
-  @include inherits-dark-text;
 
-  // The host itself is the white card the options sit on. The class is added at
-  // hydration, so there is nothing to repaint before that.
+  // The host is the card the options sit on.
   &.s-product-options-wrapper {
-    @apply dark:bg-[var(--color-dark-box-background)];
+    @apply dynamic-bg-color dynamic-text-color;
   }
 
   .s-product-options-option-label {
-    @apply dark:text-gray-200;
+    @apply dynamic-text-color;
 
-    // Placeholder hint next to the option name.
+    // Placeholder hint next to the option name — muted rather than greyed, so
+    // it stays legible whichever way the palette runs.
     small {
-      @apply dark:text-gray-400;
+      @apply dynamic-text-color opacity-70;
     }
   }
 
   // The donation option prints its amount in black.
   .s-product-options-donation-message span {
-    @apply dark:text-[var(--light-text-color)];
+    @apply dynamic-text-color;
   }
 
   // The colour-swatch and thumbnail captions are the two option types Salla
   // paints explicitly (gray-800), so the inherited colour above never reaches
   // them. Matched on the wrapper alone — the swatch/thumbnail names are
   // merchant data and the markup around them differs per option type.
-  .s-product-options-colors-wrapper label div,
-  .s-product-options-colors-wrapper label div p,
+  // The swatch caption needs the item class as well: Salla's own rule is
+  // `.s-product-options-colors-wrapper input[type=radio] + label div`, and
+  // without a second class this would be the weaker selector and lose.
+  .s-product-options-colors-wrapper .s-product-options-colors-item label div,
+  .s-product-options-colors-wrapper .s-product-options-colors-item label div p,
   .s-product-options-thumbnails-wrapper div p {
-    @apply dark:text-gray-200;
+    @apply dynamic-text-color;
   }
 
-  // Native controls (select, number, text, date…). `color-scheme` is what makes
-  // the browser paint the parts it owns — the select's own dropdown list and
-  // the date/time picker popups — dark as well.
+  // Native controls (select, number, text, date…).
   //
   // Salla declares `.s-order-cancel-textarea` as `@apply s-form-control`, so
   // the compiled CSS also grows a `salla-product-options
-  // .s-order-cancel-textarea:is(.dark *)` copy of this rule. It is inert — the
-  // order-cancel textarea never renders inside product options — but that is
-  // where the extra rule in `public/app.css` comes from.
+  // .s-order-cancel-textarea` copy of this rule. It is inert — the order-cancel
+  // textarea never renders inside product options — but that is where the extra
+  // rule in `public/app.css` comes from.
   .s-form-control,
   .s-datetime-picker-input {
-    @apply dark:bg-[var(--color-dark-box-background)] dark:border-gray-600 dark:text-[var(--light-text-color)];
+    @apply dynamic-bg-color dynamic-text-color dynamic-border-color;
 
+    // Makes the browser paint the parts it owns — the select's own dropdown
+    // list, the date/time picker popups. This one genuinely cannot follow the
+    // merchant palette: `color-scheme` takes a keyword, not a colour, and CSS
+    // has no way to ask whether `--main-text-color` is light or dark. So it is
+    // only claimed under `.dark`. A single-palette dark store gets a correct
+    // control with a light native dropdown list.
     &:is(.dark *) {
       color-scheme: dark;
     }
@@ -125,14 +135,50 @@ salla-product-options {
 // `.product-option-uploader`; this covers the colours Salla sets on the shared
 // `.s-file-upload-wrapper` markup underneath it.
 salla-file-upload {
-  @include inherits-dark-text;
 
-  // The panel sitting behind the dropzone. Salla sets it with `!important`.
+  &.s-file-upload {
+    @apply dynamic-text-color;
+  }
+
+  // The panel behind the dropzone. Salla sets it with `!important`, so this has
+  // to be written out longhand — `@apply … !important` does not survive the
+  // SCSS/Tailwind round trip and comes out without the flag.
   .s-file-upload-wrapper .filepond--panel-root {
-    @apply dark:!bg-[var(--color-dark-page-background)];
+    background-color: var(--color-light-box-background) !important;
+
+    &:is(.dark *) {
+      background-color: var(--color-dark-box-background) !important;
+    }
   }
 
   .s-file-upload-wrapper .filepond--drop-label {
-    @apply dark:text-[var(--light-text-color)];
+    @apply dynamic-text-color;
   }
+}
+
+// ---------------------------------------------------------------------------
+// The order-note field that shares the attachments block
+// ---------------------------------------------------------------------------
+// `.form-input` is emitted after the dynamic utilities and carries a fixed
+// gray-200 border plus a `.dark`-only gray-600 background, so it wins on order
+// against utilities placed on the element itself. Matching on the element and
+// its name outranks it instead, and works on the cart page too, where this
+// partial renders outside `.product-form`.
+textarea.form-input[name='notes'] {
+  @apply dynamic-bg-color dynamic-text-color dynamic-border-color;
+}
+
+// ---------------------------------------------------------------------------
+// The two collapse buttons above the uploader — "add note" / "attach file"
+// ---------------------------------------------------------------------------
+// `.btn--collapse` is hard-coded gray-100 on gray-700 and `partials/product/
+// options.twig` is its only user in the theme, so it is repainted here rather
+// than left to the merchant palette by chance. It has to live in a stylesheet
+// rather than as utilities on the button: Salla emits `.btn--collapse` late in
+// the components layer, after the background utilities, so an inline
+// `bg-light-background` would tie on specificity and still lose.
+.btn--collapse {
+  // The page background sets the button off from the card it sits on, in either
+  // direction — a merchant's box colour is always distinct from their page one.
+  @apply bg-light-background dark:bg-dark-background dynamic-text-color;
 }
