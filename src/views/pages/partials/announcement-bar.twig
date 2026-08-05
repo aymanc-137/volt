@@ -71,7 +71,7 @@
                        Keep the name `item_url`: an item already carries its own `url`, and a
                        field by that name is shadowed by it. #}
                     {% set url = item.item_url %}
-                    {{ item|json_encode }}
+                    {{ item.item_url | json_encode }}
                     {% if url is iterable %}
                         {% set u_key = url.url|default(null) %}
                         {% set v_key = url.value|default(null) %}
