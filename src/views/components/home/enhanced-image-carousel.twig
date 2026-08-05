@@ -126,6 +126,7 @@
                             {% if slide.description %}
                                 <p class="dynamic-text-color opacity-0" data-carousel-text="description" style="{{ tc_sub_style }}">{{ slide.description }}</p>
                             {% endif %}
+                            {{ slide.button_url | json_encode }}
                             {% if slide.button_label and slide.button_url %}
                                 <div class="pt-2 sm:pt-4 opacity-0" data-carousel-text="button">
                                     <a class="hover-glow transition-all duration-300" href="{{ slide.button_url }}">
