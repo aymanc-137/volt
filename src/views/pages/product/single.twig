@@ -42,6 +42,11 @@
 #}
 {% extends "layouts.master" %}
 {% block content %}
+    {# When on, the description is pulled out of the info column and shown in a
+       "below" section instead. If the product-tabs component also renders for
+       this product, product-tabs.js folds that section in as the first tab
+       (see the standalone block before #product-tabs, and product-tabs.js). #}
+    {% set desc_under = theme.settings.get('product_description_position_under', false) %}
     {#
         Hook: product.single.before_product_info
         Fires before the main product information section (images, title, price, etc.).
@@ -268,6 +273,9 @@
                     </div>
                 </div>
 
+                {# Hidden when `desc_under` is on — the description moves to the
+                   standalone block below (and possibly into the tabs). #}
+                {% if not desc_under %}
                 <div class="product__description p-2 px-5 sm:p-1 leading-7 mb-3">
                     {% set product_desc = product.description|replace({"&nbsp;":"\n"}) %}
                     {% if product.has_read_more %}
@@ -286,6 +294,7 @@
                         </article>
                     {% endif %}
                 </div>
+                {% endif %}
 
                 {% if product.tags|length and theme.settings.get('show_tags', true) %}
                     <div class="mb-3">
@@ -462,6 +471,19 @@
                 <salla-quick-order class="mt-5 md:-mb-2 block"></salla-quick-order>
             </div>
         </div>
+
+        {# Description moved below (product_description_position_under). Renders as a
+           plain section here; if product-tabs.js renders tabs for this product it
+           lifts this into the tab strip as the first tab and removes this block. #}
+        {% if desc_under and product.description %}
+            <section id="product-description-under" class="product-description-under mt-12 md:mt-16"
+                     data-description-title="{{ trans('pages.products.description') }}">
+                <h2 class="product-tabs__section-title">{{ trans('pages.products.description') }}</h2>
+                <div class="product-tabs__section-body">
+                    <div class="ptab-about" data-description-content>{{ product.description|raw }}</div>
+                </div>
+            </section>
+        {% endif %}
 
         {# Product tabs — populated by product-tabs.js from the home.product-tabs component #}
         <div id="product-tabs" class="product-tabs hidden" data-product-id="{{ product.id }}"></div>

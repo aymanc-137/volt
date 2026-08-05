@@ -66,6 +66,13 @@ class ProductTabs extends BasePage {
                 return;
             }
 
+            // `product_description_position_under` renders the description as a
+            // standalone block above (#product-description-under). When tabs DO
+            // render for this product, fold it in as the first tab and drop the
+            // standalone block so the content is not shown twice. When no tabs
+            // render, onReady returns earlier and the standalone block stays.
+            this.foldInDescription(renderable);
+
             // Unhide BEFORE rendering so the sticky bar can be measured with a
             // real layout (a display:none element reports zero rects).
             mount.classList.remove('hidden');
@@ -75,6 +82,24 @@ class ProductTabs extends BasePage {
             console.error(LOG, 'onReady threw:', e);
             salla.logger.error(e);
         }
+    }
+
+    // If the product description was moved below (product_description_position_under),
+    // prepend it as an `about` tab and remove the standalone block. No-op when the
+    // setting is off (the block is absent) or the description is empty.
+    foldInDescription(renderable) {
+        const el = document.querySelector('#product-description-under');
+        if (!el) return;
+        const contentEl = el.querySelector('[data-description-content]');
+        const content = contentEl ? contentEl.innerHTML.trim() : '';
+        if (content) {
+            renderable.unshift({
+                type: 'about',
+                title: el.dataset.descriptionTitle || this.defaultTitle('about'),
+                content: content,
+            });
+        }
+        el.remove();
     }
 
     hasContent(tab) {
