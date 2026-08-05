@@ -12,7 +12,7 @@
 
 /* tags */
 .tag {
-  @apply px-3 pt-0.5 pb-1 inline-block text-sm rounded-2xl border border-gray-200;
+  @apply px-3 pt-0.5 pb-1 inline-block text-sm rounded-2xl border dynamic-border-color;
 
   &--primary {
     @apply text-primary border-primary;
@@ -60,15 +60,14 @@
     }
     .filepond--drop-label {
       min-height: 120px !important;
-      @apply bg-white cursor-pointer border-dashed rounded-md border border-gray-200;
+      @apply dynamic-bg-color cursor-pointer border-dashed rounded-md border dynamic-border-color;
     }
     .profile-filepond-placholder{
       @apply flex flex-col justify-center items-center;
       &-icon {
         @apply mb-1;
         i {
-          color: #7c8082;
-          @apply text-xl;
+          @apply text-xl dynamic-text-color opacity-70;
         }
       }
     }
@@ -81,7 +80,7 @@
 * thank you page 
 */
 .thankyou-block{
-  @apply duration-500 hover:shadow-default flex-1 bg-white p-8 rounded-md mb-6 md:mb-8 flex flex-col items-center justify-center;
+  @apply duration-500 hover:shadow-default flex-1 dynamic-bg-color dynamic-text-color p-8 rounded-md mb-6 md:mb-8 flex flex-col items-center justify-center;
 
   &.sent{
     @apply text-green-500 font-bold;
@@ -113,4 +112,73 @@
 */
 .blog-single .s-comments-item-user-info-name{
   @apply mx-0
+}
+
+
+/*
+* Customer area — Salla-rendered components
+*
+* `salla-orders`, `salla-wallet`, `salla-notifications`, `salla-products-list`
+* and the inline `salla-user-menu` are all painted light-only by Salla (white
+* rows, gray-50 table heads, gray-500 body copy). They follow the merchant
+* palette here rather than a `dark:` variant, which would never fire on a store
+* running a single dark palette with the dark-mode switch off.
+*
+* `dynamic-bg-color-40` is the box colour at half alpha: it lands between the
+* box and the page colour whichever way round those two are, which is the only
+* palette-safe way to say "slightly different from the surface".
+*/
+
+// Orders and wallet render structurally identical tables.
+.s-orders-table-head,
+.s-wallet-table-head {
+  @apply dynamic-bg-color-40 dynamic-text-color;
+}
+
+.s-orders-table-tbody-tr,
+.s-wallet-table-tbody-tr {
+  @apply dynamic-bg-color;
+}
+
+.s-orders-no-content,
+.s-wallet-no-content {
+  .icon {
+    @apply dynamic-bg-color-40 dynamic-text-color;
+  }
+
+  p {
+    @apply dynamic-text-color opacity-75;
+  }
+}
+
+// Notifications list.
+.s-notifications-item {
+  @apply dynamic-bg-color;
+
+  &:hover {
+    @apply dynamic-text-color;
+  }
+}
+
+.s-notifications-item-icon {
+  @apply dynamic-bg-color;
+}
+
+// Already-read notifications are greyed out; opacity keeps that distinction
+// without pinning a grey that only works on a light background.
+.s-notifications-item-read {
+  @apply dynamic-text-color opacity-70;
+}
+
+// Wishlist loading skeleton.
+.s-products-list-placeholder span {
+  @apply dynamic-bg-color-40;
+}
+
+// The customer sidebar card. `.sidebar` alone is shared with the product
+// listing, so the customer layout carries its own class.
+.customer-sidebar {
+  @screen lg {
+    @apply dynamic-bg-color;
+  }
 }

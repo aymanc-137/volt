@@ -14,7 +14,7 @@
             {% hook 'customer:profile.form.fields.start' %}
 
             <div class="profile-field-item">
-                <label for="first-name" class="block text-sm font-bold mb-2 text-gray-700">
+                <label for="first-name" class="block text-sm font-bold mb-2 dynamic-text-color">
                     {{ trans('pages.profile.first_name') }}
                 </label>
                 <input type="text" name="first_name" value="{{ user.first_name }}" id="first-name" required
@@ -22,7 +22,7 @@
             </div>
 
             <div class="profile-field-item">
-                <label for="last-name" class="block text-sm font-bold mb-2 text-gray-700">
+                <label for="last-name" class="block text-sm font-bold mb-2 dynamic-text-color">
                     {{ trans('pages.profile.last_name') }}
                 </label>
                 <input type="text" name="last_name" value="{{ user.last_name }}" id="last-name" autocomplete="last-name"
@@ -30,7 +30,7 @@
             </div>
 
             <div class="profile-field-item">
-                <label for="birthday" class="block text-sm font-bold mb-2 text-gray-700">
+                <label for="birthday" class="block text-sm font-bold mb-2 dynamic-text-color">
                     {{ trans('pages.profile.birthday') }}
                 </label>
                 <salla-datetime-picker
@@ -43,7 +43,7 @@
             </div>
 
             <div class="profile-field-item">
-                <label for="gender" class="block text-sm font-bold mb-2 text-gray-700">
+                <label for="gender" class="block text-sm font-bold mb-2 dynamic-text-color">
                     {{ trans('pages.profile.gender') }}
                 </label>
                 <select class="form-input" name="gender" required>
@@ -58,21 +58,21 @@
             </div>
 
             <div class="profile-field-item">
-                <label for="email" class="block text-sm font-bold mb-2 text-gray-700">
+                <label for="email" class="block text-sm font-bold mb-2 dynamic-text-color">
                     {{ trans('common.elements.email') }}
                 </label>
                 <input type="email" name="email" value="{{ user.email }}" id="email" class="form-input" required>
             </div>
 
             <div class="profile-field-item">
-                <label for="international-mobile" class="block text-sm font-bold mb-2 text-gray-700">
+                <label for="international-mobile" class="block text-sm font-bold mb-2 dynamic-text-color">
                     {{ trans('common.elements.mobile') }}
                 </label>
                 <salla-tel-input phone="{{ user.mobile }}"></salla-tel-input>
             </div>
             {% for field in custom_fields %}
                 <div class="profile-field-item">
-                    <label for="{{ field.id }}" class="block text-sm font-bold mb-2 text-gray-700">
+                    <label for="{{ field.id }}" class="block text-sm font-bold mb-2 dynamic-text-color">
                         {{ field.label }}
                     </label>
                     {% if field.type == 'photo' %}

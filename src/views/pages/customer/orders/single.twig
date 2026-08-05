@@ -95,9 +95,9 @@
         {# Order Details #}
         <table class="min-w-full rounded-md overflow-hidden">
             <tbody>
-            <tr class="bg-white overflow-hidden flex md:table-row flex-row md:flex-row flex-wrap md:flex-no-wrap py-1.5 md:py-0">
+            <tr class="dynamic-bg-color overflow-hidden flex md:table-row flex-row md:flex-row flex-wrap md:flex-no-wrap py-1.5 md:py-0">
                 <td class="single-order-header-item w-full md:w-auto  px-3 md:px-6 py-2 md:py-4 md:h-20 whitespace-nowrap text-sm ">
-                    <div class="rtl:ml-2 ltr:mr-2 font-normal text-gray-400">{{ trans('pages.orders.date') }}</div>
+                    <div class="rtl:ml-2 ltr:mr-2 font-normal dynamic-text-color opacity-60">{{ trans('pages.orders.date') }}</div>
                     <b>{{ order.created_at|date|number }}</b>
                 </td>
 
@@ -139,7 +139,7 @@
                             <div class="tooltip-toggle tooltip-toggle--clickable text-primary border border-primary rounded text-center inline-block px-4 py-2 cursor-pointer">
                                 <i class="sicon-printer2 v-align"></i>
                                 {{ trans('pages.orders.print') }}
-                                <div class="tooltip-content shadow-md rounded text-gray-500">
+                                <div class="tooltip-content shadow-md rounded dynamic-text-color opacity-75">
                                     <small> {{  trans('pages.orders.to_order_invoice_contact_vendor') }}
                                         <br />
                                         {{ trans('pages.orders.print_order_details') }}
@@ -159,7 +159,7 @@
 
         {% if order.refund_message %}
           <div class="min-w-full rounded-md overflow-hidden">
-            <div class="bg-white flex items-center gap-1 rounded-md px-3 py-5 md:px-5">
+            <div class="dynamic-bg-color flex items-center gap-1 rounded-md px-3 py-5 md:px-5">
                <i class="sicon-refund h-6 w-6"></i>
                 <p class="font-medium text-base">{{ order.refund_message|raw }}</p>
             </div>
@@ -190,7 +190,7 @@
                 <div class="shipping-orders">
                     {# Shipping Title #}
                     {% if package.shipping_company %}
-                    <div class="flex flex-col md:flex-row justify-between md:items-center bg-white px-5 py-3 border-b border-gray-100 rounded-t-md text-sm space-y-4 md:space-y-0">
+                    <div class="flex flex-col md:flex-row justify-between md:items-center dynamic-bg-color px-5 py-3 border-b dynamic-border-color rounded-t-md text-sm space-y-4 md:space-y-0">
                         <div class="flex items-center space-x-2 rtl:space-x-reverse">
                             {% if package.shipping_company.logo %}
                                 <img src="{{ package.shipping_company.logo }}" class="max-w-16 max-h-8"
@@ -231,7 +231,7 @@
                     {% endif %}
 
                     {% for item in package.items %}
-                        <div data-order-item-id="{{ item.id }}" data-order-item-product-id="{{ item.product.id }}" class="order-item bg-white p-5 border-b border-gray-100 first:rounded-t-md last:rounded-b-md last:border-none">
+                        <div data-order-item-id="{{ item.id }}" data-order-item-product-id="{{ item.product.id }}" class="order-item dynamic-bg-color p-5 border-b dynamic-border-color first:rounded-t-md last:rounded-b-md last:border-none">
 
                             <div class="mb-5 last:mb-0">
                                 {% if item.product %}
@@ -243,7 +243,7 @@
                                         </a>
                                         <div>
                                             <a href="{{ item.product.url }}"
-                                               class="block leading-5 mb-1.5 md:text-base font-semibold transition-colors text-gray-500 hover:text-primary">
+                                               class="block leading-5 mb-1.5 md:text-base font-semibold transition-colors dynamic-text-color hover:text-primary">
                                                 {{ item.name }}
                                             </a>
                                             <b>{{ item.price|money }}</b>
@@ -283,7 +283,7 @@
 
                             {% if item.product.type == 'booking' and item.product_reservations is not empty %}
                               {% if item.booking_location != null %}
-                                  <ul class="font-medium text-xs text-gray-600">
+                                  <ul class="font-medium text-xs dynamic-text-color opacity-75">
                                       <li class="py-1 flex justify-between items-baseline">
                                           <span class="mt-5 mb-3.5 text-sm font-bold">{{ trans('common.elements.location') }}</span>
                                           <span class="text-unicode">{{ item.booking_location }}</span>
@@ -296,7 +296,7 @@
                                   <h2 class="mt-5 mb-3.5 text-sm font-bold">{{ trans('pages.cart.item_options') }}</h2>
                               {% endif %}
 
-                              <div class="rounded-md p-4 border border-gray-200 mb-2">
+                              <div class="rounded-md p-4 border dynamic-border-color mb-2">
                                 {% include 'pages.partials.product.reservations' with { reservations: item.product_reservations } %}
                               </div>
                           {% endif %}
@@ -306,20 +306,20 @@
                             {# order details sub products and options #}
 
                             {% if item.note %}
-                                <p class="mt-3 text-sm text-gray-500">
+                                <p class="mt-3 text-sm dynamic-text-color opacity-75">
                                     <span>{{ trans('common.elements.note') }} : </span>{{ item.note }}
                                 </p>
                             {% endif %}
 
                             {% if item.attachments %}
-                                <div class="flow-root rounded-md px-4 border border-gray-200">
-                                    <dl class="text-sm text-dark divide-y divide-border-color">
+                                <div class="flow-root rounded-md px-4 border dynamic-border-color">
+                                    <dl class="text-sm dynamic-text-color divide-y divide-[var(--color-border)] dark:divide-[var(--color-border-dark)]">
                                         {% for attachment in item.attachments %}
                                             <div class="py-3.5 md:flex items-center justify-between">
                                                 <dt class="mb-2 md:mb-0">
                                                     {{ trans('pages.products.attachments') }}
                                                 </dt>
-                                                <dd class="font-medium {{ attachment.type == 'image' ? 'text-gray-900' : 'text-xs' }}">
+                                                <dd class="font-medium {{ attachment.type == 'image' ? 'dynamic-text-color' : 'text-xs' }}">
                                                     <a href="{{ attachment.url }}">
                                                         {% if attachment.type == 'image' %}
                                                             <div class="flex rtl:space-x-reverse space-x-2.5">
@@ -408,11 +408,11 @@
             {% endfor %}
 
             {% if order.options|length %}
-              <div class="bg-white p-5 rounded-md">
+              <div class="dynamic-bg-color p-5 rounded-md">
                 <h2 class="mb-3.5 text-sm font-bold">{{ trans('pages.cart.cart_options') }}</h2>
-                <table class="table-fixed w-full border border-gray-200">
+                <table class="table-fixed w-full border dynamic-border-color">
                   <thead>
-                    <tr class="border-b border-gray-200">
+                    <tr class="border-b dynamic-border-color">
                       <th scope="col" class="p-3 text-start text-sm">
                         {{ trans('pages.order.option_name') }}
                       </th>
@@ -427,7 +427,7 @@
                   <tbody>
                     {% for item in order.options %}
                       {% for option in item.options %}
-                        <tr class="border-b last:border-b-0 border-gray-200">
+                        <tr class="border-b last:border-b-0 dynamic-border-color">
                           <td class="text-sm p-3">{{ option.name }} :</td>
                           <td class="text-center p-3 font-medium text-xs">
                           {% if option.reservations %}
@@ -450,7 +450,7 @@
 
         {# Reorder & Cancel #}
         {% if order.can_reorder or order.can_cancel or order.is_pending_payment %}
-            <div class="bg-white rounded-md p-5 divide-y divide-border-color space-y-4">
+            <div class="dynamic-bg-color rounded-md p-5 divide-y divide-[var(--color-border)] dark:divide-[var(--color-border-dark)] space-y-4">
                 {% if order.can_reorder or order.is_pending_payment %}
                     <div class="{{order.is_pending_payment ? 'flex-center': 'center-between'}}">
                         {% if order.is_pending_payment %}
@@ -466,7 +466,7 @@
                         {% elseif user.type == 'user' %}
                             <div class="text-sm">
                                 <h3 class="font-bold text-lg leading-none mb-1">{{ trans('pages.orders.reorder') }}</h3>
-                                <p class="text-gray-500">{{ trans('pages.orders.reorder_description') }}</p>
+                                <p class="dynamic-text-color opacity-75">{{ trans('pages.orders.reorder_description') }}</p>
                             </div>
                             <salla-button shape="link" onclick="document.querySelector('#reorder-modal').open()">
                                 <i class="sicon sicon-rotate rtl:ml-2 ltr:mr-2"></i>
@@ -480,7 +480,7 @@
                     <div class="center-between pt-4">
                         <div class="text-sm">
                             <h3 class="font-bold text-lg leading-none mb-1">{{ trans('pages.orders.cancel') }}</h3>
-                            <p class="text-gray-500">{{ trans('pages.order.order_cancelation_desc') }}</p>
+                            <p class="dynamic-text-color opacity-75">{{ trans('pages.order.order_cancelation_desc') }}</p>
                         </div>
                         <salla-button shape="link" color="danger" onclick="document.querySelector('#modal-order-cancel').open()">
                             <i class="sicon sicon-cancel-circle rtl:ml-2 ltr:mr-2"></i>
@@ -527,7 +527,7 @@
 
         {# Store Rating #}
         {% if order.rating.store.stars %}
-            <section class="flex justify-between items-start bg-white p-5 rounded-md">
+            <section class="flex justify-between items-start dynamic-bg-color p-5 rounded-md">
                 <div>
                     <h2 class="text-lg font-bold mb-5">{{ trans('pages.rating.rate_the_store') }}</h2>
                     <p class="mb-2">{{ order.rating.store.content|raw }}</p>
@@ -582,7 +582,7 @@
 
         {# Shipping Rating #}
         {% if order.rating.shipping.stars %}
-            <section class="flex justify-between items-start bg-white p-5 rounded-md">
+            <section class="flex justify-between items-start dynamic-bg-color p-5 rounded-md">
                 <div>
                     <h2 class="text-lg font-bold mb-5">{{ trans('pages.rating.rate_shipping') }}</h2>
                     <p class="mb-2">{{ order.rating.shipping.content|raw }}</p>

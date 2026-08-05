@@ -335,7 +335,9 @@ salla-modal {
         a,
         span,
         .arrow {
-          @apply text-gray-600;
+          // the gradient is dropped at this width, so the trail sits on the
+          // page background and has to follow the palette
+          @apply dynamic-text-color;
         }
       }
     }

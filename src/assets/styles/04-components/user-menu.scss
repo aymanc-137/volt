@@ -63,3 +63,17 @@
     @apply  rounded-custom border p-1 border-[var(--color-primary-50)];
   }
 }
+
+
+// Customer-page sidebar menu.
+//
+// With `inline`, salla-user-menu renders `<ul class="s-user-menu-inline">`
+// instead of the header's `.s-user-menu-dropdown` wrapper, but the items keep
+// the shared `.s-user-menu-dropdown-item` class — which Salla paints a fixed
+// #444. Scoping to the inline wrapper repaints the sidebar without touching
+// the header dropdown, which sits on its own surface.
+.s-user-menu-inline {
+  .s-user-menu-dropdown-item a {
+    @apply dynamic-text-color;
+  }
+}

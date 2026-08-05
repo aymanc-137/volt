@@ -157,18 +157,6 @@ salla-file-upload {
 }
 
 // ---------------------------------------------------------------------------
-// The order-note field that shares the attachments block
-// ---------------------------------------------------------------------------
-// `.form-input` is emitted after the dynamic utilities and carries a fixed
-// gray-200 border plus a `.dark`-only gray-600 background, so it wins on order
-// against utilities placed on the element itself. Matching on the element and
-// its name outranks it instead, and works on the cart page too, where this
-// partial renders outside `.product-form`.
-textarea.form-input[name='notes'] {
-  @apply dynamic-bg-color dynamic-text-color dynamic-border-color;
-}
-
-// ---------------------------------------------------------------------------
 // The two collapse buttons above the uploader — "add note" / "attach file"
 // ---------------------------------------------------------------------------
 // `.btn--collapse` is hard-coded gray-100 on gray-700 and `partials/product/

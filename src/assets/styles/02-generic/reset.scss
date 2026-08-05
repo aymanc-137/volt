@@ -4,6 +4,15 @@ body {
   line-height: 26px;
   color: var(--main-text-color);
   position: relative;
+
+  // Everything that does not paint its own colour inherits from here, so
+  // without this half the whole page stays dark-on-dark once `.dark` is on.
+  // Written longhand because the `dark:` variant cannot be used on a bare
+  // element selector: it resolves to `body:is(.dark *)`, which
+  // postcss-preset-env then down-levels into `body.dark *` — matching nothing.
+  .dark & {
+    color: var(--light-text-color);
+  }
 }
 
 // p {

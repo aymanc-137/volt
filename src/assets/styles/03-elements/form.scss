@@ -22,7 +22,14 @@ input[type="text"]:disabled {
 }
 
 .form-input {
-  @apply w-full h-10 transition-colors duration-300 focus:ring-transparent focus:border-primary dark:focus:border-primary text-sm border-gray-200 dark:bg-gray-600 dark:border-gray-600 rounded-md;
+  // Was `border-gray-200 dark:bg-gray-600 dark:border-gray-600`, which left a
+  // white field on a store running a single dark palette.
+  //
+  // The background is the *page* colour, not the box colour: the field
+  // previously had no background at all in light mode and picked up the
+  // browser's white default, so the page colour reproduces that exactly, and it
+  // keeps the field distinct from the card colour it usually sits on.
+  @apply w-full h-10 transition-colors duration-300 focus:ring-transparent focus:border-primary text-sm bg-light-background dark:bg-dark-background dynamic-text-color dynamic-border-color rounded-md;
   appearance: none;
   -webkit-appearance: none;
 }
