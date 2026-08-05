@@ -438,42 +438,15 @@
                 },
                 {
                     "id": "announcement_items.item_url",
-                    "type": "items",
-                    "format": "variable-list",
+                    "type": "string",
+                    "format": "text",
                     "label": "الرابط (اختياري)",
-                    "description": "اختر منتجاً أو تصنيفاً أو ماركة أو صفحة، أو الصق رابطاً خارجياً",
+                    "description": "الصق الرابط كاملاً، مثال: https://example.com/page",
+                    "placeholder": "https://",
                     "icon": "sicon-link",
-                    "source": "custom",
-                    "searchable": true,
-                    "required": false,
-                    "sources": [
-                        {
-                            "label": "منتج",
-                            "key": "products",
-                            "value": "products"
-                        },
-                        {
-                            "label": "تصنيف",
-                            "key": "categories",
-                            "value": "categories"
-                        },
-                        {
-                            "label": "ماركة تجارية",
-                            "key": "brands",
-                            "value": "brands"
-                        },
-                        {
-                            "label": "صفحة تعريفية",
-                            "key": "pages",
-                            "value": "pages"
-                        },
-                        {
-                            "label": "رابط خارجي",
-                            "key": "custom",
-                            "value": "custom"
-                        }
-                    ],
-                    "value": []
+                    "value": null,
+                    "multilanguage": false,
+                    "required": false
                 }
             ],
             "conditions": [

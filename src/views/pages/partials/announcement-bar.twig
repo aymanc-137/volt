@@ -12,11 +12,8 @@
 | announcement_items                    | object[] | repeatable items: .image (?), .text (?), .item_url (?)    |
 |   .image                              | string   | plain image URL                                           |
 |   .text                               | object   | multilanguage map, e.g. {ar: "..."}                       |
-|   .item_url                           | ?mixed   | variable-list picker. As a *global setting* this is NOT   |
-|                                       |          | resolved to a string the way a component field is — it    |
-|                                       |          | arrives as a string, a {label,value,source} map, or a     |
-|                                       |          | list of either. Resolved below. Must NOT be named `url` — |
-|                                       |          | an item has its own `url` that shadows it                 |
+|   .item_url                           | ?string  | plain text field; the pasted link, used as-is. Must NOT be |
+|                                       |          | named `url` — an item has its own `url` that shadows it    |
 
  Site-wide infinite marquee. The markup renders ONE sequence of items; the
  inline script clones it just enough to exceed the bar width and then the CSS
@@ -52,26 +49,24 @@
                     {% set txt = item.text %}
                     {% if txt is iterable %}{% set txt = txt[ab_lang] ?? (txt|first) %}{% endif %}
                     {% if txt is iterable %}{% set txt = null %}{% endif %}
-                    {# `item_url` is a variable-list picker. Component fields get these resolved
-                       to a plain string by Salla, but a *global setting* like this one hands
-                       back whatever was stored, and the shape differs per link source. So the
-                       value can arrive as any of:
-                         - a plain string          (external link, or an item saved back when
-                                                    this was a text field)
-                         - {label, value, source}  (one picked entry)
-                         - [{label, value, source}] or ["https://…"]  (wrapped in a list)
-
-                       Unwrap at most twice — list, then entry — preferring an explicit link
-                       key over positional access, and drop anything still not printable.
-                       Printing an array here raises "Array to string conversion" and takes
-                       down the entire view, so the last guard is what keeps a bad value from
-                       breaking the page for the merchant's customers; the item just renders
-                       unlinked instead.
+                    {# `item_url` is a plain text field: the merchant pastes the link and it is
+                       used verbatim. It has twice been tried as a variable-list picker and
+                       reverted both times — a picker resolves to a string in a *component*
+                       field, but a global setting like this one hands back the raw stored
+                       value, whose shape differs per link source, so nothing resolved
+                       reliably. Don't try it a third time without checking that first.
 
                        Keep the name `item_url`: an item already carries its own `url`, and a
-                       field by that name is shadowed by it. #}
+                       field by that name is shadowed by it.
+
+                       Everything below the first line is pure fallback. A text field yields a
+                       string, which passes straight through — but items saved during either
+                       picker experiment still hold an array or a {label, value, source} map,
+                       and printing one raises "Array to string conversion" and takes down the
+                       whole view. So: unwrap at most twice to recover the link if we can, and
+                       null anything still unprintable. A stale item then renders unlinked
+                       instead of breaking the page for the merchant's customers. #}
                     {% set url = item.item_url %}
-                    {{ item.item_url.value | json_encode }}
                     {% if url is iterable %}
                         {% set u_key = url.url|default(null) %}
                         {% set v_key = url.value|default(null) %}
