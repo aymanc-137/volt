@@ -403,22 +403,14 @@
                     "announcement_items.text": {
                         "ar": "نيسان فتك تيربو"
                     },
-                    "announcement_items.item_url": {
-                        "label": "",
-                        "value": "https://demostore.salla.sa/ar/dev-pbdsq67yexku5kq3/-/c1019197955",
-                        "source": "custom"
-                    }
+                    "announcement_items.item_url": "https://demostore.salla.sa/ar/dev-pbdsq67yexku5kq3/-/c1019197955"
                 },
                 {
                     "announcement_items.image": "https://cdn.files.salla.network/homepage/1573552885/5d508f8e-8167-4182-9af0-55ea7fd6b010.webp",
                     "announcement_items.text": {
                         "ar": "مساعدات رياضية"
                     },
-                    "announcement_items.item_url": {
-                        "label": "",
-                        "value": "https://demostore.salla.sa/ar/dev-pbdsq67yexku5kq3/-/c1019197955",
-                        "source": "custom"
-                    }
+                    "announcement_items.item_url": "https://demostore.salla.sa/ar/dev-pbdsq67yexku5kq3/-/c1019197955"
                 }
             ],
             "fields": [
@@ -446,15 +438,42 @@
                 },
                 {
                     "id": "announcement_items.item_url",
-                    "type": "string",
-                    "format": "text",
+                    "type": "items",
+                    "format": "variable-list",
                     "label": "الرابط (اختياري)",
-                    "description": "الصق الرابط كاملاً، مثال: https://example.com/page",
-                    "placeholder": "https://",
+                    "description": "اختر منتجاً أو تصنيفاً أو ماركة أو صفحة، أو الصق رابطاً خارجياً",
                     "icon": "sicon-link",
-                    "value": "https://demostore.salla.sa/ar/dev-pbdsq67yexku5kq3/-/c1019197955",
-                    "multilanguage": false,
-                    "required": false
+                    "source": "custom",
+                    "searchable": true,
+                    "required": false,
+                    "sources": [
+                        {
+                            "label": "منتج",
+                            "key": "products",
+                            "value": "products"
+                        },
+                        {
+                            "label": "تصنيف",
+                            "key": "categories",
+                            "value": "categories"
+                        },
+                        {
+                            "label": "ماركة تجارية",
+                            "key": "brands",
+                            "value": "brands"
+                        },
+                        {
+                            "label": "صفحة تعريفية",
+                            "key": "pages",
+                            "value": "pages"
+                        },
+                        {
+                            "label": "رابط خارجي",
+                            "key": "custom",
+                            "value": "custom"
+                        }
+                    ],
+                    "value": []
                 }
             ],
             "conditions": [
