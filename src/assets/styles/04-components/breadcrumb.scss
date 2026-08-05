@@ -1,0 +1,27 @@
+/**
+ * Breadcrumbs — <salla-breadcrumb>
+ *
+ * The component paints no colour of its own: the trail inherits from `body`,
+ * which is pinned to `--main-text-color` with no dark counterpart, so the whole
+ * trail goes dark-on-dark once the palette flips. The arrow was worse — it was
+ * filled from the wrong end of the palette (light fill in light mode, dark fill
+ * in dark mode), leaving it invisible in *both*.
+ *
+ * `.s-breadcrumb-dark` (loyalty) and `.s-breadcrumb-primary-reverse` (customer
+ * pages) are Salla variants for a breadcrumb sitting on a coloured hero, and
+ * they land on the same element as `.s-breadcrumb-wrapper`. Excluding them here
+ * keeps their white / reverse treatment intact instead of overriding it on
+ * source order.
+ */
+.s-breadcrumb-wrapper:not(.s-breadcrumb-dark):not(.s-breadcrumb-primary-reverse) {
+  @apply dynamic-text-color;
+
+  a {
+    @apply dynamic-text-color;
+  }
+
+  // currentColor keeps the separator on whatever the trail itself is using.
+  .s-breadcrumb-arrow svg {
+    fill: currentColor;
+  }
+}

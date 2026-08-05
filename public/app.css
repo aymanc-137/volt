@@ -3475,6 +3475,7 @@ textarea.s-input[name=notes]{
     box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 rgba(0,0,0,0));
 }
 .s-form-label{
+    --tw-text-opacity: 1;
     color: rgba(17, 24, 39, 1);
     color: rgba(17, 24, 39, var(--tw-text-opacity, 1));
     margin-bottom: 0.625rem;
@@ -3482,13 +3483,11 @@ textarea.s-input[name=notes]{
     font-size: 0.875rem;
     line-height: 1.25rem;
     font-weight: 700;
-    --tw-text-opacity: 1;
-    color: rgb(55 65 81 / 1);
+    color: #2C3E50;
+    color: var(--main-text-color);
 }
-@supports (color: rgb(0 0 0 / 0)) and (top: var(--f)){
-.s-form-label{
-        color: rgb(55 65 81 / var(--tw-text-opacity, 1));
-    }
+.dark *.s-form-label{
+    color: var(--light-text-color);
 }
 @media (min-width: 640px){
     .s-form-label{
@@ -3509,13 +3508,6 @@ textarea.s-input[name=notes]{
   .is-sticky-product-bar .sticky-product-bar .s-form-label {
   display: none;
 }
-}
-.product-form .s-form-label{
-    color: #2C3E50;
-    color: var(--main-text-color);
-}
-.product-form .s-form-label:is(.dark *){
-    color: var(--light-text-color);
 }
 .s-form-group{
     margin-top: 0.75rem;
@@ -28347,9 +28339,11 @@ input[type=text]:disabled {
     font-size: 0.875rem;
     line-height: 1.25rem;
     font-weight: 700;
-    --tw-text-opacity: 1;
-    color: rgba(55, 65, 81, 1);
-    color: rgba(55, 65, 81, var(--tw-text-opacity, 1));
+    color: #2C3E50;
+    color: var(--main-text-color);
+}
+.dark *.form-label{
+    color: var(--light-text-color);
 }
 @media (min-width: 640px){
     .form-label{
@@ -34480,22 +34474,8 @@ salla-comments .s-comments-product .s-comments-container:is(.dark *){
 salla-comments .s-comments-product .s-comments-container:has(.s-reviews-summary-wrapper), salla-comments .s-comments-product .s-comments-container:has(salla-comment-item) {
   display: block;
 }
-.s-breadcrumb-arrow svg{
-    fill: var(--light-text-color);
-}
-.s-breadcrumb-arrow svg:is(.dark *){
-    fill: #2C3E50;
-    fill: var(--main-text-color);
-}
 .s-quantity-input-container .s-quantity-input-input {
   background: transparent !important;
-}
-.product-form .form-label{
-    color: #2C3E50;
-    color: var(--main-text-color);
-}
-.product-form .form-label:is(.dark *){
-    color: var(--light-text-color);
 }
 .s-reviews-summary-header .s-reviews-summary-average, .s-reviews-summary-header .s-reviews-summary-recommendation-percentage{
     color: #2C3E50;
@@ -34694,6 +34674,38 @@ textarea.form-input[name=notes]{
 .dark *.btn--collapse{
     color: var(--light-text-color);
     background-color: var(--color-dark-page-background);
+}
+/**
+ * Breadcrumbs — <salla-breadcrumb>
+ *
+ * The component paints no colour of its own: the trail inherits from `body`,
+ * which is pinned to `--main-text-color` with no dark counterpart, so the whole
+ * trail goes dark-on-dark once the palette flips. The arrow was worse — it was
+ * filled from the wrong end of the palette (light fill in light mode, dark fill
+ * in dark mode), leaving it invisible in *both*.
+ *
+ * `.s-breadcrumb-dark` (loyalty) and `.s-breadcrumb-primary-reverse` (customer
+ * pages) are Salla variants for a breadcrumb sitting on a coloured hero, and
+ * they land on the same element as `.s-breadcrumb-wrapper`. Excluding them here
+ * keeps their white / reverse treatment intact instead of overriding it on
+ * source order.
+ */
+.s-breadcrumb-wrapper:not(.s-breadcrumb-dark):not(.s-breadcrumb-primary-reverse){
+    color: #2C3E50;
+    color: var(--main-text-color);
+}
+.dark .s-breadcrumb-wrapper:not(.s-breadcrumb-dark):not(.s-breadcrumb-primary-reverse){
+    color: var(--light-text-color);
+}
+.s-breadcrumb-wrapper:not(.s-breadcrumb-dark):not(.s-breadcrumb-primary-reverse) a{
+    color: #2C3E50;
+    color: var(--main-text-color);
+}
+.s-breadcrumb-wrapper:not(.s-breadcrumb-dark):not(.s-breadcrumb-primary-reverse) a:is(.dark *){
+    color: var(--light-text-color);
+}
+.s-breadcrumb-wrapper:not(.s-breadcrumb-dark):not(.s-breadcrumb-primary-reverse) .s-breadcrumb-arrow svg {
+  fill: currentColor;
 }
 .brands-nav{
     display: flex;
