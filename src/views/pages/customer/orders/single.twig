@@ -63,6 +63,7 @@
 | order.rating                     | ?OrderRatings                     |                                                                                          |
 | order.rating.store               | ?Rating                           |                                                                                          |
 | order.rating.shipping            | ?Rating                           |                                                                                          |
+| order.rating.product             | ?array                            | Product ratings array with factor_reviews                                                |
 | order.links                      | array                             |                                                                                          |
 | order.links[].url                | string                            |                                                                                          |
 | order.links[].label              | string                            |                                                                                          |
@@ -347,7 +348,16 @@
                                         {% if item.rating.is_pending %}
                                             <span>{{ trans('pages.rating.pending') }}</span>
                                         {% endif %}
-                                        <salla-rating-stars with-label size="small" value="{{item.rating.stars}}"></salla-rating-stars>
+                                        {# Product rating stars + per-factor review tags (upstream theme-raed#973) #}
+                                        <div class="flex flex-row flex-wrap items-center gap-2">
+                                            <salla-rating-stars with-label size="small" value="{{item.rating.stars}}"></salla-rating-stars>
+                                            <salla-review-factors-tags
+                                                order-id="{{ order.id }}"
+                                                rating-id="{{ item.rating.id }}"
+                                                item-id="{{ item.id }}"
+                                                {% if item.product %}product-id="{{ item.product.id }}"{% endif %}
+                                            ></salla-review-factors-tags>
+                                        </div>
                                         {% if item.rating.images|length %}
                                             <div class="flex items-center gap-2 mt-2">
                                                 {% for image in item.rating.images %}
