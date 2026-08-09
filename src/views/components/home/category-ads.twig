@@ -1,0 +1,25 @@
+{#
+| Variable          | Type   | Description                                  |
+|-------------------|--------|----------------------------------------------|
+| component.image   | string | Full-width background image URL              |
+| component.title   | ?string| Optional text overlaid, centered, in white   |
+
+ Full-width background banner. Which page it appears on is chosen natively in
+ the editor, so this simply renders wherever the component is placed. It was
+ previously produced by category-ads.js, which injected the background onto the
+ matching category page; that per-category targeting is no longer needed.
+
+ Styling mirrors the old JS-populated mount: the classes came from the
+ `#category-ads` placeholder and the white, shadowed heading from the injected
+ markup.
+#}
+{% if component.image %}
+    <section data-volt-component="home.category-ads"
+             class="category-ads w-full bg-cover bg-center bg-no-repeat flex justify-center shadow-lg h-24 sm:h-32 md:h-56 lg:h-64 xl:h-72 2xl:h-80 mb-6"
+             style="background-image:url('{{ component.image }}')">
+        {% if component.title %}
+            <h3 class="place-self-center text-white lg:text-3xl md:text-xl text-sm"
+                style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">{{ component.title }}</h3>
+        {% endif %}
+    </section>
+{% endif %}

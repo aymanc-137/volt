@@ -8696,62 +8696,31 @@
                     "value": "<div style='padding-top:10px;margin-bottom:30px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/category-ads.png'></div>"
                 },
                 {
-                    "id": "category_ads",
-                    "type": "collection",
-                    "format": "collection",
-                    "label": "خلفيات الصفحة",
-                    "description": "إضافة صورة علوية على أقسام المنتجات",
+                    "id": "image",
+                    "type": "string",
+                    "format": "image",
+                    "label": "الصورة",
+                    "description": "المقاس المناسب للصورة هو 1600×1500 بكسل .",
                     "labelHTML": null,
-                    "item_label": "صورة الخلفية و الفئة",
-                    "icon": "sicon-list-add",
-                    "fields": [
-                        {
-                            "id": "category_ads.title",
-                            "type": "string",
-                            "format": "text",
-                            "label": "نص على الصورة",
-                            "description": null,
-                            "labelHTML": null,
-                            "placeholder": "نص عن القسم",
-                            "icon": "sicon-format-text-alt",
-                            "value": "احمي سيارتك مع يايات رياضية",
-                            "multilanguage": true,
-                            "required": false,
-                            "minLength": 6,
-                            "maxLength": "500"
-                        },
-                        {
-                            "id": "category_ads.image",
-                            "type": "string",
-                            "format": "image",
-                            "label": "الصورة",
-                            "description": "المقاس المناسب للصورة هو 1600×1500 بكسل .",
-                            "labelHTML": null,
-                            "placeholder": "e.g. https://hostname.com/image.png",
-                            "icon": "sicon-image",
-                            "value": "https://cdn.lamsaweb.com/cdnVolt/dune-bashing-2_edited.jpg",
-                            "required": true
-                        },
-                        {
-                            "id": "category_ads.category",
-                            "type": "items",
-                            "format": "dropdown-list",
-                            "label": "القسم",
-                            "description": "اختر القسم الخاص بالصورة",
-                            "labelHTML": null,
-                            "icon": "sicon-keyboard_arrow_down",
-                            "selected": [],
-                            "options": [],
-                            "source": "categories",
-                            "multichoice": false,
-                            "searchable": true,
-                            "required": true,
-                            "value": []
-                        }
-                    ],
-                    "value": [],
-                    "minLength": 1,
-                    "maxLength": "50"
+                    "placeholder": "e.g. https://hostname.com/image.png",
+                    "icon": "sicon-image",
+                    "value": "https://cdn.lamsaweb.com/cdnVolt/dune-bashing-2_edited.jpg",
+                    "required": true
+                },
+                {
+                    "id": "title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "نص على الصورة",
+                    "description": null,
+                    "labelHTML": null,
+                    "placeholder": "نص عن القسم",
+                    "icon": "sicon-format-text-alt",
+                    "value": "احمي سيارتك مع يايات رياضية",
+                    "multilanguage": true,
+                    "required": false,
+                    "minLength": 6,
+                    "maxLength": "500"
                 }
             ]
         },
