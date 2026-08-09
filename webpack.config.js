@@ -10,7 +10,7 @@ const public = file => path.resolve("public", file || '');
 module.exports = {
     entry  : {
         app     : [asset('styles/app.scss'), asset('js/wishlist.js'), asset('js/app.js'), asset('js/blog.js')],
-        home    : [asset('js/home.js'), asset('js/cat-list-car-search.js')],
+        home    : [asset('js/home.js')],
         'product-card' : asset('js/partials/product-card.js'),
         'main-menu' : asset('js/partials/main-menu.js'),
         'volt-menu' : asset('js/partials/volt-menu.js'),
@@ -19,7 +19,7 @@ module.exports = {
         'digital-files': asset('js/partials/digital-files.js'),
         checkout: [asset('js/cart.js'), asset('js/thankyou.js')],
         pages   : [asset('js/loyalty.js'), asset('js/brands.js'),],
-        product : [asset('js/product.js'), asset('js/products.js'),asset('js/category-ads.js'),asset('js/car-search-tree.js'),asset('js/flash-offer.js'),asset('js/product-tabs.js')],
+        product : [asset('js/product.js'), asset('js/products.js'),asset('js/category-ads.js'),asset('js/product-tabs.js')],
         order   : asset('js/order.js'),
         testimonials   : asset('js/testimonials.js')
     },

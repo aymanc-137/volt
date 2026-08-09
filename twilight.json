@@ -5598,7 +5598,7 @@
                     "value": "<div style='padding-top:10px;margin-bottom:15px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/flash-discoun.png'></div>",
                     "conditions": [
                         {
-                            "id": "show_in_category_page",
+                            "id": "use_mini_layout",
                             "operation": "=",
                             "value": false
                         }
@@ -5611,44 +5611,21 @@
                     "value": "<div style='padding-top:10px;margin-bottom:15px;border:1px solid #ebebeb;border-radius:5px;text-align:center;overflow:hidden'><h6 style='margin-bottom:10px'>معاينة العنصر (صفحة التصنيف)</h6><img class='w-full' src='https://cdn.lamsaweb.com/cdnVolt/components/timer-in-page.png'></div>",
                     "conditions": [
                         {
-                            "id": "show_in_category_page",
+                            "id": "use_mini_layout",
                             "operation": "=",
                             "value": true
                         }
                     ]
                 },
                 {
-                    "id": "show_in_category_page",
+                    "id": "use_mini_layout",
                     "type": "boolean",
                     "format": "switch",
-                    "label": "عرض في صفحة التصنيف",
-                    "description": "عند التفعيل سيتم عرض المكون في صفحة التصنيف المحدد.",
-                    "icon": "sicon-store",
+                    "label": "استخدام التخطيط المصغّر (شريط علوي)",
+                    "description": "عرض العنصر كشريط علوي مصغّر بعرض كامل بدل البطاقة الكبيرة — مناسب لأعلى صفحات التصنيف.",
+                    "icon": "sicon-layout-grid-rearrange",
                     "value": false,
                     "required": false
-                },
-                {
-                    "id": "target_category",
-                    "type": "items",
-                    "format": "dropdown-list",
-                    "label": "التصنيف المستهدف",
-                    "description": "اختر التصنيف الذي سيظهر فيه هذا المكون",
-                    "labelHTML": null,
-                    "icon": "sicon-keyboard_arrow_down",
-                    "selected": [],
-                    "options": [],
-                    "source": "categories",
-                    "multichoice": false,
-                    "searchable": true,
-                    "required": false,
-                    "value": [],
-                    "conditions": [
-                        {
-                            "id": "show_in_category_page",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ]
                 },
                 {
                     "type": "static",
@@ -7572,39 +7549,6 @@
                     "icon": "sicon-list",
                     "value": false,
                     "required": false
-                },
-                {
-                    "id": "show_in_category_page",
-                    "type": "boolean",
-                    "format": "switch",
-                    "label": "عرض في صفحة التصنيف",
-                    "description": "عند التفعيل سيتم عرض المكون في صفحة التصنيف المحدد.",
-                    "icon": "sicon-store",
-                    "value": false,
-                    "required": false
-                },
-                {
-                    "id": "target_category",
-                    "type": "items",
-                    "format": "dropdown-list",
-                    "label": "التصنيف المستهدف",
-                    "description": "اختر التصنيف الذي سيظهر فيه هذا المكون",
-                    "labelHTML": null,
-                    "icon": "sicon-keyboard_arrow_down",
-                    "selected": [],
-                    "options": [],
-                    "source": "categories",
-                    "multichoice": false,
-                    "searchable": true,
-                    "required": false,
-                    "value": [],
-                    "conditions": [
-                        {
-                            "id": "show_in_category_page",
-                            "operation": "=",
-                            "value": true
-                        }
-                    ]
                 },
                 {
                     "type": "static",

@@ -1,5 +1,9 @@
-{# Skip rendering on home page if this component is set to show only on category pages #}
-{% if not component.show_in_category_page %}
+{# Flash-offer component. Two layouts, chosen by `use_mini_layout`:
+   - full (default): the large hero card below
+   - mini: a full-width top bar. This markup was previously produced by
+     flash-offer.js and injected on category pages; it is now a first-class
+     option so it renders wherever the component is placed. #}
+{% set use_mini = component.use_mini_layout | default(false) %}
 {% set slashbg = component.slas_hbg | default(false) %}
 {% set marquee = component.marquee | default(false) %}
 {% set marqueetext = component.marqueetext | default(" سرعة /// أداء /// تحكم ") %}
@@ -35,6 +39,30 @@
 {% elseif tc_hl_type == 'custom' %}{% set tc_hl_attr = 'style="color: ' ~ (component.highlight_word_color | default('#FF3B3B')) ~ '"' %}
 {% else %}{% set tc_hl_attr = 'class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent"' %}{% endif %}
 
+{# Gradient-word setup is shared by both layouts and the script at the bottom. #}
+{% set has_gradient_word = component.enable_gradient_word|default(false) and component.gradient_word is not empty %}
+{% set flash_offer_title_id = has_gradient_word ? 'flash-offer-title-' ~ (position|default(0)) : null %}
+
+{% if use_mini %}
+    {# ---- Mini top-bar layout ---- #}
+    <section data-volt-component="home.flash-offer" class="flash-offer-cat"{% if component.image %} style="background-image:url('{{ component.image }}')"{% endif %}>
+        <div class="flash-offer-cat__overlay"></div>
+        <div class="flash-offer-cat__inner container">
+            <div class="flash-offer-cat__text">
+                {% if component.badge_text %}<p class="flash-offer-cat__badge">{{ component.badge_text }}</p>{% endif %}
+                {% if component.title %}<h2 class="flash-offer-cat__title font-alshohadaa"{% if has_gradient_word %} id="{{ flash_offer_title_id }}"{% endif %}>{{ component.title }}</h2>{% endif %}
+                {% if component.description %}<p class="flash-offer-cat__desc">{{ component.description }}</p>{% endif %}
+                {% if component.url %}<a class="flash-offer-cat__btn" href="{{ component.product[0].url|default('#') }}">{{ component.url }}</a>{% endif %}
+            </div>
+            <div class="flash-offer-cat__timer">
+                <salla-count-down
+                    date="{{ component.product[0].discount_ends|default('') }}"
+                    end-of-day="true" boxed="true" labeled="true">
+                </salla-count-down>
+            </div>
+        </div>
+    </section>
+{% else %}
 <section data-volt-component="home.flash-offer" class="flash-offer z-10 overflow-hidden relative {{ enable_border ? 'border-y border-[var(--color-primary)]' : ''}} {{ slashbg ? 'slash-bg-' ~ position ~ ' dynamic-bg-color' : ''}}">
     {% if glow_type == 'circles' %}
     <div class="absolute top-[15%] left-[25%] w-64 h-64 rounded-full blur-3xl opacity-60 pointer-events-none" style="z-index:-1; background-color:{{ glow_c1 }};"></div>
@@ -91,8 +119,6 @@
 
      <div class="flash-offer-container shadow-pulse">
     <img src="{{ component.image }}" alt="{{ component.title }}"  >
-        {% set has_gradient_word = component.enable_gradient_word|default(false) and component.gradient_word is not empty %}
-        {% set flash_offer_title_id = has_gradient_word ? 'flash-offer-title-' ~ (position|default(0)) : null %}
         <div class="flash-offer-content w-full md:w-1/2
         p-5 md:p-8 flex flex-col justify-evenly gap-3 md:gap-0
         md:overflow-y-auto
@@ -120,6 +146,7 @@
         </div>
         </div>
 </section>
+{% endif %}
 
 {% if has_gradient_word %}
 <script>
@@ -140,6 +167,8 @@
 </script>
 {% endif %}
 
+{# slash background is only used by the full layout #}
+{% if not use_mini %}
 <style>
 {% if slas_hbg_use_primary_color %}
 .slash-bg-{{position}} {
