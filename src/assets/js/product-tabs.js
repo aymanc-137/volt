@@ -1,141 +1,71 @@
 import BasePage from './base-page';
-import { log, warn } from './debug';
 
 /**
- * Product Tabs
- * ------------
- * Renders per-product content tabs on the single product page. The tab content
- * lives in the `home.product-tabs` component (a data-only component configured
- * once in the theme editor, populated from the Tab Builder tool in /worker).
+ * Product Tabs — interaction only
+ * -------------------------------
+ * The tabs are rendered server-side by `views/components/home/product-tabs.twig`
+ * (placed on the product page via the editor). This script no longer fetches or
+ * builds anything; it only wires behaviour onto that markup: a sticky bar, a
+ * scroll-spy that highlights the section in view, and click-to-smooth-scroll.
  *
  * Tabs do NOT hide/show content — every section is stacked normally in the page,
- * and clicking a tab smooth-scrolls to its section. A scroll-spy keeps the active
- * tab in sync with whichever section is in view.
+ * so with JS disabled the content is still fully readable; the bar just stops
+ * being interactive.
  */
 class ProductTabs extends BasePage {
-    async onReady() {
-        const LOG = '[ProductTabs]';
-        const mount = document.querySelector('#product-tabs');
-        if (!mount) { return; }
-        if (!salla.url.is_page('product.single')) { return; }
+    onReady() {
+        if (!salla.url.is_page('product.single')) return;
+        const mount = document.querySelector('.product-tabs');
+        if (!mount) return;
 
-        const productId = mount.dataset.productId;
-        log(LOG, 'product id:', productId);
-
-        try {
-            const res = await salla.api.request('component/list', { params: { paths: ['home.product-tabs'] } });
-            const components = res.data;
-            if (!Array.isArray(components) || !components.length) {
-                warn(LOG, 'no product-tabs component returned');
-                return;
-            }
-
-            const component = components[0].component;
-            const collection = component?.tabs_data || component?.['tabs_data'] || [];
-            if (!Array.isArray(collection) || !collection.length) {
-                warn(LOG, 'component has no tabs_data items');
-                return;
-            }
-
-            // Find the collection item whose product matches the current product
-            const match = collection.find(item => {
-                const prodField = item.product ?? item['tabs_data.product'];
-                const prod = Array.isArray(prodField) ? prodField[0] : prodField;
-                const pid = prod?.id ?? prod?.value ?? prod;
-                return pid != null && String(pid) === String(productId);
-            });
-
-            if (!match) {
-                log(LOG, 'no tabs configured for this product');
-                return;
-            }
-
-            const rawJson = match.tabs_json ?? match['tabs_data.tabs_json'] ?? '{"tabs":[]}';
-            let parsed;
-            try {
-                parsed = typeof rawJson === 'string' ? JSON.parse(rawJson) : rawJson;
-            } catch (e) {
-                console.error(LOG, 'invalid tabs JSON:', e, rawJson);
-                return;
-            }
-
-            const tabs = (parsed && Array.isArray(parsed.tabs)) ? parsed.tabs : [];
-            const renderable = tabs.filter(t => t && t.type && this.hasContent(t));
-            if (!renderable.length) {
-                warn(LOG, 'no renderable tabs');
-                return;
-            }
-
-            // `product_description_position_under` renders the description as a
-            // standalone block above (#product-description-under). When tabs DO
-            // render for this product, fold it in as the first tab and drop the
-            // standalone block so the content is not shown twice. When no tabs
-            // render, onReady returns earlier and the standalone block stays.
-            this.foldInDescription(renderable);
-
-            // Unhide BEFORE rendering so the sticky bar can be measured with a
-            // real layout (a display:none element reports zero rects).
-            mount.classList.remove('hidden');
-            this.render(mount, renderable, productId);
-            log(LOG, 'rendered', renderable.length, 'tabs');
-        } catch (e) {
-            console.error(LOG, 'onReady threw:', e);
-            salla.logger.error(e);
-        }
+        // If the description was moved below (product_description_position_under),
+        // fold it in as the first tab, then wire interactions over everything.
+        this.foldInDescription(mount);
+        this.wireInteractions(mount);
     }
 
-    // If the product description was moved below (product_description_position_under),
-    // prepend it as an `about` tab and remove the standalone block. No-op when the
-    // setting is off (the block is absent) or the description is empty.
-    foldInDescription(renderable) {
+    // Optional: when `#product-description-under` is present (the merchant turned
+    // on "description below"), inject it as the first tab of the already-rendered
+    // bar and drop the standalone block so the content is not shown twice. No-op
+    // when the block is absent or empty.
+    foldInDescription(mount) {
         const el = document.querySelector('#product-description-under');
         if (!el) return;
+
         const contentEl = el.querySelector('[data-description-content]');
         const content = contentEl ? contentEl.innerHTML.trim() : '';
-        if (content) {
-            renderable.unshift({
-                type: 'about',
-                title: el.dataset.descriptionTitle || this.defaultTitle('about'),
-                content: content,
-            });
+        const barInner = mount.querySelector('.product-tabs__bar-inner');
+        const sections = mount.querySelector('.product-tabs__sections');
+
+        if (content && barInner && sections) {
+            const title = el.dataset.descriptionTitle || 'وصف المنتج';
+            const firstSection = mount.querySelector('.product-tabs__section');
+            const base = (firstSection?.id || 'ptabs-0').replace(/-\d+$/, '');
+            const id = base + '-desc';
+
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'product-tabs__tab';
+            btn.setAttribute('data-tab-target', id);
+            btn.setAttribute('role', 'tab');
+            btn.textContent = title;
+
+            const section = document.createElement('section');
+            section.id = id;
+            section.className = 'product-tabs__section';
+            section.innerHTML =
+                `<h2 class="product-tabs__section-title">${this.escapeHtml(title)}</h2>` +
+                `<div class="product-tabs__section-body"><div class="ptab-about">${content}</div></div>`;
+
+            barInner.insertBefore(btn, barInner.firstChild);
+            sections.insertBefore(section, sections.firstChild);
+
+            // The description is now first — make it the active tab.
+            barInner.querySelectorAll('.product-tabs__tab')
+                .forEach((b, i) => b.classList.toggle('is-active', i === 0));
         }
+
         el.remove();
-    }
-
-    hasContent(tab) {
-        switch (tab.type) {
-            case 'about': return !!(tab.content && String(tab.content).trim());
-            case 'faq':   return Array.isArray(tab.items) && tab.items.some(i => i && (i.q || i.a));
-            case 'specs': return Array.isArray(tab.rows) && tab.rows.some(r => r && (r.key || r.value));
-            case 'media': return Array.isArray(tab.items) && tab.items.some(i => i && i.url);
-            case 'howto': return Array.isArray(tab.steps) && tab.steps.some(s => s && (s.title || s.text || s.image));
-            default: return false;
-        }
-    }
-
-    render(mount, tabs, productId) {
-        const uid = 'ptabs-' + productId;
-
-        const barButtons = tabs.map((tab, i) =>
-            `<button type="button" class="product-tabs__tab ${i === 0 ? 'is-active' : ''}"
-                     data-tab-target="${uid}-${i}" role="tab">${this.escapeHtml(tab.title || this.defaultTitle(tab.type))}</button>`
-        ).join('');
-
-        const sections = tabs.map((tab, i) =>
-            `<section id="${uid}-${i}" class="product-tabs__section" data-tab-section="${i}">
-                <h2 class="product-tabs__section-title">${this.escapeHtml(tab.title || this.defaultTitle(tab.type))}</h2>
-                <div class="product-tabs__section-body">${this.renderTab(tab)}</div>
-            </section>`
-        ).join('');
-
-        mount.innerHTML = `
-            <div class="product-tabs__bar product-tabs__bar--sticky" role="tablist" data-tabs-bar>
-                <div class="product-tabs__bar-inner">${barButtons}</div>
-            </div>
-            <div class="product-tabs__sections">${sections}</div>
-        `;
-
-        this.wireInteractions(mount);
     }
 
     wireInteractions(mount) {
@@ -274,100 +204,6 @@ class ProductTabs extends BasePage {
         }
     }
 
-    // ── Per-type renderers ────────────────────────────────────────────────────
-
-    renderTab(tab) {
-        switch (tab.type) {
-            case 'about': return this.renderAbout(tab);
-            case 'faq':   return this.renderFaq(tab);
-            case 'specs': return this.renderSpecs(tab);
-            case 'media': return this.renderMedia(tab);
-            case 'howto': return this.renderHowTo(tab);
-            default: return '';
-        }
-    }
-
-    renderAbout(tab) {
-        // Merchant-authored HTML, injected as-is
-        return `<div class="ptab-about">${tab.content || ''}</div>`;
-    }
-
-    renderFaq(tab) {
-        const items = (tab.items || []).filter(i => i && (i.q || i.a)).map((i, idx) => `
-            <details class="ptab-faq__item" ${idx === 0 ? 'open' : ''}>
-                <summary class="ptab-faq__q">${this.escapeHtml(i.q || '')}</summary>
-                <div class="ptab-faq__a">${this.escapeHtml(i.a || '').replace(/\n/g, '<br>')}</div>
-            </details>
-        `).join('');
-        return `<div class="ptab-faq">${items}</div>`;
-    }
-
-    renderSpecs(tab) {
-        const rows = (tab.rows || []).filter(r => r && (r.key || r.value)).map(r => `
-            <tr>
-                <th>${this.escapeHtml(r.key || '')}</th>
-                <td>${this.escapeHtml(r.value || '')}</td>
-            </tr>
-        `).join('');
-        return `<table class="ptab-specs"><tbody>${rows}</tbody></table>`;
-    }
-
-    renderMedia(tab) {
-        const items = (tab.items || []).filter(i => i && i.url).map(i => {
-            const caption = i.caption ? `<figcaption class="ptab-media__cap">${this.escapeHtml(i.caption)}</figcaption>` : '';
-            let media;
-            if (i.kind === 'video') {
-                media = this.renderVideo(i.url);
-            } else {
-                media = `<img loading="lazy" src="${this.escapeAttr(i.url)}" alt="${this.escapeAttr(i.caption || '')}">`;
-            }
-            return `<figure class="ptab-media__item">${media}${caption}</figure>`;
-        }).join('');
-        return `<div class="ptab-media">${items}</div>`;
-    }
-
-    renderVideo(url) {
-        const yt = this.youtubeId(url);
-        if (yt) {
-            return `<div class="ptab-media__video"><iframe src="https://www.youtube.com/embed/${yt}"
-                        title="video" frameborder="0" loading="lazy"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe></div>`;
-        }
-        return `<div class="ptab-media__video"><video src="${this.escapeAttr(url)}" controls playsinline preload="metadata"></video></div>`;
-    }
-
-    renderHowTo(tab) {
-        const steps = (tab.steps || []).filter(s => s && (s.title || s.text || s.image)).map((s, idx) => `
-            <li class="ptab-howto__step">
-                <div class="ptab-howto__num">${idx + 1}</div>
-                <div class="ptab-howto__content">
-                    ${s.title ? `<h3 class="ptab-howto__title">${this.escapeHtml(s.title)}</h3>` : ''}
-                    ${s.text ? `<p class="ptab-howto__text">${this.escapeHtml(s.text).replace(/\n/g, '<br>')}</p>` : ''}
-                    ${s.image ? `<img class="ptab-howto__img" loading="lazy" src="${this.escapeAttr(s.image)}" alt="${this.escapeAttr(s.title || '')}">` : ''}
-                </div>
-            </li>
-        `).join('');
-        return `<ol class="ptab-howto">${steps}</ol>`;
-    }
-
-    // ── Helpers ───────────────────────────────────────────────────────────────
-
-    youtubeId(url) {
-        const m = String(url).match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]{11})/);
-        return m ? m[1] : null;
-    }
-
-    defaultTitle(type) {
-        return {
-            about: 'عن المنتج',
-            faq: 'الأسئلة الشائعة',
-            specs: 'المواصفات',
-            media: 'آراء العملاء',
-            howto: 'طريقة الاستخدام',
-        }[type] || '';
-    }
-
     escapeHtml(value) {
         return String(value == null ? '' : value)
             .replace(/&/g, '&amp;')
@@ -375,10 +211,6 @@ class ProductTabs extends BasePage {
             .replace(/>/g, '&gt;')
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#039;');
-    }
-
-    escapeAttr(value) {
-        return this.escapeHtml(value).replace(/`/g, '&#096;');
     }
 }
 

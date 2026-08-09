@@ -1,15 +1,47 @@
 {#
-| Variable                         | Type     | Description                                                        |
-|----------------------------------|----------|--------------------------------------------------------------------|
-| component.tabs_data              | object[] | Collection: per-product tab definitions                            |
-| component.tabs_data[].product    | object[] | Selected product (dropdown-list) — product id in [0].id            |
-| component.tabs_data[].tabs_json  | string   | JSON: { "tabs": [...] } exported from the Tab Builder tool          |
-| component.tabs_sticky            | bool     | Keep the tab bar pinned while scrolling                            |
-| position                         | int      | Component position                                                 |
+| Variable              | Type      | Description                                             |
+|-----------------------|-----------|---------------------------------------------------------|
+| component.tabs        | object[]  | Content tabs: each has .title and .content              |
+| component.tabs[].title| string    | Tab label + section heading                             |
+| component.tabs[].content | string | Tab body (HTML supported), rendered inside .ptab-about  |
+| component.tabs_sticky | bool      | Keep the tab bar pinned while scrolling                 |
+| position              | int       | Component position (used to scope element ids)          |
 
-  Data-only component: it renders nothing on the home page. The product page
-  (single.twig) fetches this component via salla.api `component/list` and renders
-  the matching product's tabs. See src/assets/js/product-tabs.js.
+ Renders the product content tabs server-side. Which page it shows on is chosen
+ natively in the editor (place it on the product page). Interaction only — the
+ sticky bar, scroll-spy and click-to-scroll — is wired by product-tabs.js; the
+ markup below matches what that script expects.
+
+ The sections are stacked normally; the bar just smooth-scrolls between them, so
+ with no JS the content is still fully readable.
 #}
-{# intentionally renders no visible output #}
- 
+{% set tabs = component.tabs is iterable ? component.tabs : [] %}
+{# Only tabs that actually have a title are renderable (title is the label). #}
+{% set renderable = [] %}
+{% for tab in tabs %}
+    {% if tab.title is not empty %}{% set renderable = renderable|merge([tab]) %}{% endif %}
+{% endfor %}
+
+{% if renderable|length %}
+    {% set uid = 'ptabs-' ~ (position|default(0)) %}
+    <div class="product-tabs" data-tabs-sticky="{{ component.tabs_sticky ? 'true' : 'false' }}">
+        <div class="product-tabs__bar {{ component.tabs_sticky ? 'product-tabs__bar--sticky' : '' }}" role="tablist" data-tabs-bar>
+            <div class="product-tabs__bar-inner">
+                {% for tab in renderable %}
+                    <button type="button" class="product-tabs__tab {{ loop.first ? 'is-active' : '' }}"
+                            data-tab-target="{{ uid }}-{{ loop.index0 }}" role="tab">{{ tab.title }}</button>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="product-tabs__sections">
+            {% for tab in renderable %}
+                <section id="{{ uid }}-{{ loop.index0 }}" class="product-tabs__section" data-tab-section="{{ loop.index0 }}">
+                    <h2 class="product-tabs__section-title">{{ tab.title }}</h2>
+                    <div class="product-tabs__section-body">
+                        <div class="ptab-about">{{ tab.content|raw }}</div>
+                    </div>
+                </section>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}

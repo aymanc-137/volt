@@ -473,8 +473,9 @@
         </div>
 
         {# Description moved below (product_description_position_under). Renders as a
-           plain section here; if product-tabs.js renders tabs for this product it
-           lifts this into the tab strip as the first tab and removes this block. #}
+           plain section here. If a product-tabs component is placed on the page,
+           product-tabs.js folds this in as the first tab and removes this block;
+           otherwise it stays as a standalone section. #}
         {% if desc_under and product.description %}
             <section id="product-description-under" class="product-description-under mt-12 md:mt-16"
                      data-description-title="{{ trans('pages.products.description') }}">
@@ -485,8 +486,9 @@
             </section>
         {% endif %}
 
-        {# Product tabs — populated by product-tabs.js from the home.product-tabs component #}
-        <div id="product-tabs" class="product-tabs hidden" data-product-id="{{ product.id }}"></div>
+        {# The product tabs are now a placeable component (home.product-tabs) that
+           renders its own markup wherever it is added in the editor — there is no
+           longer a fixed mount here. #}
 
         <salla-offer></salla-offer>
     </div>
