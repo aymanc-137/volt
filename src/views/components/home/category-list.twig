@@ -29,8 +29,7 @@
 | component.marquee                  | bool     | Enable marquee text                                                          |
 | component.marqueetext              | string   | Marquee text                                                                 |
 | component.hide_controls            | bool     | Hide the carousel navigation arrows                                          |
-| component.loop                     | bool     | salla-slider: loop the carousel. Default true. Only takes effect with ≥7    |
-|                                    |          | categories (Swiper needs ~2× the visible slides to loop cleanly)            |
+| component.loop                     | bool     | salla-slider: loop the carousel. Default true                               |
 | component.auto_play                | bool     | salla-slider: auto-advance the carousel. Default true                       |
 | component.centered                 | bool     | salla-slider: center the active slide. Default false                        |
 | position                           | int      | Sorting number start from zero                                               |
@@ -97,19 +96,11 @@
     <div class="w-[90] big-image-category justify-center items-center">
         {# Slider configuration (ported from harir): loop / auto-play / centered are
            native salla-slider boolean props. `auto-play` is the correct attribute
-           name — the previous bare `autoplay` did not map to the `autoPlay` prop.
-
-           salla-slider carousels use slidesPerView:'auto', and Swiper's loop needs
-           roughly 2x the visible slides or it can't build a seamless loop and breaks
-           (most visibly on small screens, where the slides overflow). The widest
-           breakpoint here is lg (w-1/5 → 5 visible), which needs ≥ 7 slides, so loop
-           is only enabled once there are enough categories; below that it stays a
-           plain swipeable strip instead of a broken loop. #}
-        {% set cl_loop = (component.loop ?? true) and (component.links|length >= 7) %}
+           name — the previous bare `autoplay` did not map to the `autoPlay` prop. #}
         <salla-slider
             type="carousel"
             controls-outer
-            loop="{{ cl_loop ? 'true' : 'false' }}"
+            loop="{{ (component.loop ?? true) ? 'true' : 'false' }}"
             auto-play="{{ (component.auto_play ?? true) ? 'true' : 'false' }}"
             centered="{{ (component.centered ?? false) ? 'true' : 'false' }}"
             show-controls="{{ component.hide_controls ? 'false' : 'true' }}"

@@ -3634,7 +3634,7 @@
                     "format": "switch",
                     "icon": "sicon-toggle-off",
                     "label": "تكرار العناصر",
-                    "description": "تكرار العناصر بشكل لا نهائي. يعمل فقط عند وجود 7 أقسام أو أكثر (يحتاج السلايدر لعدد كافٍ من العناصر للتكرار السلس).",
+                    "description": null,
                     "required": false,
                     "value": true
                 },
@@ -3654,7 +3654,7 @@
                     "format": "switch",
                     "icon": "sicon-toggle-off",
                     "label": "توسيط العناصر",
-                    "description": null,
+                    "description": "قم بتفعيل هذا الخيار فقط في حال لديك اقل من 4 عناصر",
                     "required": false,
                     "value": false
                 },
