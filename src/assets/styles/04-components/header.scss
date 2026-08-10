@@ -189,6 +189,16 @@
   }
 }
 
+// Optional: drop the frame around the header icons (header_icons_border toggle).
+// `border-transparent` rather than `border-0` keeps the 40×40 box and alignment,
+// just hides the outline.
+.store-header.header-icons--no-border{
+  .header-btn__icon,
+  .s-user-menu-login-btn{
+    @apply border-transparent;
+  }
+}
+
 salla-user-menu{
   // Trailing space to the next header icon. The old guest button carried
   // `mr-[9px] rtl:ml-[9px]` before it was replaced by salla-user-menu

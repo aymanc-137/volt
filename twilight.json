@@ -234,6 +234,17 @@
         {
             "type": "boolean",
             "format": "switch",
+            "icon": "sicon-crop",
+            "label": "إظهار حدود الأيقونات",
+            "description": "إظهار الإطار حول أيقونات أعلى الصفحة (المستخدم، البحث، السلة، الوضع الداكن). عند التعطيل تظهر الأيقونات بدون إطار.",
+            "id": "header_icons_border",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "format": "switch",
             "icon": "sicon-palette",
             "label": "إعدادات ألوان متقدمة",
             "description": "تفعيل لون مخصص لأيقونات أعلى الصفحة (المستخدم، البحث، السلة، الوضع الداكن) بدل لون النص الافتراضي. اترك اللون فارغاً ليعود إلى الافتراضي.",

@@ -29621,6 +29621,10 @@ input[type=radio].sr-only:checked ~ div.radio-images__badge {
 .dark .store-header .s-user-menu-login-btn {
   color: var(--header-icon-color, var(--light-text-color));
 }
+.store-header.header-icons--no-border .header-btn__icon,
+.store-header.header-icons--no-border .s-user-menu-login-btn{
+    border-color: transparent;
+}
 salla-user-menu{
     margin-right: 9px;
     flex-shrink: 0;
