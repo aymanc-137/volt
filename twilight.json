@@ -3634,7 +3634,7 @@
                     "format": "switch",
                     "icon": "sicon-toggle-off",
                     "label": "تكرار العناصر",
-                    "description": null,
+                    "description": "تكرار العناصر بشكل لا نهائي. يعمل فقط عند وجود 7 أقسام أو أكثر (يحتاج السلايدر لعدد كافٍ من العناصر للتكرار السلس).",
                     "required": false,
                     "value": true
                 },
