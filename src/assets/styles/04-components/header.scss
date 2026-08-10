@@ -169,7 +169,11 @@
 }
 
 salla-user-menu{
-  @apply shrink-0;
+  // Trailing space to the next header icon. The old guest button carried
+  // `mr-[9px] rtl:ml-[9px]` before it was replaced by salla-user-menu
+  // (theme-raed#866); restore it here so the login trigger / avatar doesn't
+  // butt against the search icon. Matches the `.header-btn__icon.icon` gap.
+  @apply shrink-0 mr-[9px] rtl:ml-[9px] rtl:mr-[unset];
 }
 
 // Guest login trigger. With `show-trigger`, salla-user-menu renders

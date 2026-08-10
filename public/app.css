@@ -29618,7 +29618,13 @@ input[type=radio].sr-only:checked ~ div.radio-images__badge {
     margin-right: initial;
 }
 salla-user-menu{
+    margin-right: 9px;
     flex-shrink: 0;
+}
+salla-user-menu:where([dir="rtl"], [dir="rtl"] *){
+    margin-left: 9px;
+    margin-right: 0;
+    margin-right: initial;
 }
 salla-user-menu .s-user-menu-login-btn{
     display: flex;
