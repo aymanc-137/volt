@@ -37435,18 +37435,21 @@ input[type=radio].sr-only:checked ~ div.ptab-media__video iframe,input[type=radi
     background-color: rgba(22, 163, 74, var(--tw-bg-opacity, 1));
 }
 .whatsapp-button {
+  bottom: 1.5rem;
+}
+[dir=ltr] .whatsapp-button{
+    right: 1.25rem;
+}
+[dir=rtl] .whatsapp-button{
+    left: 1.25rem;
+}
+.fixed-buttons--raised .whatsapp-button {
   bottom: 6rem;
 }
 @media (max-width: 767px) {
-  .whatsapp-button {
+  .fixed-buttons--raised .whatsapp-button {
     bottom: 8rem;
   }
-}
-[dir=ltr] .whatsapp-button{
-    right: 2rem;
-}
-[dir=rtl] .whatsapp-button{
-    left: 2rem;
 }
 .whatsapp-button:hover {
   animation: whatsapp-pulse 1s infinite;
@@ -37482,18 +37485,21 @@ input[type=radio].sr-only:checked ~ div.ptab-media__video iframe,input[type=radi
     background-color: var(--color-primary-dark);
 }
 .scroll-button {
-  bottom: 2rem;
-}
-@media (max-width: 767px) {
-  .scroll-button {
-    bottom: 12rem;
-  }
+  bottom: 5rem;
 }
 [dir=ltr] .scroll-button{
-    right: 2rem;
+    right: 1.25rem;
 }
 [dir=rtl] .scroll-button{
-    left: 2rem;
+    left: 1.25rem;
+}
+.fixed-buttons--raised .scroll-button {
+  bottom: 9.5rem;
+}
+@media (max-width: 767px) {
+  .fixed-buttons--raised .scroll-button {
+    bottom: 11.5rem;
+  }
 }
 .scroll-button.show{
     visibility: visible;

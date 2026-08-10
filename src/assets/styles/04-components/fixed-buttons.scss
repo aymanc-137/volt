@@ -16,19 +16,26 @@
 .whatsapp-button {
     @apply fixed z-[9999] w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center cursor-pointer hover:bg-green-600 transition-all duration-300 shadow-lg;
 
-    // Default position; more space on small screens to clear the bottom nav.
-    bottom: 6rem;
-
-    @media (max-width: 767px) {
-        bottom: 8rem;
-    }
+    // Default: sit low and close to the edge.
+    bottom: 1.5rem;
 
     [dir="ltr"] & {
-        @apply right-8;
+        @apply right-5;
     }
 
     [dir="rtl"] & {
-        @apply left-8;
+        @apply left-5;
+    }
+
+    // Cart & product-single pages carry a sticky bottom price/checkout nav; lift
+    // the button clear of it. `.fixed-buttons--raised` is set in master.twig for
+    // those two pages only.
+    .fixed-buttons--raised & {
+        bottom: 6rem;
+
+        @media (max-width: 767px) {
+            bottom: 8rem;
+        }
     }
 
     &:hover {
@@ -45,18 +52,24 @@
            flex items-center justify-center cursor-pointer
            transition-all duration-300 ease-in-out z-[9998]; // behind the whatsapp button
 
-    bottom: 2rem;
-
-    @media (max-width: 767px) {
-        bottom: 12rem; // above the whatsapp button to avoid overlap
-    }
+    // Stacked directly above the WhatsApp button (3rem tall + gap).
+    bottom: 5rem;
 
     [dir="ltr"] & {
-        @apply right-8;
+        @apply right-5;
     }
 
     [dir="rtl"] & {
-        @apply left-8;
+        @apply left-5;
+    }
+
+    // Match the WhatsApp lift on the two pages with a sticky bottom nav.
+    .fixed-buttons--raised & {
+        bottom: 9.5rem;
+
+        @media (max-width: 767px) {
+            bottom: 11.5rem;
+        }
     }
 
     &.show {

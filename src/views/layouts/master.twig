@@ -373,7 +373,12 @@ overflow-x-hidden {% hook 'body:classes' %}
 {% set whatsapp_number = theme.settings.get('whatsapp_number') %}
 {% set is_scroll_enable = theme.settings.get('is_scroll_enable') %}
 
-<div class="fixed-buttons" dir="auto">
+{# Cart & product-single pages carry a sticky bottom price/checkout nav; tag the
+   floating buttons so header.scss lifts them clear of it. Everywhere else they
+   sit lower and closer to the edge. #}
+{% set has_sticky_bottom_nav = is_page('cart') or page.slug == 'product.single' %}
+
+<div class="fixed-buttons {{ has_sticky_bottom_nav ? 'fixed-buttons--raised' : '' }}" dir="auto">
   {# WhatsApp Button #}
   {% if is_whatsapp_enable and whatsapp_number %}
   <a href="https://wa.me/{{ whatsapp_number }}" target="_blank" rel="noopener" class="whatsapp-button" aria-label="WhatsApp">
