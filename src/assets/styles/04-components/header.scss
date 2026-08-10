@@ -199,12 +199,12 @@
   }
 }
 
-// centered_menu on small screens (< lg): once the centered menu is hidden, the
-// inline logo and the right-side icon cluster compete for width and can overlap.
-// Drop the search icon and tighten the gaps between the remaining icons so they
-// clear the logo. (The mobile margin is reduced in header.twig.)
+// centered_logo_drawer on small screens (< lg): the logo is absolutely centred,
+// so the right-side icon cluster can slide under it and overlap. Drop the search
+// icon and tighten the gaps between the remaining icons so the cluster stays
+// clear of the centred logo. (The mobile margin is reduced in header.twig.)
 @media (max-width: 1023.98px){
-  .header--centered-menu{
+  .header--centered-drawer{
     #search-btn{ display: none; }
 
     salla-user-menu,

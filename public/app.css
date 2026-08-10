@@ -29626,23 +29626,23 @@ input[type=radio].sr-only:checked ~ div.radio-images__badge {
     border-color: transparent;
 }
 @media (max-width: 1023.98px) {
-  .header--centered-menu #search-btn {
+  .header--centered-drawer #search-btn {
     display: none;
   }
-  .header--centered-menu salla-user-menu,
-  .header--centered-menu .header-btn__icon.icon{
+  .header--centered-drawer salla-user-menu,
+  .header--centered-drawer .header-btn__icon.icon{
         margin-right: 0.25rem;
     }
-  .header--centered-menu salla-user-menu:where([dir="rtl"], [dir="rtl"] *),
-  .header--centered-menu .header-btn__icon.icon:where([dir="rtl"], [dir="rtl"] *){
+  .header--centered-drawer salla-user-menu:where([dir="rtl"], [dir="rtl"] *),
+  .header--centered-drawer .header-btn__icon.icon:where([dir="rtl"], [dir="rtl"] *){
         margin-left: 0.25rem;
         margin-right: 0;
         margin-right: initial;
     }
-  .header--centered-menu salla-cart-summary{
+  .header--centered-drawer salla-cart-summary{
         margin-left: 0.25rem;
     }
-  .header--centered-menu salla-cart-summary:where([dir="rtl"], [dir="rtl"] *){
+  .header--centered-drawer salla-cart-summary:where([dir="rtl"], [dir="rtl"] *){
         margin-left: 0;
         margin-left: initial;
         margin-right: 0.25rem;
