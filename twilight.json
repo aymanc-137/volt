@@ -221,6 +221,67 @@
             "selected": true
         },
         {
+            "type": "boolean",
+            "format": "switch",
+            "icon": "sicon-search",
+            "label": "إخفاء أيقونة البحث",
+            "description": "إخفاء أيقونة البحث في شريط التنقل الرئيسي أعلى الصفحة.",
+            "id": "hide_search_icon",
+            "required": false,
+            "value": false,
+            "selected": false
+        },
+        {
+            "type": "boolean",
+            "format": "switch",
+            "icon": "sicon-palette",
+            "label": "إعدادات ألوان متقدمة",
+            "description": "تفعيل لون مخصص لأيقونات أعلى الصفحة (المستخدم، البحث، السلة، الوضع الداكن) بدل لون النص الافتراضي. اترك اللون فارغاً ليعود إلى الافتراضي.",
+            "id": "header_advanced_colors",
+            "required": false,
+            "value": false,
+            "selected": false
+        },
+        {
+            "type": "string",
+            "format": "color",
+            "icon": "sicon-palette",
+            "label": "لون الأيقونات",
+            "description": null,
+            "id": "header_icons_color",
+            "required": false,
+            "value": "",
+            "conditions": [
+                {
+                    "id": "header_advanced_colors",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "type": "string",
+            "format": "color",
+            "icon": "sicon-palette",
+            "label": "لون الأيقونات (داكن)",
+            "description": null,
+            "id": "header_icons_color_dark",
+            "required": false,
+            "value": "",
+            "conditions": [
+                {
+                    "id": "header_advanced_colors",
+                    "operation": "=",
+                    "value": true
+                },
+                {
+                    "id": "dark_mode_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
             "type": "static",
             "format": "title",
             "id": "group-announcement",

@@ -7,6 +7,21 @@
 #}
 {% set important_links = theme.settings.get('important_links') %}
 {% set show_topnav = theme.settings.get('show_topnav', true) %}
+
+{# Advanced header icon colour (behind a toggle, footer-style). Emitted as a CSS
+   variable only when set; header.scss falls back to the palette text colour, so
+   defaults and any already-set colours are untouched. The dark value overrides
+   the same variable under `.dark` (gated on dark_mode_enabled in the editor),
+   so a single-palette store just uses the normal colour. #}
+{% set hc_advanced  = theme.settings.get('header_advanced_colors') ?? false %}
+{% set hc_icon      = hc_advanced ? theme.settings.get('header_icons_color', '') : '' %}
+{% set hc_icon_dark = hc_advanced ? theme.settings.get('header_icons_color_dark', '') : '' %}
+{% if hc_icon or hc_icon_dark %}
+<style>
+  {% if hc_icon %}.store-header { --header-icon-color: {{ hc_icon }}; }{% endif %}
+  {% if hc_icon_dark %}.dark .store-header { --header-icon-color: {{ hc_icon_dark }}; }{% endif %}
+</style>
+{% endif %}
 <header class="store-header ">
   {# Top Nav #}
   {% if show_topnav %}
@@ -129,6 +144,7 @@
 
                             {# Opens the global <salla-search> in master.twig, so search also works
                                inside the Salla mobile app (which hides the theme header/footer). #}
+                            {% if not theme.settings.get('hide_search_icon', false) %}
                             <button class="   dynamic-text-color"
                               id="search-btn"
                               type="button"
@@ -136,6 +152,7 @@
                               onclick="salla.event.dispatch('search::open')">
                             <i class="hover:text-[var(--color-primary)] header-btn__icon sicon-search dynamic-text-color"></i>
                           </button>
+                          {% endif %}
 
 
                     <salla-cart-summary class="ml-4 rtl:ml-[unset] rtl:mr-4 dynamic-text-color">

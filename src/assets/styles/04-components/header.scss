@@ -161,10 +161,31 @@
   @apply border-none outline-none transition-opacity  ;
 
   &__icon{
-    @apply text-xl w-10 h-10  dynamic-text-color border border-[var(--color-primary-50)] rounded-custom flex items-center justify-center  ;
+    // Colour comes from the advanced-header-colour block below (falls back to
+    // the palette text colour when the toggle is off).
+    @apply text-xl w-10 h-10 border border-[var(--color-primary-50)] rounded-custom flex items-center justify-center;
     &.icon{
       @apply mr-[9px] rtl:ml-[9px] rtl:mr-[unset];
     }
+  }
+}
+
+// ---- Advanced header icon colours (behind the `header_advanced_colors` toggle) ----
+// `--header-icon-color` is emitted by header.twig only when the merchant opts in;
+// the fallback reproduces the default palette text colour, so nothing changes
+// when the toggle is off. Scoped under `.store-header` so it outranks the per-icon
+// `.dynamic-text-color` utility still on the markup. The icons are all fonts / an
+// SVG using `currentColor`, so setting `color` recolours every one of them.
+.store-header{
+  .header-btn__icon,
+  .s-user-menu-login-btn{
+    color: var(--header-icon-color, var(--main-text-color));
+  }
+}
+.dark .store-header{
+  .header-btn__icon,
+  .s-user-menu-login-btn{
+    color: var(--header-icon-color, var(--light-text-color));
   }
 }
 
@@ -184,11 +205,13 @@ salla-user-menu{
 // look like `.header-btn__icon`. Scoped under `salla-user-menu` so it outranks
 // Salla's own `.s-user-menu-login-btn svg` rule without `!important`.
 salla-user-menu .s-user-menu-login-btn{
-  @apply w-10 h-10 rounded-custom border border-[var(--color-primary-50)] flex items-center justify-center dynamic-text-color transition-colors;
+  // Colour comes from the advanced-header-colour block above (palette fallback
+  // when the toggle is off); size/border/shape match `.header-btn__icon`.
+  @apply w-10 h-10 rounded-custom border border-[var(--color-primary-50)] flex items-center justify-center transition-colors;
 
   svg{
     @apply w-5 h-5;
-    fill: currentColor;               // follows dynamic-text-color instead of a fixed grey
+    fill: currentColor;               // follows the header icon colour instead of a fixed grey
   }
 
   &:hover{
