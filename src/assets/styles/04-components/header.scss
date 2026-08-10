@@ -194,8 +194,22 @@
 // just hides the outline.
 .store-header.header-icons--no-border{
   .header-btn__icon,
-  .s-user-menu-login-btn{
+  .s-user-menu-login-btn,
+  .s-user-menu-trigger-avatar{        // logged-in avatar carries its own border
     @apply border-transparent;
+  }
+}
+
+// When the search icon is hidden (hide_search_icon setting), close up the gap it
+// left by tightening the remaining icon cluster (user / theme-toggle / cart).
+// Applies at all widths since the setting hides search everywhere.
+.header--search-hidden{
+  salla-user-menu,
+  .header-btn__icon.icon{
+    @apply mr-1 rtl:ml-1 rtl:mr-[unset];
+  }
+  salla-cart-summary{
+    @apply ml-1 rtl:ml-[unset] rtl:mr-1;
   }
 }
 

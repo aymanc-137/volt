@@ -22,7 +22,7 @@
   {% if hc_icon_dark %}.dark .store-header { --header-icon-color: {{ hc_icon_dark }}; }{% endif %}
 </style>
 {% endif %}
-<header class="store-header {{ theme.settings.get('header_icons_border', true) ? '' : 'header-icons--no-border' }}">
+<header class="store-header {{ theme.settings.get('header_icons_border', true) ? '' : 'header-icons--no-border' }} {{ theme.settings.get('hide_search_icon', false) ? 'header--search-hidden' : '' }}">
   {# Top Nav #}
   {% if show_topnav %}
   <div  class="top-navbar  bg-light-background dark:bg-dark-background  dynamic-text-color">

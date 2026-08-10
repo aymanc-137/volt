@@ -29622,8 +29622,27 @@ input[type=radio].sr-only:checked ~ div.radio-images__badge {
   color: var(--header-icon-color, var(--light-text-color));
 }
 .store-header.header-icons--no-border .header-btn__icon,
-.store-header.header-icons--no-border .s-user-menu-login-btn{
+.store-header.header-icons--no-border .s-user-menu-login-btn,
+.store-header.header-icons--no-border .s-user-menu-trigger-avatar{
     border-color: transparent;
+}
+.header--search-hidden salla-user-menu,
+.header--search-hidden .header-btn__icon.icon{
+    margin-right: 0.25rem;
+}
+.header--search-hidden salla-user-menu:where([dir="rtl"], [dir="rtl"] *),
+.header--search-hidden .header-btn__icon.icon:where([dir="rtl"], [dir="rtl"] *){
+    margin-left: 0.25rem;
+    margin-right: 0;
+    margin-right: initial;
+}
+.header--search-hidden salla-cart-summary{
+    margin-left: 0.25rem;
+}
+.header--search-hidden salla-cart-summary:where([dir="rtl"], [dir="rtl"] *){
+    margin-left: 0;
+    margin-left: initial;
+    margin-right: 0.25rem;
 }
 @media (max-width: 1023.98px) {
   .header--centered-drawer #search-btn {
