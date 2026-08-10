@@ -3629,6 +3629,36 @@
                     "required": false
                 },
                 {
+                    "id": "loop",
+                    "type": "boolean",
+                    "format": "switch",
+                    "icon": "sicon-toggle-off",
+                    "label": "تكرار العناصر",
+                    "description": null,
+                    "required": false,
+                    "value": true
+                },
+                {
+                    "id": "auto_play",
+                    "type": "boolean",
+                    "format": "switch",
+                    "icon": "sicon-toggle-off",
+                    "label": "تحريك تلقائي",
+                    "description": null,
+                    "required": false,
+                    "value": true
+                },
+                {
+                    "id": "centered",
+                    "type": "boolean",
+                    "format": "switch",
+                    "icon": "sicon-toggle-off",
+                    "label": "توسيط العناصر",
+                    "description": null,
+                    "required": false,
+                    "value": false
+                },
+                {
                     "type": "static",
                     "format": "description",
                     "id": "group-background-settings",

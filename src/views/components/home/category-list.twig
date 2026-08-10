@@ -28,6 +28,10 @@
 | component.glow_color_2             | string   | Custom second glow color (hex) for paired glow types                         |
 | component.marquee                  | bool     | Enable marquee text                                                          |
 | component.marqueetext              | string   | Marquee text                                                                 |
+| component.hide_controls            | bool     | Hide the carousel navigation arrows                                          |
+| component.loop                     | bool     | salla-slider: loop the carousel. Default true                               |
+| component.auto_play                | bool     | salla-slider: auto-advance the carousel. Default true                       |
+| component.centered                 | bool     | salla-slider: center the active slide. Default false                        |
 | position                           | int      | Sorting number start from zero                                               |
 #}
 
@@ -90,10 +94,15 @@
     {% include 'components.home.partials.section-title' %}
 
     <div class="w-[90] big-image-category justify-center items-center">
+        {# Slider configuration (ported from harir): loop / auto-play / centered are
+           native salla-slider boolean props. `auto-play` is the correct attribute
+           name — the previous bare `autoplay` did not map to the `autoPlay` prop. #}
         <salla-slider
             type="carousel"
             controls-outer
-            autoplay
+            loop="{{ (component.loop ?? true) ? 'true' : 'false' }}"
+            auto-play="{{ (component.auto_play ?? true) ? 'true' : 'false' }}"
+            centered="{{ (component.centered ?? false) ? 'true' : 'false' }}"
             show-controls="{{ component.hide_controls ? 'false' : 'true' }}"
             id="main-links-{{ position }}"
         >
