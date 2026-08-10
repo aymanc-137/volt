@@ -3721,6 +3721,20 @@
                     "value": true
                 },
                 {
+                    "id": "auto_play_speed",
+                    "type": "number",
+                    "format": "slider",
+                    "inputType": "range",
+                    "icon": "sicon-timer",
+                    "label": "مدة التحريك التلقائي (ثانية)",
+                    "description": "المدة بالثواني بين كل شريحة عند تفعيل التحريك التلقائي. 0 = الافتراضي (10 ثوانٍ).",
+                    "required": false,
+                    "value": 10,
+                    "step": 1,
+                    "minimum": 0,
+                    "maximum": 15
+                },
+                {
                     "id": "centered",
                     "type": "boolean",
                     "format": "switch",

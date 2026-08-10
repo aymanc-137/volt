@@ -31,6 +31,7 @@
 | component.hide_controls            | bool     | Hide the carousel navigation arrows                                          |
 | component.loop                     | bool     | salla-slider: loop the carousel. Default true                               |
 | component.auto_play                | bool     | salla-slider: auto-advance the carousel. Default true                       |
+| component.auto_play_speed          | ?int     | Seconds between slides when auto-play is on (0 = default 10s). Default 10    |
 | component.centered                 | bool     | salla-slider: center the active slide. Default false                        |
 | position                           | int      | Sorting number start from zero                                               |
 #}
@@ -96,12 +97,21 @@
     <div class="w-[90] big-image-category justify-center items-center">
         {# Slider configuration (ported from harir): loop / auto-play / centered are
            native salla-slider boolean props. `auto-play` is the correct attribute
-           name — the previous bare `autoplay` did not map to the `autoPlay` prop. #}
+           name — the previous bare `autoplay` did not map to the `autoPlay` prop.
+           There is no dedicated delay attribute: `auto-play="true"` only maps to
+           Salla's fixed 10s default. The timer is set through `slider-config`, a JSON
+           string Salla JSON.parses and shallow-merges over the Swiper config — so we
+           override `autoplay.delay` (Swiper delay is in ms). Emitted only when auto-play
+           is on, otherwise the merged `autoplay` object would re-enable it. #}
+        {% set ap_on = (component.auto_play ?? true) %}
+        {% set ap_speed = component.auto_play_speed | default(10) %}
+        {% set ap_delay = (ap_speed > 0 ? ap_speed : 10) * 1000 %}
         <salla-slider
             type="carousel"
             controls-outer
             loop="{{ (component.loop ?? true) ? 'true' : 'false' }}"
-            auto-play="{{ (component.auto_play ?? true) ? 'true' : 'false' }}"
+            auto-play="{{ ap_on ? 'true' : 'false' }}"
+            {% if ap_on %}slider-config='{"autoplay":{"delay":{{ ap_delay }}}}'{% endif %}
             centered="{{ (component.centered ?? false) ? 'true' : 'false' }}"
             show-controls="{{ component.hide_controls ? 'false' : 'true' }}"
             id="main-links-{{ position }}"
