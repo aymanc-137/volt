@@ -199,6 +199,24 @@
   }
 }
 
+// centered_menu on small screens (< lg): once the centered menu is hidden, the
+// inline logo and the right-side icon cluster compete for width and can overlap.
+// Drop the search icon and tighten the gaps between the remaining icons so they
+// clear the logo. (The mobile margin is reduced in header.twig.)
+@media (max-width: 1023.98px){
+  .header--centered-menu{
+    #search-btn{ display: none; }
+
+    salla-user-menu,
+    .header-btn__icon.icon{
+      @apply mr-1 rtl:ml-1 rtl:mr-[unset];
+    }
+    salla-cart-summary{
+      @apply ml-1 rtl:ml-[unset] rtl:mr-1;
+    }
+  }
+}
+
 salla-user-menu{
   // Trailing space to the next header icon. The old guest button carried
   // `mr-[9px] rtl:ml-[9px]` before it was replaced by salla-user-menu

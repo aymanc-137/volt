@@ -29625,6 +29625,29 @@ input[type=radio].sr-only:checked ~ div.radio-images__badge {
 .store-header.header-icons--no-border .s-user-menu-login-btn{
     border-color: transparent;
 }
+@media (max-width: 1023.98px) {
+  .header--centered-menu #search-btn {
+    display: none;
+  }
+  .header--centered-menu salla-user-menu,
+  .header--centered-menu .header-btn__icon.icon{
+        margin-right: 0.25rem;
+    }
+  .header--centered-menu salla-user-menu:where([dir="rtl"], [dir="rtl"] *),
+  .header--centered-menu .header-btn__icon.icon:where([dir="rtl"], [dir="rtl"] *){
+        margin-left: 0.25rem;
+        margin-right: 0;
+        margin-right: initial;
+    }
+  .header--centered-menu salla-cart-summary{
+        margin-left: 0.25rem;
+    }
+  .header--centered-menu salla-cart-summary:where([dir="rtl"], [dir="rtl"] *){
+        margin-left: 0;
+        margin-left: initial;
+        margin-right: 0.25rem;
+    }
+}
 salla-user-menu{
     margin-right: 9px;
     flex-shrink: 0;
@@ -38862,6 +38885,10 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .lg\:col-span-6{
         grid-column: span 6 / span 6;
+    }
+    .lg\:mx-10{
+        margin-left: 2.5rem;
+        margin-right: 2.5rem;
     }
     .lg\:-mt-28{
         margin-top: -7rem;

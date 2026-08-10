@@ -69,9 +69,13 @@
   {# Main Nav #}
   <div id="mainnav" class="main-nav-container   dynamic-bg-color !font-thin shadow-default ">
       <div class="inner   bg-inherit">
-          <div class=" mx-10 header-content">
-              {% set header_layout = theme.settings.get('header_layout', 'centered_menu') %}
-              {% set is_drawer_layout = header_layout == 'centered_logo_drawer' %}
+          {% set header_layout = theme.settings.get('header_layout', 'centered_menu') %}
+          {% set is_drawer_layout = header_layout == 'centered_logo_drawer' %}
+          {# centered_menu: on small screens the centered menu is hidden, so the inline
+             logo and the right-side icons compete for width and can overlap. Pull the
+             content nearer the edges on mobile and tag it so header.scss can tighten
+             the icon cluster and drop the search icon below `lg`. #}
+          <div class="{{ header_layout == 'centered_menu' ? 'mx-2 lg:mx-10 header--centered-menu' : 'mx-10' }} header-content">
               <div class="flex items-stretch justify-between relative {{ is_drawer_layout ? 'min-h-[68px] lg:min-h-[84px]' : '' }}">
                   <div class="flex items-center">
                       {% if is_drawer_layout %}
