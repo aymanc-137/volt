@@ -174,7 +174,13 @@
 
             <!-- sidebar -->
             {% if cart.items|length %}
-                <div class="sticky top-24 w-full lg:w-96 rtl:lg:mr-8 ltr:lg:ml-8">
+                {# `position: sticky` makes this column its own stacking context, which
+                   traps the salla-cart-summary-card's mobile sticky bottom bar
+                   (position:fixed; z-index:1) inside it. Without a z-index here the whole
+                   column paints at the root's default layer, so the footer's blurred
+                   `#footer-content` (a later-DOM stacking context) covers the bar. Lift the
+                   column above the footer — still below the fixed header (z-29) and modals. #}
+                <div class="sticky top-24 z-20 w-full lg:w-96 rtl:lg:mr-8 ltr:lg:ml-8">
                     <div class="shadow-default dynamic-bg-color dynamic-text-color p-5 xs:p-7 rounded-md mb-5 relative {{ cart.free_shipping_bar ? '' : 'hidden' }}" id="free-shipping">
                         <div class="flex rtl:space-x-reverse space-x-3 items-center">
                             <i class="bg-primary text-white rounded-icon sicon-shipping-fast {{ theme.is_rtl ? 'flip-x':'' }}"></i>

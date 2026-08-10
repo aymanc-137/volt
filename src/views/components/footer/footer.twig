@@ -139,8 +139,8 @@
 	{% endif %}
 
 	<hr class="w-full border-t dynamic-border-color " >
-		<div class="container  dynamic-bg-color-40
-  z-[9]
+		<div id="footer-content" class="container  dynamic-bg-color-40
+ 
      backdrop-blur-sm border-x
         dynamic-border-color
          grid grid-col-1 {{ apps_pos == 'column' ? 'lg:grid-cols-5' : 'lg:grid-cols-4' }} gap-0">
@@ -233,7 +233,7 @@
 
 	<div class="store-footer__bottom md:flex items-center justify-between py-4 dynamic-text-color container text-center">
 		<span class="text-sm copyright-text">{% hook copyright %}</span>
-		<salla-payments class="z-10"></salla-payments>
+		<salla-payments ></salla-payments>
 	</div>
 </div>
 
