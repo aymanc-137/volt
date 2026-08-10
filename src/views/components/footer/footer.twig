@@ -76,7 +76,7 @@
   {% endif %}
 </style>
 
-<footer class="store-footer ">
+<footer class="store-footer -z-10">
 	<div aria-label="footer" class="store-footer__inner !pb-0 ">
 	{% if bg_text_enabled and bg_text %}
 		<div class="store-footer__bg-text-wrap" aria-hidden="true">
@@ -122,7 +122,8 @@
 	{% endif %}
 
 	<hr class="w-full border-t dynamic-border-color " >
-		<div class="container dynamic-bg-color-40
+		<div class="container  dynamic-bg-color-40
+  -z-10
      backdrop-blur-sm border-x
         dynamic-border-color
          grid grid-col-1 {{ apps_pos == 'column' ? 'lg:grid-cols-5' : 'lg:grid-cols-4' }} gap-0">
