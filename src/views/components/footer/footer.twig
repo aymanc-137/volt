@@ -44,6 +44,12 @@
   {% if fc_link %}.store-footer { --footer-link-color: {{ fc_link }}; }{% endif %}
   {% if fc_title_dark %}.dark .store-footer { --footer-title-color: {{ fc_title_dark }}; }{% endif %}
   {% if fc_link_dark %}.dark .store-footer { --footer-link-color: {{ fc_link_dark }}; }{% endif %}
+  /* Keep the footer's decorative z-index layering (bg-text z0 / slash z1 / content z2)
+     contained. Without a stacking context here those z-indexes live in the ROOT layer,
+     so `#footer-content` (z-index:2) paints over the cart page's mobile sticky checkout
+     bar (salla-cart-summary-card: position:fixed; z-index:1). isolation:isolate confines
+     them to the footer while preserving their relative order. */
+  .store-footer { isolation: isolate; }
   .store-footer__bg-text-wrap {
     position: absolute;
     inset: 0;
