@@ -110,8 +110,7 @@
                   {# Always render the user component; with `show-trigger` it shows the
                      account menu when logged in and a login trigger for guests
                      (upstream theme-raed#866), replacing the old user/guest branch. #}
-                  <salla-user-menu avatar-only show-header show-trigger></salla-user-menu>
-              {% if theme.settings.get('dark_mode_enabled', true) %}
+                    {% if theme.settings.get('dark_mode_enabled', true) %}
                       <button
                         id="theme-toggle"
                         class="header-btn   "
