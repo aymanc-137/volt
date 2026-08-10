@@ -7,14 +7,22 @@
 
   a{
     @apply transition-opacity hover:opacity-75;
+    // Advanced colours: uses the custom footer link colour when set, otherwise
+    // falls back to `inherit` (the dynamic text colour of the surrounding box) —
+    // i.e. the default behaviour. The variable is defined in footer.twig only
+    // when the merchant opts in.
+    color: var(--footer-link-color, inherit);
   }
 
   &__inner{
     @apply   py-8 lg:py-16 border-b    ;
-  }  
+  }
 
   h3{
-    @apply text-lg font-bold mb-3 lg:mb-5 text-[var(--color-primary)];
+    @apply text-lg font-bold mb-3 lg:mb-5;
+    // Advanced colours: custom title colour when set, otherwise the primary
+    // colour (the previous fixed value).
+    color: var(--footer-title-color, var(--color-primary));
   }
 
   .social-link {

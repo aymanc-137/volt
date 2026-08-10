@@ -1015,6 +1015,95 @@
             ]
         },
         {
+            "type": "boolean",
+            "format": "switch",
+            "icon": "sicon-palette",
+            "label": "إعدادات ألوان متقدمة",
+            "description": "تفعيل ألوان مخصصة لعناوين وروابط الفوتر بدل اللون الأساسي. اترك أي لون فارغاً ليعود إلى الافتراضي.",
+            "id": "footer_advanced_colors",
+            "required": false,
+            "value": false,
+            "selected": false
+        },
+        {
+            "type": "string",
+            "format": "color",
+            "icon": "sicon-palette",
+            "label": "لون العناوين",
+            "description": null,
+            "id": "footer_title_color",
+            "required": false,
+            "value": "",
+            "conditions": [
+                {
+                    "id": "footer_advanced_colors",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "type": "string",
+            "format": "color",
+            "icon": "sicon-palette",
+            "label": "لون الروابط",
+            "description": null,
+            "id": "footer_link_color",
+            "required": false,
+            "value": "",
+            "conditions": [
+                {
+                    "id": "footer_advanced_colors",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "type": "string",
+            "format": "color",
+            "icon": "sicon-palette",
+            "label": "لون العناوين (داكن)",
+            "description": null,
+            "id": "footer_title_color_dark",
+            "required": false,
+            "value": "",
+            "conditions": [
+                {
+                    "id": "footer_advanced_colors",
+                    "operation": "=",
+                    "value": true
+                },
+                {
+                    "id": "dark_mode_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "type": "string",
+            "format": "color",
+            "icon": "sicon-palette",
+            "label": "لون الروابط (داكن)",
+            "description": null,
+            "id": "footer_link_color_dark",
+            "required": false,
+            "value": "",
+            "conditions": [
+                {
+                    "id": "footer_advanced_colors",
+                    "operation": "=",
+                    "value": true
+                },
+                {
+                    "id": "dark_mode_enabled",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
             "type": "static",
             "format": "description",
             "id": "group-footer-slash",

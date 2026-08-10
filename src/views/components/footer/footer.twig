@@ -26,7 +26,24 @@
 {# 'email' position only applies when the email bar is shown; otherwise fall back to 'under' #}
 {% if apps_pos == 'email' and not email_list_active %}{% set apps_pos = 'under' %}{% endif %}
 
+{# ---- Advanced colours: optional custom title/link colours, behind a toggle so
+       nothing changes unless the merchant opts in. Each colour is emitted as a
+       CSS variable ONLY when set; the SCSS falls back to the primary colour
+       (titles) / inherited text colour (links) when the variable is absent, so
+       defaults and any already-set colours are untouched. The dark values
+       override the same variable under `.dark` (gated on dark_mode_enabled in
+       the editor), so a single-palette store just uses the normal colour. ---- #}
+{% set fc_advanced   = theme.settings.get('footer_advanced_colors') ?? false %}
+{% set fc_title      = fc_advanced ? theme.settings.get('footer_title_color', '') : '' %}
+{% set fc_link       = fc_advanced ? theme.settings.get('footer_link_color', '') : '' %}
+{% set fc_title_dark = fc_advanced ? theme.settings.get('footer_title_color_dark', '') : '' %}
+{% set fc_link_dark  = fc_advanced ? theme.settings.get('footer_link_color_dark', '') : '' %}
+
 <style>
+  {% if fc_title %}.store-footer { --footer-title-color: {{ fc_title }}; }{% endif %}
+  {% if fc_link %}.store-footer { --footer-link-color: {{ fc_link }}; }{% endif %}
+  {% if fc_title_dark %}.dark .store-footer { --footer-title-color: {{ fc_title_dark }}; }{% endif %}
+  {% if fc_link_dark %}.dark .store-footer { --footer-link-color: {{ fc_link_dark }}; }{% endif %}
   .store-footer__bg-text-wrap {
     position: absolute;
     inset: 0;
@@ -97,7 +114,7 @@
        <div class="p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4 container">
                <div class="flex-1">
 
-				<span class="color-primary font-alshohadaa">{{ email_list_title }}</span>
+				<span class="font-alshohadaa" style="color: var(--footer-title-color, var(--color-primary))">{{ email_list_title }}</span>
 				{% if email_list_desc %}
 					<p class="text-sm     ">{{ email_list_desc }}</p>
 				{% endif %}

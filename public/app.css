@@ -29787,6 +29787,10 @@ salla-menu[topnav]:not(.hydrated)::after {
 .store-footer a:hover{
     opacity: 0.75;
 }
+.store-footer a {
+  color: inherit;
+  color: var(--footer-link-color, inherit);
+}
 .store-footer__inner{
     border-bottom-width: 1px;
     padding-top: 2rem;
@@ -29803,13 +29807,15 @@ salla-menu[topnav]:not(.hydrated)::after {
     font-size: 1.125rem;
     line-height: 1.75rem;
     font-weight: 700;
-    color: #414042;
-    color: var(--color-primary);
 }
 @media (min-width: 1024px){
     .store-footer h3{
         margin-bottom: 1.25rem;
     }
+}
+.store-footer h3 {
+  color: #414042;
+  color: var(--footer-title-color, var(--color-primary));
 }
 .store-footer .social-link{
     display: flex;
