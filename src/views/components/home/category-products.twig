@@ -196,7 +196,13 @@
 
                 <!-- Left Section: Stats Cards -->
                 <div class=" justify-center xl:w-[80%] lg:w-[70%] md:w-[60%] w-full md:p-4 p-2">
-                    <salla-products-slider autoplay source="selected" {# product-card-component="custom-salla-product-card-harir" #} source-value="[{{ component.products|map((product) => product.id)|join(',') }}]"></salla-products-slider>
+                    {# Pass the section's product source straight through so Salla fetches
+                       via the API, instead of hand-building source-value from the ids.
+                       (theme-raed#581) #}
+                    <salla-products-slider autoplay {# product-card-component="custom-salla-product-card-harir" #}
+                        source="{{ component.products.source }}"
+                        limit="{{ component.products.limit }}"
+                        source-value="{{ component.products.source_value|json_encode }}"></salla-products-slider>
                 </div>
             </div>
         </div>

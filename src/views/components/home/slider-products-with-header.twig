@@ -5,7 +5,9 @@
 | component.background  | string                |                                                                              |
 | component.title       | ?string               |                                                                              |
 | component.description | ?string               |                                                                              |
-| component.products    | Product[] *Collection | @see views/pages/product.twig                                                |
+| component.products.source       | string    |                                                                    |
+| component.products.source_value | ?int[]    | ids of sources (product_ids, categories_ids, brands_id..etc)       |
+| component.products.limit        | int       | Number of products to be shown                                     |
 | position              | int                   | Sorting number start from zero                                               |
 #}
 {# ---- Title controls (inline) ---- #}
@@ -40,8 +42,12 @@
     <div class="container -mt-62 relative overflow-hidden">
         <salla-products-slider
             {% if component.products|length %}
-              source="selected" 
-              source-value="[{{ component.products|map((product) => product.id)|join(',') }}]" 
+              {# Pass the section's product source straight through so Salla fetches
+                 via the API, instead of hand-building source-value from the ids.
+                 (theme-raed#581) #}
+              source="{{ component.products.source }}"
+              limit="{{ component.products.limit }}"
+              source-value="{{ component.products.source_value|json_encode }}"
             {% endif %}
             {% if display_all != '' and  display_all != '#' %}
                 display-all-url="{{display_all}}" 
