@@ -172,6 +172,26 @@ salla-user-menu{
   @apply shrink-0;
 }
 
+// Guest login trigger. With `show-trigger`, salla-user-menu renders
+// `.s-user-menu-login-btn` when logged out. Salla styles it round, with a
+// gray-200 border and a FIXED gray-700 icon fill — so it matches neither the
+// theme's header icons (square, primary-tinted border, palette-aware colour)
+// nor a dark palette, where the fixed fill nearly disappears. Restyle it to
+// look like `.header-btn__icon`. Scoped under `salla-user-menu` so it outranks
+// Salla's own `.s-user-menu-login-btn svg` rule without `!important`.
+salla-user-menu .s-user-menu-login-btn{
+  @apply w-10 h-10 rounded-custom border border-[var(--color-primary-50)] flex items-center justify-center dynamic-text-color transition-colors;
+
+  svg{
+    @apply w-5 h-5;
+    fill: currentColor;               // follows dynamic-text-color instead of a fixed grey
+  }
+
+  &:hover{
+    @apply opacity-100 text-[var(--color-primary)];   // colour change on hover, like the other icons (not an opacity fade)
+  }
+}
+
 // cart summary
 .s-cart-summary-total{
   @apply text-black font-[600];
