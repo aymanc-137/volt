@@ -25,6 +25,12 @@
     color: var(--footer-title-color, var(--color-primary));
   }
 
+  // Store description follows the link colour when advanced colours are on;
+  // otherwise `inherit` keeps it on the surrounding dynamic text colour.
+  &__desc{
+    color: var(--footer-link-color, inherit);
+  }
+
   .social-link {
     @apply border rounded-full w-8 h-8 justify-center flex items-center hover:opacity-75 transition duration-300 text-sm
   }

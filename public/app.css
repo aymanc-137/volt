@@ -29817,6 +29817,10 @@ salla-menu[topnav]:not(.hydrated)::after {
   color: #414042;
   color: var(--footer-title-color, var(--color-primary));
 }
+.store-footer__desc {
+  color: inherit;
+  color: var(--footer-link-color, inherit);
+}
 .store-footer .social-link{
     display: flex;
     height: 2rem;
