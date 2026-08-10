@@ -29532,16 +29532,26 @@ input[type=radio].sr-only:checked ~ div.radio-images__badge {
   }
 }
 .main-nav-container.fixed-pinned .inner {
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  background-color: var(--color-light-page-background)40;
-}
-.main-nav-container.fixed-pinned .inner:is(.dark *){
-    background-color: var(--color-dark-page-background)40;
-}
-.main-nav-container.fixed-pinned .inner {
   border-bottom: 1px solid #414042;
   border-bottom: 1px solid var(--color-primary);
+}
+.main-nav-container.fixed-pinned .inner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: var(--color-light-page-background)40;
+}
+.main-nav-container.fixed-pinned .inner:is(.dark *)::before{
+    background-color: var(--color-dark-page-background)40;
+}
+.main-nav-container.fixed-pinned .inner::before {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 .main-nav-container.fixed-pinned .navbar-brand img {
   max-height: 40px;
