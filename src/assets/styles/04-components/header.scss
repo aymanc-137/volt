@@ -114,6 +114,7 @@
       }
 
       border-bottom: 1px solid var(--color-primary);
+      @apply bg-[var(--color-light-page-background)40] dark:bg-[var(--color-dark-page-background)40];
 
       // Frosted background on a pseudo-element rather than on `.inner` itself.
       // `backdrop-filter` (like filter/transform) makes its element a containing
@@ -127,7 +128,6 @@
         inset: 0;
         z-index: -1;
         pointer-events: none;
-        @apply bg-[var(--color-light-page-background)40] dark:bg-[var(--color-dark-page-background)40];
         -webkit-backdrop-filter: blur(10px);
                 backdrop-filter: blur(10px);
       }

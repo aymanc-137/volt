@@ -29534,6 +29534,10 @@ input[type=radio].sr-only:checked ~ div.radio-images__badge {
 .main-nav-container.fixed-pinned .inner {
   border-bottom: 1px solid #414042;
   border-bottom: 1px solid var(--color-primary);
+  background-color: var(--color-light-page-background)40;
+}
+.main-nav-container.fixed-pinned .inner:is(.dark *){
+    background-color: var(--color-dark-page-background)40;
 }
 .main-nav-container.fixed-pinned .inner::before {
   content: "";
@@ -29544,12 +29548,6 @@ input[type=radio].sr-only:checked ~ div.radio-images__badge {
   left: 0;
   z-index: -1;
   pointer-events: none;
-  background-color: var(--color-light-page-background)40;
-}
-.main-nav-container.fixed-pinned .inner:is(.dark *)::before{
-    background-color: var(--color-dark-page-background)40;
-}
-.main-nav-container.fixed-pinned .inner::before {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
