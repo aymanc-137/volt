@@ -149,6 +149,16 @@ salla-slider.photos-slider {
   opacity: 0.5;
 }
 
+// Category-list arrows on small screens.
+// Salla's salla-slider hides the carousel nav arrows below lg:
+//   `.carousel-slider .s-slider-block__title-nav { display: none }`
+//   re-enabled only at `@media (min-width: 1024px)`.
+// The category-list wants them at every width, so force the nav visible for that
+// block. Three classes out-specifies Salla's two-class rules, so no !important.
+.s-block--categories .carousel-slider .s-slider-block__title-nav {
+  @apply flex;
+}
+
 // bullet pagination -------
 salla-slider{
   .swiper-pagination-bullet {
