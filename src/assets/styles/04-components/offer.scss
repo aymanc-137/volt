@@ -1,0 +1,161 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Salla offer family — dark / palette-aware colours
+// Covers salla-offer, salla-tiered-offer, salla-offer-modal and
+// salla-cart-item-offers. (salla-conditional-offer has its own file.) Salla ships
+// these with white cards, light icon chips, grey text and pink/primary tints —
+// unreadable on a dark palette. Recolour from the theme palette via the dynamic-*
+// utilities: each carries a working BASE half, so it also covers single-palette
+// dark stores where the dark-mode toggle is off and the merchant chose dark
+// colours in the light settings. Neutral text uses the dynamic palette colour,
+// NOT the brand primary — but genuinely semantic colours are kept:
+//   • primary progress fills / active tabs (they indicate progress/selection)
+//   • red sale/discount prices and green savings labels
+//   • per-tier milestone colours (set inline by Salla)
+// Every block is element-prefixed so it out-ranks Salla's own rules without
+// !important.
+// ─────────────────────────────────────────────────────────────────────────────
+
+salla-offer {
+  // Outer tinted container: pink (red-50) -> subtle translucent box tint.
+  .s-offer-wrapper {
+    @apply dynamic-bg-color-40;
+  }
+
+  // Slider heading + subtitle: red / grey -> dynamic palette text.
+  .s-slider-block__title h2,
+  .s-slider-block__title p {
+    @apply dynamic-text-color;
+  }
+
+  // Decorative watermark icon behind the heading (red-50): blend into the box so
+  // it isn't a stray pink smudge on dark. Extra `.s-offer-wrapper` class keeps
+  // this above Salla's own `.s-offer-wrapper .s-slider-block__title::before`.
+  .s-offer-wrapper .s-slider-block__title::before {
+    color: var(--color-light-box-background);
+
+    .dark & {
+      color: var(--color-dark-box-background);
+    }
+  }
+
+  // Offer card: white -> box, grey text -> dynamic text.
+  .s-offer-card {
+    @apply dynamic-bg-color dynamic-text-color;
+  }
+
+  .s-offer-card-title,
+  .s-offer-card-description {
+    @apply dynamic-text-color;
+  }
+
+  // Icon chip: gray-50 -> page bg (a shade off the card, as in light mode).
+  .s-offer-card-icon {
+    @apply bg-[var(--color-light-page-background)] dark:bg-[var(--color-dark-page-background)];
+  }
+
+  // ── Alternate slide layouts (same white-card / light-border problem) ────────
+  // Discount / bank-message reds are semantic (they mark a saving) so they stay;
+  // only the surfaces + neutral text follow the palette.
+  .s-offer-slide-cat-entry,
+  .s-offer-slide-offer-entry,
+  .s-offer-bank-wrapper {
+    @apply dynamic-bg-color dynamic-text-color dynamic-border-color;
+  }
+
+  .s-offer-bank-payment-single {
+    @apply dynamic-bg-color;
+  }
+
+  // Grey (gray-50) fill strips -> page bg.
+  .s-offer-slide-offer-entry-price-amount-percent {
+    @apply bg-[var(--color-light-page-background)] dark:bg-[var(--color-dark-page-background)];
+  }
+}
+
+// ── salla-tiered-offer ───────────────────────────────────────────────────────
+// Tier progress bar + tier tabs. Keep the primary progress fill / active tab and
+// the per-tier milestone colours (Salla sets those inline); recolour surfaces and
+// neutral text only.
+salla-tiered-offer {
+  // White surfaces -> box, light borders -> palette border.
+  .s-tiered-offer-container,
+  .s-tiered-offer-tab-headers,
+  .s-tiered-offer-tab-content-wrapper {
+    @apply dynamic-bg-color dynamic-text-color dynamic-border-color;
+  }
+
+  // Neutral text (program title, current tier line, tier name, discount title,
+  // benefit description, inactive tab labels). Active tab keeps its primary fill.
+  .s-tiered-offer-program-title,
+  .s-tiered-offer-current-tier,
+  .s-tiered-offer-tier-name,
+  .s-tiered-offer-discount-title,
+  .s-tiered-offer-benefit-description,
+  .s-tiered-offer-tab-header:not(.s-tiered-offer-tab-active) {
+    @apply dynamic-text-color;
+  }
+
+  // Current-tier star in the header (SVG uses a black `color` attribute) ->
+  // palette text. The milestone stars keep their inline per-tier colour.
+  .s-tiered-offer-header svg {
+    color: var(--main-text-color);
+
+    .dark & {
+      color: var(--light-text-color);
+    }
+  }
+
+  // Progress track (gray-200) -> palette border colour. Fill stays primary.
+  .s-tiered-offer-progress-bg {
+    @apply bg-[var(--color-border)] dark:bg-[var(--color-border-dark)];
+  }
+
+  // Milestone circle: white -> box, gray-100 border -> palette border.
+  .s-tiered-offer-milestone-icon {
+    @apply dynamic-bg-color dynamic-border-color;
+  }
+}
+
+// ── salla-offer-modal ────────────────────────────────────────────────────────
+// The modal shell itself is the generic salla-modal/drawer; here we recolour the
+// offer content it renders. Sale price stays red (semantic).
+salla-offer-modal {
+  // Category / brand / tag chips + discount-table rows: white -> box, borders.
+  .s-offer-modal-cat-item.swiper-slide,
+  .s-offer-modal-brand-item.swiper-slide,
+  .s-offer-modal-tag-item.swiper-slide,
+  .s-offer-modal-discount-table tr {
+    @apply dynamic-bg-color dynamic-text-color dynamic-border-color;
+  }
+
+  // Light-grey chips / image wells -> subtle box tint.
+  .s-offer-modal-badge,
+  .s-offer-modal-product-image-wrap {
+    @apply dynamic-bg-color-40;
+  }
+
+  // Neutral text (product name, old price, footer, discount table body).
+  .s-offer-modal-product-name,
+  .s-offer-modal-product-old-price,
+  .s-offer-modal-footer,
+  .s-offer-modal-discount-table table {
+    @apply dynamic-text-color;
+  }
+
+  // Light borders on the header icon button, remember input and table wrapper.
+  .s-offer-modal-header-icon,
+  .s-offer-modal-remember-input,
+  .s-offer-modal-discount-table {
+    @apply dynamic-border-color;
+  }
+}
+
+// ── salla-cart-item-offers ───────────────────────────────────────────────────
+// Inline offer note under cart items. The red "free" label and the green savings
+// / icon are semantic — keep them; only the neutral greys follow the palette.
+salla-cart-item-offers {
+  .s-cart-item-offers-regular-price,
+  .s-cart-item-offers-discount {
+    @apply dynamic-text-color;
+  }
+}
