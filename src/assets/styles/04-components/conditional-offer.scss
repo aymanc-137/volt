@@ -1,0 +1,44 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// salla-conditional-offer — dark / palette-aware colours
+// Salla ships this "buy more, save more" component with a fixed WHITE card,
+// dark-grey text and a light-grey track — unreadable on a dark palette. Recolour
+// it from the theme palette via the dynamic-* utilities: each carries a working
+// BASE half (the `--color-light-*` / `--main-text-color` vars), so it also covers
+// single-palette dark stores where the dark-mode toggle is off and the merchant
+// picked dark colours in the light settings.
+//
+// Selectors are prefixed with `salla-conditional-offer` so they out-rank Salla's
+// own single-class component rules without !important. Ported from the standalone
+// conditional-offer-dark.css.
+// ─────────────────────────────────────────────────────────────────────────────
+
+salla-conditional-offer {
+  // Card container: white -> box colour, dark-grey text -> palette text.
+  &.s-conditional-offer-container {
+    @apply dynamic-bg-color dynamic-text-color;
+  }
+
+  // Title + reached-checkpoint text (avatar + label): palette text, not the
+  // brand primary (Salla uses --color-primary-dark, which loses contrast on a
+  // dark card). Progress is still conveyed by the primary active line + ring.
+  .s-conditional-offer-title,
+  .s-conditional-offer-checkpoint-label.active,
+  .s-conditional-offer-item-avatar-content.active {
+    @apply dynamic-text-color;
+  }
+
+  // Subtitle: hard-coded #404040 -> palette text, slightly muted.
+  .s-conditional-offer-subtitle {
+    @apply dynamic-text-color opacity-70;
+  }
+
+  // Inactive progress track: gray-300 -> palette border colour (as a background).
+  .s-conditional-offer-progress-line-inactive {
+    @apply bg-[var(--color-border)] dark:bg-[var(--color-border-dark)];
+  }
+
+  // Bordered checkpoint circle fill (Salla's bordered variant): white -> box.
+  .s-conditional-offer-checkpoint-border {
+    @apply dynamic-bg-color;
+  }
+}
