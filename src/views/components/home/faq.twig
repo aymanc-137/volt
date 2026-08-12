@@ -42,6 +42,9 @@
       <div class="faq-component__header">
           
             <div class="flex flex-col items-center">
+                    {% if super_title %}
+                      <span class="faq-component__super-title mb-3">{{ super_title }}</span>
+                    {% endif %}
                     <h2 id="faq-title-{{ position }}" class="{{ tc_font }} faq-component__title font-bold leading-snug mb-4" style="{{ tc_size_style }} {{ tc_color_style }}">
                       {{ title_text }}
 
@@ -72,9 +75,8 @@
                 id="{{ faq_id }}-trigger"
                 aria-expanded="false"
                 aria-controls="{{ faq_id }}-content"
-                class="faq-component__trigger w-full flex items-center justify-between px-5 sm:px-6 lg:px-8 py-4 sm:py-5  
+                class="faq-component__trigger w-full flex items-center justify-between px-5 sm:px-6 lg:px-8 py-4 sm:py-5
                        transition-colors duration-200 ease-out
-                       hover:bg-gray-100 dark:hover:bg-gray-700/50
                        focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
               >
                 <span class="faq-component__question text-base sm:text-lg font-semibold dynamic-text-color
@@ -83,9 +85,9 @@
                 </span>
 
                 <!-- Icon -->
-                <span class="faq-component__icon flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 text-primary transition-transform duration-300 ease-out transform group-[.is-active]:rotate-180"
+                <span class="faq-component__icon flex-shrink-0 grid place-items-center w-8 h-8 sm:w-9 sm:h-9 rounded-full transition-all duration-300 ease-out transform group-[.is-active]:rotate-180"
                       aria-hidden="true">
-                  <svg class="w-full h-full fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7 10l5 5 5-5z"/>
                   </svg>
                 </span>

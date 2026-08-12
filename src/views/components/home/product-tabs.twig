@@ -24,24 +24,28 @@
 
 {% if renderable|length %}
     {% set uid = 'ptabs-' ~ (position|default(0)) %}
-    <div class="product-tabs" data-tabs-sticky="{{ component.tabs_sticky ? 'true' : 'false' }}">
-        <div class="product-tabs__bar {{ component.tabs_sticky ? 'product-tabs__bar--sticky' : '' }}" role="tablist" data-tabs-bar>
-            <div class="product-tabs__bar-inner">
+    {# Placed components render full-bleed; keep the tabs at the page's reading
+       width by wrapping them in the theme container. #}
+    <div class="container">
+        <div class="product-tabs" data-tabs-sticky="{{ component.tabs_sticky ? 'true' : 'false' }}">
+            <div class="product-tabs__bar {{ component.tabs_sticky ? 'product-tabs__bar--sticky' : '' }}" role="tablist" data-tabs-bar>
+                <div class="product-tabs__bar-inner">
+                    {% for tab in renderable %}
+                        <button type="button" class="product-tabs__tab {{ loop.first ? 'is-active' : '' }}"
+                                data-tab-target="{{ uid }}-{{ loop.index0 }}" role="tab">{{ tab.title }}</button>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="product-tabs__sections">
                 {% for tab in renderable %}
-                    <button type="button" class="product-tabs__tab {{ loop.first ? 'is-active' : '' }}"
-                            data-tab-target="{{ uid }}-{{ loop.index0 }}" role="tab">{{ tab.title }}</button>
+                    <section id="{{ uid }}-{{ loop.index0 }}" class="product-tabs__section" data-tab-section="{{ loop.index0 }}">
+                        <h2 class="product-tabs__section-title">{{ tab.title }}</h2>
+                        <div class="product-tabs__section-body">
+                            <div class="ptab-about">{{ tab.content|raw }}</div>
+                        </div>
+                    </section>
                 {% endfor %}
             </div>
-        </div>
-        <div class="product-tabs__sections">
-            {% for tab in renderable %}
-                <section id="{{ uid }}-{{ loop.index0 }}" class="product-tabs__section" data-tab-section="{{ loop.index0 }}">
-                    <h2 class="product-tabs__section-title">{{ tab.title }}</h2>
-                    <div class="product-tabs__section-body">
-                        <div class="ptab-about">{{ tab.content|raw }}</div>
-                    </div>
-                </section>
-            {% endfor %}
         </div>
     </div>
 {% endif %}
