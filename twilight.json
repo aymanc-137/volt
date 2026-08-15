@@ -1710,7 +1710,7 @@
                 "en": "Quick Links",
                 "ar": "روابط سريعة"
             },
-            "icon": "sicon-layout-grid-rearrange",
+            "icon": "sicon-link",
             "path": "home.main-links",
             "is_default": true,
             "image": "https://cdn.salla.network/images/themes/raed/main-links-with-bg.jpg?v=1.1",
@@ -1971,7 +1971,7 @@
                 "en": "Animated products with a background",
                 "ar": "منتجات متحركة مع خلفية"
             },
-            "icon": "sicon-list-play",
+            "icon": "sicon-price-tag",
             "path": "home.slider-products-with-header",
             "image": "https://cdn.salla.network/images/themes/raed/preview-images/slider-products-with-bg.png?v=1.1",
             "fields": [
@@ -2224,7 +2224,7 @@
                 "en": "Enhanced square images",
                 "ar": "صور مربعة (محسنة)"
             },
-            "icon": "sicon-image",
+            "icon": "sicon-crop",
             "path": "home.enhanced-square-banners",
             "is_default": true,
             "image": "https://cdn.salla.network/images/themes/raed/preview-images/square-images.png?v=1.1",
@@ -2547,7 +2547,7 @@
                 "en": "Custom testimonials",
                 "ar": "آراء عملاء مخصصة"
             },
-            "icon": "sicon-chat-bubbles",
+            "icon": "sicon-quote",
             "path": "home.custom-testimonials",
             "is_default": true,
             "image": "https://cdn.salla.network/images/themes/raed/preview-images/custom-testimonials.png?v=1.1",
@@ -2664,7 +2664,7 @@
                 "ar": "صور متحركة - فولت",
                 "en": "Animated Images - Volt"
             },
-            "icon": "sicon-store",
+            "icon": "sicon-animation",
             "path": "home.enhanced-image-carousel",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/enhanced-image-carousel.png",
             "fields": [
@@ -3274,7 +3274,7 @@
                 "ar": "قائمة عناصر - فولت",
                 "en": "Items List - Volt"
             },
-            "icon": "sicon-store",
+            "icon": "sicon-layout-grid-rearrange",
             "path": "home.category-list",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/category-list.png",
             "fields": [
@@ -4101,7 +4101,7 @@
                 "ar": "لماذا تختارنا",
                 "en": "Why Choose Us"
             },
-            "icon": "sicon-store",
+            "icon": "sicon-thumbs-up",
             "path": "home.why-us",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/why-us.png",
             "fields": [
@@ -4826,7 +4826,7 @@
                 "ar": "الماركات التجارية - فولت",
                 "en": "Brands - Volt"
             },
-            "icon": "sicon-store",
+            "icon": "sicon-tag",
             "path": "home.brands-volt",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/brands-volt.png",
             "fields": [
@@ -5521,7 +5521,7 @@
                 "ar": "الأسئلة الأكثر شيوعا",
                 "en": "FAQ"
             },
-            "icon": "sicon-lang",
+            "icon": "sicon-support",
             "path": "home.faq",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/faq.png",
             "fields": [
@@ -6591,7 +6591,7 @@
                 "ar": "فيديو بنر - فولت",
                 "en": "Video Banner - Volt"
             },
-            "icon": "sicon-store",
+            "icon": "sicon-video-player",
             "path": "home.video-banner",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/video-banner.png",
             "fields": [
@@ -7023,7 +7023,7 @@
                 "ar": "منتجات قسم - فولت",
                 "en": "Category Products - Volt"
             },
-            "icon": "sicon-store",
+            "icon": "sicon-shopping-bag",
             "path": "home.category-products",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/category-products.png",
             "fields": [
@@ -7783,7 +7783,7 @@
                 "ar": "قائمة بحث المركبات",
                 "en": "Vehicle Search List"
             },
-            "icon": "sicon-store",
+            "icon": "sicon-search",
             "path": "home.car-search-tree",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/car-search-tree.png",
             "fields": [
@@ -8271,7 +8271,7 @@
                 "ar": "عرض تفصيلي لمنتج - فولت",
                 "en": "Product Detailed Preview - Volt"
             },
-            "icon": "sicon-store",
+            "icon": "sicon-zoom-in",
             "path": "home.tap-preview",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/tap-preview.png",
             "fields": [
@@ -8897,7 +8897,7 @@
                 "ar": "خلفية على صفحات الاقسام - فولت",
                 "en": "Category Pages Background - Volt"
             },
-            "icon": "sicon-store",
+            "icon": "sicon-format-fill",
             "path": "home.category-ads",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/category-ads.png",
             "fields": [
@@ -9696,7 +9696,7 @@
                 "ar": "عروض تنتهي قريبا - فولت",
                 "en": "Ending-Soon Offers - Volt"
             },
-            "icon": "sicon-gift-card",
+            "icon": "sicon-timer",
             "path": "home.flash-discount",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/flash-discount.png",
             "fields": [
@@ -11471,7 +11471,7 @@
                 "ar": "مقارنة قبل وبعد",
                 "en": "Before / After Comparison"
             },
-            "icon": "sicon-image",
+            "icon": "sicon-swap-fill",
             "path": "home.before-after",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/before-after.png",
             "fields": [
@@ -12249,7 +12249,7 @@
                 "ar": "صورة تفاعلية بنقاط منتجات",
                 "en": "Interactive Hotspot Image"
             },
-            "icon": "sicon-image",
+            "icon": "sicon-pin",
             "path": "home.hotspot-image",
             "image": "https://cdn.lamsaweb.com/cdnVolt/components/hotspot-image.png",
             "fields": [
