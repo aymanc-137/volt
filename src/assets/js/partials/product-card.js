@@ -74,6 +74,40 @@ class ProductCard extends HTMLElement {
     return '';
   }
 
+  /**
+   * Product options inside the card (`product_card_show_options`).
+   *
+   * `salla-add-product-button` looks its options up with
+   * `document.querySelector('salla-product-options[product-id="<id>"]')`, so simply
+   * rendering that element inside the card is enough for the selection to be picked
+   * up on add-to-cart — no extra wiring needed.
+   *
+   * The options payload only exists when the surrounding list asks for it with
+   * `includes='["options"]'`, so this degrades to nothing on lists that don't.
+   */
+  showsOptions() {
+    return !!window.product_card_show_options
+      && !this.minimal
+      && !this.fullImage
+      && !this.hideAddBtn
+      && this.product?.status === 'sale'
+      && Array.isArray(this.product?.options)
+      && this.product.options.length > 0;
+  }
+
+  getProductOptions() {
+    if (!this.showsOptions()) {
+      return '';
+    }
+
+    // The JSON payload is assigned as a property after render (see `render()`)
+    // rather than inlined here, so option labels containing quotes can't break
+    // out of the attribute.
+    return `<div class="s-product-card-options">
+              <salla-product-options product-id="${this.product.id}"></salla-product-options>
+            </div>`;
+  }
+
   getPriceFormat(price) {
     if (!price || price == 0) {
       return salla.config.get('store.settings.product.show_price_as_dash')?'-':'';
@@ -279,6 +313,8 @@ class ProductCard extends HTMLElement {
             : ``}
 
 
+          ${this.getProductOptions()}
+
           ${!this.hideAddBtn ?
             `<div class="s-product-card-content-footer border-t border-primary pt-2 ">
               <salla-add-product-button    width="wide" class="volt"
@@ -316,6 +352,13 @@ class ProductCard extends HTMLElement {
             : ``}
         </div>
       `
+
+      if (this.showsOptions()) {
+        const optionsEl = this.querySelector('salla-product-options');
+        if (optionsEl) {
+          optionsEl.options = JSON.stringify(this.product.options);
+        }
+      }
 
       this.querySelectorAll('[name="donating_amount"]').forEach((element)=>{
         element.addEventListener('input', (e) => {

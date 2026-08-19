@@ -86,6 +86,8 @@ style=" overflow-y: scroll;"
         window.header_layout = "{{ theme.settings.get('header_layout', 'centered_menu') }}"
         window.enable_add_product_toast = "{{ theme.settings.get('enable_add_product_toast', true) }}"
         window.notify_when_available_in_card = "{{ theme.settings.get('notify_when_available_in_card', true) }}"
+        // Real boolean (not the stringified form used above) — the card checks it directly.
+        window.product_card_show_options = {{ (theme.settings.get('product_card_show_options', false) ? true : false) | json_encode }}
     </script>
     
     {% hook 'head:start' %}
@@ -303,6 +305,36 @@ style=" overflow-y: scroll;"
             });
         })();
     </script>
+    {# ---- Product-card advanced colours & sizing ----
+       Every value is emitted only when set, and product.scss falls back to the
+       colour/size the card renders with today, so an untouched store is
+       pixel-identical. Dark values override the same variable under `.dark`,
+       matching the header/footer convention. #}
+    {% set pc_colors = theme.settings.get('product_card_advanced_colors') ?? false %}
+    {% set pc_border      = pc_colors ? theme.settings.get('product_card_border_color', '') : '' %}
+    {% set pc_border_dark = pc_colors ? theme.settings.get('product_card_border_color_dark', '') : '' %}
+    {% set pc_badge_bg    = pc_colors ? theme.settings.get('product_card_badge_bg_color', '') : '' %}
+    {% set pc_badge_text  = pc_colors ? theme.settings.get('product_card_badge_text_color', '') : '' %}
+    {% set pc_content_bg      = pc_colors ? theme.settings.get('product_card_content_bg_color', '') : '' %}
+    {% set pc_content_bg_dark = pc_colors ? theme.settings.get('product_card_content_bg_color_dark', '') : '' %}
+    {% set pc_content_text      = pc_colors ? theme.settings.get('product_card_content_text_color', '') : '' %}
+    {% set pc_content_text_dark = pc_colors ? theme.settings.get('product_card_content_text_color_dark', '') : '' %}
+    {% set pc_sizes  = theme.settings.get('product_card_advanced_sizes') ?? false %}
+    {% set pc_radius = pc_sizes ? theme.settings.get('product_card_border_radius', 14) : '' %}
+    {% if pc_border or pc_border_dark or pc_badge_bg or pc_badge_text or pc_content_bg or pc_content_bg_dark or pc_content_text or pc_content_text_dark or pc_radius is not empty %}
+    <style>
+      {% if pc_border %}:root { --product-card-border-color: {{ pc_border }}; }{% endif %}
+      {% if pc_border_dark %}.dark { --product-card-border-color: {{ pc_border_dark }}; }{% endif %}
+      {% if pc_badge_bg %}:root { --product-card-badge-bg: {{ pc_badge_bg }}; }{% endif %}
+      {% if pc_badge_text %}:root { --product-card-badge-text: {{ pc_badge_text }}; }{% endif %}
+      {% if pc_content_bg %}:root { --product-card-content-bg: {{ pc_content_bg }}; }{% endif %}
+      {% if pc_content_bg_dark %}.dark { --product-card-content-bg: {{ pc_content_bg_dark }}; }{% endif %}
+      {% if pc_content_text %}:root { --product-card-content-text: {{ pc_content_text }}; }{% endif %}
+      {% if pc_content_text_dark %}.dark { --product-card-content-text: {{ pc_content_text_dark }}; }{% endif %}
+      {% if pc_radius is not empty %}:root { --product-card-radius: {{ pc_radius }}px; }{% endif %}
+    </style>
+    {% endif %}
+
     {# tracking services, custom css feature. #}
     {% hook 'head:end' %}
 </head>
@@ -318,6 +350,14 @@ overflow-x-hidden {% hook 'body:classes' %}
   {{ theme.settings.get('product_card_border_animation', true) ? '' : ' no-card-border-animation' }}
   {{ theme.settings.get('product_card_image_zoom', true) ? ' card-image-zoom-hover' : '' }}
   {{ theme.settings.get('product_card_glow', true) ? '' : ' no-card-glow' }}
+  {{ theme.settings.get('product_card_hover_enabled', true) ? '' : ' no-card-hover' }}
+  {{ theme.settings.get('product_card_hide_border', false) ? ' pc-no-border' : '' }}
+  {{ theme.settings.get('product_card_center_text', false) ? ' pc-center-text' : '' }}
+  {{ theme.settings.get('product_card_hide_rating', false) ? ' pc-hide-rating' : '' }}
+  {{ theme.settings.get('product_card_hide_availability', false) ? ' pc-hide-availability' : '' }}
+  {{ theme.settings.get('product_card_hide_discount', false) ? ' pc-hide-discount' : '' }}
+  {{ theme.settings.get('product_card_hide_countdown', false) ? ' pc-hide-countdown' : '' }}
+  {{ theme.settings.get('product_card_out_of_stock_grayscale', true) ? ' pc-oos-grayscale' : '' }}
   ">
   {% set loading_show_logo = theme.settings.get('loading_show_logo', true) and store.logo %}
   {% set loading_bg_type = theme.settings.get('loading_background_type', 'color') %}

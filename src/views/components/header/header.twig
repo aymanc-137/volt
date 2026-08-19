@@ -16,12 +16,36 @@
 {% set hc_advanced  = theme.settings.get('header_advanced_colors') ?? false %}
 {% set hc_icon      = hc_advanced ? theme.settings.get('header_icons_color', '') : '' %}
 {% set hc_icon_dark = hc_advanced ? theme.settings.get('header_icons_color_dark', '') : '' %}
-{% if hc_icon or hc_icon_dark %}
+
+{# Sidebar / dropdown surface colour. Emitted on :root rather than `.store-header`
+   because the mobile drawers (mmenu + volt-drawer-menu) are moved to body level,
+   outside the header element. menus.scss falls back to the box-background palette
+   colour, which is exactly what `dynamic-bg-color` resolves to today. #}
+{% set hc_menu_bg      = hc_advanced ? theme.settings.get('header_menu_bg_color', '') : '' %}
+{% set hc_menu_bg_dark = hc_advanced ? theme.settings.get('header_menu_bg_color_dark', '') : '' %}
+
+{# Header sizing (behind `header_advanced_sizes`). Each value is emitted only when the
+   toggle is on, so an untouched store never gets the variable and the SCSS fallback —
+   which reproduces the current hard-coded size — applies. #}
+{% set hs_advanced  = theme.settings.get('header_advanced_sizes') ?? false %}
+{% set hs_logo      = hs_advanced ? theme.settings.get('header_logo_size', 48) : 0 %}
+{% set hs_icon      = hs_advanced ? theme.settings.get('header_icons_size', 20) : 0 %}
+{% set hs_menu_text = hs_advanced ? theme.settings.get('header_menu_text_size', 14) : 0 %}
+
+{% if hc_icon or hc_icon_dark or hc_menu_bg or hc_menu_bg_dark or hs_logo or hs_icon or hs_menu_text %}
 <style>
   {% if hc_icon %}.store-header { --header-icon-color: {{ hc_icon }}; }{% endif %}
   {% if hc_icon_dark %}.dark .store-header { --header-icon-color: {{ hc_icon_dark }}; }{% endif %}
+  {% if hc_menu_bg %}:root { --menu-surface-bg: {{ hc_menu_bg }}; }{% endif %}
+  {% if hc_menu_bg_dark %}.dark { --menu-surface-bg: {{ hc_menu_bg_dark }}; }{% endif %}
+  {% if hs_logo %}:root { --header-logo-height: {{ hs_logo }}px; }{% endif %}
+  {% if hs_icon %}:root { --header-icon-size: {{ hs_icon }}px; }{% endif %}
+  {% if hs_menu_text %}:root { --header-menu-text-size: {{ hs_menu_text }}px; }{% endif %}
 </style>
 {% endif %}
+
+{# Optional header-specific logo; falls back to the store logo when unset. #}
+{% set header_logo = theme.settings.get('header_logo_image') ?: store.logo %}
 <header class="store-header {{ theme.settings.get('header_icons_border', true) ? '' : 'header-icons--no-border' }} {{ theme.settings.get('hide_search_icon', false) ? 'header--search-hidden' : '' }}">
   {# Top Nav #}
   {% if show_topnav %}
@@ -91,7 +115,7 @@
                       {# Logo — inline at the start for the horizontal-menu layouts #}
                       {% if not is_drawer_layout %}
                         <a class="navbar-brand" href="{{ store.url }}">
-                            <img fetchpriority="high" width="100%" height="100%" loading="eager" src="{{ store.logo }}" alt="{{ store.name }} logo">
+                            <img fetchpriority="high" width="100%" height="100%" loading="eager" src="{{ header_logo }}" alt="{{ store.name }} logo">
                             {% if is_page('index') %}
                               <h1 class="sr-only">{{ store.name }}</h1>
                             {% else %}
@@ -114,7 +138,7 @@
                   {# Layout 3: logo absolutely centered in the bar #}
                   {% if is_drawer_layout %}
                     <a class="navbar-brand absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" href="{{ store.url }}">
-                        <img fetchpriority="high" width="100%" height="100%" loading="eager" src="{{ store.logo }}" alt="{{ store.name }} logo">
+                        <img fetchpriority="high" width="100%" height="100%" loading="eager" src="{{ header_logo }}" alt="{{ store.name }} logo">
                         {% if is_page('index') %}
                           <h1 class="sr-only">{{ store.name }}</h1>
                         {% else %}

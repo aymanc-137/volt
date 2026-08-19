@@ -18,8 +18,11 @@
 
     li{
       > a{
-        @apply font-alshohadaa font-thin flex justify-between items-center transition duration-300 p-3 text-sm hover:text-primary hover:no-underline; 
-    
+        @apply font-alshohadaa font-thin flex justify-between items-center transition duration-300 p-3 hover:text-primary hover:no-underline;
+        // `--header-menu-text-size` is emitted by header.twig only behind the
+        // advanced size toggle; the 14px fallback is the old `text-sm`.
+        font-size: var(--header-menu-text-size, 14px);
+        line-height: 1.25rem;
       }
  
       &.root-level{
@@ -321,3 +324,24 @@
 }
 
 
+
+
+// ---- Sidebar / dropdown surface colour (behind the `header_advanced_colors` toggle) ----
+// `--menu-surface-bg` is emitted by header.twig only when the merchant sets a colour;
+// the fallbacks reproduce `dynamic-bg-color`, which is what all three surfaces (desktop
+// dropdown, mmenu mobile drawer, volt drawer panel) use today, so the default is
+// pixel-identical. Each selector carries one extra class over `.dynamic-bg-color`
+// so it outranks that utility without `!important`.
+.main-menu .sub-menu,
+.mm-spn.mm-spn--light,
+.volt-menu__drawer .volt-menu__panel,
+.volt-menu__drawer .volt-menu__panel-view{
+  background-color: var(--menu-surface-bg, var(--color-light-box-background));
+}
+
+.dark .main-menu .sub-menu,
+.dark .mm-spn.mm-spn--light,
+.dark .volt-menu__drawer .volt-menu__panel,
+.dark .volt-menu__drawer .volt-menu__panel-view{
+  background-color: var(--menu-surface-bg, var(--color-dark-box-background));
+}

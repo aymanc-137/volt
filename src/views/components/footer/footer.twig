@@ -33,6 +33,22 @@
        defaults and any already-set colours are untouched. The dark values
        override the same variable under `.dark` (gated on dark_mode_enabled in
        the editor), so a single-palette store just uses the normal colour. ---- #}
+{# ---- Optional footer logo override + sizing. The logo falls back to the store
+       logo, and the height falls back to 80px (the old `max-h-20`), so an
+       untouched store renders exactly as before. ---- #}
+{% set footer_logo = theme.settings.get('footer_logo_image') ?: store.logo %}
+{% set fs_advanced = theme.settings.get('footer_advanced_sizes') ?? false %}
+{% set fs_logo     = fs_advanced ? theme.settings.get('footer_logo_size', 80) : 0 %}
+{% set fs_min_h    = fs_advanced ? theme.settings.get('footer_min_height', 0) : 0 %}
+
+{# ---- Payment-method column: a manual collection of images, shown as an extra
+       footer column. Independent of the automatic <salla-payments> row at the
+       bottom of the footer, which is left in place. ---- #}
+{% set payments_enabled = theme.settings.get('footer_payments_enabled') ?? false %}
+{% set payment_items    = theme.settings.get('footer_payment_items') | default([]) %}
+{% set payments_active  = payments_enabled and payment_items | length %}
+{% set payments_title   = theme.settings.get('footer_payments_title') | default('طرق الدفع') %}
+
 {% set fc_advanced   = theme.settings.get('footer_advanced_colors') ?? false %}
 {% set fc_title      = fc_advanced ? theme.settings.get('footer_title_color', '') : '' %}
 {% set fc_link       = fc_advanced ? theme.settings.get('footer_link_color', '') : '' %}
@@ -44,6 +60,8 @@
   {% if fc_link %}.store-footer { --footer-link-color: {{ fc_link }}; }{% endif %}
   {% if fc_title_dark %}.dark .store-footer { --footer-title-color: {{ fc_title_dark }}; }{% endif %}
   {% if fc_link_dark %}.dark .store-footer { --footer-link-color: {{ fc_link_dark }}; }{% endif %}
+  {% if fs_logo %}.store-footer { --footer-logo-height: {{ fs_logo }}px; }{% endif %}
+  {% if fs_min_h %}.store-footer #footer-content { min-height: {{ fs_min_h }}px; }{% endif %}
   /* Keep the footer's decorative z-index layering (bg-text z0 / slash z1 / content z2)
      contained. Without a stacking context here those z-indexes live in the ROOT layer,
      so `#footer-content` (z-index:2) paints over the cart page's mobile sticky checkout
@@ -144,12 +162,24 @@
 		</div>
 	{% endif %}
 
+	{# Base layout is 4 columns (logo block spans 2 + pages + contacts); the store-apps
+	   and payment-methods columns each add one when enabled. Written as literal class
+	   names so Tailwind's content scanner picks them up. #}
+	{% set footer_extra_cols = (apps_pos == 'column' ? 1 : 0) + (payments_active ? 1 : 0) %}
+	{% if footer_extra_cols == 2 %}
+		{% set footer_grid_cols = 'lg:grid-cols-6' %}
+	{% elseif footer_extra_cols == 1 %}
+		{% set footer_grid_cols = 'lg:grid-cols-5' %}
+	{% else %}
+		{% set footer_grid_cols = 'lg:grid-cols-4' %}
+	{% endif %}
+
 	<hr class="w-full border-t dynamic-border-color " >
 		<div id="footer-content" class="container  dynamic-bg-color-40
  
      backdrop-blur-sm border-x
         dynamic-border-color
-         grid grid-col-1 {{ apps_pos == 'column' ? 'lg:grid-cols-5' : 'lg:grid-cols-4' }} gap-0">
+         grid grid-col-1 {{ footer_grid_cols }} gap-0">
 			<div class="lg:col-span-2 
    
 					border-l
@@ -157,8 +187,8 @@
 					dynamic-text-color
 					flex flex-col items-center text-center" >
 				<a href="{{ link('/') }}" class="flex flex-col items-center m-0" aria-label="{{ store.name }} logo">
-					{% if store.logo %}
-						<img src="{{ store.logo }}" alt="{{ store.name }} logo" width="80" height="80" loading="lazy" class="max-h-20 w-auto object-contain" />
+					{% if footer_logo %}
+						<img src="{{ footer_logo }}" alt="{{ store.name }} logo" width="80" height="80" loading="lazy" class="w-auto object-contain" style="max-height: var(--footer-logo-height, 80px);" />
 					{% endif %}
 					<h3 class="m-0 text-center">{{ store.name }}</h3>
 				</a>
@@ -230,6 +260,31 @@
 			dynamic-text-color
 			 p-8">
  				<salla-apps-icons vertical class="block mt-4"></salla-apps-icons>
+			</div>
+			{% endif %}
+
+			{% if payments_active %}
+			<div class="border-l border-r
+			dynamic-border-color
+			dynamic-text-color
+			 p-8">
+				{% if payments_title %}<h3>{{ payments_title }}</h3>{% endif %}
+				<ul class="store-footer__payments flex flex-wrap items-center gap-2 mt-4 p-0 m-0 list-none">
+					{% for item in payment_items %}
+						{% set pay_image = item['footer_payment_items.image'] %}
+						{% if pay_image %}
+							{% set pay_name = item['footer_payment_items.name'] %}
+							{% set pay_url  = item['footer_payment_items.item_url'] %}
+							<li>
+								{% if pay_url %}<a href="{{ pay_url }}" rel="noopener" target="_blank" aria-label="{{ pay_name }}">{% endif %}
+									<img src="{{ pay_image }}" alt="{{ pay_name }}" title="{{ pay_name }}"
+									     width="48" height="32" loading="lazy"
+									     class="store-footer__payment-icon h-8 w-auto object-contain" />
+								{% if pay_url %}</a>{% endif %}
+							</li>
+						{% endif %}
+					{% endfor %}
+				</ul>
 			</div>
 			{% endif %}
 

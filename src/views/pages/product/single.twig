@@ -52,6 +52,27 @@
         Fires before the main product information section (images, title, price, etc.).
         Use this hook to inject custom content or components above the product details area.
     #}
+    {# ---- Product page colours (behind `product_page_advanced_colors`).
+       Each value is emitted only when the merchant sets it, so an untouched
+       store keeps the body background and the `dynamic-bg-color` panels. ---- #}
+    {% set pp_colors = theme.settings.get('product_page_advanced_colors') ?? false %}
+    {% set pp_bg           = pp_colors ? theme.settings.get('product_page_bg_color', '') : '' %}
+    {% set pp_bg_dark      = pp_colors ? theme.settings.get('product_page_bg_color_dark', '') : '' %}
+    {% set pp_details      = pp_colors ? theme.settings.get('product_details_bg_color', '') : '' %}
+    {% set pp_details_dark = pp_colors ? theme.settings.get('product_details_bg_color_dark', '') : '' %}
+    {% set pp_images       = pp_colors ? theme.settings.get('product_images_bg_color', '') : '' %}
+    {% set pp_images_dark  = pp_colors ? theme.settings.get('product_images_bg_color_dark', '') : '' %}
+    {% if pp_bg or pp_bg_dark or pp_details or pp_details_dark or pp_images or pp_images_dark %}
+    <style>
+      {% if pp_bg %}body#app { background-color: {{ pp_bg }}; }{% endif %}
+      {% if pp_bg_dark %}.dark body#app { background-color: {{ pp_bg_dark }}; }{% endif %}
+      {% if pp_details %}.container--product-details .product-details-panel { background-color: {{ pp_details }}; }{% endif %}
+      {% if pp_details_dark %}.dark .container--product-details .product-details-panel { background-color: {{ pp_details_dark }}; }{% endif %}
+      {% if pp_images %}.container--product-details .product-images-panel { background-color: {{ pp_images }}; }{% endif %}
+      {% if pp_images_dark %}.dark .container--product-details .product-images-panel { background-color: {{ pp_images_dark }}; }{% endif %}
+    </style>
+    {% endif %}
+
     <div class="s-blocks-wrapper s-before-product-info !mt-0">{% hook 'product.single.before_product_info' %}</div>
 
     <div class=" container--product-details w-[95%] mx-auto dynamic-text-color">
@@ -65,7 +86,7 @@
         <div class="flex flex-col md:flex-row md:items-stretch" id="product-{{ product.id }}">
 
             {# ---------- LEFT: image slider + custom thumbnail column ---------- #}
-            <div class=" p-5 rounded-custom dynamic-bg-color dynamic-border-color sidebar md:sticky top-24 w-full md:!w-2/4 rtl:ml-8 ltr:mr-8 pb-8 md:pb-16 shrink-0">
+            <div class=" p-5 rounded-custom dynamic-bg-color dynamic-border-color product-images-panel sidebar md:sticky top-24 w-full md:!w-2/4 rtl:ml-8 ltr:mr-8 pb-8 md:pb-16 shrink-0">
                 {% set has_many_images = product.images|length > 1 %}
 
                 <div class="flex flex-row md:gap-3" id="product-gallery-{{ product.id }}">
@@ -227,7 +248,7 @@
             </div>
 
             {# ---------- RIGHT: details, description, form ---------- #}
-            <div class=" p-5 rounded-custom dynamic-bg-color dynamic-border-color  main-content md:sticky md:overflow-hidden top-24 w-full md:w-2/4 md:pb-16">
+            <div class=" p-5 rounded-custom dynamic-bg-color dynamic-border-color product-details-panel main-content md:sticky md:overflow-hidden top-24 w-full md:w-2/4 md:pb-16">
 
                 {% hook 'product:single.description.start' %}
 

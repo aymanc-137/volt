@@ -384,7 +384,13 @@ salla-add-product-button[product-status="out-and-notify"],
 }
 
 .s-product-card-promotion-title{
-  @apply bg-red-800 text-white;
+  // The variables are emitted by master.twig only behind the advanced-colour
+  // toggle; the fallbacks are the literal values of the previous
+  // `@apply bg-red-800 text-white` (red-800 = #991b1b), so the default badge is
+  // unchanged. Written as hex rather than `theme()` because sass-loader runs
+  // before Tailwind's PostCSS plugin in this chain.
+  background-color: var(--product-card-badge-bg, #991b1b);
+  color: var(--product-card-badge-text, #ffffff);
 }
 
 .s-product-card-sale-price {
@@ -454,7 +460,6 @@ salla-quantity-input[max='1']{
 
   @apply bg-[var(--color-light-box-background)] dark:bg-[var(--color-dark-box-background)]
 
-  rounded-custom
   border-2
   dynamic-border-color
   relative
@@ -502,9 +507,11 @@ salla-quantity-input[max='1']{
     height: 100%;
   }
 
+  border-radius: var(--product-card-radius, var(--border-radius));
+
   .s-product-card-image{
-    border-top-left-radius: var(--border-radius) !important;
-    border-top-right-radius: var(--border-radius) !important;
+    border-top-left-radius: var(--product-card-radius, var(--border-radius)) !important;
+    border-top-right-radius: var(--product-card-radius, var(--border-radius)) !important;
   }
 
   // Clips the image on hover zoom (see .card-image-zoom-hover)
@@ -523,6 +530,133 @@ salla-quantity-input[max='1']{
 
     }
 
+  }
+}
+
+// ---- Product-card advanced colours (behind `product_card_advanced_colors`) ----
+// Each variable is emitted by master.twig only when the merchant sets it. The
+// fallbacks reproduce exactly what the card renders today — `dynamic-border-color`
+// for the frame and `dynamic-text-color` / the box-background palette for the
+// content — so leaving the toggle off changes nothing. `.dark` variants get the
+// dark palette fallback; the variable itself is overridden under `.dark` by the
+// template, matching the header/footer pattern.
+.product-card-volt{
+  border-color: var(--product-card-border-color, var(--color-border));
+
+  .s-product-card-content{
+    background-color: var(--product-card-content-bg, transparent);
+    color: var(--product-card-content-text, var(--main-text-color));
+
+    .s-product-card-content-title a,
+    .s-product-card-content-subtitle,
+    .s-product-card-price,
+    .s-product-card-starting-price{
+      color: var(--product-card-content-text, var(--main-text-color));
+    }
+  }
+}
+
+.dark .product-card-volt{
+  border-color: var(--product-card-border-color, var(--color-border-dark));
+
+  .s-product-card-content{
+    color: var(--product-card-content-text, var(--light-text-color));
+
+    .s-product-card-content-title a,
+    .s-product-card-content-subtitle,
+    .s-product-card-price,
+    .s-product-card-starting-price{
+      color: var(--product-card-content-text, var(--light-text-color));
+    }
+  }
+}
+
+// ---- Boolean card settings (body classes emitted by master.twig) ----
+// Hide the card frame but keep the box, background and spacing intact.
+.pc-no-border .product-card-volt{
+  @apply border-transparent;
+}
+
+// Centre every text row inside the card.
+.pc-center-text .product-card-volt{
+  .s-product-card-content-main,
+  .s-product-card-content-title,
+  .s-product-card-content-subtitle{
+    @apply text-center;
+  }
+
+  .s-product-card-content-sub{
+    @apply justify-center;
+  }
+
+  .s-product-card-sale-price,
+  .s-product-card-starting-price{
+    @apply justify-center text-center;
+  }
+}
+
+// Hide the star rating badge.
+.pc-hide-rating .product-card-volt .s-product-card-rating{
+  @apply hidden;
+}
+
+// Hide the availability badges: remaining-quantity, out-of-stock and the
+// "remaining" pie shown on the special (flash) cards.
+.pc-hide-availability .product-card-volt{
+  .s-product-card-quantity,
+  .s-product-card-out-badge,
+  .s-product-card-content-pie{
+    @apply hidden;
+  }
+}
+
+// Hide the pre-discount price (the struck-through original next to the sale price).
+.pc-hide-discount .product-card-volt .s-product-card-sale-price span{
+  @apply hidden;
+}
+
+// Hide the discount countdown timer inside the card.
+.pc-hide-countdown .product-card-volt salla-count-down{
+  @apply hidden;
+}
+
+// Out-of-stock cards render their image without colour. Enabled by default
+// (`product_card_out_of_stock_grayscale`); switching the setting off drops the
+// body class and the image returns to full colour.
+.pc-oos-grayscale .product-card-volt.s-product-card-out-of-stock{
+  .s-product-card-image-container img{
+    filter: grayscale(1);
+    transition: filter 0.3s ease;
+  }
+
+  &:hover .s-product-card-image-container img{
+    filter: grayscale(0.65);
+  }
+}
+
+// Master hover kill-switch (`product_card_hover_enabled`). Suppresses the
+// growing border segments, the glow, the image zoom and the shadow in one go,
+// regardless of the three individual effect toggles.
+.no-card-hover{
+  .product-card-volt{
+    &::before,
+    &::after{
+      display: none;
+    }
+
+    &:hover{
+      box-shadow: none;
+    }
+  }
+
+  .product-card-volt__bottom-border,
+  .product-card-volt__left-border,
+  .product-card-volt__glow{
+    display: none;
+  }
+
+  .product-card-volt:hover .s-product-card-image-container > a > img{
+    transform: none;
   }
 }
 
@@ -672,5 +806,33 @@ salla-comments
 .s-reviews-summary-header{
   .s-reviews-summary-average , .s-reviews-summary-recommendation-percentage{
     @apply dynamic-text-color;
+  }
+}
+// ---- Product options inside the card (`product_card_show_options`) ----
+// The card is a tight space, so the picker is scaled down and its labels are
+// trimmed compared with the full product page. Only rendered when the setting is
+// on and the list requested the options payload, so this costs nothing by default.
+.s-product-card-options{
+  @apply mt-2 mb-1;
+
+  salla-product-options{
+    @apply block text-xs;
+  }
+
+  .s-product-options-option-label{
+    @apply text-xs mb-1 opacity-80;
+  }
+
+  .s-product-options-option-wrapper{
+    @apply mb-2 last:mb-0;
+  }
+
+  // Keep swatch rows on one line inside the card rather than stretching it.
+  .s-product-options-items{
+    @apply flex flex-wrap gap-1;
+  }
+
+  select.s-form-control{
+    @apply text-xs py-1 h-auto;
   }
 }

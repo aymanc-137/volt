@@ -135,7 +135,9 @@
 
     .navbar-brand {
       img {
-        max-height: 40px;
+        // Shrinks with the configured size; 8px under the resting height, which is
+        // the old 40px when the logo is left at its 48px default.
+        max-height: calc(var(--header-logo-height, 48px) - 8px);
       }
 
       h4 {
@@ -165,7 +167,10 @@
   @apply items-center flex my-2 lg:my-0;
 
   img {
-    @apply w-auto max-h-12 max-w-[100px] xs:max-w-[170px];
+    // `--header-logo-height` is emitted by header.twig only when the merchant opts
+    // into the advanced size settings; the 48px fallback is the old `max-h-12`.
+    @apply w-auto max-w-[100px] xs:max-w-[170px];
+    max-height: var(--header-logo-height, 48px);
   }
 }
 
@@ -175,8 +180,15 @@
 
   &__icon{
     // Colour comes from the advanced-header-colour block below (falls back to
-    // the palette text colour when the toggle is off).
-    @apply text-xl w-10 h-10 border border-[var(--color-primary-50)] rounded-custom flex items-center justify-center;
+    // the palette text colour when the toggle is off). `--header-icon-size` is
+    // emitted only when the merchant opts into the advanced size settings; the
+    // 20px fallback is the old `text-xl`, and the box stays at twice the glyph
+    // size, reproducing the old `w-10 h-10`.
+    @apply border border-[var(--color-primary-50)] rounded-custom flex items-center justify-center;
+    font-size: var(--header-icon-size, 20px);
+    line-height: 1.75rem;
+    width: calc(var(--header-icon-size, 20px) * 2);
+    height: calc(var(--header-icon-size, 20px) * 2);
     &.icon{
       @apply mr-[9px] rtl:ml-[9px] rtl:mr-[unset];
     }
@@ -262,10 +274,14 @@ salla-user-menu{
 salla-user-menu .s-user-menu-login-btn{
   // Colour comes from the advanced-header-colour block above (palette fallback
   // when the toggle is off); size/border/shape match `.header-btn__icon`.
-  @apply w-10 h-10 rounded-custom border border-[var(--color-primary-50)] flex items-center justify-center transition-colors;
+  @apply rounded-custom border border-[var(--color-primary-50)] flex items-center justify-center transition-colors;
+  width: calc(var(--header-icon-size, 20px) * 2);
+  height: calc(var(--header-icon-size, 20px) * 2);
 
   svg{
-    @apply w-5 h-5;
+    // Matches the glyph size of the font icons (old `w-5 h-5` = 20px).
+    width: var(--header-icon-size, 20px);
+    height: var(--header-icon-size, 20px);
     fill: currentColor;               // follows the header icon colour instead of a fixed grey
   }
 

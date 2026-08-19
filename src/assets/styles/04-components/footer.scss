@@ -80,3 +80,15 @@
 .copyright-text p{
   @apply text-gray-700;
 }
+// ---- Payment-methods column (`footer_payments_enabled`) ----
+// A manual collection of payment images shown as an extra footer column. Separate
+// from the automatic `<salla-payments>` row at the bottom, which is left in place.
+.store-footer__payments{
+  .store-footer__payment-icon{
+    @apply rounded-sm transition-opacity;
+  }
+
+  a:hover .store-footer__payment-icon{
+    @apply opacity-80;
+  }
+}
