@@ -41,6 +41,7 @@
     {% set display_all = component.display_all_url  %}
     <div class="container -mt-62 relative overflow-hidden">
         <salla-products-slider
+                      {% if theme.settings.get('product_card_hover_image', false) %}includes='["images"]'{% endif %}
             {% if component.products|length %}
               {# Pass the section's product source straight through so Salla fetches
                  via the API, instead of hand-building source-value from the ids.

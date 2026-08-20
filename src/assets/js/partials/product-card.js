@@ -97,14 +97,56 @@ class ProductCard extends HTMLElement {
       return '';
     }
 
-    const mainUrl = this.product?.image?.url || this.product?.thumbnail || '';
+    const mainImage = this.product?.image;
+    const mainUrl = mainImage?.url || this.product?.thumbnail || '';
+    const mainKey = ProductCard.imageKey(mainUrl);
+
     const second = images.find((img) => {
       const url = img?.url || (typeof img === 'string' ? img : '');
+      if (!url) {
+        return false;
+      }
+
       // Skip videos / 3D entries — only a plain image can stand in for the main one.
-      return url && url !== mainUrl && img?.type !== 'video' && !img?.video_url;
+      if (img?.type === 'video' || img?.video_url) {
+        return false;
+      }
+
+      // The gallery usually contains the main photo too, and the same photo is
+      // served under a different host/size/extension than `product.image.url`
+      // (e.g. cdn.files.salla.network/…-original.webp vs cdn.salla.sa/…-1000x561.jpg).
+      // A raw string compare therefore matches nothing and we would "swap" the
+      // main image for an identical copy — which looks like the feature is dead.
+      // Identify it by flag, then id, then a size/format-independent key.
+      if (img?.main === true) {
+        return false;
+      }
+
+      if (mainImage?.id != null && img?.id != null && img.id === mainImage.id) {
+        return false;
+      }
+
+      return ProductCard.imageKey(url) !== mainKey;
     });
 
     return second?.url || (typeof second === 'string' ? second : '') || '';
+  }
+
+  /**
+   * Identity of an image, independent of the CDN host, resize suffix and format.
+   * Salla filenames lead with the image's UUID and append the variant
+   * (`<uuid>-original.webp`, `<uuid>-1000x561.….jpg`), so the UUID is the stable
+   * part. Falls back to the filename stem for anything that isn't shaped that way.
+   */
+  static imageKey(url) {
+    if (!url) {
+      return '';
+    }
+
+    const file = String(url).split('?')[0].split('/').pop() || '';
+    const uuid = file.match(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i);
+
+    return uuid ? uuid[0].toLowerCase() : file.replace(/\.[a-z0-9]+$/i, '');
   }
 
   /**

@@ -26,6 +26,7 @@
       source="{{ products.source }}"
       limit="{{ limit }}"
       source-value="{{ products.source_value|json_encode }}"
+      {% if theme.settings.get('product_card_hover_image', false) %}includes='["images"]'{% endif %}
       class="{{is_vertical ? 'vertical-products' : 'horizontal-products'}}"
       {{is_vertical ? '' : 'horizontal-cards'}}
       >

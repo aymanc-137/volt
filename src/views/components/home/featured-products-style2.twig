@@ -39,7 +39,8 @@
         {% for section in items %}
             <div id="{{ component_id }}-{{ section.id }}" class="tabs__item {{ loop.first?'is-active':'' }}">
                 {% if is_slider %}
-                    <salla-products-slider 
+                    <salla-products-slider
+                      {% if theme.settings.get('product_card_hover_image', false) %}includes='["images"]'{% endif %} 
                       slider-id="section-{{ section.id }}-slider" 
                       source="{{ section.products.source }}"
                       limit="{{ section.products.limit }}"

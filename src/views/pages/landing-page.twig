@@ -78,7 +78,8 @@
             <section class="container overflow-hidden {{landing.products|length <= 3 and not landing.is_slider ? 'center-products' : ''}}">
                 {% set is_vertical = theme.settings.get('vertical_fixed_products', true) %}
                 {% if landing.is_slider %}
-                    <salla-products-slider source="landing-page" block-title="{{trans('pages.offer.included_products')}}" display-all-url></salla-products-slider>
+                    <salla-products-slider
+                      {% if theme.settings.get('product_card_hover_image', false) %}includes='["images"]'{% endif %} source="landing-page" block-title="{{trans('pages.offer.included_products')}}" display-all-url></salla-products-slider>
                 {% else %}
                     <section class="s-block">
                         <div class="s-block__title">
