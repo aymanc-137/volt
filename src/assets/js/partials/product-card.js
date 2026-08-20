@@ -126,7 +126,14 @@ class ProductCard extends HTMLElement {
     // previous card-level listeners so they can't keep poking a detached image.
     this.teardownHoverImageSwap();
 
-    const SWAP_INTERVAL = 1200;
+    // `product_card_hover_image_speed` (ms each image is held). 0 means "show the
+    // second image while hovered but don't keep alternating"; anything below the
+    // floor would out-run the 0.6s crossfade, so it is clamped rather than trusted.
+    const MIN_INTERVAL = 300;
+    const configured = Number(window.product_card_hover_image_speed);
+    const swapInterval = Number.isFinite(configured) && configured >= 0
+      ? configured
+      : 1200;
 
     this._hoverSwapEnter = () => {
       if (!hoverImg.src) {
@@ -135,9 +142,14 @@ class ProductCard extends HTMLElement {
 
       hoverImg.classList.add('is-visible');
       clearInterval(this._hoverSwapTimer);
+
+      if (swapInterval === 0) {
+        return;   // static swap: hold the second image for as long as the pointer stays
+      }
+
       this._hoverSwapTimer = setInterval(() => {
         hoverImg.classList.toggle('is-visible');
-      }, SWAP_INTERVAL);
+      }, Math.max(swapInterval, MIN_INTERVAL));
     };
 
     this._hoverSwapLeave = () => {

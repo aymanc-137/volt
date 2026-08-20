@@ -2086,6 +2086,27 @@
             "selected": false
         },
         {
+            "id": "product_card_hover_image_speed",
+            "type": "number",
+            "format": "slider",
+            "inputType": "range",
+            "icon": "sicon-clock",
+            "label": "سرعة التبديل بين الصورتين (جزء من الثانية)",
+            "description": "المدة التي تبقى فيها كل صورة ظاهرة قبل التبديل للأخرى. القيمة الافتراضية 1200 (١.٢ ثانية). اضبطها على 0 لعرض الصورة الثانية دون تبديل متكرر.",
+            "required": false,
+            "value": 1200,
+            "step": 100,
+            "minimum": 0,
+            "maximum": 5000,
+            "conditions": [
+                {
+                    "id": "product_card_hover_image",
+                    "operation": "=",
+                    "value": true
+                }
+            ]
+        },
+        {
             "type": "boolean",
             "format": "switch",
             "icon": "sicon-image",

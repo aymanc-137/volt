@@ -88,6 +88,7 @@ style=" overflow-y: scroll;"
         window.notify_when_available_in_card = "{{ theme.settings.get('notify_when_available_in_card', true) }}"
         // Real boolean (not the stringified form used above) — the card checks it directly.
         window.product_card_hover_image = {{ (theme.settings.get('product_card_hover_image', false) ? true : false) | json_encode }}
+        window.product_card_hover_image_speed = {{ theme.settings.get('product_card_hover_image_speed', 1200) | json_encode }}
     </script>
     
     {% hook 'head:start' %}
