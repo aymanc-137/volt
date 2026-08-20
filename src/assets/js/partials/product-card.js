@@ -100,11 +100,19 @@ class ProductCard extends HTMLElement {
       return '';
     }
 
-    // The JSON payload is assigned as a property after render (see `render()`)
-    // rather than inlined here, so option labels containing quotes can't break
-    // out of the attribute.
+    // The payload MUST be inlined as an attribute, not assigned as a property
+    // afterwards: `salla-product-options` parses `this.options` in its
+    // *constructor*, which runs synchronously while the browser upgrades the
+    // element during the `innerHTML` assignment below. A property set after that
+    // is already too late, and the component silently falls back to fetching the
+    // options itself with one `salla.api.product.getDetails()` call per card.
+    // `escapeHTML` covers the quotes and ampersands in the JSON, so option labels
+    // can't break out of the attribute. This mirrors what the product page does
+    // in `partials/product/options.twig`.
+    const payload = this.escapeHTML(JSON.stringify(this.product.options));
+
     return `<div class="s-product-card-options">
-              <salla-product-options product-id="${this.product.id}"></salla-product-options>
+              <salla-product-options product-id="${this.product.id}" options="${payload}"></salla-product-options>
             </div>`;
   }
 
@@ -313,11 +321,16 @@ class ProductCard extends HTMLElement {
             : ``}
 
 
+          ${this.showsOptions() ? `<form class="s-product-card-add-form" enctype="multipart/form-data" method="post"
+                onsubmit="return salla.form.onSubmit('cart.addItem', event)">
+                <input type="hidden" name="id" value="${this.product.id}">` : ``}
+
           ${this.getProductOptions()}
 
           ${!this.hideAddBtn ?
             `<div class="s-product-card-content-footer border-t border-primary pt-2 ">
               <salla-add-product-button    width="wide" class="volt"
+                ${this.showsOptions() ? 'type="submit"' : ''}
                 product-id="${this.product.id}"
                 product-status="${this.effectiveStatus}"
                 product-type="${this.product.type}">
@@ -350,15 +363,10 @@ class ProductCard extends HTMLElement {
                 
             </div>`
             : ``}
+
+          ${this.showsOptions() ? `</form>` : ``}
         </div>
       `
-
-      if (this.showsOptions()) {
-        const optionsEl = this.querySelector('salla-product-options');
-        if (optionsEl) {
-          optionsEl.options = JSON.stringify(this.product.options);
-        }
-      }
 
       this.querySelectorAll('[name="donating_amount"]').forEach((element)=>{
         element.addEventListener('input', (e) => {
