@@ -44,11 +44,10 @@
             <div class="main-content w-full">
                 {% if products|length %}
                     {% hook 'brands:single.items.start' %}
-                        {# Same catalog-grid behaviour as the category page: optional infinite
-                           scroll, and the options payload only when the cards will show it. #}
+                        {# Same catalog-grid behaviour as the category page: optional infinite scroll. #}
                         <salla-products-list source="{{page.slug}}" source-value="{{page.id}}"
                             {{ theme.settings.get('product_list_autoload', false) ? 'autoload' : '' }}
-                            {% if theme.settings.get('product_card_show_options', false) %}includes='["options"]'{% endif %}></salla-products-list>
+                            {% if theme.settings.get('product_card_hover_image', false) %}includes='["images"]'{% endif %}></salla-products-list>
                     {% hook 'brands:single.items.end' %}
                 {% else %}
                     <div class="no-content-placeholder">

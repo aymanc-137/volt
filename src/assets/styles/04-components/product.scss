@@ -808,124 +808,25 @@ salla-comments
     @apply dynamic-text-color;
   }
 }
-// ---- Product options inside the card (`product_card_show_options`) ----
-// A product card is a much tighter box than the product page, so the picker is
-// stripped down: option labels are dropped entirely, colour swatches lose their
-// name text, image thumbnails shrink to the smallest usable size, and selects
-// go flat and compact. Everything is scoped to `.s-product-card-options`, so the
-// full-size picker on the product page is untouched.
-.s-product-card-options{
-  @apply mt-2 mb-1;
 
-  salla-product-options{
-    @apply block;
+// ---- Second image on hover (`product_card_hover_image`) ----
+// The hover image is a sibling of the main <img> inside the image link. It is
+// positioned against `.s-product-card-image-container` (already `relative`), not
+// against the <a>, so the promo badge — which resolves to the same container —
+// keeps its current position. Only rendered when the payload actually carried a
+// distinct second image, so cards without one are untouched.
+.product-card-volt{
+  .s-product-card-hover-image{
+    @apply absolute inset-0 w-full h-full opacity-0 pointer-events-none;
+    transition: opacity 0.45s ease;
   }
 
-  // No labels: the swatches carry the meaning, and the card has no room for a
-  // heading per option group. `hideLabel()` in the component only covers
-  // donations, so this is done here.
-  .s-product-options-option-label{
-    @apply hidden;
-  }
-
-  .s-product-options-option-content{
-    @apply w-full;
-  }
-
-  .s-product-options-option{
-    @apply mb-1.5 last:mb-0;
-  }
-
-  // Option groups sit flat on one wrapping row.
-  .s-product-options-colors-wrapper,
-  .s-product-options-thumbnails-wrapper{
-    @apply flex flex-wrap items-center gap-1 p-0 m-0 border-0;
-  }
-
-  // ---- Colour swatches: chip only, name text removed ----
-  .s-product-options-colors-item{
-    @apply m-0;
-
-    label{
-      @apply p-0 m-0 gap-0 border-0 min-w-0 min-h-0 shadow-none bg-transparent;
-    }
-
-    // The `<span>` is the colour chip; the sibling `<div>` is the colour name.
-    label > span{
-      @apply block w-5 h-5 rounded-full border;
-      border-color: var(--color-border);
-    }
-
-    label > div{
-      @apply hidden;
-    }
-
-    input:checked + label > span{
-      @apply ring-2 ring-offset-1;
-      --tw-ring-color: var(--color-primary);
-    }
-  }
-
-  // ---- Image thumbnails: as small as they can usefully go ----
-  .s-product-options-thumbnails-wrapper{
-    > div{
-      @apply m-0;
-    }
-
-    label{
-      @apply p-0 m-0 border-0 shadow-none min-w-0 min-h-0;
-    }
-
-    img{
-      @apply w-8 h-8 object-cover rounded border;
-      border-color: var(--color-border);
-    }
-
-    input:checked + label img{
-      border-color: var(--color-primary);
-      @apply ring-1;
-      --tw-ring-color: var(--color-primary);
-    }
-
-    // The tick overlay and the out-of-stock caption don't fit at this size.
-    .s-product-options-thumbnails-icon,
-    .s-product-options-thumbnails-stock-badge{
-      @apply hidden;
-    }
-  }
-
-  // ---- Dropdowns / text inputs: flat and compact ----
-  select,
-  input[type="text"],
-  input[type="number"],
-  textarea{
-    @apply text-xs py-1 px-2 h-auto min-h-0 w-full rounded;
-  }
-
-  select{
-    @apply bg-none appearance-none;
-    background-image: none;
-  }
-
-  // Button-style single options stay on one row and shrink to fit.
-  .s-product-options-grid-mode,
-  .s-product-options-multiple-options-wrapper{
-    @apply flex flex-wrap gap-1;
-
-    .s-product-options-grid-mode-span,
-    label{
-      @apply text-xs px-2 py-1 min-w-0 min-h-0;
-    }
-  }
-
-  // Validation text stays readable but must not stretch the card.
-  .s-product-options-option-error{
-    @apply text-[10px] leading-tight mt-0.5;
+  &:hover .s-product-card-hover-image{
+    @apply opacity-100;
   }
 }
 
-// The add-to-cart form is only a wrapper — it must not introduce spacing of its
-// own or the card's footer border would detach from the button.
-.s-product-card-add-form{
-  @apply contents;
+// The master hover kill-switch suppresses the swap along with the other effects.
+.no-card-hover .product-card-volt:hover .s-product-card-hover-image{
+  @apply opacity-0;
 }

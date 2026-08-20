@@ -75,45 +75,36 @@ class ProductCard extends HTMLElement {
   }
 
   /**
-   * Product options inside the card (`product_card_show_options`).
+   * Second image shown on hover (`product_card_hover_image`).
    *
-   * `salla-add-product-button` looks its options up with
-   * `document.querySelector('salla-product-options[product-id="<id>"]')`, so simply
-   * rendering that element inside the card is enough for the selection to be picked
-   * up on add-to-cart — no extra wiring needed.
+   * Reads the URL straight out of the product payload — the lists and sliders ask
+   * for it with `includes='["images"]'`, which rides the request they already
+   * make. Deliberately does NOT call `salla.product.getDetails()`: the previous
+   * version of this feature did that once per card on hover, which is the pattern
+   * Salla clamped down on.
    *
-   * The options payload only exists when the surrounding list asks for it with
-   * `includes='["options"]'`, so this degrades to nothing on lists that don't.
+   * Returns '' when the payload has no images (e.g. a home block that didn't ask
+   * for them) or when the product has no second image, so the card degrades to
+   * its normal single-image behaviour.
    */
-  showsOptions() {
-    return !!window.product_card_show_options
-      && !this.minimal
-      && !this.fullImage
-      && !this.hideAddBtn
-      && this.product?.status === 'sale'
-      && Array.isArray(this.product?.options)
-      && this.product.options.length > 0;
-  }
-
-  getProductOptions() {
-    if (!this.showsOptions()) {
+  getHoverImageUrl() {
+    if (!window.product_card_hover_image || this.fullImage) {
       return '';
     }
 
-    // The payload MUST be inlined as an attribute, not assigned as a property
-    // afterwards: `salla-product-options` parses `this.options` in its
-    // *constructor*, which runs synchronously while the browser upgrades the
-    // element during the `innerHTML` assignment below. A property set after that
-    // is already too late, and the component silently falls back to fetching the
-    // options itself with one `salla.api.product.getDetails()` call per card.
-    // `escapeHTML` covers the quotes and ampersands in the JSON, so option labels
-    // can't break out of the attribute. This mirrors what the product page does
-    // in `partials/product/options.twig`.
-    const payload = this.escapeHTML(JSON.stringify(this.product.options));
+    const images = this.product?.images;
+    if (!Array.isArray(images) || images.length < 2) {
+      return '';
+    }
 
-    return `<div class="s-product-card-options">
-              <salla-product-options product-id="${this.product.id}" options="${payload}"></salla-product-options>
-            </div>`;
+    const mainUrl = this.product?.image?.url || this.product?.thumbnail || '';
+    const second = images.find((img) => {
+      const url = img?.url || (typeof img === 'string' ? img : '');
+      // Skip videos / 3D entries — only a plain image can stand in for the main one.
+      return url && url !== mainUrl && img?.type !== 'video' && !img?.video_url;
+    });
+
+    return second?.url || (typeof second === 'string' ? second : '') || '';
   }
 
   getPriceFormat(price) {
@@ -230,6 +221,8 @@ class ProductCard extends HTMLElement {
     this.effectiveStatus = (this.product.is_out_of_stock && window.notify_when_available_in_card && !['donating', 'financial_support'].includes(this.product?.type))
       ? 'out-and-notify'
       : this.product.status;
+    const hoverImageUrl = this.getHoverImageUrl();
+
     this.innerHTML = `
         <!-- Animated border and glow elements -->
         <div class="product-card-volt__bottom-border"></div>
@@ -248,6 +241,17 @@ class ProductCard extends HTMLElement {
               alt="${this.escapeHTML(this.product?.image?.alt || this.product.name)}"
               loading="lazy"
             />
+            ${hoverImageUrl ? `<img
+              class="s-product-card-hover-image s-product-card-image-${salla.url.is_placeholder(this.product?.image?.url)
+                ? 'contain'
+                : this.fitImageHeight
+                ? this.fitImageHeight
+                : 'cover'}"
+              data-src="${hoverImageUrl}"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+            />` : ''}
             ${!this.fullImage && !this.minimal ? this.getProductBadge() : ''}
           </a>
           ${this.fullImage ? `<a href="${this.product?.url}" aria-label=${this.product.name} class="s-product-card-overlay"></a>`:''}
@@ -321,16 +325,9 @@ class ProductCard extends HTMLElement {
             : ``}
 
 
-          ${this.showsOptions() ? `<form class="s-product-card-add-form" enctype="multipart/form-data" method="post"
-                onsubmit="return salla.form.onSubmit('cart.addItem', event)">
-                <input type="hidden" name="id" value="${this.product.id}">` : ``}
-
-          ${this.getProductOptions()}
-
           ${!this.hideAddBtn ?
             `<div class="s-product-card-content-footer border-t border-primary pt-2 ">
               <salla-add-product-button    width="wide" class="volt"
-                ${this.showsOptions() ? 'type="submit"' : ''}
                 product-id="${this.product.id}"
                 product-status="${this.effectiveStatus}"
                 product-type="${this.product.type}">
@@ -364,9 +361,22 @@ class ProductCard extends HTMLElement {
             </div>`
             : ``}
 
-          ${this.showsOptions() ? `</form>` : ``}
         </div>
       `
+
+      // Defer the actual download to the first hover: the URL is already in hand,
+      // so this costs no request, it just avoids pulling a second image for every
+      // card in a long grid the visitor may never hover.
+      if (hoverImageUrl) {
+        const hoverImg = this.querySelector('.s-product-card-hover-image');
+        if (hoverImg) {
+          this.addEventListener('pointerenter', () => {
+            if (!hoverImg.src) {
+              hoverImg.src = hoverImg.dataset.src;
+            }
+          }, { once: true });
+        }
+      }
 
       this.querySelectorAll('[name="donating_amount"]').forEach((element)=>{
         element.addEventListener('input', (e) => {

@@ -537,7 +537,7 @@
 
     {# Similar Products #}
     <div class="container similar-products-section">
-        <salla-products-slider source="related" source-value="{{product.id}}" block-title="{{trans('pages.products.similar_products')}}" display-all-url></salla-products-slider>
+        <salla-products-slider {% if theme.settings.get('product_card_hover_image', false) %}includes='["images"]'{% endif %} source="related" source-value="{{product.id}}" block-title="{{trans('pages.products.similar_products')}}" display-all-url></salla-products-slider>
     </div>
 
     {#

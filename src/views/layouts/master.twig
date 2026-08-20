@@ -87,7 +87,7 @@ style=" overflow-y: scroll;"
         window.enable_add_product_toast = "{{ theme.settings.get('enable_add_product_toast', true) }}"
         window.notify_when_available_in_card = "{{ theme.settings.get('notify_when_available_in_card', true) }}"
         // Real boolean (not the stringified form used above) — the card checks it directly.
-        window.product_card_show_options = {{ (theme.settings.get('product_card_show_options', false) ? true : false) | json_encode }}
+        window.product_card_hover_image = {{ (theme.settings.get('product_card_hover_image', false) ? true : false) | json_encode }}
     </script>
     
     {% hook 'head:start' %}

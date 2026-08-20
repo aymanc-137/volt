@@ -202,7 +202,8 @@
                     <salla-products-slider autoplay {# product-card-component="custom-salla-product-card-harir" #}
                         source="{{ component.products.source }}"
                         limit="{{ component.products.limit }}"
-                        source-value="{{ component.products.source_value|json_encode }}"></salla-products-slider>
+                        source-value="{{ component.products.source_value|json_encode }}"
+                        {% if theme.settings.get('product_card_hover_image', false) %}includes='["images"]'{% endif %}></salla-products-slider>
                 </div>
             </div>
         </div>
