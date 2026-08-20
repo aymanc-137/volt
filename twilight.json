@@ -294,16 +294,6 @@
         },
         {
             "type": "string",
-            "format": "image",
-            "icon": "sicon-image",
-            "label": "شعار مخصص للهيدر",
-            "description": "صورة بديلة تظهر في ترويسة المتجر بدل شعار المتجر الافتراضي. اتركها فارغة لاستخدام شعار المتجر.",
-            "id": "header_logo_image",
-            "value": null,
-            "required": false
-        },
-        {
-            "type": "string",
             "format": "color",
             "icon": "sicon-palette",
             "label": "لون خلفية القائمة الجانبية والقوائم المنسدلة",
@@ -340,6 +330,16 @@
                     "value": true
                 }
             ]
+        },
+        {
+            "type": "string",
+            "format": "image",
+            "icon": "sicon-image",
+            "label": "شعار مخصص للهيدر",
+            "description": "صورة بديلة تظهر في ترويسة المتجر بدل شعار المتجر الافتراضي. اتركها فارغة لاستخدام شعار المتجر.",
+            "id": "header_logo_image",
+            "value": null,
+            "required": false
         },
         {
             "type": "boolean",
