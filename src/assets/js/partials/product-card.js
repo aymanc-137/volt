@@ -107,6 +107,66 @@ class ProductCard extends HTMLElement {
     return second?.url || (typeof second === 'string' ? second : '') || '';
   }
 
+  /**
+   * Alternate between the main image and the hover image for as long as the
+   * pointer is on the card, crossfading each way (the fade itself is the CSS
+   * `transition` on `.s-product-card-hover-image`).
+   *
+   * The download is deferred to the first hover — the URL is already in hand, so
+   * this costs no request; it just avoids pulling a second image for every card
+   * in a long grid the visitor may never hover.
+   */
+  initHoverImageSwap(hoverImg) {
+    if (!hoverImg) {
+      return;
+    }
+
+    // `render()` runs twice (once immediately, once after translations load), and
+    // `this` survives the innerHTML reset while the old <img> does not. Drop the
+    // previous card-level listeners so they can't keep poking a detached image.
+    this.teardownHoverImageSwap();
+
+    const SWAP_INTERVAL = 1200;
+
+    this._hoverSwapEnter = () => {
+      if (!hoverImg.src) {
+        hoverImg.src = hoverImg.dataset.src;
+      }
+
+      hoverImg.classList.add('is-visible');
+      clearInterval(this._hoverSwapTimer);
+      this._hoverSwapTimer = setInterval(() => {
+        hoverImg.classList.toggle('is-visible');
+      }, SWAP_INTERVAL);
+    };
+
+    this._hoverSwapLeave = () => {
+      clearInterval(this._hoverSwapTimer);
+      this._hoverSwapTimer = null;
+      // Always land back on the main image, mid-cycle or not.
+      hoverImg.classList.remove('is-visible');
+    };
+
+    this.addEventListener('pointerenter', this._hoverSwapEnter);
+    this.addEventListener('pointerleave', this._hoverSwapLeave);
+  }
+
+  teardownHoverImageSwap() {
+    clearInterval(this._hoverSwapTimer);
+    this._hoverSwapTimer = null;
+
+    if (this._hoverSwapEnter) {
+      this.removeEventListener('pointerenter', this._hoverSwapEnter);
+      this.removeEventListener('pointerleave', this._hoverSwapLeave);
+      this._hoverSwapEnter = this._hoverSwapLeave = null;
+    }
+  }
+
+  // Cards are removed and re-added as listings paginate; stop the timer with them.
+  disconnectedCallback() {
+    this.teardownHoverImageSwap();
+  }
+
   getPriceFormat(price) {
     if (!price || price == 0) {
       return salla.config.get('store.settings.product.show_price_as_dash')?'-':'';
@@ -364,18 +424,8 @@ class ProductCard extends HTMLElement {
         </div>
       `
 
-      // Defer the actual download to the first hover: the URL is already in hand,
-      // so this costs no request, it just avoids pulling a second image for every
-      // card in a long grid the visitor may never hover.
       if (hoverImageUrl) {
-        const hoverImg = this.querySelector('.s-product-card-hover-image');
-        if (hoverImg) {
-          this.addEventListener('pointerenter', () => {
-            if (!hoverImg.src) {
-              hoverImg.src = hoverImg.dataset.src;
-            }
-          }, { once: true });
-        }
+        this.initHoverImageSwap(this.querySelector('.s-product-card-hover-image'));
       }
 
       this.querySelectorAll('[name="donating_amount"]').forEach((element)=>{
