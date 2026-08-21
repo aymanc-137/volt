@@ -18,6 +18,13 @@
 {% endif %}
 {% set tc_size_style = 'font-size: clamp(' ~ (tc_size * 0.6)|round ~ 'px, 6vw, ' ~ tc_size ~ 'px);' %}
 {% set tc_sub_style = 'font-size: clamp(' ~ (tc_sub * 0.8)|round ~ 'px, 2.5vw, ' ~ tc_sub ~ 'px);' %}
+{# In-image text scale: `cqw` = 1% of `.category-products__media` width, so the
+   title/subtitle/body track the panel rather than the viewport. The px value in
+   front is the fallback for browsers without container-query support. #}
+{% set tc_size_style_in = 'font-size:' ~ (tc_size * 0.62)|round ~ 'px; font-size:clamp(' ~ (tc_size * 0.5)|round ~ 'px, 8.5cqw, ' ~ tc_size ~ 'px);' %}
+{% set tc_sub_style_in  = 'font-size:' ~ (tc_sub * 0.85)|round ~ 'px; font-size:clamp(' ~ (tc_sub * 0.7)|round ~ 'px, 4.2cqw, ' ~ tc_sub ~ 'px);' %}
+{% set tc_body_style_in = 'font-size:14px; font-size:clamp(11px, 3.4cqw, 18px);' %}
+
 {% set tc_hl_type = component.highlight_word_color_type | default('gradient') %}
 {% if tc_hl_type == 'primary' %}
     {% set tc_hl_attr = 'style="color: var(--color-primary)"' %}
@@ -119,18 +126,16 @@
         <!-- Relative Wrapper for Content to ensure it's above the SVG -->
         <div class="relative z-10 px-0 sm:px-4 md:px-6">
             <!-- Main Content -->
-            <div class="flex flex-col md:flex-row items-center  ">
+            <div class="flex flex-col lg:flex-row items-center gap-4 lg:gap-6">
                 <!-- Right Section: Text Content -->
                 <div class=" sideimage
-                 xl:w-[35rem] xl:h-[40rem]
-                 lg:w-[32rem] lg:h-[36rem]
-                 md:w-[28rem] md:h-[32rem]
-                 w-full h-full
-                
-                 max-w-full
+                 w-full max-w-full
+                 lg:w-[38%] lg:max-w-[32rem]
+                 xl:w-[35%] xl:max-w-[35rem]
+                 shrink-0
                  aspect-[7/8]
                  justify-center flex">
-                                <a href="{{ component.category_url.url }}" class="transition-all duration-200  !w-full  !h-full
+                                <a href="{{ component.category_url.url }}" class="category-products__media transition-all duration-200  !w-full  !h-full
                                        rounded-none sm:rounded-lg
                                        bg-center
                                        border-2 border-x-0 sm:border-x-2
@@ -168,23 +173,23 @@
                                        from-[var(--color-primary-30)]
                                        via-white/30
                                        to-[var(--color-primary-30)]
-                                       h-auto md:h-2/6 backdrop-blur-sm rounded-custom justify-center flex">
+                                       h-auto md:min-h-[33%] backdrop-blur-sm rounded-custom justify-center flex">
                                             <div class="  flex flex-col items-center justify-center rounded-custom border border-primary w-full py-3 md:py-0" >
                                             {% if component.enable_gradient_title %}
-                                                <h5 class="{{ tc_font }} font-semibold bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent" style="{{ tc_size_style }}">{{ component.title }}</h5>
+                                                <h5 class="{{ tc_font }} font-semibold text-center leading-tight bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent" style="{{ tc_size_style_in }}">{{ component.title }}</h5>
                                             {% elseif gradient_word_active %}
-                                                <h5 id="{{ title_element_id }}" class="{{ tc_font }} font-semibold dynamic-text-color" style="{{ tc_size_style }} {{ tc_color_style }}">{{ component.title }}</h5>
+                                                <h5 id="{{ title_element_id }}" class="{{ tc_font }} font-semibold text-center leading-tight dynamic-text-color" style="{{ tc_size_style_in }} {{ tc_color_style }}">{{ component.title }}</h5>
                                             {% else %}
-                                                <h5 class="{{ tc_font }} font-semibold text-[var(--color-primary)]" style="{{ tc_size_style }} {{ tc_color_style }}">{{ component.title }}</h5>
+                                                <h5 class="{{ tc_font }} font-semibold text-center leading-tight text-[var(--color-primary)]" style="{{ tc_size_style_in }} {{ tc_color_style }}">{{ component.title }}</h5>
                                             {% endif %}
-                                                {% if component.sub_title %}<h3 class="text-[var(--color-tertiary)]" style="{{ tc_sub_style }}" >{{ component.sub_title }} </h3>{% endif %}
+                                                {% if component.sub_title %}<h3 class="text-[var(--color-tertiary)] text-center leading-tight" style="{{ tc_sub_style_in }}" >{{ component.sub_title }} </h3>{% endif %}
 
                                                 {% if tc_underline %}
                                                     <div class="hide-the-title  flex items-center w-1/2 my-1 md:my-2 justify-center">
                                                             <span class="navbar-underline"></span>
                                                     </div>
                                                 {% endif %}
-                                                <p class="text-sm sm:text-base md:text-xl w-11/12 md:w-5/6 mt-2 md:mt-5">{{ component.text }}</p>
+                                                <p class="w-11/12 md:w-5/6 mt-2 md:mt-5 text-center leading-snug" style="{{ tc_body_style_in }}">{{ component.text }}</p>
                                             </div>
                                         </div>
                                     {% endif %}
@@ -195,7 +200,7 @@
                 {# <div class="  xl:rotate-0 rotate-90 w-px bg-[var(--color-primary)] xl:h-64"></div> #}
 
                 <!-- Left Section: Stats Cards -->
-                <div class=" justify-center xl:w-[80%] lg:w-[70%] md:w-[60%] w-full md:p-4 p-2">
+                <div class=" justify-center w-full lg:flex-1 min-w-0 p-2 lg:p-4">
                     {# Pass the section's product source straight through so Salla fetches
                        via the API, instead of hand-building source-value from the ids.
                        (theme-raed#581) #}
