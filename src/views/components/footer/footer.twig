@@ -287,7 +287,8 @@
 							{% if pay_name is iterable %}{% set pay_name = null %}{% endif %}
 							{% set pay_name = pay_name|default('') %}
 
-							{% set pay_url = item.item_url %}
+							{# Field id is `item_payment_url` in twilight.json — `item_url` reads nothing. #}
+							{% set pay_url = item.item_payment_url %}
 							{% if pay_url is iterable %}{% set pay_url = pay_url[pay_lang] ?? (pay_url|first) %}{% endif %}
 							{% if pay_url is iterable %}{% set pay_url = null %}{% endif %}
 
