@@ -270,16 +270,32 @@
 			 p-8">
 				{% if payments_title %}<h3>{{ payments_title }}</h3>{% endif %}
 				<ul class="store-footer__payments flex flex-wrap items-center gap-2 mt-4 p-0 m-0 list-none">
+					{% set pay_lang = user.language.code|default('ar') %}
 					{% for item in payment_items %}
-						{% set pay_image = item['footer_payment_items.image'] %}
+						{# Collection rows arrive with the `<collection>.` prefix stripped, so the
+						   fields are `item.image` / `item.name` — not `item['footer_payment_items.image']`.
+						   And a multilanguage field (`name`) comes back as a {lang: value} map, which
+						   must be resolved before printing or the whole footer dies with
+						   "Array to string conversion". Same handling as announcement-bar.twig. #}
+						{% set pay_image = item.image %}
+						{% if pay_image is iterable %}{% set pay_image = pay_image[pay_lang] ?? (pay_image|first) %}{% endif %}
+						{% if pay_image is iterable %}{% set pay_image = null %}{% endif %}
+
 						{% if pay_image %}
-							{% set pay_name = item['footer_payment_items.name'] %}
-							{% set pay_url  = item['footer_payment_items.item_url'] %}
+							{% set pay_name = item.name %}
+							{% if pay_name is iterable %}{% set pay_name = pay_name[pay_lang] ?? (pay_name|first) %}{% endif %}
+							{% if pay_name is iterable %}{% set pay_name = null %}{% endif %}
+							{% set pay_name = pay_name|default('') %}
+
+							{% set pay_url = item.item_url %}
+							{% if pay_url is iterable %}{% set pay_url = pay_url[pay_lang] ?? (pay_url|first) %}{% endif %}
+							{% if pay_url is iterable %}{% set pay_url = null %}{% endif %}
+
 							<li>
-								{% if pay_url %}<a href="{{ pay_url }}" rel="noopener" target="_blank" aria-label="{{ pay_name }}">{% endif %}
-									<img src="{{ pay_image }}" alt="{{ pay_name }}" title="{{ pay_name }}"
-									     width="48" height="32" loading="lazy"
-									     class="store-footer__payment-icon h-8 w-auto object-contain" />
+								{% if pay_url %}<a href="{{ pay_url }}" rel="noopener" target="_blank" aria-label="{{ pay_name|e('html_attr') }}">{% endif %}
+									<img src="{{ pay_image }}" alt="{{ pay_name|e('html_attr') }}" title="{{ pay_name|e('html_attr') }}"
+									     width="60" height="24" loading="lazy"
+									     class="store-footer__payment-icon h-6 w-auto object-contain" />
 								{% if pay_url %}</a>{% endif %}
 							</li>
 						{% endif %}
