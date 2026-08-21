@@ -1666,7 +1666,7 @@
                         "ar": "أبل باي",
                         "en": "Apple Pay"
                     },
-                    "footer_payment_items.item_url": null
+                    "footer_payment_items.item_payment_url": null
                 },
                 {
                     "footer_payment_items.image": "https://cdn.files.salla.network/homepage/1263400992/6903086e-d44a-4c6d-8531-587b582de5af-original.webp",
@@ -1674,7 +1674,7 @@
                         "ar": "جوجل باي",
                         "en": "Google Pay"
                     },
-                    "footer_payment_items.item_url": null
+                    "footer_payment_items.item_payment_url": null
                 },
                 {
                     "footer_payment_items.image": "https://cdn.files.salla.network/homepage/1263400992/5c97329f-3c0d-4778-b2ba-929da046505a-original.webp",
@@ -1682,7 +1682,7 @@
                         "ar": "مدى",
                         "en": "mada"
                     },
-                    "footer_payment_items.item_url": null
+                    "footer_payment_items.item_payment_url": null
                 },
                 {
                     "footer_payment_items.image": "https://cdn.files.salla.network/homepage/1263400992/c766bdcd-9fbf-40fe-81c6-768444841334-original.webp",
@@ -1690,7 +1690,7 @@
                         "ar": "ماستركارد",
                         "en": "Mastercard"
                     },
-                    "footer_payment_items.item_url": null
+                    "footer_payment_items.item_payment_url": null
                 },
                 {
                     "footer_payment_items.image": "https://cdn.files.salla.network/homepage/1263400992/203b1596-972b-4300-8688-5b1133023688-original.webp",
@@ -1698,7 +1698,7 @@
                         "ar": "فيزا",
                         "en": "Visa"
                     },
-                    "footer_payment_items.item_url": null
+                    "footer_payment_items.item_payment_url": null
                 }
             ],
             "fields": [
@@ -1725,7 +1725,7 @@
                     "maxLength": 60
                 },
                 {
-                    "id": "footer_payment_items.item_url",
+                    "id": "footer_payment_items.item_payment_url",
                     "type": "string",
                     "format": "text",
                     "label": "الرابط (اختياري)",
