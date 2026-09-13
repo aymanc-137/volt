@@ -101,17 +101,12 @@
                                         class="product-thumbs__btn shrink-0 w-16 h-16 md:w-20 md:h-16 rounded-custom border-2 dynamic-border-color overflow-hidden focus:outline-none transition-all {{ loop.first ? 'is-active' : '' }}"
                                         data-thumb-index="{{ loop.index0 }}"
                                         aria-label="{{ image.alt }}">
-                                    {% if loop.index < 5 %}
-                                        <img src="{{ image.url }}"
-                                             loading="eager"
-                                             class="object-cover w-full h-full"
-                                             alt="{{ image.alt }}"/>
-                                    {% else %}
-                                        <img data-src="{{ image.url }}" src="{{ 'images/s-empty.png' | cdn }}"
-                                             class="  object-cover w-full h-full"
-                                             loading="lazy"
-                                             alt="{{ image.alt }}"/>
-                                    {% endif %}
+                                    {# Native lazy-loading past the first four: the old `data-src`
+                                       swap had no loader behind it, so those thumbnails stayed blank. #}
+                                    <img src="{{ image.url }}"
+                                         loading="{{ loop.index < 5 ? 'eager' : 'lazy' }}"
+                                         class="object-cover w-full h-full"
+                                         alt="{{ image.alt }}"/>
                                 </button>
                             {% endfor %}
                         </div>

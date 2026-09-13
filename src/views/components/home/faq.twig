@@ -35,7 +35,7 @@
 {% elseif tc_hl_type == 'custom' %}{% set tc_hl_attr = 'style="color: ' ~ (component.highlight_word_color | default('#FF3B3B')) ~ '"' %}
 {% else %}{% set tc_hl_attr = 'class="bg-gradient-to-r from-primary to-scandary bg-clip-text text-transparent"' %}{% endif %}
 
-<section data-volt-component="home.faq" class=" faq-component">
+<section data-volt-component="home.faq" id="faq-{{ position }}" class=" faq-component">
   <div class="container">
     <div class="faq-component__wrapper">
       <!-- Header Section -->
@@ -152,8 +152,12 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    // FAQ Accordion functionality
-    const faqTriggers = document.querySelectorAll('.faq-component__trigger');
+    // FAQ Accordion functionality. Scoped to this instance: every FAQ component
+    // ships this script, so a page-wide query bound each trigger once per
+    // component and a click toggled twice (open, then straight back closed).
+    const root = document.getElementById('faq-{{ position }}');
+    if (!root) return;
+    const faqTriggers = root.querySelectorAll('.faq-component__trigger');
 
     faqTriggers.forEach((trigger) => {
       trigger.addEventListener('click', function (e) {
@@ -162,7 +166,7 @@
         const isActive = faqItem.classList.contains('is-active');
 
         // Close all other items
-        document.querySelectorAll('.faq-component__item.is-active').forEach((item) => {
+        root.querySelectorAll('.faq-component__item.is-active').forEach((item) => {
           if (item !== faqItem) {
             item.classList.remove('is-active');
             const itemTrigger = item.querySelector('.faq-component__trigger');
