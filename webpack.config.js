@@ -42,11 +42,7 @@ module.exports = {
                     options: {
                         presets: ['@babel/preset-env'],
                         plugins: [
-                          ["@babel/plugin-transform-runtime",
-                           {
-                               "regenerator": true
-                           }
-                          ]
+                          "@babel/plugin-transform-runtime"
                         ],
                     }
                 }
@@ -55,7 +51,7 @@ module.exports = {
                 test: /\.(s(a|c)ss)$/,
                 use : [
                     MiniCssExtractPlugin.loader,
-                    {loader: "css-loader", options: {url: false}},
+                    {loader: "css-loader", options: {url: false, sourceMap: false}},
                     "postcss-loader",
                     "sass-loader",
                 ]
