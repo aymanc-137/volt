@@ -37,11 +37,11 @@ importers:
         specifier: ^8.0.2
         version: 8.0.5(@babel/core@8.0.5)
       '@salla.sa/twilight':
-        specifier: ^2.14.551
-        version: 2.14.582(@types/dlv@1.1.5)(webpack@5.110.3)
+        specifier: ^2.14.582
+        version: 2.14.582(@jitsu/protocols@1.11.0)(@types/dlv@1.1.5)(webpack@5.110.3)
       '@salla.sa/twilight-components':
-        specifier: ^2.14.551
-        version: 2.14.582(@types/dlv@1.1.5)(lit@3.3.3)(webpack@5.110.3)
+        specifier: ^2.14.582
+        version: 2.14.582(@jitsu/protocols@1.11.0)(@types/dlv@1.1.5)(lit@3.3.3)(webpack@5.110.3)
       '@tailwindcss/forms':
         specifier: ^0.5.11
         version: 0.5.11(tailwindcss@3.4.19)
@@ -982,15 +982,13 @@ packages:
     resolution: {integrity: sha512-LvVYn83nnXPl+Rg98nvcFgjx6nRMTArhSn6RAX/w3ELn54S8A42TYZvsCMdGUqTM8S0wyXbtlQdU6Hi6dykj9g==}
     engines: {node: ^18.14.0 || ^20.0.0 || ^22.0.0 || >=24.0.0}
 
-  '@jitsu/js@1.10.1':
-    resolution: {integrity: sha512-FPoFJq+osyCedlQX2k0Vga57pL3E/sSYFwQwvRUuBnTaoiaWOT6Z4Kx7O2+dgQGeEmIGOE83ZpHH/uEeU635dg==}
-    peerDependencies:
-      '@jitsu/protocols': 1.10.1
-
   '@jitsu/js@1.11.0':
     resolution: {integrity: sha512-QSHeXLVYfhyDKKPvFDAmQQfh6bqYinR+t45F4PiT+WhDkQ3igef6xh8X0+vF/Y9Vua3M1Psd70CkyilF6fYxvA==}
     peerDependencies:
       '@jitsu/protocols': 1.11.0
+
+  '@jitsu/protocols@1.11.0':
+    resolution: {integrity: sha512-W8WwHi1mY2RSSmdOWIyu66DZQPa3pmF6t9Y+pAKfxf/480uTbB9v6vnhItg0JX0Sp1sMNPLYronRlmbi6Y8/3Q==}
 
   '@jridgewell/gen-mapping@0.3.12':
     resolution: {integrity: sha512-OuLGC46TjB5BbN1dH8JULVVZY4WTdkF7tV9Ys6wLL1rubZnCMstOhNHueU5bLCrnRuDhKPDM4g6sw4Bel5Gzqg==}
@@ -4164,17 +4162,14 @@ snapshots:
       '@types/yargs': 17.0.33
       chalk: 4.1.2
 
-  '@jitsu/js@1.10.1(@types/dlv@1.1.5)':
+  '@jitsu/js@1.11.0(@jitsu/protocols@1.11.0)(@types/dlv@1.1.5)':
     dependencies:
+      '@jitsu/protocols': 1.11.0
       analytics: 0.8.9(@types/dlv@1.1.5)
     transitivePeerDependencies:
       - '@types/dlv'
 
-  '@jitsu/js@1.11.0(@types/dlv@1.1.5)':
-    dependencies:
-      analytics: 0.8.9(@types/dlv@1.1.5)
-    transitivePeerDependencies:
-      - '@types/dlv'
+  '@jitsu/protocols@1.11.0': {}
 
   '@jridgewell/gen-mapping@0.3.12':
     dependencies:
@@ -4289,9 +4284,9 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@salla.sa/analytics@2.14.582(@types/dlv@1.1.5)':
+  '@salla.sa/analytics@2.14.582(@jitsu/protocols@1.11.0)(@types/dlv@1.1.5)':
     dependencies:
-      '@jitsu/js': 1.11.0(@types/dlv@1.1.5)
+      '@jitsu/js': 1.11.0(@jitsu/protocols@1.11.0)(@types/dlv@1.1.5)
     transitivePeerDependencies:
       - '@jitsu/protocols'
       - '@types/dlv'
@@ -4309,11 +4304,11 @@ snapshots:
       lodash: 4.17.21
       store: 2.0.12
 
-  '@salla.sa/twilight-components@2.14.582(@types/dlv@1.1.5)(lit@3.3.3)(webpack@5.110.3)':
+  '@salla.sa/twilight-components@2.14.582(@jitsu/protocols@1.11.0)(@types/dlv@1.1.5)(lit@3.3.3)(webpack@5.110.3)':
     dependencies:
       '@googlemaps/markerclusterer': 2.6.2
       '@salla.sa/applepay': 2.14.582
-      '@salla.sa/twilight': 2.14.582(@types/dlv@1.1.5)(webpack@5.110.3)
+      '@salla.sa/twilight': 2.14.582(@jitsu/protocols@1.11.0)(@types/dlv@1.1.5)(webpack@5.110.3)
       '@salla.sa/twilight-tailwind-theme': 2.14.582
       '@salla.sa/ui-address-autocomplete-widget': 1.2.1
       '@salla.sa/ui-google-map-render': 1.2.1(@googlemaps/markerclusterer@2.6.2)(@salla.sa/ui-address-autocomplete-widget@1.2.1)(lit@3.3.3)
@@ -4344,10 +4339,10 @@ snapshots:
 
   '@salla.sa/twilight-tailwind-theme@2.14.582': {}
 
-  '@salla.sa/twilight@2.14.582(@types/dlv@1.1.5)(webpack@5.110.3)':
+  '@salla.sa/twilight@2.14.582(@jitsu/protocols@1.11.0)(@types/dlv@1.1.5)(webpack@5.110.3)':
     dependencies:
-      '@jitsu/js': 1.10.1(@types/dlv@1.1.5)
-      '@salla.sa/analytics': 2.14.582(@types/dlv@1.1.5)
+      '@jitsu/js': 1.11.0(@jitsu/protocols@1.11.0)(@types/dlv@1.1.5)
+      '@salla.sa/analytics': 2.14.582(@jitsu/protocols@1.11.0)(@types/dlv@1.1.5)
       '@salla.sa/base': 2.14.582
       axios: 1.10.0
       infinite-scroll: 4.0.1
